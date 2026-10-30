@@ -1058,6 +1058,79 @@ def check_corpse_specifier(fails):
                              "once the entity is dead, so it never runs (vanilla: 0 of 336)"
                              % (p.name, ai.get("Interaction Type") or "CAIInteractionSpecifier",
                                 target))
+def check_repeatable_grants(fails):
+    """A node that hands out an item, reachable without crossing any gate, while some other
+    reply to it IS gated (A0.19).
+
+    Found in play in 0.83.3: Brendan's Serpent's Bile could be milked forever. Seven replies
+    reached `200 drink`; six checked that the `took irish drink` flag did not exist yet, and the
+    seventh, on `200 irish`, was a bare `Requirement=!None`. `200 irish` hangs off the greeting
+    by *"That accent is odd - where are you from?"*, so every conversation re-opened the tap. It
+    also re-opened Sullivan's Clover, which is reached from `200 drink` and nowhere else.
+
+    The naive version of this check -- "are all replies into the giving node gated" -- reports
+    four more trees and every one of them is a false positive, because the ordinary and correct
+    pattern is a gate at the *entrance to a branch* with ungated replies inside it. `Magic
+    Machine`'s DaVinci Tank Gear looks identical to the bug and is fine: its three ungated
+    sources are reachable only through one gated reply at `700`.
+
+    So the question is reachability, not incoming edges: walk the tree from its entry points
+    following only ungated replies, and fail if a giving node turns up in that walk while
+    something else about it is gated. The gated sibling is what tells us the author meant to
+    gate it; a node whose every path is ungated is usually deliberately repeatable.
+
+    Entry points are the first node in the file plus every node with no incoming reply, because
+    a node nothing points at must be entered from a map or a can.
+    """
+    trees = sorted((F / "Resources").rglob("*.[Dd]ialog[Tt]ree")) if (F / "Resources").exists() else []
+    for p in trees:
+        text = p.read_bytes().decode("latin-1")
+        chunks = [c for c in text.split("-" * 60) if re.search(r"^Node ID=", c, re.M)]
+        if not chunks:
+            continue
+        order, nodes = [], {}
+        for c in chunks:
+            nid = re.search(r"^Node ID=(.*)$", c, re.M).group(1).strip()
+            order.append(nid)
+            nodes[nid] = c
+
+        # replies, as (source, target, gated)
+        edges, incoming = [], set()
+        for nid, body in nodes.items():
+            for blk in re.split("\r\n\r\n", body):
+                m = re.search(r"^Go to node ID=(.*)$", blk, re.M)
+                if not m:
+                    continue
+                tgt = m.group(1).strip()
+                if not tgt:
+                    continue
+                gated = ("Custom Requirement=" in blk
+                         or re.search(r"^Requirement=(?!!None)\S", blk, re.M) is not None)
+                edges.append((nid, tgt, gated))
+                incoming.add(tgt)
+
+        entries = {order[0]} | {n for n in order if n not in incoming}
+        seen, stack = set(entries), list(entries)
+        while stack:
+            cur = stack.pop()
+            for src, tgt, gated in edges:
+                if src == cur and not gated and tgt in nodes and tgt not in seen:
+                    seen.add(tgt)
+                    stack.append(tgt)
+
+        for nid, body in nodes.items():
+            items = [i.strip() for i in re.findall(r"^Inventory Item To Give=(.*)$", body, re.M)]
+            if not items or nid not in seen:
+                continue
+            if not any(t == nid and g for _, t, g in edges):
+                continue           # nothing about it is gated, so it is meant to repeat
+            doors = sorted({s for s, t, g in edges if t == nid and not g})
+            fails.append("%s: %r hands out %r and is reachable with no gate crossed, while other "
+                         "replies to it ARE gated (A0.19) -- so it can be taken again every "
+                         "conversation. Ungated door(s): %s"
+                         % (p.name, nid, items[0].split("/")[-1], ", ".join(repr(d) for d in doors)))
+
+
 check_references(fails)
 check_self_reference(fails)
 check_no_probes(fails)
@@ -1066,6 +1139,7 @@ check_class_names(fails)
 check_dangling_names(fails)
 check_empty_blocks(fails)
 check_corpse_specifier(fails)
+check_repeatable_grants(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))

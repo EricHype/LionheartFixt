@@ -15,7 +15,7 @@ that no longer exists here, so renumbering a case cannot silently orphan the gui
 
 ## Gate 0 - automated, before anyone plays
 
-A0.1-A0.12 and A0.14-A0.16 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
+A0.1-A0.12 and A0.14-A0.19 are scripted in [`tools/validate.py`](../tools/validate.py); A0.13 is
 [`tools/reachability.py`](../tools/reachability.py), which needs the vanilla archive to
 tell our orphans from the shipped game's. Both must be re-run after *any* change to
 `files/`:
@@ -53,6 +53,9 @@ is parsed, so a new *text* type cannot slip through by being unlisted.
 | A0.14 | No can-level quest-item drop is overridden by the generator that spawns it | zero overridden drops. `CSetDestroyedScriptActionAction` in a generator's `After Action` **replaces** the can's `Destroyed Script Action`, so a drop written only on the can is dead code -- this is how the Lava Troll Hide was unobtainable from 0.10.0 |
 | A0.15 | Every `=CSomething` names a class the engine registers | zero unknown classes. Checked against the C-prefixed strings in `Lionheart.exe` plus every class vanilla's data uses. An invented class is a hard CTD -- *"Invalid class type"* -- and `CIsQuestStatusCompletedAction` in the Grand Inquisitor's tree shipped in **0.13.0 and survived 27 tagged releases** before a player walked into it |
 | A0.16 | No exit this mod makes reachable leaves the player inside a non-interactive sequence | zero hangs. Scoped to trees where **every** exit vanilla could reach ends the sequence, and only to exits vanilla could not already enter, so inherited shapes stay quiet. **Blind spot: "exit" means reply-reachable**, so a node a map opens directly is invisible -- grep the maps before satisfying this by adding actions to a node |
+| A0.17 | A field with an empty value is not followed by a brace block | zero orphan blocks. 0.60.5 shipped a Crossroads crash every other gate passed |
+| A0.18 | No value is itself a `Key=Value` assignment, and no interaction specifier is installed on the entity that is dying | zero. Both shipped: 0.71.10's builder wrote `Else=<tab>Dialog Tree File=...`, and a specifier added inside a destroyed script can only run once the entity is dead |
+| A0.19 | **No node that hands out an item is reachable with no gate crossed while other replies to it are gated** | zero repeatable grants. Found in play in 0.83.3: Brendan's Serpent's Bile had six gated doors and one open one, so it could be taken every conversation. The naive form of this check -- *are all incoming replies gated* -- reports four more trees and all four are false positives, because a gate at a branch entrance with ungated replies inside it is the correct and ordinary pattern. So it walks from the entry points following only ungated replies |
 
 **A0.11 is the one that has bitten this project before.** The loose `data\` tree shadows
 `data.dat`; a correct archive with a stale mirror is a mod that silently does nothing.
@@ -1236,7 +1239,7 @@ on any save but wants a character with Luck 3 or less who has not yet taken Bren
 | AB4 | Mongol Camp gate, negative | Make the camp hostile by any route, then cross the gate again | Nothing fires |
 | AB5 | Port District tavern, Brendan (Luck <= 3) | Take his drink | After *"Take a healthy tug from the Serpent's Bile..."* he notices your luck (`200 low luck`, or the `lass` twin for a woman), and you receive **Sullivan's Clover**; then *"Grand. Now, what can I do fer ye?"*. The clover equips at the neck and shows +1 Luck |
 | AB6 | Port District tavern, Brendan (Luck >= 4) | Take his drink | Straight to *"Grand. Now, what can I do fer ye?"*; no clover |
-| AB7 | Brendan, negative | Talk to him again after the clover | The drink is not offered again (vanilla `took irish drink`), so no second clover |
+| AB7 | Brendan, negative | Talk to him again after the clover | The drink is not offered again (vanilla `took irish drink`), so no second clover. **This was false from 0.9.1 until 0.83.3** -- six of the seven replies reaching `200 drink` carried the gate and the one on `200 irish` did not, so *"That accent is odd"* re-opened it every conversation. 0.9.1 is recorded as entirely unplayed, so the row was never run rather than wrongly passed. **Take the drink, then try all four ways back to it** |
 
 ### 0.10.0 - Montserrat
 
@@ -1474,6 +1477,20 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.83.3 - the Irish drink was a tap
+
+Dialogue, so **any save works**. `AB5`-`AB7` are the 0.9.1 rows this repairs; they have never been
+run, which is why nobody caught it.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| ID1 | **The reported row.** Port District tavern, Brendan. Take the drink, then re-open the conversation and take *"That accent is odd - where are you from?"* | *"I'll take that drink now, if you're still buying."* | **The reply is not there.** That was the tap: six of the seven replies reaching `200 drink` checked the `took irish drink` flag and this one did not |
+| ID2 | From the same greeting, work through **every** way back to the drink: *"Who are you?"* (`200 name`), *"Why did you say you will fight the English?"* (`200 english`), the singer's return nodes, and `1500 other questions for irish` | - | None of them offers it either. Seven paths, seven gates |
+| ID3 | **Before** taking the drink, check the same seven paths | - | Each one **does** offer it. The gate is "not yet taken", so a first-time player loses nothing |
+| ID4 | **Luck 3 or less.** Take the drink, get Sullivan's Clover, then try to reach it again by any route | - | **One clover only.** `200 low luck` and its `lass` twin are reached from `200 drink` and nothing else, so this loop closed with the drink -- it was farmable the same way |
+| ID5 | Regression: the drinking song and the insult route | *"You're Irish? I don't drink with Irish."* | Unchanged. Only one reply gained a requirement; the song relay, the insult node and the goodbye are untouched |
+| ID6 | **Gate 0, negative-tested**, which this doc requires of every validator | `git stash` the Bar Patrons fix, run `python tools/validate.py`, restore it | A0.19 reports exactly one problem and names the door: *"'200 drink' hands out \"Serpent's Bile\" ... Ungated door(s): '200 irish'"*. With the fix in place, 906 files and all checks pass. Four other trees have the same *shape* and A0.19 is silent on all four, which is the point of walking reachability instead of counting incoming replies |
+
 ## 0.83.2 - the Queen's second stinger
 
 One line in `Wasp Queen.can`. Needs a save that has **not** yet loaded

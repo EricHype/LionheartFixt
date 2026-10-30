@@ -59,6 +59,17 @@ Text=My accent is odd, is it? Sure'n you should listen to yerself? Alas, Ireland
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=took irish drink
+Desired Minimum Count=1
+}
+}
+}
 Reply Text=I'll take that drink now, if you're still buying.
 Go to node ID=200 drink
 

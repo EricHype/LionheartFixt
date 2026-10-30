@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.83.2 are published** -- 165 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.83.3 are published** -- 166 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows are unplayed at the time of writing.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows are unplayed at the time of writing.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,70 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.83.3 - the Irish drink was a tap
+
+Reported from play: *"The ole Sullivan can be milked for Serpent's Bile. Every once in a while
+after the floating text restarts I can ask for the drink."*
+
+### Six doors locked, one open
+
+Seven replies reach `200 drink`. Six carry the gate -- the `took irish drink` flag entity must not
+exist yet. The seventh, on node `200 irish`, was:
+
+```
+Requirement=!None
+Reply Text=I'll take that drink now, if you're still buying.
+Go to node ID=200 drink
+```
+
+And `200 irish` hangs off the greeting by *"That accent is odd - where are you from?"*. So the loop
+was: talk, ask about the accent, drink, repeat. The "floating text restarts" is the drinking-song
+relay cycling and the conversation being re-opened.
+
+Eleven lines, the gate cloned byte-for-byte from `200 irish sailor`, nothing removed. Two negation
+idioms already live in that file -- five replies use `CActionExpression` over `CNotAction` and
+`200 name` uses `CExpressionNot` over `CActionExpression`, which is why a first audit of this
+counted two holes instead of one. The majority form was copied.
+
+**It closes a second loop nobody reported.** `200 low luck` and its `lass` twin are reached from
+`200 drink` and nowhere else, so a character with Luck 3 or less could farm **Sullivan's Clover**
+by the same route. `AB7` exists to assert exactly that, and 0.9.1 is recorded as entirely unplayed,
+so the row was never run rather than wrongly passed -- a different story from PM24 in 0.83.2.
+
+### The class of bug is now a gate, and the naive version of it is useless
+
+A0.19. The obvious check is *are all replies into a giving node gated*, and it reports four more
+trees of which **all four are false positives**. The ordinary, correct pattern is a gate at the
+entrance to a branch with ungated replies inside it: `Magic Machine`'s DaVinci Tank Gear looks
+identical to this bug and is fine, because its three ungated sources at `702`, `703` and `704` are
+reachable only through one gated reply at `700`. Grumdjum's Ring reported too, and all four of its
+"ungated" replies carry a `Custom Requirement` whose inner class an allow-list of gate classes
+simply did not know.
+
+So the question is reachability rather than incoming edges. A0.19 walks each tree from its entry
+points following **only ungated replies**, and fails when a giving node turns up in that walk while
+some other reply to it is gated -- the gated sibling being the evidence the author meant to gate
+it. Any node with no incoming reply counts as an entry, because a node nothing points at is entered
+from a map or a can.
+
+Negative-tested in both directions, which this document asks of every validator. Against the broken
+tree it reports exactly one problem and names the door:
+
+```
+Bar Patrons.DialogTree: '200 drink' hands out "Serpent's Bile" and is reachable with no gate
+crossed, while other replies to it ARE gated (A0.19) -- so it can be taken again every
+conversation. Ungated door(s): '200 irish'
+```
+
+Against the fix, 906 files and all checks pass, and it is silent on all four of the look-alikes.
+
+`A0.17` and `A0.18` had been in the validator's code and missing from the Gate 0 table since they
+were written; they are listed now as well.
+
+Two vanilla candidates are left on the record and not touched: `Tainted Citizen.DialogTree` gives
+`Potion Prisoner Inquisition Free` from two nodes with the same shape. They need the same
+reachability trace before anyone calls them defects.
 
 ## 0.83.2 - the Queen's second stinger
 
