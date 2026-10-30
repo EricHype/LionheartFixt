@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.83.3 are published** -- 166 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.83.4 are published** -- 167 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows are unplayed at the time of writing.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows are unplayed at the time of writing.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,70 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.83.4 - what a cast is worth
+
+Reported from play: *"Wand charges appear in shops and as a drop, in stacks of 20 ... They aren't
+expensive and stack easily. Glad to see Wands working ... stack of 20 is a lot and they shouldn't
+be cheap."*
+
+### The ammunition was the only thing not priced
+
+0.74.0 made wands work by taking the charge off the item and putting it in a separate stackable
+one, because a wand plugin and a stack cannot share an item. One charge buys one cast, so the
+honest comparison is a single-use potion:
+
+| consumable | gold |
+|---|---|
+| Potion of Healing | 10 |
+| Extra Healing | 22 |
+| Mass Healing | 30 |
+| Mana Recharge | 55 |
+| **Potion of Secret Reveal** | **80** |
+| **a Wand Charge** | **10** |
+
+At ten gold a charge undercut every one of them, and the worst case was not close: a Wand of
+Revelation charge did an 80-gold potion's job for ten. Meanwhile the wand additions themselves are
+priced from 200 (`Secret Reveal`) to 2,590 (`Rigor Mortis`). The item was valued and its
+ammunition was not.
+
+**50 gold**, at the maintainer's call, which puts a cast above every potion but Secret Reveal and
+reflects that a Greater Healing or Rigor Mortis cast is worth more than a draught.
+
+### A smaller stack, on vanilla's own rule
+
+`Current Count` 5 -> 2. The shipped pattern is that cheap-per-unit items stack big and valuable
+ones stack small:
+
+| item | stack | gold each |
+|---|---|---|
+| Arrow, Bolt | 50 | 1 |
+| Gem | 1 | 25 |
+| Bear Skin | 1 | 10 |
+| **Wand Charge** | **2** | **50** |
+
+A found or stocked stack is 100 gold and two casts, where it was 50 gold and five.
+
+`Maximum Count` stays at **999** deliberately, at the maintainer's call: a player may accumulate
+however many they find or buy, and unlimited merging is also what lets charges work as ammunition.
+
+### What this release does not claim
+
+**The twenty cannot be reproduced from the files**, and the stack size may not be the lever at all.
+Every generator makes one item; every merchant entry is `Quantity=1`; no container that can roll
+the misc pool has `Number of items to generate` above 1; and no save on this machine holds a Wand
+Charge instance to read a real count out of. The only mechanism that fits the report is a
+merchant's unsold stock merging on each 900-second restock -- which a smaller count slows and does
+not stop.
+
+`WV5` is written to settle it, and it settles it cheaply: watch **the arrow stacks alongside the
+charges** across several restocks, because arrows merge identically at `Current Count=50`. If his
+arrows grow past fifty, the piling is engine-side merchant behaviour affecting all ammunition and
+nothing this project introduced. If neither grows, the twenty came from somewhere not yet found.
+
+Recorded and not acted on: a single flat charge price cannot track wands priced from 200 to 2,590.
+Per-spell charges would, at the cost of five charge items and five skill payloads, and that is a
+design decision rather than a repair.
 
 ## 0.83.3 - the Irish drink was a tap
 

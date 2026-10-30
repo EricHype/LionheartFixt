@@ -1477,6 +1477,21 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.83.4 - what a cast is worth
+
+Two fields on `Wand Charge.InventoryItem`. Resource-level, so the **price** reaches any save
+immediately, but the **stack size** is stamped when an instance is created -- charges already in
+your pack or already on a merchant's shelf keep the old count of five. 0.74.0's `WC` rows are the
+wand cases this sits on top of.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WV1 | Buy a Wand Charge from Weng Choi or the Herbalist | - | **50 gold each**, not 10. At 10 a charge undercut every comparable potion; a Wand of Revelation cast did an 80-gold potion's job for 10 |
+| WV2 | Find a fresh stack, in a shop or as loot | - | **Two** charges, not five. Vanilla's own pattern: Arrow and Bolt stack 50 at 1 gold, Gem is 1 at 25, so a 50-gold item belongs near the Gem end |
+| WV3 | Buy or loot several stacks | - | They **merge without limit**, as before. `Maximum Count` is still 999 and that is deliberate -- accumulation is fine, and merging is what makes charges work as ammunition at all |
+| WV4 | Cast from a wand, then check the pack | - | One charge gone per cast, and the wand refuses when the pack is empty. Unchanged from 0.74.0; the removal lives in the `Fake Wand Spells` skill payload, not on the wand addition |
+| WV5 | **The open question.** Enter Weng Choi's shop, leave, wait past his 900-second restock, and return -- repeatedly. Watch the Wand Charge **and the arrow** stacks on his shelf | - | **If his stacks grow each restock, the reported pile of 20 was merchant-side merging, not our stack size** -- and arrows would grow too, since they stack the same way at `Current Count=50`. If neither grows, the 20 came from somewhere else and this row is how we find out |
+
 ## 0.83.3 - the Irish drink was a tap
 
 Dialogue, so **any save works**. `AB5`-`AB7` are the 0.9.1 rows this repairs; they have never been
