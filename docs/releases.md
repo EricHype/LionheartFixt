@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.83.1 are published** -- 164 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.83.2 are published** -- 165 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows and 0.83.1's nine `WS` rows are unplayed at the time of writing.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows are unplayed at the time of writing.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,66 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.83.2 - the Queen's second stinger
+
+0.83.1 answered "can a player who clears every wasp always finish Quinn's errand" with *yes, and
+the Queen is not what carries it -- she is worth one against an expectation of twenty-two*. The
+maintainer's reply was that she was meant to drop two.
+
+She was. Both records say so.
+
+### Thirty-two releases of dropping one
+
+0.11.0's design note, where she was built: *"Race from Wasp Cursed Super: 200 HP, AC 115 (170 was
+untouchable for a level-9 brawler), piercing threshold 5, melee 45; 900 XP; **two stingers for
+Quinn's errand**."*
+
+PM24's expected result: *"a cursed wasp twice the size, named Wasp Queen, 200 HP; **two stingers
+on death**."*
+
+Her can: `Number of items to generate=1`.
+
+One line, pinned inside the `Destroyed Effect Action` so nothing else in a 1,700-line can could
+move, with no `CRandomAction` added -- her drop stays certain. The field takes values above one in
+eight shipped places (six at 2, two at 3), and the Wasp Stinger carries
+`CInventoryItemPlugInBehaviorMergeMultipleInstances`, so the pair stacks to a count of two, which
+is the form Quinn's five repeated checks read.
+
+### A failure mode worth adding to the list
+
+**PM24 is recorded in the 0.11.0 sign-off as played and passing.** This project's standing caution
+is that a QA row written from the implementation can pass while the feature is broken. This is not
+that. The row named the correct number, from the design, and was signed off anyway by a tester who
+did not count what dropped. A correct expectation is not a check if nobody reads it against the
+result.
+
+PM24 now says to count them, and carries the history.
+
+### It changes the previous release's answer
+
+The guaranteed floor is the worst legal roll, counting only groups whose entity list is **entirely**
+Tainted or Cursed -- a mixed group contributes nothing, since its weighted roll can legally come up
+all plain:
+
+| party mojo | wilderness floor | + Queen at 1 | + Queen at 2 |
+|---|---|---|---|
+| 5 | 6 | 7, guaranteed | **8, guaranteed** |
+| **10** | **3** | **4, NOT guaranteed** | **5, guaranteed exactly** |
+
+So a high-mojo player clearing everything was not guaranteed Quinn's five, and the reason is the
+counterintuitive one 0.83.1 recorded: the upper bands replace whole-tainted groups with mixed 2:1
+groups that have no floor, so the mathematical worst case gets *worse* as you level even though the
+expectation nearly doubles. Her second stinger is what carries that player over the line.
+
+**At mojo 10 it is exactly five, with no margin.** A stinger lost to a companion kill -- the drop is
+gated on `CWasDamagedByPlayerAction` -- or to an item that lands somewhere unreachable puts that
+player short. The two is therefore the right number and also the entire slack, and nothing else
+should be trimmed from this chain without redoing the floor.
+
+Reaches her only where she has not spawned yet: a creature's death script is baked into the entity
+at spawn, so a save that has already loaded `2 Montserrat/4 Animal Cave` keeps the one-stinger
+Queen.
 
 ## 0.83.1 - five stingers, from a source that has them
 

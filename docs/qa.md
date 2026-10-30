@@ -1310,7 +1310,7 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | PM21 | Holding the ring, Montaillou inn, saved Machiavelli | After his supplies line, *"You have seen this before"* | `301`/`302`; the reply absent without the ring |
 | PM22 | Holding the ring, Montaillou inn, refused Machiavelli | *"Before your friends come in"* | `232`; he walks out alone, no assassins; without the ring the 0.9.0 ambush as before |
 | PM23 | Holding the ring, Crypt Burial Chamber assassin | *"Your captain at Montserrat sent me north under this"* | `21 her mark`, then the vanilla vanish-and-fight exactly as `20 threat`; the reply absent without the ring |
-| PM24 | Grove, the second cave (wasp nest), fresh | Enter; the hover at the mouth; go to the deep west chamber | The cave loads; *"The floor of the cave is paper..."* a second after arriving; a cursed wasp twice the size, named Wasp Queen, 200 HP; two stingers on death |
+| PM24 | Grove, the second cave (wasp nest), fresh | Enter; the hover at the mouth; go to the deep west chamber | The cave loads; *"The floor of the cave is paper..."* a second after arriving; a cursed wasp twice the size, named Wasp Queen, 200 HP; two stingers on death. **Signed off as passing in 0.11.0 while she dropped one** -- her can said `Number of items to generate=1` from the day she was built. The row named the right number; nobody counted them. **Count the stingers.** Fixed in 0.83.2 |
 | CP1 | Trapped Ether Plane, the Enchanter, `50 Escape` | *"The crystal you fashioned. It only needs enough energy..."* -> the continue replies at 55 and 57 | `59 Winner`; he stands down and *"I am still watching you"* on a click; the undead stay hostile; the lie route and `53 Whoops` unchanged |
 | CP2 | La Calle Perdida, fresh, a Wielder who killed Relican | Talk to any generic wizard | *"Welcome, fellow Wielder. We have heard much of your victory over Relican"*; `60 Membership` has no fight reply |
 | CP3 | La Calle Perdida, fresh, a Wielder who has not, and a non-Wielder | Talk to a wizard | The greetings as before |
@@ -1474,6 +1474,18 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.83.2 - the Queen's second stinger
+
+One line in `Wasp Queen.can`. Needs a save that has **not** yet loaded
+`2 Montserrat/4 Animal Cave`, since a creature's death script is baked into the entity at spawn.
+The rows that already cover her are **PM24** (0.11.0, which named two and was signed off while she
+dropped one) and **WS9** (0.83.1). These two are the floor arithmetic her second stinger changes.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| QS1 | Kill the Wasp Queen on a fresh `4 Animal Cave`, with your own damage on her | - | **Two** Wasp Stingers, as one stack of 2 -- the item merges. One is the defect this release fixes; zero means you never damaged her, since the drop is gated on `CWasDamagedByPlayerAction` |
+| QS2 | **The floor that matters.** A character **above mojo 5** who clears every wasp in the game and the Queen, then counts | - | At least five. Before this the worst legal roll gave that player **four**, because the upper bands trade whole-tainted groups for mixed ones with no floor. It is now exactly five, so **do not** let a companion take any of the kills |
+
 ## 0.83.1 - five stingers, from a source that has them
 
 Reported from play: Quinn asks for five Wasp Stingers and clearing the main Scar Ravine area
@@ -1497,7 +1509,7 @@ which variant spawns, not a chance.
 | WS6 | Hand Quinn five stingers | *"I have five wasp stingers for you."* | He accepts and the quest advances. Four is refused -- the tree checks the item five times and removes it five times |
 | WS7 | **The sibling, for comparison.** Bring Quinn three wolf pelts | *"I brought you three wolf pelts, as you asked."* | Accepted. All ten wolf cans drop a pelt, so three pelts is three kills; this row exists to keep the two quests' difficulty in view of each other |
 | WS8 | **Negative.** The **Wolf Trapper** perk, with wasps | - | **No effect on stingers whatsoever.** It is wolf-specific -- its own checker attribute and its own `Wolf Pelt Perk Quality` item -- and never touched wasps in vanilla or in Fixt |
-| WS9 | **Negative.** The Wasp Queen in `2 Montserrat/4 Animal Cave` | - | Still drops her stinger, unchanged. She was not touched |
+| WS9 | The Wasp Queen in `2 Montserrat/4 Animal Cave` | - | **Two** stingers, which 0.11.0 designed and 0.83.2 finally implemented -- she dropped one for thirty-two releases. Needs a save that has not yet loaded that cave, since a creature's death script is baked in when it spawns |
 
 ## 0.83.0 - a slot of their own
 
