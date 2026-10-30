@@ -1474,6 +1474,31 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.83.1 - five stingers, from a source that has them
+
+Reported from play: Quinn asks for five Wasp Stingers and clearing the main Scar Ravine area
+repeatedly yields none, while the caves give about three from ten kills. Map-level, so **it needs
+a save that has never entered Scar Ravine or River** -- a map records its contents the first time
+it is entered. 0.4.0, which built the quest, has no cases of its own; WS5 onward are its first.
+
+The thing to understand before testing: **there is no drop rate.** The stinger sits in the wasp
+can's `Destroyed Effect Action` with no `CRandomAction` and no `CIfExpression` in the block, gated
+only on `CWasDamagedByPlayerAction`. Tainted and Cursed wasps drop one **every time**; plain
+`Wasp`, `Wasp Tough` and `Wasp Super` contain no reference to the item at all. So the fix changes
+which variant spawns, not a chance.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WS1 | **The reported row.** A character at mojo 5 or below, on a Scar Ravine that has never been entered. Clear the main area, counting wasps killed and stingers taken | - | Roughly **one stinger per three wasps**. Five stingers should cost about fifteen kills, where before the fix the band was 9% and cost about fifty-five |
+| WS2 | The same character in **Ravine Cave West** | - | **Unchanged** at about a third. The caves were already correct and must not have moved |
+| WS3 | **River**, a map never entered, at mojo 5 or below | - | Wasps there can now drop at all. That band was **0%** -- a pack that could never produce a stinger |
+| WS4 | **Regression.** A character above mojo 5 in Scar Ravine | - | Unchanged. Only the `Max Party Mojo=5` band was touched; the 10, 50 and 65 bands keep their exact weights |
+| WS5 | Kill a wasp that a **companion or a summon** finishes without you ever damaging it | - | **No stinger**, and that is correct, not a bug: the drop is gated on `CWasDamagedByPlayerAction`. Worth knowing before reporting a bad rate |
+| WS6 | Hand Quinn five stingers | *"I have five wasp stingers for you."* | He accepts and the quest advances. Four is refused -- the tree checks the item five times and removes it five times |
+| WS7 | **The sibling, for comparison.** Bring Quinn three wolf pelts | *"I brought you three wolf pelts, as you asked."* | Accepted. All ten wolf cans drop a pelt, so three pelts is three kills; this row exists to keep the two quests' difficulty in view of each other |
+| WS8 | **Negative.** The **Wolf Trapper** perk, with wasps | - | **No effect on stingers whatsoever.** It is wolf-specific -- its own checker attribute and its own `Wolf Pelt Perk Quality` item -- and never touched wasps in vanilla or in Fixt |
+| WS9 | **Negative.** The Wasp Queen in `2 Montserrat/4 Animal Cave` | - | Still drops her stinger, unchanged. She was not touched |
+
 ## 0.83.0 - a slot of their own
 
 Resource-level, so **any save works** for the slot itself and for the set bonus. Two caveats that
@@ -4949,7 +4974,7 @@ Four conversations that crashed the game outright. Each row is "talk to them and
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| SR1 | Port District: board the ship and talk to **Captain Isabella** | anything | The conversation opens. No "infinite loop while trying to load" dialog |
+| SR1 | Port District: board the ship and talk to **Captain Isabella** | anything | The conversation opens. No "infinite loop while trying to load" dialog. **PASSED**, on several separate conversations rather than one |
 | SR2 | Take **Grace** as a companion, then dismiss her with *"Wait here. I will come back for you."* | - | She stays put and a balloon appears over her. That balloon is the line that crashed |
 | SR3 | La Calle Perdida: complete a favour for **Brambles** | - | One of three thank-you balloons appears, varying between runs |
 | SR4 | Wilderness: take **Grumdjum** as a companion | - | Conversation survives, and walking up to him again opens the companion nodes, not the first-meeting ones |

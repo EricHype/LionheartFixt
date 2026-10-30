@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.83.0 are published** -- 163 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.83.1 are published** -- 164 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows are unplayed at the time of writing.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows and 0.83.1's nine `WS` rows are unplayed at the time of writing.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,101 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.83.1 - five stingers, from a source that has them
+
+Reported from play: Quinn asks for five Wasp Stingers, and clearing the main Scar Ravine area
+gives none. Five runs of fifteen to twenty wasps, nothing. The caves give about three from ten.
+The Crossroads pack sometimes. El Bosque never. *"It is too unreliable."*
+
+### There is no drop rate
+
+The stinger sits in the wasp can's `Destroyed Effect Action`, and that block contains **no
+`CRandomAction` and no `CIfExpression`**. Its only gate is `CWasDamagedByPlayerAction`. So a
+**Tainted or Cursed wasp drops one every single time**, and the plain `Wasp`, `Wasp Tough` and
+`Wasp Super` cans **contain no reference to the item at all** -- nine wasp cans exist and six can
+drop.
+
+What looked like an unreliable rate is which variant spawned, and that is weighted per mojo band
+in `CGeneratorAIGroup`. Measuring every band found the shape of the complaint:
+
+| map | band | can drop |
+|---|---|---|
+| **Scar Ravine** | `<=5` | **9.1%** |
+| Scar Ravine | `<=10` / `<=50` | 34.6% / 33.3% |
+| Ravine Cave West | `<=5` / `<=10` | 33.3% / 47.2% |
+| Crossroads | all | 25.0% |
+| Woodcutter Forest (El Bosque) | `<=5` | 28.6% |
+| **River** | `<=5` | **0.0%** |
+
+The norm is about a third, and exactly two bands are off.
+
+### Eight groups were missing their second entry
+
+Scar Ravine's `<=5` band holds nine wasp groups. Eight read, in full:
+
+```
+Weight=1  Entity=Monster Cans/Animals/Wasp
+```
+
+The ninth carries the pair that the same map's `<=10` and `<=50` bands use throughout:
+
+```
+Weight=2  Entity=Monster Cans/Animals/Wasp
+Weight=1  Entity=Monster Cans/Animals/Wasp Tainted
+```
+
+River's single low group is the same bare form. This is not a balance judgement; it is nine
+groups authored without an entry their twelve siblings have. They now carry it, each built from
+**its own** plain entry so the indentation could not drift, which puts both bands on **33.3%** --
+about fifteen wasps for five stingers, where the broken band wanted fifty-five.
+
+**Only those nine, and the reason matters.** There are 32 plain-only wasp groups in the game and
+the other 23 are left alone, because the unit of balance is the band, not the group. Ravine Cave
+West's low band is eight whole *plain* groups plus four whole *tainted* groups and totals a third
+anyway; pairing those would push a correct band past the norm. The build asserts every band above
+`<=5` is byte-identical in its weights, and `River.zax`, which Fixt had not shipped before,
+differs from vanilla in **exactly nine lines**.
+
+### What it was costing, in players rather than percentages
+
+The population is finite per save -- `CGeneratorAI` carries `Already Generated` and fires once,
+and a save records a map's contents the first time it is entered -- so this is real odds, not
+patience. Monte Carlo, 200,000 runs, rolling each generator's quantity and each wasp's variant:
+
+| clears | before | after |
+|---|---|---|
+| Scar Ravine + its cave | 95% | **100%** |
+| **only the open Scar Ravine, early** | **0%** | **55%** |
+| only the open Scar Ravine, after Barcelona | 69% | 69% |
+| only Ravine Cave West | 88% | 88% |
+| only the Crossroads | 0% | 0% |
+
+So the quest was never impossible: effectively everyone who entered the cave finished it, before
+and after. What was broken is narrower and worse than impossible. The open ravine, where the
+wasps are visible and obvious, yielded **0.8 stingers from 14.5 wasps**, so a player who fought
+everything in sight got nothing and no hint that the cave was the real source. It now yields 4.8.
+At mojo 10 nothing changes, because that band was already right -- this only ever hit players who
+went out early, which is also the natural time to take Quinn's errand.
+
+### Three things recorded rather than changed
+
+The **Crossroads and El Bosque** packs are near-deterministic rather than chance-based -- whole
+groups of one variant -- so they yield a fixed two or three and **can never supply five**, at any
+mojo, before or after. They are flavour, not sources.
+
+The **Wolf Trapper** perk never touched wasps. It is wolf-specific, with its own checker attribute
+and its own `Wolf Pelt Perk Quality` item, which is why it never seemed to help.
+
+A wasp finished by a **companion or a summon** you never damaged yields nothing, by design, since
+the drop is gated on `CWasDamagedByPlayerAction`. Worth knowing before reading a bad rate into it.
+
+And the sibling quest as a yardstick: **all ten wolf cans drop a pelt**, so Quinn's three pelts is
+three kills. Five stingers from a one-in-three source is meant to be the harder errand; it was
+simply the wrong kind of harder.
+
+Nine QA rows under `WS`, three negative. They are **0.4.0's first cases** -- the release that
+built this quest has none.
 
 ## 0.83.0 - a slot of their own
 
