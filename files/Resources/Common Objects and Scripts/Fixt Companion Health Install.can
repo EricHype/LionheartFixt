@@ -1,0 +1,4105 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=15
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Fang
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Fang
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Fang
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Fang
+														New Display Name=Fang (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Fang
+														New Display Name=Fang (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Fang
+														New Display Name=Fang (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Fang
+														New Display Name=Fang (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Fang
+														New Display Name=Fang (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Fang
+														New Display Name=Fang
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Fang
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Fang
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Fang
+								New Display Name=Fang
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Fang
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Fang
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Fang
+									New Display Name=Fang (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Fang
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Fang
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Fang
+									New Display Name=Fang (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Fang
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Fang
+								New Display Name=Fang (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Bishop Diego
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Bishop Diego
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Bishop Diego
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Bishop Diego
+														New Display Name=Bishop Diego (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Bishop Diego
+														New Display Name=Bishop Diego (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Bishop Diego
+														New Display Name=Bishop Diego (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Bishop Diego
+														New Display Name=Bishop Diego (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Bishop Diego
+														New Display Name=Bishop Diego (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Bishop Diego
+														New Display Name=Bishop Diego
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Bishop Diego
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Bishop Diego
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Bishop Diego
+								New Display Name=Bishop Diego
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Bishop Diego
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Bishop Diego
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Bishop Diego
+									New Display Name=Bishop Diego (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Bishop Diego
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Bishop Diego
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Bishop Diego
+									New Display Name=Bishop Diego (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Bishop Diego
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Bishop Diego
+								New Display Name=Bishop Diego (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Goblin Girl
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Goblin Girl
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Goblin Girl
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Girl
+														New Display Name=Goblin Girl (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Girl
+														New Display Name=Goblin Girl (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Girl
+														New Display Name=Goblin Girl (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Girl
+														New Display Name=Goblin Girl (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Girl
+														New Display Name=Goblin Girl (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Girl
+														New Display Name=Goblin Girl
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Goblin Girl
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Goblin Girl
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Goblin Girl
+								New Display Name=Goblin Girl
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Goblin Girl
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Goblin Girl
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Goblin Girl
+									New Display Name=Goblin Girl (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Goblin Girl
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Goblin Girl
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Goblin Girl
+									New Display Name=Goblin Girl (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Goblin Girl
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Goblin Girl
+								New Display Name=Goblin Girl (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Distressed Sailor
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Distressed Sailor
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Distressed Sailor
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Distressed Sailor
+														New Display Name=Fernand Desoto (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Distressed Sailor
+														New Display Name=Fernand Desoto (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Distressed Sailor
+														New Display Name=Fernand Desoto (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Distressed Sailor
+														New Display Name=Fernand Desoto (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Distressed Sailor
+														New Display Name=Fernand Desoto (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Distressed Sailor
+														New Display Name=Fernand Desoto
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Distressed Sailor
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Distressed Sailor
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Distressed Sailor
+								New Display Name=Fernand Desoto
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Distressed Sailor
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Distressed Sailor
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Distressed Sailor
+									New Display Name=Fernand Desoto (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Distressed Sailor
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Distressed Sailor
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Distressed Sailor
+									New Display Name=Fernand Desoto (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Distressed Sailor
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Distressed Sailor
+								New Display Name=Fernand Desoto (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Darsh
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Darsh
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Darsh
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Darsh
+														New Display Name=Inquisitor Darsh (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Darsh
+														New Display Name=Inquisitor Darsh (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Darsh
+														New Display Name=Inquisitor Darsh (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Darsh
+														New Display Name=Inquisitor Darsh (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Darsh
+														New Display Name=Inquisitor Darsh (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Darsh
+														New Display Name=Inquisitor Darsh
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Darsh
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Darsh
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Darsh
+								New Display Name=Inquisitor Darsh
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Darsh
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Darsh
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Darsh
+									New Display Name=Inquisitor Darsh (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Darsh
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Darsh
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Darsh
+									New Display Name=Inquisitor Darsh (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Darsh
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Darsh
+								New Display Name=Inquisitor Darsh (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Lost Knight
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Lost Knight
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Lost Knight
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Lost Knight
+														New Display Name=Lost Knight Templar (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Lost Knight
+														New Display Name=Lost Knight Templar (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Lost Knight
+														New Display Name=Lost Knight Templar (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Lost Knight
+														New Display Name=Lost Knight Templar (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Lost Knight
+														New Display Name=Lost Knight Templar (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Lost Knight
+														New Display Name=Lost Knight Templar
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Lost Knight
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Lost Knight
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Lost Knight
+								New Display Name=Lost Knight Templar
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Lost Knight
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Lost Knight
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Lost Knight
+									New Display Name=Lost Knight Templar (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Lost Knight
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Lost Knight
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Lost Knight
+									New Display Name=Lost Knight Templar (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Lost Knight
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Lost Knight
+								New Display Name=Lost Knight Templar (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Cervantes
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Cervantes
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Cervantes
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cervantes
+														New Display Name=Cervantes (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cervantes
+														New Display Name=Cervantes (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cervantes
+														New Display Name=Cervantes (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cervantes
+														New Display Name=Cervantes (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cervantes
+														New Display Name=Cervantes (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cervantes
+														New Display Name=Cervantes
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Cervantes
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Cervantes
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Cervantes
+								New Display Name=Cervantes
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Cervantes
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Cervantes
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Cervantes
+									New Display Name=Cervantes (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Cervantes
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Cervantes
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Cervantes
+									New Display Name=Cervantes (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Cervantes
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Cervantes
+								New Display Name=Cervantes (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Cortes
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Cortes
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Cortes
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes
+														New Display Name=Cortes (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes
+														New Display Name=Cortes (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes
+														New Display Name=Cortes (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes
+														New Display Name=Cortes (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes
+														New Display Name=Cortes (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes
+														New Display Name=Cortes
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Cortes
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Cortes
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Cortes
+								New Display Name=Cortes
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Cortes
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Cortes
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Cortes
+									New Display Name=Cortes (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Cortes
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Cortes
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Cortes
+									New Display Name=Cortes (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Cortes
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Cortes
+								New Display Name=Cortes (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Cortes with arm
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Cortes with arm
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Cortes with arm
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes with arm
+														New Display Name=Cortes (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes with arm
+														New Display Name=Cortes (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes with arm
+														New Display Name=Cortes (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes with arm
+														New Display Name=Cortes (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes with arm
+														New Display Name=Cortes (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Cortes with arm
+														New Display Name=Cortes
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Cortes with arm
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Cortes with arm
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Cortes with arm
+								New Display Name=Cortes
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Cortes with arm
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Cortes with arm
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Cortes with arm
+									New Display Name=Cortes (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Cortes with arm
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Cortes with arm
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Cortes with arm
+									New Display Name=Cortes (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Cortes with arm
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Cortes with arm
+								New Display Name=Cortes (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Golem
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Golem
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Golem
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Golem
+														New Display Name=War Golem (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Golem
+														New Display Name=War Golem (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Golem
+														New Display Name=War Golem (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Golem
+														New Display Name=War Golem (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Golem
+														New Display Name=War Golem (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Golem
+														New Display Name=War Golem
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Golem
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Golem
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Golem
+								New Display Name=War Golem
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Golem
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Golem
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Golem
+									New Display Name=War Golem (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Golem
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Golem
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Golem
+									New Display Name=War Golem (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Golem
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Golem
+								New Display Name=War Golem (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Grace
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Grace
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Grace
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Grace
+														New Display Name=Grace (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Grace
+														New Display Name=Grace (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Grace
+														New Display Name=Grace (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Grace
+														New Display Name=Grace (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Grace
+														New Display Name=Grace (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Grace
+														New Display Name=Grace
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Grace
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Grace
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Grace
+								New Display Name=Grace
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Grace
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Grace
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Grace
+									New Display Name=Grace (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Grace
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Grace
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Grace
+									New Display Name=Grace (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Grace
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Grace
+								New Display Name=Grace (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Joan of Arc
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Joan of Arc
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Joan of Arc
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Joan of Arc
+														New Display Name=Joan of Arc (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Joan of Arc
+														New Display Name=Joan of Arc (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Joan of Arc
+														New Display Name=Joan of Arc (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Joan of Arc
+														New Display Name=Joan of Arc (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Joan of Arc
+														New Display Name=Joan of Arc (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Joan of Arc
+														New Display Name=Joan of Arc
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Joan of Arc
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Joan of Arc
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Joan of Arc
+								New Display Name=Joan of Arc
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Joan of Arc
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Joan of Arc
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Joan of Arc
+									New Display Name=Joan of Arc (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Joan of Arc
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Joan of Arc
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Joan of Arc
+									New Display Name=Joan of Arc (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Joan of Arc
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Joan of Arc
+								New Display Name=Joan of Arc (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Sir Roger Templeton
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Sir Roger Templeton
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Sir Roger Templeton
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Sir Roger Templeton
+														New Display Name=Sir Roger Templeton (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Sir Roger Templeton
+														New Display Name=Sir Roger Templeton (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Sir Roger Templeton
+														New Display Name=Sir Roger Templeton (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Sir Roger Templeton
+														New Display Name=Sir Roger Templeton (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Sir Roger Templeton
+														New Display Name=Sir Roger Templeton (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Sir Roger Templeton
+														New Display Name=Sir Roger Templeton
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Sir Roger Templeton
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Sir Roger Templeton
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Sir Roger Templeton
+								New Display Name=Sir Roger Templeton
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Sir Roger Templeton
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Sir Roger Templeton
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Sir Roger Templeton
+									New Display Name=Sir Roger Templeton (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Sir Roger Templeton
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Sir Roger Templeton
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Sir Roger Templeton
+									New Display Name=Sir Roger Templeton (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Sir Roger Templeton
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Sir Roger Templeton
+								New Display Name=Sir Roger Templeton (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Knight of Saladin
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Knight of Saladin
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Knight of Saladin
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Knight of Saladin
+														New Display Name=Knight of Saladin (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Knight of Saladin
+														New Display Name=Knight of Saladin (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Knight of Saladin
+														New Display Name=Knight of Saladin (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Knight of Saladin
+														New Display Name=Knight of Saladin (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Knight of Saladin
+														New Display Name=Knight of Saladin (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Knight of Saladin
+														New Display Name=Knight of Saladin
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Knight of Saladin
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Knight of Saladin
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Knight of Saladin
+								New Display Name=Knight of Saladin
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Knight of Saladin
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Knight of Saladin
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Knight of Saladin
+									New Display Name=Knight of Saladin (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Knight of Saladin
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Knight of Saladin
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Knight of Saladin
+									New Display Name=Knight of Saladin (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Knight of Saladin
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Knight of Saladin
+								New Display Name=Knight of Saladin (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+			Action=CIfAction
+			{
+				If=CCheckExistenceAction
+				{
+					Name To Check For=Goblin Grumdjum
+					Desired Minimum Count=1
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=5
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsEqualTo
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Goblin Grumdjum
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CAddAIAction
+									{
+										Target Name=Goblin Grumdjum
+										AI=CAIHealthPercentThresholdTrigger
+										{
+											Marked For Deletion=0
+											Publisher=
+											Previous Health Percent=0
+											Previous Health Percent Is Valid=0
+											Health Percent Triggers=Array
+											{
+												Item Count=6
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Grumdjum
+														New Display Name=Grumdjum (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Grumdjum
+														New Display Name=Grumdjum (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Below
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Grumdjum
+														New Display Name=Grumdjum (Near Death)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=15
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Grumdjum
+														New Display Name=Grumdjum (Badly Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=40
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Grumdjum
+														New Display Name=Grumdjum (Injured)
+													}
+												}
+												Health Percent Trigger=CHealthPercentThresholdTrigger
+												{
+													When To Trigger=When Health Percent Crosses Above
+													Health Percent=CConstant
+													{
+														Constant Value=75
+													}
+													Action=CSetCharacterDisplayNameAction
+													{
+														Scriping name of LayerPart=Goblin Grumdjum
+														New Display Name=Grumdjum
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Health Watch Goblin Grumdjum
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=75
+								}
+							}
+							Character to get attributes from=Goblin Grumdjum
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Goblin Grumdjum
+								New Display Name=Grumdjum
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=40
+								}
+							}
+							Character to get attributes from=Goblin Grumdjum
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=75
+									}
+								}
+								Character to get attributes from=Goblin Grumdjum
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Goblin Grumdjum
+									New Display Name=Grumdjum (Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThanOrEqual
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Goblin Grumdjum
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CExpressionHealthPercent
+									{
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=40
+									}
+								}
+								Character to get attributes from=Goblin Grumdjum
+								Then=CSetCharacterDisplayNameAction
+								{
+									Scriping name of LayerPart=Goblin Grumdjum
+									New Display Name=Grumdjum (Badly Injured)
+								}
+								Else=
+							}
+							Else=
+						}
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=15
+								}
+							}
+							Character to get attributes from=Goblin Grumdjum
+							Then=CSetCharacterDisplayNameAction
+							{
+								Scriping name of LayerPart=Goblin Grumdjum
+								New Display Name=Grumdjum (Near Death)
+							}
+							Else=
+						}
+					}
+				}
+				Else=
+				Return failure if the If failes=0
+			}
+		}
+	}
+}

@@ -1477,6 +1477,45 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.84.0 - how your companions are doing
+
+Two halves that share one installer, and they are not worth the same.
+
+**The status report is the feature.** Max hit points, best weapon and fighting skill are numbers
+the game shows nowhere else, for a companion the player cannot otherwise inspect.
+
+**The hover text works and adds little.** `HV3` proved `CSetCharacterDisplayNameAction` is
+repeatable, which no vanilla use demonstrates -- but the display name is only visible with Quick
+Status enabled, and Quick Status already draws a health bar, so the band label sits beside the
+information it duplicates. Kept because it is built, self-syncing and free; not the reason to
+install the release.
+
+The watcher arms on the **first companion conversation**, so it reaches a save where companions
+joined long ago. Deliberately not gated on `Fixt Companion <name>` the way the growth installer is,
+because that flag is written by the Fixt Companion Joined cans and is 0 forever on a save that
+predates them.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| HV1 | Click a companion to open the order menu | How are you holding up? | The conversation closes and the combat log carries **one line from each group**: how hurt, `Experience: level N`, `Health at full strength: X to Y`, a best-weapon line, `Fighting skill: A to B`. Five lines, no duplicates within a group |
+| HV2 | HV1 at full health | - | `Not a scratch on me.` and nothing else from the health group |
+| HV3 | **PASSED.** Open the order menu to sync the label, then heal the companion past 75% and open it again | - | `Fang (Injured)` and then plain `Fang`. Confirmed in play: *"the injured status was there and then got removed after healing"*. **`CSetCharacterDisplayNameAction` is repeatable** -- it fired twice on one entity in both directions, which no vanilla use does; all six rename the player once inside a conversation |
+| HV4 | Drive the same companion below 40%, then below 15% | - | `(Badly Injured)` then `(Near Death)`. Healing back up walks the same three states in reverse |
+| HV5 | On a save where companions joined **before** this release, open the order menu once | - | The watcher arms from that conversation. No re-recruiting, no new game |
+| HV6 | Hover **Fernand** while he is hurt | - | `Fernand Desoto (Injured)`. His scripting name is `Distressed Sailor` and only the display name changes, so the label must read the name his dialogue uses. If his hover read something else before, this release changes it |
+| HV7 | **Negative, the one that could break the game.** After a companion has been renamed, level up and watch for the growth balloon | - | It still appears over them. The balloon anchors on `Name of Position=Fang` and every quest lookup uses `Name To Check For=Fang`; only the *display* name is rewritten, so nothing that resolves a companion by name may break |
+| HV8 | **Regression.** Release a companion | Release Companion | They leave and `A companion has left your party` prints, exactly as before. The reply gained one canned action and lost nothing |
+| HV9 | Open the menu on one companion, then immediately on a second | How are you holding up? | The second report describes the **second** companion. `Character to get attributes from=$Trigger` must resolve to whoever you clicked |
+| HV10 | Report a companion's level against your own | - | Plausible, and not stuck at `level 1` for someone who has travelled with you for ten. `CVariableCharacterLevel` has never been read off a non-player character in this project |
+| HV11 | Hover **Cervantes before recruiting him** while he is hurt | - | He may show a band. Not a defect: the fifteen names are companion scripting names and the watcher arms on any of them present in the map |
+| HV12 | Open the menu twice on the same companion and release and re-recruit between | - | One watcher, not two. The per-companion `Fixt Companion Health Watch <name>` guard blocks the second install |
+| HV13 | **The hole HV3 first fell into.** Arm the watcher while the companion is *already* below 75%, then hover without healing them | - | The label is correct **immediately**, from the ungated current-band sync. Without that sync nothing appears: `CAIHealthPercentThresholdTrigger` is edge-triggered, so a watcher armed on a wounded companion records their percent as its baseline and fires nothing until they heal past a threshold and come back down. Fang sat at `Previous Health Percent=57.0512` with `Is Valid=1`, a correct six-threshold watcher, and no band at all |
+| HV14 | Open the order menu twice at different health levels | - | The label resyncs each time. The sync is deliberately **ungated** so a missed crossing cannot leave a stale label forever |
+| HV15 | **The shipped defect this playtest found.** Recruit a companion and **never open the order menu**. Level up | - | The growth balloon still appears. Before this release both installers were invoked from *one* place -- a reply in `Generic Companion Dialog` -- so a player who never clicked a companion got **no growth for the whole game**. A save with Fang in the party for several levels had `Fixt Companion Growth Watch`, `CXRPGAITriggerWhenLevelUp`, `Fixt Companion Health Watch` and `CAIHealthPercentThresholdTrigger` all at zero |
+| HV16 | HV15 on each of the fourteen companions | - | All fourteen `Fixt Companion Joined/<name>.can` files now call both installers, outside their own `Fixt Companion <name> == 0` test so a re-recruit arms too. Both installers are internally guarded, so arming twice is a no-op |
+| HV17 | **Regression on the growth watcher's target.** Level up with a companion present | - | The companion gains the modifiers. The growth installer's `CAddAIAction` now targets `Player1` instead of `$Instigator`, because `$Instigator` is only the player when the can is called from a dialogue reply -- pinning it is what lets the Joined cans call it at all. `CXRPGAITriggerWhenLevelUp` must sit on the **player** |
+| HV18 | Check the attributes window | - | None of the fifteen `Fixt Companion Health Watch <name>` variables appear. They carry `Display In Attributes Window=0`, cloned from `Fixt Companion Fang` |
+
 ## 0.83.5 - William will not speak to you
 
 Dialogue and a scripting variable, so the **Crossroads branch works on any save** -- but the

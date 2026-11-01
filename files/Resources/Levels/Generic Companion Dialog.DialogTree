@@ -10,13 +10,2779 @@ Text=<What would you like your companion to do?>
 Should Have Voiceover=0
 
 Requirement=!None
+Reply Text=How are you holding up?
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=56
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Health Install
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=95
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Not a scratch on me.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=95
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=A few scrapes. Nothing that slows me down.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=40
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=I am injured, but I can still fight.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=15
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=40
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=I am badly injured. Have a care.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionHealthPercent
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=15
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=I am near death. Get me out of this.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=10
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 0 to 10.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=10
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 10 to 20.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=30
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 20 to 30.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=30
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=40
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 30 to 40.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=40
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 40 to 50.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=60
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 50 to 60.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=60
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=70
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 60 to 70.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=70
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=80
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 70 to 80.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=80
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=90
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 80 to 90.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=90
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=100
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 90 to 100.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=100
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=125
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 100 to 125.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=125
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=150
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 125 to 150.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=150
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=175
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 150 to 175.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=175
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=200
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 175 to 200.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=200
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=225
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 200 to 225.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=225
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=250
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 225 to 250.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=250
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=275
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 250 to 275.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=275
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=300
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 275 to 300.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=300
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=350
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 300 to 350.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=350
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=400
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 350 to 400.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=400
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=450
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 400 to 450.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=450
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=500
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 450 to 500.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=500
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=550
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 500 to 550.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=550
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=600
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 550 to 600.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/(HP) Hit Points
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=600
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Health at full strength: 600 or more.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=I am at my best with a single weapon in hand.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=I am at my best with a weapon in both hands.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsEqualTo
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=I am at my best at a distance.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=10
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 0 to 10.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=10
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 10 to 20.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=30
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 20 to 30.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=30
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=40
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 30 to 40.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=40
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 40 to 50.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=50
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=60
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 50 to 60.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=60
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=70
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 60 to 70.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=70
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=80
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 70 to 80.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=80
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=90
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 80 to 90.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=90
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=100
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 90 to 100.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=100
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=110
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 100 to 110.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=110
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=120
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 110 to 120.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=120
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=130
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 120 to 130.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=130
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=140
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 130 to 140.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=140
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=150
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 140 to 150.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=150
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=160
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 150 to 160.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=160
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=170
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 160 to 170.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=170
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=180
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 170 to 180.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=180
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=190
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 180 to 190.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=190
+}
+}
+Character to get attributes from=$Trigger
+Then=CIfExpressionAction
+{
+If Expression=CIsLessThan
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=200
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 190 to 200.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionAggregateFunctionMax
+{
+Parameters=Array
+{
+Item Count=3
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/OneHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/TwoHandedMelee
+}
+Parameter=CVariableSkill
+{
+Skill=Skills/Fighting/Ranged
+}
+}
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=200
+}
+}
+Character to get attributes from=$Trigger
+Then=CPrintCombatTextAction
+{
+Text to print=Fighting skill: 200 or better.
+Character to show text to=$Instigator
+Emphasize=0
+Suppress Duplicates=0
+}
+Else=
+}
+}
+}
+
+Requirement=!None
 Reply Text=Release Companion
 Go to node ID=
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CReleaseCompanionAction
 {
 Companion To Release=$Trigger
@@ -37,15 +2803,30 @@ Action=CUseCannedActionAction
 {
 Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
 }
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Health Install
+}
 }
 }
 
 Requirement=!None
 Reply Text=Nothing
 Go to node ID=
-Custom Action=CUseCannedActionAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CUseCannedActionAction
 {
 Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Health Install
+}
+}
 }
 Is Default Reply=1
 }

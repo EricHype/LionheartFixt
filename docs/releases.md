@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.83.5 are published** -- 168 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.84.0 are published** -- 169 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing.
 
@@ -141,6 +141,143 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.84.0 - how your companions are doing
+
+Reported from play:
+
+> Wish there was a way to track companion progress, all I can tell is that they're performing well
+> enough (Bear and the Desoto bro), they've been with me for quite a few levels now.
+
+Asked what that meant in practice, the answer was two things: at-a-glance *are they close to
+dying*, and overall *what's their damage, max hp, main weapon skill*. This release delivers the
+second one well and the first one barely, and the honest part of the write-up is which is which.
+
+### What the engine will not do: print a number
+
+Every text field in every print action is a literal. `CPrintCombatTextAction`,
+`CPrintFloatingTextAction` and `CPrintBigOverlayMessageAction` all take `Text to print=<string>`,
+and the `%i[...]` interpolation that InventoryAddition and Skill descriptions use resolves against
+named expressions **inside those resources**, nowhere else. `%s[OldName]` works only in
+`CSetCharacterDisplayNameAction`.
+
+So a readout has to be a cascade: compare, and print a fixed string per band. Fifty-four of them,
+flat rather than nested, so nothing is more than two `CIfExpressionAction` deep.
+
+### The report
+
+The order menu, which until now was *Release Companion* and *Nothing*, gains a third reply:
+
+> **How are you holding up?**
+
+```
+I am injured, but I can still fight.
+Health at full strength: 20 to 30.
+I am at my best with a single weapon in hand.
+Fighting skill: 40 to 50.
+```
+
+Four lines, one per group. Health in five words from *"Not a scratch on me"* to *"I am near death.
+Get me out of this."*; maximum hit points in bands of 10 up to 100, then 25, then 50; fighting
+skill in tens.
+
+Three reads make it work, and each was settled rather than assumed:
+
+* **`Character to get attributes from=$Trigger`** resolves to the companion you clicked. Vanilla's
+  own release reply proves it with `Companion To Release=$Trigger`, and the playtest confirmed it
+  from the other direction: the report said level 1 while the player was `Character Level=2`.
+* **`(HP) Hit Points` read through `CVariableDerivedCharacterAttribute` is the computed maximum**,
+  not the stored modifier. Settled from vanilla's healing potion, which computes
+  `Min(Random(18,22) + (HP) Hit Points * 0.1, (HP) Hit Points * 1.5 - HitPointsRemaining)` --
+  taking a tenth of it and capping a heal at one and a half times it only works against a total.
+* **Best-of-three is `CExpressionAggregateFunctionMax`** over `OneHandedMelee`, `TwoHandedMelee`
+  and `Ranged`, which is the same idiom Guard Esteban uses to decide which weapon to give you.
+
+**Damage is not reported, and cannot be.** It comes from the equipped weapon, and no readable
+attribute carries it; fighting skill is the closest honest proxy.
+
+**Level is not reported either, and that is deliberate.** `CVariableCharacterLevel` reads 1 for a
+companion and that is accurate -- companions do not gain levels, which is the entire reason Fixt
+grants them growth through modifiers. Printing it makes a companion that *is* growing look
+stagnant. The first cut printed `Experience: level 1.` and it was cut after one playtest.
+
+### The hover label, and why it is the lesser half
+
+Each companion gets a `CAIHealthPercentThresholdTrigger` -- the class the **Die Hard** perk uses,
+so it is proven edge-triggered and bidirectional -- holding six thresholds that rewrite their
+display name: `Fang (Injured)` under 75%, `(Badly Injured)` under 40%, `(Near Death)` under 15%,
+and back up through the same three as they heal.
+
+It rewrites the **display** name only, never the scripting name, so every `Name To Check For=Fang`
+and `Name of Position=Fang` in the game still resolves. That distinction is why the engine has two
+separate actions.
+
+This is the first demonstration that **`CSetCharacterDisplayNameAction` can fire more than once on
+one entity.** All six vanilla uses rename the *player*, once, inside a conversation, so nothing
+shipped showed the action was repeatable. It is, in both directions, confirmed in play.
+
+And it adds very little. The display name only renders with **Quick Status** enabled, and Quick
+Status already draws a health bar in the same place, so the band label sits beside the information
+it duplicates. It is kept because it is built, self-syncing and costs nothing at runtime. It is not
+the reason to install this release.
+
+### The defect this found, which is older than the release
+
+Both installers -- the new health watcher **and the growth feature from 0.8x** -- were invoked from
+exactly one place: a reply in `Generic Companion Dialog`. Which means:
+
+> **A player who never opened a companion's order menu got no companion growth for the entire
+> game.**
+
+That is not a deduction. A save with Fang in the party across several levels carried
+`Fixt Companion Growth Watch` at 0, `CXRPGAITriggerWhenLevelUp` at 0, and both health markers at 0.
+The growth feature had never armed, and nothing in the game told the player so.
+
+Fixed in two parts. All **fourteen** `Fixt Companion Joined/<name>.can` files now call both
+installers; those fire at join time from the maps and dialogue trees that recruit each companion,
+so there is nothing optional about them. The calls sit **outside** each can's
+`Fixt Companion <name> == 0` test, so a re-recruit arms too, and both installers are internally
+guarded so arming twice is a no-op.
+
+That needed one prerequisite: the growth installer added its watcher with
+`CAddAIAction{Target Name=$Instigator}`, and `$Instigator` is the player only when the can is called
+from a dialogue reply. Pinned to `Player1`, the literal the same can already uses for
+`Character to get attributes from` and `Character to modify`. `CXRPGAITriggerWhenLevelUp` has to sit
+on the player, never on the companion.
+
+### An edge-trigger trap, recorded because it cost a playtest
+
+`CAIHealthPercentThresholdTrigger` fires on a **crossing**. A watcher armed on an already-wounded
+companion records their current percent as its baseline and fires nothing until they heal past a
+threshold and come back down. Fang sat at `Previous Health Percent=57.0512` with
+`Previous Health Percent Is Valid=1` and a correct six-threshold watcher, and showed no band at all
+for a whole session.
+
+So the install now carries an **ungated** pass beside it that sets the label to the band the
+companion is in right now, read with `Character to get attributes from=<literal name>` -- vanilla
+passes `Farshad`, `Lucius Prime` and `Chaos Dragon` the same way. Ungated on purpose: the label
+resyncs every time you open the menu, so a missed crossing cannot leave it stale.
+
+### Three defects the first cut shipped and the second did not
+
+* **A 50-wide bottom band.** `Health at full strength: 0 to 50.` for a companion whose real maximum
+  is near 30. The value was right and the band was useless; the whole early game sat in one answer.
+  Bands are 10 wide up to 100 now.
+* **A `>= 100` top test.** If the engine ever reports 99.x at full health, *"Not a scratch on me"*
+  could never fire and a healthy companion would always claim scrapes. The top band is 95.
+* **A missing `Fighting skill: 190 to 200`.** The edge list stopped at 190 while the open-ended band
+  began at 200, so a companion at 195 got no skill line at all. The builder now asserts that every
+  value from zero upwards matches exactly one band, and fails rather than shipping a hole.
+
+### Which saves this reaches
+
+**Any save.** Both installers arm from the order menu as before and now from the join cans as well,
+so an existing companion arms the first time you talk to them and a new one arms on recruitment.
+The label syncs to the companion's current state on that first conversation rather than waiting for
+a health crossing.
+
+`HV1` through `HV18` in [`qa.md`](qa.md). `HV15` is the row that matters most: recruit a companion,
+never open the order menu, and level up.
 
 ## 0.83.5 - William will not speak to you
 
