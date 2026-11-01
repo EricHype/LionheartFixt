@@ -1477,6 +1477,40 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.85.2 - what the fence pays, and what you can push him to
+
+Skulker paid 400 gold and 600 experience for the strongbox whether you talked the door man aside,
+bribed him, slipped past him unseen, or left him on the floor -- six routes Fixt built and he
+reacted to none of them. He now makes an offer that depends on the manner, and the offer can be
+pushed once.
+
+    400  the door man is dead
+    450  dead, and you leaned on Skulker          ST 8+
+    500  he was spared
+    700  spared, and you talked the premium up    Barter 40+
+
+Node `61 be quiet about it` already says *"Quiet is worth more than fast"*, so the premium is the
+promise he made, not a new one. The push is a reply to his offer rather than a kind of hand-over,
+which also makes it reachable exactly once: the hand-over completes the quest, and the gate reads
+quest *state*, which completion closes.
+
+`VJ3` and `VJ6` are the rows that matter, because they are the negative ones -- a broken manner flag
+pays *everybody* the same, which is precisely the defect this release repairs, and it would read as
+a pass on every other row.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| VJ1 | Take the job, kill the door man, take the box, hand it over with **Strength under 8** | *"I have your strongbox."* | Node `62`, **400 gold**, 600 xp, and then **no further reply but the exit**. The threat must not be offered |
+| VJ2 | The same with **Strength 8 or more** | then *"Nobody in the sewers would miss a skulker. Pay more, or join the muck."* | Node `65`: *"&lt;He does not reach for his knife, and takes a moment to decide that.&gt;"* and **50 more**, for 450. He pays the 400 first, so watch the counter move twice |
+| VJ3 | **Negative.** VJ2, then leave and talk to him again | - | The hand-over reply is **gone** and so is the threat. If either is still offered, the quest can be farmed and the release must be held |
+| VJ4 | Talk the door man aside (Thief Friend or Speech 40), bribe him the hundred, **or** slip past on Sneak 35. Take the box, hand it over with **Barter under 40** | *"I have your strongbox."* | Node `63`: *"&lt;He weighs the box, then adds a second handful.&gt; Door man saw nobody."* and **500 gold**. All three quiet routes must read the same |
+| VJ5 | The same with **Barter 40 or more** | then *"The door man saw nobody. That is worth more than this."* | Node `64`: *"&lt;He counts it out twice, and does not look happy about the second time.&gt;"* and **200 more**, for 700 |
+| VJ6 | **Negative, and the row the whole feature turns on.** Walk VJ1 and VJ4 on the same character in two saves and compare the totals | - | **400 against 500.** If both pay 400 the manner flag is never written; if both pay 500 it is written on the hostile route too. Either way every other row above still passes, which is why this comparison is the test |
+| VJ7 | **Negative.** Kill the door man, then hand the box over on a character with **Barter 40+** | - | No haggle reply. The premium is for discretion; with a body on the floor he is not in a haggling mood, and the Barter push lives only on node `63` |
+| VJ8 | Rob the vault **without ever taking the job**, then ask Skulker about the door | - | Unchanged and impossible as before: the strongbox part is `Active=0` until he sets the quest, so there is nothing to take. This row exists because it was asked and answered, not because anything changed |
+| VJ9 | Click the strongbox in the vault room | - | The log says **You have the thieves' strongbox. It is too big for your pack, so you carry it under one arm.** emphasized, and the journal updates. The box is a map entity with no item file at all, so before this the only feedback was the chest vanishing with a trap-disarm sound. The line prints **before** `Taken Hidden Treasure`, which deletes the interaction's own host |
+| FB3 | *(re-walk, 0.85.1's fix)* Set a companion to **Only fight back**, then let something hit **them** rather than you | - | They swing back at what hit them. The forced target decays on their next pick, several times a second, so a burst then a pause is a pass; standing still and taking it is not |
+
 ## 0.85.1 - the archer that walked closer
 
 A tuning release whose own write-up concludes the effect is marginal. `AQ3` is the row that matters,

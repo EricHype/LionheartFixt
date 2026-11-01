@@ -36,12 +36,35 @@ Go to node ID=60 the vault
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/Sewers/Quests/Rob the Thieves Vault
 State=VLT2TAKE
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Door Quiet
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+}
 }
 }
 Reply Text=I have your strongbox.
@@ -58,6 +81,61 @@ Quest=Levels/Sewers/Quests/Rob the Thieves Vault
 Action=CGiveMoneyToAllPlayersAction
 {
 Value to give=400
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Vault Job XP
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+State=VLT2TAKE
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Door Quiet
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=Player1
+}
+}
+}
+Reply Text=I have your strongbox.
+Go to node ID=63 nobody saw you
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
 }
 Action=CUseCannedActionAction
 {
@@ -101,12 +179,35 @@ Go to node ID=60 the vault
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/Sewers/Quests/Rob the Thieves Vault
 State=VLT2TAKE
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Door Quiet
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+}
 }
 }
 Reply Text=I have your strongbox.
@@ -123,6 +224,61 @@ Quest=Levels/Sewers/Quests/Rob the Thieves Vault
 Action=CGiveMoneyToAllPlayersAction
 {
 Value to give=400
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Vault Job XP
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+State=VLT2TAKE
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Door Quiet
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=Player1
+}
+}
+}
+Reply Text=I have your strongbox.
+Go to node ID=63 nobody saw you
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Rob the Thieves Vault
+}
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=500
 }
 Action=CUseCannedActionAction
 {
@@ -197,6 +353,19 @@ Text=<He does not open it in front of you.> Skulker knew about you. Here. And Sk
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/ST 8+
+}
+Reply Text=Nobody in the sewers would miss a skulker. Pay more, or join the muck.
+Go to node ID=65 leaned on him
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Icon=Quest Icon
+
+Requirement=!None
 Reply Text=
 Go to node ID=
 Is Default Reply=1
@@ -241,4 +410,44 @@ Is Default Reply=1
 Node ID=2 Psst
 Text=*Psst* Over here.
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=63 nobody saw you
+Text=<He weighs the box, then adds a second handful.> Door man saw nobody. Skulker pays for nobody.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Reply Text=The door man saw nobody. That is worth more than this.
+Go to node ID=64 talked him up
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=200
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=64 talked him up
+Text=<He counts it out twice, and does not look happy about the second time.> Skulker pays. Skulker remembers.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=65 leaned on him
+Text=<He does not reach for his knife, and takes a moment to decide that.> Skulker pays. Skulker will want a new door man.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
 }

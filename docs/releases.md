@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.85.1 are published** -- 171 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.85.2 are published** -- 172 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows and 0.85.2's nine `VJ` rows.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,94 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.85.2 - what the fence pays
+
+Three repairs to things shipped in the last two releases, and the largest of them is that a quest
+with six routes through it had one ending.
+
+### Skulker reacted to nothing
+
+Fixt built six ways past the thieves' door man: Thief Friend, Speech 40, a hundred-coin bribe,
+Sneak 35, and killing him. Skulker paid **400 gold and 600 experience for all of them**. Node
+`61 be quiet about it` even says *"Quiet is worth more than fast"*, and then nothing read it.
+
+He now makes an offer that depends on the manner, and the offer can be pushed once:
+
+| | he offers | the push | |
+|---|---|---|---|
+| the door man is dead | **400** | *"Nobody in the sewers would miss a skulker. Pay more, or join the muck."* (ST 8+) | **450** |
+| the door man was spared | **500** | *"The door man saw nobody. That is worth more than this."* (Barter 40+) | **700** |
+
+The loud route keeps its shipped 400, so nobody's current reward is cut. 700 is behind a skill check
+because 700 free is out of band for a sewer job: Machiavelli and Shylocke pay 500 for act 1 work.
+Threatening a fence who has just lost his door man is deliberately the **smallest** bonus in the job.
+
+**The push is a reply to his offer, not a kind of hand-over.** That was a late restructure and it
+made the implementation smaller as well as the scene better. The hand-over completes the quest, and
+391 vanilla hand-ins gate on quest **state** alone, which completion closes, so the push is
+reachable exactly once, in the conversation where he pays. It also means being at node `62` already
+proves the door man is dead and node `63` that he was spared, so each push needs only its skill
+gate. Every negated gate the first shape required is gone, the hand-over replies went from eight to
+four, and the tree is 453 lines rather than 723.
+
+**How the manner is remembered.** Not by checking whether the guard is alive. Skulker is placed in
+`01 Sewer Main Entrance` and `Port District`; the guard lives in `02 Thieves Congregation`, and a
+name no entity in the *current* map carries reads as false. The three peaceful exits write a
+player-scoped scripting variable at the moment of the deed, guarded so repeat conversations cannot
+push it past 1, and Skulker reads it later.
+
+### The line that was missing
+
+The strongbox is a map entity with an interaction specifier and **no item file anywhere**, so taking
+it has never put anything in the pack. Clicking it deleted the chest, played a trap-disarm sound and
+updated the journal, and the combat log said nothing. The same map prints *"You discover a treasure
+buried in the ground."* for an ordinary buried treasure a few parts away, which is what makes the
+silence read as a defect rather than a decision.
+
+> **You have the thieves' strongbox. It is too big for your pack, so you carry it under one arm.**
+
+`CPrintCombatTextAction`, to `$Instigator`, with `Emphasize=1`. Vanilla reserves emphasis for
+changes the player cannot otherwise see: the 21 *"Sanchez has taken a ring from your inventory"*
+lines, Weng Choi's completed book quest, a hidden area found. This is that case.
+
+It prints **first** in the pickup array. The action after it deletes `$Trigger`, which is the
+interaction's own host, and while the quest step behind that self-delete demonstrably fires, there
+was no reason to put a new action behind it.
+
+### Only fight back, without going back to normal
+
+0.85.0's *Only fight back* stance works by giving the companion a blank `Valid Targets`, so their
+own picker selects nothing. The defend hook then widened the filter to `Enemy`, forced the attacker
+as the target, and restored the blank filter after eight seconds.
+
+The restore did not hold, so a companion who had been hit once stayed widened and fought everything
+for the rest of the level. Reported as *"they don't seem to go back to passive mode, they seem to go
+back to normal"*, which is exactly what a filter that never came back would look like.
+
+The hook no longer touches the filter at all. `CSetTargetAction` bypasses `Valid Targets` on its
+own, so the forced target works against a blank filter, and a change that is never made cannot fail
+to be undone. 67 lines to 25.
+
+**What this trades.** The forced target decays when the companion's own picker next runs, which is
+several times a second, so fighting back is a burst rather than a duel. That is the honest shape of
+this engine's targeting and it is `FB3`'s job to say whether it reads as responsive or as twitchy.
+
+### Gates
+
+Gate 0 green on 929 files. The vault payout and the pickup line were each read back out of the
+built `data.dat` rather than out of the repo, 14 checks and 8 checks, the second scoped to the
+strongbox's own level part because the map holds two calls to the same canned object.
+
+Nine `VJ` rows in [`qa.md`](qa.md) cover the payout and the message, and `FB3` is a re-walk.
+**`VJ3` and `VJ6` are the rows that prove the release**, because they are the negative ones: a
+manner flag that is never written pays everybody 400, a flag written on the hostile route too pays
+everybody 500, and **every other row still passes in both cases**. The test is the comparison, not
+any single route.
+
+Two of my own verification checks were wrong on the way to this, both by matching
+`Name=Thieves strongbox` unanchored, which `Target Name=Thieves strongbox` also satisfies. Anchoring
+to the start of the line is now in the builder and in both checks.
 
 ## 0.85.1 - the archer that walked closer
 
