@@ -727,6 +727,56 @@ garrison. Nothing here needs level design after all.
 | `Help Andre the Titan with his tasks` | superseded by the live `Recover Lucius' Mneme` (6 states, 5 activated) |
 | Blacksmith `80 Do You Have The Item I Need?` | superseded by the live `07 what more`, which has 15 replies against its 13 including a quest hand-in |
 | `Juanita Suarez / 200 my fee`, `GoblinKhan / 400 Where are you going` | recordings exist but the nodes are `Should Have Voiceover=0`; possibly silenced deliberately |
+| the siege tank's *"it needs a spirit"* line | deliberate vanilla foreshadowing, not a missing step. **Reported from play as a broken quest** and checked end to end below |
+
+#### The siege tank still wanting a spirit is not a bug
+
+Reported from play, and worth recording because it reads exactly like a dangling quest step:
+
+> Leonardo has a bonus quest when you reach his secret pocket-plane. Asks for gears for the Tank,
+> the Steam Engine can be Persuaded into giving them. When you install the part, the last quest
+> dialogue will remain, as apparently the Tank still needs a spirit.
+
+**What the player is seeing is a vanilla lore reply with `Requirement=!None`**, sitting in the same
+list as 0.43.0's gear quest:
+
+```
+Reply:  "Why do you need a spirit for the siege engine?"      Requirement=!None
+Node:   900 siege engine explanation                           Should Have Voiceover=1
+  "...For my machines to work, I need to instill in them a spirit, a source of power to turn the
+   gears. I will need a *special* spirit indeed to move this war machine. But I think I might
+   know just the place to find one..."
+```
+
+That reply is Black Isle's, it is permanently available, and it is recorded. **It is the line that
+makes the tank's appearance in `08 Final Encounter` a payoff rather than a non sequitur**, so it
+should stay. The spirit step was never added, on purpose.
+
+**The gear quest itself closes correctly**, checked in both directions:
+
+| reply | gate | after the gear is fitted |
+|---|---|---|
+| `901 Fixt the rotary gear` | `Fixt Tank Gear Not Started` -> `CWasQuestEverActivatedAction` | closed, the quest was activated |
+| `902 Fixt the gear fitted` | `Fixt Tank Gear Carried` -> `CActionCheckForInventoryItem` | closed, the gear **is** removed |
+
+Both fitting paths -- `DaVinciBarcelona / 902` and `Leonardo DaVinci Invention / 3 Fixt the empty
+shaft` -- call `CActionRemoveInventoryItem` on `Quest Items/DaVinci Tank Gear` alongside
+`CSetQuestSatusToCompletedAction` and the experience award. The first pass through this said nothing
+consumed the gear, which was wrong: the class is `CActionRemoveInventoryItem` (302 uses), not
+`CRemoveInventoryItemAction` or `CActionRemoveStandardInventoryItem`, neither of which exists.
+
+**The steam engine side does not leak either**, which was the real risk, because
+`Fixt Tank Gear Asked` tests the quest's **state** and not its **status**. The quest carries two
+states: Leonardo's ask activates `T3MK9WQZ` (*"his talking steam engine"*) and the machine's
+hand-over activates `V8BRC4JN` (*"carry it to DaVinci's hidden chamber"*). `Magic Machine /
+600 pull lever 2` gates its *"the old man wants a turret gear"* reply on the first, so it closes the
+moment you are holding the gear rather than waiting on completion.
+
+**How to apply:** if this is reported again, the answer is that the quest works and the spirit line
+is a hook for the endgame. The only lever worth considering is the wording of that one reply, and it
+is Leonardo's voice in a vanilla recording -- see
+[[lionheart_read_the_line_beside_vanilla]] for why rewriting his register has gone wrong before.
+
 
 ---
 
