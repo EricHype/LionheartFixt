@@ -1477,6 +1477,18 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.85.1 - the archer that walked closer
+
+A tuning release whose own write-up concludes the effect is marginal. `AQ3` is the row that matters,
+because it is the negative one.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| AQ1 | Fight the Thug archers in the Port District, or the Bow thugs in the Slave Pits | - | They open fire **before** you are on them. Their radius went 550 to 850 against a standoff of 350, so they no longer acquire you and then walk 200 units closer before shooting |
+| AQ2 | Fight the zombies in the Dream Djinni Map | - | Same, and for the same reason: they count as ranged because they **throw chunks**, `Minimum Attack Distance=350` |
+| AQ3 | **Negative, and the point of the row.** Fight the Terrors in Inquisition Pit3, the Lava Troll, or the Slave Pits melee | - | A little more room before they commit, and **no more than that**. Confirmed in play: *"it doesn't feel vastly different, that's probably ok"*. If it reads as a difficulty drop, that is the risk this release carries and the reason to revert it |
+| AQ4 | **Negative, the sweep that was reverted.** Commit a crime in the Gate, Port or Temple District; talk to Cedric; enter Shylocke's shop | - | The guards react as before and every conversation opens as before. The first sweep caught the **Guard Reserves**, which are the crime system, plus `Cedric Talks to Player`, `check if player attack overrided` and `Start Here`, which are dialogue triggers. None of them is touched |
+
 ## 0.85.0 - the order menu, filled in
 
 Vanilla's companion order menu is 43 lines with two replies, `Release Companion` and `Nothing`: a

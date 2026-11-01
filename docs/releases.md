@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.85.0 are published** -- 170 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.85.1 are published** -- 171 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing.
 
@@ -141,6 +141,104 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.85.1 - the archer that walked closer
+
+A tuning release, and the write-up is mostly about why it is smaller than it looked.
+
+### One number, 1,019 times
+
+`Max Distance` is the acquisition radius on `CEntityBehaviorStateSetClosestTarget`, the only
+target-selection class in the game. An enemy picks the nearest eligible target inside it, and since
+proximity is re-evaluated several times a second it governs the whole fight rather than just its
+opening.
+
+It sits at **550 on 1,019 of 1,510 pickers**, and the raw percentage undersells how uniform that is,
+because **nothing differentiates it by creature type**:
+
+```
+Minimum Attack Distance=350  (standoff, ranged)  ->  Max Distance=550 in 55 of 55
+every Undead can      550 in 92 of 92        every Thug can      550 in 49 of 49
+every English Enemy   550 in 50 of 50        every Sewers can    550 in 42 of 42
+```
+
+`Assasin Bow Super` notices you at exactly the distance a wolf does. The 300s and 450s that exist in
+the data are per-placement decisions, not archetypes.
+
+### Nineteen pickers, spread outward
+
+Classified from each spawned can's **own** `Minimum Attack Distance`, not from its name:
+
+| | new | what |
+|---|---|---|
+| ranged, standoff 350 | **850** | the Zombies in Dream Djinni Map, which qualify because they *throw chunks*; Thug3 Bow in the Port District; Thug4 Bow and Thug3 Bow in the Slave Pits |
+| melee, standoff 100 | **400** | six `Terror before Crypt` in Inquisition Pit3, the Lava Troll, Thug4 Sword, three Assassins, the Assassin Master, Thug Pale and two Thug3 Mace |
+
+The rule moves values **outward only**. A melee picker already below 400, or a ranged one already
+above 850, was tuned for its placement -- the Slave Pits carries 300, 350 and 375 -- and pulling
+those toward the middle would override the author rather than spread the range. That took 23
+candidate edits down to 19. The semantic diff per map is that one field and nothing else.
+
+### Playtested, and it is marginal
+
+Said plainly, because it was argued for harder than it deserved. The maintainer's call was to keep
+it; the measurement is recorded so the case is not made again:
+
+* these maps are **2,289 to 4,943 units across**, so the radius is nowhere near saturated -- the
+  first guess, that indoor rooms were too small for it to matter, was wrong;
+* but the **spacing between the changed groups is 553 to 820 at the median**, the same order as the
+  difference between 400 and 850.
+
+So the stagger a spread creates is about one stride of walking, and with the small packs this game
+uses there is no window for it to live in. Some changed pickers sit **34, 75 and 161** units apart,
+where the radius cannot matter at all.
+
+**The conclusion that follows: an acquisition radius spread only reads in open terrain with sparse,
+widely spaced enemies.** Act 1 scoped to Barcelona and the Sewers, so the Crossroads and the Plains
+have none of it -- the one place it might have been felt is the place it was not applied, and it is
+not being extended.
+
+**The ranged half stands on coherence rather than feel**, and is the part worth having either way:
+at 550 an archer acquired you and then walked 200 units closer before firing, which is most of why
+ranged enemies in this game do not feel ranged.
+
+### A sweep that was reverted before it reached a commit
+
+The first attempt classified 72 pickers by whatever sat in the same Level Part, and caught dialogue
+triggers -- `Cedric Talks to Player`, `check if player attack overrided`, `Start Here` -- scripted
+replacements, and the Gate, Port and Temple **Guard Reserves**, which are the city crime system
+rather than combat enemies. Shortening a guard's radius would have made the city notice crimes
+later.
+
+The version that shipped requires each picker's Level Part to be a generator, to spawn entities
+under `Monster Cans` or `Character Templates`, and for those creatures to agree on an archetype. 54
+pickers were skipped as guards, non-combatants or allies, 13 as non-generators, 3 as stationary.
+
+### Also: the siege tank is not broken
+
+Reported from play, and recorded in [`unused-content.md`](unused-content.md) so it is not
+re-reported:
+
+> When you install the part, the last quest dialogue will remain, as apparently the Tank still needs
+> a spirit.
+
+0.43.0's gear quest closes correctly in both directions. `901 Fixt the rotary gear` is gated on
+`CWasQuestEverActivatedAction` and shuts when the quest activates; `902 Fixt the gear fitted` is
+gated on an inventory check and shuts because both fitting paths call `CActionRemoveInventoryItem`
+on the gear. The steam engine does not leak either, which was the real risk, because its ask is
+gated on the quest's first **state** rather than its status, so it closes the moment the gear is in
+hand.
+
+What remains is a vanilla reply carrying `Requirement=!None` -- *"Why do you need a spirit for the
+siege engine?"* -- leading to a recorded node that ends *"But I think I might know just the place to
+find one..."* **That line is what makes the tank's arrival in the final encounter a payoff rather
+than a non sequitur**, so it stays. The spirit step was never added, on purpose.
+
+### Which saves this reaches
+
+**Any save.** Acquisition radii are read from the map, so they apply the moment you load.
+
+`AQ1` through `AQ4` in [`qa.md`](qa.md).
 
 ## 0.85.0 - the order menu, filled in
 
