@@ -1,0 +1,75 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorAdditionalMagic
+	{
+		Items=Array
+		{
+			Array Count=1
+			Array Item=CInventoryItemGeneratorBasicItem
+			{
+				Weighting=10
+				Item=Inventory Items/Scroll
+			}
+		}
+		Chance Has Additional Magic=1
+		Additional Magic=Array
+		{
+			Array Count=9
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Acid Protection
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=25
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Cold Protection
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=20
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Electrical Protection
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=10
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Fire Protection
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=5
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Strength
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=30
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Healing
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=15
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Mass Healing
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=8
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Mending
+				Level=0
+			}
+			Array Item=CInventoryItemGeneratorAdditionalMagicItem
+			{
+				Weighting=3
+				Addition=Inventory/Inventory Additions/Miscellaneous/Scrolls/Renewal
+				Level=0
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

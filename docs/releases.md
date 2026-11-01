@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.85.2 are published** -- 172 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.86.0 are published** -- 173 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows and 0.85.2's nine `VJ` rows.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows and 0.86.0's sixteen `SD` rows.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,119 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.86.0 - the scroll line
+
+Issue #13 asked for healing scrolls in the loot generators and on merchants. The reason nobody had
+done it is that adding them as they stood would have shipped bad items.
+
+### Two scrolls that lost to potions
+
+Scrolls are rarer than potions and are meant to be better than the standard ones. These two were
+not:
+
+| | heals | price | graded | in the picker |
+|---|---|---|---|---|
+| Scroll of Healing | 12-14 + 5% maxHP | 50 | `1 Common` | no |
+| Extra Healing **potion** | 18-22 + 10% maxHP, cures crits | **22** | `2 Uncommon` | yes |
+| Scroll of Mass Healing | 8-10 + 5%, party | 75 | `2 Uncommon` | no |
+| Mass Healing **potion** | 8-10 + 5%, party | **30** | `2 Uncommon` | yes |
+
+The Scroll of Healing was beaten on every axis by a potion costing less than half as much. The
+Scroll of Mass Healing differed from its own potion in 17 lines out of 405, and all of them were
+the icon, the description and the price.
+
+Both are retuned to beat their rivals:
+
+* **Scroll of Healing** 12-14 + 5% to **24-28 + 10%**, and `1 Common` to `2 Uncommon`
+* **Scroll of Mass Healing** 8-10 + 5% to **16-20 + 8%**
+
+Prices stay at 50 and 75, which were never the problem -- the rest of the line sits at 125 and 350.
+Each file's `Value` field also disagreed with the price the shop shows it at, 40 against 50 and 50
+against 75; both now agree. The method was Fixt's own: `Great Healing` was made from
+`Extra Healing` by changing ten numeric constants, so these were made the same way, with the
+before-state asserted so a mismatch halts the build rather than writing something unintended.
+
+**The rarities were deliberately left near where vanilla put them.** The line's other five scrolls
+are Very Rare and Unique, and matching them was the first instinct and the wrong one. Rarity tracks
+*power* in this game -- the potion ladder maps Common through Unique onto 6-8 up to 64-76 -- and
+`Occurs on` is a sixteenfold frequency difference between Common and Very Rare. A ward is found once
+and saved for one level; a heal is spent every fight. Worse, every existing scroll is already Very
+Rare or rarer, so grading the healing ones to match would have left the pool with no reliable entry
+at all and scrolls as invisible as they are now.
+
+### Two scrolls that do something no item in the game does
+
+Nothing in Lionheart heals over time. `CXRPGDamageOverTime` always routes through a damage type and
+never runs negative in any of its 114 instances, and there is no healing counterpart class. So:
+
+| | per tick | total | rarity | price |
+|---|---|---|---|---|
+| **Scroll of Mending** | 9-11 + 3% maxHP | 40 + 12% | Rare | 110 |
+| **Scroll of Renewal** | 7-9 + 2.5%, all nearby | 32 + 10% each | Very Rare | 300 |
+
+Four ticks, five seconds apart, starting immediately -- the rhythm the game states for itself in the
+poison enchantments, *"every 5 seconds for 20 seconds"*. Each tick is a `CDelayAction`, which ships
+5,485 times and always with `Forget Trigger=0`, and each one is wrapped in `CIsAliveAction` so a tick
+cannot land on a corpse. Both of those come from `Wound Constrictor`, an armour enchantment that
+already does a delayed heal from an inventory item.
+
+Every tick re-checks `min(roll + pct x maxHP, 1.5 x maxHP - current)`, the cap every heal in the game
+uses. **That is what lets the total exceed an instant potion:** no tick overheals, so none of the
+scroll is wasted. A Mending at 110 gold beats a Superior Healing potion at 150 on total healing and
+loses to it on timing, which is the whole trade the line is built on.
+
+Renewal's area pulse is lifted verbatim from Mass Healing rather than retyped, because
+`CAIAreaOvalManager` carries 21 fields and a missing one is an engine crash. Re-adding the manager
+per tick, instead of using its own `Re Trigger Delay`, also means each pulse re-reads who is nearby
+-- and it avoids `Re-Trigger Action`, which ships in only 2 of 78 instances.
+
+Both reuse existing scroll art. 48 of the game's 244 inventory images are already shared by more
+than one item, so this is the house convention, not a shortcut. There was one unclaimed scroll image,
+`ScrollTregethia`, and it was left alone: it pairs with `Key Tregethia`, which Shylocke's key uses,
+so a Tregethia scroll once existed and that is a lead rather than a free slot.
+
+### Where they can be bought
+
+All four went into `Scroll selection MAGIC`, and this is the part of issue #13 that needed no map
+edit at all. `All Scrolls.can` is nothing but a wrapper around that picker, so every shelf stocking
+scrolls now stocks these -- **16 slots across 6 maps**: Weng Choi and his siege shop, the Weird
+woman in Hamlet Burned and the Witch Interior, the Rogue Inquisitor on the Plains, and the Goblin
+Warrens secret room. Each at both a low and a very-high tier.
+
+Those are all magic vendors, and that is not a choice anyone made item by item -- **only magic
+vendors stock the scroll pool.** The negative case was checked: all four `Good Store for Herbalist`
+tiers and the Templar and Inquisition store, where Fixt's own Great, Superior and Supreme Healing
+potions live, stock no scroll at all.
+
+The pool itself finally has a backbone:
+
+```
+22.1% Healing    18.4% Cold    14.7% Acid    14.7% Electrical    11.0% Mass Healing
+ 7.4% Fire        5.9% Mending  3.7% Strength  2.2% Renewal
+```
+
+**A progression gate was considered and dropped.** The game's way to tier a picker is to clone it
+and zero the weights of the premium entries, which is what `Amulet selection MAGIC LOW Mojo` is. But
+those variants are dead files -- the plain amulet picker and both its tiers have zero references
+anywhere -- and the only live use of the Mojo variants is armour. Building one for scrolls would
+mean editing merchant Level Parts on the strength of a single precedent, when Mending and Renewal
+are already gated twice over by price and by `Occurs on` 15 and 6.
+
+### What this does not claim
+
+Sixteen `SD` rows in [`qa.md`](qa.md). **`SD9` is the open risk:** nothing in the game runs a delay
+chain from an item across a map transition, so whether a Mending chain survives one is unverified.
+Losing the remaining ticks would be acceptable; a crash would not. `SD4`, `SD5` and `SD12` are the
+rows that prove the release, because each catches a failure every other row would pass.
+
+Three claims made during this work turned out to be wrong and are recorded so they are not made
+again. The Scroll of Healing is not missing a sound: scrolls carry `Play Default Sound=1` on their
+spawn effect, and the potions are the ones with a doubled explicit sound. Mass Healing is not broken
+by filling only `First Trigger Action`: that is the standard per-entity field, used by 62 of 78
+instances including `Healing.Skill`. And scrolls were never absent from the loot generators -- the
+chain runs through a folder named `Implementation Folder DO NOT PICK FROM` that 16 maps reference
+anyway, so the five wards always dropped and only the two healing scrolls were missing.
 
 ## 0.85.2 - what the fence pays
 

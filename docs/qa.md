@@ -1477,6 +1477,38 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.86.0 - the scroll line
+
+Scrolls are rarer than potions and were meant to be better than the standard ones. Two of them were
+not: the Scroll of Healing lost to the Extra Healing potion outright and the Scroll of Mass Healing
+was a byte-level tie with its own potion twin, at five and two-and-a-half times the price. Both are
+retuned, and two new scrolls take the top of the line on the axis nothing in the game occupied:
+healing over time.
+
+**`SD4`, `SD5` and `SD12` are the rows that prove the release.** `SD4` is the comparison that makes
+the repair visible at all; `SD5` catches a tick chain that fires once instead of four times, which
+every other Mending row would still pass; `SD12` is the negative that catches a scroll leaking onto
+a potion shelf.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SD1 | Buy or find a **Scroll of Healing**. Take damage to roughly half health and read it | - | **24-28 points plus 10% of your maximum health**, in one jump. At 100 max HP that is about 36 |
+| SD2 | Read a Scroll of Healing at **full** health | - | Nothing is consumed into nothing: the absolute-maximum message, same as a potion. The cap is `1.5 x maxHP - current`, so a full-health read has no headroom |
+| SD3 | Check its price and its drop grade in a shop | - | **50 gold**, and it now appears in scroll loot at all. It was graded `1 Common` and absent from every generator, so that grade had never been exercised |
+| SD4 | **The row that proves the repair.** On one character, read a Scroll of Healing and drink an **Extra Healing potion** at the same max HP, noting both numbers | - | The scroll heals **more** (24-28 + 10% against 18-22 + 10%). Before this it healed *less* (12-14 + 5%) while costing 50 against the potion's 22. If the scroll still heals less, the retune did not take and every other row here still passes |
+| SD5 | **The row that proves the chain.** Read a **Scroll of Mending** at low health and watch the health bar for twenty seconds | - | **Four separate jumps** of 9-11 plus 3% of max HP, five seconds apart, starting immediately. Total about 40 + 12%. **One jump means the delay chain broke** and only the first tick fired, which SD6 and SD7 would not catch |
+| SD6 | Read a Scroll of Mending, then **keep fighting** through the twenty seconds | - | The ticks keep arriving while you swing. This is the case the item exists for, and the one an instant potion cannot cover |
+| SD7 | Read a Scroll of Mending at **full** health, then take a hit after ten seconds | - | The early ticks heal nothing and are **not wasted**: the cap is re-checked per tick, so the ticks after the hit still heal. No absolute-maximum message, by design -- four of them would be spam |
+| SD8 | **Die** during a Mending chain, or read it and then let a companion die mid-chain | - | No crash and no healing of a corpse. Each tick is wrapped in `CIsAliveAction`, the guard `Wound Constrictor` uses |
+| SD9 | **The risk row.** Read a Scroll of Mending, then **change map** before the twenty seconds are up | - | Unknown and untested: nothing in the game runs a delay chain from an item across a transition. Losing the remaining ticks is acceptable; a crash or a stuck effect is not. `Wound Constrictor` proves a delayed heal works from an item, not that it survives a map change |
+| SD10 | With a companion beside you, read a **Scroll of Mass Healing** | - | **Both** of you heal 16-20 plus 8% of max HP. Radius 200, categories `Player,Player Friend`. It used to heal the identical amount to its own potion at 75 against 30 |
+| SD11 | With a companion beside you, read a **Scroll of Renewal** | - | Both of you heal **four times**, five seconds apart, 7-9 plus 2.5% each. An ally who walks into range after the first pulse is picked up by a later one, because each pulse re-reads who is nearby |
+| SD12 | **Negative, and the one that matters most.** Open the **herbalist's** shop at every stock tier and look for any scroll | - | **There is none.** The herbalist sells potions, including Fixt's Great, Superior and Supreme Healing. If a scroll appears there, the picker edit leaked into the potion pool and the whole "magic vendors only" split is gone |
+| SD13 | Open **Weng Choi's** shop, the **Weird woman** in Hamlet Burned or the Witch Interior, or the **Rogue Inquisitor** on the Plains, and restock a few times | - | Healing scrolls turn up. They stock the scroll pool, where Healing is now 22.1% of rolls. Before this the pool's most frequent entry was a Very Rare ward, so scrolls effectively never appeared |
+| SD14 | **Negative.** Buy or find each of the five ward scrolls -- Acid, Cold, Electrical, Fire Protection, Strength | - | Unchanged in every respect: 40 resistance, their own durations, Very Rare and Unique, prices 125 and 350. Only the healing entries were touched |
+| SD15 | Play a **Demokin with Vampiric Fury** and read each of the four scrolls | - | Every heal is **halved** -- 12-14 + 5% for Healing, 8-10 + 4% for Mass Healing, 4-6 + 1.5% per Mending tick, 4-5 + 1.25% per Renewal pulse. Every healing item in the game carries this branch and all four mirror it |
+| SD16 | Compare a **Scroll of Mending** (110) against a **Superior Healing potion** (150) at around 100 max HP | - | Mending totals a little more, about 52 against 48, and takes twenty seconds to deliver it. That is the whole trade the scroll line is built on, and the reason the total is allowed to exceed an instant potion: no tick overheals |
+
 ## 0.85.2 - what the fence pays, and what you can push him to
 
 Skulker paid 400 gold and 600 experience for the strongbox whether you talked the door man aside,

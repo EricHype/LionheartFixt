@@ -1,0 +1,1552 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorUseAction
+		{
+			Use Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=2
+					Action=CIfAction
+					{
+						If=CIsAliveAction
+						{
+							Name To Check For=$Instigator
+							Desired Minimum Count=1
+						}
+						Then=CAddAIAction
+						{
+							Target Name=$instigator
+							AI=CAIAreaOvalManager
+							{
+								Marked For Deletion=0
+								Publisher=
+								Radius=CConstant
+								{
+									Constant Value=200
+								}
+								Aspect Ratio=0.712766
+								Re Trigger Delay=CConstant
+								{
+									Constant Value=0
+								}
+								Max Times To Trigger=CConstant
+								{
+									Constant Value=2
+								}
+								Re-Check who is in oval each re-trigger=0
+								Every Trigger Action=
+								First Trigger Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Trigger
+										Category to check for=Player,Player Friend
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CIfExpressionAction
+											{
+												If Expression=CIsLessThan
+												{
+													Operand1=CExpressionHitPointsRemaining
+													{
+													}
+													Operator=
+													Operand2=CMultiply
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/(HP) Hit Points
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=1.5
+														}
+													}
+												}
+												Character to get attributes from=$Trigger
+												Then=CIfExpressionAction
+												{
+													If Expression=CHasTrait
+													{
+														Traits To Check For=Array
+														{
+															Item Count=1
+															Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+														}
+													}
+													Character to get attributes from=$Trigger
+													Then=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CIfExpressionAction
+															{
+																If Expression=CIsGreaterThan
+																{
+																	Operand1=CAdd
+																	{
+																		Operand1=CConstant
+																		{
+																			Constant Value=4
+																		}
+																		Operator=
+																		Operand2=CMultiply
+																		{
+																			Operand1=CVariableDerivedCharacterAttribute
+																			{
+																				Character Attribute=Derived Character Attributes/(HP) Hit Points
+																			}
+																			Operator=
+																			Operand2=CConstant
+																			{
+																				Constant Value=0.0125
+																			}
+																		}
+																	}
+																	Operator=
+																	Operand2=CSubtract
+																	{
+																		Operand1=CMultiply
+																		{
+																			Operand1=CVariableDerivedCharacterAttribute
+																			{
+																				Character Attribute=Derived Character Attributes/(HP) Hit Points
+																			}
+																			Operator=
+																			Operand2=CConstant
+																			{
+																				Constant Value=1.5
+																			}
+																		}
+																		Operator=
+																		Operand2=CExpressionHitPointsRemaining
+																		{
+																		}
+																	}
+																}
+																Character to get attributes from=$Trigger
+																Then=CUseCannedActionAction
+																{
+																	Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																}
+																Else=
+															}
+															Action=CGiveHealthToCharacterAction
+															{
+																Character to give health to=$trigger
+																Amount of health to give=CExpressionAggregateFunctionMin
+																{
+																	Parameters=Array
+																	{
+																		Item Count=2
+																		Parameter=CAdd
+																		{
+																			Operand1=CRandom
+																			{
+																				Operator=
+																				Minimum=CConstant
+																				{
+																					Constant Value=4
+																				}
+																				Maximum=CConstant
+																				{
+																					Constant Value=5
+																				}
+																			}
+																			Operator=
+																			Operand2=CMultiply
+																			{
+																				Operand1=CVariableDerivedCharacterAttribute
+																				{
+																					Character Attribute=Derived Character Attributes/(HP) Hit Points
+																				}
+																				Operator=
+																				Operand2=CConstant
+																				{
+																					Constant Value=0.0125
+																				}
+																			}
+																		}
+																		Parameter=CSubtract
+																		{
+																			Operand1=CMultiply
+																			{
+																				Operand1=CVariableDerivedCharacterAttribute
+																				{
+																					Character Attribute=Derived Character Attributes/(HP) Hit Points
+																				}
+																				Operator=
+																				Operand2=CConstant
+																				{
+																					Constant Value=1.5
+																				}
+																			}
+																			Operator=
+																			Operand2=CExpressionHitPointsRemaining
+																			{
+																			}
+																		}
+																	}
+																}
+																Expression Context=$trigger
+															}
+														}
+													}
+													Else=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CIfExpressionAction
+															{
+																If Expression=CIsGreaterThan
+																{
+																	Operand1=CAdd
+																	{
+																		Operand1=CConstant
+																		{
+																			Constant Value=7
+																		}
+																		Operator=
+																		Operand2=CMultiply
+																		{
+																			Operand1=CVariableDerivedCharacterAttribute
+																			{
+																				Character Attribute=Derived Character Attributes/(HP) Hit Points
+																			}
+																			Operator=
+																			Operand2=CConstant
+																			{
+																				Constant Value=0.025
+																			}
+																		}
+																	}
+																	Operator=
+																	Operand2=CSubtract
+																	{
+																		Operand1=CMultiply
+																		{
+																			Operand1=CVariableDerivedCharacterAttribute
+																			{
+																				Character Attribute=Derived Character Attributes/(HP) Hit Points
+																			}
+																			Operator=
+																			Operand2=CConstant
+																			{
+																				Constant Value=1.5
+																			}
+																		}
+																		Operator=
+																		Operand2=CExpressionHitPointsRemaining
+																		{
+																		}
+																	}
+																}
+																Character to get attributes from=$Trigger
+																Then=CUseCannedActionAction
+																{
+																	Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																}
+																Else=
+															}
+															Action=CGiveHealthToCharacterAction
+															{
+																Character to give health to=$trigger
+																Amount of health to give=CExpressionAggregateFunctionMin
+																{
+																	Parameters=Array
+																	{
+																		Item Count=2
+																		Parameter=CAdd
+																		{
+																			Operand1=CRandom
+																			{
+																				Operator=
+																				Minimum=CConstant
+																				{
+																					Constant Value=7
+																				}
+																				Maximum=CConstant
+																				{
+																					Constant Value=9
+																				}
+																			}
+																			Operator=
+																			Operand2=CMultiply
+																			{
+																				Operand1=CVariableDerivedCharacterAttribute
+																				{
+																					Character Attribute=Derived Character Attributes/(HP) Hit Points
+																				}
+																				Operator=
+																				Operand2=CConstant
+																				{
+																					Constant Value=0.025
+																				}
+																			}
+																		}
+																		Parameter=CSubtract
+																		{
+																			Operand1=CMultiply
+																			{
+																				Operand1=CVariableDerivedCharacterAttribute
+																				{
+																					Character Attribute=Derived Character Attributes/(HP) Hit Points
+																				}
+																				Operator=
+																				Operand2=CConstant
+																				{
+																					Constant Value=1.5
+																				}
+																			}
+																			Operator=
+																			Operand2=CExpressionHitPointsRemaining
+																			{
+																			}
+																		}
+																	}
+																}
+																Expression Context=$trigger
+															}
+														}
+													}
+												}
+												Else=CIfAction
+												{
+													If=CCheckCategoryAction
+													{
+														Target Name=$Trigger
+														Category to check for=Player
+													}
+													Then=CUseCannedActionAction
+													{
+														Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+													}
+													Else=
+													Return failure if the If failes=0
+												}
+											}
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Heal/Potion of Mass Healing
+												Location Entity=$trigger
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Re-Trigger Action=
+								After Last Trigger Action=
+								Only Trigger if has HP=1
+								Trigger if Player=0
+								Trigger if Enemy=0
+								Trigger Anything=1
+								Max Entities to affect=CConstant
+								{
+									Constant Value=0
+								}
+								Seconds Since Last Triggered=0
+								Number Of Times Triggered=0
+								Has Triggered At Least Once=0
+								Has Begin Been Called Before=0
+								Affected Layer Parts=Array
+								{
+									Item Count=0
+								}
+							}
+							Delay Between Adds=0
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Action=CDelayAction
+					{
+						Next Action=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CIfAction
+								{
+									If=CIsAliveAction
+									{
+										Name To Check For=$Instigator
+										Desired Minimum Count=1
+									}
+									Then=CAddAIAction
+									{
+										Target Name=$instigator
+										AI=CAIAreaOvalManager
+										{
+											Marked For Deletion=0
+											Publisher=
+											Radius=CConstant
+											{
+												Constant Value=200
+											}
+											Aspect Ratio=0.712766
+											Re Trigger Delay=CConstant
+											{
+												Constant Value=0
+											}
+											Max Times To Trigger=CConstant
+											{
+												Constant Value=2
+											}
+											Re-Check who is in oval each re-trigger=0
+											Every Trigger Action=
+											First Trigger Action=CIfAction
+											{
+												If=CCheckCategoryAction
+												{
+													Target Name=$Trigger
+													Category to check for=Player,Player Friend
+												}
+												Then=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CIfExpressionAction
+														{
+															If Expression=CIsLessThan
+															{
+																Operand1=CExpressionHitPointsRemaining
+																{
+																}
+																Operator=
+																Operand2=CMultiply
+																{
+																	Operand1=CVariableDerivedCharacterAttribute
+																	{
+																		Character Attribute=Derived Character Attributes/(HP) Hit Points
+																	}
+																	Operator=
+																	Operand2=CConstant
+																	{
+																		Constant Value=1.5
+																	}
+																}
+															}
+															Character to get attributes from=$Trigger
+															Then=CIfExpressionAction
+															{
+																If Expression=CHasTrait
+																{
+																	Traits To Check For=Array
+																	{
+																		Item Count=1
+																		Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+																	}
+																}
+																Character to get attributes from=$Trigger
+																Then=CMultipleActionsAction
+																{
+																	Action=Array
+																	{
+																		Item Count=2
+																		Action=CIfExpressionAction
+																		{
+																			If Expression=CIsGreaterThan
+																			{
+																				Operand1=CAdd
+																				{
+																					Operand1=CConstant
+																					{
+																						Constant Value=4
+																					}
+																					Operator=
+																					Operand2=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.0125
+																						}
+																					}
+																				}
+																				Operator=
+																				Operand2=CSubtract
+																				{
+																					Operand1=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=1.5
+																						}
+																					}
+																					Operator=
+																					Operand2=CExpressionHitPointsRemaining
+																					{
+																					}
+																				}
+																			}
+																			Character to get attributes from=$Trigger
+																			Then=CUseCannedActionAction
+																			{
+																				Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																			}
+																			Else=
+																		}
+																		Action=CGiveHealthToCharacterAction
+																		{
+																			Character to give health to=$trigger
+																			Amount of health to give=CExpressionAggregateFunctionMin
+																			{
+																				Parameters=Array
+																				{
+																					Item Count=2
+																					Parameter=CAdd
+																					{
+																						Operand1=CRandom
+																						{
+																							Operator=
+																							Minimum=CConstant
+																							{
+																								Constant Value=4
+																							}
+																							Maximum=CConstant
+																							{
+																								Constant Value=5
+																							}
+																						}
+																						Operator=
+																						Operand2=CMultiply
+																						{
+																							Operand1=CVariableDerivedCharacterAttribute
+																							{
+																								Character Attribute=Derived Character Attributes/(HP) Hit Points
+																							}
+																							Operator=
+																							Operand2=CConstant
+																							{
+																								Constant Value=0.0125
+																							}
+																						}
+																					}
+																					Parameter=CSubtract
+																					{
+																						Operand1=CMultiply
+																						{
+																							Operand1=CVariableDerivedCharacterAttribute
+																							{
+																								Character Attribute=Derived Character Attributes/(HP) Hit Points
+																							}
+																							Operator=
+																							Operand2=CConstant
+																							{
+																								Constant Value=1.5
+																							}
+																						}
+																						Operator=
+																						Operand2=CExpressionHitPointsRemaining
+																						{
+																						}
+																					}
+																				}
+																			}
+																			Expression Context=$trigger
+																		}
+																	}
+																}
+																Else=CMultipleActionsAction
+																{
+																	Action=Array
+																	{
+																		Item Count=2
+																		Action=CIfExpressionAction
+																		{
+																			If Expression=CIsGreaterThan
+																			{
+																				Operand1=CAdd
+																				{
+																					Operand1=CConstant
+																					{
+																						Constant Value=7
+																					}
+																					Operator=
+																					Operand2=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.025
+																						}
+																					}
+																				}
+																				Operator=
+																				Operand2=CSubtract
+																				{
+																					Operand1=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=1.5
+																						}
+																					}
+																					Operator=
+																					Operand2=CExpressionHitPointsRemaining
+																					{
+																					}
+																				}
+																			}
+																			Character to get attributes from=$Trigger
+																			Then=CUseCannedActionAction
+																			{
+																				Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																			}
+																			Else=
+																		}
+																		Action=CGiveHealthToCharacterAction
+																		{
+																			Character to give health to=$trigger
+																			Amount of health to give=CExpressionAggregateFunctionMin
+																			{
+																				Parameters=Array
+																				{
+																					Item Count=2
+																					Parameter=CAdd
+																					{
+																						Operand1=CRandom
+																						{
+																							Operator=
+																							Minimum=CConstant
+																							{
+																								Constant Value=7
+																							}
+																							Maximum=CConstant
+																							{
+																								Constant Value=9
+																							}
+																						}
+																						Operator=
+																						Operand2=CMultiply
+																						{
+																							Operand1=CVariableDerivedCharacterAttribute
+																							{
+																								Character Attribute=Derived Character Attributes/(HP) Hit Points
+																							}
+																							Operator=
+																							Operand2=CConstant
+																							{
+																								Constant Value=0.025
+																							}
+																						}
+																					}
+																					Parameter=CSubtract
+																					{
+																						Operand1=CMultiply
+																						{
+																							Operand1=CVariableDerivedCharacterAttribute
+																							{
+																								Character Attribute=Derived Character Attributes/(HP) Hit Points
+																							}
+																							Operator=
+																							Operand2=CConstant
+																							{
+																								Constant Value=1.5
+																							}
+																						}
+																						Operator=
+																						Operand2=CExpressionHitPointsRemaining
+																						{
+																						}
+																					}
+																				}
+																			}
+																			Expression Context=$trigger
+																		}
+																	}
+																}
+															}
+															Else=CIfAction
+															{
+																If=CCheckCategoryAction
+																{
+																	Target Name=$Trigger
+																	Category to check for=Player
+																}
+																Then=CUseCannedActionAction
+																{
+																	Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																}
+																Else=
+																Return failure if the If failes=0
+															}
+														}
+														Action=CSpawnEffectAction
+														{
+															Explosion Model=Spell Effects/Hits and Effects/Heal/Potion of Mass Healing
+															Location Entity=$trigger
+															Make effect a child of the location entity=1
+															X Offset=0
+															Y Offset=0
+															Height Offset=0
+															Play Default Sound=1
+															Action to execute After Effect=
+														}
+													}
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Re-Trigger Action=
+											After Last Trigger Action=
+											Only Trigger if has HP=1
+											Trigger if Player=0
+											Trigger if Enemy=0
+											Trigger Anything=1
+											Max Entities to affect=CConstant
+											{
+												Constant Value=0
+											}
+											Seconds Since Last Triggered=0
+											Number Of Times Triggered=0
+											Has Triggered At Least Once=0
+											Has Begin Been Called Before=0
+											Affected Layer Parts=Array
+											{
+												Item Count=0
+											}
+										}
+										Delay Between Adds=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Action=CDelayAction
+								{
+									Next Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CIfAction
+											{
+												If=CIsAliveAction
+												{
+													Name To Check For=$Instigator
+													Desired Minimum Count=1
+												}
+												Then=CAddAIAction
+												{
+													Target Name=$instigator
+													AI=CAIAreaOvalManager
+													{
+														Marked For Deletion=0
+														Publisher=
+														Radius=CConstant
+														{
+															Constant Value=200
+														}
+														Aspect Ratio=0.712766
+														Re Trigger Delay=CConstant
+														{
+															Constant Value=0
+														}
+														Max Times To Trigger=CConstant
+														{
+															Constant Value=2
+														}
+														Re-Check who is in oval each re-trigger=0
+														Every Trigger Action=
+														First Trigger Action=CIfAction
+														{
+															If=CCheckCategoryAction
+															{
+																Target Name=$Trigger
+																Category to check for=Player,Player Friend
+															}
+															Then=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CIfExpressionAction
+																	{
+																		If Expression=CIsLessThan
+																		{
+																			Operand1=CExpressionHitPointsRemaining
+																			{
+																			}
+																			Operator=
+																			Operand2=CMultiply
+																			{
+																				Operand1=CVariableDerivedCharacterAttribute
+																				{
+																					Character Attribute=Derived Character Attributes/(HP) Hit Points
+																				}
+																				Operator=
+																				Operand2=CConstant
+																				{
+																					Constant Value=1.5
+																				}
+																			}
+																		}
+																		Character to get attributes from=$Trigger
+																		Then=CIfExpressionAction
+																		{
+																			If Expression=CHasTrait
+																			{
+																				Traits To Check For=Array
+																				{
+																					Item Count=1
+																					Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+																				}
+																			}
+																			Character to get attributes from=$Trigger
+																			Then=CMultipleActionsAction
+																			{
+																				Action=Array
+																				{
+																					Item Count=2
+																					Action=CIfExpressionAction
+																					{
+																						If Expression=CIsGreaterThan
+																						{
+																							Operand1=CAdd
+																							{
+																								Operand1=CConstant
+																								{
+																									Constant Value=4
+																								}
+																								Operator=
+																								Operand2=CMultiply
+																								{
+																									Operand1=CVariableDerivedCharacterAttribute
+																									{
+																										Character Attribute=Derived Character Attributes/(HP) Hit Points
+																									}
+																									Operator=
+																									Operand2=CConstant
+																									{
+																										Constant Value=0.0125
+																									}
+																								}
+																							}
+																							Operator=
+																							Operand2=CSubtract
+																							{
+																								Operand1=CMultiply
+																								{
+																									Operand1=CVariableDerivedCharacterAttribute
+																									{
+																										Character Attribute=Derived Character Attributes/(HP) Hit Points
+																									}
+																									Operator=
+																									Operand2=CConstant
+																									{
+																										Constant Value=1.5
+																									}
+																								}
+																								Operator=
+																								Operand2=CExpressionHitPointsRemaining
+																								{
+																								}
+																							}
+																						}
+																						Character to get attributes from=$Trigger
+																						Then=CUseCannedActionAction
+																						{
+																							Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																						}
+																						Else=
+																					}
+																					Action=CGiveHealthToCharacterAction
+																					{
+																						Character to give health to=$trigger
+																						Amount of health to give=CExpressionAggregateFunctionMin
+																						{
+																							Parameters=Array
+																							{
+																								Item Count=2
+																								Parameter=CAdd
+																								{
+																									Operand1=CRandom
+																									{
+																										Operator=
+																										Minimum=CConstant
+																										{
+																											Constant Value=4
+																										}
+																										Maximum=CConstant
+																										{
+																											Constant Value=5
+																										}
+																									}
+																									Operator=
+																									Operand2=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=0.0125
+																										}
+																									}
+																								}
+																								Parameter=CSubtract
+																								{
+																									Operand1=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=1.5
+																										}
+																									}
+																									Operator=
+																									Operand2=CExpressionHitPointsRemaining
+																									{
+																									}
+																								}
+																							}
+																						}
+																						Expression Context=$trigger
+																					}
+																				}
+																			}
+																			Else=CMultipleActionsAction
+																			{
+																				Action=Array
+																				{
+																					Item Count=2
+																					Action=CIfExpressionAction
+																					{
+																						If Expression=CIsGreaterThan
+																						{
+																							Operand1=CAdd
+																							{
+																								Operand1=CConstant
+																								{
+																									Constant Value=7
+																								}
+																								Operator=
+																								Operand2=CMultiply
+																								{
+																									Operand1=CVariableDerivedCharacterAttribute
+																									{
+																										Character Attribute=Derived Character Attributes/(HP) Hit Points
+																									}
+																									Operator=
+																									Operand2=CConstant
+																									{
+																										Constant Value=0.025
+																									}
+																								}
+																							}
+																							Operator=
+																							Operand2=CSubtract
+																							{
+																								Operand1=CMultiply
+																								{
+																									Operand1=CVariableDerivedCharacterAttribute
+																									{
+																										Character Attribute=Derived Character Attributes/(HP) Hit Points
+																									}
+																									Operator=
+																									Operand2=CConstant
+																									{
+																										Constant Value=1.5
+																									}
+																								}
+																								Operator=
+																								Operand2=CExpressionHitPointsRemaining
+																								{
+																								}
+																							}
+																						}
+																						Character to get attributes from=$Trigger
+																						Then=CUseCannedActionAction
+																						{
+																							Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																						}
+																						Else=
+																					}
+																					Action=CGiveHealthToCharacterAction
+																					{
+																						Character to give health to=$trigger
+																						Amount of health to give=CExpressionAggregateFunctionMin
+																						{
+																							Parameters=Array
+																							{
+																								Item Count=2
+																								Parameter=CAdd
+																								{
+																									Operand1=CRandom
+																									{
+																										Operator=
+																										Minimum=CConstant
+																										{
+																											Constant Value=7
+																										}
+																										Maximum=CConstant
+																										{
+																											Constant Value=9
+																										}
+																									}
+																									Operator=
+																									Operand2=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=0.025
+																										}
+																									}
+																								}
+																								Parameter=CSubtract
+																								{
+																									Operand1=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=1.5
+																										}
+																									}
+																									Operator=
+																									Operand2=CExpressionHitPointsRemaining
+																									{
+																									}
+																								}
+																							}
+																						}
+																						Expression Context=$trigger
+																					}
+																				}
+																			}
+																		}
+																		Else=CIfAction
+																		{
+																			If=CCheckCategoryAction
+																			{
+																				Target Name=$Trigger
+																				Category to check for=Player
+																			}
+																			Then=CUseCannedActionAction
+																			{
+																				Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																			}
+																			Else=
+																			Return failure if the If failes=0
+																		}
+																	}
+																	Action=CSpawnEffectAction
+																	{
+																		Explosion Model=Spell Effects/Hits and Effects/Heal/Potion of Mass Healing
+																		Location Entity=$trigger
+																		Make effect a child of the location entity=1
+																		X Offset=0
+																		Y Offset=0
+																		Height Offset=0
+																		Play Default Sound=1
+																		Action to execute After Effect=
+																	}
+																}
+															}
+															Else=
+															Return failure if the If failes=0
+														}
+														Re-Trigger Action=
+														After Last Trigger Action=
+														Only Trigger if has HP=1
+														Trigger if Player=0
+														Trigger if Enemy=0
+														Trigger Anything=1
+														Max Entities to affect=CConstant
+														{
+															Constant Value=0
+														}
+														Seconds Since Last Triggered=0
+														Number Of Times Triggered=0
+														Has Triggered At Least Once=0
+														Has Begin Been Called Before=0
+														Affected Layer Parts=Array
+														{
+															Item Count=0
+														}
+													}
+													Delay Between Adds=0
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Action=CDelayAction
+											{
+												Next Action=CIfAction
+												{
+													If=CIsAliveAction
+													{
+														Name To Check For=$Instigator
+														Desired Minimum Count=1
+													}
+													Then=CAddAIAction
+													{
+														Target Name=$instigator
+														AI=CAIAreaOvalManager
+														{
+															Marked For Deletion=0
+															Publisher=
+															Radius=CConstant
+															{
+																Constant Value=200
+															}
+															Aspect Ratio=0.712766
+															Re Trigger Delay=CConstant
+															{
+																Constant Value=0
+															}
+															Max Times To Trigger=CConstant
+															{
+																Constant Value=2
+															}
+															Re-Check who is in oval each re-trigger=0
+															Every Trigger Action=
+															First Trigger Action=CIfAction
+															{
+																If=CCheckCategoryAction
+																{
+																	Target Name=$Trigger
+																	Category to check for=Player,Player Friend
+																}
+																Then=CMultipleActionsAction
+																{
+																	Action=Array
+																	{
+																		Item Count=2
+																		Action=CIfExpressionAction
+																		{
+																			If Expression=CIsLessThan
+																			{
+																				Operand1=CExpressionHitPointsRemaining
+																				{
+																				}
+																				Operator=
+																				Operand2=CMultiply
+																				{
+																					Operand1=CVariableDerivedCharacterAttribute
+																					{
+																						Character Attribute=Derived Character Attributes/(HP) Hit Points
+																					}
+																					Operator=
+																					Operand2=CConstant
+																					{
+																						Constant Value=1.5
+																					}
+																				}
+																			}
+																			Character to get attributes from=$Trigger
+																			Then=CIfExpressionAction
+																			{
+																				If Expression=CHasTrait
+																				{
+																					Traits To Check For=Array
+																					{
+																						Item Count=1
+																						Trait To Check For=Traits/Racial/Demokin/Vampiric Fury
+																					}
+																				}
+																				Character to get attributes from=$Trigger
+																				Then=CMultipleActionsAction
+																				{
+																					Action=Array
+																					{
+																						Item Count=2
+																						Action=CIfExpressionAction
+																						{
+																							If Expression=CIsGreaterThan
+																							{
+																								Operand1=CAdd
+																								{
+																									Operand1=CConstant
+																									{
+																										Constant Value=4
+																									}
+																									Operator=
+																									Operand2=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=0.0125
+																										}
+																									}
+																								}
+																								Operator=
+																								Operand2=CSubtract
+																								{
+																									Operand1=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=1.5
+																										}
+																									}
+																									Operator=
+																									Operand2=CExpressionHitPointsRemaining
+																									{
+																									}
+																								}
+																							}
+																							Character to get attributes from=$Trigger
+																							Then=CUseCannedActionAction
+																							{
+																								Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																							}
+																							Else=
+																						}
+																						Action=CGiveHealthToCharacterAction
+																						{
+																							Character to give health to=$trigger
+																							Amount of health to give=CExpressionAggregateFunctionMin
+																							{
+																								Parameters=Array
+																								{
+																									Item Count=2
+																									Parameter=CAdd
+																									{
+																										Operand1=CRandom
+																										{
+																											Operator=
+																											Minimum=CConstant
+																											{
+																												Constant Value=4
+																											}
+																											Maximum=CConstant
+																											{
+																												Constant Value=5
+																											}
+																										}
+																										Operator=
+																										Operand2=CMultiply
+																										{
+																											Operand1=CVariableDerivedCharacterAttribute
+																											{
+																												Character Attribute=Derived Character Attributes/(HP) Hit Points
+																											}
+																											Operator=
+																											Operand2=CConstant
+																											{
+																												Constant Value=0.0125
+																											}
+																										}
+																									}
+																									Parameter=CSubtract
+																									{
+																										Operand1=CMultiply
+																										{
+																											Operand1=CVariableDerivedCharacterAttribute
+																											{
+																												Character Attribute=Derived Character Attributes/(HP) Hit Points
+																											}
+																											Operator=
+																											Operand2=CConstant
+																											{
+																												Constant Value=1.5
+																											}
+																										}
+																										Operator=
+																										Operand2=CExpressionHitPointsRemaining
+																										{
+																										}
+																									}
+																								}
+																							}
+																							Expression Context=$trigger
+																						}
+																					}
+																				}
+																				Else=CMultipleActionsAction
+																				{
+																					Action=Array
+																					{
+																						Item Count=2
+																						Action=CIfExpressionAction
+																						{
+																							If Expression=CIsGreaterThan
+																							{
+																								Operand1=CAdd
+																								{
+																									Operand1=CConstant
+																									{
+																										Constant Value=7
+																									}
+																									Operator=
+																									Operand2=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=0.025
+																										}
+																									}
+																								}
+																								Operator=
+																								Operand2=CSubtract
+																								{
+																									Operand1=CMultiply
+																									{
+																										Operand1=CVariableDerivedCharacterAttribute
+																										{
+																											Character Attribute=Derived Character Attributes/(HP) Hit Points
+																										}
+																										Operator=
+																										Operand2=CConstant
+																										{
+																											Constant Value=1.5
+																										}
+																									}
+																									Operator=
+																									Operand2=CExpressionHitPointsRemaining
+																									{
+																									}
+																								}
+																							}
+																							Character to get attributes from=$Trigger
+																							Then=CUseCannedActionAction
+																							{
+																								Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																							}
+																							Else=
+																						}
+																						Action=CGiveHealthToCharacterAction
+																						{
+																							Character to give health to=$trigger
+																							Amount of health to give=CExpressionAggregateFunctionMin
+																							{
+																								Parameters=Array
+																								{
+																									Item Count=2
+																									Parameter=CAdd
+																									{
+																										Operand1=CRandom
+																										{
+																											Operator=
+																											Minimum=CConstant
+																											{
+																												Constant Value=7
+																											}
+																											Maximum=CConstant
+																											{
+																												Constant Value=9
+																											}
+																										}
+																										Operator=
+																										Operand2=CMultiply
+																										{
+																											Operand1=CVariableDerivedCharacterAttribute
+																											{
+																												Character Attribute=Derived Character Attributes/(HP) Hit Points
+																											}
+																											Operator=
+																											Operand2=CConstant
+																											{
+																												Constant Value=0.025
+																											}
+																										}
+																									}
+																									Parameter=CSubtract
+																									{
+																										Operand1=CMultiply
+																										{
+																											Operand1=CVariableDerivedCharacterAttribute
+																											{
+																												Character Attribute=Derived Character Attributes/(HP) Hit Points
+																											}
+																											Operator=
+																											Operand2=CConstant
+																											{
+																												Constant Value=1.5
+																											}
+																										}
+																										Operator=
+																										Operand2=CExpressionHitPointsRemaining
+																										{
+																										}
+																									}
+																								}
+																							}
+																							Expression Context=$trigger
+																						}
+																					}
+																				}
+																			}
+																			Else=CIfAction
+																			{
+																				If=CCheckCategoryAction
+																				{
+																					Target Name=$Trigger
+																					Category to check for=Player
+																				}
+																				Then=CUseCannedActionAction
+																				{
+																					Canned Object=Common Objects and Scripts/Event Notification Actions/Health at absolute maximum message
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																		}
+																		Action=CSpawnEffectAction
+																		{
+																			Explosion Model=Spell Effects/Hits and Effects/Heal/Potion of Mass Healing
+																			Location Entity=$trigger
+																			Make effect a child of the location entity=1
+																			X Offset=0
+																			Y Offset=0
+																			Height Offset=0
+																			Play Default Sound=1
+																			Action to execute After Effect=
+																		}
+																	}
+																}
+																Else=
+																Return failure if the If failes=0
+															}
+															Re-Trigger Action=
+															After Last Trigger Action=
+															Only Trigger if has HP=1
+															Trigger if Player=0
+															Trigger if Enemy=0
+															Trigger Anything=1
+															Max Entities to affect=CConstant
+															{
+																Constant Value=0
+															}
+															Seconds Since Last Triggered=0
+															Number Of Times Triggered=0
+															Has Triggered At Least Once=0
+															Has Begin Been Called Before=0
+															Affected Layer Parts=Array
+															{
+																Item Count=0
+															}
+														}
+														Delay Between Adds=0
+													}
+													Else=
+													Return failure if the If failes=0
+												}
+												Delay=5
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Delay=5
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+							}
+						}
+						Delay=5
+						Plus or Minus=0
+						Forget Trigger=0
+					}
+				}
+			}
+			Selected Action=
+			Deselected Action=
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=300
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Renewal
+	Description=The charm inscribed on this scroll knits the wounds of the reader and all allies close by, again every five seconds, four times.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Misc Items/ScrollMassHeal
+	Minimum Value=300
+	Minimum Addition Ammount=0
+	Inbetween Value=300
+	Inbetween Addition Ammount=0
+	Maximum Value=300
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=0
+		}
+	}
+	Inventory Addition Group=Inventory/!None
+	Addition Rarity=Inventory Item Rarity/4 Very Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}
