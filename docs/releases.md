@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.84.0 are published** -- 169 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.85.0 are published** -- 170 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing.
 
@@ -141,6 +141,185 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.85.0 - the order menu, filled in
+
+Vanilla's companion order menu is 43 lines long and offers two replies:
+
+```
+Node ID=01 Conversation Start
+Text=<What would you like your companion to do?>
+    Reply Text=Release Companion
+    Reply Text=Nothing
+```
+
+A dialogue tree whose only purpose is to hold companion orders, shipping with one order and a
+cancel, from the studio that wrote Fallout 2's *"let's talk about how you fight"* submenu. That is
+not a finished system, it is a frame. This release fills in the one axis this engine can express,
+and says plainly that the other two cannot be built at all.
+
+### What you can now tell them
+
+```
+<What would you like your companion to do?>
+  > Let's talk about how you fight.
+  > How are you holding up?
+  > Release Companion
+  > Nothing
+
+<How should they handle a fight?>
+  > Only fight back. Do not start anything.
+  > Fight as you see fit.
+  > Never mind.
+```
+
+Set out of combat, persistent, and **per companion** -- the stance is held on the companion itself,
+one variable, one instance each, rather than fifteen player-scoped flags.
+
+### Only fight back, and the half that is easy to get wrong
+
+*Fight as you see fit* restores `Valid Targets=Enemy`, which is what a live companion actually
+carries. That was read out of a save rather than taken from the can, which still holds the hostile
+Bear filter the cub was cloned from.
+
+*Only fight back* blanks that filter. `CSetTargetTypeAction` blanks it in **217** shipped sites and
+restores it in **596**, so the round trip is well trodden.
+
+But blanking alone is not "only fight back". **Pacification stops a companion seeing any target at
+all**, and only `Target shooter if hit` gets round it, so a companion told to hold its fire would
+ignore a melee attacker entirely and stand there being chewed on. So each companion also carries a
+hook that takes its filter back when struck and answers whoever did it. `$Trigger` is the struck
+companion and `$Instigator` the attacker, both confirmed by probe.
+
+**And then it has to stop again.** The first cut took the filter back and never gave it up: the save
+showed `Valid Targets=Enemy` with the stance still reading 2, which means the menu promised *"Do not
+start anything"* and after one blow the companion started things for the rest of the game. That is
+the feature breaking its own promise rather than a tuning question. It now stands down **8 seconds**
+after the last blow, re-checking the stance first in case you changed your mind during it.
+`CDelayAction` has 3,782 vanilla sites, every one with `Forget Trigger=0`, so `$Trigger` survives
+the wait; vanilla's own longest delay is 130 seconds.
+
+If the timer expires mid-fight the companion stops picking **new** targets but keeps answering
+whatever hits it, because every fresh blow runs the hook again. So it degrades into exactly what the
+order asked for rather than into passivity.
+
+### Six of the fourteen have cans that are not named after them
+
+Matching companions by their scripting names found eight. The other six were traced from each
+generator's `New Name=` to the `Entity=` it spawns:
+
+| companion | can |
+|---|---|
+| Bishop Diego | `Wilderness/Character Templates/Diego` |
+| Goblin Girl | `Monster Cans/Mongol Vendor Village` |
+| Darsh | `Wilderness/Character Templates/Inquisitor Darsch` |
+| Golem | `English Enemies/Wargolem Deactivated` |
+| Grace | `7 English Shrine/Character Templates/Grace OMalley` |
+| Cortes | `Port District/Cortez`, and `Cortez with arm` |
+
+Two of those cans are shared with non-companions, which is harmless: the hook does nothing unless
+the stance is set, and a non-companion never has it. Four already had something in that slot and
+were **wrapped** rather than overwritten, so Cervantes' and Cortes' own `CRandomAction` still fires.
+
+### Measured, built, and cut: there is no third stance
+
+Fallout offered three axes. Two cannot exist here.
+
+**Distance.** `Minimum Attack Distance` is real -- 100 on 1,046 sites, 350 and 400 on 68, and the
+value *"Do not move while attacking"* on 347 -- but every companion's weapon has **range 35**.
+Telling a melee companion to keep its distance makes it stand off and never swing. Position orders
+already exist in the game as a hotkey and an icon, so there is nothing to add.
+
+**Weapon preference.** Every companion has exactly one attack: range 35, melee, damage from a
+`CRandom`, no skill attached, `Weapon Mode=Primary Weapon` with no secondary populated, and no skill
+preset above zero on any of the twelve whose cans resolve. There is nothing to prefer.
+
+**And a "charge into battle" stance was built across the whole game and removed.** It put a
+three-line hook on **410 enemy cans** feeding a per-enemy threat counter with a commitment
+threshold, and every mechanism was proven by probe before it was written: enemies hold per-instance
+derived attributes, `$Instigator` is the attacker and `$Trigger` the struck creature inside a damage
+hook, both survive into a canned object called from that hook, `CSetTargetAction` retargets a live
+creature and even overrides `Valid Targets`, and companion damage still satisfies
+`CWasDamagedByPlayerAction` so no experience or loot is lost.
+
+It worked and it could not be felt, for a reason that corrects a claim this project had been
+carrying:
+
+> **`Time Until Next Search For Target` is a live countdown, not configuration.** Every one of the
+> 573 shipped sites reads 0, which is only the authoring default; a save holds 0.2, 0.1 and
+> 0.0666.
+
+Enemies re-pick the nearest target five to ten times a second. A scripted retarget survives a
+fraction of one. The companion's share of incoming attacks went from about nothing to **10 of 35**,
+which is a real change, but it arrives as an alternation rather than a redirection and reads in play
+as being hit slightly less often. It also means the older belief that an enemy *"acquires once and
+never re-evaluates"* was wrong: proximity does not win once, it wins continuously, which is why the
+player who walks in front holds the aggro and why no scripted aggro system can hold against it.
+
+Cutting it removed **241 vanilla cans the mod had promoted into itself** for a three-line insert,
+and with them the coverage gaps it had introduced: 613 hostile AI blocks placed inline in maps
+rather than spawned from cans, 265 runtime `CSetDamagedScriptActionAction` sites that replace the
+hook slot outright, two act bosses held in Character Templates, and twenty Sewer Thief cans that are
+hostile without carrying `Category=Enemy`.
+
+### And a repair that rides along: 35 enemies that could not see your companion
+
+Separate from the stance, and the opposite kind of change: a defect.
+
+`Valid Targets` decides who an enemy is allowed to pick. **547** pickers in the game allow
+`Player,Player Friend`. **85** allow `Player` alone, and those enemies can never pick a companion
+at any re-pick -- not "they walk past it once", but permanently invisible to them, even with the
+companion standing directly in front. That is the game's own targeting rule failing to apply.
+
+**35 of the 85 are now widened to `Player,Player Friend`**, concentrated where the habit was:
+
+| map | pickers |
+|---|---|
+| 02 Clan of the Hand A | 9 |
+| 08 Cave 3 | 6 |
+| Slave Pits | 6 |
+| 01 Hamlet Exterior | 5 |
+| 04 Clan of the Skull B | 5 |
+| 02 Hamlet Burned, 05 Troll Pit, Inquisition Chambers2, Port District | 1 each |
+
+The diff on each map is only that field, the same number of times: nine lines in Clan of the Hand A
+and nothing else.
+
+**The other 50 are left alone on purpose.** Nine are bosses, which should go on focusing the player.
+Twenty-one are non-combatants and allies, where `Player` alone is correct -- a cutscene or a quest
+trigger should fire on the player and not on a companion wandering past, and the list includes the
+chickens, the tortured prisoners, the Surrey merchant, the cloned guards, Joan of Arc and the
+Knight of Saladin. Three more were excluded on inspection: the **Lost Knight**, who is a
+recruitable companion; the `Tithe Inquisitor Generator`, whose entity list is a scripted door
+sequence rather than a combat spawn; and `Slave Pit Exterior INTRO MOVIE`, a cutscene map. The
+remaining seventeen are placed inline and could not be identified, so they were not touched.
+
+### An addition, and said so
+
+Every other release in this project connects something shipped -- an empty field, an unreachable
+node, a gate that reads the wrong thing. This one fills an empty menu with orders Black Isle did not
+write, in the idiom of the studio's own prior game. That is a different kind of change from the rest
+of the line and is called one here rather than dressed as a repair.
+
+### Which saves this reaches
+
+**Any save** for the stance itself. It defaults to *fight as you see fit*, which is exactly
+vanilla, so nothing changes for anyone who does not ask for it, and the widened filters apply the
+moment you load.
+
+**One limit, on one half of one stance.** The hook that makes a companion fight back when struck
+lives in that companion's can, and a can edit reaches only creatures spawned after it is installed.
+So a companion you recruited **before** installing this release will hold its fire as told, but
+will not answer an attacker. Release and re-recruit them -- `Release Companion` is in the same menu
+-- or set *fight as you see fit* for them. A companion recruited from here on is unaffected.
+
+That hook could not simply be installed at runtime instead: `CSetDamagedScriptActionAction`
+*replaces* the slot, and three of the fourteen keep their combat barks and their attack selection
+in it -- Cervantes carries eleven `CActionSelectSkill`, two `CRandomAction`, two balloon displays
+and a relay. Overwriting that would silence him and stop him choosing attacks.
+
+`FB1` through `FB12` in [`qa.md`](qa.md). `FB2` and `FB3` are confirmed in play; `FB4` is the defect
+they hid.
 
 ## 0.84.0 - how your companions are doing
 

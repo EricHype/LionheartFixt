@@ -1,0 +1,67 @@
+CCannedObject
+{
+	Object=CIfExpressionAction
+	{
+		If Expression=CIsEqualTo
+		{
+			Operand1=CVariableDerivedCharacterAttribute
+			{
+				Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=2
+			}
+		}
+		Character to get attributes from=$Trigger
+		Then=CMultipleActionsAction
+		{
+			Action=Array
+			{
+				Item Count=3
+				Action=CSetTargetTypeAction
+				{
+					Entity Name=$Trigger
+					Name To Target=
+					Valid Targets=Enemy
+				}
+				Action=CSetTargetAction
+				{
+					Target to attack=$Instigator
+					Attacker=$Trigger
+				}
+				Action=CDelayAction
+				{
+					Next Action=CIfExpressionAction
+					{
+						If Expression=CIsEqualTo
+						{
+							Operand1=CVariableDerivedCharacterAttribute
+							{
+								Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=2
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CSetTargetTypeAction
+						{
+							Entity Name=$Trigger
+							Name To Target=
+							Valid Targets=
+						}
+						Else=
+					}
+					Delay=8
+					Plus or Minus=0
+					Forget Trigger=0
+				}
+			}
+		}
+		Else=
+	}
+}

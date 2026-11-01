@@ -1345,7 +1345,17 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=
+		Damaged Script Action=CMultipleActionsAction
+		{
+			Action=Array
+			{
+				Item Count=1
+				Action=CUseCannedActionAction
+				{
+					Canned Object=Common Objects and Scripts/Fixt Companion Defend Self
+				}
+			}
+		}
 		Damaged Effect Action=CMultipleActionsAction
 		{
 			Action=Array

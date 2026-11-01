@@ -1254,90 +1254,101 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=CRandomAction
+		Damaged Script Action=CMultipleActionsAction
 		{
 			Action=Array
 			{
-				Item Count=12
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
-				Action=CActionSelectSkill
-				{
-					Character to select skill=$Trigger
-					Skill to select=Skills/Fighting/OneHandedMelee
-				}
+				Item Count=2
 				Action=CRandomAction
 				{
 					Action=Array
 					{
-						Item Count=2
-						Action=CDisplayDialogBalloonAction
+						Item Count=12
+						Action=CActionSelectSkill
 						{
-							Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
-							Node ID=800 cortes hurt 1
-							Name of Position=$trigger
-							Position Offset=0.000000,-70.000000
-							After Action=
-							Include In Log=0
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
 						}
-						Action=CDisplayDialogBalloonAction
+						Action=CActionSelectSkill
 						{
-							Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
-							Node ID=800 cortes hurt 2
-							Name of Position=$trigger
-							Position Offset=0.000000,-70.000000
-							After Action=
-							Include In Log=0
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CActionSelectSkill
+						{
+							Character to select skill=$Trigger
+							Skill to select=Skills/Fighting/OneHandedMelee
+						}
+						Action=CRandomAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
+									Node ID=800 cortes hurt 1
+									Name of Position=$trigger
+									Position Offset=0.000000,-70.000000
+									After Action=
+									Include In Log=0
+								}
+								Action=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Port District/cortes
+									Node ID=800 cortes hurt 2
+									Name of Position=$trigger
+									Position Offset=0.000000,-70.000000
+									After Action=
+									Include In Log=0
+								}
+							}
 						}
 					}
+				}
+				Action=CUseCannedActionAction
+				{
+					Canned Object=Common Objects and Scripts/Fixt Companion Defend Self
 				}
 			}
 		}

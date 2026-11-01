@@ -10,6 +10,10 @@ Text=<What would you like your companion to do?>
 Should Have Voiceover=0
 
 Requirement=!None
+Reply Text=Let's talk about how you fight.
+Go to node ID=02 How You Fight
+
+Requirement=!None
 Reply Text=How are you holding up?
 Go to node ID=
 Custom Action=CMultipleActionsAction
@@ -2828,5 +2832,226 @@ Canned Object=Common Objects and Scripts/Fixt Companion Health Install
 }
 }
 }
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 How You Fight
+Text=<How should they handle a fight?>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Only fight back. Do not start anything.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=2
+}
+}
+Character to get attributes from=$Trigger
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Trigger
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-2
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Trigger
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Trigger
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Trigger
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=2
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=$Trigger
+Name To Target=
+Valid Targets=
+}
+}
+}
+
+Requirement=!None
+Reply Text=Fight as you see fit.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=2
+}
+}
+Character to get attributes from=$Trigger
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Trigger
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-2
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=
+}
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Trigger
+Then=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Trigger
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Stance
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Else=
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=$Trigger
+Name To Target=
+Valid Targets=Enemy
+}
+}
+}
+
+Requirement=!None
+Reply Text=Never mind.
+Go to node ID=01 Conversation Start
 Is Default Reply=1
 }

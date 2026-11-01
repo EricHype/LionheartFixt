@@ -1477,6 +1477,69 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.85.0 - the order menu, filled in
+
+Vanilla's companion order menu is 43 lines with two replies, `Release Companion` and `Nothing`: a
+frame for orders that was never filled in. This fills in the **one axis this engine can express**,
+and the release notes are explicit that the other two cannot be built at all.
+
+`FB2` is the row that proves it and `FB4` is the one that nearly shipped broken.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| FB1 | Talk to a companion | Let's talk about how you fight. | A second screen, *"How should they handle a fight?"*, offering **Only fight back**, **Fight as you see fit** and **Never mind** |
+| FB2 | **The row that proves the release.** Set *Only fight back*, then attack something yourself and leave them out of it | Only fight back. | They **do not join in**. Confirmed in play: *"fang didn't participate in the wolves i was fighting"* |
+| FB3 | With that set, let something attack **them** | - | They fight back, and go for whoever struck them. Confirmed in play: *"but fought back when attacked by another"*. Blanking `Valid Targets` alone would not do this -- pacification stops a companion seeing any target and only `Target shooter if hit` gets round it, so a melee attacker would be ignored entirely |
+| FB4 | **The defect FB3 hid.** After they have fought back, wait, then attack something else yourself and leave them out of it | - | They stand down again and stay out of it. The first cut took their filter back and **never gave it up** -- the save showed `Valid Targets=Enemy` with the stance still reading 2, so the menu promised *"Do not start anything"* and after one blow they started things for the rest of the game. They now stand down 8 seconds after the last blow |
+| FB5 | Set *Only fight back*, then change your mind mid-fight | Fight as you see fit. | They resume picking their own targets at once. The stand-down re-checks the stance before firing, so a late timer cannot un-do an order you have just given |
+| FB6 | Set a stance on one companion while travelling with two | - | Only that one changes. The stance is held **on the companion**, one variable per instance, not fifteen player-scoped flags |
+| FB7 | Set *Only fight back*, save, reload | - | It survives. Read it from the save as `Game Scripting Variables/Fixt Companion Stance=2` |
+| FB8 | **Regression.** Release a companion, and ask one how they are holding up | Release Companion | 0.84.0's replies are untouched: the report still prints four lines and releasing still prints *"A companion has left your party"* |
+| FB9 | **Negative.** Check the attributes window | - | `Fixt Companion Stance` does not appear. `Display In Attributes Window=0`, cloned from `Fixt Companion Fang` |
+| FB10 | Recruit each of the fourteen companions in turn and set a stance | - | All fourteen obey. Six of them have cans that are **not** named after them -- Bishop Diego is `Diego`, Goblin Girl is `Mongol Vendor Village`, Darsh is `Inquisitor Darsch`, the Golem is `Wargolem Deactivated`, Grace is `Grace OMalley`, Cortes is `Cortez` -- and matching on scripting names alone missed every one |
+| FB11 | **Negative, the shared cans.** Fight a Mongol vendor-village goblin or a deactivated war golem that is **not** your companion | - | They behave exactly as before. Two companion cans are shared with non-companions, and the hook does nothing unless `Fixt Companion Stance` is 2, which a non-companion never has |
+| FB12 | **Negative, the one that could break the game.** Fight Cervantes or Cortes as enemies, and watch for whatever their own damaged action does | - | It still fires. Four of the fifteen cans already had something in that slot and were **wrapped**, not overwritten -- their `CRandomAction` and `CMultipleActionsAction` survive beside the new call |
+| FB13 | **The documented limit.** On a save where a companion was recruited **before** installing, set *Only fight back* and let something attack them | Only fight back. | They hold their fire as told but **do not answer the attacker**. The hook lives in their can and a can edit reaches only creatures spawned after install. Release and re-recruit them, or set *fight as you see fit* |
+| FB14 | FB13, then release and re-recruit them and repeat | - | `FB3` now passes for them |
+| FB15 | **The filter repair.** In Clan of the Hand A, Cave 3, the Slave Pits, Hamlet Exterior, Clan of the Skull B, Hamlet Burned, the Troll Pit, Inquisition Chambers2 or the Port District, stand a companion nearer an enemy than yourself | - | That enemy can now attack the companion. **35 pickers** that allowed `Player` alone were widened to `Player,Player Friend`, which is what 547 other pickers in the game already allow |
+| FB16 | **Negative, the bosses.** Fight the Snakebreed Boss, the Assassin Master in the Slave Pits or the Burial Chamber, the Bird Man King, the Juanita shakedown Thug Boss or Aka Manah | - | They still focus **you**. Nine boss pickers were left `Player`-only deliberately. Also unchanged: the chickens, the tortured prisoners, the Surrey merchant, the cloned guards, Joan of Arc, the Knight of Saladin, and the **Lost Knight**, who is a recruitable companion |
+
+### Measured, built, and cut
+
+Two of the three axes Fallout offered cannot be built here, and one was built game-wide and removed.
+
+**Distance cannot be built.** `Minimum Attack Distance` is real -- 100 on 1,046 sites, 350 and 400 on
+68, and the value *"Do not move while attacking"* on 347 -- but every companion's weapon has
+**range 35**. Telling a melee companion to keep its distance makes it stand off and never swing.
+Position orders already exist in the game as a hotkey and an icon, so nothing is lost.
+
+**Weapon preference cannot be built.** Every companion has exactly one attack: range 35, melee,
+damage from a `CRandom`, no skill attached, `Weapon Mode=Primary Weapon` with no secondary
+populated, and no skill preset above zero on any of the twelve whose cans resolve. There is nothing
+to prefer.
+
+**A "charge into battle" stance was built game-wide and cut.** It installed a three-line hook on
+**410 enemy cans** feeding a per-enemy threat counter, and every mechanism in it was proven by probe
+first: enemies hold per-instance derived attributes, `$Instigator` is the attacker and `$Trigger`
+the struck creature inside a damage hook, both survive into a canned object called from that hook,
+`CSetTargetAction` retargets a live creature and overrides `Valid Targets`, and companion damage
+still satisfies `CWasDamagedByPlayerAction` so no experience or loot is lost.
+
+It worked, and it was imperceptible. **`Time Until Next Search For Target` is a live countdown, not
+configuration** -- 0 in all 573 shipped sites, which is only the authoring default, but 0.2, 0.1 and
+0.0666 in a save. Enemies re-pick the nearest target five to ten times a second, so a scripted
+retarget survives a fraction of one. The companion's share of incoming attacks went from about
+nothing to **10 of 35**, which is real, but it arrives as an alternation rather than a redirection
+and reads in play as being hit slightly less often.
+
+`Only fight back` survives the same arithmetic because it never touches an enemy: it changes the
+companion's own filter, which is configuration rather than a decision re-made every tick.
+
+The cut removed 241 vanilla cans the mod had promoted into itself, and with them the coverage gaps
+it had introduced -- 613 hostile AI blocks placed inline in maps, 265 runtime
+`CSetDamagedScriptActionAction` sites that replace the hook slot, two act bosses held in Character
+Templates, and twenty Sewer Thief cans that are hostile without carrying `Category=Enemy`.
+
 ## 0.84.0 - how your companions are doing
 
 Two halves that share one installer, and they are not worth the same.
