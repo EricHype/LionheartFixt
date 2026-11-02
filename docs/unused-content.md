@@ -29,7 +29,7 @@ wrong are more reusable than the results.
 - [What to pick up next](#what-to-pick-up-next)
 - [How this was measured](#how-this-was-measured)
 - [**Voiceover on nodes nobody can reach**](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted) -- the current backlog, and the richest vein left
-- [**Orphaned art**](#orphaned-art----the-axis-this-survey-never-looked-at) -- 13 icons, 10 pickups and 21 meshes named by nothing, and the four that are one field each
+- [**Orphaned art**](#orphaned-art----the-axis-this-survey-never-looked-at) -- 13 icons, 10 pickups and 21 meshes named by nothing, the five that are one field each, and who Bjon was
 
 ---
 
@@ -2182,9 +2182,17 @@ the asset's own name is the evidence that it belongs.
 | Amulet of Dour Tidings | `AmuletGreenOpal`, shared with 8 other amulets | `Images for RED file/Amulet Dour Tidings` | **named for the item** |
 | Wielder Quest Rod Spirits (x2) | generic `Misc Items/Wand_PU` | `Misc Items/Wands/RodOfSpirits` | **named for the item** |
 | Wielder DARK Quest Rod Bone (x2) | generic `Misc Items/Wand_PU` | `Misc Items/Wands/RodOfBone` | **named for the item** |
+| **Nightshade Root** | `Quest Items/Darkwood`, shared with Darkwood | `Quest Items/Rare Herb` | **ours, and the clearest** |
 | Gauntlets of La Mancha | generic `Armor/Gauntlets` | `Armor/Gauntlets Spike` | inferred, see below |
 
-The rods are the cleanest work in this document. Fixt already wired **`RodOfInquisitor`** to the Rod
+**Nightshade Root is our own.** It does not exist in vanilla -- Fixt authored it for the
+hangover-cure chain -- and it was given Darkwood's icon, so the two herbs are visually identical in
+the inventory while a third herb icon sits unused. Both also share `RareHerb_PU` on the ground, which
+is correct and should stay: that sprite is generic herb-on-the-floor art and Darkwood uses it too.
+Only the inventory icon is wrong. This is the one entry in the table that is a Fixt defect rather
+than a 2003 one, which also makes it the one with no ambiguity about intent.
+
+The rods are the cleanest vanilla work in this document. Fixt already wired **`RodOfInquisitor`** to the Rod
 of the Inquisitor, so the mechanism is placed, the precedent is ours, and two of the three are simply
 unfinished. Prefer the sibling.
 
@@ -2213,9 +2221,38 @@ is already there.
 | art | trace | read |
 |---|---|---|
 | `Quest Items/Esteban Knife` + `Special Items/EstebanDagger_PU` | **Guard Esteban exists**, with his own dialogue tree and five maps | A matched icon-and-pickup pair for a named, living character. No knife is mentioned in his tree, so the hook is gone and only the art remains |
-| `Special Items/HammerBjon_PU` | **none** -- "Bjon" appears in no file in the game | A character cut so completely that only his weapon's ground sprite survived |
+| `Special Items/HammerBjon_PU` | **none** -- see below | A character cut so completely that only his weapon's ground sprite survived |
 | `Misc Items/ScrollTregethia` | `Shylocke Key` uses `Key Tregethia`, a *different* asset | A Tregethia **scroll** was planned beside the key that shipped |
 | `Quest Items/Rare Herb`, `Quest Items/Potion Wolf`, `Misc Items/Key Skeleton`, `Misc Items/Gem Ruby`, `Armor/Bracers Defense`, `Armor/Shield Holy`, `Weapons/Sword Undead Bane` | none | Art without a thread. `Sword Undead Bane` is the odd one: the Sword of Undead Ice ships and uses a *different* icon under `Images for RED file`, so this is a superseded draft rather than a gap |
+
+#### Who was Bjon
+
+Worth its own note, because the answer is "nobody, as far as the game is concerned", and that took
+some proving.
+
+The name survives in exactly one place: the filename of a 24x30 ground-pickup sprite, plus the
+sprite's own self-name inside the file. Every byte of every entry in `data.dat` was searched for
+Bjon, Bjorn, Bjarn and Bjon-with-an-umlaut, binaries included; all 22 content matches were
+coincidental byte runs inside compressed pixel and audio data -- `BJONG` inside a tree texture,
+`BjOn` inside a forest ambience track. No dialogue, map, can, item, voiceover or texture retains him.
+
+**The obvious alternative was tested and failed.** If "Bjon" were an early name for the war hammer
+that did ship -- the one the Bounty Hunter Sword Everlasting confusingly uses -- this would be a
+renamed asset rather than a lost character. It is not: `HammerBjon_PU` is 24x30 and
+`WarHammerPain_PU` is 49x31. Different art.
+
+**What does speak is the convention.** In `Special Items`, every owner-named pickup belongs to
+someone real: `EstebanDagger_PU` to Guard Esteban, `FelgnashSword_PU` to Felgnash, `KhansSword_PU`
+to Kublai Khan, `PolosBoots_PU` to Marco Polo, `ShakespearesMuse_PU` to Shakespeare, `ArmRod_PU` to
+Cortez. `HammerBjon_PU` is the only owner-named pickup in that folder with no character behind it.
+The pattern is "a named NPC's signature possession, which you can pick up", so Bjon was a named
+character carrying a hammer, cut early enough that the sprite outlived every other trace of him.
+
+Past that, only the name. "Bjon" reads Scandinavian, a variant of Bjorn, "bear" -- which in a cast
+that already includes Shakespeare, Da Vinci, Cortez and Kublai Khan would fit a Norse figure on the
+historical guest list. **That is a guess about a name and nothing more**, recorded so the next person
+does not spend the same hour on it. There is no thread here to restore, only a sprite and a
+convention.
 
 ### What to skip
 
@@ -2231,15 +2268,17 @@ spirit-energy ground lights. Superseded naming, not content.
 
 ### Suggested order
 
-1. **The two rods.** Two fields, the sibling precedent is already ours, the art is named for the
+1. **Nightshade Root.** Ours, unambiguous, and currently indistinguishable from Darkwood in the
+   inventory. One field.
+2. **The two rods.** Two fields, the sibling precedent is already ours, the art is named for the
    items. No judgement required.
-2. **Amulet of Dour Tidings.** One field, art named for the item, and it currently shares an icon
+3. **Amulet of Dour Tidings.** One field, art named for the item, and it currently shares an icon
    with eight other amulets so the gain is visible.
-3. **Gauntlets of La Mancha.** One field, inferred rather than matched. Say so in the notes.
-4. **Write up Esteban's dagger, Bjon's hammer and the Tregethia scroll** here, as leads rather than
-   work. Esteban is the only one attached to a character who exists.
-5. **The buckler**, if and only if a fourth shield is wanted. Everything except the item exists.
+4. **Gauntlets of La Mancha.** One field, inferred rather than matched. Say so in the notes.
+5. **Esteban's dagger and the Tregethia scroll** as leads rather than work. Esteban is the only one
+   attached to a character who exists. Bjon is written up above and is closed, not open.
+6. **The buckler**, if and only if a fourth shield is wanted. Everything except the item exists.
 
-Steps 1 to 3 are four files and a changelog row. A `WM`-style QA row for each is just "look at it in
+Steps 1 to 4 are five files and a changelog row. A `WM`-style QA row for each is just "look at it in
 the inventory", because a wrong icon path renders blank rather than wrong -- which is also the
 failure mode to watch for, and the reason to check all four in the built archive before shipping.
