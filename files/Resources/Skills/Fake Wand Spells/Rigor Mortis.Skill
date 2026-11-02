@@ -2,7 +2,7 @@ CSkillDescription
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=5
+		Item Count=4
 		PlugIn Behavior=CPlugInBehaviorAttack
 		{
 			Max Attack Range=800
@@ -107,83 +107,6 @@ CSkillDescription
 			Sequence Name=SpellCast
 			Random Sequence Selection=1
 			Sequence Index=-1
-		}
-		PlugIn Behavior=CXRPGPlugInBehaviorLauncher
-		{
-			After Launch Action=CMultipleActionsAction
-			{
-				Action=Array
-				{
-					Item Count=2
-					Action=CAssignTemporaryTaskAction
-					{
-						Target=$Trigger
-						Temporary Task AI=CWaitAI
-						{
-							Marked For Deletion=0
-							Publisher=
-							Time To Wait=5
-							Time Left=0
-							Done Action=CSendAIDoneMessage
-							{
-								Target=$Trigger
-							}
-							Behavior to run=
-							Delete AI When Done=0
-							Remove Wait AI If Actor Dies=1
-						}
-						Original AI Type=CSkeletonAI
-						Completion Message to wait for=AI Done
-						Suppress can't assign error=0
-					}
-					Action=CAddCharacterModifierToCharacterAction
-					{
-						Modifier Description=
-						Modification is permanent=0
-						Character to modify=$trigger
-						Modifiers=Array
-						{
-							Item Count=1
-							Modifier=CCharacterModifierDerivedAttribute
-							{
-								Modification Amount=CSkillsNamedExpressionExpression
-								{
-									Skill=Skills/Fake Wand Spells/Rigor Mortis
-									Expression Name=amount
-								}
-								Modification amount is a percent=1
-								Allow Accumulation=0
-								Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
-							}
-						}
-						OPTIONAL Duration=CSkillsNamedExpressionExpression
-						{
-							Skill=Skills/Fake Wand Spells/Rigor Mortis
-							Expression Name=duration
-						}
-						Expression Context=$Instigator
-					}
-				}
-			}
-			Num To Launch=1
-			Dispersion Angle=180
-			Aim At Parents Target=1
-			Launch Offset=0.000000,0.000000
-			Parents Bone Launch Location=Bip01 L Finger1
-			Direction From Bone X=0
-			Direction From Bone Y=0
-			Direction From Bone Z=0
-			Requires Line Of Sight=1
-			Primary Launchable Slot=Character Slot Types/!None
-			Secondary Launchable Types=Array
-			{
-				Item Count=1
-				Secondary Launchable Type=Inventory Items/!None
-			}
-			Damages=Array
-			{
-				Item Count=0
-			}
 		}
 		PlugIn Behavior=CPlugInBehaviorSpell
 		{

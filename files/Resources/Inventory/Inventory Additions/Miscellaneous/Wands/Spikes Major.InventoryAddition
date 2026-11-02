@@ -2,7 +2,7 @@ CInventoryAddition
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=2
+		Item Count=1
 		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
 			Modifier Description=
@@ -12,35 +12,15 @@ CInventoryAddition
 				Item Count=1
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CSubtract
+					Modification Amount=CConstant
 					{
-						Operand1=CConstant
-						{
-							Constant Value=25
-						}
-						Operator=
-						Operand2=CVariableSkill
-						{
-							Skill=Skills/Magic Thought/Offensive/Spike
-						}
+						Constant Value=99
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Thought/Offensive/Spike
+					Skill to modify=Skills/Fake Wand Spells/Spike
 				}
 			}
-		}
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Thought/Offensive/Spike
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
-			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Spikes Major
-				Expression Name=numberofcharges
-				Value=0
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
 		}
 	}
 	Value=CConstant
@@ -55,7 +35,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=Greater Spikes
-	Description=The wielder of this wand can throw %i[numberofcharges] Spikes as if using the Thought spell Spike at skill level %i[skilllevel].
+	Description=Casts Spike at skill level 25, as the Thought spell does. Each cast draws one Wand Charge.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandSpike
 	Minimum Value=2000

@@ -2,31 +2,7 @@ CInventoryAddition
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=3
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Thought/Offensive/Fireball
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
-			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
-				Expression Name=numberofcharges
-				Value=0
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
-		}
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Thought/Offensive/Ice Storm
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
-			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
-				Expression Name=numberofcharges
-				Value=0
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
-		}
+		Item Count=1
 		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
 			Modifier Description=
@@ -36,35 +12,29 @@ CInventoryAddition
 				Item Count=4
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
-						Expression Name=fireballtopup
-						Value=0
+						Constant Value=34
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Thought/Offensive/Fireball
+					Skill to modify=Skills/Fake Wand Spells/Fireball
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
-						Expression Name=icestormtopup
-						Value=0
+						Constant Value=119
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Thought/Offensive/Ice Storm
+					Skill to modify=Skills/Fake Wand Spells/Ice Storm
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
-						Expression Name=resistancebonus
-						Value=0
+						Constant Value=15
 					}
 					Modification amount is a percent=1
 					Allow Accumulation=0
@@ -72,11 +42,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Fire and Ice
-						Expression Name=resistancebonus
-						Value=0
+						Constant Value=15
 					}
 					Modification amount is a percent=1
 					Allow Accumulation=0
@@ -97,7 +65,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=Fire and Ice
-	Description=This wand has the ability to cast Fireball at Skill level 10 and Ice Storm at Skill level 10 at the same time in the same place.  It also confers %i[resistancebonus]% Fire and Cold Resistance.
+	Description=Casts Fireball at skill level 10 and raises your own Ice Storm by 10. Each cast draws one Wand Charge. It also confers %i[resistancebonus]% Fire and Cold Resistance.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandFireCircle
 	Minimum Value=5000

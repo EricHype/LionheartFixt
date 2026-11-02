@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.87.1 are published** -- 176 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.88.0 are published** -- 177 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows and 0.87.1's nine `WP` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.0's thirteen `WE` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,92 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.88.0 - all eighteen wands on one system
+
+0.87.1 shipped six working wands and documented twelve that could not work. This converts the twelve,
+so every wand in the game now spends charge crystals and nothing else, and a wand with no crystals
+left does nothing but say so.
+
+### What was wrong with the twelve
+
+Each carried three independent faults, any one of which is fatal, and the audit in 0.87.1 found all
+three on all twelve:
+
+* `CPlugInBehaviorWand` with `Charges Remaining=0` and `Charges Remaining Is Valid=0`, which the
+  engine notes record as disabled before the first cast. The count cannot persist, so it is either
+  infinite or dead and nothing in between is reachable.
+* all twelve in `Inventory/!None` rather than `Wand Additions`, so the plugin is never initialised
+  either and setting those fields would not have helped. Fixt moved them out to stop the generator
+  stacking two spells onto one wand, which is a trade worth keeping.
+* eleven of the twelve pinning a real player skill through
+  `CInventoryAdditionsNamedExpressionExpression`, which returns nothing, so the one effect that would
+  have worked regardless did not. **Spikes Major** was the single exception, its pin being a plain
+  constant, and it really did raise your Spike skill by 25.
+
+### How they convert, and why the tuning is vanilla's
+
+A projectile reads its damage off the **real player skill** whoever threw it, which is why vanilla's
+wands pin the real spell: the plugin grants the real Fireball and the pin raises the real Fireball
+skill to the level the wand casts at. That level is what `skilllevel` means on each of the twelve,
+5 for a Minor wand and 25 for a Major.
+
+A copy under `Fake Wand Spells` cannot keep that arrangement. Keep the launcher and the projectile
+still reads a skill the wand no longer pins, so a non-mage does nothing; and a launcher fires whether
+a charge is held or not, which defeats the conversion. So each copy drops its launcher, takes the
+launcher's damage into its charge-gated payload, and reads its **own** expressions. Those expressions
+scale off the value of the skill they live on, so pinning the copy to `differential + skilllevel`
+sets the damage to exactly the level vanilla intended. The tuning is reproduced, not re-invented.
+
+Nine new wand spells, because two wands grant two spells each:
+
+| branch | spells |
+|---|---|
+| Charged Spells | the existing six, unchanged |
+| Charged Elements | Fireball 24, Lightning Bolt 49, Spike 74, Fire Circle 89, Ice Storm 109 |
+| Charged Afflictions | Poison Ring 24, Insect Plague 49, Slow 74, Fear 89 |
+
+Two branches had to be added because `Value Differential` is the row a spell is drawn in and must be
+distinct **within a branch**, with five usable rows apiece. Fifteen wand spells do not fit in one.
+
+### Two wands grant two spells, and nearly lost one
+
+Fire and Ice and The Mage each carry **two** `CPlugInBehaviorWand` blocks, not one: Fireball with Ice
+Storm, and Lightning Bolt with Fear. The first conversion pass removed one plugin from each and left
+the other, which would have halved two Unique wands. Both now pin two wand spells, so both offer
+both.
+
+One reduction remains and is stated rather than hidden: Fire and Ice cast Fireball and Ice Storm "at
+the same time in the same place", and now casts them as two selectable spells. A wand spell is one
+selectable skill, so one wand cannot fire two at once.
+
+### Fourteen dead pins, and six dead resistances
+
+Every surviving pin onto a real player skill was converted from that broken expression class to the
+value it was always meant to be. **The Mage now actually raises every base magic skill you possess by
+4 and your Fear by 20.** Six resistance modifiers on Fire and Ice, The Mage and The Swarm read the
+same way and granted nothing either; those are inlined from the addition's own definition rather than
+flattened, so The Swarm's range stays a range.
+
+### Rigor Mortis froze twice, and the second was free
+
+The audit was re-run against the converted set with its two weakest checks corrected, and it caught a
+defect in the wand both earlier passes had called clean. Rigor Mortis's `CXRPGPlugInBehaviorLauncher`
+launches `Inventory Items/!None` -- no projectile at all -- but its `After Launch Action` carried the
+same five-second freeze and the same speed modifier as the gated payload, across 76 lines with no
+charge check in them. So from 0.74.0 to 0.87.1 it applied its effect **twice** on a successful cast,
+and applied it **at all with no charges**.
+
+The lesson is in the question the audit asks. "Is the payload gated" passes this file. "Can anything
+else deliver the same effect" fails it. A launcher runs around a payload's gate, never through it.
+
+### Gates
+
+Gate 0 green on 947 files. Eighteen wands and fifteen wand spells now pass twenty conditions with no
+failures and no warnings; the two the audit itself got wrong on the first run are recorded in
+`qa.md`, because a check that cannot fail is worse than no check. Thirteen `WE` rows in
+[`qa.md`](qa.md); **`WE1` and `WE11` prove the release** -- a wand that never cast anything now
+casting, and the ungated freeze.
 
 ## 0.87.1 - the wand that is not a weapon
 

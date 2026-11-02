@@ -2,31 +2,7 @@ CInventoryAddition
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=3
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Thought/Offensive/Lightning Bolt
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
-			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-				Expression Name=boltcharges
-				Value=0
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
-		}
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Tribal/Offensive/Fear
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
-			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-				Expression Name=fearcharges
-				Value=0
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
-		}
+		Item Count=1
 		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
 			Modifier Description=
@@ -36,11 +12,9 @@ CInventoryAddition
 				Item Count=17
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -48,11 +22,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -60,11 +32,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -72,11 +42,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -84,11 +52,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -96,11 +62,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -108,11 +72,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -120,11 +82,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -132,11 +92,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -144,11 +102,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -156,11 +112,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -168,11 +122,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=skillbonus
-						Value=0
+						Constant Value=4
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
@@ -180,35 +132,29 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=bolttopup
-						Value=0
+						Constant Value=69
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Thought/Offensive/Lightning Bolt
+					Skill to modify=Skills/Fake Wand Spells/Lightning Bolt
 				}
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=feartopup
-						Value=0
+						Constant Value=109
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Tribal/Offensive/Fear
+					Skill to modify=Skills/Fake Wand Spells/Fear
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=resistancebonus
-						Value=0
+						Constant Value=10
 					}
 					Modification amount is a percent=1
 					Allow Accumulation=0
@@ -216,11 +162,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=resistancebonus
-						Value=0
+						Constant Value=10
 					}
 					Modification amount is a percent=1
 					Allow Accumulation=0
@@ -228,11 +172,9 @@ CInventoryAddition
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Mage
-						Expression Name=resistancebonus
-						Value=0
+						Constant Value=10
 					}
 					Modification amount is a percent=1
 					Allow Accumulation=0
@@ -253,7 +195,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=The Mage
-	Description=This will give %i[skillbonus] skill points in all base magic skills that the player possesses in all 3 spell categories.  In addition, the item gives the player the ability to cast Lightning Bolt 5 times (at skill level 20), Fear 5 times (at skill level 20) and confers %i[resistancebonus]% Fire, Cold and Electrical Resistances.
+	Description=Casts Lightning Bolt at skill level 20, raises every base magic skill you possess in all three categories by %i[skillbonus], and raises your own Fear by 20. Each cast draws one Wand Charge. It also confers %i[resistancebonus]% Fire, Cold and Electrical Resistance.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandLightning
 	Minimum Value=10000

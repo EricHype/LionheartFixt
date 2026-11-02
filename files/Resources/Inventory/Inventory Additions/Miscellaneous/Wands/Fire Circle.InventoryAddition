@@ -2,7 +2,7 @@ CInventoryAddition
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=2
+		Item Count=1
 		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
 			Modifier Description=
@@ -12,29 +12,15 @@ CInventoryAddition
 				Item Count=1
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Fire Circle
-						Expression Name=firecirclelevel10
-						Value=0
+						Constant Value=99
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Thought/Offensive/Fire Circle
+					Skill to modify=Skills/Fake Wand Spells/Fire Circle
 				}
 			}
-		}
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Thought/Offensive/Fire Circle
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
-			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Fire Circle
-				Expression Name=numberofcharges
-				Value=0
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
 		}
 	}
 	Value=CConstant
@@ -49,7 +35,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=Fire Circles
-	Description=The wielder of this wand can place %i[numberofcharges] Fire Circles as if using the Thought Fire Circle spell at skill level %i[displaylevel].
+	Description=Places a Fire Circle at skill level 10, as the Thought spell does. Each cast draws one Wand Charge.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandFireCircle
 	Minimum Value=2000

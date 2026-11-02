@@ -1516,6 +1516,47 @@ audit of all eighteen found each of the twelve carrying three independent faults
 is fatal. `WN12` asks the tester to confirm those wands are "all unchanged", which they are, but it
 reads as though unchanged meant working. It does not.
 
+## 0.88.0 - all eighteen wands on one system
+
+The twelve wands 0.87.1 documented as broken are converted. Every wand now spends charge crystals and
+nothing else. Each carried three independent fatal faults: a plugin whose count cannot persist, a
+placement outside the addition group that would have initialised it, and a pin read through an
+expression class that returns nothing.
+
+**`WE1` and `WE11` prove the release.** `WE1` is any of the twelve casting at all, which none of them
+has ever done. `WE11` is the ungated freeze on Rigor Mortis, which both earlier audit passes called
+clean.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WE1 | **The release.** Take **Fireball Minor** and charges, equip it, and cast | - | A fireball, **The wand discharges.**, one charge gone. This wand has never cast anything: its plugin was disabled before the first cast and its pin read nothing |
+| WE2 | Cast **Fireball Major** and compare the damage with Minor | - | Major hits harder. Minor casts at skill level 5 and Major at 25, which is what vanilla's `skilllevel` always meant, and the pin now sets it |
+| WE3 | **Negative.** Cast any of the twelve with no charges | - | **The wand has no charges left**, nothing happens, nothing spent |
+| WE4 | Look in the skill window with a converted wand held | - | Three branches under **Wand Magic**: Charged Spells, Charged Elements, Charged Afflictions. The spell your wand grants is in one of them and nothing else is |
+| WE5 | **The unequip row.** Cast a wand spell, then swap to a different wand | - | The spell leaves your list. Each rests below zero and only its own wand's pin lifts it |
+| WE6 | Cast **Slowing**, **Poison Rings**, **Fire Circles**, **Spikes** (both), **Lightning Bolts** (both) | - | All cast, all spend exactly one charge, all print on success |
+| WE7 | **Fire and Ice.** Equip it and look at your spell list | - | **Two** wand spells, Fireball and Ice Storm, both castable, each spending a charge. It carried two plugins and nearly lost one in conversion |
+| WE8 | **The Mage.** Equip it and check your magic skills | - | Lightning Bolt and Fear are both castable as wand spells, and **every base magic skill you possess reads 4 higher**. That bonus has never applied: its pin read an expression class that returns nothing |
+| WE9 | Check Fire and Ice's and The Mage's resistances on the character screen | - | Fire and Cold +15 for Fire and Ice; Fire, Cold and Electrical +10 for The Mage. These never applied either, for the same reason |
+| WE10 | **The Swarm.** Cast it, and check your piercing resistance | - | Insect Plague at skill level 30, one charge, and the ranged damage resistance applies. Its range is preserved as a range, not flattened to one number |
+| WE11 | **The regression row.** Equip **Rigor Mortis** with exactly **one** charge. Cast it, spend the charge, then cast again | - | The second cast does nothing but say the wand is empty. **Before this it still froze**, because its launcher carried a second copy of the freeze with no charge check. On the first cast the freeze should also apply **once**, not twice |
+| WE12 | **Negative.** Cast a real Fireball or Lightning Bolt you have actually learned | - | Unchanged. The copies are separate skills; your own spells read your own skill and cost mana as before |
+| WE13 | **Negative.** Check that no wand costs mana | - | None does. A wand supplies its own power, so `ManaUse` is cleared on every copy |
+
+### Two checks this audit got wrong, recorded so they are not trusted again
+
+The audit is in the release notes; both of its first-run errors were in the checks, not the files, and
+both would have hidden real defects rather than invented false ones.
+
+**`ManaUse=.+` matched an empty value.** In Python `.` matches `\r`, so `ManaUse=` followed by a line
+break satisfied `.+` and all fifteen spells were reported as still costing mana. A check that fires on
+everything is indistinguishable from a check that fires on nothing.
+
+**"reads a real player skill" flagged `Image=`.** A wand spell's HUD icon points at the real spell's
+art on purpose, `Skill to modify=` is the entire point of Lockpicking and Revelation, and Fear's
+recast block names Charm because vanilla makes the two mutually exclusive. Only an *expression* read
+is a defect. Flagging all four buried the one that mattered under noise.
+
 ## 0.87.1 - the wand that is not a weapon
 
 Reported in play, two symptoms with the Poisonous Touch wand equipped: **could not attack at all**,

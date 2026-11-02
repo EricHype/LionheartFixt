@@ -2,7 +2,7 @@ CInventoryAddition
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=2
+		Item Count=1
 		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
 			Modifier Description=
@@ -12,35 +12,15 @@ CInventoryAddition
 				Item Count=1
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Fireball Major
-						Expression Name=skilllevel
-						Value=0
+						Constant Value=49
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Thought/Offensive/Fireball
+					Skill to modify=Skills/Fake Wand Spells/Fireball
 				}
 			}
-		}
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Thought/Offensive/Fireball
-			Maximum Charges=CRandom
-			{
-				Operator=
-				Minimum=CConstant
-				{
-					Constant Value=5
-				}
-				Maximum=CConstant
-				{
-					Constant Value=15
-				}
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
 		}
 	}
 	Value=CConstant
@@ -55,7 +35,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=Greater Fireballs
-	Description=The wielder of this wand can throw %i[numberofcharges] Fireballs as if using the Thought spell Fireball at skill level %i[displaylevel].
+	Description=Casts Fireball at skill level 25, as the Thought spell does. Each cast draws one Wand Charge.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandFireball
 	Minimum Value=2500

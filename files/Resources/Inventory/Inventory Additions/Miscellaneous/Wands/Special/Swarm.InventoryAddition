@@ -2,19 +2,7 @@ CInventoryAddition
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=2
-		PlugIn Behavior=CPlugInBehaviorWand
-		{
-			Spell=Skills/Magic Tribal/Offensive/Insect Plague
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
-			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Swarm
-				Expression Name=numberofcharges
-				Value=0
-			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
-		}
+		Item Count=1
 		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
 			Modifier Description=
@@ -24,23 +12,19 @@ CInventoryAddition
 				Item Count=2
 				Modifier=CCharacterModifierSkill
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Swarm
-						Expression Name=skilllevel
-						Value=0
+						Constant Value=79
 					}
 					Modification amount is a percent=0
 					Allow Accumulation=0
-					Skill to modify=Skills/Magic Tribal/Offensive/Insect Plague
+					Skill to modify=Skills/Fake Wand Spells/Insect Plague
 				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
-					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					Modification Amount=CConstant
 					{
-						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Special/Swarm
-						Expression Name=resistancebonus
-						Value=0
+						Constant Value=20
 					}
 					Modification amount is a percent=1
 					Allow Accumulation=0
@@ -61,7 +45,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=The Swarm
-	Description=This enables the caster to summon insects at a target area, similar to the Tribal spell Insect Plague at skill level %i[displaylevel].  It also confers %i[resistancebonus]% damage resistance to ranged weapons when it has charges still unspent.
+	Description=Summons insects at a target area at skill level 30, as the Tribal spell Insect Plague does. Each cast draws one Wand Charge. It also confers %i[resistancebonus]% damage resistance to ranged weapons.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandExtra
 	Minimum Value=7500

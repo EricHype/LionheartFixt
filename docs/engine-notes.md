@@ -434,6 +434,35 @@ addition, and all 22 vanilla uses of it are armour, amulets and bracers. A compl
 no `Expressions` array, so a `%i[]` token in its description resolves to nothing and the numbers
 have to be written out.
 
+**A launcher delivers its effect around the gate, not through it.** `CXRPGPlugInBehaviorLauncher`
+fires on every cast and its `After Launch Action` runs whatever it holds, so a charge check in the
+spell's payload cannot reach it. Rigor Mortis shipped from 0.74.0 to 0.87.1 with a launcher whose
+`After Launch Action` carried the same five-second freeze and the same
+`Base Animation Speed Multiplier` as its gated payload, across 76 lines with no charge check in
+them, launching `Inventory Items/!None` so there was no projectile to notice. It therefore froze
+twice on a successful cast and froze at all with no charges. **An audit that asks whether the payload
+is gated will pass it**; the question is whether anything else can deliver the same effect, and on a
+wand the answer is to drop the launcher and let the payload do the work.
+
+**A projectile reads the real player skill, not the caster's.** `Fire Ball Projectile` takes its
+damage from `CSkillsNamedExpressionExpression` against `Skills/Magic Thought/Offensive/Fireball`
+whoever threw it. That is coherent in vanilla, where a wand grants the real spell and pins the real
+skill to the level the wand casts at, which is what `skilllevel` means on all twelve engine wands:
+5 for a Minor, 25 for a Major. It means a copy of a spell cannot keep its launcher and be correct,
+because the projectile would still read a skill the wand no longer pins. Repoint the copy's own
+expressions at the copy and pin it to `differential + level`, and vanilla's tuning is reproduced
+rather than approximated, because those expressions scale off the value of the skill they live on.
+
+**`Value Differential` must be distinct within a branch, not globally.** Five usable rows a branch,
+six counting 134, since row 0 rests at castable and is no use to a wand spell. Fifteen wand spells
+therefore need three branches, which is why `Charged Elements` and `Charged Afflictions` exist beside
+`Charged Spells`. A new branch is just a `Normal` skill at -300/300 parented to `Skills/Wand`.
+
+**Two wands grant two spells each.** Fire and Ice and The Mage carry **two** `CPlugInBehaviorWand`
+blocks, not one: Fireball with Ice Storm, and Lightning Bolt with Fear. Counting wand plugins per
+file rather than per wand is what kept this hidden, and removing "the" plugin from each halves the
+item silently. A pin can lift two wand spells at once, so both wands offer both.
+
 **A wand is not a weapon, so nothing can strike with one.** `Inventory Items/Wand` sits in
 `Character Slot Types/Weapon` and needs one hand, but carries only a model override and two sound
 hooks. Of the 19 items in that slot, 16 carry `CPlugInBehaviorAttack` and 13 `CPlugInBehaviorDamage`,

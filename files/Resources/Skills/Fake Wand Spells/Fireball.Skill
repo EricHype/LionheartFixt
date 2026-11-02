@@ -1,0 +1,570 @@
+CSkillDescription
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=4
+		PlugIn Behavior=CPlugInBehaviorSpell
+		{
+			ManaUse=
+			Duration=CConstant
+			{
+				Constant Value=3
+			}
+			Automatically disable recasting of spell for duration=1
+			Maximum Range=CConstant
+			{
+				Constant Value=700
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPlaySequence
+		{
+			Granny Animations=Array
+			{
+				Item Count=0
+			}
+			Sequence Name=SpellCast
+			Random Sequence Selection=0
+			Sequence Index=-1
+		}
+		PlugIn Behavior=CPlugInBehaviorLaunchAction
+		{
+			Launch Action=CIfAction
+			{
+				If=CActionCheckForInventoryItem
+				{
+					Who to give check=$Instigator
+					Inventory Item To Check For=Inventory Items/Wand Charge
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=7
+						Action=CAddCharacterModifierToCharacterAction
+						{
+							Modifier Description=
+							Modification is permanent=0
+							Character to modify=$Instigator
+							Modifiers=Array
+							{
+								Item Count=1
+								Modifier=CCharacterModifierDerivedAttribute
+								{
+									Modification Amount=CIfExpression
+									{
+										Condition=CIsEqualTo
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has cast a spell
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										OperatorPart1=
+										Value if True =CConstant
+										{
+											Constant Value=1
+										}
+										OperatorPart2=
+										Value if False=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Modification amount is a percent=0
+									Allow Accumulation=0
+									Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Player has cast a spell
+								}
+							}
+							OPTIONAL Duration=CConstant
+							{
+								Constant Value=0.1
+							}
+							Expression Context=$Instigator
+						}
+						Action=CAddTemporaryAIAction
+						{
+							AI To Add=CGenericParticleSystemAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Outer Cone Angle=CConeAngleEnvelope
+								{
+									Start Value=25
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=25
+									Using Start=1
+									Direction=-1
+								}
+								Inner Cone Angle=CConeAngleEnvelope
+								{
+									Start Value=24
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=24
+									Using Start=1
+									Direction=-1
+								}
+								Face Angle=CFacingAngleEnvelope
+								{
+									Start Value=108.5
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=108.5
+									Using Start=1
+									Direction=-1
+								}
+								Cone Trajectory=CTrajectoryEnvelope
+								{
+									Start Value=90
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=90
+									Using Start=1
+									Direction=-1
+								}
+								Burst Frequency=5
+								Burst Frequency Variance=0
+								Num Bursts To Stop After=Don't Stop
+								Start Point Type=CDiskParticleStartPositionType
+								{
+									Radius=CConstant
+									{
+										Constant Value=16
+									}
+									Expression Context=$caster
+									Outside Radius=CLengthEnvelope
+									{
+										Start Value=5
+										End Value=0
+										Speed=0
+										Ending Behavior=Stop at end
+										Current Value=5
+										Using Start=1
+										Direction=-1
+									}
+									YX Ratio=0.9
+									Use Cone Angle For Start Pos=1
+								}
+								Orient To Parent's Rotation=1
+								X Offset=0
+								Y Offset=0
+								Height=0
+								Speed=CSpeedEnvelope
+								{
+									Start Value=90
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=150
+									Using Start=1
+									Direction=-1
+								}
+								Speed Variance=15
+								Age=CTimeEnvelope
+								{
+									Start Value=0.9
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=0.9
+									Using Start=1
+									Direction=-1
+								}
+								Age Variance=0.1
+								Max Travel Distance=999999
+								Min Travel Distance=0
+								Use Particle As Shot=0
+								Make Child of Generator=1
+								Limit Duration To First Collision=0
+								Particles=Array
+								{
+									Item Count=2
+									Particles=CParticleInfo
+									{
+										Model=Particles/Thought Tracer
+										AI=CSwirlParticleAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											X Center Pos=0
+											Y Center Pos=0
+											Z Center Pos=0
+											Animated=0
+											Obey Sequence FPS=0
+											Y To X Ratio=0
+											Angular Velocity=6.28319
+											Angular Velocity Variance=0.523599
+											Rotate Velocity=1
+											Current Angular Velocity=0
+										}
+										Animated=1
+										Obey Sequence FPS=0
+										Tries To Collide=0
+										Collidable=0
+										Num Particles=1
+										Num Particles Variance=0
+									}
+									Particles=CParticleInfo
+									{
+										Model=Particles/Thought Tracer Smll
+										AI=CSwirlParticleAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											X Center Pos=0
+											Y Center Pos=0
+											Z Center Pos=0
+											Animated=0
+											Obey Sequence FPS=0
+											Y To X Ratio=0
+											Angular Velocity=6.28319
+											Angular Velocity Variance=0.523599
+											Rotate Velocity=1
+											Current Angular Velocity=0
+										}
+										Animated=1
+										Obey Sequence FPS=0
+										Tries To Collide=0
+										Collidable=0
+										Num Particles=3
+										Num Particles Variance=0
+									}
+								}
+								NumBursts=0.497222
+								CurFrequency=5
+								Enabled=1
+								Choose Sound Based On Burst=0
+								Sounds=Array
+								{
+									Item Count=0
+								}
+							}
+							Name of LayerPart To Add AI To=$caster
+							Duration=CVariableSpellDuration
+							{
+								Spell=Skills/Fake Wand Spells/Fireball
+							}
+							Expression Context=$Instigator
+							Done Action=
+						}
+						Action=CIfAction
+						{
+							If=CCheckCategoryAction
+							{
+								Target Name=$Instigator
+								Category to check for=Player
+							}
+							Then=CTriggerRelayAction
+							{
+								Relay Name=Spellcast
+							}
+							Else=
+							Return failure if the If failes=0
+						}
+						Action=CUseCannedActionAction
+						{
+							Canned Object=Common Objects and Scripts/Damage Spell Recast Timer
+						}
+						Action=CActionDoDamage
+						{
+							Character Doing Damage=$Instigator
+							Character To Damage=$Trigger
+							Defend Against=1
+							No Friendly Fire Check=0
+							Damages=Array
+							{
+								Item Count=1
+								Damage=CXRPGDamage
+								{
+									Damage Type=Damage Types/Fire
+									Damage Amount=CRandom
+									{
+										Operator=
+										Minimum=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Fake Wand Spells/Fireball
+											Expression Name=DelayedMinDamage
+										}
+										Maximum=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Fake Wand Spells/Fireball
+											Expression Name=DelayedMaxDamage
+										}
+									}
+								}
+							}
+						}
+						Action=CPrintCombatTextAction
+						{
+							Text to print=The wand discharges.
+							Character to show text to=$Instigator
+							Emphasize=0
+							Suppress Duplicates=0
+						}
+						Action=CActionRemoveInventoryItem
+						{
+							Who to remove from=$Instigator
+							Inventory Item To remove=Inventory Items/Wand Charge
+						}
+					}
+				}
+				Else=CPrintCombatTextAction
+				{
+					Text to print=The wand has no charges left
+					Character to show text to=$Instigator
+					Emphasize=0
+					Suppress Duplicates=1
+				}
+				Return failure if the If failes=0
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorAttack
+		{
+			Max Attack Range=800
+			Is Location Based=1
+			Can Use Slayer Mode=0
+			Can Use Sniper Mode=0
+			Action On Hit=
+			Action On Miss=
+		}
+	}
+	Display Name=Fireball
+	Description=A ball of fire hits the targeted area causing fire damage to all enemies within a radius of %i[ShowRadius] feet. Enemies at the center of the area of effect take %i[damage] fire damage, while enemies that are further away take less damage based on the distance from the target. A targeted enemy also takes an additional %i[DelayedMinDamage]-%i[DelayedMaxDamage] fire damage 2 seconds after the initial explosion.%?[HideKnockdown] At higher levels, there is a chance the targeted enemy will be knocked down.%?[HideKnockdown]%?[ShowKnockdown] There is a %i[KnockdownChance]% chance that the targeted enemy will be knocked down.%?[ShowKnockdown]
+	Character Creation Screen Description=
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=9
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=radius
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=100
+					}
+					Output Step=CConstant
+					{
+						Constant Value=1
+					}
+					Input Value=CVariableSkill
+					{
+						Skill=Skills/Fake Wand Spells/Fireball
+					}
+					Input Base=CConstant
+					{
+						Constant Value=1
+					}
+					Input Step=CConstant
+					{
+						Constant Value=2
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=200
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowRadius
+				Expression=CDivide
+				{
+					Operand1=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Fake Wand Spells/Fireball
+						Expression Name=radius
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=10
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=damage
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=25
+					}
+					Output Step=CConstant
+					{
+						Constant Value=25
+					}
+					Input Value=CVariableSkill
+					{
+						Skill=Skills/Fake Wand Spells/Fireball
+					}
+					Input Base=CConstant
+					{
+						Constant Value=1
+					}
+					Input Step=CConstant
+					{
+						Constant Value=210
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=45
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=KnockdownChance
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=50
+					}
+					Output Step=CConstant
+					{
+						Constant Value=40
+					}
+					Input Value=CVariableSkill
+					{
+						Skill=Skills/Fake Wand Spells/Fireball
+					}
+					Input Base=CConstant
+					{
+						Constant Value=25
+					}
+					Input Step=CConstant
+					{
+						Constant Value=185
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=90
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=DelayedMinDamage
+				Expression=CConstant
+				{
+					Constant Value=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=DelayedMaxDamage
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=1
+					}
+					Output Step=CConstant
+					{
+						Constant Value=1
+					}
+					Input Value=CVariableSkill
+					{
+						Skill=Skills/Fake Wand Spells/Fireball
+					}
+					Input Base=CConstant
+					{
+						Constant Value=1
+					}
+					Input Step=CConstant
+					{
+						Constant Value=20
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=10
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=DelayDuration
+				Expression=CConstant
+				{
+					Constant Value=2
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=HideKnockdown
+				Expression=CIsLessThan
+				{
+					Operand1=CVariableSkill
+					{
+						Skill=Skills/Fake Wand Spells/Fireball
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=25
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowKnockdown
+				Expression=CIsGreaterThanOrEqual
+				{
+					Operand1=CVariableSkill
+					{
+						Skill=Skills/Fake Wand Spells/Fireball
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=25
+					}
+				}
+			}
+		}
+	}
+	Parent Skill=Skills/Wand/Charged Elements
+	Value Type=Parents value minus differential
+	Value Differential=24
+	Can be selected as Tag Skill=0
+	Image=Skills/Magic Thought/Offensive/FireBall
+	Amount To Increase Value By With Each Upgrade=1
+	Minimum Value=-5700
+	Maximum Value=5700
+	Sort Priority=0
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
+	Initial Minimum & Maximum=-300.000000,300.000000
+	Display and Cast Requirements=Array
+	{
+		Item Count=0
+	}
+	Cast Requirements=Array
+	{
+		Item Count=0
+	}
+}
