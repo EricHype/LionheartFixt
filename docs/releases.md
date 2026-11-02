@@ -287,6 +287,35 @@ Nothing has rolled a Composite Long Bow, which leaves `WM7` open. `Magic Bows an
 plain Long Bow far more often, and the worst case there is a Better-enchanted Composite showing
 `BowBetter` instead of `BowSpecial` -- a cosmetic downgrade on one item, not a defect.
 
+### Two rows the sessions did not actually close
+
+**`WM9` was not tested, and the saves that looked like they tested it did not.** All three
+`magicweapons` saves were made under 0.89.0, so they reference the new per-base copies; `WM9` is
+about a save made *before* the release, which references the 29 originals. Loading a 0.89.0 save
+exercises the opposite path.
+
+The risk is nonetheless small, and worth writing down so the row is not re-argued. An addition's
+`Inventory Addition Group` governs *generation* only -- which pool a roll draws from. Resolving an
+addition already attached to an existing item is a lookup by path, and all 29 original paths exist
+with byte-identical content apart from that one group line, which
+`tools/check_save_additions.py` asserts against every save on disk. The three sessions also prove
+the engine resolves additions-by-path out of a save correctly. So `WM9` fails only if the engine
+re-validates group membership on load, and nothing in the data suggests it does.
+
+**`WM7` is open and the Composite Long Bow seen in play was plain.** No save references a
+`Composite/` addition, so what was observed was an unenchanted Composite rendering `BowSpecial` --
+the control, not the test. Left open deliberately: `Magic Bows and Xbows` reaches the plain Long Bow
+far more often, and the worst case is one item showing `BowBetter` instead of `BowSpecial` when
+enchanted.
+
+**Firing was checked structurally rather than played.** Three bow additions carry a launcher
+behaviour and `Replaces matching plugins=1`, and this release inserts a second plugin into those
+arrays, so the launcher could in principle have been disturbed. Every plugin array is
+self-consistent and every launcher count and replace flag is byte-identical to vanilla; the override
+sits beside the launcher as an independent plugin. The sessions covered both flag values by
+accident, since `of Fire` is `replaces=1` and `of Mastery` and `of Thievery` are `replaces=0`, and
+all three rolled and rendered.
+
 ### What is not proven
 
 The meshes are confirmed in the hand, all 21. The **group restructure is not** -- `check_weapon_pools.py`
