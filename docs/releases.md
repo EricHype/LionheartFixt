@@ -230,11 +230,23 @@ structure but not reachability. It walks each base weapon's group tree and asser
 vanilla's 3/20/6 shape (3/4/5 for missiles), that no addition is reachable twice and so double-weighted,
 and that every addition naming a mesh names the right one for that base.
 
-### Also in this release
+### The one that was not a defect
 
-**The Great Mace has rendered 11% oversize since 2003.** Same unfilled-metadata defect, on a weapon
-that ships and that players have been swinging for twenty years. It stands on its own and is listed
-here rather than folded into the feature.
+`MaceGreat` carries the same `Short Name=undefined` and `Render Scaling=1` as the six, beside a base
+weapon with a real value, and a first pass corrected it on that basis. The measurement was taken
+afterwards and says it was wrong.
+
+Every Great weapon renders larger than its base: TwoHandedSwordGreat +13%, BattleAxeGreat +17%,
+MaceGreat +11%. The first two achieve it **geometrically**, with meshes modelled bigger (154.78
+against 136.88, and 58.88 against 50.48) while sharing their base's scale. MaceGreat's mesh is the
+same size as Mace's -- 47.92 against 47.78 -- so its scale value is what carries the "Great". Setting
+it to 0.9 renders the Great Mace identical in size to a plain Mace, removing a distinction every
+other Great weapon has.
+
+The lesson is about what the signature is evidence *for*. For an unused mesh, nobody has seen the
+intended result, so unfilled metadata beside an authored sibling is the best evidence available. For
+a weapon that has shipped for twenty years, the current appearance **is** the evidence, and a pattern
+match is not enough to overturn it.
 
 ### What the first play confirmed
 

@@ -20,10 +20,15 @@ Three things had to be true, and all three were established in play through the 
 
 What that pass found, and what this fixes:
 
-  * `BowBetter` rendered 1.8x oversize. Six variant MODEL.TXT files plus `MaceGreat` carry
+  * `BowBetter` rendered 1.8x oversize. Six variant MODEL.TXT files carry
     `Short Name=undefined` and `Render Scaling=1`, the signature of metadata nobody filled
-    in, beside a base weapon with a real value. `MaceGreat` is the shipped Great Mace and is
-    11% oversize in vanilla today, unrelated to this feature.
+    in, beside a base weapon with a real value.
+
+    `MaceGreat` carries that same signature and is deliberately **not** in the list. It is a
+    shipped weapon, and every Great renders larger than its base -- but TwoHandedSwordGreat
+    and BattleAxeGreat get there geometrically, with bigger meshes at the base's scale, while
+    MaceGreat's mesh is the same size as Mace's. Its scale value is what carries its "Great",
+    so copying the base's 0.9 would make the Great Mace render identical to a plain Mace.
   * `ScimitarSpecial` and `BattleAxeBetter` rendered with the blade facing up. Both are
     rotated 180 degrees about Y, the weapon's own length -- every mesh in the game runs along
     -Y from a handle at the origin, and these two already did, so the length was never wrong
@@ -74,7 +79,6 @@ SCALE = {
     "Swords/Bastard Sword Better/BastardSwordBetter": ("Swords/Bastard Sword/BastardSword", "0.5"),
     "Swords/Bastard Sword Special/BastardSwordSpecial": ("Swords/Bastard Sword/BastardSword", "0.5"),
     "Misc_NonSwords/Mace Better/MaceBetter": ("Misc_NonSwords/Mace/Mace", "0.9"),
-    "Misc_NonSwords/Mace Great/MaceGreat": ("Misc_NonSwords/Mace/Mace", "0.9"),
 }
 # mesh -> the base weapon it must end up agreeing with on the X asymmetry
 ROTATE = {
@@ -381,8 +385,12 @@ def wire_melee():
     for base, (better, special) in MELEE.items():
         rel = "Resources/Inventory Items/" + base + ".InventoryItem"
         t = read(rel)
-        assert re.search(r"Inventory Addition Group=" + re.escape(MELEE_GROUP) + CR, t), base
-        write_text(rel, repoint(t, GREAT if not (better or special) else PERBASE % base))
+        want = GREAT if not (better or special) else PERBASE % base
+        # accept the vanilla group or the one this function assigns, so a rerun is a no-op;
+        # anything else means the item was pointed somewhere unexpected by hand
+        now = re.search(r"Inventory Addition Group=(.*)" + CR, t).group(1).strip()
+        assert now in (MELEE_GROUP, want), "%s names %s" % (base, now)
+        write_text(rel, repoint(t, want))
 
     print("melee: %d copies, %d groups, %d base items repointed, %d originals repointed"
           % (copies, len(groups), len(MELEE), len(orig)))
