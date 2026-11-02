@@ -1,0 +1,73 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Weapons/Crossbows and Bows/Extra Chance to Hit
+						Expression Name=chancetohitbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Bonus Chance to Hit
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Accuracy
+	Description=This bow grants a + %i[chancetohitbonus]% chance to hit.
+	Item Grade=Basic
+	Inventory Window=!Unknown Model
+	Minimum Value=200
+	Minimum Addition Ammount=3
+	Inbetween Value=1000
+	Inbetween Addition Ammount=6
+	Maximum Value=5000
+	Maximum Addition Ammount=12
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=chancetohitbonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Weapons/Bow Shared Additions
+	Addition Rarity=Inventory Item Rarity/1 Common
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

@@ -1,0 +1,72 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorDamage
+		{
+			Hit Or Miss=Damage Types/Damage Hit Or Miss/AlwaysHit
+			Cache Hit Or Miss Result=1
+			Hit Margin=0
+			Damages=Array
+			{
+				Item Count=1
+				Damage=CXRPGDamage
+				{
+					Damage Type=Damage Types/Acid
+					Damage Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Weapons/Extra Damage
+						Expression Name=damagebonus
+						Value=0
+					}
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Carnage
+	Description=Does + %i[damagebonus] Acid Damage per successful attack.
+	Item Grade=Basic
+	Inventory Window=!Unknown Model
+	Minimum Value=50
+	Minimum Addition Ammount=1
+	Inbetween Value=1200
+	Inbetween Addition Ammount=5
+	Maximum Value=23000
+	Maximum Addition Ammount=15
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=damagebonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Weapons/Melee Shared Additions
+	Addition Rarity=Inventory Item Rarity/1 Common
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

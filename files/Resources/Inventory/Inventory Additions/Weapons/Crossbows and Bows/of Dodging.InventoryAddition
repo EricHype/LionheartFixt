@@ -1,0 +1,73 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Weapons/Crossbows and Bows/of Dodging
+						Expression Name=dodgebonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Fighting/Evasion
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Evasion
+	Description=This enchanted bow increases its wielder's Evasion skill by %i[dodgebonus] points.
+	Item Grade=Basic
+	Inventory Window=!Unknown Model
+	Minimum Value=200
+	Minimum Addition Ammount=10
+	Inbetween Value=1000
+	Inbetween Addition Ammount=20
+	Maximum Value=8000
+	Maximum Addition Ammount=35
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=dodgebonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Weapons/Bow Shared Additions
+	Addition Rarity=Inventory Item Rarity/2 Uncommon
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

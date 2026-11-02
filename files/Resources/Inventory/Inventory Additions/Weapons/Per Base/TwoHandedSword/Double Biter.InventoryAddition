@@ -1,0 +1,225 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorStrikeAction
+		{
+			Strike Action=CIfExpressionAction
+			{
+				If Expression=CIsGreaterThan
+				{
+					Operand1=CExpressionHitMargin
+					{
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=0
+					}
+				}
+				Character to get attributes from=$Instigator
+				Then=CIfExpressionAction
+				{
+					If Expression=CIsLessThan
+					{
+						Operand1=CRandom
+						{
+							Operator=
+							Minimum=CConstant
+							{
+								Constant Value=0
+							}
+							Maximum=CConstant
+							{
+								Constant Value=100
+							}
+						}
+						Operator=
+						Operand2=CInventoryAdditionsNamedExpressionExpression
+						{
+							InventoryAddition=Inventory/Inventory Additions/Weapons/Per Base/TwoHandedSword/Double Biter
+							Expression Name=percenttohit
+							Value=0
+						}
+					}
+					Character to get attributes from=$Instigator
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CActionDoDamage
+							{
+								Character Doing Damage=$Instigator
+								Character To Damage=$trigger
+								Defend Against=0
+								No Friendly Fire Check=0
+								Damages=Array
+								{
+									Item Count=1
+									Damage=CXRPGDamageOverTime
+									{
+										Damage Type=Damage Types/Acid
+										Damage Amount=CMultiply
+										{
+											Operand1=CRandom
+											{
+												Operator=
+												Minimum=CInventoryAdditionsNamedExpressionExpression
+												{
+													InventoryAddition=Inventory/Inventory Additions/Weapons/Per Base/TwoHandedSword/Double Biter
+													Expression Name=min
+													Value=0
+												}
+												Maximum=CInventoryAdditionsNamedExpressionExpression
+												{
+													InventoryAddition=Inventory/Inventory Additions/Weapons/Per Base/TwoHandedSword/Double Biter
+													Expression Name=max
+													Value=0
+												}
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=3
+											}
+										}
+										Duration=CConstant
+										{
+											Constant Value=15
+										}
+									}
+								}
+							}
+							Action=CPrintAction
+							{
+								Text=roll successful
+							}
+						}
+					}
+					Else=
+				}
+				Else=
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride
+		{
+			Override Models=Array
+			{
+				Character Slot Types/!None=Models3D/!None/!None
+				Character Slot Types/Arm=Models3D/!None/!None
+				Character Slot Types/Arrow=Models3D/!None/!None
+				Character Slot Types/Body=Models3D/!None/!None
+				Character Slot Types/Bolt=Models3D/!None/!None
+				Character Slot Types/Finger=Models3D/!None/!None
+				Character Slot Types/Foot=Models3D/!None/!None
+				Character Slot Types/Hand=Models3D/!None/!None
+				Character Slot Types/Head=Models3D/!None/!None
+				Character Slot Types/HotKey=Models3D/!None/!None
+				Character Slot Types/Neck=Models3D/!None/!None
+				Character Slot Types/Shield=Models3D/!None/!None
+				Character Slot Types/Waist=Models3D/!None/!None
+				Character Slot Types/Weapon=Models3D/!None/!None
+			}
+			Override Names=Array
+			{
+				Character Slot Types/!None=
+				Character Slot Types/Arm=
+				Character Slot Types/Arrow=
+				Character Slot Types/Body=
+				Character Slot Types/Bolt=
+				Character Slot Types/Finger=
+				Character Slot Types/Foot=
+				Character Slot Types/Hand=
+				Character Slot Types/Head=
+				Character Slot Types/HotKey=
+				Character Slot Types/Neck=
+				Character Slot Types/Shield=
+				Character Slot Types/Waist=
+				Character Slot Types/Weapon=TwoHndedSwordBetter
+			}
+			Override Active=0
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Double Biting
+	Description=%i[percenttohit]% of the time, a successful hit will cause an additional %i[min]-%i[max] points of acid damage to the target every five seconds for fifteen seconds.
+	Item Grade=Better
+	Inventory Window=!Unknown Model
+	Minimum Value=150
+	Minimum Addition Ammount=3
+	Inbetween Value=700
+	Inbetween Addition Ammount=5
+	Maximum Value=7000
+	Maximum Addition Ammount=7
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=3
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=min
+				Expression=CExpressionScale
+				{
+					Input Value=CInventoryAdditionAmmountExpression
+					{
+						Addition Ammount=0
+					}
+					Input Minimum=CConstant
+					{
+						Constant Value=3
+					}
+					Input Maximum=CConstant
+					{
+						Constant Value=7
+					}
+					Output Minimum=CConstant
+					{
+						Constant Value=1
+					}
+					Output Maximum=CConstant
+					{
+						Constant Value=2
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=max
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=percenttohit
+				Expression=CConstant
+				{
+					Constant Value=100
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Weapons/Per Base/TwoHandedSword Melee Additions
+	Addition Rarity=Inventory Item Rarity/3 Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

@@ -65,6 +65,8 @@ fails. A checker that passes everything is worse than no checker.
 
 ---
 
+- `python tools/check_weapon_pools.py` passes. Formatting checks cannot see reachability, and this walks every weapon base item's addition-group tree to assert the pool keeps vanilla's shape, that nothing is reachable twice, and that each addition naming a mesh names the right one for its base.
+
 ## Gate 1 - is it actually live?
 
 Five minutes, and it invalidates the whole session if skipped.
@@ -5989,6 +5991,35 @@ The most important gate, and the easiest to skip.
 | N8 | Kill Rakeb / the Khan **after** taking a rank from them | No script errors; the camp-hostility relay behaves normally |
 
 ---
+
+## The twenty-one meshes, and the pools that deliver them
+
+0.89.0 wires magic weapons to the Better and Special meshes the game shipped and never used. Two
+halves, and they carry very different risk.
+
+The **meshes** are the low-risk half: all 21 were looked at in the hand through the Playtest Kit before
+any of this was written, and three defects found there are fixed in this release. `WM2` through `WM8`
+re-confirm them in their real setting rather than on a probe item.
+
+The **pools** are the half to be careful with. Melee additions are now copied per base weapon and
+reached through a per-base group that nests a shared one. If that tree is wrong, magic melee weapons
+stop rolling enchantments at all -- a far worse outcome than the cosmetic gap being closed. `WM1` is
+first for that reason, and it is a row that can fail while every mesh row passes.
+
+**`WM1` and `WM9` are the rows no one has walked.** Everything else here has been seen.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| WM1 | **The row that matters.** Any magic melee weapon, from a drop or a merchant | Read its name and tooltip | It has an **enchantment name and a working effect** -- *Long Sword of Snakebiting*, not a bare *Long Sword*. If magic melee weapons have stopped rolling enchantments, the per-base group tree is broken and nothing else in this release matters |
+| WM2 | A **Better** magic long sword, equipped | Compare against a plain one in hand | The blade is visibly a different, fancier mesh. Both at the same size: the family shares `Render Scaling=0.55`, so the variant reads about 12% longer and no more |
+| WM3 | A **Special** magic long sword, equipped | Compare against plain and Better | A third distinct mesh, not a repeat of either |
+| WM4 | A **Special** magic scimitar, on a **male** character | Equip it and look at the blade | It **appears**, and the blade hangs **down**. Both halves are fixes: the mesh was absent from the male registry so it rendered nothing, and the art itself was rotated. If it appears blade-up the rotation axis is wrong; if it does not appear, the registry patch did not take |
+| WM5 | A **Better** magic war hammer, on a **male** character | Equip it | It appears. This is the second registry entry, and unlike the scimitar its art needed no rotation |
+| WM6 | A **Great Mace**, magic or not | Look at it in hand | It is **11% smaller** than any previous release. That is the vanilla defect being corrected, not a regression. A magic one still rolls enchantments but shows no mesh change, because no Great variant art exists |
+| WM7 | A **Better** magic **Composite** Long Bow | Compare against a plain Composite Long Bow | Same mesh, `BowSpecial`. The Composite's own base art is the best bow in the game, so its copies name `BowSpecial` at both tiers rather than downgrading it to `BowBetter` |
+| WM8 | A **Better** magic **plain** Long Bow | Compare against a plain Long Bow | A different mesh at **the same size**. It rendered 1.8x oversize before the scaling fix, so an obviously huge bow means the `MODEL.TXT` edit did not reach the build |
+| WM9 | **The regression.** Load a save from 0.88.2 or earlier that holds a magic melee weapon | Look at it | It still has its enchantment and its effect. The 29 original additions were deliberately kept and repointed rather than deleted, because saves reference them by path -- if an old magic weapon has lost its enchantment, that decision failed |
+| WM10 | **Judgement, not pass/fail.** Collect magic weapons over a stretch of play | Watch the variety of enchantments | It should feel unchanged. Each base weapon's pool is asserted to keep vanilla's 3/20/6 shape with nothing double-weighted, so any felt change in variety is worth reporting as a surprise |
 
 ## Gate 4 - regression and stability
 

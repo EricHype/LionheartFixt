@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.88.2 are published** -- 178 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.88.2 are published, 0.89.0 is built and unplayed** -- 179 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which `WM2` through `WM8` cover meshes already walked in the hand through the Playtest Kit, while `WM1` and `WM9` cover the group restructure, which nothing has played. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,108 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.89.0 - the meshes nobody could see
+
+Twenty-one meshes sat in `Models3D/Weapons` referenced by nothing: a Better and a Special variant for
+most base weapons. Finished art, registered in the player composite, reachable by no item in the game.
+
+The intent was not in doubt. Nine base weapons ship **three** inventory icons apiece -- `LongSword`,
+`LongSwordBetter`, `LongSwordSpecial` -- and those *do* switch off `Item Grade`. The artists finished
+the work and the on-body mesh was the one thing never wired up.
+
+### Three things had to be true, and a probe settled all three
+
+None of this could be read off the files, so it was built as a Playtest Kit node (`mods/playtest-kit`,
+node 9010) first: one grant per mesh on its correct base weapon, with the plain base beside it.
+
+**An `InventoryAddition` can override the `Weapon` slot.** Vanilla overrides `Arm` from 34 shield
+additions and `Head` from 10 helmet additions, and overrides `Weapon` from **no** addition at all, only
+from base items. The entire feature rested on that generalising, and it does.
+
+**A mesh name absent from a composite's registry renders nothing.** Not a fallback to the base mesh,
+not a crash -- an empty hand, silently. That makes the registry a hard constraint, and it is why the
+male composite's two missing entries had to be fixed rather than worked around.
+
+**Orientation and scale cannot be screened from the files.** Every static metric tried flagged
+`BowSpecial`, `Sacred Scim`, `BattleAxeGreat`, `MaceGreat`, `IvoryMace` and `WarHammerPain` by 84 to
+177 degrees against their family's base weapon -- and all six ship in the game and render correctly.
+Each mesh was exported in whatever orientation its artist left it, and `Model.InitialPlacement`
+compensates per mesh, which `scale_model.py` had already found the engine *ignores*. So all 21 were
+looked at in the hand. That is what found the three defects below.
+
+### What the pass found
+
+**`BowBetter` rendered 1.8x oversize.** `Short Name=undefined` together with `Render Scaling=1` is the
+signature of a `MODEL.TXT` nobody filled in, and six variant meshes carry it beside a base weapon that
+has a real value. Every *authored* grade variant copies its base weapon's scaling exactly -- long sword
+0.55 across all three, short sword 0.5, two-hander 0.4, club 0.75, scimitar 0.6 -- which is why the two
+long sword rows looked right from the start. Measuring confirms it: `BowBetter` at 0.55 renders 63.3
+against the plain bow's 64.65.
+
+**`ScimitarSpecial` and `BattleAxeBetter` rendered blade-up.** Rotated 180 degrees about Y, the
+weapon's own length. Every mesh in the game runs along -Y from a handle at the origin, and both of
+these already did, so their length direction was never wrong and only the roll about it was. A first
+attempt rotated about X and was caught before shipping by its own output: an X flip reversed the -Y
+convention, moving them *away* from every working weapon. Positions and normals are both rotated, so
+the lighting follows the blade, and because a 180 degree rotation negates two components its
+determinant stays +1 -- winding survives and no triangle index needs reversing, which a mirror would
+have required.
+
+**The male composite was missing two entries.** `Human Male.mdl16` registers 88 models,
+`Human Female.mdl16` registers 90, and the two it lacks are `WarHammerBetter` and `ScimitarSpecial`.
+No art was missing: weapon meshes are not gendered, both composites point at the same shared files, and
+the gap was two strings in a registry. The composite `.mdl16` is a flat stream -- a `u32` count then
+that many `u32`-length-prefixed strings, no offset table, no size field, no checksum -- so the fix is
+128 bytes and one `u32`. The two files disagree about the order of `CrossBow Better` and
+`CrossBow Special`, which is how we know the order is not load-bearing.
+
+One reading was tried and abandoned: that the male registry was a deliberate *cleanup* of broken art
+and the female copy was stale. `ScimitarSpecial` really is defective, which fit. `WarHammerBetter` is
+not, which does not.
+
+### Why melee cost 234 files and bows cost 18
+
+An addition cannot know which base weapon it landed on, so a group shared across bases cannot name a
+mesh. Vanilla hit this with shields and solved it by triplicating the additions into Small, Medium and
+Large groups -- three copies of each, one per base. Bows and crossbows already have per-base groups,
+which is the whole reason they were a drop-in.
+
+Melee gets the shield treatment. The 26 graded additions are copied per base weapon, each copy naming
+its own base's mesh, reached through a per-base group that nests a shared group holding the three
+ungraded ones. Ten bases have variant art; the three Great weapons have none, so they share a group
+that nests the ungraded additions and the graded originals.
+
+**The 29 originals are kept and repointed, not deleted.** Existing saves hold magic weapons that
+reference them by path, and they are also what the Great weapons now draw from. Each copy repoints its
+own `CInventoryAdditionsNamedExpressionExpression` self-references, or it would read the original's
+numbers -- the trap the Playtest Kit's `Snakebite TEST` addition was built around. Vanilla has no melee
+addition that excludes another, so nothing else needed rewriting; bow and crossbow each have one
+mutual exclusion pair, and for the Composite Long Bow's copies both halves of the pair were copied
+together so the exclusion keeps pointing inside the copied set.
+
+**The Composite Long Bow got its own group.** Its base mesh is already `BowSpecial`, the best bow art
+in the game, so a Better addition naming `BowBetter` would visibly *downgrade* it. Ten copies name
+`BowSpecial` at both tiers instead.
+
+`tools/check_weapon_pools.py` is the check that matters here, because `validate.py` sees formatting and
+structure but not reachability. It walks each base weapon's group tree and asserts the pool keeps
+vanilla's 3/20/6 shape (3/4/5 for missiles), that no addition is reachable twice and so double-weighted,
+and that every addition naming a mesh names the right one for that base.
+
+### Also in this release
+
+**The Great Mace has rendered 11% oversize since 2003.** Same unfilled-metadata defect, on a weapon
+that ships and that players have been swinging for twenty years. It stands on its own and is listed
+here rather than folded into the feature.
+
+### What is not proven
+
+The meshes are confirmed in the hand, all 21. The **group restructure is not** -- `check_weapon_pools.py`
+resolves the nesting by the same rules vanilla's own 11 nesting groups use, but no magic melee weapon
+has been rolled from a per-base pool in play yet. `WM1` is the row that matters: if the tree is wrong,
+magic melee weapons stop rolling enchantments altogether, which would be far worse than the cosmetic
+gap this release closes.
 
 ## 0.88.2 - the rows and the icons
 

@@ -1,0 +1,75 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Dynamic Properties=1
+					{
+						Comment=increases melee attack rate by 15%
+					}
+					Modification Amount=CConstant
+					{
+						Constant Value=15
+					}
+					Modification amount is a percent=1
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Speed/Attack Magic Speed Multiplier
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=1150
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Haste
+	Description=This weapon strikes quickly, allowing its wielder to attack 15% faster.
+	Item Grade=Better
+	Inventory Window=!Unknown Model
+	Minimum Value=1150
+	Minimum Addition Ammount=0
+	Inbetween Value=1150
+	Inbetween Addition Ammount=0
+	Maximum Value=1150
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=speedbonus
+				Expression=CConstant
+				{
+					Constant Value=0.15
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Weapons/Melee Better No Visual
+	Addition Rarity=Inventory Item Rarity/4 Very Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

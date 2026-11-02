@@ -1,0 +1,85 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CXRPGPlugInBehaviorLauncher
+		{
+			After Launch Action=
+			Num To Launch=1
+			Dispersion Angle=180
+			Aim At Parents Target=1
+			Launch Offset=0.000000,0.000000
+			Parents Bone Launch Location=Weapon Attach Dummy
+			Direction From Bone X=0
+			Direction From Bone Y=0
+			Direction From Bone Z=0
+			Requires Line Of Sight=1
+			Primary Launchable Slot=Character Slot Types/Arrow
+			Secondary Launchable Types=Array
+			{
+				Item Count=0
+			}
+			Damages=Array
+			{
+				Item Count=1
+				Damage=CXRPGDamage
+				{
+					Damage Type=Damage Types/Acid
+					Damage Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Weapons/Crossbows and Bows/Composite/Extra Damage
+						Expression Name=extrabonus
+						Value=0
+					}
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Carnage
+	Description=Missiles fired from this bow do an extra %i[extrabonus] points of acid damage.
+	Item Grade=Basic
+	Inventory Window=!Unknown Model
+	Minimum Value=200
+	Minimum Addition Ammount=1
+	Inbetween Value=1400
+	Inbetween Addition Ammount=4
+	Maximum Value=15000
+	Maximum Addition Ammount=10
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=extrabonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Weapons/Composite Bow Additions
+	Addition Rarity=Inventory Item Rarity/1 Common
+	Replaces matching plugins=1
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=1
+		Addition Cannot Be Combined With=Inventory/Inventory Additions/Weapons/Crossbows and Bows/Composite/of Fire
+	}
+}
