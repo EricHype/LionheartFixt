@@ -29,6 +29,7 @@ wrong are more reusable than the results.
 - [What to pick up next](#what-to-pick-up-next)
 - [How this was measured](#how-this-was-measured)
 - [**Voiceover on nodes nobody can reach**](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted) -- the current backlog, and the richest vein left
+- [**Orphaned art**](#orphaned-art----the-axis-this-survey-never-looked-at) -- 13 icons, 10 pickups and 21 meshes named by nothing, and the four that are one field each
 
 ---
 
@@ -2149,3 +2150,96 @@ used above.
   subtracts what this mod **built**; nothing subtracts what it **considered and cut**, and the two
   are indistinguishable in the data. Adjudicated content is a fourth kind of orphan, and the only
   one that cannot be recognised from the files at all.
+
+## Orphaned art -- the axis this survey never looked at
+
+Everything above surveys cut **script** content: items, enemies, wands, skills, perks, factions. Art
+was never surveyed, and art orphans are a different shape -- an asset that exists, loads, and is
+named by nothing. `tools/orphan_art.py` runs it. The find that prompted it was a player noticing
+that the **Gauntlets of La Mancha** is the only unique gauntlet wearing the generic gauntlet icon.
+
+As of 0.89.0: **13 inventory icons, 10 ground pickups and 21 meshes** are named by nothing.
+
+### The method correction that has to come first
+
+The first run of this survey read vanilla only, which answers *"was this unused in 2003"*. That is
+the wrong question and it produced a wrong plan. The `Clover` icon looks orphaned in vanilla and is
+in use now: a Port District bar patron offers it to a low-Luck character -- *"perhaps this will
+bring you some good fortune, it's clover, plucked from the last patch of dry ground 'afore me island
+sank"* -- and the item that reply hands over **did not exist in vanilla at all**. Fixt authored it.
+The same correction removed `Gem Onyx` and the Inquisitor's rod pickup from the list.
+
+This is the `zf.read()` versus `lhbuild.read()` distinction, in a new place. The tool now scans both
+and the numbers above are post-correction.
+
+### Three kinds, wanting three different kinds of work
+
+**Stranded** -- an item exists, uses generic art, and art named for it sits unused. One field, and
+the asset's own name is the evidence that it belongs.
+
+| item | uses | stranded art | confidence |
+|---|---|---|---|
+| Amulet of Dour Tidings | `AmuletGreenOpal`, shared with 8 other amulets | `Images for RED file/Amulet Dour Tidings` | **named for the item** |
+| Wielder Quest Rod Spirits (x2) | generic `Misc Items/Wand_PU` | `Misc Items/Wands/RodOfSpirits` | **named for the item** |
+| Wielder DARK Quest Rod Bone (x2) | generic `Misc Items/Wand_PU` | `Misc Items/Wands/RodOfBone` | **named for the item** |
+| Gauntlets of La Mancha | generic `Armor/Gauntlets` | `Armor/Gauntlets Spike` | inferred, see below |
+
+The rods are the cleanest work in this document. Fixt already wired **`RodOfInquisitor`** to the Rod
+of the Inquisitor, so the mechanism is placed, the precedent is ours, and two of the three are simply
+unfinished. Prefer the sibling.
+
+**La Mancha is an inference, not a match.** Nothing names `Gauntlets Spike` for it. The case is that
+it is the only unused gauntlet icon and La Mancha is the only unique gauntlet without its own, plus a
+dating argument: the Gauntlets of Hellfire's icon lives in `Misc Items/Images for RED file/`, a
+late-addition folder, while `Gauntlets Spike` sits in the ordinary `Armor/` folder beside
+`Bracers Stealthy Cunning`, which *is* wired. Spike reads as the earlier unique-gauntlet art,
+stranded when Hellfire's was added. Good enough to ship; not good enough to claim as restoration.
+
+**Complete but unowned** -- a full art set and no item. One case, and it is the largest find here.
+
+**The buckler is a fourth shield type that was never made.** Two meshes (`Buckler`,
+`BucklerSpecial`), two icons (`Shield Buckler`, `Shield Buckler Best`), both meshes registered in
+*both* player composites so either sex could wear one, and **no item, no can, no script mention of
+the word anywhere in the game**. The game ships Small, Medium and Large; a buckler would have been
+the fourth. This is not a repair -- it needs an item authored, stats chosen against the three that
+exist, a pool decided and a placement. Treat it as a design item, not a wiring item.
+
+Worth noting what it already has that the magic-weapon work in 0.89.0 had to build by hand: the
+composite registration. A missing registry name renders nothing at all, silently, and the buckler's
+is already there.
+
+**Nameless** -- art naming something with no other trace. The write-up is the deliverable.
+
+| art | trace | read |
+|---|---|---|
+| `Quest Items/Esteban Knife` + `Special Items/EstebanDagger_PU` | **Guard Esteban exists**, with his own dialogue tree and five maps | A matched icon-and-pickup pair for a named, living character. No knife is mentioned in his tree, so the hook is gone and only the art remains |
+| `Special Items/HammerBjon_PU` | **none** -- "Bjon" appears in no file in the game | A character cut so completely that only his weapon's ground sprite survived |
+| `Misc Items/ScrollTregethia` | `Shylocke Key` uses `Key Tregethia`, a *different* asset | A Tregethia **scroll** was planned beside the key that shipped |
+| `Quest Items/Rare Herb`, `Quest Items/Potion Wolf`, `Misc Items/Key Skeleton`, `Misc Items/Gem Ruby`, `Armor/Bracers Defense`, `Armor/Shield Holy`, `Weapons/Sword Undead Bane` | none | Art without a thread. `Sword Undead Bane` is the odd one: the Sword of Undead Ice ships and uses a *different* icon under `Images for RED file`, so this is a superseded draft rather than a gap |
+
+### What to skip
+
+The 21 orphaned meshes are almost all duplicate or draft creature parts -- `Terror 02` and `Terror 03`
+under three different folders, `Dwarf_Body` under two generic NPCs, two `SoulReaver` variants. That is
+the pattern [0.45.0 already settled](#done-in-0450---the-horse-and-what-the-unused-enemies-number-actually-means):
+a draft beside its finished version is not cut content. `Models3D/Gizmo/Gizmo` is the only curiosity,
+and a mesh called Gizmo with no script trace is not a lead.
+
+The remaining pickups are generic duplicates: `Bow_Pickup` beside the used `Bow_PU`, `Sword1`,
+`PU Chainmail` beside `ChainMail_PU`, `SacredScimitar_PU` beside the used `ScimitarSacred_PU`, and two
+spirit-energy ground lights. Superseded naming, not content.
+
+### Suggested order
+
+1. **The two rods.** Two fields, the sibling precedent is already ours, the art is named for the
+   items. No judgement required.
+2. **Amulet of Dour Tidings.** One field, art named for the item, and it currently shares an icon
+   with eight other amulets so the gain is visible.
+3. **Gauntlets of La Mancha.** One field, inferred rather than matched. Say so in the notes.
+4. **Write up Esteban's dagger, Bjon's hammer and the Tregethia scroll** here, as leads rather than
+   work. Esteban is the only one attached to a character who exists.
+5. **The buckler**, if and only if a fourth shield is wanted. Everything except the item exists.
+
+Steps 1 to 3 are four files and a changelog row. A `WM`-style QA row for each is just "look at it in
+the inventory", because a wrong icon path renders blank rather than wrong -- which is also the
+failure mode to watch for, and the reason to check all four in the built archive before shipping.
