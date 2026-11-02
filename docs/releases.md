@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.88.1 are published** -- 177 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.88.2 are published** -- 178 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,67 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.88.2 - the rows and the icons
+
+A review of the finished wands asked three questions: do they all use charges, are the skill icons
+reachable with so many under one subgroup, and does each one have an icon. The first was already
+clean. The other two were not, and neither was visible from play.
+
+### Eight spells had no icon, and the cause was the conversion itself
+
+A skill's icon is `Cache/Resources/<Image>.frm16`. Of 92 vanilla skills, 85 point `Image=` at a
+`Skills/...` path, which is **exactly the shape of the expression references a spell copy has to
+repoint at itself** so its damage follows the wand's level. 0.88.1 repointed all of them, so eight
+copies ended up naming an icon under `Fake Wand Spells`, where no art exists: Lightning Bolt, Spike,
+Fire Circle, Poison Ring, Insect Plague, Ice Storm, Slow and Fear would all have drawn blank.
+
+Fireball alone survived, because its icon path spells it `FireBall` with a capital B and a
+case-sensitive replacement missed it. A case bug saved one file and hid the pattern in the other
+eight, which is the inverse of the usual lesson about folding case.
+
+All eight now take the real spell's own `Image=`, read back out of vanilla rather than retyped. All
+fifteen resolve in the built archive.
+
+### One branch held six spells, and nothing in the game holds six
+
+Measured across all 92 vanilla skills: the only differentials the game ever uses are **0, 24, 49, 74,
+89 and 109**, and **no vanilla branch holds more than five** -- ten hold exactly five, three hold
+four. `Charged Spells` held six, the sixth being Poisonous Touch at **134**, off the ladder entirely.
+
+It drew, which is why nothing caught it, and that is the lesson: drawing is not precedent. The
+vanilla `Barter` branch is the other warning, holding five spells stacked in row 0 -- all five of
+them the wand spells that never worked.
+
+Poisonous Touch is an affliction and `Charged Afflictions` had row 109 free, so it moved there, its
+pin following from 164 to 139. Three branches of five now, each using exactly 24, 49, 74, 89 and 109:
+
+| branch | spells |
+|---|---|
+| Charged Spells | Lesser Healing, Revelation, Lockpicking, Greater Healing, Rigor Mortis |
+| Charged Elements | Fireball, Lightning Bolt, Spike, Fire Circle, Ice Storm |
+| Charged Afflictions | Poison Ring, Insect Plague, Slow, Fear, Poisonous Touch |
+
+### And all three branches looked the same
+
+A branch needs its own `Image=` as much as a spell does, and all three were still pointing at the
+wand icon they were cloned with, so the window would have shown three identical headers under Wand
+Magic. They now take distinct existing branch art: Fortitude for the healing and utility group, Fire
+for the elements, Wounding for the afflictions, with the wand icon left to the `Wand Magic` root
+itself. Nothing shares an icon.
+
+### Charges, which was the one question with a clean answer
+
+All fifteen wand spells check for a charge and spend one, and **no delivery path sits outside the
+gate** -- no damage, modifier, task assignment, launcher or strike action anywhere but inside the
+charge check. That is the form of the question that caught Rigor Mortis in 0.88.1, so it is the form
+the audit asks now, rather than merely looking for a charge check somewhere in the file.
+
+### Gates
+
+Gate 0 green on 947 files. Eighteen wands and fifteen wand spells, no failures and no warnings. Five
+`WI` rows in [`qa.md`](qa.md); **`WI1` proves the release**, since a missing icon and a working spell
+look identical in every file check.
 
 ## 0.88.1 - all eighteen wands on one system
 

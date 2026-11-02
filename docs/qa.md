@@ -1516,6 +1516,24 @@ audit of all eighteen found each of the twelve carrying three independent faults
 is fatal. `WN12` asks the tester to confirm those wands are "all unchanged", which they are, but it
 reads as though unchanged meant working. It does not.
 
+## 0.88.2 - the rows and the icons
+
+A review of the finished wands found that eight of the fifteen wand spells had no icon, and that one
+branch held six spells where nothing in the game holds more than five. Both are invisible from play
+until you open the skill window, and neither shows up in any file check, because a skill with a
+broken `Image=` loads and casts perfectly.
+
+**`WI1` proves the release.** A missing icon and a working spell are indistinguishable everywhere
+except on screen.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WI1 | **The release.** Hold each wand in turn and open the skill window | - | **Every wand spell has an icon.** Eight had none: Lightning Bolt, Spike, Fire Circle, Poison Ring, Insect Plague, Ice Storm, Slow and Fear. Their `Image=` had been repointed into `Fake Wand Spells`, where no art exists |
+| WI2 | Look at the three headers under **Wand Magic** | - | Three *different* icons: Fortitude for Charged Spells, Fire for Charged Elements, Wounding for Charged Afflictions. All three were the wand icon before, so the window showed three identical headers |
+| WI3 | Count the spells under each of the three branches | - | **Five each**, no more. No vanilla branch holds more than five and only differentials 0/24/49/74/89/109 exist; Charged Spells held six, the sixth off the ladder at 134 |
+| WI4 | Find **Poisonous Touch** in the skill window | - | Under **Charged Afflictions**, bottom row, not under Charged Spells. It moved to a free row; its pin moved with it, 164 to 139, so it still rests uncastable and still lifts to +30 with the wand in hand |
+| WI5 | **Negative.** Cast Poisonous Touch after the move, with and without a charge | - | Unchanged from 0.88.1: 6 poison a tick for 20 seconds with a charge, **The wand has no charges left** without one. Only its row and its pin changed |
+
 ## 0.88.1 - all eighteen wands on one system
 
 The twelve wands 0.87.1 documented as broken are converted. Every wand now spends charge crystals and

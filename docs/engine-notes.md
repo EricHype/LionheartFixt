@@ -444,6 +444,20 @@ twice on a successful cast and froze at all with no charges. **An audit that ask
 is gated will pass it**; the question is whether anything else can deliver the same effect, and on a
 wand the answer is to drop the launcher and let the payload do the work.
 
+**A skill's icon is `Cache/Resources/<Image>.frm16`, and `Image=` looks like every other reference.**
+Of 92 vanilla skills, 85 point `Image=` at a `Skills/...` path, six at `!None` and one at a
+`Temporary Modifier HUD Icons/...` path. Nothing lives under `Resources/Skills/` but the `.Skill`
+files themselves and some `.txt`, so a resolver that looks there finds nothing and reports every
+icon in the game as missing.
+
+The trap is that `Image=Skills/Magic Thought/Offensive/Fireball` is indistinguishable, by shape, from
+the expression reads that a spell copy must repoint at itself. 0.88.1 repointed all of them and left
+eight copies naming an icon under `Fake Wand Spells`, where no art exists at all. Fireball alone
+survived because its icon path spells it `FireBall`, which a case-sensitive replacement missed --
+so a case bug saved one file and hid the pattern in the other eight. **When repointing a copy's
+self-references, exclude `Image=`, `Skill to modify=`, `Spell=` and `Parent Skill=`:** those four
+name a real skill on purpose.
+
 **A projectile reads the real player skill, not the caster's.** `Fire Ball Projectile` takes its
 damage from `CSkillsNamedExpressionExpression` against `Skills/Magic Thought/Offensive/Fireball`
 whoever threw it. That is coherent in vanilla, where a wand grants the real spell and pins the real
@@ -453,10 +467,20 @@ because the projectile would still read a skill the wand no longer pins. Repoint
 expressions at the copy and pin it to `differential + level`, and vanilla's tuning is reproduced
 rather than approximated, because those expressions scale off the value of the skill they live on.
 
-**`Value Differential` must be distinct within a branch, not globally.** Five usable rows a branch,
-six counting 134, since row 0 rests at castable and is no use to a wand spell. Fifteen wand spells
-therefore need three branches, which is why `Charged Elements` and `Charged Afflictions` exist beside
-`Charged Spells`. A new branch is just a `Normal` skill at -300/300 parented to `Skills/Wand`.
+**`Value Differential` must be distinct within a branch, not globally, and a branch holds five.**
+Across all 92 vanilla skills the only differentials ever used are **0, 24, 49, 74, 89 and 109**, and
+**no vanilla branch holds more than five spells** -- ten hold exactly five, three hold four. Row 0
+rests at castable and is no use to a wand spell, so a wand branch has five rows and holds five.
+Fifteen wand spells therefore need three branches, which is why `Charged Elements` and
+`Charged Afflictions` exist beside `Charged Spells`. A new branch is just a `Normal` skill at
+-300/300 parented to `Skills/Wand`, and it needs its own `Image=`, or the window draws two headers
+that look identical.
+
+0.88.1 shipped `Charged Spells` holding six with the sixth at **134**, which is off the ladder and
+past a size nothing in the game reaches. It drew, which is why no check caught it; 0.88.2 moved that
+spell to a free row in another branch. **Drawing is not precedent.** The vanilla `Barter` branch is
+the other warning here: it holds five spells all at differential **0**, stacked in one row, and all
+five are the wand spells that never worked.
 
 **Two wands grant two spells each.** Fire and Ice and The Mage carry **two** `CPlugInBehaviorWand`
 blocks, not one: Fireball with Ice Storm, and Lightning Bolt with Fear. Counting wand plugins per
