@@ -1516,7 +1516,7 @@ audit of all eighteen found each of the twelve carrying three independent faults
 is fatal. `WN12` asks the tester to confirm those wands are "all unchanged", which they are, but it
 reads as though unchanged meant working. It does not.
 
-## 0.88.0 - all eighteen wands on one system
+## 0.88.1 - all eighteen wands on one system
 
 The twelve wands 0.87.1 documented as broken are converted. Every wand now spends charge crystals and
 nothing else. Each carried three independent fatal faults: a plugin whose count cannot persist, a
