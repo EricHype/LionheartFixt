@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.86.0 are published** -- 173 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.86.1 are published** -- 174 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows and 0.86.0's sixteen `SD` rows.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows and 0.86.0's sixteen `SD` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,85 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.86.1 - the cloak that was a book
+
+A cloak dropped on the floor appeared as a book. Reported in play, and it turned out to be a 2003
+asset defect rather than anything Fixt did.
+
+### The finding
+
+`Cloak_PU.mdl16` is **99.72% byte-identical to `Book_PU.mdl16`**. The only differences are a length
+byte and the name string, `Book` to `Cloak`. Same 18x14 dimensions, same hotspot, same buffer sizes,
+and decoding both gives the same 252 pixels: an open book, pages on the left, cover on the right.
+Somebody cloned the book pickup, renamed it, and never drew the cloak. It is the only accidental
+clone among all 143 pickup sprites -- the other near-pair, `SpearDestiny` and `SpearDestinyFALSE`,
+is deliberate.
+
+Two things that looked like the cause and were not, recorded so they are not re-investigated. Four
+of the seven cloak enchantments set `On the ground=!Unknown Model`, which is benign inheritance --
+all 18 ring enchantments do the same and rings show as rings. And `Cloak_PU`'s internal entity name
+is `Book_PU`, which is meaningless: 94 of the 143 pickups disagree with their own filename,
+including every arrow and all the armour.
+
+**Why it surfaced now.** Before 0.38.0 magic cloaks barely dropped, and 0.83.0 gave them their own
+slot and made them drop at every level. Fixt made cloaks common enough for a twenty-two-year-old
+defect to be seen.
+
+### The sprite
+
+New art, fitted to the shipped pickups by measurement rather than by eye. Against the 17 pickups of
+comparable mass:
+
+| | shipped median | the new cloak |
+|---|---|---|
+| opaque pixels | 562 | 562 |
+| luminance median / max | 58 / 188 | 55 / 192 |
+| warmth (red minus blue) | 25 | 25 |
+| local contrast | 22.6 | 25.0 |
+| distinct colours | 257 | 244 |
+| colours per 100 pixels | 48 | 43 |
+
+Getting there needed three calibrations, because the first two references were wrong. Calibrating on
+the mail pickups alone put saturation at 8, which is the least representative corner of the set.
+Calibrating on all 133 pickups put it at 41, which is confounded by sprite size -- colours per pixel
+is inflated by small sprites. Only the 17 sprites of comparable mass are the right reference.
+
+The art supplies colour and overall level; `ChainMail_PU`'s own hand-drawn fold shading supplies the
+high-frequency detail. That combination is what fixed the sprite reading flat, and the first attempt
+at it was wrong in a useful way: adding the donor's detail on top of the art's own variation doubled
+the high frequencies to contrast 39 and clipped the highlights to 255. Blurring the art's luminance
+first, so the donor is the single source of fine structure, is the fix.
+
+### A format finding, which cost a build
+
+The first version of this sprite rendered correctly and **could not be picked up** -- the cursor
+spun instead of offering the green pickup.
+
+A from-scratch icon declares buffers 4/5 empty, which is right for an inventory icon: the two
+vanilla single-plane files are both inventory images. But **no shipped pickup is single-plane** --
+all 143 use buffers 1/4/5 -- and the hit test at `0x0055f2a0`, vtable slot 61, needs them. Rendering
+is not the test. Interacting is.
+
+So the sprite is built inside `ChainMail_PU`'s envelope instead. `recolor_icon_in_place` rewrites
+only the 2-byte colour values and leaves every control byte, run length, row table and the file
+length untouched, so all three planes survive by construction and the result is byte-for-byte the
+same length as the pickup it borrows from.
+
+The cost is that the silhouette is chain mail's outline rather than a cloak's. All 143 pickups were
+ranked for cloak-likeness before settling: chain mail is the only garment-mass sprite that is a
+single connected crumpled heap at the right size. The pelts have legs and tails, the hides fragment,
+the shields read as flat discs at solidity 0.97 and above, and the plate armours break into 2 and 4
+detached pieces. A bespoke outline needs the alpha-plane grammar authored from scratch, which is
+real reverse engineering and is not worth it to replace a heap that already reads as a heap.
+
+### Gates
+
+Gate 0 green on 935 files, and the sprite was read back out of the built `data.dat` rather than the
+repo: all three planes present, plane sizes and file length matching `ChainMail_PU`, and `verify_icon`
+clean. Seven `SG` rows in [`qa.md`](qa.md). **`SG4` is the row that proves the release** -- it is the
+pickup cursor, the one that failed first time, and the one no amount of looking at the sprite would
+have caught.
 
 ## 0.86.0 - the scroll line
 

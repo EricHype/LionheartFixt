@@ -1477,6 +1477,36 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.86.1 - the cloak that was a book
+
+Reported in play: a cloak on the ground appears as a book. It is a vanilla asset defect, not a Fixt
+one. `Cloak_PU.mdl16` is 99.72% byte-identical to `Book_PU.mdl16` -- the only differences are a
+length byte and the name string `Book` to `Cloak` -- so the cloak's ground sprite has been the
+book's 18x14 open-book art, pixel for pixel, since 2003. It is the only accidental clone among all
+143 pickup sprites.
+
+**`SG4` is the row that proves the release**, because it is the one that failed first time round and
+no amount of looking at the sprite would have caught it.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| SG1 | Get any cloak and drop it on the floor | - | A dark crumpled garment, **not an open book**. Plain and enchanted cloaks all resolve to `Cloak_PU`, so every one of the seven enchantments shows it |
+| SG2 | Drop a cloak and a **chain mail** on the same patch of floor | - | They read as the same kind of object at the same scale: 40x31, 562 opaque pixels, luminance 55 against 58, warmth 25 against 25. The cloak borrows that sprite's envelope, so if one looks out of place beside the other the fit is wrong |
+| SG3 | Look at the drop point | - | The cloak sits on the ground, neither floating nor sunk. Hotspot (24, 17), taken from `ChainMail_PU` at the same dimensions |
+| SG4 | **The row that matters.** Hover the dropped cloak, then pick it up | - | The **green pickup cursor**, and it goes back in the pack. The first build of this sprite rendered correctly and could not be picked up -- a spinning cursor -- because a from-scratch icon declares buffers 4/5 empty and **no shipped pickup is single-plane**. The hit test at `0x0055f2a0` needs them. Rendering is not the test; interacting is |
+| SG5 | Open the inventory with a cloak in it | - | Unchanged. Only the ground sprite was touched; the inventory images (`Cloak`, `Cloak Decorated`, `CloakExtra`, `Cloak DecoratedGreen`, `Cloak Special`) are all vanilla and all still resolve |
+| SG6 | **Negative.** Drop a book, and any armour: chain mail, hauberk, plate, full plate, leather, hard leather | - | Every one unchanged. The fix is one file. `Book_PU` in particular must still be a book -- it was the donor the broken cloak was cloned from, and it is used by 14 items including every history book and Shakespeare's works |
+| SG7 | **Negative.** Equip a cloak | - | Still the shield slot, as 0.83.0 set it, and still stacking with body armour. Nothing about the item was edited, only its art |
+
+### What this does not claim
+
+The silhouette is `ChainMail_PU`'s outline, not a cloak's. That is deliberate and it is the price of
+keeping three planes: the only route to a bespoke outline is authoring the alpha-plane grammar from
+scratch. All 143 pickups were ranked for cloak-likeness first, and chain mail is the only
+garment-mass sprite that is a single connected crumpled heap at the right size -- the pelts have
+legs and tails, the hides fragment, the shields read as flat discs at solidity 0.97 and above, and
+the plate armours break into 2 and 4 detached pieces.
+
 ## 0.86.0 - the scroll line
 
 Scrolls are rarer than potions and were meant to be better than the standard ones. Two of them were
