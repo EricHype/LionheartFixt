@@ -2,7 +2,7 @@
 
 Status: **0.1.0 through 0.88.2 are published, 0.89.0 is built and unplayed** -- 179 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; and `WM3`, `WM4`, `WM6`, `WM7`, `WM9` and `WM10` are open, `WM7` because nothing has rolled a Composite Long Bow and the rest because no Special-grade addition has rolled from a per-base pool yet. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM8` is passed in play** along with the crossbow tiers; and `WM3`, `WM4`, `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked, and `WM3` and `WM4` because no Special-grade addition has rolled from a per-base *melee* pool, though `Crossbow of Luck` proves the grade rolls and requests its Special mesh correctly. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -259,10 +259,17 @@ appear on rolled weapons, and the only route to them is the shared group that ea
 nests. And **`WarHammerBetter` rolled and rendered**, which is the male composite registry entry
 confirmed on a real weapon rather than on a probe item.
 
-What the save did not reach: **every one of the five was `Better` grade**, so no Special-grade
-addition has been rolled from a per-base pool yet, and nothing rolled a Composite Long Bow, which
-leaves `WM7` open. The Special *meshes* are confirmed in the hand from the Playtest Kit pass; it is
-the Special half of the melee *pools* that is still only verified structurally.
+The missile half is confirmed at both tiers from the same save. `of Fire`, `of Mastery` and
+`of Thievery` requested `BowBetter`; `Crossbow of Necromancy` and `Crossbow of Thievery` requested
+`CrossBowBetter`; and **`Crossbow of Luck`, a `Special`, requested `CrossBowSpecial`**. All six were
+confirmed in the hand. Those nine additions were wired in place rather than copied, since bows and
+crossbows already had per-base groups.
+
+What the save did not reach: **all five per-base melee copies were `Better`**, so no Special-grade
+addition has rolled from a *per-base* pool -- the Special meshes themselves are confirmed in the hand
+from the Playtest Kit pass, and `CrossBowSpecial` proves the grade rolls, but the melee Special
+copies are still only verified structurally. And nothing rolled a Composite Long Bow, which leaves
+`WM7` open.
 
 ### What is not proven
 

@@ -6006,7 +6006,7 @@ reached through a per-base group that nests a shared one. If that tree is wrong,
 stop rolling enchantments at all -- a far worse outcome than the cosmetic gap being closed. `WM1` is
 first for that reason, and it is a row that can fail while every mesh row passes.
 
-**`WM1` is passed**, and from the save rather than from a look: `magicweapons.sav` names five per-base addition copies rolled across five base weapons, with `Slow Factor` arriving from a different copy on each of three of them. `WM5` passed in the same session. **`WM7` and `WM9` are the rows no one has walked**, and no Special-grade addition has yet rolled from a per-base pool, so `WM3`, `WM4` and `WM6` still want a look on a rolled weapon rather than a kit grant.
+**`WM1` is passed**, and from the save rather than from a look: `magicweapons.sav` names five per-base addition copies rolled across five base weapons, with `Slow Factor` arriving from a different copy on each of three of them. `WM5` passed in the same session. `WM8` passed too, with `BowBetter` at the right size on a rolled bow, and `Crossbow of Luck` rolled as a `Special` and requested `CrossBowSpecial` correctly -- so the grade mechanism works end to end. **`WM7` and `WM9` are the rows no one has walked.** `WM3`, `WM4` and `WM6` still want a look, `WM3` and `WM4` because no Special has yet rolled from a per-base *melee* pool and a kit grant cannot stand in for one.
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
