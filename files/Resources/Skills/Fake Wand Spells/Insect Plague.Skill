@@ -61,7 +61,7 @@ CSkillDescription
 				{
 					Action=Array
 					{
-						Item Count=9
+						Item Count=7
 						Action=CAddCharacterModifierToCharacterAction
 						{
 							Modifier Description=
@@ -297,106 +297,154 @@ CSkillDescription
 						{
 							Canned Object=Common Objects and Scripts/Damage Spell Recast Timer
 						}
-						Action=CActionDoDamage
+						Action=CAddAIAction
 						{
-							Character Doing Damage=$Instigator
-							Character To Damage=$Trigger
-							Defend Against=1
-							No Friendly Fire Check=0
-							Damages=Array
+							Target Name=$Instigator
+							AI=CAIAreaOvalManager
 							{
-								Item Count=1
-								Damage=CXRPGDamage
+								Marked For Deletion=0
+								Publisher=
+								Radius=CSkillsNamedExpressionExpression
 								{
-									Damage Type=Damage Types/Disease
-									Damage Amount=CRandom
+									Skill=Skills/Fake Wand Spells/Insect Plague
+									Expression Name=radius
+								}
+								Aspect Ratio=0.712766
+								Re Trigger Delay=CConstant
+								{
+									Constant Value=0
+								}
+								Max Times To Trigger=CConstant
+								{
+									Constant Value=1
+								}
+								Re-Check who is in oval each re-trigger=0
+								Every Trigger Action=
+								First Trigger Action=CMultipleActionsAction
+								{
+									Action=Array
 									{
-										Operator=
-										Minimum=CSkillsNamedExpressionExpression
+										Item Count=3
+										Action=CActionDoDamage
 										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=MinDamage
+											Character Doing Damage=$Instigator
+											Character To Damage=$Trigger
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Disease
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=MinDamage
+														}
+														Maximum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=MaxDamage
+														}
+													}
+												}
+											}
 										}
-										Maximum=CSkillsNamedExpressionExpression
+										Action=CActionDoDamage
 										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=MaxDamage
+											Character Doing Damage=$Instigator
+											Character To Damage=$Trigger
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Acid
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=MinDamage
+														}
+														Maximum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=MaxDamage
+														}
+													}
+												}
+											}
+										}
+										Action=CActionDoDamage
+										{
+											Character Doing Damage=$Instigator
+											Character To Damage=$Trigger
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamageOverTime
+												{
+													Damage Type=Damage Types/Poison
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=PoisonMinDamage
+														}
+														Maximum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=PoisonMaxDamage
+														}
+													}
+													Duration=CRandom
+													{
+														Operator=
+														Minimum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=PoisonMinDuration
+														}
+														Maximum=CSkillsNamedExpressionExpression
+														{
+															Skill=Skills/Fake Wand Spells/Insect Plague
+															Expression Name=PoisonMaxDuration
+														}
+													}
+												}
+											}
 										}
 									}
 								}
-							}
-						}
-						Action=CActionDoDamage
-						{
-							Character Doing Damage=$Instigator
-							Character To Damage=$Trigger
-							Defend Against=1
-							No Friendly Fire Check=0
-							Damages=Array
-							{
-								Item Count=1
-								Damage=CXRPGDamage
+								Re-Trigger Action=
+								After Last Trigger Action=
+								Only Trigger if has HP=1
+								Trigger if Player=0
+								Trigger if Enemy=1
+								Trigger Anything=0
+								Max Entities to affect=
+								Seconds Since Last Triggered=0
+								Number Of Times Triggered=0
+								Has Triggered At Least Once=0
+								Has Begin Been Called Before=0
+								Affected Layer Parts=Array
 								{
-									Damage Type=Damage Types/Acid
-									Damage Amount=CRandom
-									{
-										Operator=
-										Minimum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=MinDamage
-										}
-										Maximum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=MaxDamage
-										}
-									}
+									Item Count=0
 								}
 							}
-						}
-						Action=CActionDoDamage
-						{
-							Character Doing Damage=$Instigator
-							Character To Damage=$Trigger
-							Defend Against=1
-							No Friendly Fire Check=0
-							Damages=Array
-							{
-								Item Count=1
-								Damage=CXRPGDamageOverTime
-								{
-									Damage Type=Damage Types/Poison
-									Damage Amount=CRandom
-									{
-										Operator=
-										Minimum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=PoisonMinDamage
-										}
-										Maximum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=PoisonMaxDamage
-										}
-									}
-									Duration=CRandom
-									{
-										Operator=
-										Minimum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=PoisonMinDuration
-										}
-										Maximum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Insect Plague
-											Expression Name=PoisonMaxDuration
-										}
-									}
-								}
-							}
+							Delay Between Adds=0
 						}
 						Action=CPrintCombatTextAction
 						{

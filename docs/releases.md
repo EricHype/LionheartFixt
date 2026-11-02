@@ -2,7 +2,7 @@
 
 Status: **0.1.0 through 0.88.0 are published** -- 177 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.0's thirteen `WE` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.0's fifteen `WE` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -208,6 +208,32 @@ value it was always meant to be. **The Mage now actually raises every base magic
 same way and granted nothing either; those are inlined from the addition's own definition rather than
 flattened, so The Swarm's range stays a range.
 
+### Five of them aimed at the ground
+
+Caught by re-auditing the converted set before the release went out, and it would have been invisible
+in every static check. `CPlugInBehaviorAttack` carries `Is Location Based`, and five of the nine
+copies have it at 1: Fireball, Fire Circle, Poison Ring, Insect Plague and Ice Storm are aimed at a
+point on the ground rather than at a creature. `$Trigger` at the top of a payload is therefore not a
+creature, so the damage the conversion put there reached nobody. Five wands would have spent a
+charge, printed **The wand discharges.**, and done nothing -- which is exactly the shape of the bug
+that started this whole thread of work.
+
+Lightning Bolt and Spike have it at 0. You click a creature, `$Trigger` is that creature, and a plain
+damage action is right for those two.
+
+Vanilla's answer for an area is `CAddAIAction` holding a `CAIAreaOvalManager`, which fires once per
+creature in the oval with `$Trigger` bound to each. Corpse Bomb does it, and the Slow and Fear copies
+inherited one from their originals, which is why those two converted cleanly and these five did not.
+The manager has twenty-one fields, so rather than hand-build it, each of the five clones the one
+already working in the Slow copy and substitutes three things: the skill its `Radius` reads, `Max
+Times To Trigger` set to 1 so a creature is hit once, and the trigger action. The 0.712766 aspect
+ratio the engine projects every oval with, the entity-class filters, and the HP and layer-part fields
+all come across from a block the game already accepts.
+
+Poison Ring had no `radius` of its own, being a thrown ring of spikes rather than a burst, and gains
+one at 100 -- mid-family against Ice Storm's 60, Fire Circle's 75, Slow's 80, Fireball's 100 and
+Insect Plague's 128.
+
 ### Rigor Mortis froze twice, and the second was free
 
 The audit was re-run against the converted set with its two weakest checks corrected, and it caught a
@@ -224,9 +250,9 @@ else deliver the same effect" fails it. A launcher runs around a payload's gate,
 
 Gate 0 green on 947 files. Eighteen wands and fifteen wand spells now pass twenty conditions with no
 failures and no warnings; the two the audit itself got wrong on the first run are recorded in
-`qa.md`, because a check that cannot fail is worse than no check. Thirteen `WE` rows in
-[`qa.md`](qa.md); **`WE1` and `WE11` prove the release** -- a wand that never cast anything now
-casting, and the ungated freeze.
+`qa.md`, because a check that cannot fail is worse than no check. Fifteen `WE` rows in
+[`qa.md`](qa.md); **`WE1`, `WE11` and `WE14` prove the release** -- a wand that never cast anything
+now casting, the ungated freeze, and the five area spells that would have damaged nobody.
 
 ## 0.87.1 - the wand that is not a weapon
 

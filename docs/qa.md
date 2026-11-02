@@ -1523,7 +1523,7 @@ nothing else. Each carried three independent fatal faults: a plugin whose count 
 placement outside the addition group that would have initialised it, and a pin read through an
 expression class that returns nothing.
 
-**`WE1` and `WE11` prove the release.** `WE1` is any of the twelve casting at all, which none of them
+**`WE1`, `WE11` and `WE14` prove the release.** `WE1` is any of the twelve casting at all, which none of them
 has ever done. `WE11` is the ungated freeze on Rigor Mortis, which both earlier audit passes called
 clean.
 
@@ -1542,6 +1542,8 @@ clean.
 | WE11 | **The regression row.** Equip **Rigor Mortis** with exactly **one** charge. Cast it, spend the charge, then cast again | - | The second cast does nothing but say the wand is empty. **Before this it still froze**, because its launcher carried a second copy of the freeze with no charge check. On the first cast the freeze should also apply **once**, not twice |
 | WE12 | **Negative.** Cast a real Fireball or Lightning Bolt you have actually learned | - | Unchanged. The copies are separate skills; your own spells read your own skill and cost mana as before |
 | WE13 | **Negative.** Check that no wand costs mana | - | None does. A wand supplies its own power, so `ManaUse` is cleared on every copy |
+| WE14 | **The area row.** Cast **Fire Circles**, **Fireballs**, **Poison Rings**, **The Swarm** or **Fire and Ice**'s Ice Storm into a *group* of enemies | - | **Everything standing in the circle takes damage**, not just one target and not nothing. These five are aimed at the ground, so their damage had to move inside an area manager; placed at the top of the payload it reached no creature at all and the wand would have spent a charge, said **The wand discharges.** and done nothing |
+| WE15 | Cast one of those five at bare ground with nobody near it | - | A charge is spent and the message prints, and nothing takes damage. That is correct, and it is also what a broken area spell looks like, so judge this one by `WE14` rather than by this row |
 
 ### Two checks this audit got wrong, recorded so they are not trusted again
 

@@ -275,34 +275,75 @@ CSkillDescription
 						{
 							Canned Object=Common Objects and Scripts/Damage Spell Recast Timer
 						}
-						Action=CActionDoDamage
+						Action=CAddAIAction
 						{
-							Character Doing Damage=$Instigator
-							Character To Damage=$Trigger
-							Defend Against=1
-							No Friendly Fire Check=0
-							Damages=Array
+							Target Name=$Instigator
+							AI=CAIAreaOvalManager
 							{
-								Item Count=1
-								Damage=CXRPGDamage
+								Marked For Deletion=0
+								Publisher=
+								Radius=CSkillsNamedExpressionExpression
 								{
-									Damage Type=Damage Types/Poison
-									Damage Amount=CRandom
+									Skill=Skills/Fake Wand Spells/Poison Ring
+									Expression Name=radius
+								}
+								Aspect Ratio=0.712766
+								Re Trigger Delay=CConstant
+								{
+									Constant Value=0
+								}
+								Max Times To Trigger=CConstant
+								{
+									Constant Value=1
+								}
+								Re-Check who is in oval each re-trigger=0
+								Every Trigger Action=
+								First Trigger Action=CActionDoDamage
+								{
+									Character Doing Damage=$Instigator
+									Character To Damage=$Trigger
+									Defend Against=1
+									No Friendly Fire Check=0
+									Damages=Array
 									{
-										Operator=
-										Minimum=CSkillsNamedExpressionExpression
+										Item Count=1
+										Damage=CXRPGDamage
 										{
-											Skill=Skills/Fake Wand Spells/Poison Ring
-											Expression Name=MinDamage
-										}
-										Maximum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Poison Ring
-											Expression Name=MaxDamage
+											Damage Type=Damage Types/Poison
+											Damage Amount=CRandom
+											{
+												Operator=
+												Minimum=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Fake Wand Spells/Poison Ring
+													Expression Name=MinDamage
+												}
+												Maximum=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Fake Wand Spells/Poison Ring
+													Expression Name=MaxDamage
+												}
+											}
 										}
 									}
 								}
+								Re-Trigger Action=
+								After Last Trigger Action=
+								Only Trigger if has HP=1
+								Trigger if Player=0
+								Trigger if Enemy=1
+								Trigger Anything=0
+								Max Entities to affect=
+								Seconds Since Last Triggered=0
+								Number Of Times Triggered=0
+								Has Triggered At Least Once=0
+								Has Begin Been Called Before=0
+								Affected Layer Parts=Array
+								{
+									Item Count=0
+								}
 							}
+							Delay Between Adds=0
 						}
 						Action=CPrintCombatTextAction
 						{
@@ -345,7 +386,15 @@ CSkillDescription
 	{
 		Expressions=Array
 		{
-			Array Count=5
+			Array Count=6
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=radius
+				Expression=CConstant
+				{
+					Constant Value=100
+				}
+			}
 			Array Item=CNamedExpressionsArrayItem
 			{
 				Name=MinDamage
