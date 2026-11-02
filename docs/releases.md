@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.87.0 are published** -- 175 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.87.1 are published** -- 176 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows and 0.86.0's sixteen `SD` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows and 0.87.1's nine `WP` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -142,6 +142,105 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.87.1 - the wand that is not a weapon
+
+Reported in play, two symptoms at once: with the Poisonous Touch wand equipped the player **could
+not attack at all**, and the cast ran but applied no visible poison.
+
+Both are one fact, and it is a fact 0.87.0 should have checked before designing around a strike.
+`Inventory Items/Wand` sits in `Character Slot Types/Weapon` and needs one hand, but it carries only
+a model override and two sound hooks. Of the nineteen items in that slot, sixteen carry
+`CPlugInBehaviorAttack` and thirteen carry `CPlugInBehaviorDamage`, the three bows carrying a
+launcher instead. The Wand, the Rod and Unarmed carry none of them. **A wand defines no attack**, so
+nothing can strike with one, and `CPlugInBehaviorStrikeAction` on a wand addition is dead code
+however correct it reads. 0.87.0 put one on Poisonous Touch and one on Rigor Mortis and wrote both
+descriptions around a strike that cannot happen.
+
+### Why the cast applied nothing either
+
+0.87.0 built the cast as a timed buff on `Additional Poison Damage Minimum` and `Maximum`, on the
+strength of a remembered figure of 1,166 references across 573 files. That figure counted the
+attribute being *declared* on every creature. Re-measured across all 7,109 text resources, those two
+attributes are named **four** times: twice as their own `Short Name` and `Long Name`, and twice by
+the one file that granted them, which was Fixt's. No vanilla item, addition, skill, perk or creature
+grants them, and neither the fire, cold nor electrical equivalents are granted by anything either.
+
+So the cast fed an attribute nothing is known to read, in order to improve an attack that cannot be
+made while holding the wand. And the magnitude would have hidden it regardless: 1 to 4 damage
+**in total** spread over 120 seconds, which is 24 ticks of under a sixth of a point.
+
+### What it does now
+
+The cast poisons its target directly, which is also what the old description's second sentence
+promised the strike would do. Nine vanilla player spells deliver damage this way from a launch
+action -- Holy Fire, Turn Undead, Cripple Enemies, Exorcise, Cold Ground, Fire Ground, Electrical
+Burst, Lightning Chain and Corpse Bomb -- and Corpse Bomb is itself a poison damage-over-time, so it
+is the template: `$Caster` damaging `$Trigger`, `Defend Against=1`. The effect now plays on the
+creature poisoned rather than on the wielder.
+
+The numbers come from Snakebite, the Rare poison weapon addition, which states the convention in its
+own description: *"%i[poisonbonus] points of damage every 5 seconds for 20 seconds"* against
+`Damage Amount = poisonbonus x 4` and `Duration = 20`. **The amount is the total and the engine
+ticks every five seconds**, which is why a fixed amount over a long duration vanishes. Poisonous
+Touch now deals **6 a tick for 20 seconds, 24 in all**, against Snakebite's 1 to 6 a tick and 4 to 24
+in all -- the same ceiling, for the price of a charge rather than free and for ever.
+
+Both dead strike behaviours are removed and both descriptions corrected.
+
+### The audit, and what it caught in this release's own work
+
+All eighteen wands were then checked against fourteen conditions, each one traceable to a recorded
+finding rather than to judgment. It caught a defect in the fix above, which had already been built:
+**Poisonous Touch read its numbers off the addition** through
+`CInventoryAdditionsNamedExpressionExpression`. The engine notes record what that class costs -- it
+returns nothing when no addition is bound, and it is why fifteen spell effect numbers came back zero
+and a healing wand healed nothing -- and the split across 92 vanilla skills is 52 files reading the
+skill's own expressions against 3 reading an addition's, all three of them wand spells that never
+ran. The new damage would have multiplied nothing by four and looked exactly like the reported bug.
+
+Poisonous Touch now holds its numbers on the skill as constants and reads them with
+`CSkillsNamedExpressionExpression`, as the other five already did. Constants rather than a random
+roll because the description renders the addition's copy while the effect evaluates the skill's: a
+`CRandom` would print one number and deal another.
+
+### Two things reverted, because this repository had already answered them
+
+Both were built during this session and both are undone. They are recorded because the cost was not
+the code, it was re-deriving documented facts from scratch.
+
+**The 450 baseline is cosmetic.** A player reported Poisonous Touch's baseline skill reading 450
+rather than 0, which is correct: an empty `Initial Value` stores 450, five vanilla wand spells
+shipped with one, and no change to a `.Skill` can reach a value a character file has baked. All six
+differentials were deepened by 450 to clear it. That was unnecessary -- `engine-notes.md` already
+records that *the window shows the stored value while a cast evaluates the derived one* -- and it was
+risky, because an off-ladder differential makes the skill window draw nothing. Reverted to the
+ladder: 24, 49, 74, 89, 109, 134.
+
+**The cast-requirement probe was already run.** Two wands were instrumented to find out whether
+`Display and Cast Requirements` can test for an inventory item. `engine-notes.md` already records
+that it cannot, that nothing binds `$Instigator` in the skill window, and that a check placed there
+stops the spell casting altogether. The probe would have made Revelation and Lockpicking uncastable.
+Cleared. A summary line in the notes contradicted the test table two rows above it, which is part of
+how the experiment came to be repeated; that line is fixed, and the three new facts above are added.
+
+### Gates
+
+Gate 0 green on 936 files. Nine `WP` rows in [`qa.md`](qa.md); **`WP1` proves the release**, because
+Poisonous Touch's cast has still never been seen to deliver anything: 0.87.0 shipped it behind a
+permanently false gate, the fix for that left it resting at castable, and the effect it then ran fed
+an attribute nothing grants.
+
+**What this release does not claim.** Twelve wands still do not work. Each carries a
+`CPlugInBehaviorWand` with `Charges Remaining=0` and `Is Valid=0`, which is disabled before the first
+cast; each sits in `Inventory/!None` rather than `Wand Additions`, so the plugin is never initialised
+and setting those fields would not help; and eleven of the twelve pin a real player skill through the
+same expression class that returns nothing, so the one effect that would have worked regardless does
+not either. A player who finds a Wand of Fireball gets an item that casts nothing and buffs nothing.
+**Spikes Major** is the single exception: its pin is a plain constant and really does raise your Spike
+skill by 25. Converting the twelve is 0.88.0, and it needs more than new files -- the differential
+ladder holds about five usable rows per branch, the six existing wand spells already fill one branch,
+and thirteen spells want three.
+
 ## 0.87.0 - wands, and how you are supposed to use them
 
 A player reported wands working inconsistently: one "missed on use", and neither his old nor his new
@@ -167,7 +266,15 @@ charge check of any kind**, so it was a free unlimited poison weapon at zero cha
 
 All three are fixed. The buff is implemented against `Additional Poison Damage Minimum` and
 `Maximum`, which are the game's own damage-system attributes with 1,166 references across 573 files,
-so the mechanism is the engine's rather than invented. The strike now costs a charge. The spell is
+so the mechanism is the engine's rather than invented. The strike now costs a charge.
+
+> **Both of those sentences are wrong, corrected by 0.87.1.** The 1,166-across-573 figure counted
+> the attribute being *declared* on every creature in the game. Re-measured across all 7,109 text
+> resources, those two attributes are named **four** times: twice as their own `Short Name` and
+> `Long Name`, and twice by the file granting them, which was this one. Nothing in vanilla grants
+> them, and nor are the fire, cold or electrical equivalents granted by anything, so whether the
+> engine reads any of them is untested. And the strike cannot cost a charge because the strike cannot
+> happen: a wand carries no attack. The spell is
 reparented with the other wand spells and given the `poison over time` HUD icon, so a running buff
 is visible. Implementing the cast created a double charge -- the old `CPlugInBehaviorWand` still
 tracked an engine count while the new spell spent an item -- so it converts to the skill-pin shape
@@ -190,6 +297,12 @@ targets settles it, and it corrected two of my own first attempts:
 | Rigor Mortis, Poisonous Touch | `$trigger`, the creature struck | **strike or cast** |
 | Greater Healing, Lesser Healing | an area centred on the wielder | cast only |
 | Lockpicking, Revelation | `$Instigator`, the wielder | cast only |
+
+> **This table is wrong, corrected by 0.87.1.** All six are cast only, because **no** wand can be
+> struck with. The reasoning above asks what each effect targets, which is the right question one
+> step too late: a wand carries no `CPlugInBehaviorAttack` and no `CPlugInBehaviorDamage`, so there
+> is no attack to make and `CPlugInBehaviorStrikeAction` on a wand never fires. 0.87.1 removes the
+> two strike behaviours this release added and the two descriptions written around them.
 
 The first pass restored the strike on all five, which gated a heal and a lockpicking bonus behind
 winning a melee roll against an enemy. Worse for Lockpicking: **a lock cannot be struck at all.**

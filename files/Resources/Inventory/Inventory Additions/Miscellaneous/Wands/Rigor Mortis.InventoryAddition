@@ -2,7 +2,7 @@ CInventoryAddition
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=2
+		Item Count=1
 		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
 			Modifier Description=Wand spell pin
@@ -22,108 +22,6 @@ CInventoryAddition
 				}
 			}
 		}
-		PlugIn Behavior=CPlugInBehaviorStrikeAction
-		{
-			Strike Action=CIfExpressionAction
-			{
-				If Expression=CIsGreaterThan
-				{
-					Operand1=CExpressionHitMargin
-					{
-					}
-					Operator=
-					Operand2=CConstant
-					{
-						Constant Value=0
-					}
-				}
-				Character to get attributes from=$Instigator
-				Then=CIfAction
-				{
-					If=CActionCheckForInventoryItem
-					{
-						Who to give check=$Instigator
-						Inventory Item To Check For=Inventory Items/Wand Charge
-					}
-					Then=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=4
-							Action=CAssignTemporaryTaskAction
-							{
-								Target=$Trigger
-								Temporary Task AI=CWaitAI
-								{
-									Marked For Deletion=0
-									Publisher=
-									Time To Wait=5
-									Time Left=0
-									Done Action=CSendAIDoneMessage
-									{
-										Target=$Trigger
-									}
-									Behavior to run=
-									Delete AI When Done=0
-									Remove Wait AI If Actor Dies=1
-								}
-								Original AI Type=CSkeletonAI
-								Completion Message to wait for=AI Done
-								Suppress can't assign error=0
-							}
-							Action=CAddCharacterModifierToCharacterAction
-							{
-								Modifier Description=
-								Modification is permanent=0
-								Character to modify=$trigger
-								Modifiers=Array
-								{
-									Item Count=1
-									Modifier=CCharacterModifierDerivedAttribute
-									{
-										Modification Amount=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Rigor Mortis
-											Expression Name=amount
-										}
-										Modification amount is a percent=1
-										Allow Accumulation=0
-										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
-									}
-								}
-								OPTIONAL Duration=CSkillsNamedExpressionExpression
-								{
-									Skill=Skills/Fake Wand Spells/Rigor Mortis
-									Expression Name=duration
-								}
-								Expression Context=$Instigator
-							}
-							Action=CPrintCombatTextAction
-							{
-								Text to print=The wand discharges.
-								Character to show text to=$Instigator
-								Emphasize=0
-								Suppress Duplicates=0
-							}
-							Action=CActionRemoveInventoryItem
-							{
-								Who to remove from=$Instigator
-								Inventory Item To remove=Inventory Items/Wand Charge
-							}
-						}
-					}
-					Else=CPrintCombatTextAction
-					{
-						Text to print=The wand has no charges left
-						Character to show text to=$Instigator
-						Emphasize=0
-						Suppress Duplicates=1
-					}
-					Return failure if the If failes=0
-				}
-				Else=
-			}
-		}
 	}
 	Value=CConstant
 	{
@@ -137,7 +35,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=Rigor Mortis
-	Description=The spell cast by this wand freezes the target in place for 5 seconds. Upon regaining movement, the target is slowed to %i[showamount]% of its base movement rate as it shakes off the effects of its touch with death. This slow effect lasts for %i[duration] seconds, and is non-cumulative. Strike with the wand or cast it from your spell list; each use draws one Wand Charge.
+	Description=The spell cast by this wand freezes the target in place for 5 seconds. Upon regaining movement, the target is slowed to %i[showamount]% of its base movement rate as it shakes off the effects of its touch with death. This slow effect lasts for %i[duration] seconds, and is non-cumulative. Cast it from your spell list; each cast draws one Wand Charge.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandLightning
 	Minimum Value=2590

@@ -6,11 +6,10 @@ CSkillDescription
 		PlugIn Behavior=CPlugInBehaviorSpell
 		{
 			ManaUse=
-			Duration=CInventoryAdditionsNamedExpressionExpression
+			Duration=CSkillsNamedExpressionExpression
 			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
+				Skill=Skills/Fake Wand Spells/Poison Touch
 				Expression Name=duration
-				Value=0
 			}
 			Automatically disable recasting of spell for duration=1
 			Maximum Range=
@@ -48,51 +47,43 @@ CSkillDescription
 					Action=Array
 					{
 						Item Count=4
-						Action=CAddCharacterModifierToCharacterAction
+						Action=CActionDoDamage
 						{
-							Modifier Description=
-							Modification is permanent=0
-							Character to modify=$Instigator
-							Modifiers=Array
+							Character Doing Damage=$Caster
+							Character To Damage=$Trigger
+							Defend Against=1
+							No Friendly Fire Check=0
+							Damages=Array
 							{
-								Item Count=2
-								Modifier=CCharacterModifierDerivedAttribute
+								Item Count=1
+								Damage=CXRPGDamageOverTime
 								{
-									Modification Amount=CInventoryAdditionsNamedExpressionExpression
+									Damage Type=Damage Types/Poison
+									Damage Amount=CMultiply
 									{
-										InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
-										Expression Name=damagebonus
-										Value=0
+										Operand1=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Fake Wand Spells/Poison Touch
+											Expression Name=damagebonus
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=4
+										}
 									}
-									Modification amount is a percent=0
-									Allow Accumulation=1
-									Derived character attribute to modify=Derived Character Attributes/Damage Related/Additional Poison Damage Minimum
-								}
-								Modifier=CCharacterModifierDerivedAttribute
-								{
-									Modification Amount=CInventoryAdditionsNamedExpressionExpression
+									Duration=CSkillsNamedExpressionExpression
 									{
-										InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
-										Expression Name=damagebonus
-										Value=0
+										Skill=Skills/Fake Wand Spells/Poison Touch
+										Expression Name=duration
 									}
-									Modification amount is a percent=0
-									Allow Accumulation=1
-									Derived character attribute to modify=Derived Character Attributes/Damage Related/Additional Poison Damage Maximum
 								}
 							}
-							OPTIONAL Duration=CInventoryAdditionsNamedExpressionExpression
-							{
-								InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
-								Expression Name=duration
-								Value=0
-							}
-							Expression Context=$Instigator
 						}
 						Action=CSpawnEffectAction
 						{
 							Explosion Model=Spell Effects/Hits and Effects/Target Affected/Wand of Poison Touch
-							Location Entity=$Instigator
+							Location Entity=$Trigger
 							Make effect a child of the location entity=1
 							X Offset=0
 							Y Offset=0
@@ -132,35 +123,42 @@ CSkillDescription
 	{
 		Expressions=Array
 		{
-			Array Count=0
+			Array Count=2
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=duration
+				Expression=CConstant
+				{
+					Constant Value=20
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=damagebonus
+				Expression=CConstant
+				{
+					Constant Value=6
+				}
+			}
 		}
 	}
 	Parent Skill=Skills/Wand/Charged Spells
 	Value Type=Parents value minus differential
-	Value Differential=0
+	Value Differential=134
 	Can be selected as Tag Skill=0
 	Image=Temporary Modifier HUD Icons/Damage Types Over Time/poison over time
 	Amount To Increase Value By With Each Upgrade=1
 	Minimum Value=-5700
 	Maximum Value=5700
 	Sort Priority=0
-	Initial Value=
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
 	Initial Minimum & Maximum=0.000000,0.000000
 	Display and Cast Requirements=Array
 	{
-		Item Count=1
-		Requirements=CIsEqualTo
-		{
-			Operand1=CConstant
-			{
-				Constant Value=0
-			}
-			Operator=
-			Operand2=CConstant
-			{
-				Constant Value=1
-			}
-		}
+		Item Count=0
 	}
 	Cast Requirements=Array
 	{

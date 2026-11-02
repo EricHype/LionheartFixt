@@ -1511,6 +1511,45 @@ and **only ever as stored state** -- no expression class can read a charge count
 nine spend their charges correctly cannot be established from the files at all. The playtest kit now
 hands over all eighteen wands and a stack of charges, which is the only way to find out.
 
+**Corrected by 0.87.1.** There are **twelve**, not nine, and they are not merely unverified: an
+audit of all eighteen found each of the twelve carrying three independent faults, any one of which
+is fatal. `WN12` asks the tester to confirm those wands are "all unchanged", which they are, but it
+reads as though unchanged meant working. It does not.
+
+## 0.87.1 - the wand that is not a weapon
+
+Reported in play, two symptoms with the Poisonous Touch wand equipped: **could not attack at all**,
+and the cast worked but applied no visible poison. Both are one fact. `Inventory Items/Wand` sits in
+the Weapon slot but carries no `CPlugInBehaviorAttack` and no `CPlugInBehaviorDamage`, so a wand
+defines no attack and nothing can strike with one. 0.87.0's strike path was therefore dead code, and
+0.87.0's own strike-or-cast table is wrong.
+
+**`WP1` is the row that proves the release**, because Poisonous Touch's cast has still never
+delivered anything in play: 0.87.0 shipped it behind a permanently false gate, 0.87.0's fix for that
+rested the spell at castable, and the effect it then ran fed an attribute nothing in the game grants.
+Three releases of this one wand have been written and none has been seen to work.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WP1 | **The release.** Take Poisonous Touch and charges, equip it, and cast at an enemy | - | The enemy is poisoned, the effect plays **on it** rather than on you, **The wand discharges.**, one charge gone. 6 poison every 5 seconds for 20 seconds, 24 in all |
+| WP2 | Count the ticks | - | Four of them, five seconds apart, 6 damage each. If the number is 0 the effect is reading an expression off the wrong object again, which is the defect this release found in its own predecessor |
+| WP3 | Read Poisonous Touch's description against what WP2 showed | - | It promises exactly 6 points every 5 seconds for 20 seconds. The numbers are constants on both the skill and the addition precisely so the text and the effect cannot disagree |
+| WP4 | **Negative.** Cast it with no charges | - | **The wand has no charges left**, nothing poisoned, nothing spent |
+| WP5 | **Negative.** Try to attack with any wand equipped | - | You cannot, and that is vanilla. A wand has no attack behaviour. No wand description promises a strike any more; two did before |
+| WP6 | **The unequip row.** Equip Poisonous Touch, select its spell, cast, then swap to another wand and try again | - | The spell is gone from your list. It rests at -134 and only the wand's pin lifts it. This is the bug reported against 0.87.0 |
+| WP7 | Equip **Rigor Mortis** and cast it | - | Unchanged and still working: freeze, slow, one charge. Its dead strike behaviour was removed, so striking with it does nothing -- which is what it always did |
+| WP8 | **The cosmetic one.** Look at Poisonous Touch's baseline on the skill screen | - | It may read **450**. That is the stored value, not the derived one, and the cast evaluates `parent - differential`. Any character created before 0.74.0 reads 450 for five wand spells and casts none of them. Nothing a mod ships can change a value a character file has baked |
+| WP9 | **Negative.** Cast Lesser Healing, Greater Healing, Lockpicking, Revelation | - | All four unchanged. Only their differentials were touched, and then put back |
+
+### What this does not claim
+
+**Twelve wands still do not work, and this release does not fix them.** The audit is in
+`docs/releases.md`; the short form is that each of the twelve carries a dead plugin, sits outside the
+addition group that would initialise it, and pins a real player skill through an expression class
+that returns nothing. A player who finds a Wand of Fireball gets an item that casts nothing and
+buffs nothing. The one exception is **Spikes Major**, whose pin is a plain constant and does raise
+your real Spike skill by 25.
+
 ## 0.86.1 - the cloak that was a book
 
 Reported in play: a cloak on the ground appears as a book. It is a vanilla asset defect, not a Fixt
