@@ -1,8 +1,8 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.86.1 are published** -- 174 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.87.0 are published** -- 175 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
-**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows and 0.86.0's sixteen `SD` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release.
+**The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows and 0.86.0's sixteen `SD` rows. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
 The diagnosis lives in [`design.md`](design.md); the
 map-by-map work lives in [`plan.md`](plan.md). This document
@@ -141,6 +141,88 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.87.0 - wands, and how you are supposed to use them
+
+A player reported wands working inconsistently: one "missed on use", and neither his old nor his new
+stack of Wand Charges depleted. He asked whether it was something on his end.
+
+It was not, and the two symptoms were one event. Fixt had converted five wands from being struck to
+being cast and had not said so anywhere. He struck, as vanilla taught and as Poisonous Touch still
+did, the swing missed, and a miss spends nothing and does nothing. The cast path was correct and
+complete the whole time: charge checked, effect applied, charge removed, no mana cost, no
+requirements. Nobody had ever walked it.
+
+### What was actually wrong
+
+**Every description was audited against its own code**, on the mismatches a file can prove:
+placeholders with no matching named expression, wielder-versus-target claims, the named spell
+against what `Spell=` points at, and charge-currency promises against what spends. Four wands
+needed work.
+
+**Poisonous Touch was three things at odds.** Its text promised a timed buff, every physical attack
+carrying poison. Its cast did **nothing at all** -- a 60-line skill with one behaviour, no launch
+action, parented to `Skills/Thieving/Barter`. And its strike applied direct poison damage with **no
+charge check of any kind**, so it was a free unlimited poison weapon at zero charges.
+
+All three are fixed. The buff is implemented against `Additional Poison Damage Minimum` and
+`Maximum`, which are the game's own damage-system attributes with 1,166 references across 573 files,
+so the mechanism is the engine's rather than invented. The strike now costs a charge. The spell is
+reparented with the other wand spells and given the `poison over time` HUD icon, so a running buff
+is visible. Implementing the cast created a double charge -- the old `CPlugInBehaviorWand` still
+tracked an engine count while the new spell spent an item -- so it converts to the skill-pin shape
+the other five use: one currency, spent once, whether struck or cast.
+
+**Lockpicking claimed to open locks.** It does not and never did: it raises Lockpick for a duration,
+so the lock still has to be picked. That sentence is replaced with one that says so.
+
+**The Swarm named a spell that does not exist.** Its text said "the Tribal spell Swarm". No skill
+anywhere is called Swarm; the spell is `Insect Plague`, which is also its display name, and the wand
+already pointed at it. The text now names what the player will actually see.
+
+### Which wands can be struck, and why only two
+
+A strike only makes sense where the effect lands on the creature struck. Checking what each one
+targets settles it, and it corrected two of my own first attempts:
+
+| | targets | |
+|---|---|---|
+| Rigor Mortis, Poisonous Touch | `$trigger`, the creature struck | **strike or cast** |
+| Greater Healing, Lesser Healing | an area centred on the wielder | cast only |
+| Lockpicking, Revelation | `$Instigator`, the wielder | cast only |
+
+The first pass restored the strike on all five, which gated a heal and a lockpicking bonus behind
+winning a melee roll against an enemy. Worse for Lockpicking: **a lock cannot be struck at all.**
+All 198 locked level parts in the game carry `Has Hit Points=0`, so they are not attack targets, and
+a strike with that wand could only ever land on a creature.
+
+### Saying so
+
+The real fix for "wands do not work" is that every outcome now speaks. The empty case already
+printed **The wand has no charges left**; success was silent, which is the difference between
+believing it worked and watching it work. **The wand discharges.** is now on all seven paths that
+spend a charge, using `CPrintCombatTextAction` as the game does in 279 places.
+
+So the three outcomes are distinguishable without reading any files:
+
+* the effect happens and **The wand discharges.**
+* **The wand has no charges left**
+* silence, which means you missed, and nothing was spent
+
+That also makes the test self-checking. Hold a known number of charges, use the wand until the
+message changes, and count. `WN4` is that row.
+
+### Gates
+
+Gate 0 green on 936 files. Thirteen `WN` rows in [`qa.md`](qa.md); **`WN1` and `WN6` prove the
+release**, the reported symptom and the cast half of Poisonous Touch, which has never worked in the
+game's history and so has no before-state to compare against.
+
+**Two things this release does not claim.** The nine engine-charge wands are unverified: `Charges
+Remaining` appears 30 times and only ever as stored state, so no expression can read a charge count
+and the files cannot settle whether those nine spend correctly. And charges picked up under an older
+build still sit in their own stack rather than merging, because the per-instance count is serialised
+-- cosmetic, and the thing that made the reporter doubt his save rather than the wands.
 
 ## 0.86.1 - the cloak that was a book
 

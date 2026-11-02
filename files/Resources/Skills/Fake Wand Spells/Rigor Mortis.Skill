@@ -25,7 +25,7 @@ CSkillDescription
 				{
 					Action=Array
 					{
-						Item Count=3
+						Item Count=4
 						Action=CAssignTemporaryTaskAction
 						{
 							Target=$Trigger
@@ -73,6 +73,13 @@ CSkillDescription
 								Expression Name=duration
 							}
 							Expression Context=$Instigator
+						}
+						Action=CPrintCombatTextAction
+						{
+							Text to print=The wand discharges.
+							Character to show text to=$Instigator
+							Emphasize=0
+							Suppress Duplicates=0
 						}
 						Action=CActionRemoveInventoryItem
 						{

@@ -48,7 +48,7 @@ CSkillDescription
 				{
 					Action=Array
 					{
-						Item Count=2
+						Item Count=3
 						Action=CAddAIAction
 						{
 							Target Name=$caster
@@ -117,6 +117,13 @@ CSkillDescription
 								}
 							}
 							Delay Between Adds=0
+						}
+						Action=CPrintCombatTextAction
+						{
+							Text to print=The wand discharges.
+							Character to show text to=$Instigator
+							Emphasize=0
+							Suppress Duplicates=0
 						}
 						Action=CActionRemoveInventoryItem
 						{

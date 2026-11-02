@@ -49,7 +49,7 @@ CSkillDescription
 				{
 					Action=Array
 					{
-						Item Count=3
+						Item Count=4
 						Action=CAddCharacterModifierToCharacterAction
 						{
 							Modifier Description=
@@ -87,6 +87,13 @@ CSkillDescription
 							Height Offset=0
 							Play Default Sound=1
 							Action to execute After Effect=
+						}
+						Action=CPrintCombatTextAction
+						{
+							Text to print=The wand discharges.
+							Character to show text to=$Instigator
+							Emphasize=0
+							Suppress Duplicates=0
 						}
 						Action=CActionRemoveInventoryItem
 						{

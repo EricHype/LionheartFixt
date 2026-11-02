@@ -1477,6 +1477,40 @@ whether they work; note any body, polygon or prop that is off the floor or in a 
 | NO94 | The same carrying the **Necromancer** title | - | `53 the same trade`: *"The difference is not skill and it is certainly not mercy. It is that I asked."* |
 | NO95 | Ask him about his visions carrying **Stargazer** | - | `54 the stars you read`. This perk is read in exactly one other place in the game |
 | NO96 | Reach the seer with none of those four | - | None of the four replies is offered and his conversation is exactly as vanilla left it |
+## 0.87.0 - wands, and how you are supposed to use them
+
+A player reported wands working inconsistently: one "missed on use", and neither his old nor his new
+stack of Wand Charges depleted. Both symptoms were one event. Fixt had moved these wands from
+striking to casting without saying so, he struck as vanilla had taught him, the swing missed, and a
+miss spends nothing. Everything below follows from pulling that thread.
+
+**`WN1` and `WN6` are the rows that prove the release.** `WN1` is the reported symptom. `WN6` is the
+cast half of Poisonous Touch, which has never worked in the game's history, so there is no
+before-state to compare against and nothing but play will show whether the numbers are sane.
+
+| # | Step | Say | Expect |
+|---|---|---|---|
+| WN1 | **The report.** Take Lesser Healing and some Wand Charges, equip the wand, and **strike** something with it | - | Nothing happens, and that is now correct: it is a cast-only wand. The inventory tooltip says so, in as many words. Before this, nothing happened and nothing told you why |
+| WN2 | Cast Lesser Healing from the spell list with charges in hand | - | You and a nearby ally heal, the combat log says **The wand discharges.**, and exactly one Wand Charge leaves your pack |
+| WN3 | Cast it with **no** charges | - | **The wand has no charges left**, and nothing is spent. The silent failure is gone |
+| WN4 | **The counting row.** Note how many Wand Charges you hold, then cast until the message changes | - | The number of successful casts equals the number of charges you held. If you get fewer, something consumes without delivering; if more, something delivers without consuming |
+| WN5 | Equip **Rigor Mortis** and strike a creature | - | It freezes, **The wand discharges.**, one charge gone. Now deliberately **miss**: nothing happens and **no charge is spent** |
+| WN6 | **The new half.** Equip **Poisonous Touch** and *cast* it, then attack with any weapon | - | Your attacks carry poison for the duration, and a poison icon sits on the status bar while it runs. This cast did nothing at all before: its spell was 60 lines with no effect in it, parented to `Skills/Thieving/Barter` |
+| WN7 | Strike a creature with Poisonous Touch instead | - | The creature is poisoned directly, one charge spent. **Before this the strike was free and unlimited** -- no charge check of any kind, so it was an infinite poison weapon |
+| WN8 | **Negative.** Strike with Poisonous Touch at zero charges | - | **The wand has no charges left**, and no poison is applied. This is the exploit the release closes |
+| WN9 | Read **Lockpicking**'s description, then use it on a locked chest | - | It says the lock still has to be picked and the wand only makes you better at it. It raises Lockpick for a duration; it does not open anything. Its old text claimed it "will open most non-magical locks", which it never did |
+| WN10 | Try to **strike** a locked chest or door with any wand | - | You cannot. Every one of the 198 locked level parts in the game carries `Has Hit Points=0`, so a lock is not an attack target. This is why Lockpicking and Revelation are cast-only |
+| WN11 | Read **The Swarm**'s description, then look for the spell it names | - | It names **Insect Plague**, which is what the wand casts and what the spell calls itself. It used to name "Swarm", and no skill by that name exists anywhere |
+| WN12 | **Negative.** Use Fireballs, Lightning Bolts, Spikes, Fire Circles, Poison Rings, Slowing, Fire and Ice, The Mage | - | All unchanged, and **your Wand Charge stack does not move** -- these nine carry their own charges, which is a separate system this release does not touch |
+| WN13 | **Negative, for an existing save.** Load a save made before 0.87.0 that holds Wand Charges | - | Charges picked up under an older build sit in their own stack and never merge with new ones, because the per-instance count is serialised. Cosmetic, still unfixed, and the thing that made the reporter doubt his save rather than the wands |
+
+### What this does not claim
+
+The nine engine-charge wands were not verified. `Charges Remaining` appears 30 times in the game
+and **only ever as stored state** -- no expression class can read a charge count -- so whether those
+nine spend their charges correctly cannot be established from the files at all. The playtest kit now
+hands over all eighteen wands and a stack of charges, which is the only way to find out.
+
 ## 0.86.1 - the cloak that was a book
 
 Reported in play: a cloak on the ground appears as a book. It is a vanilla asset defect, not a Fixt

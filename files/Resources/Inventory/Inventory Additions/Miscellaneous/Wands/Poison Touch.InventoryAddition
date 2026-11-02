@@ -19,47 +19,89 @@ CInventoryAddition
 					}
 				}
 				Character to get attributes from=$Instigator
-				Then=CActionDoDamage
+				Then=CIfAction
 				{
-					Character Doing Damage=$instigator
-					Character To Damage=$trigger
-					Defend Against=0
-					No Friendly Fire Check=0
-					Damages=Array
+					If=CActionCheckForInventoryItem
 					{
-						Item Count=1
-						Damage=CXRPGDamageOverTime
+						Who to give check=$Instigator
+						Inventory Item To Check For=Inventory Items/Wand Charge
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
 						{
-							Damage Type=Damage Types/Poison
-							Damage Amount=CInventoryAdditionsNamedExpressionExpression
+							Item Count=3
+							Action=CActionDoDamage
 							{
-								InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
-								Expression Name=damagebonus
-								Value=0
+								Character Doing Damage=$instigator
+								Character To Damage=$trigger
+								Defend Against=0
+								No Friendly Fire Check=0
+								Damages=Array
+								{
+									Item Count=1
+									Damage=CXRPGDamageOverTime
+									{
+										Damage Type=Damage Types/Poison
+										Damage Amount=CInventoryAdditionsNamedExpressionExpression
+										{
+											InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
+											Expression Name=damagebonus
+											Value=0
+										}
+										Duration=CInventoryAdditionsNamedExpressionExpression
+										{
+											InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
+											Expression Name=duration
+											Value=0
+										}
+									}
+								}
 							}
-							Duration=CInventoryAdditionsNamedExpressionExpression
+							Action=CPrintCombatTextAction
 							{
-								InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
-								Expression Name=duration
-								Value=0
+								Text to print=The wand discharges.
+								Character to show text to=$Instigator
+								Emphasize=0
+								Suppress Duplicates=0
+							}
+							Action=CActionRemoveInventoryItem
+							{
+								Who to remove from=$Instigator
+								Inventory Item To remove=Inventory Items/Wand Charge
 							}
 						}
 					}
+					Else=CPrintCombatTextAction
+					{
+						Text to print=The wand has no charges left
+						Character to show text to=$Instigator
+						Emphasize=0
+						Suppress Duplicates=1
+					}
+					Return failure if the If failes=0
 				}
 				Else=
 			}
 		}
-		PlugIn Behavior=CPlugInBehaviorWand
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
 		{
-			Spell=Skills/Fake Wand Spells/Poison Touch
-			Maximum Charges=CInventoryAdditionsNamedExpressionExpression
+			Modifier Description=Wand spell pin
+			Modification is permanent=0
+			Modifiers=Array
 			{
-				InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Wands/Poison Touch
-				Expression Name=numberofcharges
-				Value=0
+				Item Count=1
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=54
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=0
+					Skill to modify=Skills/Fake Wand Spells/Poison Touch
+				}
 			}
-			Charges Remaining Is Valid=0
-			Charges Remaining=0
 		}
 	}
 	Value=CConstant
@@ -74,7 +116,7 @@ CInventoryAddition
 		Item Count=0
 	}
 	Display Name=Poisonous Touch
-	Description=All physical attacks done by the wielder of this wand do %i[damagebonus] points of poison damage for the next %i[duration] seconds.
+	Description=Cast it and every physical attack the wielder makes carries %i[damagebonus] points of poison for %i[duration] seconds. Strike with it instead and the creature struck is poisoned directly. Either way one Wand Charge is drawn.
 	Item Grade=Basic
 	Inventory Window=Items/Inventory Images/Misc Items/WandSlow
 	Minimum Value=2000
