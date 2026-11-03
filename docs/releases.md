@@ -295,9 +295,8 @@ the same generator from the same template. `ScimitarSpecial` is the only one of 
 was itself repaired, and its repair is the same edit, same axis and same script as
 `BattleAxeBetter`'s.
 
-Nothing has rolled a Composite Long Bow, which leaves `WM7` open. `Magic Bows and Xbows` reaches the
-plain Long Bow far more often, and the worst case there is a Better-enchanted Composite showing
-`BowBetter` instead of `BowSpecial` -- a cosmetic downgrade on one item, not a defect.
+A Composite Long Bow has been rolled and held, carrying `of Dodging`, but `WM7` stays open because
+that addition is **Basic** grade and names no mesh. See below.
 
 ### Two rows the sessions did not actually close
 
@@ -314,11 +313,27 @@ with byte-identical content apart from that one group line, which
 the engine resolves additions-by-path out of a save correctly. So `WM9` fails only if the engine
 re-validates group membership on load, and nothing in the data suggests it does.
 
-**`WM7` is open and the Composite Long Bow seen in play was plain.** No save references a
-`Composite/` addition, so what was observed was an unenchanted Composite rendering `BowSpecial` --
-the control, not the test. Left open deliberately: `Magic Bows and Xbows` reaches the plain Long Bow
-far more often, and the worst case is one item showing `BowBetter` instead of `BowSpecial` when
-enchanted.
+**`WM7` is open, and a magic Composite Long Bow *was* held.** Those are both true, and the first
+read of the save got it wrong in a way worth recording.
+
+Two saves carry `Origonal Item=Inventory Items/LongBow Composite` with the addition `of Dodging`, so
+the player did have an enchanted Composite and it rendered correctly. But `of Dodging` is **Basic**
+grade, and Basic additions name no mesh at all -- so that bow had nothing to get wrong. `WM7` asks
+whether a **Better or Special** addition on a Composite holds `BowSpecial` rather than downgrading
+to `BowBetter`, and only a graded addition exercises it.
+
+What that save *does* close had not been confirmed by anything else: `of Dodging` is reachable from
+the Composite only through `Composite Bow Additions` nesting `Bow Shared Additions`, so **the
+Composite's own pool is wired and delivering.**
+
+**The method error is the lesson.** The first check asked which addition *paths* appeared anywhere in
+the save and concluded the bow was unenchanted. The three `LongBow Composite` strings it found were
+Raymundo the Bowyer's stock generator -- the recipe, not an item -- and it never looked for
+`Origonal Item=`, which is what marks a held weapon. **Proximity in a save file is not ownership**,
+and a generator entry names a base item exactly as an instance does.
+
+Left open deliberately even so: `Magic Bows and Xbows` reaches the plain Long Bow far more often, and
+the worst case is one item showing `BowBetter` instead of `BowSpecial` when enchanted.
 
 **Firing was checked structurally rather than played.** Three bow additions carry a launcher
 behaviour and `Replaces matching plugins=1`, and this release inserts a second plugin into those
