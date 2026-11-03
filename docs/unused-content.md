@@ -29,7 +29,7 @@ wrong are more reusable than the results.
 - [What to pick up next](#what-to-pick-up-next)
 - [How this was measured](#how-this-was-measured)
 - [**Voiceover on nodes nobody can reach**](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted) -- the current backlog, and the richest vein left
-- [**Orphaned art**](#orphaned-art----the-axis-this-survey-never-looked-at) -- 13 icons, 10 pickups and 21 meshes named by nothing, the five that are one field each, and who Bjon was
+- [**Orphaned art**](#orphaned-art----the-axis-this-survey-never-looked-at) -- 13 icons, 10 pickups and 21 meshes named by nothing, the five that are one field each, and who Bjon was, plus [a design for the buckler](#the-buckler-designed)
 
 ---
 
@@ -2215,6 +2215,111 @@ exist, a pool decided and a placement. Treat it as a design item, not a wiring i
 Worth noting what it already has that the magic-weapon work in 0.89.0 had to build by hand: the
 composite registration. A missing registry name renders nothing at all, silently, and the buckler's
 is already there.
+
+#### The buckler, designed
+
+A fourth rung on the same ladder is the least interesting thing to do with it. The three shields are
+**one** design -- flat mitigation, AC and crushing/piercing/slashing resistance climbing together,
+paid for with escalating Unarmed and casting penalties:
+
+| | AC | C/P/S resist | magic speed | Unarmed | enc | value |
+|---|---|---|---|---|---|---|
+| Small | +2 | 3/3/3 | -- | -5 | 3 | 2 |
+| Medium | +4 | 5/5/5 | -0.03 | -10 | 5 | 5 |
+| Large | +7 | 15/10/10 | -0.08 | -15 | 10 | 15 |
+
+A buckler is not a smaller wall. Historically it is a fist shield strapped to the forearm, used to
+parry and to punch, which is the opposite proposition: it mitigates nothing and improves the fight.
+
+**The proposed line:**
+
+| | AC | C/P/S resist | Unarmed | crit chance | enc | value |
+|---|---|---|---|---|---|---|
+| **Buckler** | +1 | **none** | **+4** | **+2** | 1 | 1 |
+
+**+4 Unarmed is the identity, and it completes a set with exactly one gap.** Seventeen things in the
+game modify the Unarmed skill -- the Monk belt at +10, the Weng Choi perk at +20, TRUE CROSS at +10,
+Dervish of the Crescent at +5, Gauntlets of La Mancha at +4, Feral Power and Wyrm at +4, Brawler and
+Drunken Boxing and Dark Majesty at +3 -- plus three rings and belts driving
+`Unarmed Damage Multiplier`. An unarmed build has gear for every slot **except the off-hand**,
+because all four shields penalise it: -5, -10, -15, and the Lion Shield -10. +4 matches
+`Gauntlets of La Mancha`, the closest comparable and itself an unarmed item.
+
+It is also proven to do work rather than being a cosmetic skill number:
+`UnarmedDamageMinimum` and `UnarmedDamageMaximum` both read `Skills/Fighting/Unarmed`, and
+`UnarmedDamage` composes those with `MeleeDamage` and the multiplier. +4 raises the floor and the
+ceiling of unarmed damage.
+
+**+2 crit, and the reason it is not +5.** `CriticalChance` reads:
+
+    Luck + IF (Bow equipped OR Crossbow equipped)
+             THEN Ranged skill (50..300 scaled to 1..10) + Perception band (0..4)
+             ELSE 0
+
+Luck is added **unconditionally**, so crit is live for melee and unarmed characters and a flat
+modifier stacks on top whatever is equipped -- `Blade of Berserker` and `Sacred Scimitar` are not
+broken. But that also means a melee character's *entire* crit chance is their Luck, and the
+Perception bands in that expression top out at 12, so Luck sits somewhere around 5 to 10. **+5 would
+roughly double it**, which makes the buckler a major offensive item competing hard with Shield Small
+for every melee build. +2 is a real 20 to 40 per cent relative gain and nowhere near a reason to drop
+a shield you wanted.
+
+**+1 AC is for legibility, not power.** A shield-slot item with zero armour value reads as broken to
+a player who picks it up. +1 sits below Small's +2 and changes no comparison.
+
+**The balance exposure is close to nil**, which is the strongest argument for this version over the
+two I tried first. At +1 AC and no resistance, no armed build has a reason to take it over a real
+shield, so it never competes. An unarmed character currently carries **nothing** in that hand, so for
+them it is an upgrade from empty. Nothing existing needs re-tuning.
+
+**Higher tiers, as the other shields have them.** Magic bucklers draw from a new
+`Shield BUCKLER Additions` group, 12 copies of the shield additions, exactly as the game already
+triplicates them for Small, Medium and Large:
+
+| grade | additions | mesh it names | icon |
+|---|---|---|---|
+| Basic | Armor Class Bonus, Electrical / Fire / Poison Absorbtion | none, keeps `Buckler` | `Shield Buckler` |
+| Better | Arrow Deflector, Cold Dragon, Fire Lizard, Mana Well | **none** -- no Better art exists | `Shield Buckler` |
+| Special | Charismatic Totem, Crushing Defiance, Metal Skill, Slashing Defiance | `BucklerSpecial` | `Shield Buckler Best` |
+
+The missing Better tier is the **Scimitar case from 0.89.0**, where a weapon had art at one grade
+only, and the nested no-visual pool pattern for it is already built and shipped. A tier reusing the
+grade below it for its icon is also shipped practice: the plain Long Bow's Better icon is the base
+`Bow`.
+
+Two things a copy must repoint, both established by 0.89.0: each addition's
+`CInventoryAdditionsNamedExpressionExpression` self-references, of which `Cold Dragon`, `Fire Lizard`
+and `Metal Skill` carry three each; and the **`Fire Absorbtion` and `Fire Lizard` mutual exclusion**,
+which must point at the copied siblings or it silently stops firing -- the Composite Long Bow case.
+
+**Placement, and the lever is not the obvious one.** Measured references:
+
+| can | referenced by | what it reaches |
+|---|---|---|
+| `All Shields` | **69 places** | chests and drops across the whole game |
+| `All Armor and Shields` | **28 places** | including ten merchants: the Blacksmith, Pierre, Aidan, Alvaro, Mauldo, the Traveling Merchant |
+| `Shield Mojo Begin Standard` | **1** | `Simon.zax` |
+| `Shield Mojo Low Standard` | **1** | `Small Trinkets.can` |
+
+The Mojo tiers look like the natural home and are almost unreferenced, so adding the buckler there
+would do close to nothing. **Put it in `All Armor and Shields` only.** That reaches ten merchants, so
+a player building unarmed can reliably *buy* one, which matters far more for a build-specific item
+than appearing in drops. It leaves the 69-place `All Shields` path untouched, so no chest or drop
+anywhere in the game has its shield mix diluted.
+
+**One asset is genuinely missing.** The three shields each have three ground sprites -- base, BETTER
+and SPECIAL. The buckler has none, so it would reuse `Shield_Small_PU`. That is the only visibly
+unfinished part of the whole item, and the only place a player could notice the seam.
+
+**Roughly 15 files:** one item, one addition group, twelve addition copies, one can edit.
+
+**The first QA row is the one thing the files cannot answer.** `Unarmed.InventoryItem` carries **no
+plugins at all**, so unarmed damage is entirely engine-side and nothing in the data says whether that
+path consults `CriticalChance`. So: does an unarmed attack crit? If yes, the buckler gives an unarmed
+build damage and crit while giving an armed one crit alone, which is the intended shape. If no, the
++2 is for armed builds only and the write-up should say so rather than implying a benefit that does
+not land. The Playtest Kit can settle it in five minutes with a granted buckler and a fists-only
+character.
 
 **Nameless** -- art naming something with no other trace. The write-up is the deliverable.
 
