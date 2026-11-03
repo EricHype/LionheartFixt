@@ -174,6 +174,36 @@ match.** The rest -- `Shield Holy`, `Gem Ruby`, `Key Skeleton`, `ScrollTregethia
 `Potion Wolf`, `Sword Undead Bane` -- are art for things that were never built, which needs an item
 invented rather than a field corrected.
 
+### And a gauntlet un-inferred
+
+0.90.0 pointed the **Gauntlets of La Mancha** at `Armor/Gauntlets Spike` on circumstantial grounds,
+and recorded it at the time as an inference rather than a match. **It was wrong, and it is reverted.**
+
+`Gauntlets Spike` is the **un-elemented base of the elemental gauntlet family.** It shares a 97x108
+canvas with `Gauntlets Hellfire`, and with the `Hoarfrost` and `Tempest` icons Fixt authored itself,
+and the art is visibly the same spiked gauntlets that Hellfire tints red. La Mancha is an act-1
+wilderness unique worth 850 gold; dressing it in the endgame family's art is wrong on tier and wrong
+on identity.
+
+**The dating argument used to justify it pointed the other way.** 0.90.0 reasoned that Hellfire's
+icon living in the late `Images for RED file/` folder while Spike sits in ordinary `Armor/` made
+Spike the earlier *unique* art. But `Armor/Gauntlets <X>` is where **addition** art lives:
+`Gauntlets Hero Strength` and `Gauntlets Vast Power` are both wired to gauntlet additions. Spike
+sitting beside them suggests addition art, which is the opposite of what was argued. Two icons in
+that family were simply not noticed, and noticing them inverts the conclusion.
+
+La Mancha goes back to the plain gauntlet icon, which means Fixt ships no override for that item at
+all and the file is removed rather than left as a no-op.
+
+**What `Gauntlets Spike` actually is, for whoever wants it:** the clean, untinted source for a fourth
+elemental gauntlet. Fixt already authored two of the three that exist, so if a fourth is ever wanted,
+this is where it starts.
+
+**The lesson is about which evidence was available.** The inference was published with its
+uncertainty labelled, which was right, and then the thing that overturned it was a player looking at
+the picture and saying it resembled the endgame set. A folder-location argument from four filenames
+lost to one glance at the art.
+
 ### Where the question came from
 
 A reading of the 0.91.0 survey listed `Bracers Defense` under "art with no item behind it", alongside
@@ -406,6 +436,13 @@ while `Gauntlets Spike` sits in the ordinary `Armor/` folder beside `Bracers Ste
 
 Good enough to ship. Not good enough to call a restoration, and recorded that way so nobody later
 cites it as one.
+
+**It was wrong, and 0.92.0 reverts it.** `Gauntlets Spike` turns out to be the un-elemented base of
+the elemental gauntlet family -- same 97x108 canvas as `Gauntlets Hellfire`, which simply tints it
+red -- so this put endgame family art on an act-1 unique. The folder argument above also inverts once
+you notice `Gauntlets Hero Strength` and `Gauntlets Vast Power` live in that same `Armor/` folder and
+are both **addition** art. Labelling the inference did not stop it being wrong; it did make it cheap
+to undo.
 
 ### The method correction that made the plan correct
 

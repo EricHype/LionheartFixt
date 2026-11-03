@@ -47,8 +47,11 @@ ICON = [
     (Q + "Special Objects for RED file/Amulet of Dour Tidings",
      "Items/Inventory Images/Misc Items/Images for RED file/Amulet Dour Tidings",
      "Items/Inventory Images/Misc Items/AmuletGreenOpal"),
-    (U + "Gauntlets of La Mancha", "Items/Inventory Images/Armor/Gauntlets Spike",
-     "Items/Inventory Images/Armor/Gauntlets"),
+    # Gauntlets of La Mancha was here in 0.90.0, pointed at `Armor/Gauntlets Spike` on an
+    # inference. Removed: Spike is the un-elemented base of the elemental gauntlet family,
+    # sharing a 97x108 canvas with Hellfire, Hoarfrost and Tempest, and La Mancha is an
+    # act-1 unique. `Armor/Gauntlets <X>` is addition art -- Hero Strength and Vast Power
+    # are both wired to additions -- which is the opposite of what the 0.90.0 note argued.
 ]
 # (addition, art it should use, art it currently uses). An addition names a magic item's
 # icon through `Inventory Window`; art for one is named `<base item> <display name>`.
