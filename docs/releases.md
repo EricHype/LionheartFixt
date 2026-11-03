@@ -214,6 +214,28 @@ Each copy repoints its own named-expression self-references, and the `Fire Absor
 `Fire Lizard` mutual exclusion is repointed **inside the copied set**, or it would silently stop
 firing -- the Composite Long Bow case from 0.89.0.
 
+### The bug this shipped with for an hour
+
+The first build put the buckler meshes on the player model as the **small shield's** Better and
+Special art. Caught in play, not by a gate.
+
+`Character Slot Types/Arm=` occurs **twice** in a shield addition: once in `Override Models`, which
+the engine ignores, and once in `Override Names`, which is what renders. The builder searched for the
+first match and so edited the inert line, leaving the name pointing wherever vanilla had left it --
+at `Shield Small Better` and `Shield Small Special`. The inventory icons were right throughout,
+because those come from the item's own `Inventory Window Images`, which is exactly what made it look
+like a mesh problem rather than a field problem.
+
+**`check_buckler.py` passed it, for the same reason.** It selected the Arm line by excluding any that
+contained `Models3D` -- and the bad edit had replaced that substring with `Buckler`, so the check
+read the line the builder had just broken and agreed with it. The bug and the check rested on one
+assumption, so the check could never have caught it.
+
+Both now split on the block header instead of guessing from the value, and the check additionally
+asserts the `Override Models` block is still exactly what vanilla wrote. This is the second time in
+this project that a duplicated field name inside one part has produced a silent wrong edit; the rule
+is to pin a slot by the block it sits in, never by the first match.
+
 ### Placement, and the correction it needed
 
 The plan said to put the buckler in `All Armor and Shields`, which ten merchants stock, and to leave

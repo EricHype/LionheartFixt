@@ -76,13 +76,25 @@ for rel, at in sorted(adds.items()):
     gnd = re.search(r"On the ground=(.*)" + CR, at).group(1).strip()
     if gnd != "!Unknown Model":
         bad.append("%s overrides the ground art with %s" % (rel.split("/")[-1], gnd))
-    # the mesh it names must exist and match its grade
+    # The mesh must be read out of the Override NAMES block specifically. Selecting the
+    # line by "no Models3D in it" is what let a bad edit through: the builder had written
+    # the mesh into the Override Models line, which then also matched that filter.
     key = "Character Slot Types/Arm="
-    named = [l.strip()[len(key):] for l in at.split(CR)
-             if l.strip().startswith(key) and "Models3D" not in l and l.strip()[len(key):]]
+    _, _, names_block = at.partition("Override Names")
     exp = EXPECT_MESH[grade]
-    if (named[0] if named else None) != exp:
-        bad.append("%s (%s) names %s, wanted %s" % (rel.split("/")[-1], grade, named, exp))
+    named = [l.strip()[len(key):] for l in names_block.split(CR)
+             if l.strip().startswith(key)]
+    got = (named[0] or None) if named else None
+    if got != exp:
+        bad.append("%s (%s) names %r in Override Names, wanted %r" % (
+            rel.split("/")[-1], grade, got, exp))
+    # and the Override Models block must be left exactly as vanilla wrote it
+    models_block = at.partition("Override Names")[0]
+    mline = [l.strip()[len(key):] for l in models_block.split(CR)
+             if l.strip().startswith(key)]
+    if mline and not mline[0].startswith("Models3D/"):
+        bad.append("%s has %r in Override Models -- that block was edited" % (
+            rel.split("/")[-1], mline[0]))
 print("by grade :", hist)
 if hist != {"Basic": 4, "Better": 4, "Special": 4}:
     bad.append("pool shape is %s, the small shield offers 4/4/4" % hist)

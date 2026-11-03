@@ -167,9 +167,19 @@ for rel, (grade, at) in sorted(pool.items()):
     c = re.sub(r"On the ground=.*" + CR, "On the ground=!Unknown Model" + CR, c)
     mesh = MESH[grade]
     if mesh:
-        m = re.search(re.escape(ARM) + r"(.*)" + CR, c)
-        assert m, "%s (%s) has no Arm override to repoint" % (rel, grade)
-        c = c[:m.start()] + ARM + mesh + CR + c[m.end():]
+        # `Character Slot Types/Arm=` occurs TWICE: once in Override Models, which the
+        # engine ignores, and once in Override Names, which is what renders. Pin the
+        # second by splitting on the block header -- taking the first match edits the
+        # inert one and leaves the mesh pointing wherever it already pointed.
+        head, _, tail = c.partition("Override Names")
+        assert tail, rel + " has no Override Names block"
+        m = re.search(re.escape(ARM) + r"(.*)" + CR, tail)
+        assert m, "%s (%s) has no Arm name to repoint" % (rel, grade)
+        tail = tail[:m.start()] + ARM + mesh + CR + tail[m.end():]
+        c = head + "Override Names" + tail
+        # and the Models line must still be vanilla's, untouched
+        before = head.count(ARM)
+        assert before == 1, "%s has %d Arm lines before Override Names" % (rel, before)
     else:
         assert "GrannyModelOverride" not in c, rel + " unexpectedly carries an override"
     write("Resources/" + dest + ".InventoryAddition", c)
