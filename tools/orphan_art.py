@@ -23,7 +23,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import lhbuild
-from lhbuild import zf, FX, read
+from lhbuild import CR, zf, FX, read
 
 TEXTY = (".inventoryitem", ".inventoryaddition", ".can", ".zax", ".dialogtree", ".txt",
          ".characterslottype", ".derivedcharacterattribute", ".skill", ".perk", ".race")
@@ -112,18 +112,52 @@ for rel, art in items.items():
 generic = {a for a, who in shared.items() if len(who) > 1}
 
 
+# A magic item's art is named `<base item> <addition display name>` -- "Bracers Defense"
+# for Bracers plus the Protection addition, whose display name is Defense. Collect the
+# pools so that pattern can be matched; comparing against item names alone misses it, and
+# missing it is what let Bracers Defense look like art with no item behind it.
+base_by_icon = {}
+pool_names = {}
+for rel, art in items.items():
+    t = read("Resources/" + rel + ".InventoryItem")
+    b = re.search(r"\tBasic=(.*)" + CR, t)
+    g = re.search(r"Inventory Addition Group=(.*)" + CR, t)
+    if b and g:
+        base_by_icon.setdefault(b.group(1).strip().split("/")[-1], []).append(
+            (rel, g.group(1).strip()))
+for n, getter in sources:
+    if not n.lower().endswith(".inventoryaddition"):
+        continue
+    t = getter().decode("latin-1")
+    g = re.search(r"Inventory Addition Group=(.*)" + CR, t)
+    dn = re.search(r"Display Name=(.*)" + CR, t)
+    win = re.search(r"Inventory Window=(.*)" + CR, t)
+    if g and dn:
+        pool_names.setdefault(g.group(1).strip(), []).append(
+            (dn.group(1).strip(), n[len("Resources/"):-len(".InventoryAddition")],
+             win.group(1).strip() if win else "?"))
+
+
 def stranded(orphan_icons):
-    """An orphan whose name matches an item that is using generic art instead."""
+    """Art named for something that exists and is wearing generic art instead.
+
+    Two shapes: named for an ITEM, and named for a base item plus an ADDITION."""
     out = []
     for a in orphan_icons:
-        leaf = a.split("/")[-1].lower()
-        words = [w for w in re.split(r"[^a-z]+", leaf) if len(w) > 3]
+        leaf = a.split("/")[-1]
+        words = [w for w in re.split(r"[^a-z]+", leaf.lower()) if len(w) > 3]
         for rel, art in items.items():
             nm = rel.split("/")[-1].lower()
-            if not words or not all(w in nm for w in words):
-                continue
-            if art & generic:
+            if words and all(w in nm for w in words) and art & generic:
                 out.append((a, rel, sorted(art)[0]))
+        for prefix, owners in base_by_icon.items():
+            if not leaf.lower().startswith(prefix.lower() + " "):
+                continue
+            suffix = leaf[len(prefix):].strip().lower()
+            for item_rel, grp in owners:
+                for dn, add_rel, win in pool_names.get(grp, []):
+                    if dn.lower() == suffix and win in ("!Unknown Model", "?"):
+                        out.append((a, add_rel, "inherits " + prefix))
     return out
 
 

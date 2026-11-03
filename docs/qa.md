@@ -6012,6 +6012,17 @@ as intended. Nothing in the files could have told us -- see the row for why.
 | BK7 | **The regression that matters.** Open chests and take shield drops away from merchants | Watch what shields appear | Only **Small, Medium and Large**. The buckler is merchant-only by design, so a buckler out of a chest means the `All Shields` can was modified and every drop site in the game is affected |
 | BK8 | **Judgement, not pass/fail.** Play an unarmed character with and without it | Compare how fists feel | It should be a clear upgrade over an empty hand and still not tempt an armed build. If an armed character wants one, +2 crit is too much and should come down |
 
+## The bracers
+
+0.92.0 points one addition at art drawn for it. Same failure mode as 0.90.0's rows: **a wrong art
+path renders blank, not wrong.**
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| BD1 | Obtain **Bracers of Defense** -- magic bracers from a drop, a chest or a merchant | Look at them in the inventory | Their **own** icon, not the plain bracer picture every other pair wears. A blank square means the path did not resolve |
+| BD2 | Hold them beside any **other** magic bracers -- of Archery, of Fire Resistance | Compare | Only the Defense pair changed. The others still wear the plain bracer icon, correctly: no art was ever drawn for them |
+| BD3 | **The regression.** Equip them | - | Unchanged. This release touches one `Inventory Window` field and nothing else -- no stat, no pool, no drop |
+
 ## The art that was already there
 
 0.90.0 points five items at art the game shipped and never used. Every row is "look at it", because

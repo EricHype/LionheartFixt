@@ -50,6 +50,12 @@ ICON = [
     (U + "Gauntlets of La Mancha", "Items/Inventory Images/Armor/Gauntlets Spike",
      "Items/Inventory Images/Armor/Gauntlets"),
 ]
+# (addition, art it should use, art it currently uses). An addition names a magic item's
+# icon through `Inventory Window`; art for one is named `<base item> <display name>`.
+ADDITION_ICON = [
+    ("Inventory/Inventory Additions/Miscellaneous/Bracers/Protection",
+     "Items/Inventory Images/Armor/Bracers Defense", "!Unknown Model"),
+]
 GROUND = [
     (Q + "Wielder DARK Quest Rod Bone NO Spirit", "Items/PickUps/Misc Items/Wands/RodOfBone"),
     (Q + "Wielder DARK Quest Rod Bone WITH Spirit", "Items/PickUps/Misc Items/Wands/RodOfBone"),
@@ -97,6 +103,24 @@ for item, new, old in ICON:
     write(rel, out)
     n_icon += 1
     print("   icon  %-44s %s -> %s" % (item.split("/")[-1], old.split("/")[-1], new.split("/")[-1]))
+
+for add, new, old in ADDITION_ICON:
+    assert art_exists(new), "the art does not exist: " + new
+    rel = "Resources/" + add + ".InventoryAddition"
+    t = read(rel)
+    m = re.search(r"Inventory Window=(.*)" + CR, t)
+    assert m, add + " has no Inventory Window field"
+    have = m.group(1).strip()
+    assert have in (old, new), "%s points at %s, expected %s or %s" % (add, have, old, new)
+    if have == new:
+        print("   ok    %-44s already %s" % (add.split("/")[-1], new.split("/")[-1]))
+    else:
+        out = t[:m.start()] + "Inventory Window=" + new + CR + t[m.end():]
+        assert out.count("Inventory Window=") == 1
+        write(rel, out)
+        n_icon += 1
+        print("   icon  %-44s %s -> %s" % (
+            add.split("/")[-1], old, new.split("/")[-1]))
 
 for item, new in GROUND:
     assert art_exists(new), "the art does not exist: " + new

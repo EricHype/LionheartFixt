@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.91.0 are published** -- 181 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.91.0 are published, 0.92.0 is built and unplayed** -- 182 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,47 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.92.0 - the bracers, and the blind spot that hid them
+
+**`Bracers of Defense` is not a missing item. It is one you can already get**, wearing the wrong
+picture. `Bracers` plus the `Protection` addition renders as *Bracers of Defense*, and
+`Items/Inventory Images/Armor/Bracers Defense` was drawn for exactly that combination and used by
+nothing. The addition carried `Inventory Window=!Unknown Model`, so it inherited the plain bracer
+icon.
+
+One field. The shape was already established elsewhere in the same folder: a **potion** addition also
+named `Defense` carries `Inventory Window=Potion Defense`, its own art. Additions routinely name
+their own icon; this one simply did not.
+
+### Why 0.90.0 reported the stranded list empty
+
+That release added `tools/orphan_art.py` and said no item in the game wore generic art while art
+named for it sat unused. The survey was honest and the claim was wrong, because the detector only
+ever compared art names against **item** names.
+
+A magic item's art is named **`<base item> <addition display name>`** -- `Bracers Defense` for
+`Bracers` plus an addition whose display name is `Defense`. That name matches no item in the game,
+so the whole class was invisible to the test. And it is not a rare class: it is the most common way
+a magic item gets a picture of its own.
+
+The detector now matches both shapes. With the bracers wired the stranded list is empty again, this
+time on the stricter test, and 0.90.0's claim is corrected where it was made rather than left to
+stand.
+
+**Checking all eight remaining orphan icons against the new pattern, `Bracers Defense` was the only
+match.** The rest -- `Shield Holy`, `Gem Ruby`, `Key Skeleton`, `ScrollTregethia`, `Esteban Knife`,
+`Potion Wolf`, `Sword Undead Bane` -- are art for things that were never built, which needs an item
+invented rather than a field corrected.
+
+### Where the question came from
+
+A reading of the 0.91.0 survey listed `Bracers Defense` under "art with no item behind it", alongside
+genuinely ownerless sketches. The maintainer asked what was special about it, given the game already
+has bracers. It was not special in the way the list implied: it had an owner all along, and the
+survey could not see it.
+
+The tool is the deliverable here. The one field is almost incidental.
 
 ## 0.91.0 - the fourth shield, on a different axis
 
@@ -324,7 +365,12 @@ noticing that the Gauntlets of La Mancha wears the generic gauntlet icon.
 
 Four of them were **stranded** -- an item exists, wears generic or borrowed art, and art named for it
 sits unused. One field each, and the asset's own name is the evidence it belongs. All four are wired
-now, and the stranded list is empty.
+now.
+
+**The claim that "the stranded list is empty" was overstated**, and 0.92.0 corrects it. The detector
+behind it only compared art names against *item* names, so it could not see art named for a base item
+plus an enchantment -- which is how most magic items get their own picture. `Bracers Defense` was
+sitting in plain view the whole time, filed under "art with no item behind it".
 
 ### Nightshade Root was ours
 

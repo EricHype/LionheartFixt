@@ -1,0 +1,73 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Miscellaneous/Bracers/Protection
+						Expression Name=acbonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=200
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Defense
+	Description=A favorite of wielders of two-handed weapons, bracers such as these add an additional %i[acbonus] to their wearer's Armor Class.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Armor/Bracers Defense
+	Minimum Value=50
+	Minimum Addition Ammount=1
+	Inbetween Value=390
+	Inbetween Addition Ammount=3
+	Maximum Value=950
+	Maximum Addition Ammount=5
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=acbonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Bracer Additions
+	Addition Rarity=Inventory Item Rarity/4 Very Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}
