@@ -199,6 +199,36 @@ all and the file is removed rather than left as a no-op.
 elemental gauntlet. Fixt already authored two of the three that exist, so if a fourth is ever wanted,
 this is where it starts.
 
+### So La Mancha got art of its own instead
+
+Reverting left the gauntlets wearing the generic pair's picture, which is where they started. The
+obvious next move was a recolour, and it failed for a reason worth recording: **the art is leather
+with metal accents, and nothing in the icon separates the two.** 97% of its pixels share one warm hue
+family, and the bright pixels are specular speckle scattered across leather, straps and buckles
+alike -- a luminance mask traces none of the metalwork. A recolour could only ever tint the whole
+glove green, which looks wrong because leather is not green.
+
+So the icon was **painted by hand**: the leather kept, the accents gilded, and a small windmill on the
+back of each hand. Quixote's windmills, on the gauntlets of La Mancha.
+
+`tools/build_lamancha_icon.py` turns the painting into the shipped asset, and
+`tools/art/lamancha-gauntlets.png` is the source, committed so the icon is reproducible rather than a
+one-off. Two things have to be derived: the painting is 4x native, so each 4x4 block averages to one
+pixel, which absorbs the brush's anti-aliasing; and it has no alpha channel, so the silhouette is the
+**union** of the original icon's opaque pixels and the painting's non-black ones. The painting strays
+311 px past the old outline, which clipping would have trimmed, and leaves 16 px dark inside it,
+which would have shown as holes.
+
+`recolor_icon_in_place` could not do this: it transforms colour *values*, so it cannot make per-pixel
+changes. `build_icon_file` can, and it needs a **buffer-1-only** donor -- the gauntlets' own file uses
+three buffers, so `Deed Silver Mine` lends the skeleton. The written icon decodes back to the painting
+with a mean absolute error of 3.84, which is RGB565 quantisation rather than loss.
+
+**Both corrections on this item came from looking at the picture.** The Spike icon was wrong because
+it was the elemental family's base, which a folder argument got backwards; the recolour was wrong
+because the material is leather, which no amount of pixel statistics said out loud. The emblem is
+windmills, not the lances this write-up first called them.
+
 **The lesson is about which evidence was available.** The inference was published with its
 uncertainty labelled, which was right, and then the thing that overturned it was a player looking at
 the picture and saying it resembled the endgame set. A folder-location argument from four filenames
