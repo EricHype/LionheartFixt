@@ -900,6 +900,22 @@ too.
 `CHueRemapHolder` on the can does nothing for a monster, confirmed with the model's own fork
 proven live by a render-scale probe. All 54 models that set the flag are player characters.
 
+## Critical hits apply to unarmed attacks
+
+`CriticalChance` is `Luck` plus, **only when a bow or crossbow is equipped**, a component scaled from
+the `Ranged` skill (50..300 mapped to 1..10) and a `Perception` band (0..4, stepping at 8, 10, 11 and
+12). Luck is added unconditionally, so the attribute is live for melee and unarmed characters and a
+flat modifier from an item stacks on top whatever is held -- `Blade of Berserker` and
+`Sacred Scimitar` grant crit chance and are not broken, as a first reading of that gate suggests.
+
+**Unarmed attacks do crit**, which matters because it cannot be derived from the resources:
+`Unarmed.InventoryItem` carries **no plugins at all**, so unarmed damage and its critical path are
+entirely engine-side. Confirmed by the maintainer from vanilla play, not from a file.
+
+The practical consequence for balance: a melee or unarmed character's *entire* crit chance is their
+Luck, roughly 5 to 10, since the Perception bands top out at 12. So a flat `+5` from an item roughly
+**doubles** it. Lionheart Fixt 0.91.0's buckler grants `+2` for that reason.
+
 ## Method rules
 
 **A number measured against the wrong precedent is as wrong as a form without one.** The rule above

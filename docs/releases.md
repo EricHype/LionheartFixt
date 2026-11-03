@@ -298,12 +298,21 @@ SPECIAL. The buckler uses the small shield's, and all twelve addition copies lea
 `On the ground=!Unknown Model` rather than overriding it with small-shield BETTER or SPECIAL art,
 which would have been worse than the compromise. It is the only place a player can see the seam.
 
-### What is not proven
+### BK3 is answered, and not from the files
 
-**Whether an unarmed attack can crit at all.** (The art is settled; this is not.) `Unarmed.InventoryItem` carries **no plugins**, so
-unarmed damage is entirely engine-side and nothing in the data says whether that path consults
-`CriticalChance`. `BK3` is the row. If it cannot, the +2 serves armed builds only and the description
-needs rewording rather than the item needing rebuilding.
+**Unarmed attacks crit. That is vanilla behaviour**, confirmed by the maintainer from play.
+
+So the buckler does what it was designed to do: an unarmed build gets **damage** from the +4 Unarmed
+and **critical hits** from the +2, and an armed build gets the crit alone. The asymmetry is real and
+the item's description stands.
+
+Worth recording *how* this was settled, because the files could not settle it.
+`Unarmed.InventoryItem` carries **no plugins at all**, so unarmed damage is entirely engine-side and
+nothing in the data says whether that path consults `CriticalChance`. The analysis was correct that
+it was unanswerable from the resources, and wrong to treat that as meaning it was unknown. Someone
+who has played the game knew. **An exhausted file search is evidence about the files, not about the
+game** -- the third time this project has learned that, and the cheapest way to check remains asking
+the person who has played it.
 
 ## 0.90.0 - the art that was already there
 

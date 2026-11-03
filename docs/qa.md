@@ -5997,13 +5997,14 @@ The most important gate, and the easiest to skip.
 0.91.0 builds an item out of art that had none. It is the first release in this run that changes what
 a character can *do* rather than what they can see, so it carries more rows than the art fixes did.
 
-**`BK3` is the row that decides the design.** Nothing in the files answers it.
+**`BK3` is answered**: unarmed attacks crit in vanilla, so the buckler's +2 serves its own audience
+as intended. Nothing in the files could have told us -- see the row for why.
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | BK1 | Any shield merchant: the Blacksmith, Alvaro at the Crossroads, Mauldo on the Plains, Pierre, Aidan, the Traveling Merchant | Look at the stock, revisiting if needed | A **Buckler** appears, at roughly one shield in four. If several merchants across a few visits never show one, the placement did not take |
 | BK2 | Equip it | Read the character sheet | **+1 AC, +4 Unarmed, +2 Critical Chance.** No damage resistances at all -- that absence is deliberate, not a missing modifier |
-| BK3 | **The row that decides it.** Equip the buckler, unequip your weapon, fight with fists | Watch for critical hits over a few dozen swings | Criticals occur. If they never do, the engine's unarmed path does not consult `CriticalChance`, the +2 serves armed builds only, and the item's description needs rewording. **This is a finding either way, not a failure** |
+| BK3 | ~~The row that decides it~~ **Answered, and not from the files.** Unarmed attacks crit; that is vanilla behaviour, confirmed by the maintainer from play | - | **Passed.** The buckler works as designed: an unarmed build gets damage from the +4 Unarmed and criticals from the +2, an armed build gets the crit alone. `Unarmed.InventoryItem` has no plugins at all, so this was never answerable from the resources -- which is a fact about the files, not about the game |
 | BK4 | With it equipped, look at your character | Compare against a Small Shield | A **small round buckler**, visibly not the small shield's kite. Its mesh is 30% smaller than the small shield's. If it looks like a kite shield the `Buckler` mesh name did not resolve; if your arm is **empty**, it resolved to nothing, which is what a missing composite registry name does |
 | BK5 | A magic buckler, **Better** grade | Equip it, and look at the inventory icon too | A **steel** buckler, in both places -- `BucklerBetter`, authored for this release because the game shipped two skins for three grades. If it shows the copper base in either place, the new art did not reach the build |
 | BK5b | A magic buckler, **Special** grade | Equip it | The **gilded** buckler (`BucklerSpecial`). All three tiers should now read as a material ladder: copper, steel, gold |
