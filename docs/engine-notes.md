@@ -847,8 +847,12 @@ Character textures live inside the `.gr2` in Granny's **BinkTC0** format (`Encod
 compressor. Every one of the game's 923 model textures uses it; not one is raw, though the runtime
 names `Raw texture format` as encoding 1.
 
-**You do not need an encoder.** `granny2.dll` exports the builder side of the texture API, and the
-decorated argument byte counts match the SDK signatures:
+**You do not need an encoder, and one is now wrapped.** `granny2.dll` exports the builder side of
+the texture API. `binktc0_encode.py` in LionheartModTools does the call sequence, declares the
+`granny_texture` struct and verifies it before dereferencing anything in it, and
+`.claude/skills/retexturing-a-model/` has the whole pipeline. **It only works under a 32-bit
+interpreter**: `granny2.dll` is 32-bit and a 64-bit python raises `WinError 193` on load, which is
+not obvious from the error. The decorated argument byte counts match the SDK signatures:
 
     _GrannyBeginBinkTexture@16   (Width, Height, MIPLevelCount, Flags)
     _GrannyEncodeImage@24        (Builder, Width, Height, Stride, MIPLevels, RGBA)
@@ -858,17 +862,21 @@ Feed it **RGBA8888**. Three-byte RGB produces a payload nearly twice the size an
 wrong hue, even though the texture's own `Layout` reports `BytesPerPixel=3`. The `Flags` argument
 made no difference to output size across ten values.
 
-Expect the re-encoded payload to be several times larger than the one it replaces -- 67,816 bytes
-against 13,404 for a 256x256 -- because you are re-compressing an image that has already been
-through the codec once. That is not a knob; it is the cost of the round trip.
+Expect the re-encoded payload to be larger than the one it replaces, because you are
+re-compressing an image that has already been through the codec once. **How much larger varies
+widely**: 67,816 bytes against 13,404 on one 256x256, but 16,580 against 13,304 on another, a factor
+of 5 versus a factor of 1.25. The earlier note here generalised "several times larger" from the
+first observation alone. Budget for growth; do not read a small increase as a sign something went
+wrong.
 
 **Splicing it in.** Read `Textures > Images > MIPLevels > Pixels` with `gr2_format.py`. `Pixels`
 is a reference-to-array: a `u32` count at the element's offset, and a pointer immediately after it
 recorded in that sector's fixup table at `offset + 4`. In the meshes seen so far the pixels live
-in their own sector, already `compression_type=0`, holding nothing else and no pointers -- so the
-new payload can simply be **appended** to that sector, leaving the old bytes as slack and any
-other texture's pointer into it untouched. Then change two things: the count, and the fixup's
-`dst_offset`. `Pointer` is a frozen dataclass, so replace the table entry rather than mutating it.
+in their own sector, already `compression_type=0`, holding nothing else and no pointers. Where that
+holds -- **assert it, do not assume it** -- the payload can simply **replace** the sector's contents
+outright, `dst_offset` stays 0 and only the count changes. Where it does not, **append** instead,
+leaving the old bytes as slack and any other texture's pointer into it untouched, and change two
+things: the count, and the fixup's `dst_offset`. `Pointer` is a frozen dataclass, so replace the table entry rather than mutating it.
 `gltf_to_gr2.repack` writes the file, flipping touched sectors to uncompressed.
 
 **What not to bother with.** `GrannyWriteDataTreeToFile` would let the library re-serialise the
@@ -876,6 +884,11 @@ whole tree and sidestep the splice entirely. All 48 combinations of argument ord
 readings of the `GrannyFileInfoType` data export fault, and they fault writing the file back
 *unmodified*, so the signature is wrong rather than the data. `@16` rules out the five-argument
 form in later SDKs. Unsolved.
+
+**Round-trip through the decoder as well.** A correct encode comes back with a mean absolute
+error around 0.07 and a maximum of about 2 out of 255. Then decode the texture out of the *written*
+file, and again out of the built `data.dat`: the encode, the splice and the packaging are three
+different failure surfaces and each fails quietly in its own way.
 
 **Verify by reloading, not by inspecting.** Read the written file back with the runtime and check
 the `granny_file_info` counts -- textures, materials, skeletons, vertex datas, topologies, meshes,
