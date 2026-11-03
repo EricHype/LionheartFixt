@@ -1,0 +1,103 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=3
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=4
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=-1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Fortune
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=-500
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Karma
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=10
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Thieving/Sneak
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=5
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/CriticalChance
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPickUpAction
+		{
+			Pick Up Action=CPlaySoundAction
+			{
+				Sound=Pickups/pick_up_jewelry.ogg
+				Position=$Trigger
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_jewelry.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=400
+	}
+	Is Magic=1
+	Encumbrance=1
+	On the ground=Items/PickUps/Misc Items/Amulet_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Amulet of Dour Tidings
+	Description=Buried in 1347 at the Battle of Golasis, this amulet was later found by a poor farmhand bent on adventure...or at least robbing a few tombs. Sadly, things failed to go well for the young man and it wasn't long before the necklace was taken from his corpse by the bandit who killed him. It has since wandered from hand to hand over the course of many years. While granting +10 points to its wearer's Sneak skill and increasing critical hit chance 5%, it also reduces the hidden derived attribute Fortune by 1 and may cause others to react negatively towards them.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Misc Items/Images for RED file/Amulet Dour Tidings
+		Better=Items/Inventory Images/Misc Items/Images for RED file/Amulet Dour Tidings
+		Special=Items/Inventory Images/Misc Items/Images for RED file/Amulet Dour Tidings
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Neck
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Amulets
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Special Objects for RED file/Amulet of Dour Tidings
+}

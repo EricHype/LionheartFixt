@@ -5992,6 +5992,25 @@ The most important gate, and the easiest to skip.
 
 ---
 
+## The art that was already there
+
+0.90.0 points five items at art the game shipped and never used. Every row is "look at it", because
+the failure mode is specific and worth knowing: **a wrong art path renders blank, not wrong.** An
+item showing an empty square has a path that does not resolve; an item showing the *old* art means
+the edit did not reach the build.
+
+Nothing here changes a stat, a script or a drop. The edits touch only `Basic`/`Better`/`Special` icon
+fields and `On the ground`.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| OA1 | **Nightshade Root**, from the hangover-cure chain | Hold it beside **Darkwood** in the inventory | They are **different icons**. Before this release both wore Darkwood's. If Nightshade Root is blank, `Quest Items/Rare Herb` did not resolve |
+| OA2 | **Amulet of Dour Tidings** | Look at it in the inventory | Its own icon, not the green opal it shared with eight other amulets. A blank square means the `Images for RED file/` path did not resolve |
+| OA3 | **Gauntlets of La Mancha** | Compare against an ordinary pair of Gauntlets | A **different, spiked** icon. This is the one row resting on an inference rather than a name match, so it is also the row to judge: if the art plainly is not gauntlets, say so and it gets reverted |
+| OA4 | A **Wielder Rod of Bone**, either version | **Drop it on the ground** | Its own sprite, not the generic wand. The inventory icon was already correct before this release, so the inventory tells you nothing here -- it has to be dropped |
+| OA5 | A **Wielder Rod of Spirits**, either version | **Drop it on the ground** | Same, and distinct from the Rod of Bone's. Compare against `Scepter of the INQ Chambers`, which already had its own sprite |
+| OA6 | **The regression.** Any of the five | Use it as you would have before | Unchanged. These edits touch art fields only -- no stat, script, drop or requirement moved. If a rod stopped casting or the amulet stopped granting its bonus, something went wrong that this release had no business touching |
+
 ## The twenty-one meshes, and the pools that deliver them
 
 0.89.0 wires magic weapons to the Better and Special meshes the game shipped and never used. Two
