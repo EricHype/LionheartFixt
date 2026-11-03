@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.89.0 are published, 0.90.0 is built and unplayed** -- 180 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.90.0 are published, 0.91.0 is built and unplayed** -- 181 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,104 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.91.0 - the fourth shield, on a different axis
+
+The buckler existed as art and as nothing else. Two meshes, two icons, **both meshes registered in
+both player composites** so either sex could have worn one, and no item, no can, and no occurrence of
+the word anywhere in the game. 0.90.0's orphaned-art survey found it; this builds the item.
+
+### Why not a fourth rung
+
+The three shipped shields are **one** design:
+
+| | AC | C/P/S resist | magic speed | Unarmed | enc | value |
+|---|---|---|---|---|---|---|
+| Small | +2 | 3/3/3 | -- | -5 | 3 | 10 |
+| Medium | +4 | 5/5/5 | -0.03 | -10 | 5 | 20 |
+| Large | +7 | 15/10/10 | -0.08 | -15 | 10 | 25 |
+
+Flat mitigation climbing together, paid for with escalating penalties. A fourth entry below Small
+would have been a strictly worse shield with nothing to say. A buckler is not a smaller wall -- it is
+a fist shield strapped to the forearm, used to parry and to punch, which is the opposite proposition.
+
+| | AC | C/P/S resist | Unarmed | crit | enc | value |
+|---|---|---|---|---|---|---|
+| **Buckler** | +1 | **none** | **+4** | **+2** | 1 | 6 |
+
+### +4 Unarmed completes a set with one gap
+
+Seventeen things in the game modify the Unarmed skill: the Monk belt at +10, the Weng Choi perk at
++20, TRUE CROSS at +10, Dervish of the Crescent at +5, Gauntlets of La Mancha at +4, Feral Power and
+Wyrm at +4, Brawler and Drunken Boxing and Dark Majesty at +3, plus three rings and belts driving
+`Unarmed Damage Multiplier`. An unarmed build has gear for every slot **except the off-hand**, because
+every shield penalises it -- -5, -10, -15, and the Lion Shield's -10.
+
+So this is not an invented niche. +4 matches `Gauntlets of La Mancha`, the closest comparable and
+itself an unarmed item. And the lever does real work rather than being a cosmetic skill number:
+`UnarmedDamageMinimum` and `UnarmedDamageMaximum` **both read `Skills/Fighting/Unarmed`**, and
+`UnarmedDamage` composes those with `MeleeDamage` and the multiplier.
+
+### +2 crit, and why not +5
+
+`CriticalChance` reads:
+
+    Luck + IF (Bow equipped OR Crossbow equipped)
+             THEN Ranged skill (50..300 scaled to 1..10) + Perception band (0..4)
+             ELSE 0
+
+Luck is added **unconditionally**, so crit is live for melee and unarmed characters and a flat
+modifier stacks on top whatever is equipped. `Blade of Berserker` and `Sacred Scimitar` are not
+broken, as a first read of that expression suggested they might be.
+
+But it also means a melee character's *entire* crit chance is their Luck, and the Perception bands in
+that expression top out at 12, so Luck sits around 5 to 10. **+5 would roughly double it**, making
+this a major offensive item competing hard with Shield Small for every melee build. +2 is a real 20 to
+40 per cent relative gain and nowhere near a reason to drop a shield you wanted.
+
+**The balance exposure is close to nil**, which is the point. At +1 AC and no resistance, no armed
+build has a reason to take this over a real shield, so it never competes. An unarmed character
+currently carries **nothing** in that hand, so for them it is an upgrade from empty. Nothing existing
+needed re-tuning.
+
+### Higher tiers, and the missing one
+
+Magic bucklers draw from a new `Shield BUCKLER Additions` pool, twelve copies matching the small
+shield's 4/4/4 shape, exactly as the game already triplicates them for Small, Medium and Large. The
+buckler's art is a deliberate two-tier set with **no Better mesh**, which is the Scimitar case from
+0.89.0: Better-grade additions name the base `Buckler`, and only Special names `BucklerSpecial`. The
+icon tiers do the same, Better reusing the base picture -- shipped practice, as the plain Long Bow's
+Better icon is the base `Bow`.
+
+Each copy repoints its own named-expression self-references, and the `Fire Absorbtion` and
+`Fire Lizard` mutual exclusion is repointed **inside the copied set**, or it would silently stop
+firing -- the Composite Long Bow case from 0.89.0.
+
+### Placement, and the correction it needed
+
+The plan said to put the buckler in `All Armor and Shields`, which ten merchants stock, and to leave
+the 69-site `All Shields` alone. That turned out to be impossible as stated: **`All Armor and Shields`
+holds no items of its own.** It nests `All Shields` and `All Armor`, so every merchant reaches shields
+*through* the can that 69 chests and drops also reference.
+
+So a new can, `All Shields and Buckler`, nests `All Shields` at weighting 30 beside the buckler at 10,
+and the merchant can points at that instead. Merchants sell bucklers at roughly one shield roll in
+four; **not one chest in the game has its shield mix diluted.** `tools/check_buckler.py` asserts
+`All Shields` is byte-identical to vanilla for exactly this reason.
+
+### The one unfinished part
+
+No buckler ground sprite was ever drawn. The three shields have three apiece -- base, BETTER and
+SPECIAL. The buckler uses the small shield's, and all twelve addition copies leave
+`On the ground=!Unknown Model` rather than overriding it with small-shield BETTER or SPECIAL art,
+which would have been worse than the compromise. It is the only place a player can see the seam.
+
+### What is not proven
+
+**Whether an unarmed attack can crit at all.** `Unarmed.InventoryItem` carries **no plugins**, so
+unarmed damage is entirely engine-side and nothing in the data says whether that path consults
+`CriticalChance`. `BK3` is the row. If it cannot, the +2 serves armed builds only and the description
+needs rewording rather than the item needing rebuilding.
 
 ## 0.90.0 - the art that was already there
 

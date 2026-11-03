@@ -1,0 +1,74 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CInventoryAdditionsNamedExpressionExpression
+					{
+						InventoryAddition=Inventory/Inventory Additions/Shield/BUCKLER/Fire Absorbtion
+						Expression Name=firebonus
+						Value=0
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Damage Related/Fire Damage Resistance
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=1
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Fire Resistance
+	Description=This shield confers +%i[firebonus] Fire Resistance to its bearer.
+	Item Grade=Basic
+	Inventory Window=!Unknown Model
+	Minimum Value=75
+	Minimum Addition Ammount=5
+	Inbetween Value=750
+	Inbetween Addition Ammount=10
+	Maximum Value=4500
+	Maximum Addition Ammount=20
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=1
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=firebonus
+				Expression=CInventoryAdditionAmmountExpression
+				{
+					Addition Ammount=0
+				}
+			}
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Shields and Armor/Shield BUCKLER Additions
+	Addition Rarity=Inventory Item Rarity/2 Uncommon
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=1
+		Addition Cannot Be Combined With=Inventory/Inventory Additions/Shield/BUCKLER/Fire Lizard
+	}
+}

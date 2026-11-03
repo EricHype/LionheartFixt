@@ -5992,6 +5992,24 @@ The most important gate, and the easiest to skip.
 
 ---
 
+## The buckler
+
+0.91.0 builds an item out of art that had none. It is the first release in this run that changes what
+a character can *do* rather than what they can see, so it carries more rows than the art fixes did.
+
+**`BK3` is the row that decides the design.** Nothing in the files answers it.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| BK1 | Any shield merchant: the Blacksmith, Alvaro at the Crossroads, Mauldo on the Plains, Pierre, Aidan, the Traveling Merchant | Look at the stock, revisiting if needed | A **Buckler** appears, at roughly one shield in four. If several merchants across a few visits never show one, the placement did not take |
+| BK2 | Equip it | Read the character sheet | **+1 AC, +4 Unarmed, +2 Critical Chance.** No damage resistances at all -- that absence is deliberate, not a missing modifier |
+| BK3 | **The row that decides it.** Equip the buckler, unequip your weapon, fight with fists | Watch for critical hits over a few dozen swings | Criticals occur. If they never do, the engine's unarmed path does not consult `CriticalChance`, the +2 serves armed builds only, and the item's description needs rewording. **This is a finding either way, not a failure** |
+| BK4 | With it equipped, look at your character | Compare against a Small Shield | A **small round buckler**, visibly not the small shield's kite. Its mesh is 30% smaller than the small shield's. If it looks like a kite shield the `Buckler` mesh name did not resolve; if your arm is **empty**, it resolved to nothing, which is what a missing composite registry name does |
+| BK5 | A magic buckler. Buy or reload until a **Special**-grade one appears | Equip it | A **different, fancier** buckler mesh (`BucklerSpecial`). A **Better**-grade one deliberately shows the *base* mesh, because no Better buckler art was ever drawn -- that is correct behaviour, not a bug |
+| BK6 | Drop one on the ground | Look at it | It uses the **small shield's** ground sprite. Known and deliberate: no buckler ground art exists. Listed so it is not reported as a defect |
+| BK7 | **The regression that matters.** Open chests and take shield drops away from merchants | Watch what shields appear | Only **Small, Medium and Large**. The buckler is merchant-only by design, so a buckler out of a chest means the `All Shields` can was modified and every drop site in the game is affected |
+| BK8 | **Judgement, not pass/fail.** Play an unarmed character with and without it | Compare how fists feel | It should be a clear upgrade over an empty hand and still not tempt an armed build. If an armed character wants one, +2 crit is too much and should come down |
+
 ## The art that was already there
 
 0.90.0 points five items at art the game shipped and never used. Every row is "look at it", because

@@ -1,0 +1,35 @@
+CCannedObject
+{
+	Object=CInventoryItemGeneratorMixedList
+	{
+		Items=Array
+		{
+			Array Count=2
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=30
+				Item=CInventoryItemGeneratorCannedList
+				{
+					Canned Item List=Inventory/Creating Random Magic Items/All Shields
+				}
+			}
+			Array Item=CInventoryItemGeneratorMixedListItem
+			{
+				Weighting=10
+				Item=CInventoryItemGeneratorBasic
+				{
+					Items=Array
+					{
+						Array Count=1
+						Array Item=CInventoryItemGeneratorBasicItem
+						{
+							Weighting=10
+							Item=Inventory Items/ShieldBuckler
+						}
+					}
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}
