@@ -21,7 +21,7 @@ from lhbuild import CR, FX, zf, read
 AG = "Inventory/Inventory Addition Groups/Shields and Armor/"
 GROUP = AG + "Shield BUCKLER Additions"
 MAGIC = "Inventory/Creating Random Magic Items/"
-EXPECT_MESH = {"Basic": None, "Better": "Buckler", "Special": "BucklerSpecial"}
+EXPECT_MESH = {"Basic": None, "Better": "BucklerBetter", "Special": "BucklerSpecial"}
 bad = []
 
 # ---------------------------------------------------------------- the item
@@ -114,11 +114,17 @@ for ref in sorted(set(icons.values())) + ["Items/PickUps/Armor/Shield_Small_PU"]
     if not ok:
         bad.append("art missing: " + ref)
 for mesh in ("Models3D/Weapons/Shields/Buckler/Buckler",
+             "Models3D/Weapons/Shields/Buckler Better/BucklerBetter",
              "Models3D/Weapons/Shields/Buckler Special/BucklerSpecial"):
-    ok = ("Resources/" + mesh + ".MODEL.GR2") in zf.namelist()
-    reg = any(mesh.encode("latin-1") in zf.read(c) for c in
-              ("Cache/Models/Characters/Player Characters/Human Male.mdl16",
-               "Cache/Models/Characters/Player Characters/Human Female.mdl16"))
+    # BucklerBetter is ours, so look in Fixt as well as vanilla, and read the composites
+    # from Fixt where it has patched them
+    ok = (("Resources/" + mesh + ".MODEL.GR2") in zf.namelist()
+          or (FX / ("Resources/" + mesh + ".MODEL.GR2")).exists())
+    reg = True
+    for c in ("Cache/Models/Characters/Player Characters/Human Male.mdl16",
+              "Cache/Models/Characters/Player Characters/Human Female.mdl16"):
+        blob = (FX / c).read_bytes() if (FX / c).exists() else zf.read(c)
+        reg = reg and mesh.encode("latin-1") in blob
     print("   %-5s %-54s registered in a composite: %s" % ("ok" if ok and reg else "FAIL", mesh, reg))
     if not (ok and reg):
         bad.append("mesh unusable: " + mesh)

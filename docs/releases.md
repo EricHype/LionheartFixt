@@ -204,11 +204,28 @@ needed re-tuning.
 ### Higher tiers, and the missing one
 
 Magic bucklers draw from a new `Shield BUCKLER Additions` pool, twelve copies matching the small
-shield's 4/4/4 shape, exactly as the game already triplicates them for Small, Medium and Large. The
-buckler's art is a deliberate two-tier set with **no Better mesh**, which is the Scimitar case from
-0.89.0: Better-grade additions name the base `Buckler`, and only Special names `BucklerSpecial`. The
-icon tiers do the same, Better reusing the base picture -- shipped practice, as the plain Long Bow's
-Better icon is the base `Bow`.
+shield's 4/4/4 shape, exactly as the game already triplicates them for Small, Medium and Large.
+
+**The buckler shipped with two skins for three grades, so the third was authored.** Vanilla's own
+answer when a family is short of art is to collapse Basic and Better -- Club, LongBow and Scimitar
+all do it -- but that leaves a *magic* buckler looking mundane, which is the thing this run set out
+to fix. The two shipped skins differ mainly in metal colour, weathered copper against gold, so a
+recolour works along the axis the artists used rather than against it. `BucklerBetter` is steel,
+sitting between them, and the inventory icon is recoloured to match so the tier is consistent in
+both places.
+
+Measured, the three now read as a material ladder rather than a brightness one:
+
+| | mesh texture | icon |
+|---|---|---|
+| Basic | `Buckler`, mean L 50.7, RGB (63,47,37) | mean L 42.7, RGB (54,39,31) |
+| **Better** | **`BucklerBetter`, steel** | **mean L 76.2, RGB (79,76,73)** |
+| Special | `BucklerSpecial`, mean L 82.6, RGB (104,80,39) | mean L 74.5, RGB (90,73,43) |
+
+The Better skin is optically brighter than the gold Special, which is deliberate: the tier signal is
+the metal, not the luminance, and a desaturated metal needs more luminance than a saturated one to
+read as metal at all. A first attempt preserved the base's luminance and moved only chroma, and came
+out as charcoal.
 
 Each copy repoints its own named-expression self-references, and the `Fire Absorbtion` and
 `Fire Lizard` mutual exclusion is repointed **inside the copied set**, or it would silently stop
@@ -248,6 +265,32 @@ and the merchant can points at that instead. Merchants sell bucklers at roughly 
 four; **not one chest in the game has its shield mix diluted.** `tools/check_buckler.py` asserts
 `All Shields` is byte-identical to vanilla for exactly this reason.
 
+### How the third skin was made
+
+All of it is machinery `docs/engine-notes.md` already documents under "Textures, and repainting one",
+and the one thing it does not give -- the `granny_texture` struct layout needed to get the encoded
+payload back out -- is declared from the SDK headers and then **checked** before any pointer in it is
+trusted, by reading `Width` and `Height` back and comparing them to what was passed.
+
+  * decode the base skin out of the gr2 (BinkTC0, 256x256, `Encoding=3`) and recolour it;
+  * re-encode through `granny2.dll`'s builder API. **This needs a 32-bit interpreter**: the dll is
+    32-bit and a 64-bit python raises `WinError 193` loading it. `Python312-32` is installed;
+  * splice the payload in. `Pixels` is a reference-to-array -- a `u32` count at the element's offset
+    and a pointer after it in the sector's fixup table. The pixels own their sector outright, which
+    the builder **asserts** rather than assumes, so the new payload replaces that sector's contents
+    and only the count changes;
+  * register `BucklerBetter` in both player composites, the way 0.89.0 added the two meshes the male
+    composite was missing.
+
+The payload grew from 13,304 to 16,580 bytes, which is the expected cost of re-compressing an image
+that has already been through the codec once. Round-tripping the encoder's output back through the
+decoder gives a mean absolute error of **0.07** and a maximum of **2** out of 255, and decoding the
+texture out of the *written* gr2 matches the approved art to the same figures.
+
+The icon used `mdl16_format.recolor_icon_in_place`, which rewrites only the stored colour values and
+leaves every control byte, run length and the file length byte-identical -- the right tool when the
+silhouette is already correct, which it is: this is the same shield in a different metal.
+
 ### The one unfinished part
 
 No buckler ground sprite was ever drawn. The three shields have three apiece -- base, BETTER and
@@ -257,7 +300,7 @@ which would have been worse than the compromise. It is the only place a player c
 
 ### What is not proven
 
-**Whether an unarmed attack can crit at all.** `Unarmed.InventoryItem` carries **no plugins**, so
+**Whether an unarmed attack can crit at all.** (The art is settled; this is not.) `Unarmed.InventoryItem` carries **no plugins**, so
 unarmed damage is entirely engine-side and nothing in the data says whether that path consults
 `CriticalChance`. `BK3` is the row. If it cannot, the +2 serves armed builds only and the description
 needs rewording rather than the item needing rebuilding.
