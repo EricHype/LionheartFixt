@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.93.2 are published** -- 185 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.93.3 are published** -- 186 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,46 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.93.3 - the lesson a woman could never be taught
+
+**Farshad's duelling lesson was unreachable for every female Knight of Saladin.** From a bug
+report of "I talked to them and saw nothing".
+
+His greeting is chosen by gender, and only on one side of the branch:
+
+    if Saladin Favored:
+        if Male -> "3 Return Knight of Saladin Male"      <- 8 replies
+        else    -> "3 Retun Knight of Saladin Sister"     <- 5 replies
+    else        -> "3 Return Dialogue"                    <- 7 replies
+
+The Sister node was missing **"Why were you fighting?"**, which is the only route to `50 duel`,
+and the lesson hangs off `50 duel`. Vanilla shipped that omission -- the typo in the node ID is
+vanilla's too -- and 0.15.0 built the lesson on top of it without checking that all four
+greetings could reach the node it was attached to.
+
+**The ordering is what makes it bite.** You become Saladin Favored during the initiation, and
+Eduardo forges the scimitar as part of the same questline, so by the time the lesson's own gate
+can pass you are always on a *return* greeting. For a woman that greeting is the dead end.
+`1 Conversation Start` does carry the reply, but that is long before you have the blade. She also
+gets back **"Where are you from?"**, missing from the same node.
+
+**The reporter blamed their scimitar, and the scimitar was innocent.** The gate takes either
+quest blade -- `Crescent Scimitar` (value 400) or `Sacred Scimitar` (value 850) -- or the forge
+quest completed. Only the plain 20-gold `Scimitar` fails, which is not "of Eduardo's making" and
+was never meant to count.
+
+**Ruled out first:** the lesson is gated on a marker placed `Active=0`, so an inactive entity
+registering as existing would have hidden the reply from everyone. It does not -- **484
+existence-checked markers in this game are placed inactive**, including the Gate District's own
+`Acolyte is Upset`. That is the standard flag idiom.
+
+**What this says about Gate 0.** Nothing automated could have caught it: every node resolves,
+every requirement parses, no reply points at a missing node. The defect is that one of four
+entry points into a node cannot be reached, which is a *reachability* question about a graph, and
+nothing here asks it. A check worth having: for any reply a release adds, confirm every greeting
+that should reach its host node actually does.
+
+---
 ## 0.93.2 - two meshes claiming to be the same model
 
 **The Holy Shield shipped wearing the Aegis's art, and a log line said otherwise.** Both new
