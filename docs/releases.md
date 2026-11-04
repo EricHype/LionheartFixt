@@ -151,11 +151,11 @@ in act 1 -- and you carry that shield to the end of the game because it never im
 
 This release puts a shield at each rank, using promotions the game already performs.
 
-| rank | act | shield | granted by |
-|---|---|---|---|
-| Squire | 1 | **Lion Shield** | Eduardo forges it. Unchanged |
-| Warden | 4 | **Holy Shield of the Templars** | the efreet's wish that frees Jehanne's knights |
-| Paladin | 7/8 | **Aegis of the Templars** | completing *Search for the Five Ways Crystals* |
+| act | shield | granted by |
+|---|---|---|
+| 1 | **Lion Shield** | Eduardo forges it for your initiation. Unchanged |
+| 4 | **Holy Shield of the Templars** | the efreet's wish that frees Jehanne's knights |
+| 7 | **Aegis of the Templars** | Sir Roger Templeton, when he sees what you are carrying |
 
 Each upgrade **consumes the previous shield**, so both are gated on having actually carried it.
 An act-1 errand pays off in act 4 and again in act 7.
@@ -171,12 +171,44 @@ fires exactly when the quest completes. Both routes to the selfless wish reach i
 line and the one where you catch the efreet out first and spend the "true wish" on the knights.
 Wish selfishly and there is no shield, which is the point.
 
-### The Paladin promotion was already written
+### The third shield is handed to you by a brother knight
 
-Completing the five Ways Crystals runs a faction-agnostic block that promotes whichever order you
-belong to -- Saladin to Exalted, Inquisitor to Hallowed, Templar to Paladin -- and grants
-elemental resistances. It is duplicated verbatim in `7 English Shrine/09 Secret Chamber` and
-`8 Alamut/02 Shifting Dunes` so it fires wherever you finish the set. Both got the same insertion.
+The first build of this hung the Aegis on the `Templar Paladin` promotion that fires when you
+complete *Search for the Five Ways Crystals*. It worked and it was hollow. The crystals are a
+magic collection quest with nothing Templar in them, the promotion is a generic side effect that
+raises whichever order you belong to, and the shield transmuted in your pack the instant you
+touched the fifth stone. No agent, no scene, no reason.
+
+**Sir Roger Templeton** is a Knight Templar who rides with you -- Fixt's England companion, met
+in `02 Temple Initiate`, present at the act 8 siege and in the ending slides. The Templar camp in
+that act is his; its quartermaster and surgeon both speak of him. His greeting already carried a
+`Requirement=Templar IS` branch in which you hail him as a brother knight, and he gave you nothing
+at all.
+
+Now he looks at your shield:
+
+> *&lt;He looks at your shield longer than courtesy allows.&gt;* Forgive me. I have seen that mark in a
+> chapter roll, and the men who bore it have been dust for two centuries. You carry a relic,
+> brother, and a relic is a thing we lay on tombs. A knight of your standing should bear a shield
+> the Order is proud to see raised. Give it here.
+
+**That reading is accurate, not merely evocative.** The Holy Shield is steel bearing an old cross
+with a lion ghosted beneath it, transfigured by freeing knights two centuries dead. A living
+Templar recognising it as grave-goods is simply correct.
+
+The gate is **Templar membership plus the Holy Shield in hand**, not Paladin rank. Sir Roger is met
+early in act 7 and the crystals complete later, so a rank gate would never pass at the one moment
+that matters. The Ways Crystals promotion is left exactly as vanilla wrote it.
+
+**The branch exits through `10 accept`**, which every other greeting reply already uses. That
+greeting fires inside a non-interactive sequence, and this project soft-locked a cutscene for two
+years in 0.9.0 by adding a reply inside one that did not fire what the working exit fires. It is
+also the node that recruits him, so the relic scene is an alternative to the existing Templar
+accept reply rather than a detour around it: a knight who shows his shield also accepts his
+brother's aid. The reply is added to **all four** nodes carrying that greeting -- both greetings and
+both return dialogues, male and female -- so refusing him once and returning still works.
+
+**Two deep map insertions were removed to do this.** The Aegis now needs no `.zax` surgery at all.
 
 ### What the shields do
 

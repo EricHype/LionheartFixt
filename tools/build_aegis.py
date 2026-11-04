@@ -6,17 +6,35 @@ Rank`, and all three are assigned somewhere -- but the only material thing the l
 you was the Lion Shield at the bottom of it. 0.93.0 put the Holy Shield at Warden. This puts the
 last shield at Paladin, so each rank is worth reaching.
 
-**The promotion already exists and needed no ceremony invented.** Completing *Search for the Five
-Ways Crystals* runs a faction-agnostic block that promotes whichever order you belong to --
-Saladin to Exalted, Inquisitor to Hallowed, Templar to Paladin -- and grants elemental
-resistances in the same breath. It is duplicated verbatim in two maps so it fires wherever you
-finish the set:
+**It is given by a person, and that was the second design.** The first hung it on the
+`Templar Paladin` promotion that fires when you complete *Search for the Five Ways Crystals*.
+That worked and it was hollow: the crystals are a magic collection quest with nothing Templar in
+them, there is no scene and no agent, and the shield transmuted in your pack the instant you
+touched the fifth stone.
 
-    7 English Shrine/09 Secret Chamber
-    8 Alamut/02 Shifting Dunes
+**Sir Roger Templeton** is a Knight Templar who rides with you -- Fixt's England companion, met
+in `7 English Shrine/02 Temple Initiate`, present at the act 8 siege and in the ending slides.
+The Templar camp in that act is his; its quartermaster and surgeon both speak of him. His
+greeting already carries a `Requirement=Templar IS` branch in which you hail him as a brother
+knight, and until now he gave you nothing at all.
 
-Both get the same insertion, as a fifth entry in the `Action=Array` that already holds the four
-faction conditionals, immediately after the Templar one.
+So the Aegis is handed over by a brother of the order who recognises what you are carrying. The
+Holy Shield is steel bearing an old cross with a lion ghosted beneath it, transfigured by freeing
+knights two centuries dead -- a living Templar reading that as grave-goods is accurate, not just
+evocative. The gate is **Templar membership plus the Holy Shield in hand**, not Paladin rank:
+Sir Roger is met early in act 7 and the crystals complete later, so a rank gate would be
+unreachable at the only moment that matters.
+
+**The branch must exit through `10 accept`.** That greeting fires inside a non-interactive
+sequence, and this project has already soft-locked a cutscene for two years by adding a reply
+inside one that did not fire what the working exit fires. `10 accept` is where every other
+greeting reply lands, and it is also what recruits Sir Roger -- `CSetCompanionAction`, the Fixt
+companion-joined can, 200 XP and four relays. So the relic scene is an alternative to the
+existing Templar accept reply rather than a detour around it: a knight who shows his shield also
+accepts his brother's aid, which is what that reply already did.
+
+The reply is added to all **four** nodes that carry the Templar greeting -- both greetings and
+both return dialogues, male and female -- so refusing him once and coming back still works.
 
                       Lion    Holy    Aegis
     AC                  10      14       18
@@ -78,8 +96,8 @@ AEGIS_MODEL = "Models3D/Weapons/Shields/Shield Aegis/Shield Aegis"
 # effect set deliberately below vanilla's best temporary one. Confirm in play.
 REFLECT = "0.15"
 
-MAPS = ("Levels/7 English Shrine/09 Secret Chamber.zax",
-        "Levels/8 Alamut/02 Shifting Dunes.zax")
+TREE = "Resources/Levels/7 English Shrine/Dialog/SirRoger.DialogTree"
+DASH = "-" * 60
 
 DERIVED = [
     ("Damage Related/Piercing Damage Resistance", "25"),
@@ -166,99 +184,95 @@ def build_item():
           % (len(mods), REFLECT))
 
 
-def grant_block(indent):
-    """The swap, at `indent` tabs. Maps are tab-indented; a resource line whose value is led by
-    whitespace crashes the engine on load (0.9.1 shipped one), so every line is built explicitly
-    rather than re-indented afterwards."""
-    I = T * indent
-    L = []
-    a = L.append
-    a(I + "Action=CIfAction")
-    a(I + "{")
-    a(I + T + "If=CActionCheckForInventoryItem")
-    a(I + T + "{")
-    a(I + T * 2 + "Who to give check=$instigator")
-    a(I + T * 2 + "Inventory Item To Check For=" + HOLY)
-    a(I + T + "}")
-    a(I + T + "Then=CMultipleActionsAction")
-    a(I + T + "{")
-    a(I + T * 2 + "Action=Array")
-    a(I + T * 2 + "{")
-    a(I + T * 3 + "Item Count=3")
-    a(I + T * 3 + "Action=CActionRemoveInventoryItem")
-    a(I + T * 3 + "{")
-    a(I + T * 4 + "Who to remove from=$instigator")
-    a(I + T * 4 + "Inventory Item To remove=" + HOLY)
-    a(I + T * 3 + "}")
-    a(I + T * 3 + "Action=CActionGiveStandardInventoryItem")
-    a(I + T * 3 + "{")
-    a(I + T * 4 + "Who to give to=$instigator")
-    a(I + T * 4 + "Delete Trigger=0")
-    a(I + T * 4 + "Notify Player=1")
-    a(I + T * 4 + "Inventory Item To Give=" + AEGIS)
-    a(I + T * 4 + "Additions to add=Array")
-    a(I + T * 4 + "{")
-    a(I + T * 5 + "Item Count=0")
-    a(I + T * 4 + "}")
-    a(I + T * 3 + "}")
-    a(I + T * 3 + "Action=CPrintCombatTextAction")
-    a(I + T * 3 + "{")
-    a(I + T * 4 + "Text to print=The Ways gild the shield of the order. You carry the Aegis of the Templars.")
-    a(I + T * 4 + "Character to show text to=$Instigator")
-    a(I + T * 3 + "}")
-    a(I + T * 2 + "}")
-    a(I + T + "}")
-    a(I + T + "Else=")
-    a(I + T + "Return failure if the If failes=0")
-    a(I + "}")
-    return CR.join(L) + CR
+
+ANCHOR = (CR.join(["Requirement=Templar IS",
+                   "Reply Text=Well met, brother knight. Your aid is welcome.",
+                   "Go to node ID=10 accept"]) + CR)
+
+NEW_REPLY = (CR.join([
+    "Requirement=Templar IS",
+    "Custom Requirement=CActionExpression",
+    "{",
+    "Action=CActionCheckForInventoryItem",
+    "{",
+    "Who to give check=$instigator",
+    "Inventory Item To Check For=" + HOLY,
+    "}",
+    "}",
+    "Reply Text=Well met, brother knight. <You let him see the shield on your arm.>",
+    "Go to node ID=70 the relic",
+    "Icon=Quest Icon",
+    "",
+]) + CR)
+
+RELIC = (CR.join([
+    DASH,
+    "Node ID=70 the relic",
+    "Text=<He looks at your shield longer than courtesy allows.> Forgive me. I have seen that "
+    "mark in a chapter roll, and the men who bore it have been dust for two centuries. You carry "
+    "a relic, brother, and a relic is a thing we lay on tombs. A knight of your standing should "
+    "bear a shield the Order is proud to see raised. Give it here.",
+    "Should Have Voiceover=0",
+    "",
+    "Requirement=!None",
+    "Reply Text=Then let it be seen raised.",
+    "Go to node ID=10 accept",
+    "Custom Action=CMultipleActionsAction",
+    "{",
+    "Action=Array",
+    "{",
+    "Item Count=3",
+    "Action=CActionRemoveInventoryItem",
+    "{",
+    "Who to remove from=$instigator",
+    "Inventory Item To remove=" + HOLY,
+    "}",
+    "Action=CActionGiveStandardInventoryItem",
+    "{",
+    "Who to give to=$instigator",
+    "Delete Trigger=0",
+    "Notify Player=1",
+    "Inventory Item To Give=" + AEGIS,
+    "Additions to add=Array",
+    "{",
+    "Item Count=0",
+    "}",
+    "}",
+    "Action=CPrintCombatTextAction",
+    "{",
+    "Text to print=Sir Roger has gilded the shield of the order. You carry the Aegis of the Templars.",
+    "Character to show text to=$Instigator",
+    "}",
+    "}",
+    "}",
+    "Icon=Quest Icon",
+    "Is Default Reply=1",
+]) + CR)
 
 
-def wire(rel):
-    t = read(rel)
+def wire():
+    t = read(TREE)
     if AEGIS in t:
-        print("%-26s already wired, left alone" % rel.split("/")[-1])
+        print("SirRoger    already wired, left alone")
         return
-    ls = t.split(CR)
-    pi = [i for i, l in enumerate(ls) if l.strip() == "Faction To Assign=Factions/Templar Paladin"]
-    assert len(pi) == 1, "%s: %d Paladin assignments, expected 1" % (rel, len(pi))
-    pi = pi[0]
-    ci = next(i for i in range(pi, -1, -1) if ls[i].strip() == "Action=CConditionalAction")
-    indent = len(ls[ci]) - len(ls[ci].lstrip(T))
-    depth, end = 0, None
-    for i in range(ci + 1, len(ls)):
-        s = ls[i].strip()
-        if s == "{":
-            depth += 1
-        elif s == "}":
-            depth -= 1
-            if depth == 0:
-                end = i
-                break
-    assert end is not None, rel + ": unterminated conditional"
+    n = t.count(ANCHOR)
+    assert n == 4, "expected 4 Templar greeting replies, found %d" % n
+    t = t.replace(ANCHOR, NEW_REPLY + ANCHOR, 4)
 
-    ai = next(i for i in range(ci, -1, -1)
-              if ls[i].strip() == "Action=Array"
-              and (len(ls[i]) - len(ls[i].lstrip(T))) == indent - 1)
-    ii = next(i for i in range(ai, ai + 4) if ls[i].strip().startswith("Item Count="))
-    n = int(ls[ii].strip().split("=")[1])
-    ls[ii] = T * (indent) + "Item Count=%d" % (n + 1)
+    # the relic node goes at the end, before the tree's closing brace
+    close = CR + "}" + CR
+    assert t.endswith(close), "unexpected tail: %r" % t[-40:]
+    t = t[:-len(close)] + CR + RELIC + "}" + CR
 
-    block = grant_block(indent).rstrip(CR).split(CR)
-    out = ls[:end + 1] + block + ls[end + 1:]
-    new = CR.join(out)
-    assert new.count("\n") == new.count(CR), rel + " lost CRLF"
-    assert new.count("Inventory Item To Give=" + AEGIS) == 1
-    # no value may be led by whitespace: that is the 0.9.1 map-crash shape
-    bad = [l for l in block if re.match(r"^\t*[^\t=]+=[ \t]", l)]
-    assert not bad, "whitespace-led value in %r" % bad[:2]
-    (FX / rel).parent.mkdir(parents=True, exist_ok=True)
-    (FX / rel).write_bytes(new.encode("latin-1"))
-    print("%-26s wired at indent %d, Item Count %d -> %d" % (
-        rel.split("/")[-1], indent, n, n + 1))
+    assert t.count("\n") == t.count(CR), "lost CRLF"
+    assert t.count("Node ID=70 the relic") == 1
+    assert t.count("Inventory Item To Give=" + AEGIS) == 1
+    assert t.count("Go to node ID=70 the relic") == 4
+    (FX / TREE).parent.mkdir(parents=True, exist_ok=True)
+    (FX / TREE).write_bytes(t.encode("latin-1"))
+    print("SirRoger    4 greeting branches + node '70 the relic'")
 
 
 if __name__ == "__main__":
     build_item()
-    for m in MAPS:
-        wire(m)
+    wire()
