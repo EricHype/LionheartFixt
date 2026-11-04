@@ -550,6 +550,11 @@ Reply Text=The seer told me what you were, and what you did.
 Go to node ID=300 confront the weird woman 1
 Icon=Speach Skill Icon
 
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=I must go. Goodbye.
 Go to node ID=10 goodbye
@@ -789,6 +794,11 @@ Warp Behavior=
 }
 }
 
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=I must go. Goodbye.
 Go to node ID=
@@ -888,6 +898,12 @@ Desired Minimum Count=1
 }
 Reply Text=Certainly. However, that isn't what brings me here today. This chicken has need of your magical prowess.
 Go to node ID=950 Chicken 1
+
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
+
 ------------------------------------------------------------
 Node ID=10 Bad Goodbye
 Text=Your tongue is soiled by the impurity of your life; your mind is still ensnared in the mire of this world. Get thee from my sight.
@@ -2546,6 +2562,11 @@ LayerPart name of merchants character=$Trigger
 Player=$instigator
 After Closed Action=
 }
+
+Requirement=Fixt Hangover Need Root
+Reply Text=I need nightshade root. A man in Barcelona is suffering and the only apothecary who could help him cannot get it.
+Go to node ID=1720 Fixt the nightshade root
+Icon=Quest Icon
 
 Requirement=!None
 Reply Text=Nothing. Goodbye.

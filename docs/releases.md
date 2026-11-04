@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.93.3 are published** -- 186 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.93.4 are published** -- 187 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,37 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.93.4 - the same defect, twice more
+
+0.93.3 fixed a lesson no woman could be taught and ended with the observation that **Gate 0 asks
+whether references resolve, never whether every entry point can reach what it should.**
+`tools/check_node_variants.py` was written to ask that question. This is what it found.
+
+| | who could not reach it |
+|---|---|
+| **Herbalist**, the hangover cure | an Inquisitor or a Knight Templar -- **the quest could not be started at all** |
+| **Weird woman**, the nightshade root | four of her greetings, including an Inquisitor's and the one after Montaillou burns |
+
+Both are Fixt's own content, from 0.4.x, and both have the same shape as Farshad: replies hung
+on some greeting variants and not their siblings. The gates are **quest state** in every case --
+`Fixt Hangover Asked`, `Fixt Hangover Has Root`, `Fixt Hangover Need Root` -- so the replies
+copy to a sibling verbatim and the gate still does the work. Nothing changed about *when* a reply
+appears, only about who can see it.
+
+**Two findings were examined and deliberately left.** `100 Weird Woman pissed return` is her
+refusing to deal with you at all; silence is the content there. And the Bar Patrons' `1500` family
+looked like a finding but is a *state progression* with the drunk rather than a set of variants --
+the cure hangs off `return after give gold` because that is the state it belongs to. A survey that
+is never wrong is a survey nobody reads; these are the cases where the judgement is the work.
+
+**The fix tool hit the same two traps the last one did**, which is its own small lesson about how
+specific these failures are. It used `index` where `rfind` was needed, and would have swallowed
+every reply above the target; and it joined a reply onto its neighbour without the blank line
+between, which `validate.py` refused -- the "reply not separated by a blank line" defect that
+silently broke 47 replies across three releases before Gate 0 learned to look for it. Both are
+asserted against now.
+
+---
 ## 0.93.3 - the lesson a woman could never be taught
 
 **Farshad's duelling lesson was unreachable for every female Knight of Saladin.** From a bug

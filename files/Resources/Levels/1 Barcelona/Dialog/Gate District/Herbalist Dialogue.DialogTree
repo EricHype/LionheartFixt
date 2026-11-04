@@ -3155,6 +3155,16 @@ Node ID=1 Conversation Start Inquisitor
 Text=Eh...it is truly an honor to have one of the Inquisition grace Quinn's Apothecary. In all my twenty years, the Inquisition has always been welcome in this shop, and my health permitting, they shall be for twenty more.
 Should Have Voiceover=0
 
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
+
 Requirement=!None
 Reply Text=
 Go to node ID=2 Conversation Start Inquisitor or Templar 2
@@ -3163,6 +3173,16 @@ Is Default Reply=1
 Node ID=1 Conversation Start Knight Templar
 Text=Eh...it is truly an honor to have one of the Knights Templar grace Quinn's Apothecary. In all my twenty years, the Templars have always been welcome in this shop, and my health permitting, they shall be for twenty more.
 Should Have Voiceover=0
+
+Requirement=Fixt Hangover Asked
+Reply Text=A man in the Port District tavern has drunk himself into a state no ale will fix. You said you could brew for any affliction of the mind or body.
+Go to node ID=1710 Fixt the nightshade
+Icon=Quest Icon
+
+Requirement=Fixt Hangover Has Root
+Reply Text=Nightshade root, from Montaillou. I would rather not say how I came by it.
+Go to node ID=1711 Fixt the cure brewed
+Icon=Quest Icon
 
 Requirement=!None
 Reply Text=
