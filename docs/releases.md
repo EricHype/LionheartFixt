@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.92.0 are published** -- 182 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.93.0 are published** -- 183 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,126 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.93.0 - the Templar shield, three ranks of it
+
+The Knights Templar have three ranks. `Templar Squire`, `Templar Warden` and `Templar Paladin`
+all exist, all set `Uber Perks/Templar Rank`, and all three are assigned somewhere in the shipped
+game. The only material thing the ladder ever gave you was the Lion Shield, at the bottom of it,
+in act 1 -- and you carry that shield to the end of the game because it never improves.
+
+This release puts a shield at each rank, using promotions the game already performs.
+
+| rank | act | shield | granted by |
+|---|---|---|---|
+| Squire | 1 | **Lion Shield** | Eduardo forges it. Unchanged |
+| Warden | 4 | **Holy Shield of the Templars** | the efreet's wish that frees Jehanne's knights |
+| Paladin | 7/8 | **Aegis of the Templars** | completing *Search for the Five Ways Crystals* |
+
+Each upgrade **consumes the previous shield**, so both are gated on having actually carried it.
+An act-1 errand pays off in act 4 and again in act 7.
+
+### The Crypt gave nothing
+
+*Release the Doomed Knights from their Torment* spans five dialogue trees, a three-state quest,
+Jehanne, the Spirit Council and an efreet in a lamp. **No dialogue in the entire Crypt act gives
+a single item.** You free two hundred years of damned Templar dead and walk out with experience.
+
+The grant sits in the wish's own action array, beside the XP award that is already there, so it
+fires exactly when the quest completes. Both routes to the selfless wish reach it -- the direct
+line and the one where you catch the efreet out first and spend the "true wish" on the knights.
+Wish selfishly and there is no shield, which is the point.
+
+### The Paladin promotion was already written
+
+Completing the five Ways Crystals runs a faction-agnostic block that promotes whichever order you
+belong to -- Saladin to Exalted, Inquisitor to Hallowed, Templar to Paladin -- and grants
+elemental resistances. It is duplicated verbatim in `7 English Shrine/09 Secret Chamber` and
+`8 Alamut/02 Shifting Dunes` so it fires wherever you finish the set. Both got the same insertion.
+
+### What the shields do
+
+```
+                  Lion    Holy    Aegis
+AC                  10      14       18
+Pierce/Slash/Crush  15/10/10  20/15/15  25/20/20
+Thresholds          +1      +2       +3
+Fire/Cold/Elec       -      10       15 each
+Attack Magic Speed -0.07  -0.05    -0.03
+Reflect              -       -      15%
+Templar set item    no     yes      yes
+Value              500    1500     3000
+```
+
+**The speed line is the design, not the AC line.** -0.03 matches the Spirit Templar Shield, the
+lightest shield in the game, so the tier that mitigates most also encumbers least. The ordinary
+Small/Medium/Large line does the opposite, climbing penalty with protection. These read as three
+increasingly well-made objects rather than three increasingly large ones.
+
+**The reflect number was nearly a catastrophe.** `Physical Damage Percentage Given To Attacker
+Zero To One` has two vanilla users and both appear to write `Constant Value=100`, which looks like
+the house style for "100%". It is not a value at all -- it is a **divisor**:
+
+    Dragon Scales   CDivide( <"percentagechange" = 10>, 100 )  -> 0.10, permanent, armour
+    Backlash        CDivide( <"percent" = 20..35>,      100 )  -> 0.20-0.35, a temporary spell
+
+Copying the apparent idiom would have shipped a 10000% reflect. 15% sits just above vanilla's
+permanent reflect and below its temporary one. It is calibrated, not measured, and the playtest
+kit says so.
+
+### And two vanilla items that rendered nothing
+
+A dead Knight Templar in Montaillou's burned hamlet carries the **Helm of the Templars** and the
+**Spirit Templar Shield** -- fixed spawns, two corpses, not a random drop. Both shipped with **no
+`CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride` at all**, so equipping either put
+nothing on your character. They are the **only two exceptions in the entire shield and helmet
+families**; every other shield carries an `Arm` mesh and every other helmet a `Head` mesh.
+
+Both now render, and each takes the mesh its own **icon** already depicts. The shield's first fix
+used `Shield Lion`, reasoning from the `LionShield_PU` ground sprite it borrows, and that was the
+wrong anchor: it put a gold lion on the character while the inventory window showed a wooden
+crusader-cross shield. **The icon is what the player looks at.** Corrected to `Shield Lrg Better`,
+which is what that icon is.
+
+This matters because `Number of Templar Items` is a real set counter that `(AC) Armor Class` reads
+in its own Expression and pays **+4 AC at two pieces**. Both new shields count, so the helm found
+in act 3 finally has a reason to be worn.
+
+### The art
+
+The Holy Shield is the Lion Shield's own mesh and skin, repainted: steel field, a red ringed
+cross, and **the lion still there at 30% beneath it**. Erasing the lion meant inpainting the hole
+it left, which smeared streaks down the field; keeping a ghost covers them with something
+deliberate and says the right thing -- the shield an initiate forged, with the order's mark laid
+over it.
+
+The Aegis is that shield gilded, and its heraldry was **painted by hand**: the lion returns as two
+small gold lions flanking the stem. So the lion is the device in act 1, a ghost in act 4, and
+supporters at Paladin. `tools/art/shield-aegis-icon.png` and its `.pdn` ship in the repository,
+and the mesh rebuilds from whatever PNG it is handed.
+
+Two things were learned the hard way and are recorded in `docs/engine-notes.md`. The icon's
+silhouette is the original's, not the painting's: the source was painted over a preview whose
+backdrop is `(18,18,22)` rather than black, so the "non-black means opaque" rule that built the La
+Mancha icon would have produced a rectangular shield. And the lions on the mesh are downsampled by
+**area coverage**, not point sampling -- the source lion is 71x163 and the target 29x45, and
+point-sampling shredded its limbs into gold confetti.
+
+### A correction to this document
+
+0.93.0's development produced three wrong claims that were caught before release, and the
+mechanism behind them is worth keeping. **Addition-group membership is declared by the addition,
+not by the group.** A `.AdditionGroup.txt` lists only the groups it *nests*; each addition names
+its own group. Reading the group files alone produced the flat and wrong conclusion that no shield
+or armour in this game can be enchanted -- `Shield LARGE Additions` reads `Item Count=0` and has
+twelve members. `tools/unreachable_additions.py` now walks it properly: across 552 additions
+**nothing is unreachable**, and the 81 on `Inventory/!None` are there by design.
+
+What *is* inert is the opposite direction, and it is new to `docs/unused-content.md`: **six items
+name a pool with no members at all**, so they can never be magic -- the three Great melee weapons,
+the Wand, the Rod, and Shakespeare's Promise Ring. Alongside them, **fourteen derived attributes
+have no writer and no reader**, including a complete second retaliation mechanic in fire sitting
+beside the physical one that works.
 
 ## 0.92.0 - the bracers, and the blind spot that hid them
 

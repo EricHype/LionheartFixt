@@ -167,7 +167,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=5
+Item Count=6
 Action=CIfAction
 {
 If=CExpressionAction
@@ -242,6 +242,44 @@ Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
 Action=CUseCannedActionAction
 {
 Canned Object=Levels/4 Crypt/Quests/Doomed Knights XP
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Lion Shield Templar Quest
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Lion Shield Templar Quest
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Holy Shield of the Templars
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CPrintCombatTextAction
+{
+Text to print=The knights' release passes through the shield you forged. It is theirs now, and yours.
+Character to show text to=$Instigator
+}
+}
+}
+Else=
+Return failure if the If failes=0
 }
 Action=CTriggerRelayAction
 {

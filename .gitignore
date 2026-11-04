@@ -3,3 +3,6 @@ __pycache__/
 
 # Release artifacts are built, not source. Never commit them.
 dist/
+
+# Encoded texture payloads are regenerated from the PNGs beside them.
+tools/art/*.binktc0

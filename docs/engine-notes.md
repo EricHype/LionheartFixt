@@ -839,6 +839,66 @@ keyed to the slot, so the name is the only thing shield-like about it. That make
 put a new one-deep equipment slot, at the cost of three one-line edits and no save migration, where
 widening `Body` cost three probe builds and produced a trap.
 
+**The large-shield mesh filenames are crossed, and the registry names are the ones to
+trust.** The directory `Shield Lrg Better` holds a texture called `ShieldLrg.tga`, and the
+directory `Shield Lrg` holds `ShieldLrgBetter.tga`. Decoding all four large-shield skins and
+comparing them against the three icons settles it: **`Shield Lrg Better` is the wooden shield
+with four crusader crosses** and matches the `Shield Large Better` icon, `Shield Lrg` is the
+plain planked one matching `Shield Large`, and `Shield Lrg Special` is the ornate gold one
+matching `Shield Large Best`. A fourth mesh, `ShieldLarge/ShieldLarge`, is plain planks and is
+**not in either composite's registry at all**, so nothing can wear it.
+
+**Match a new item's on-body mesh to the icon it wears, not to its ground sprite.** The Spirit
+Templar Shield borrows `LionShield_PU` ground art but carries the `Shield Large Better` icon.
+Reasoning from the ground sprite put a gold lion on the character while the inventory window
+showed a crusader-cross shield, and the player looks at the icon. The ground sprite stays
+mismatched because that mismatch is vanilla's own.
+
+**A `Zero To One` attribute really is zero-to-one, and the `100` beside it is the divisor.**
+`Physical Damage Percentage Given To Attacker Zero To One` is written by `Dragon Scales` as
+`CDivide(<"percentagechange" = 10>, CConstant 100)` and by the `Backlash` skill as
+`CDivide(<"percent" = 20..35>, CConstant 100)`. Both are correct and both yield fractions:
+0.10 permanent on armour, 0.20-0.35 as a temporary spell. The same shape holds for
+`Elemental Deflector Percentage` and `Mana Shield Percentage`, which also divide.
+
+**The trap is a scanner that reports the last `Constant Value` in a modifier block.** Doing
+that here reads the divisor as the amount and concludes vanilla ships a 10000% reflect. It
+does not. Across every write to a `Zero To One` attribute in the game -- five attributes,
+eight writes -- **not one passes a bare value above 1**; they either divide by 100 or pass a
+fraction directly (`Vampirism` 0.1, `Backstab` 0.5). When a modifier's amount is a
+`CDivide` or a named expression, read the expression, not the nearest constant.
+**Addition-group membership is declared by the addition, not by the group.** A
+`.AdditionGroup.txt` lists only the *other groups it nests*; each `.InventoryAddition` names
+its own group in `Inventory Addition Group=`. So a group file reading `Item Count=0` means
+"nests no sub-groups", **not** "has no members" -- `Shield LARGE Additions` is `Item Count=0`
+and has twelve. Reading the group files alone produced the flatly wrong conclusion that no
+shield or armour in the game can be enchanted. Walk it as a graph instead:
+`item --Inventory Addition Group--> group --nests--> group <--membership-- addition`.
+`tools/unreachable_additions.py` does this; across 552 additions **nothing is unreachable**,
+and 81 sit on `Inventory/!None` by design.
+
+**What is inert is the other direction: six items point at pools with no members at all.**
+`BattleAxeGreat`, `MaceGreat` and `TwoHandedSwordGreat` name `Weapons/Great Melee Additions`,
+`Wand` and `Rod` name `Items/Specific Item/Wand Additions`, and `Shakespeare's Promise Ring`
+names `Inventory/!Unknown`. All six can therefore never be magic.
+
+**Calibrate a new effect against the reachable user, not the shipped constant.** Backlash's
+`percent` starts at 20, steps by 15, and is capped by `Output Max` at **35**, so the game's
+live reflect is 0.20-0.35 *as a temporary spell*. A permanent item effect belongs below a
+temporary ceiling. The same shape of question applies to `Elemental Deflector Percentage` and
+`Mana Shield Percentage`, both also `Zero To One` and both also carrying bare 100s.
+
+**And search additions and skills, not just items and perks.** An earlier pass here concluded
+`Elemental Deflector` and `Mana Shield` were "used by nothing" because it globbed only
+`.InventoryItem`, `.Perk` and `.Spell`. Both are used -- by an `.InventoryAddition` and a
+`.Skill` respectively. See [[one_query_is_not_proof_of_absence]] in spirit: the file-type
+filter is part of the query.
+
+**An item's model override is baked into the save per instance.** Changing `Override Names` in
+the resources reaches items created *after* the install and not one already sitting in a save:
+the instance carries its own full override block. So a mesh fix has to be tested on a freshly
+granted item, and a tester reporting "unchanged" may simply be holding the old instance.
+
 ---
 
 ## Textures, and repainting one

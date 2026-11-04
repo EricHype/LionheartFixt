@@ -6042,6 +6042,31 @@ fields and `On the ground`.
 | OA5 | A **Wielder Rod of Spirits**, either version | **Drop it on the ground** | Same, and distinct from the Rod of Bone's. Compare against `Scepter of the INQ Chambers`, which already had its own sprite |
 | OA6 | **The regression.** Any of the five | Use it as you would have before | Unchanged. These edits touch art fields only -- no stat, script, drop or requirement moved. If a rod stopped casting or the amulet stopped granting its bonus, something went wrong that this release had no business touching |
 
+## 0.93.0 - the Templar shields
+
+Three shields, two repairs, five acts. The upgrades consume the previous shield, so the rows are
+ordered: a failure early makes the later ones unreachable rather than failing on their own merits.
+
+**Take a FRESH item from the playtest kit for every mesh row.** An item's model override is baked
+into the save per instance, so a shield already sitting in a save keeps the mesh it was created
+with. A tester reporting "unchanged" may simply be holding the old one.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TS1 | Playtest kit, *The Templar shields* | Take the **Spirit Templar Shield**, equip it | Something appears on your character. Before this release it rendered **nothing**. It should be the wooden crusader-cross shield, matching its own inventory icon -- *not* the gold Lion Shield, which was the first fix and was wrong |
+| TS2 | Same | Take the **Helm of the Templars**, equip it | Same: it renders at all. It wears `Helmet1`, which is the icon it already had |
+| TS3 | Same | Equip the helm **and** either Templar shield, and watch AC | **+4 AC** over wearing one of them. This is `Number of Templar Items == 2` in the AC attribute's own Expression. If AC does not move, the set counter is not seeing both |
+| TS4 | Same | Take the **Holy Shield** and the **Lion Shield**, hold them up together | Same silhouette, steel instead of gold, red ringed cross, and the lion faintly visible beneath it. If the lion is invisible the ghost is too weak; if it competes with the cross it is too strong |
+| TS5 | Same | Take the **Aegis**, compare against the Holy Shield | Gold cross where the Holy Shield's is red-outlined, brighter steel, and **two gold lions flanking the stem**. Check the inventory icon and the on-body model agree -- both carry lions |
+| TS6 | **Act 4, `9 Burial Chamber`.** Carry the Lion Shield in | Free the knights: *"I wish to undo the curse laid upon Jehanne's soul..."* | The Lion Shield is **taken** and the Holy Shield given, with a combat-log line. The quest completes and its XP still arrives |
+| TS7 | Same, **without** the Lion Shield | Make the same wish | Quest completes, XP arrives, **no shield**. The grant is gated on carrying it and must not fire empty-handed |
+| TS8 | Same | Reach the wish via the clever route -- *"I've heard stories of your kind"* or *&lt;Read the wish itself.&gt;* -- then spend the true wish on the knights | Identical outcome to TS6. Both routes land on the same node |
+| TS9 | Same | Wish **selfishly** instead: stronger, richer, smarter, or tell him to get lost | No shield, and no quest completion. Only the selfless wish frees them |
+| TS10 | **Acts 7/8.** Carrying the Holy Shield, complete *Search for the Five Ways Crystals* | - | The Holy Shield is taken and the **Aegis** given, alongside the Paladin promotion that already happened there. Works in **either** map -- `09 Secret Chamber` or `02 Shifting Dunes` -- whichever you finish the set in |
+| TS11 | Same, as an **Inquisitor or Saladin** member | Complete the crystals | Your own promotion still fires, unchanged. No Templar shield appears. This release must not disturb the other two factions' branches of that block |
+| TS12 | **Judgement, not pass/fail.** Equip the Aegis and let something hit you in melee | Watch its health | It should take a visible share back -- 15% -- without the fight becoming trivial. **This number is calibrated against `Dragon Scales` (10%, permanent) and `Backlash` (20-35%, temporary) and has never been measured in play.** If attackers melt, it is too high; if nothing is observable, the attribute may not be read for permanent item modifiers at all |
+| TS13 | **The regression.** Play a non-Templar through the Crypt | Finish the act normally | Nothing about the Doomed Knights questline changed: same dialogue, same quest states, same XP. The only addition is one conditional action that does nothing without the Lion Shield |
+
 ## The twenty-one meshes, and the pools that deliver them
 
 0.89.0 wires magic weapons to the Better and Special meshes the game shipped and never used. Two

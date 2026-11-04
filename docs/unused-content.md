@@ -25,6 +25,7 @@ wrong are more reusable than the results.
 - [Perks](#perks-five-titles-nothing-awards)
 - [Factions](#factions-all-thirteen-reachable)
 - [Counters and set bonuses](#counters-and-set-bonuses-the-mechanism-i-said-did-not-exist)
+- [**Inert mechanisms**](#derived-attributes-that-no-resource-reads-or-writes) -- 14 derived attributes with no writer and no reader, 6 items that can never be magic, and why *nothing* is an unreachable enchantment
 - [Done so far](#done-so-far)
 - [What to pick up next](#what-to-pick-up-next)
 - [How this was measured](#how-this-was-measured)
@@ -192,6 +193,78 @@ rarities, the way `Armor LOW Mojo` does. Below mojo 7 only amulet and ring encha
 nothing above Uncommon; Very Rare and Unique start at mojo 16, around the Crypt. Belt, Bracer, Cloak
 and Helmet have no Common or Uncommon enchantment at all, so they are absent from the lowest band by
 necessity rather than choice.
+
+### Enchantment pools: nothing is unreachable, but six items can never be magic
+
+Prompted by a wrong guess worth recording. `Dragon Scales` looked like an enchantment nothing
+could roll, and the reasoning was that every `Shields and Armor` group file reads `Item Count=0`.
+**That reads the relationship backwards.** A `.AdditionGroup.txt` lists only the *other groups it
+nests*; membership is declared by the addition, which names its group in its own
+`Inventory Addition Group=`. `Shield LARGE Additions` is `Item Count=0` and has **twelve**
+members. Armour and shields are enchanted perfectly normally.
+
+Walked properly as a graph -- `item -> group -> nested groups <- addition` --
+`tools/unreachable_additions.py` reports:
+
+| | count |
+|---|---|
+| additions generable from some item's pool | **471** |
+| on `Inventory/!None` by design (incl. this project's probes) | 81 |
+| **unreachable** | **0** |
+
+So there is no orphaned-enchantment backlog. The disconnection in this game was never at the
+addition end; it was at the *generator* end, which is what 0.38.0 fixed above.
+
+**The inert direction is the opposite one: six items name a pool that has no members**, so they
+can never roll anything at all.
+
+| item | pool it names | members |
+|---|---|---|
+| Great Battle Axe, Great Mace, Great Two Handed Sword | `Weapons/Great Melee Additions` | 0 |
+| Wand, Rod | `Items/Specific Item/Wand Additions` | 0 |
+| Shakespeare's Promise Ring | `Inventory/!Unknown` | 0 |
+
+The three Great weapons are the interesting ones: every other melee base has a `Per Base` pool of
+20-26 enchantments, and these three share an empty one. A magic Great Mace cannot exist. The two
+wand bases are a different case -- wands carry their effect as a whole item rather than as a base
+plus an addition, which [the wand section](#wands-as-a-system) covers -- and the ring names a
+placeholder group that is not a real pool.
+
+### Derived attributes that no resource reads or writes
+
+Fourteen of 184. **Stated precisely:** nothing outside each attribute's own definition names it in
+a `Derived character attribute to modify=` or a `Character Attribute=`. That is not the same as
+"the game ignores it" -- a positional attribute array means every character's cache file lists
+every attribute name, so a plain text search finds ~765 false hits for each, and several of these
+are plainly read by the engine rather than by data.
+
+**Probably engine-internal, not findings:** `Action Points`, `Combat Speed`, `Magic Speed`,
+`Sneak Speed Factor`.
+
+**Designed mechanisms with no wiring at either end, which is the interesting list:**
+
+* **`Backlash Fire Damage To Give Attacker`** and **`Should Give Backlash Fire Damage To Attacker
+  Percentage`** -- a *second* retaliation mechanic, in fire, beside the physical one that works.
+  The physical reflect is live (`Dragon Scales` 10%, the `Backlash` skill 20-35%); its fire twin
+  is written by nothing. A pair of attributes, named consistently, wired to nothing.
+* **`Is Wearing Necklace of Voodoo`** -- a set flag of exactly the shape `Number of Templar Items`
+  uses, for a set that otherwise counts itself with `Number of Voodoo Items`. Nothing raises it
+  and nothing reads it.
+* **`FACTION LEADERS KILLED`** -- a Game Scripting Variable, the category Fixt uses for
+  cross-act state, that no map or dialogue ever sets.
+* **`Fast Talk Dialog Enhancer`** -- under `Perk and Trait Support/`, so a perk was meant to feed
+  it and a dialogue check was meant to read it. Neither exists.
+* **`Acid Damage Multiplier for Reverse Heal`** and **`Disease Damage Multiplier for Reverse
+  Heal`** -- reverse-heal support for two damage schools, where the other schools are wired.
+* **`Additional Poison Damage Minimum`** / **`Maximum`** -- a damage band nothing contributes to.
+* **`Companion Follow Enabled`** -- worth a look against the companion work, since the overlay
+  machinery is already understood.
+
+None of these is restorable on its own: an attribute with no writer and no reader is a mechanism
+that was specified and then not built, so using one means designing both ends. They are recorded
+here as **design space that the engine already has a name for**, not as a repair backlog.
+
+---
 
 ---
 
