@@ -191,24 +191,27 @@ ANCHOR = (CR.join(["Requirement=Templar IS",
 
 NEW_REPLY = (CR.join([
     "Requirement=Templar IS",
-    "Custom Requirement=CActionExpression",
+    # WORN, not merely carried: he cannot be looking at a shield that is in your pack.
+    # There is no equipped test in this engine, so the shield raises a flag while selected
+    # and this reads it. See tools/build_holy_shield.py.
+    "Custom Requirement=CUseCannedExpressionExpression",
     "{",
-    "Action=CActionCheckForInventoryItem",
-    "{",
-    "Who to give check=$instigator",
-    "Inventory Item To Check For=" + HOLY,
+    "Canned Expression=Dialog/Requirements/Fixt Wearing Templar Shield",
     "}",
-    "}",
-    "Reply Text=Well met, brother knight. <You let him see the shield on your arm.>",
+    # The player must have a REASON to show him the shield. The first version had them
+    # volunteering it unprompted, which reads as the player knowing about a reward. Here he
+    # is noticed looking, and the reply asks him why -- so the scene is his doing, not a
+    # menu pick. No quest marker either: that flagged it as a hook to collect rather than a
+    # thing that happens in the conversation.
+    "Reply Text=<You notice him looking at the shield on your arm.> What is it you see, brother?",
     "Go to node ID=70 the relic",
-    "Icon=Quest Icon",
     "",
 ]) + CR)
 
 RELIC = (CR.join([
     DASH,
     "Node ID=70 the relic",
-    "Text=<He looks at your shield longer than courtesy allows.> Forgive me. I have seen that "
+    "Text=Forgive me. I have seen that "
     "mark in a chapter roll, and the men who bore it have been dust for two centuries. You carry "
     "a relic, brother, and a relic is a thing we lay on tombs. A knight of your standing should "
     "bear a shield the Order is proud to see raised. Give it here.",

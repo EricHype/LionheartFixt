@@ -9,7 +9,7 @@ CInventoryItem
 			Modification is permanent=0
 			Modifiers=Array
 			{
-				Item Count=13
+				Item Count=14
 				Modifier=CCharacterModifierDerivedAttribute
 				{
 					Modification Amount=CConstant
@@ -139,6 +139,16 @@ CInventoryItem
 					Modification amount is a percent=0
 					Allow Accumulation=1
 					Skill to modify=Skills/Fighting/Unarmed
+				}
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=1
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Wearing Templar Shield
 				}
 			}
 		}

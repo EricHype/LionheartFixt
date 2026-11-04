@@ -10,17 +10,12 @@ Text=It is you, the Scion of Lionheart! My Lord, it is an honor to meet you. I a
 Should Have Voiceover=1
 
 Requirement=Templar IS
-Custom Requirement=CActionExpression
+Custom Requirement=CUseCannedExpressionExpression
 {
-Action=CActionCheckForInventoryItem
-{
-Who to give check=$instigator
-Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Holy Shield of the Templars
+Canned Expression=Dialog/Requirements/Fixt Wearing Templar Shield
 }
-}
-Reply Text=Well met, brother knight. <You let him see the shield on your arm.>
+Reply Text=<You notice him looking at the shield on your arm.> What is it you see, brother?
 Go to node ID=70 the relic
-Icon=Quest Icon
 
 Requirement=Templar IS
 Reply Text=Well met, brother knight. Your aid is welcome.
@@ -77,17 +72,12 @@ Text=It is you, the Scion of Lionheart! My Lady, it is an honor to meet you. I a
 Should Have Voiceover=1
 
 Requirement=Templar IS
-Custom Requirement=CActionExpression
+Custom Requirement=CUseCannedExpressionExpression
 {
-Action=CActionCheckForInventoryItem
-{
-Who to give check=$instigator
-Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Holy Shield of the Templars
+Canned Expression=Dialog/Requirements/Fixt Wearing Templar Shield
 }
-}
-Reply Text=Well met, brother knight. <You let him see the shield on your arm.>
+Reply Text=<You notice him looking at the shield on your arm.> What is it you see, brother?
 Go to node ID=70 the relic
-Icon=Quest Icon
 
 Requirement=Templar IS
 Reply Text=Well met, brother knight. Your aid is welcome.
@@ -187,17 +177,12 @@ Text=My Lord, as I've said, my sword is yours against these dark druids that sul
 Should Have Voiceover=1
 
 Requirement=Templar IS
-Custom Requirement=CActionExpression
+Custom Requirement=CUseCannedExpressionExpression
 {
-Action=CActionCheckForInventoryItem
-{
-Who to give check=$instigator
-Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Holy Shield of the Templars
+Canned Expression=Dialog/Requirements/Fixt Wearing Templar Shield
 }
-}
-Reply Text=Well met, brother knight. <You let him see the shield on your arm.>
+Reply Text=<You notice him looking at the shield on your arm.> What is it you see, brother?
 Go to node ID=70 the relic
-Icon=Quest Icon
 
 Requirement=Templar IS
 Reply Text=Well met, brother knight. Your aid is welcome.
@@ -250,17 +235,12 @@ Text=My Lady, as I've said, my sword is yours against these dark druids that sul
 Should Have Voiceover=1
 
 Requirement=Templar IS
-Custom Requirement=CActionExpression
+Custom Requirement=CUseCannedExpressionExpression
 {
-Action=CActionCheckForInventoryItem
-{
-Who to give check=$instigator
-Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Holy Shield of the Templars
+Canned Expression=Dialog/Requirements/Fixt Wearing Templar Shield
 }
-}
-Reply Text=Well met, brother knight. <You let him see the shield on your arm.>
+Reply Text=<You notice him looking at the shield on your arm.> What is it you see, brother?
 Go to node ID=70 the relic
-Icon=Quest Icon
 
 Requirement=Templar IS
 Reply Text=Well met, brother knight. Your aid is welcome.
@@ -688,7 +668,7 @@ Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=70 the relic
-Text=<He looks at your shield longer than courtesy allows.> Forgive me. I have seen that mark in a chapter roll, and the men who bore it have been dust for two centuries. You carry a relic, brother, and a relic is a thing we lay on tombs. A knight of your standing should bear a shield the Order is proud to see raised. Give it here.
+Text=Forgive me. I have seen that mark in a chapter roll, and the men who bore it have been dust for two centuries. You carry a relic, brother, and a relic is a thing we lay on tombs. A knight of your standing should bear a shield the Order is proud to see raised. Give it here.
 Should Have Voiceover=0
 
 Requirement=!None

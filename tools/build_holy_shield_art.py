@@ -41,6 +41,7 @@ Usage:
 With no PNG it paints one and writes it to tools/art/shield-holy-skin.png, so the art is a
 file someone can edit and feed back in rather than a binary they have to accept.
 """
+import re
 import struct
 import subprocess
 import sys
@@ -446,12 +447,22 @@ def main():
     print("   round-trip mean abs error %.2f / 255" % err)
     assert err < 3.0, "round-trip error %.2f is too high" % err
 
+    # Set Short Name unconditionally, and report what was WRITTEN, not what was intended.
+    # The buckler in 0.91.0 cloned a donor whose Short Name was `undefined`, so a guarded
+    # replace looked proven. Shield Lion's says `Shield Lion`, the guard silently did nothing,
+    # and both new meshes shipped claiming to BE the Lion Shield -- while this line printed
+    # the name it had not set. A log that reports intent rather than result hides exactly the
+    # failure it is there to catch.
     txt = zf.read(SRC + ".MODEL.TXT").decode("latin-1")
     name = DEST.split("/")[-1]
-    if "Short Name=undefined" in txt:
-        txt = txt.replace("Short Name=undefined", "Short Name=" + name, 1)
+    # [^\r\n]* rather than .* : in Python `.` matches a carriage return, so `.*` eats
+    # the \r and the rewritten line ships LF-only in a CRLF file. The validator caught it.
+    txt, n = re.subn(r"Short Name=[^\r\n]*", "Short Name=" + name, txt, count=1)
+    assert n == 1, "no Short Name field in " + SRC + ".MODEL.TXT"
     (FX / (DEST + ".MODEL.TXT")).write_bytes(txt.encode("latin-1"))
-    print("   MODEL.TXT: Short Name=%s" % name)
+    got = re.search(r"Short Name=(.*)", (FX / (DEST + ".MODEL.TXT")).read_text(encoding="latin-1"))
+    assert got.group(1).strip() == name, "wrote %r" % got.group(1)
+    print("   MODEL.TXT: Short Name=%s  (verified on disk)" % got.group(1).strip())
 
     print("registry:")
     register()
