@@ -142,14 +142,14 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.93.0 - the Templar shield, three ranks of it
+## 0.93.0 - the Templar shield, and the two who improve it
 
-The Knights Templar have three ranks. `Templar Squire`, `Templar Warden` and `Templar Paladin`
-all exist, all set `Uber Perks/Templar Rank`, and all three are assigned somewhere in the shipped
-game. The only material thing the ladder ever gave you was the Lion Shield, at the bottom of it,
-in act 1 -- and you carry that shield to the end of the game because it never improves.
+You forge the Lion Shield to join the Knights Templar in act 1, and then you carry it to the end
+of the game. It is a quest item on `Inventory/!None`, so it rolls nothing ever, and the order --
+which has three ranks, `Templar Squire`, `Templar Warden` and `Templar Paladin`, all of them real
+and all of them assigned somewhere in the shipped game -- never gives you anything else.
 
-This release puts a shield at each rank, using promotions the game already performs.
+This release improves that shield twice, and both times a scene does it rather than a number.
 
 | act | shield | granted by |
 |---|---|---|
