@@ -67,6 +67,26 @@ fails. A checker that passes everything is worse than no checker.
 
 - `python tools/check_weapon_pools.py` passes. Formatting checks cannot see reachability, and this walks every weapon base item's addition-group tree to assert the pool keeps vanilla's shape, that nothing is reachable twice, and that each addition naming a mesh names the right one for its base.
 
+### When a release adds a reply: check the node's variants
+
+Run `python tools/check_node_variants.py` and look for the node you attached it to.
+
+**Why this is not covered by anything above.** 0.93.3 fixed a duelling lesson that no female
+Knight of Saladin could ever reach. Farshad's greeting is chosen by gender and only the male
+branch carried the reply that leads to the node the lesson hangs off. Every node resolved, every
+requirement parsed, nothing pointed at a missing node, and Gate 0 was silent -- because the
+defect was that **one of four entry points into a node could not reach it**. That is a
+reachability question about a graph, and nothing was asking it.
+
+The tool finds nodes a map's conditional picks between that share a leading number -- one
+conversational beat told several ways, for a man or a woman, an Inquisitor or not -- and reports
+where their replies can and cannot go. It is **a survey, not a gate**: it reports about 40 sets
+game-wide and most are deliberate, such as an "Evil Goodbye" only the evil greeting reaches. It
+earns its keep on one question: *can every variant of this greeting reach the thing I just
+added?*
+
+---
+
 ## Gate 1 - is it actually live?
 
 Five minutes, and it invalidates the whole session if skipped.
