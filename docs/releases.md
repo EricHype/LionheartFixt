@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.93.0 are published** -- 183 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.93.1 are published** -- 184 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,39 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.93.1 - the Holy Shield is the shield you forged
+
+**0.93.0 repainted the Holy Shield's whole face in steel and reduced the lion to a 30% ghost.**
+That was wrong, and the measurement is unambiguous. Across the 13,931 pixels of the shield face,
+compared against the Lion Shield it is supposed to be an upgrade of:
+
+| | pixels changed from the Lion Shield |
+|---|---|
+| Holy Shield, 0.93.0 | **84.2%** |
+| Aegis (the endgame tier) | 65.5% |
+| Holy Shield, 0.93.1 | **23.8%** |
+
+The middle tier was the furthest of the three from the original -- further than the *endgame*
+shield. So the sequence ran gold, steel, gold, which is a V rather than a progression, and the
+Holy Shield read as a sibling of the Aegis instead of as the Lion Shield marked. In play it looked
+like "the Aegis with a red cross", which is how it was reported.
+
+It is now the Lion Shield's own field, untouched, with the ringed cross laid over it. The 23.8%
+that differs *is* the cross.
+
+**How the error survived.** The steeling was decided on the first pass, when the lion was being
+treated as something to erase rather than something to keep. When that was reversed and the lion
+came back as a ghost, the ghost was painted *on top of the steel* and the steel itself was never
+revisited. A later decision corrected the layer above the mistake instead of the mistake. Worth
+recording because every subsequent review looked at the ghost and passed.
+
+**And the previews could not have caught it.** Every check during 0.93.0 was a flat render of the
+256x256 UV sheet. The defect is a *relationship* between three shields, and it only became visible
+when they were put side by side -- which happened after release, in play.
+
+Nothing else changed. Same stats, same grants, same repairs.
+
+---
 ## 0.93.0 - the Templar shield, and the two who improve it
 
 You forge the Lion Shield to join the Knights Templar in act 1, and then you carry it to the end

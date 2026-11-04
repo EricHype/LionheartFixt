@@ -84,9 +84,14 @@ def one(e, n):
 # --------------------------------------------------------------------------- painting
 
 def paint(rgb, w, h, ghost, gild=False):
-    """`gild` paints the tier-three Aegis instead: the same shield with the cross in gold on
-    brighter steel. The geometry, the masks and the ghosted lion are identical, because the
-    Aegis is meant to read as the Holy Shield finished rather than a different object."""
+    """Two shields from one source.
+
+    **The Holy Shield keeps the Lion Shield's field untouched** and adds only the ringed cross.
+    It is the original Templar shield with the order's mark on it, which is what it is for.
+
+    **`gild` paints the tier-three Aegis**, which does repaint the face: steel, the lion dropped
+    to a ghost, a gold cross and two heraldic lions. That one is meant to read as a shield
+    remade rather than as the same one marked."""
     px = [list(rgb[i * 3:i * 3 + 3]) for i in range(w * h)]
     lum = [int(0.299 * r + 0.587 * g + 0.114 * b) for r, g, b in px]
     shield = [max(c) > 18 for c in px]
@@ -185,27 +190,33 @@ def paint(rgb, w, h, ghost, gild=False):
                 outline.add(j)
 
     out = [c[:] for c in px]
-    for i in range(w * h):
-        if not shield[i]:
-            continue
-        L = clean[i] * (1 - ghost) + lum[i] * ghost if mask[i] else clean[i]
-        if is_int[i]:
-            if i in cross:
-                # tier three fills the cross with gold; tier two leaves it dark steel with a
-                # red edge. A filled device reads as a different object at a glance, which an
-                # endgame reward needs and a recolour of the outline alone does not give.
-                out[i] = gold_leaf(L) if gild else steel(L * 0.5)
-            else:
-                out[i] = steel(L)
-        elif mask[i]:
-            out[i] = gold(L)
-    for i in outline:
-        L = max(80, min(160, clean[i]))
-        if gild:
-            out[i] = [min(255, int(L * 1.80)), min(255, int(L * 1.32)), int(L * 0.34)]
-        else:
+    if not gild:
+        # The Holy Shield is the Lion Shield with the order's mark laid over it, and nothing
+        # else: the same olive and gold, the same lion, the same wear. Only the cross is added.
+        #
+        # An earlier build repainted the whole face to steel and reduced the lion to a ghost.
+        # Measured against the three skins' interior pixels, that made it the FURTHEST of the
+        # three from the Lion Shield it is supposed to be an upgrade of -- 84% of pixels
+        # changed, against the Aegis's 65% -- so the sequence went gold, steel, gold, and the
+        # middle step read as a different object rather than the same one improved.
+        for i in cross:
+            L = lum[i] * 0.45
+            out[i] = [int(L * 0.95), int(L * 0.97), min(255, int(L * 1.02))]
+        for i in outline:
+            L = max(80, min(160, lum[i]))
             out[i] = [min(255, int(L * 1.85)), int(L * 0.26), int(L * 0.24)]
-
+    else:
+        for i in range(w * h):
+            if not shield[i]:
+                continue
+            L = clean[i] * (1 - ghost) + lum[i] * ghost if mask[i] else clean[i]
+            if is_int[i]:
+                out[i] = gold_leaf(L) if i in cross else steel(L)
+            elif mask[i]:
+                out[i] = gold(L)
+        for i in outline:
+            L = max(80, min(160, clean[i]))
+            out[i] = [min(255, int(L * 1.80)), min(255, int(L * 1.32)), int(L * 0.34)]
     if gild:
         # Heraldic lions, to match the hand-painted icon: the lion stops being a ghost under
         # the cross and returns as two supporters flanking the stem. The source is the shield's
