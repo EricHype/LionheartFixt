@@ -54,7 +54,27 @@ TEMPLAR = {
         "have written it were standing at Alamut, and they did not understand what they had heard."),
 }
 
-BATCHES = [TEMPLAR]
+PACT = "The Knights of Saladin kept the pact of east and west after the west had stopped keeping it. After Alamut they kept it alone. "
+SHRINES = ("They held the eastern shrines for two generations against raids the west never heard about. They were "
+           "called weak for it by men who had never fought them. ")
+
+SALADIN = {
+    "900 order saladin killer": (
+        PACT + "You had eaten at their table in the Gate District and you had killed one of their knights. The "
+        "order wrote down both without comment, which is their way of closing a matter. " + SHRINES +
+        "Guests at their table were told your name, and told it carefully, as part of a longer lesson about "
+        "hospitality."),
+    "900 order saladin high": (
+        PACT + "You had been named a Favored One, the first westerner in living memory given the title. The men "
+        "who argued against it were outnumbered, not persuaded. " + SHRINES + "Your name stayed in the recitation "
+        "at Alamut long after anybody there could have said what you looked like."),
+    "900 order saladin": (
+        PACT + "You had been their guest, and you had fought beside them in a season when their own numbers were "
+        "thin enough that it mattered. " + SHRINES + "The order kept a short list of westerners who had been worth "
+        "the hospitality. You were on it. In sixty years the list did not get any longer."),
+}
+
+BATCHES = [TEMPLAR, SALADIN]
 
 
 def apply_tree(batch):

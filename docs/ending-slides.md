@@ -288,34 +288,34 @@ the faithful say a saint's.
 
     node id: 900 order saladin killer
 
-The Knights of Saladin kept the pact of east and west after the west had stopped keeping it, and
-after Alamut they kept it alone. You had eaten at their table in the Gate District and you had killed
-one of their knights, and the order wrote down both of those without comment, which is their way of
-closing a matter. They held the eastern shrines for two generations against raids the west never
-heard about, and were called weak for it by men who had never fought them. Guests at their table were
-told your name, and told it carefully, as part of a longer lesson about hospitality.
+The Knights of Saladin kept the pact of east and west after the west had stopped keeping it. After
+Alamut they kept it alone. You had eaten at their table in the Gate District and you had killed one
+of their knights. The order wrote down both without comment, which is their way of closing a matter.
+They held the eastern shrines for two generations against raids the west never heard about. They
+were called weak for it by men who had never fought them. Guests at their table were told your name,
+and told it carefully, as part of a longer lesson about hospitality.
 
 ### when: Saladin Rank > 2
 
     node id: 900 order saladin high
 
-The Knights of Saladin kept the pact of east and west after the west had stopped keeping it, and
-after Alamut they kept it alone. You had been named a Favored One, the first westerner in living
-memory given the title, and the men who argued against it were outnumbered rather than persuaded.
-They held the eastern shrines for two generations against raids the west never heard about, and were
-called weak for it by men who had never fought them. Your name stayed in the recitation at Alamut
-long after anybody there could have said what you looked like.
+The Knights of Saladin kept the pact of east and west after the west had stopped keeping it. After
+Alamut they kept it alone. You had been named a Favored One, the first westerner in living memory
+given the title. The men who argued against it were outnumbered, not persuaded. They held the
+eastern shrines for two generations against raids the west never heard about. They were called weak
+for it by men who had never fought them. Your name stayed in the recitation at Alamut long after
+anybody there could have said what you looked like.
 
 ### when: Saladin Rank > 0
 
     node id: 900 order saladin
 
-The Knights of Saladin kept the pact of east and west after the west had stopped keeping it, and
-after Alamut they kept it alone. You had been their guest, and you had fought beside them in a season
-when their own numbers were thin enough that it mattered. They held the eastern shrines for two
-generations against raids the west never heard about, and were called weak for it by men who had
+The Knights of Saladin kept the pact of east and west after the west had stopped keeping it. After
+Alamut they kept it alone. You had been their guest, and you had fought beside them in a season when
+their own numbers were thin enough that it mattered. They held the eastern shrines for two
+generations against raids the west never heard about. They were called weak for it by men who had
 never fought them. The order kept a short list of westerners who had been worth the hospitality. You
-were on it, and in sixty years the list did not get any longer.
+were on it. In sixty years the list did not get any longer.
 
 ---
 
