@@ -525,31 +525,31 @@ breath.
     node id: 900 order horde traitor
 
 The goblin tribes came down out of the mountains, counted themselves, and discovered that they had
-two claimants and one rock. You handed the Khan's east rock to Butu's heir, and you were paid for it,
-and the Horde has a word for that and the word is not Champion. What might have been a war against
+two claimants and one rock. You handed the Khan's east rock to Butu's heir, and you were paid for
+it. The Horde has a word for that, and the word is not Champion. What might have been a war against
 the border towns was a war inside Khara'Khorum instead. It ran three generations and ended with
-fewer goblins than it started with. They remembered you accurately, which was the worst of it: of all
-the names that came out of that war, yours was the one they taught to children.
+fewer goblins than it started with. They remembered you accurately, which was the worst of it. Of
+all the names that came out of that war, yours was the one they taught to children.
 
 ### when: Goblin Champion
 
     node id: 900 order horde high
 
-The goblin tribes came down out of the mountains, counted themselves, and found that they were many,
-and that nothing in the west was counting at all. You had been their Champion, and when the banner
-went up your name was stitched beside the Khan's on it, in a script you could not read. A Khan's
-banner rose again inside three generations. The border towns burned first, then the valley forts, and
-the chronicles of the west recorded the whole thing as a surprise. In Khara'Khorum it had been
-expected for ninety years, and they were still telling the story with your name in it.
+The goblin tribes came down out of the mountains, counted themselves, and found that they were many.
+Nothing in the west was counting at all. You had been their Champion, and when the banner went up
+your name was stitched beside the Khan's on it, in a script you could not read. A Khan's banner rose
+again inside three generations. The border towns burned first, then the valley forts. The chronicles
+of the west recorded the whole thing as a surprise. In Khara'Khorum it had been expected for ninety
+years, and they were still telling the story with your name in it.
 
 ### when: Goblin Blooded
 
     node id: 900 order horde mid
 
-The goblin tribes came down out of the mountains, counted themselves, and found that they were many,
-and that nothing in the west was counting at all. You had been blooded among them, which is further
-than almost any outsider gets, and the tribes argued for years afterward about what exactly that had
-made you. A Khan's banner rose again inside three generations. The border towns burned first, and the
+The goblin tribes came down out of the mountains, counted themselves, and found that they were many.
+Nothing in the west was counting at all. You had been blooded among them, which is further than
+almost any outsider gets. The tribes argued for years afterward about what exactly that had made
+you. A Khan's banner rose again inside three generations. The border towns burned first, and the
 chronicles of the west recorded it as a surprise. Your name came up in their arguments about the
 succession, and was voted down, and came up again.
 
@@ -557,12 +557,12 @@ succession, and was voted down, and came up again.
 
     node id: 900 order horde
 
-The goblin tribes came down out of the mountains, counted themselves, and found that they were many,
-and that nothing in the west was counting at all. You had been a chum of the Horde, which in their
-mouths means useful rather than trusted, and they kept the word for as long as any of them remembered
-you. A Khan's banner rose again inside three generations. The border towns burned first, and the
-chronicles of the west recorded it as a surprise. Two trade paths through the mountains stayed open
-that entire time, and nobody ever wrote down why.
+The goblin tribes came down out of the mountains, counted themselves, and found that they were many.
+Nothing in the west was counting at all. You had been a chum of the Horde, which in their mouths
+means useful rather than trusted. They kept the word for as long as any of them remembered you. A
+Khan's banner rose again inside three generations. The border towns burned first, and the chronicles
+of the west recorded it as a surprise. Two trade paths through the mountains stayed open that entire
+time, and nobody ever wrote down why.
 
 ---
 
@@ -576,9 +576,9 @@ testable from the ending and survives on an old save.
     node id: 900 order savage heart betrayed
 
 The Savage Heart came out of the war the way mercenary companies do, which is richer and with a
-shorter roster, and one of the names on the short side was Raylark's. You took his contract, and then
+shorter roster. One of the names on the short side was Raylark's. You took his contract, and then
 you took the Khan's, and you carried the Everlasting into Khara'Khorum to prove you had earned it.
-The company does not avenge its dead, it prices them, and the price it set on you was entered in the
+The company does not avenge its dead. It prices them. The price it set on you was entered in the
 books at Marseilles and never once collected. In the years after Alamut the Savage Heart turned away
 more work than it could staff. None of it was ever yours, and that was the whole of its revenge.
 
@@ -587,12 +587,11 @@ more work than it could staff. None of it was ever yours, and that was the whole
     node id: 900 order savage heart
 
 The Savage Heart came out of the war the way mercenary companies do, which is richer and with a
-shorter roster. You took Raylark's contract and killed goblins for the bounty, counted by the ear,
-and the company's books still carry the entry under your name. In the years after Alamut half of
-Europe wanted men who would do that sort of work and not ask after the paperwork, and the Savage
-Heart raised its rate twice in five years. Raylark kept his camp west of Khara'Khorum until he was
-too old to hold it. The Horde had learned to count western killers by name, and yours was one of the
-names.
+shorter roster. You took Raylark's contract and killed goblins for the bounty, counted by the ear.
+The company's books still carry the entry under your name. In the years after Alamut half of Europe
+wanted men who would do that sort of work and not ask after the paperwork. The Savage Heart raised
+its rate twice in five years. Raylark kept his camp west of Khara'Khorum until he was too old to
+hold it. The Horde had learned to count western killers by name, and yours was one of the names.
 
 ---
 
