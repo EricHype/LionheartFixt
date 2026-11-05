@@ -130,7 +130,7 @@ def main():
     # than RIM px is resurfaced, which is tighter than the interior band the mesh uses, or a
     # ring of the old olive field shows between the gold border and the white.
     from collections import deque
-    WHITE = (236, 233, 225)
+    WHITE = (218, 214, 203)   # linen, not paper: a bright white fights the gold rim
     RED = (168, 32, 34)
     RIM = 4
 

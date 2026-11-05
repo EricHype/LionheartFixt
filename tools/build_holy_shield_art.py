@@ -76,6 +76,9 @@ TEX_INDEX = 3            # LionShield.tga; 0..2 are gold environment maps
 BORDER = 9
 LION = 190
 DEFAULT_GHOST = 0.30
+# Linen, not paper. A bright white reads as a modern surcoat and fights the gold rim;
+# this is a worn, slightly warm off-white that sits beside it. `--white r,g,b` overrides.
+HOLY_WHITE = (218, 214, 203)
 
 
 def one(e, n):
@@ -203,7 +206,7 @@ def paint(rgb, w, h, ghost, gild=False):
         # Earlier passes got this wrong twice: 0.93.0 repainted the face in steel, which made
         # it the furthest of the three shields from the one it upgrades, and 0.93.1 kept the
         # original field so the cross looked stuck onto an unchanged shield.
-        WHITE = (236, 233, 225)      # linen, not paper: it has to sit beside gold
+        WHITE = HOLY_WHITE
         RED = (168, 32, 34)
         face = [i for i in range(w * h) if shield[i] and dist[i] > 5]
         fl = max(1.0, sum(lum[i] for i in face) / len(face))
@@ -384,6 +387,11 @@ def main():
     paint_only = "--paint-only" in args
     if paint_only:
         args.remove("--paint-only")
+    global HOLY_WHITE
+    if "--white" in args:
+        i = args.index("--white")
+        HOLY_WHITE = tuple(int(v) for v in args[i + 1].split(","))
+        del args[i:i + 2]
     gild = "--aegis" in args
     if gild:
         args.remove("--aegis")
