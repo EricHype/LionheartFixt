@@ -282,6 +282,18 @@ after the ring, so every Dark Wielder holds `Ruler of Calle Perdida`.
 
 A Dark Wielder can still turn on Relican at `80 war` and kill him, and the slide does not read that.
 
+### The goblins, whichever side you were on
+
+The Horde and Savage Heart slides are rewritten to the game's rhythm. The Horde's are for members, so a
+character who fought the goblins heard nothing at the end, and neither `Goblin Slayer` nor the Khan's death
+reached any slide. Two slides now follow them, for any faction: the Khan or the count, with Butu's line if you
+touched it, and the woodcutter's eyes and Esteban's contract.
+
+**The Khan's flag is in `Goblin Khan Generator`, not his can.** The generator sets a destroyed script of its
+own, which replaces the can's, the same trap that kept the Lava Troll Hide dead from 0.10.0 to 0.30.1. It
+would have passed every gate. His name is also corrected to *Plumdjum* in Fixt's text and in the one vanilla
+line that spelled it *Plumjum*, against nine that do not.
+
 ### Known limits
 
 - **Nobody reacts.** Raphael and the Inquisition guards behave as before once it is over, and no member
@@ -292,7 +304,7 @@ A Dark Wielder can still turn on Relican at `80 war` and kill him, and the slide
   at this point in the game. Guards are the Generic can, AC 75 / HP 60.
 - **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
 
-`TK1`-`TK37` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+`TK1`-`TK42` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
 practice means a new game or a very early save.
 
 ---

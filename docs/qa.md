@@ -6135,6 +6135,11 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK35 | Use the ring and complete Relican's service, with Quinn joined and Leonardo agreed | - | `900 order relican dark joined joined`, straight after `900 order wielder ring` |
 | TK36 | The same, Quinn killed and Leonardo refused | - | `dark killed refused` |
 | TK37 | Use the ring and take no rank from Relican. Then, separately, do none of this | - | **No** Relican slide in either case, and the series carries on |
+| TK38 | Kill the Khan **without** Torquemada's quest, on a save that has not entered the Warrens | Finish the game | `900 order goblins khan`. This is the row that proves the flag is in the right slot |
+| TK39 | Kill the Khan for Torquemada, on an older save | Finish the game | The same slide, through the quest state |
+| TK40 | Earn `Goblin Slayer`, Khan alive, then return the poems | Finish the game | `900 order goblins count poems` |
+| TK41 | Bring Rakeb the eyes and kill Esteban for the patrol | Finish the game | `900 order goblins eyes esteban`, as one slide |
+| TK42 | Do none of this, in any faction | Finish the game | Neither slide, and the series carries on. Then read the Khan's greeting: *Plumdjum* |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

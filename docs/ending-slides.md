@@ -595,6 +595,62 @@ hold it. The Horde had learned to count western killers by name, and yours was o
 
 ---
 
+## The goblins, whichever side you were on
+
+Two slides, for any faction. The first covers the Khan or the count, with Butu's line added if you
+touched it, and the second covers the dirty work.
+
+### when: Khan slain
+
+    node id: 900 order goblins khan
+
+Plumdjum Khan had drawn plans for six winters when you killed him. He had called you morsel. The
+Horde was left with a cave full of shiny and a pile of maps nobody else could read. The tribes
+fought over the shiny and burned the maps for heat. The war he had planned came three generations
+late, and it was not the one he drew.
+
+### when: Goblin Slayer, Khan alive
+
+    node id: 900 order goblins count
+
+You killed goblins in such numbers that the tribes stopped counting you as a westerner and started
+counting you as weather. The Khan had a word for you. Mothers in Khara'Khorum used it at bedtime.
+The gates of Barcelona stayed quieter for it, and nobody there ever learned why.
+
+### when: Butu's poems returned
+
+    node id: 900 order goblins poems
+
+Butu Khan's poems went back to his line because of you. Hrargrub read them aloud in the east cave,
+and goblins who had never heard a verse sat down to listen.
+
+### when: Hrargrub killed for the Khan
+
+    node id: 900 order goblins heir
+
+You killed Hrargrub for the Khan, and Butu's line ended a second time. The Khan did not ask what he
+was called. Nobody else ever did.
+
+### when: the woodcutter's eyes
+
+    node id: 900 order goblins eyes
+
+You brought Rakeb the woodcutter's eyes and his liver. He had said they were beautiful. Nobody came
+looking. A man who lives alone in a forest is not missed until someone needs firewood.
+
+### when: Esteban killed for the patrol
+
+    node id: 900 order goblins esteban
+
+You killed Guard Esteban for the goblin patrol, and the road at the Crossroads belonged to the
+Horde. He had been paying travellers to thin them out. Soon nobody was paying. Then nobody was
+travelling.
+
+The poems and Hrargrub lines join the Khan and count slides as `poems` and `heir` variants, and the
+eyes and Esteban slides join as `eyes esteban`.
+
+---
+
 ## No allegiance
 
 ### when: no rank, and none of the fate levers

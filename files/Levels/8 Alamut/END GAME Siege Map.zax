@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=29
+							Item Count=31
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -1264,6 +1264,248 @@ CLayerSaveData
 								Else=CTriggerRelayAction
 								{
 									Relay Name=Fixt order epilogue relay
+								}
+								Return failure if the If failes=0
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CIfAction
+								{
+									If=CWasQuestStateActivatedAction
+									{
+										Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+										State=BTU8M3XV
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order goblins khan poems
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfAction
+									{
+										If=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+											State=BTU2W6RJ
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order goblins khan heir
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order goblins khan
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Return failure if the If failes=0
+									}
+									Return failure if the If failes=0
+								}
+								Else=CIfAction
+								{
+									If=CWasQuestStateActivatedAction
+									{
+										Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
+										State=62VPSJUB
+									}
+									Then=CIfAction
+									{
+										If=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+											State=BTU8M3XV
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order goblins khan poems
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CIfAction
+										{
+											If=CWasQuestStateActivatedAction
+											{
+												Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+												State=BTU2W6RJ
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order goblins khan heir
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order goblins khan
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CIfAction
+										{
+											If=CWasQuestStateActivatedAction
+											{
+												Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+												State=BTU8M3XV
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order goblins count poems
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CIfAction
+											{
+												If=CWasQuestStateActivatedAction
+												{
+													Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+													State=BTU2W6RJ
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order goblins count heir
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order goblins count
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
+										}
+										Else=CIfAction
+										{
+											If=CWasQuestStateActivatedAction
+											{
+												Quest=Levels/Wilderness/Quests/Butu Khan's Poems
+												State=BTU8M3XV
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order goblins poems
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CIfAction
+											{
+												If=CWasQuestStateActivatedAction
+												{
+													Quest=Levels/Wilderness/Quests/The Goblin of Butu's Line
+													State=BTU2W6RJ
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order goblins heir
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
+										}
+									}
+									Return failure if the If failes=0
+								}
+							}
+							Action=CIfAction
+							{
+								If=CWasQuestStateActivatedAction
+								{
+									Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+									State=3EUUJA40
+								}
+								Then=CIfAction
+								{
+									If=CWasQuestStateActivatedAction
+									{
+										Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+										State=M3PZ9DLT
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order goblins eyes esteban
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order goblins eyes
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Return failure if the If failes=0
+								}
+								Else=CIfAction
+								{
+									If=CWasQuestStateActivatedAction
+									{
+										Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+										State=M3PZ9DLT
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order goblins esteban
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Return failure if the If failes=0
 								}
 								Return failure if the If failes=0
 							}
