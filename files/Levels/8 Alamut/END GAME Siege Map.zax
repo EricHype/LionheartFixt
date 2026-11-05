@@ -233,39 +233,50 @@ CLayerSaveData
 									Perks To Check For=Array
 									{
 										Item Count=1
-										Perk To Check For=Perks/!Event Title Perks/Exposer of Calle Perdida
+										Perk To Check For=Perks/!Event Title Perks/Dark Inquisitor
 									}
 								}
 								Character to get attributes from=Player1
 								Then=CDisplayDialogTreeAction
 								{
 									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-									Node ID=900 order inquisition exposer
+									Node ID=900 order inquisition dark
 									Speaker=Fake Talker for NIS
 									Player Being Spoken To=Player1
 								}
 								Else=CIfExpressionAction
 								{
-									If Expression=CUseCannedExpressionExpression
+									If Expression=CHasPerkExpression
 									{
-										Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+										}
 									}
 									Character to get attributes from=Player1
-									Then=CIfExpressionAction
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order inquisition broken
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfExpressionAction
 									{
 										If Expression=CHasPerkExpression
 										{
 											Perks To Check For=Array
 											{
 												Item Count=1
-												Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+												Perk To Check For=Perks/!Event Title Perks/Exposer of Calle Perdida
 											}
 										}
 										Character to get attributes from=Player1
 										Then=CDisplayDialogTreeAction
 										{
 											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-											Node ID=900 order inquisition killer
+											Node ID=900 order inquisition exposer
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
 										}
@@ -273,28 +284,55 @@ CLayerSaveData
 										{
 											If Expression=CUseCannedExpressionExpression
 											{
-												Canned Expression=Dialog/Requirements/Faction/Inquisitor Highlevel
+												Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
 											}
 											Character to get attributes from=Player1
-											Then=CDisplayDialogTreeAction
+											Then=CIfExpressionAction
 											{
-												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-												Node ID=900 order inquisition high
-												Speaker=Fake Talker for NIS
-												Player Being Spoken To=Player1
+												If Expression=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+													}
+												}
+												Character to get attributes from=Player1
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order inquisition killer
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CIfExpressionAction
+												{
+													If Expression=CUseCannedExpressionExpression
+													{
+														Canned Expression=Dialog/Requirements/Faction/Inquisitor Highlevel
+													}
+													Character to get attributes from=Player1
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order inquisition high
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order inquisition
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+												}
 											}
-											Else=CDisplayDialogTreeAction
+											Else=CTriggerRelayAction
 											{
-												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-												Node ID=900 order inquisition
-												Speaker=Fake Talker for NIS
-												Player Being Spoken To=Player1
+												Relay Name=Fixt order epilogue relay
 											}
 										}
-									}
-									Else=CTriggerRelayAction
-									{
-										Relay Name=Fixt order epilogue relay
 									}
 								}
 							}
@@ -779,12 +817,28 @@ CLayerSaveData
 																					{
 																						Relay Name=Fixt order epilogue relay
 																					}
-																					Else=CDisplayDialogTreeAction
+																					Else=CIfExpressionAction
 																					{
-																						Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-																						Node ID=900 order none
-																						Speaker=Fake Talker for NIS
-																						Player Being Spoken To=Player1
+																						If Expression=CHasPerkExpression
+																						{
+																							Perks To Check For=Array
+																							{
+																								Item Count=1
+																								Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+																							}
+																						}
+																						Character to get attributes from=Player1
+																						Then=CTriggerRelayAction
+																						{
+																							Relay Name=Fixt order epilogue relay
+																						}
+																						Else=CDisplayDialogTreeAction
+																						{
+																							Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+																							Node ID=900 order none
+																							Speaker=Fake Talker for NIS
+																							Player Being Spoken To=Player1
+																						}
 																					}
 																					Return failure if the If failes=0
 																				}

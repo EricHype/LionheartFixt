@@ -21,7 +21,7 @@ wrong are more reusable than the results.
 
 - [**Re-measured at 0.94.0**](#re-measured-at-0940----the-live-list) -- what is open, what came back clean, orphaned audio, the misrouted reply
 - [Summary](#summary)
-- [Open leads in detail](#open-leads-in-detail) -- the Shadow Dryad, the Grand Inquisitor's recording, inert attributes
+- [Open leads in detail](#open-leads-in-detail) -- the Shadow Dryad, inert attributes
 - [Voiceover on nodes nobody can reach](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted)
 - [Orphaned art](#orphaned-art----the-axis-this-survey-never-looked-at)
 - [The three kinds of orphaned node](#the-three-kinds-of-orphaned-node) -- classify before building
@@ -40,7 +40,6 @@ wrong are more reusable than the results.
 | lead | size | what it needs |
 |---|---|---|
 | `MX_FACT_KNIGHTTEMPLAR1` | 13 s | a Templar moment. Every other faction's theme plays somewhere |
-| `GrandInquisitor / 120 combat` | 14.6 s | still needs ears. The length is itself a clue: that is a speech, not a bark |
 | named combat voice sets | 24 files | `Lucious Titan_*`, `DRUID_*`, `Goblin Grumjum_*`, `River Dryad_death_*`, `DRUNKARD_death_*`. Nothing names them, so those characters may be fighting in someone else's voice. Unclassified |
 | `200 beast compliment`, `200 divine compliment` | 124 KB | a trigger on fighting well |
 | `Purify the Shadow Dryad` | 732 KB | a policy decision, see entry 1 below. The biggest story thread left |
@@ -225,23 +224,6 @@ else and nothing else activates this quest, so it is not a superseded draft -- i
 thing, which this document had not needed a name for until now: **adjudicated.** Finished content,
 correctly identified, deliberately left dead by this mod for a recorded reason. Those look exactly
 like leads, and only the release notes tell them apart.
-
-### The Grand Inquisitor's orphan recording cannot be placed from the files
-
-Measured properly: the tree has **51 nodes and 48 recordings**. Exactly **one** recording has no
-node (`120 combat`) and **four** nodes have no recording:
-
-| nodes with no recording |
-|---|
-| `1100 Player attacks` |
-| `1100 Spellcast detect` |
-| `1200 do not bother me` |
-| `413 rogue inquisitors` |
-
-So this is **filename drift** in shape -- a renumbered node -- but there are **two** plausible combat
-destinations for one combat recording, and attaching it to the wrong one silences the right node
-forever while playing the wrong line. It cannot be resolved without listening to the file. Recorded
-as blocked on that, not as buildable.
 
 ### Derived attributes that no resource reads or writes
 

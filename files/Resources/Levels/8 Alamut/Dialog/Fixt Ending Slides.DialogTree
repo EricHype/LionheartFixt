@@ -125,6 +125,32 @@ Relay Name=Fixt order epilogue relay
 }
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=900 order inquisition dark
+Text=The Inquisition entered the siege without a head. It came out with several. Torquemada died in his own chambers, and the Holy Office recorded it as a fever. The truth was worse: the hand that killed him still wore the mark. The cult on the plains had wanted this for years. You did it in an afternoon. His successors agreed on nothing, and the fires burned low. Within ten years, some cities stopped paying for the wood. No one ever named you. But the archive keeps a box with nothing written on it, and its keepers lower their voices.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order inquisition broken
+Text=The Inquisition entered the siege without a head. Barcelona would not rebuild under men who could not say who led them. Torquemada died in his own chambers, at the hand of someone who owed the Holy Office nothing. You walked out past what was left of his guards. His successors fought over his chair for years. The fires did not go out, but they burned low. Within ten years, some cities stopped paying for the wood. No one in those cities knew your name. The Holy Office did. It kept the page open.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=900 order inquisition
 Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. You had worn its mark and done its work, and for a few years afterward the mark was worth a good deal more than the work had been. It opened doors in the new Barcelona, and then it went on opening doors you had stopped wanting to walk through. Its fires burned on through the peace exactly as they had burned through the war, and the cities paid for the wood. You stopped wearing the mark somewhere in the third year, and nobody ever came to ask you why.
 Should Have Voiceover=1

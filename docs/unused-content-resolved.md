@@ -11,6 +11,7 @@ wins any disagreement. "Above" and "below" refer to the original order, which is
 
 ## Contents
 
+- [Done in 0.95.0 - the recording that lost its node](#done-in-0950---the-recording-that-lost-its-node)
 - [Great weapons: enchantable since 0.89.0](#great-weapons-enchantable-since-0890)
 - [Done in 0.94.0](#done-in-0940)
 - [Quest items: hand-authored uniques](#quest-items-hand-authored-uniques)
@@ -37,6 +38,37 @@ wins any disagreement. "Above" and "below" refer to the original order, which is
 - [Done in 0.45.0 - the horse, and what the "unused enemies" number actually means](#done-in-0450---the-horse-and-what-the-unused-enemies-number-actually-means)
 - [Settled by decompilation: `CSeriesAction`'s index is per-instance](#settled-by-decompilation-cseriesactions-index-is-per-instance)
 - [The last backlog item was a false positive, and it failed the same test twice](#the-last-backlog-item-was-a-false-positive-and-it-failed-the-same-test-twice)
+
+## Done in 0.95.0 - the recording that lost its node
+
+`GrandInquisitor / 120 combat` was undecidable from the files, and the text below shows why: both of its
+candidates were wrong. The author listened to it. It is Torquemada's speech before a fight, and vanilla's
+`30 admit tainted` still had a reply going to `120 combat`, a node that had been deleted. So it was never
+filename drift. Restored with the author's transcript, and the fight it promised was built around it. See
+[`releases.md`](releases.md).
+
+**This is a sixth kind of orphan: a recording whose node was deleted while a reply kept pointing at it.**
+The test is to search for a recording's name as a `Go to node ID=` target. Of the 71 such targets left in
+the current build, none has a recording of that exact name.
+
+### The Grand Inquisitor's orphan recording cannot be placed from the files
+
+Measured properly: the tree has **51 nodes and 48 recordings**. Exactly **one** recording has no
+node (`120 combat`) and **four** nodes have no recording:
+
+| nodes with no recording |
+|---|
+| `1100 Player attacks` |
+| `1100 Spellcast detect` |
+| `1200 do not bother me` |
+| `413 rogue inquisitors` |
+
+So this is **filename drift** in shape -- a renumbered node -- but there are **two** plausible combat
+destinations for one combat recording, and attaching it to the wrong one silences the right node
+forever while playing the wrong line. It cannot be resolved without listening to the file. Recorded
+as blocked on that, not as buildable.
+
+---
 
 ## Great weapons: enchantable since 0.89.0
 

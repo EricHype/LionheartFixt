@@ -1035,6 +1035,20 @@ sentence by someone playing, and each took under an hour to find once reported.
 
 ---
 
+### An unkillable NPC is several locks
+
+AC 1000 / HP 10000 is the visible one. Torquemada also carried resistances at 100, `Category=Spell
+Immunity`, blank `Valid Targets`, a `GoToCombat` handler, a damaged script, a `Spellcast` oval and a
+chase poly, and any one left in place stops the fight with no error. To make such a character fightable,
+spawn a separate can from a separate generator and leave the original alone, then switch on the map's
+reset relay. `tools/build_torquemada.py` is the worked example.
+
+### A reply can outlive its node
+
+71 replies in the current build name a node that does not exist, and the conversation simply ends. It is
+how `GrandInquisitor / 120 combat` went missing: the recording matched no node, and the reply pointing at
+that name was never compared with it. A recording with no node is worth searching for as a reply target.
+
 ### Audio is referenced from binary
 
 Spell and creature sounds are named inside `.mdl16` model caches, so a search of text fields reports

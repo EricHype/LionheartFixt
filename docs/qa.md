@@ -6090,6 +6090,31 @@ with. A tester reporting "unchanged" may simply be holding the old one.
 | TS12 | **Judgement, not pass/fail.** Equip the Aegis and let something hit you in melee | Watch its health | It should take a visible share back -- 15% -- without the fight becoming trivial. **This number is calibrated against `Dragon Scales` (10%, permanent) and `Backlash` (20-35%, temporary) and has never been measured in play.** If attackers melt, it is too high; if nothing is observable, the attribute may not be read for permanent item modifiers at all |
 | TS13 | **The regression.** Play a non-Templar through the Crypt | Finish the act normally | Nothing about the Doomed Knights questline changed: same dialogue, same quest states, same XP. The only addition is one conditional action that does nothing without the Lion Shield |
 
+## 0.95.0 - the hammer of heretics
+
+**All of this needs a save that has never entered the Inquisition Chambers**, because the map's entity
+list is frozen on first visit. The speech itself is a dialogue edit and works on any save, which is what
+`TK1` proves. On an older save nothing else changes, so a fight that never comes is not a failure there.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TK1 | His chambers, **before** Montserrat. Admit to the taint and reply *"You are the one who will burn"* | Listen | The full 14 seconds, **voiced**, then jail. **You must not see "Perhaps some time in a cell"** |
+| TK2 | Same | Hit him instead of talking | As before: the cell line, then jail. This is the regression on vanilla's behaviour |
+| TK3 | Same | Cast a spell near him as a magic user | *"Magic use has been detected!"* and jail, unchanged |
+| TK4 | **Before** Montserrat | Look at his replies | *"I have come to end you"* is **absent** at every greeting |
+| TK5 | **After** Montserrat, any faction | Talk to him at each greeting you can reach | The reply is present, with a fight icon |
+| TK6 | Same | Take it | The speech, then a fight. **He attacks you**, two guards arrive, and *"Arrogant fool! Guards! Restrain this heretic!"* plays. You must **never** be jailed. This is the row that proves the release |
+| TK7 | Same | Hit him instead | The same fight with no speech |
+| TK8 | Same, as a mage | Damage him with a spell | It lands. In vanilla `Spell Immunity` would have blocked it |
+| TK9 | Hurt the pit guards first, then start the fight | Let the guards reach you | Still no jail. The chase poly fires on enemies and the fight has to disarm it |
+| TK10 | Leave mid-fight and return | - | He is back at full health and calm, with no duplicate guards, and the fight can be started again |
+| TK11 | **Kill him as an Inquisitor** | Check perks and journal | **Dark Inquisitor** and **Enemy of the Inquisition**. `Create a Rod` and `Slay the Goblin Khan` fail if open |
+| TK12 | **Kill him as anyone else** | Check perks | **Breaker of the Hammer** and **Enemy of the Inquisition**, and not Dark Inquisitor |
+| TK13 | Leave and come back | - | He stays dead, and the Old Man cutscene does not play over the empty room |
+| TK14 | Finish the game, TK11's character | Watch the slides | `900 order inquisition dark`, and not the `killer` slide |
+| TK15 | Finish the game, TK12's character with no faction | Watch the slides | `900 order inquisition broken`, and **not** the no-allegiance slide. Then a Templar killer: broken **and** their own order's slide |
+| TK16 | **Judgement.** Fight him at the level you reach him | Is 260 HP / AC 225 right? Does he feel like the head of the Inquisition, or a tall guard? | The stats are a starting number, and he carries no unique reward. Say what it wants |
+
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 
 Three rows want a specific setup. **`LE7` and `LE9` need a save that has never entered the Blacksmith

@@ -142,6 +142,103 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.95.0 - the hammer of heretics
+
+**Built and passing every gate, not yet published.**
+
+### The speech that lost its node
+
+`GrandInquisitor VOs/120 combat.ogg` has been the one recording in the game matching no node since the
+survey began, recorded as undecidable without listening to it. Listening settled it, and the first
+guess was wrong: it is neither `1100 Player attacks` nor `1100 Spellcast detect`.
+
+> Silence! You will know why the guilty fear me as the blessed hammer of heretics. Death is the only
+> penance for your crimes, heathen.
+
+Vanilla's `30 admit tainted` has a reply going to `120 combat`, a node that does not exist. The node
+was deleted and the reply and the recording both survived, so nothing was ever filename drift. The text
+is the author's transcript. Of the 71 replies in the current build that still go to a missing node,
+none has a recording of that exact name, so this was the only one of its kind.
+
+### He could never be fought
+
+The replies that start a fight with him are vanilla, and they never did. His chambers catch the combat
+message and hitting him alike, say *"Perhaps some time in a cell is what you need"* and jail you. That
+made the restored speech a problem: fourteen seconds of *"Death is the only penance"*, then a cell.
+
+**After Montserrat he has done his work.** No map past the Barcelona chapters places him. His jobs are
+the cathedral summit, which is before Montserrat, the Inquisition's own tasks, and receiving the Old
+Man's apparition in a cutscene that plays on first entry. So the speech now forks:
+
+| | what follows the speech |
+|---|---|
+| before Montserrat | jail, without the cell line that undercut it |
+| after Montserrat | a real fight, with two guards |
+| the cathedral | vanilla's combat message, since that map has no jail relay |
+
+**"After Montserrat" is a window.** `02 Hamlet Burned` expires every Barcelona map on arrival from the
+Crypt or Nostradamus's demesne, so it runs from `Travel to Montaillou` activating until that arrival.
+
+### Raising his hit points would have done nothing
+
+An unkillable NPC here is several locks, and each would have failed silently:
+
+| lock | what it would have done |
+|---|---|
+| `Race` at AC 1000 / HP 10000 | the obvious one |
+| nine resistances at 100 | nothing can hurt him at all |
+| `Category=Spell Immunity` | a mage cannot touch him |
+| blank `Valid Targets` | he stands there |
+| the `GoToCombat` handler and the damaged script | jail on the first hit |
+| the `Spellcast` oval | jail for casting anywhere near him, mid-fight |
+| `Guard chasing player` | jail when an enemy enters it, and his guards are enemies, armed by hurting the pit guards earlier |
+
+`RESET MAP for Invulnerable Grand Inquisitor` already runs on all seven spawn points and the secret door,
+so it is the one switch. It clones `Fixt Mortal Inquisitor generator` once the quest is active:
+`Grand Inquisitor Mortal.can` on a race at AC 225 / HP 260, beside the Goblin Khan's 175 / 210 and his
+elite variant's 225 / 250. Resistances are 50 to the elements, the Inquisitor norm, and 25 otherwise. He
+keeps `Celestial Smite` at 80, and his model has attack, spell, hit and death sequences. The category and
+target settings stay peaceful until `Fixt Torquemada fight` runs, so he does not attack on sight.
+
+A fight reply joins all four of his greetings, because the existing *"burn"* replies are not offered to
+a favoured Inquisitor, and the question this release asked was whether a member could do this at all.
+
+### What his death does
+
+The can's death script fails `Create a Rod of the Inquisitor` and `Slay the Goblin Khan` if they are
+open, and stops him respawning. `Bring the Rogue Inquisitors to Justice` is left alone, because it
+closes with Diego. Everything aimed at the player sits in `CForEachPlayerAction`, because `$Instigator`
+in a death script is the corpse.
+
+**The titles are the record of it.** A member earns **Dark Inquisitor** and anyone else **Breaker of the
+Hammer**, from his own speech. The name is deliberate: "Dark Inquisitors" is already what the game calls
+the cult on the plains, so the title says you have become what they wanted. Both are perks, so they
+reach the end slides from any act, and no separate flag was needed.
+
+**This is the first thing that changes the Inquisition itself.** 0.71.0's rule was that killing
+Inquisitors stays a fact about you. Killing the head of the order breaks that on purpose, so both new
+slides rewrite the status sentence, and the motif the other four end on turns: the cities stop paying
+for the wood. `900 order inquisition broken` is also the first Inquisition slide a non-member can see,
+and it is excluded from the no-allegiance slide, as any slide firing on a perk alone has to be.
+
+Both are written to the game's rhythm rather than the slides'. Vanilla dialogue averages 10.2 words a
+sentence and 3% run past 25, and the existing slides, pitched at New Vegas in 0.71.0, average 21.4 and
+36%. These two average about 10, so they sit shorter than their siblings until those are rewritten.
+
+### Known limits
+
+- **Nobody reacts.** Raphael and the Inquisition guards behave as before once it is over, and no member
+  is expelled.
+- **The Tithe Guard** will still offer to take you to see him. Eleven of his lines assume Torquemada lives.
+- **He carries nothing unique.** A boss with no reward may feel thin, and that is a question for play.
+- **The 260 HP is a starting number**, chosen against two bosses and never measured against a character
+  at this point in the game. Guards are the Generic can, AC 75 / HP 60.
+- **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
+
+`TK1`-`TK16` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+practice means a new game or a very early save.
+
+---
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 
 The unused-content survey had drifted 30 releases behind the mod, so this started as a re-measurement.
