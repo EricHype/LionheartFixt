@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=26
+							Item Count=27
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -225,6 +225,60 @@ CLayerSaveData
 									}
 								}
 								Return failure if the If failes=0
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CUseCannedExpressionExpression
+								{
+									Canned Expression=Dialog/Requirements/Faction/Templar IS
+								}
+								Character to get attributes from=Player1
+								Then=CIfAction
+								{
+									If=CIsQuestCompletedAction
+									{
+										Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+									}
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Aegis Received
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order templar aegis
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order templar relic
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+									}
+									Else=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Return failure if the If failes=0
+								}
+								Else=CTriggerRelayAction
+								{
+									Relay Name=Fixt order epilogue relay
+								}
 							}
 							Action=CIfExpressionAction
 							{

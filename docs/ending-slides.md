@@ -67,11 +67,11 @@ Six, because the fealty is conditional and because a Templar can have Templar bl
     node id: 900 order templar knelt killer
 
 The Knights Templar came out of the siege with their chapter houses standing and their numbers
-halved, and within the year Lord Javier swore the order to the power he had called his benefactor.
-You had worn their cross and you had killed men wearing it, and the order never found a way to put
-both facts on the same page. The commanderies took their new instructions quietly. Those who objected
-were reassigned to postings they did not come back from, and inside a generation the white cross was
-a thing worn in the desert's service. Your name stayed in the rolls eleven years, and was then struck
+halved. Within the year Lord Javier swore the order to the power he had called his benefactor. You
+had worn their cross and you had killed men wearing it. The order never found a way to put both
+facts on the same page. The commanderies took their new instructions quietly. Those who objected
+were reassigned to postings they did not come back from. Inside a generation the white cross was a
+thing worn in the desert's service. Your name stayed in the rolls eleven years. Then it was struck
 out by a hand nobody signed for.
 
 ### when: Templar Rank > 0, Enemy of the Knights Templar, and you talked Ahriman into dying
@@ -79,57 +79,82 @@ out by a hand nobody signed for.
     node id: 900 order templar unknelt killer
 
 The Knights Templar came out of the siege with their chapter houses standing and their numbers
-halved, and no benefactor ever came to collect on them. You had killed men who wore the same cross
-you did, and then you spared the whole order by talking its creditor into its own death, which is not
-a thing the rolls have a line for. They rebuilt slowly, under their own banners and out of their own
-treasury. The brothers who had buried the men you killed argued with the brothers who had read the
-Alamut dispatches, and they argued for as long as any of them lived, and the order never settled it.
+halved. No benefactor ever came to collect on them. You had killed men who wore the same cross you
+did. Then you spared the whole order by talking its creditor into its own death. The rolls have no
+line for that. They rebuilt slowly, under their own banners and out of their own treasury. The
+brothers who had buried the men you killed argued with the brothers who had read the Alamut
+dispatches. They argued for as long as any of them lived, and the order never settled it.
 
 ### when: Templar Rank > 2, and Javier swore the order to Ahriman
 
     node id: 900 order templar high knelt
 
 The Knights Templar came out of the siege with their chapter houses standing and their numbers
-halved, and within the year Lord Javier swore the order to the power he had called his benefactor.
-You had stood close enough to Javier to be counted among his own, and when he knelt there was no
-record of you being anywhere else. The commanderies took their new instructions quietly. Those who
-objected were reassigned to postings they did not come back from, and inside a generation the white
-cross was a thing worn in the desert's service. The men who carried it there had trained under you.
+halved. Within the year Lord Javier swore the order to the power he had called his benefactor. You
+had stood close enough to Javier to be counted among his own. When he knelt, there was no record of
+you being anywhere else. The commanderies took their new instructions quietly. Those who objected
+were reassigned to postings they did not come back from. Inside a generation the white cross was a
+thing worn in the desert's service. The men who carried it there had trained under you.
 
 ### when: Templar Rank > 1, and Javier swore the order to Ahriman
 
     node id: 900 order templar mid knelt
 
 The Knights Templar came out of the siege with their chapter houses standing and their numbers
-halved, and within the year Lord Javier swore the order to the power he had called his benefactor.
-You had carried their banner the length of the war, from the Port District chapter to the relic
-vaults at Montserrat, and knights who had trained beside you rose behind you. The commanderies took
-their new instructions quietly, and those who objected were reassigned to postings they did not come
-back from. Inside a generation the white cross was a thing worn in the desert's service, carried by
-men who had learned how to carry it from watching you.
+halved. Within the year Lord Javier swore the order to the power he had called his benefactor. You
+had carried their banner the length of the war, from the Port District chapter to the relic vaults
+at Montserrat. Knights who had trained beside you rose behind you. The commanderies took their new
+instructions quietly. Those who objected were reassigned to postings they did not come back from.
+Inside a generation the white cross was a thing worn in the desert's service, carried by men who had
+learned how to carry it from watching you.
 
 ### when: Templar Rank > 0, and Javier swore the order to Ahriman
 
     node id: 900 order templar knelt
 
 The Knights Templar came out of the siege with their chapter houses standing and their numbers
-halved, and within the year Lord Javier swore the order to the power he had called his benefactor.
-You had taken their oath and fought under it, and that was the whole of what the rolls had to say
-about you. The commanderies took their new instructions quietly. Those who objected were reassigned
-to postings they did not come back from, and inside a generation the white cross was a thing worn in
-the desert's service. Nobody ever wrote to ask what you thought of it.
+halved. Within the year Lord Javier swore the order to the power he had called his benefactor. You
+had taken their oath and fought under it. That was all the rolls had to say about you. The
+commanderies took their new instructions quietly. Those who objected were reassigned to postings
+they did not come back from. Inside a generation the white cross was a thing worn in the desert's
+service. Nobody ever wrote to ask what you thought of it.
 
 ### when: Templar Rank > 0, and you talked Ahriman into dying, so Javier never swore
 
     node id: 900 order templar unknelt
 
 The Knights Templar came out of the siege with their chapter houses standing and their numbers
-halved, and no benefactor ever came for them. You had taken their oath, and you had talked the thing
-that meant to collect on it into its own death before it ever reached a chapter house. The order
-rebuilt slowly, under its own banners and out of its own treasury, and for a generation it was poorer
-than it had been in two hundred years. No record was ever written of what you spared them, because
-the only men who could have written it were standing at Alamut and did not understand what they had
-heard.
+halved. No benefactor ever came for them. You had taken their oath. Then you talked the thing that
+meant to collect on it into its own death, before it ever reached a chapter house. The order rebuilt
+slowly, under its own banners and out of its own treasury. For a generation it was poorer than it
+had been in two hundred years. No record was ever written of what you spared them. The only men who
+could have written it were standing at Alamut, and they did not understand what they had heard.
+
+---
+
+## The shield of the order
+
+Shown after the Templar slide, to a Templar who freed the Doomed Knights. Jehanne's own slides cover
+what freeing them did for her. This one covers what it did for you.
+
+### when: Templar, knights freed, and Sir Roger gave you the Aegis
+
+    node id: 900 order templar aegis
+
+You forged the Lion Shield as an initiate, and you carried it out of the Crypt with an old cross on
+it. Two hundred years of damned knights had gone free to put it there. Sir Roger saw what it was and
+took it from you, because a relic is a thing the order lays on tombs. He gave you the Aegis, and you
+carried that to the end. The order keeps both now. It tells the story of the second. Nobody there
+can tell you who the first one was for.
+
+### when: Templar, and knights freed
+
+    node id: 900 order templar relic
+
+You forged the Lion Shield as an initiate. You carried it out of the Crypt changed, with an old
+cross on it and the lion gone faint beneath. Two hundred years of damned knights had gone free to
+put it there. No chapter roll records why. When you were gone it went back to the order. They hung
+it in a hall, and nobody there could say whose it had been.
 
 ---
 

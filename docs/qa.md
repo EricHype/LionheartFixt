@@ -6121,6 +6121,10 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK21 | Kill Diego for them, finish the game | - | `900 order cult served`, with Diego's `sold` slide in its usual place |
 | TK22 | The same, and kill Torquemada | - | `900 order cult inherited` |
 | TK23 | Kill Diego for them, collect, then kill all five | - | `ended`, **not** `served`. There is no cult left to prosper |
+| TK24 | Templar, knights freed, no Aegis, finish the game | - | `900 order templar relic`, straight after the Templar slide |
+| TK25 | Templar, take the Aegis from Sir Roger, finish the game | - | `900 order templar aegis`. Check the handover scene still exits through `10 accept` and gives you control back |
+| TK26 | Templar who passed through the Crypt or killed Jehanne, finish the game | - | **No** shield slide, and the series carries on |
+| TK27 | Non-Templar who freed the knights, finish the game | - | **No** shield slide. Jehanne's `released` slide is theirs |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

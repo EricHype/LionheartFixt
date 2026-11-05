@@ -245,6 +245,17 @@ the quest. A second records the report to Torquemada, whose marker sits in a map
 end. The Inquisition's four older slides are rewritten to the game's rhythm with their particulars
 intact. The `inherited` slide lets the fires burn again, which the two new slides say had burned low.
 
+### The Templar slides, and the shield they never mentioned
+
+All six are rewritten to the game's rhythm, keeping the refrain every *knelt* slide shares. They read
+your rank, your Templar kills and Ahriman, and nothing else, so the Crypt and the shield chain ended
+nowhere. Jehanne's slide covers what freeing the knights did for her.
+
+Six slides by three shield outcomes would be eighteen variants, so it is one slide of its own, after the
+Templar one, for a Templar who completed `Release the Doomed Knights`. The Aegis needed a new variable,
+written at Sir Roger's `70 the relic`, because the item can be sold. The quest stands in for the Holy
+Shield, so a Templar who somehow lost the Lion Shield before the wish still reads the relic slide.
+
 ### Known limits
 
 - **Nobody reacts.** Raphael and the Inquisition guards behave as before once it is over, and no member
@@ -255,7 +266,7 @@ intact. The `inherited` slide lets the fires burn again, which the two new slide
   at this point in the game. Guards are the Generic can, AC 75 / HP 60.
 - **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
 
-`TK1`-`TK23` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+`TK1`-`TK27` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
 practice means a new game or a very early save.
 
 ---
