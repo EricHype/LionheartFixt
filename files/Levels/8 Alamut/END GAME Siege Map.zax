@@ -1520,16 +1520,64 @@ CLayerSaveData
 									}
 								}
 								Character to get attributes from=Player1
-								Then=CDisplayDialogTreeAction
+								Then=CIfAction
 								{
-									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-									Node ID=900 order england
-									Speaker=Fake Talker for NIS
-									Player Being Spoken To=Player1
+									If=CWasQuestStateActivatedAction
+									{
+										Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+										State=K3MMM906
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order england duke
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfAction
+									{
+										If=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+											State=8O3LLPQ4
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order england duke
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order england
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Return failure if the If failes=0
+									}
+									Return failure if the If failes=0
 								}
-								Else=CTriggerRelayAction
+								Else=CIfAction
 								{
-									Relay Name=Fixt order epilogue relay
+									If=CWasQuestStateActivatedAction
+									{
+										Quest=Levels/1 Barcelona/Quests/Gate District/ConspiracyAgainst Spain
+										State=VJZDD7I6
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order spain
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Return failure if the If failes=0
 								}
 							}
 							Action=CIfExpressionAction

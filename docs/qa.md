@@ -6140,6 +6140,9 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK40 | Earn `Goblin Slayer`, Khan alive, then return the poems | Finish the game | `900 order goblins count poems` |
 | TK41 | Bring Rakeb the eyes and kill Esteban for the patrol | Finish the game | `900 order goblins eyes esteban`, as one slide |
 | TK42 | Do none of this, in any faction | Finish the game | Neither slide, and the series carries on. Then read the Khan's greeting: *Plumdjum* |
+| TK43 | Give Fawkes the plans, decline the Duke, finish the game | - | `900 order england`, unchanged |
+| TK44 | Lure the Duke to the gunpowder, finish the game | - | `900 order england duke`, with the keg line |
+| TK45 | Kill Fawkes for the Duke of Medina, finish the game | - | `900 order spain`, and the England slide does not fire |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

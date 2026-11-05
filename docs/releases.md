@@ -294,6 +294,13 @@ own, which replaces the can's, the same trap that kept the Lava Troll Hide dead 
 would have passed every gate. His name is also corrected to *Plumdjum* in Fixt's text and in the one vanilla
 line that spelled it *Plumjum*, against nine that do not.
 
+### The conspiracy's other ends
+
+England, O'Malley and No allegiance are rewritten to the game's rhythm. `Servant of the Queen` covers
+handing Fawkes the Armada plans, so blowing up the Duke of Medina read the same as declining to, and killing
+Fawkes for Spain read as nothing at all. Both are quest history, so the England slide gains a line for the
+Duke and a Spanish ending joins it. That closes the order slides. The companions are next.
+
 ### Known limits
 
 - **Nobody reacts.** Raphael and the Inquisition guards behave as before once it is over, and no member
@@ -304,7 +311,7 @@ line that spelled it *Plumjum*, against nine that do not.
   at this point in the game. Guards are the Generic can, AC 75 / HP 60.
 - **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
 
-`TK1`-`TK42` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+`TK1`-`TK45` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
 practice means a new game or a very early save.
 
 ---

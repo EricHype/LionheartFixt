@@ -147,7 +147,29 @@ HORDE = {
         "western killers by name, and yours was one of the names."),
 }
 
-BATCHES = [TEMPLAR, SALADIN, WIELDER, HORDE]
+REMAINDER = {
+    "900 order none": (
+        "Every order came out of the siege smaller than it had gone in, and every one of them claimed the ending as "
+        "its own. You had taken no oath and worn no mark. No faction anywhere could produce a document with your name "
+        "on it. The Templars wrote that a knight had finished it. The Inquisition wrote that a faithful servant had. "
+        "The Wielders wrote that one of their own had. The Horde told it as a story about a westerner who had owed "
+        "them a favour. All four accounts survive in the archives, and not one of them is true."),
+    "900 order england": (
+        "England spent that year waiting on Barcelona. In the end the Armada never had to sail into a city that was "
+        "already burning. You had carried the Crown's business through the Port District while the fleet was still in "
+        "harbour. Any week of it would have hanged you. Guy Fawkes' promise was kept the way such promises are kept. "
+        "There was a pension paid out of an account with another man's name on it, and a quiet word in two ports. "
+        "There was no record anywhere of the reason for either. He was hanged for something else, years "
+        "later, and said nothing about you."),
+    "900 order omalley": (
+        "Grace O'Malley kept her ships, her harbour and her true name. The Crown learned none of the three from "
+        "you. You had been given more than her silence to hold, at a point where selling it would have cost you "
+        "nothing and paid well. She was still taking prizes off the Irish coast twenty years after Barcelona, under "
+        "the name she had chosen. Her crews told the Barcelona story the entire time, with you in it. They told it "
+        "badly, and she never once corrected them."),
+}
+
+BATCHES = [TEMPLAR, SALADIN, WIELDER, HORDE, REMAINDER]
 
 
 def apply_tree(batch):

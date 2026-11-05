@@ -658,11 +658,11 @@ eyes and Esteban slides join as `eyes esteban`.
     node id: 900 order none
 
 Every order came out of the siege smaller than it had gone in, and every one of them claimed the
-ending as its own. You had taken no oath and worn no mark, and there was no faction anywhere that
-could produce a document with your name on it. The Templars wrote that a knight had finished it. The
-Inquisition wrote that a faithful servant had. The Wielders wrote that one of their own had, and the
-Horde told it as a story about a westerner who had owed them a favour. All four accounts survive in
-the archives, and not one of them is true.
+ending as its own. You had taken no oath and worn no mark. No faction anywhere could produce a
+document with your name on it. The Templars wrote that a knight had finished it. The Inquisition
+wrote that a faithful servant had. The Wielders wrote that one of their own had. The Horde told it
+as a story about a westerner who had owed them a favour. All four accounts survive in the archives,
+and not one of them is true.
 
 ---
 
@@ -675,22 +675,44 @@ its own title perks.
 
     node id: 900 order england
 
-England spent that year waiting on Barcelona, and in the end the Armada never had to sail into a city
+England spent that year waiting on Barcelona. In the end the Armada never had to sail into a city
 that was already burning. You had carried the Crown's business through the Port District while the
-fleet was still in harbour, inside a conspiracy that would have hanged you in any week of it. Guy
-Fawkes' promise was kept the way such promises are kept: a pension paid out of an account with
-another man's name on it, a quiet word in two ports, and no record anywhere of the reason for either.
-He was hanged for something else, years later, and said nothing about you.
+fleet was still in harbour. Any week of it would have hanged you. Guy Fawkes' promise was kept the
+way such promises are kept. There was a pension paid out of an account with another man's name on
+it, and a quiet word in two ports. There was no record anywhere of the reason for either. He was
+hanged for something else, years later, and said nothing about you.
+
+### when: Servant of the Queen, and you killed the Duke of Medina
+
+    node id: 900 order england duke
+
+England spent that year waiting on Barcelona. In the end the Armada never had to sail into a city
+that was already burning. You had carried the Crown's business through the Port District while the
+fleet was still in harbour. Any week of it would have hanged you. You lured the Duke of Medina to a
+keg of gunpowder behind DaVinci's workshop. The Armada lost its head a season before it was due to
+sail. Guy Fawkes' promise was kept the way such promises are kept. There was a pension paid out of
+an account with another man's name on it, and a quiet word in two ports. There was no record
+anywhere of the reason for either. He was hanged for something else, years later, and said nothing
+about you.
+
+### when: no title, and you killed Fawkes for Spain
+
+    node id: 900 order spain
+
+Guy Fawkes told you his real name outside the Gate District, and you killed him for it. The Duke of
+Medina thanked you personally and went back to his ship. Spain never learned how close the powder
+had been. England lost an agent it had never admitted to having. History has no record of Guy Fawkes
+after that year, and never had any reason to.
 
 ### when: Grace's Regard
 
     node id: 900 order omalley
 
-Grace O'Malley kept her ships, her harbour and her true name, and the Crown learned none of the three
+Grace O'Malley kept her ships, her harbour and her true name. The Crown learned none of the three
 from you. You had been given more than her silence to hold, at a point where selling it would have
 cost you nothing and paid well. She was still taking prizes off the Irish coast twenty years after
-Barcelona, under the name she had chosen rather than the one she was born to. Her crews told the
-Barcelona story the entire time, with you in it, and told it badly, and she never once corrected them.
+Barcelona, under the name she had chosen. Her crews told the Barcelona story the entire time, with
+you in it. They told it badly, and she never once corrected them.
 
 ---
 
