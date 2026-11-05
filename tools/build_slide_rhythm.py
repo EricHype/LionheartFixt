@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lhbuild
 from lhbuild import FX
-from slide_rhythm_companions import BATCH_1
+from slide_rhythm_companions import BATCH_1, BATCH_2
 
 SLIDES = "Resources/Levels/8 Alamut/Dialog/Fixt Ending Slides.DialogTree"
 DOCS = [Path(__file__).resolve().parent.parent / "docs" / n for n in ("ending-slides.md", "companion-endings.md")]
@@ -170,7 +170,7 @@ REMAINDER = {
         "badly, and she never once corrected them."),
 }
 
-BATCHES = [TEMPLAR, SALADIN, WIELDER, HORDE, REMAINDER, BATCH_1]
+BATCHES = [TEMPLAR, SALADIN, WIELDER, HORDE, REMAINDER, BATCH_1, BATCH_2]
 
 
 def apply_tree(batch):
