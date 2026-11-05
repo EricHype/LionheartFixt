@@ -12,10 +12,10 @@ form. A voice for these can be anyone's, with no performance to match.
 to six sentences, plain past tense, written to be read aloud at a measured pace. Each one states the
 outcome, then the mechanism, then a concrete particular, then the long view.
 
-**Being rewritten to the game's own rhythm, a group at a time.** Vanilla dialogue averages 10.2 words
-a sentence, with 3% past 25. These slides averaged 21.4, with 36%. The Inquisition and Dark Inquisitor
-slides are done, at about 10 words a sentence and 60 to 100 words a slide. Keep the particulars and
-allow one long sentence where it earns its place, because in several slides the length is the joke.
+**All of these are now written to the game's own rhythm.** Vanilla dialogue averages 10.2 words a
+sentence, with 3% past 25. These slides averaged 21.4, with 36%, and a new one should stay under 25
+words a sentence. Keep the particulars and allow one long sentence where it earns its place, because
+in a few slides the length is the joke. The word counts above are the old target, and shorter is fine.
 
 **Each slide covers three things: status, your impact, near future.** The beats take their values
 from different places, which is what makes the futures differ:

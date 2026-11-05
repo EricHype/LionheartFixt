@@ -388,24 +388,24 @@ ashamed of.
 
     node id: 900 friend grumdjum
 
-Grumdjum got his verse. He had been threatening you with poetry for a year and he delivered, at
-length, in a hall full of goblins who had never been further east than the pass. The poem is accurate
-about the fighting and ruinous about everything else, and you are in it under a name he invented and
-would not explain. He outlived three Khans by the simple method of being the only goblin anyone
-wanted to hear from. Goblin children still recite the Alamut stanza, badly, and the stanza is wrong about Alamut. He
-dictated the last third of it, being by then far too grand to write.
+Grumdjum got his verse. He had been threatening you with poetry for a year. He delivered, at length,
+in a hall full of goblins who had never been further east than the pass. The poem is accurate about
+the fighting and ruinous about everything else. You are in it under a name he invented and would not
+explain. He outlived three Khans by the simple method of being the only goblin anyone wanted to hear
+from. Goblin children still recite the Alamut stanza, badly, and the stanza is wrong about Alamut.
+He dictated the last third of it, being by then far too grand to write.
 
 ### when: died in your service
 
     node id: 900 friend grumdjum dead
 
 Grumdjum died before he could finish it, which he would have called the single worst outcome
-available. The verses he had already made were remembered correctly for about ten years and then
-merged with four other poems about four other goblins. The composite hero is braver than Grumdjum and
-much less funny. Nobody who recites it knows that the best line in it, about a brave crusader who
-threatened to vanquish a knave, was written about you by a goblin who had decided he liked you and never once said so out loud.
-The hall he would have recited it in was still standing eighty years later and was never used for
-poetry again.
+available. The verses he had already made were remembered correctly for about ten years. Then they
+merged with four other poems about four other goblins. The composite hero is braver than Grumdjum
+and much less funny. The best line in it is about a brave crusader who threatened to vanquish a
+knave. Nobody who recites it knows that it was written about you, by a goblin who had decided he
+liked you and never once said so out loud. The hall he would have recited it in was still standing
+eighty years later, and was never used for poetry again.
 
 ### when: you killed him
 
@@ -414,9 +414,9 @@ poetry again.
 Grumdjum died in the Wilderness at your hands, mid-sentence, which was the one ending he had never
 thought to compose. He had been working on the verse for years and reciting it to whoever stopped
 walking, and it went with him. Goblins who had heard pieces of it argued about the pieces for a
-season and then stopped. The dryad he wanted dead outlived him by a century. He had promised to
-make an epic of your long torture, and he had been joking, and he was the only goblin in the Horde
-who would have bothered to joke with you.
+season and then stopped. The dryad he wanted dead outlived him by a century. He had promised to make
+an epic of your long torture, and he had been joking. He was the only goblin in the Horde who would
+have bothered to joke with you.
 
 ---
 
@@ -511,23 +511,23 @@ put in writing. The Khan's daughter was not consulted and remembers the whole bu
 
     node id: 900 friend goblin girl
 
-The Khan's daughter left the Warrens with you and did not come back, which cost her father a daughter
-and a bargaining chip and a quantity of face. Her mother was proved right about you at a volume
-audible from the pass. She grew into something the Horde had no word for, being neither Khan's blood
-in the Warrens nor anything at all anywhere else, and it turned out to suit her. She kept a running
-count of everything she had eaten on the road and recited it to strangers. Nobody who met her later
-believed she had been a Khan's daughter, and she never minded.
+The Khan's daughter left the Warrens with you and did not come back. It cost her father a daughter,
+a bargaining chip and a quantity of face. Her mother was proved right about you at a volume audible
+from the pass. She grew into something the Horde had no word for, being neither Khan's blood in the
+Warrens nor anything at all anywhere else. It turned out to suit her. She kept a running count of
+everything she had eaten on the road and recited it to strangers. Nobody who met her later believed
+she had been a Khan's daughter, and she never minded.
 
 ### when: died in your service
 
     node id: 900 friend goblin girl dead
 
-The Khan's daughter died away from the Warrens, in company her mother had warned her about, and the
+The Khan's daughter died away from the Warrens, in company her mother had warned her about. The
 Horde took it the way a Horde takes such things. The Khan wanted a name. He was given yours,
-eventually, by a goblin who had been there, and he did nothing about it for reasons that were
-political rather than paternal. Her mother was right twice and took no satisfaction in it either
-time. She had asked you once whether there were more of you and whether they were all so cute, and
-had been told, and had not believed it.
+eventually, by a goblin who had been there. He did nothing about it, for reasons that were political
+rather than paternal. Her mother was right twice and took no satisfaction in it either time. She had
+asked you once whether there were more of you and whether they were all so cute. She had been told,
+and had not believed it.
 
 ---
 
