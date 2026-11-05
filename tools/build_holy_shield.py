@@ -84,7 +84,12 @@ HELM_REL = "Resources/Inventory/Specific Item Cans/Quest Items/Helm of the Templ
 HELMET_REL = "Resources/Inventory Items/Helmet.InventoryItem"
 EFREETI_REL = "Resources/Levels/4 Crypt/Dialog/Efreeti.DialogTree"
 
-HOLY_ICON = "Items/Inventory Images/Armor/Shield Holy"
+# NOT the orphaned `Shield Holy` art. That is a steel heater with no lion -- a different
+# shield entirely, and using it put a different object in the inventory from the one on
+# the player's back. `Shield Holy Fixt` is the Lion Shield's own icon with the lion faded
+# and the cross laid over it, matching the mesh. The steel heater is the AEGIS now, where
+# being a different object is the point: Sir Roger takes your shield and hands you a new one.
+HOLY_ICON = "Items/Inventory Images/Armor/Shield Holy Fixt"
 HOLY_MESH = "Shield Holy"
 HOLY_MODEL = "Models3D/Weapons/Shields/Shield Holy/Shield Holy"
 
@@ -107,6 +112,11 @@ DERIVED = [
     ("(AC) Armor Class", "14"),
     ("Speed/Attack Magic Speed Multiplier", "-0.05"),
     ("Number of Templar Items", "1"),
+    # Raised only while the shield is equipped, because CPlugInBehaviorModifyCharacterWhenSelected
+    # applies only then -- which is the engine's one way to ask "is this WORN", and Sir Roger's
+    # offer needs it: he cannot be looking at a shield that is in your pack. Added here rather
+    # than patched onto the generated file, or regenerating the item would silently drop it.
+    ("Game Scripting Variables/Fixt Wearing Templar Shield", "1"),
 ]
 SKILLS = [("Skills/Fighting/Unarmed", "-10")]
 

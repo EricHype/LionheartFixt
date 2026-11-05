@@ -192,14 +192,27 @@ def paint(rgb, w, h, ghost, gild=False):
 
     out = [c[:] for c in px]
     if not gild:
-        # The Holy Shield is the Lion Shield with the order's mark laid over it, and nothing
-        # else: the same olive and gold, the same lion, the same wear. Only the cross is added.
+        # The Holy Shield is the original Templar shield with the lion FADED and the order's
+        # cross laid over it. Field, rim and wear are untouched; only the lion is pulled back.
         #
-        # An earlier build repainted the whole face to steel and reduced the lion to a ghost.
-        # Measured against the three skins' interior pixels, that made it the FURTHEST of the
-        # three from the Lion Shield it is supposed to be an upgrade of -- 84% of pixels
-        # changed, against the Aegis's 65% -- so the sequence went gold, steel, gold, and the
-        # middle step read as a different object rather than the same one improved.
+        # 0.93.0 repainted the whole face in steel, which made it the furthest of the three
+        # shields from the one it upgrades. 0.93.1 kept the field but left the lion at full
+        # strength, so the cross looked stuck on top of an unchanged shield rather than
+        # succeeding the device it covers.
+        rimpx = [i for i in range(w * h) if shield[i] and not is_int[i] and not mask[i]]
+        fld = [i for i in range(w * h) if is_int[i] and not mask[i]]
+        fl = max(1.0, sum(lum[i] for i in fld) / len(fld))
+        fr = sum(px[i][0] for i in fld) / len(fld) / fl
+        fg = sum(px[i][1] for i in fld) / len(fld) / fl
+        fb = sum(px[i][2] for i in fld) / len(fld) / fl
+        for i in range(w * h):
+            if not (shield[i] and mask[i]):
+                continue
+            # where the lion was, put the field back at the inpainted brightness, then blend
+            # `ghost` of the original lion over it
+            base = [min(255, int(fr * clean[i])), min(255, int(fg * clean[i])),
+                    min(255, int(fb * clean[i]))]
+            out[i] = [int(base[c] * (1 - ghost) + px[i][c] * ghost) for c in range(3)]
         for i in cross:
             L = lum[i] * 0.45
             out[i] = [int(L * 0.95), int(L * 0.97), min(255, int(L * 1.02))]

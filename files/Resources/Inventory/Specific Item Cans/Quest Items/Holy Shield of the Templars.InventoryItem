@@ -130,16 +130,6 @@ CInventoryItem
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Number of Templar Items
 				}
-				Modifier=CCharacterModifierSkill
-				{
-					Modification Amount=CConstant
-					{
-						Constant Value=-10
-					}
-					Modification amount is a percent=0
-					Allow Accumulation=1
-					Skill to modify=Skills/Fighting/Unarmed
-				}
 				Modifier=CCharacterModifierDerivedAttribute
 				{
 					Modification Amount=CConstant
@@ -149,6 +139,16 @@ CInventoryItem
 					Modification amount is a percent=0
 					Allow Accumulation=1
 					Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Wearing Templar Shield
+				}
+				Modifier=CCharacterModifierSkill
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=-10
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Skill to modify=Skills/Fighting/Unarmed
 				}
 			}
 		}
@@ -222,9 +222,9 @@ CInventoryItem
 	Description=This shield was forged for an initiate and consecrated for a knight. +14 AC, Piercing Resist 20%, Crushing and Slashing Resist 15%, Crushing, Slashing and Piercing Damage Thresholds +2, Fire, Cold and Electrical Resist 10%, Attack Speed -5%, Unarmed Skill -10. Counts as an item of the Knights Templar.
 	Inventory Window Images=Array
 	{
-		Basic=Items/Inventory Images/Armor/Shield Holy
-		Better=Items/Inventory Images/Armor/Shield Holy
-		Special=Items/Inventory Images/Armor/Shield Holy
+		Basic=Items/Inventory Images/Armor/Shield Holy Fixt
+		Better=Items/Inventory Images/Armor/Shield Holy Fixt
+		Special=Items/Inventory Images/Armor/Shield Holy Fixt
 	}
 	Whole Item Display Name=
 	Whole Item Description=
