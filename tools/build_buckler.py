@@ -1,6 +1,6 @@
 """Build the buckler: a fourth shield that occupies a different design space.
 
-Designed in docs/unused-content.md under "The buckler, designed". The short version: the
+Designed in docs/unused-content-resolved.md under "The buckler, designed". The short version: the
 three shipped shields are one design -- flat mitigation, AC and crushing/piercing/slashing
 resistance climbing together, paid for with escalating Unarmed and casting penalties. A
 buckler is a fist shield strapped to the forearm for parrying and punching, so it mitigates

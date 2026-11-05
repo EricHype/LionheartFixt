@@ -975,7 +975,7 @@ The remaining orphans are **not** stranded and are left where the survey put the
 and `EstebanDagger_PU`, a matched pair for a guard who exists with no knife in his dialogue;
 `HammerBjon_PU`, whose owner appears in no file in the game and is written up as closed rather than
 open; `ScrollTregethia`; the buckler's four assets, which have [a design of their own
-now](unused-content.md#the-buckler-designed); and the draft creature meshes that 0.45.0 already
+now](unused-content-resolved.md#the-buckler-designed); and the draft creature meshes that 0.45.0 already
 settled are not cut content.
 
 ## 0.89.0 - the meshes nobody could see

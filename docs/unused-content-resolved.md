@@ -1,0 +1,2126 @@
+# Unused content - resolved
+
+Everything from [the survey](unused-content.md) that has been built, ruled out or adjudicated. **This
+is not an archive to skip.** A deliberately closed lead is byte-identical to one nobody noticed, so
+`vo_reach.py` and the other sweeps will keep reporting these. Before calling a lead new, search this
+file for its node id.
+
+Sections are kept as written, so each describes the game as it stood at the time. Numbers in them
+have often moved since, and [the live list](unused-content.md#re-measured-at-0940----the-live-list)
+wins any disagreement. "Above" and "below" refer to the original order, which is preserved here.
+
+## Contents
+
+- [Great weapons: enchantable since 0.89.0](#great-weapons-enchantable-since-0890)
+- [Done in 0.94.0](#done-in-0940)
+- [Quest items: hand-authored uniques](#quest-items-hand-authored-uniques)
+- [Magic items: a disconnected pipeline](#magic-items-a-disconnected-pipeline)
+- [Wands as a system](#wands-as-a-system)
+- [Wands as a system](#wands-as-a-system-1)
+- [Enemies: 48 cans spawned nowhere](#enemies-48-cans-spawned-nowhere)
+- [The summon tiers: the best single find](#the-summon-tiers-the-best-single-find)
+- [Skills: nothing was cut](#skills-nothing-was-cut)
+- [Perks: five titles nothing awards](#perks-five-titles-nothing-awards)
+- [Counters and set bonuses: the mechanism I said did not exist](#counters-and-set-bonuses-the-mechanism-i-said-did-not-exist)
+- [Factions: all thirteen reachable](#factions-all-thirteen-reachable)
+- [Done so far](#done-so-far)
+- [What to pick up next](#what-to-pick-up-next)
+- [Done in 0.39.0 - the Enchanter's Bargain](#done-in-0390---the-enchanters-bargain)
+- [Two method corrections, and what they cost](#two-method-corrections-and-what-they-cost)
+- [Convince DaVinci to Join the Dark Wielders -- the verdict](#convince-davinci-to-join-the-dark-wielders----the-verdict)
+- [The Lucius thread, and a bug class worth more than the thread](#the-lucius-thread-and-a-bug-class-worth-more-than-the-thread)
+- [Wired in 0.41.0 - the betrayal nobody could trigger](#wired-in-0410---the-betrayal-nobody-could-trigger)
+- [Wired in 0.42.0 - Andre's own reaction to being sold](#wired-in-0420---andres-own-reaction-to-being-sold)
+- [The Blacksmith's node 80 is a superseded draft -- do not wire it](#the-blacksmiths-node-80-is-a-superseded-draft----do-not-wire-it)
+- [Done in 0.43.0 - the turret ring](#done-in-0430---the-turret-ring)
+- [Done in 0.44.0 - the morning after](#done-in-0440---the-morning-after)
+- [Done in 0.45.0 - the horse, and what the "unused enemies" number actually means](#done-in-0450---the-horse-and-what-the-unused-enemies-number-actually-means)
+- [Settled by decompilation: `CSeriesAction`'s index is per-instance](#settled-by-decompilation-cseriesactions-index-is-per-instance)
+- [The last backlog item was a false positive, and it failed the same test twice](#the-last-backlog-item-was-a-false-positive-and-it-failed-the-same-test-twice)
+
+## Great weapons: enchantable since 0.89.0
+
+**Handled, and left rare on purpose.** The Great Battle Axe, Great Mace and Great Two Handed Sword
+could never be magic in vanilla: each names `Weapons/Great Melee Additions`, which shipped with no
+members, while every other melee base had a `Per Base` pool of 20-26. Nothing records why. The likely
+reason is that those pools tie additions to variant meshes, and the Great weapons have none.
+
+0.89.0 gave the group 29 members by nesting `Melee Shared Additions`, `Melee Better No Visual` and
+`Melee Special No Visual`. `tools/check_weapon_pools.py` confirms all three at 3 Basic, 20 Better and
+6 Special. `Mace` and `MaceGreat` differ only in name, description, encumbrance, hands, ground sprite,
+pool and `Origonal Item`, so nothing on the item blocks an enchantment.
+
+**Why a player can still believe they cannot be enchanted:**
+
+| | |
+|---|---|
+| **rarity** | `Weapons Two Handed` weights each Great weapon at 1 of 100, against 49 for the Two Handed Sword and 24 each for the Battle Axe and War Hammer. Two-handers are 10 of 25 in `All Weapons`, so each Great weapon is about **0.4%** of weapon rolls and the three together **1.2%**, before any enchantment roll |
+| **no visible change** | no Great weapon has variant art, so a magic one looks like a plain one in the hand and only its name and stats differ |
+| **items already held** | a Great weapon generated before 0.89.0 stays plain. Whether fixed placements are plain was not checked |
+
+**Raising the weights was offered and declined on 2026-11-04**, so the 1-in-100 stands as vanilla's own
+rarity. It is one number per weapon in a vanilla can reached by every shop and chest drawing on
+`All Weapons`, which makes it a balance change and not a repair.
+
+---
+
+## Done in 0.94.0
+
+Five nodes, 0.34 MB. `vo_reach.py` went **71 -> 66** nodes and **5.48 -> 5.14 MB**.
+
+| node | what connected it |
+|---|---|
+| `davincibarcelona / 320 speak to inquisition` | the misrouted reply above, in both places it appears |
+| `davincibarcelona / 340 return spirit` | opens the gem hand-in, whose live `3001 Gem recovered` has no recording. Its own 400 gold and 1 XP were removed, because `3002 gem reward` pays 1000 |
+| `demonic spirit / 5 goodbye low karma` | three exits split at karma 800. *"Agreed, we must pursue our enemy"* also said *"O good and noble one"* to everybody |
+| `blacksmith / 100 attacked blacksmith` | he is invulnerable and always ends in jail, so this is Raphael's return beat from 0.72.0 |
+| `brothermichel / 999 Michel pushed to the edge` | his can's `First Time` transition barks *"Brothers! Help me!"* unless `Lucious dead`, and that branch's `Then=` was blank |
+
+### Looked at and left alone in 0.94.0
+
+- **`brothermichel / 1000 After Michel Attacked`** has no state to play in. Attacking him fires
+  `CRemoveAIAction` on his interaction specifier, so there is never another conversation, and he is
+  killable, so there is no return visit where he is calm. 0.64.0 filed this with Eduardo's line as the
+  same problem. They are not: Eduardo's fight ends in jail and a respawn.
+- **`brothermichel / 07 Andre Dead greeting 2`** is not half of a pair, whatever 0.41.0's notes say.
+  The map's second entry is `03 Return Dialogue`, which is what keeps his questline open. This node is
+  terminal, so wiring it would cost the player every later conversation with him.
+- **`davincibarcelona / 320 general surly response 3`** is still a third escalation with no gate.
+
+---
+
+## Quest items: hand-authored uniques
+
+Fourteen `.InventoryItem` definitions under `Quest Items/` that vanilla places nowhere. Each carries
+written flavour text, which is the tell that someone built it for something.
+
+### Already used by Fixt
+
+| item | where |
+|---|---|
+| `Frogs` | Rakeb, `GoblinVillager`, `Lake.zax` |
+| `Lava Troll Hide` | 0.28.0 -- the chief's reward, `05 Troll Pit`, the Herbalist |
+| `Silver Mine Deed` | 0.31.1 -- Butu's heir hands it over; Shylocke buys it; the Mine Foreman honours it |
+| `Woodsman Liver Pie Goblins` | `Give the Liver Pie.can` |
+| `Helm of the Templars` | 0.36.0 -- **was unfinished**, see [Done so far](#done-so-far) |
+| `Spirit Templar Shield` | 0.36.0 |
+
+### Still open - three items
+
+Three came off this list in 0.39.0: both Trapped Spirit items and
+`Wielder DARK Quest Rod Bone NO Spirit`.
+
+| item | the game's own description | state |
+|---|---|---|
+| ~~`DaVinci Tank Gear`~~ | *"Odd chunk of metal needed by DaVinci to create one of his elaborate devices."* | **Done in 0.43.0** -- the gear comes from DaVinci's talking steam engine at three prices, one of which is a promise that outlives the quest |
+| ~~`Hangover Cure Potion`~~ | *"Clears the mind and body after the consumption of excess alcohol."* | **Done in 0.44.0** -- the drunkard who teaches Drunken Boxing asks for it after Montserrat; Quinn brews it from nightshade root given by Na Roqua in Montaillou |
+| `Titan Crystal` | *"Large and unwieldly. Smells bad."* | unused, but its **icon art is reused** by the live `LuciusMneme` |
+| `Titan Sphere` | *"Spirit gem"* | unused, but its **icon art is reused** by all four live stone hearts |
+| ~~`Inquisitor Feralkin Journal`~~ | *"details the life and trials of a Feralkin at the hands of the Inquisition"* | **done in 0.50.0.** It never needed a reader -- it needed a **shop**. The item was always complete; it was the only one of the twelve books obtainable nowhere |
+
+~~The two Titan items need classifying before building.~~ **Classified below.**
+
+### Settled -- the last two are drafts of items that shipped under better names
+
+Both were suspected here because their art is reused. Reading the thread they belong to settles it:
+each is the **generic predecessor of a named item that shipped**, and the story around it got larger,
+not smaller.
+
+**`Titan Crystal`** -- *"Large and unwieldly. Smells bad."* -- became **`LuciusMneme`**, which uses
+the same icon and the same ground pickup. The quest that carries it is live and six states deep, and
+its own name gives the item away: `Retrieve the Crystal Mneme from Lucius`, *"Kill Lucius, retrieve
+the mneme crystal from his chest, and return it to Lethos in the village of Toulouse."* Ten files
+reference that quest -- Lethos's tree gives it, both of Andre's cans carry it, and Michel, the mayor
+and the bartender all talk about it.
+
+**`Titan Sphere`** -- *"Spirit gem"* -- became **the four stone hearts**, one per Toulouse elder:
+`Thestoneheart ofLethos`, `ThestoneheartofIapetus`, `ThestoneheartofMenoetius`,
+`ThestoneheartofRhea`. All four share the Titan Sphere icon, each drops from its own titan's can
+(`Lethos.can`, `Rhea.can` and so on), and Andre asks for them in a **live** node,
+`825 Titan Slaying`: *"And one more thing...this is very important. Inside the chest of each elder
+titan you will find a sphere."* He explains why in `825 Crystals Explained`: the funerary rites.
+
+**And the draft quest is still in the archive, naming a different titan.**
+`Help Andre the Titan with his tasks.Quest.txt` is referenced by nothing, and inside it the titan is
+called **Marcus**, not Andre:
+
+| state | text |
+|---|---|
+| `7LOVAAS1` | Find Marcus' cousin and take sphere from him |
+| `3MGFA36C` | Return Sphere to Marcus |
+
+One sphere from one cousin. What shipped is four hearts from four elder titans you have to kill, with
+Andre's rites as the reason he wants them. The item, the quest and the titan's name were all replaced
+together.
+
+**So the quest-item list is closed.** `Titan Crystal` and `Titan Sphere` are not unplaced content;
+they are what `LuciusMneme` and the stone hearts were called before the Toulouse thread was written
+properly. Neither should be built.
+
+Also at zero references: `Gem` and `Expensive Gem`. Those are generic loot rather than
+hand-authored uniques, so they belong to a different question than this table.
+
+---
+
+## Magic items: a disconnected pipeline
+
+`Specific Item Cans/Misc Items/` holds 91 `CCannedObject` **recipes**, each pairing a base item with
+an enchantment -- `Inventory Items/Helmet` plus `Inventory Additions/Miscellaneous/Helmets/Eagle`, for
+example. **65 are referenced by nothing.**
+
+> **This section previously said 62 of those 65 were "redundant duplicates whose enchantments reach
+> the player anyway through `Generator Combinations`."** That was wrong, and the error is worth
+> keeping: the check confirmed that a `*selection MAGIC` can *listed* the enchantment, and never asked
+> whether that selection can was itself reachable. Most of them are not.
+
+### What the master generator actually yields
+
+`1 MASTER ALL Items in the game` is drawn by real maps -- `04 Maw of the Assasin`,
+`06 Chamber of Torment`, `07 Dark Temple`, `Cortez Cave`. Walking down from it:
+
+```
+1 MASTER ALL Items in the game
+ |- All Armor and Shields
+ |- All Weapons
+ `- All Miscellaneous Items
+     |- All Potions                     -> Potion selection MAGIC      (reachable)
+     `- All Misc Items except Potions
+         |- weighting 17: eight PLAIN base items --
+         |                Amulet, Belt, Boots, Bracers, Gauntlet, Helmet, Necklace, Ring
+         |- weighting  2: All Scrolls   -> Scroll selection MAGIC      (reachable)
+         `- weighting  2: All Wands     -> Wand selection MAGIC        (added in 0.38.0)
+```
+
+So the misc branch yields **plain, unenchanted equipment**, magic potions and magic scrolls. The
+`*selection MAGIC` pools -- which are the things that pair a base item *with* an enchantment -- are
+reachable for potions and scrolls only.
+
+### Which equipment pools are connected
+
+| pool | reachable from | state |
+|---|---|---|
+| `Potion selection MAGIC` | the master, plus 3+ maps directly | fine |
+| `Scroll selection MAGIC` | the master, via `All Scrolls` | fine |
+| **`Wand selection MAGIC`** | `All Wands`, which **nothing drew from** | **connected in 0.38.0** |
+| `Boot`, `Gauntlet` | one map each (`2 Retreat of Souls Entry`) | reachable, barely |
+| `Necklace` | one map (`2 Retreat of Souls`) | reachable, barely |
+| `Arrow` | one map (`01 Sewer Main Entrance`) | reachable, barely |
+| **`Amulet`, `Belt`, `Bracer`, `Cloak`, `Helmet`, `Ring`** | `All Magic Equipment` | **connected in 0.38.0** |
+| `Bolt` | nothing at all | still disconnected -- ammunition, see the note below |
+
+**Seven pools are referenced by nothing whatsoever.** So magic rings, amulets, belts, bracers, cloaks
+and helmets do not drop from the master generator at all -- their plain versions do, and the
+enchantment half of the system was built and never wired in. That is the largest single finding in
+this document and the one that would most change how the game plays.
+
+**Fixed in 0.38.0** through a new `All Magic Equipment` intermediate can holding all six pools,
+entering the misc branch once at weighting 2 -- so magic equipment is **9%** of that branch, matching
+scrolls and wands, rather than the **36%** that six separate branches would have produced. All 40
+enchantments across the six pools were verified implemented first. `WD1`-`WD16` in [`qa.md`](qa.md).
+
+**And gated by mojo in 0.38.1**, which 0.38.0 shipped without. `All Magic Equipment` is a
+`CInventoryItemGeneratorMojoList` on `CAverageMojo` at thresholds **7 / 16 / 999** -- vanilla's own,
+copied from `All Armor` -- with each tiered pool keeping every entry and zeroing the too-good
+rarities, the way `Armor LOW Mojo` does. Below mojo 7 only amulet and ring enchantments appear and
+nothing above Uncommon; Very Rare and Unique start at mojo 16, around the Crypt. Belt, Bracer, Cloak
+and Helmet have no Common or Uncommon enchantment at all, so they are absent from the lowest band by
+necessity rather than choice.
+
+### Enchantment pools: nothing is unreachable, but six items can never be magic
+
+Prompted by a wrong guess worth recording. `Dragon Scales` looked like an enchantment nothing
+could roll, and the reasoning was that every `Shields and Armor` group file reads `Item Count=0`.
+**That reads the relationship backwards.** A `.AdditionGroup.txt` lists only the *other groups it
+nests*; membership is declared by the addition, which names its group in its own
+`Inventory Addition Group=`. `Shield LARGE Additions` is `Item Count=0` and has **twelve**
+members. Armour and shields are enchanted perfectly normally.
+
+Walked properly as a graph -- `item -> group -> nested groups <- addition` --
+`tools/unreachable_additions.py` reports:
+
+| | count |
+|---|---|
+| additions generable from some item's pool | **471** |
+| on `Inventory/!None` by design (incl. this project's probes) | 81 |
+| **unreachable** | **0** |
+
+So there is no orphaned-enchantment backlog. The disconnection in this game was never at the
+addition end; it was at the *generator* end, which is what 0.38.0 fixed above.
+
+> **Fixed for the three Great weapons in 0.89.0**, which gave `Great Melee Additions` 29 members
+> through nested groups. The table is how it stood before that.
+
+**The inert direction is the opposite one: six items name a pool that has no members**, so they
+can never roll anything at all.
+
+| item | pool it names | members |
+|---|---|---|
+| Great Battle Axe, Great Mace, Great Two Handed Sword | `Weapons/Great Melee Additions` | 0 |
+| Wand, Rod | `Items/Specific Item/Wand Additions` | 0 |
+| Shakespeare's Promise Ring | `Inventory/!Unknown` | 0 |
+
+The three Great weapons are the interesting ones: every other melee base has a `Per Base` pool of
+20-26 enchantments, and these three share an empty one. A magic Great Mace cannot exist. The two
+wand bases are a different case -- wands carry their effect as a whole item rather than as a base
+plus an addition, which [the wand section](#wands-as-a-system) covers -- and the ring names a
+placeholder group that is not a real pool.
+
+## Wands as a system
+
+Of 17 wand recipes only **`Wand Lightning Major`** was placed anywhere in vanilla, and the pool they
+should have come from was disconnected -- so wands were effectively absent from the world.
+
+The machinery is complete: `CPlugInBehaviorWand` with charge counters, a
+`Wands/*.InventoryAddition` per wand, and a `Fake Wand Spells/*` skill stub per effect. Those stubs
+are **862-byte shells** with no oval, no magnitude and no effect body; they are skill-shaped handles
+that the InventoryAddition points at. (`ENEMY Magical Shield` borrows one as an unlistable parent,
+which is the only other thing in the game that touches them.)
+
+### The three in `Wands/Special/`, and why only one was restorable
+
+The three enchantments no pool listed sit in a `Special/` subfolder. **They are not equivalent**:
+
+| wand | rarity | value | implementation |
+|---|---|---|---|
+| **`Swarm`** | 5 Unique | 7500 | **complete** -- `CPlugInBehaviorWand` + `CPlugInBehaviorModifyCharacterWhenSelected`, modifying `Magic Tribal/Offensive/Insect Plague` and `Piercing Damage Resistance`. Summons insects; confers ranged-damage resistance while charges remain |
+| `Fire and Ice` | 5 Unique | **0** | **shell.** 1,036 bytes, **no behaviours, no modifiers.** Its text promises Fireball *and* Ice Storm cast together plus 15% fire and cold resistance. None of it exists |
+| `Mage` | 5 Unique | 10000 | **shell.** 1,161 bytes, **no behaviours, no modifiers.** Its text promises +4 skill points in every base magic skill across all three categories, five Lightning Bolts and five Fears at skill 20. None of it exists |
+
+`Swarm` was wired into the pool in **0.38.0** at weighting 5, matching `Rigor Mortis` -- the one other
+`5 Unique` already there, at value 6500 against Swarm's 7500.
+
+### Built in 0.49.0 -- and two claims here were wrong
+
+This section used to say the two shells were **deliberately left out** because restoring them "needs
+a judgement first: `Wand of Mage` as described -- +4 to every magic skill, in a game where the best
+single enchantment gives +8 to one skill -- would be the strongest item in Lionheart by a wide
+margin." **Both halves of that are wrong.**
+
+**The +8 ceiling does not exist.** Measured across every `.InventoryAddition` and `.InventoryItem`:
+
+| | bonus | to |
+|---|---|---|
+| `Spikes Major` | **+25** | `Magic Tribal/Offensive/Spike` |
+| `Undead Summoning` | +20 | `Raise Undead` |
+| `Wyrm`, `Book of Death` | +15 | `Flame Thrower`, `Magic Tribal/Summoning` |
+
+And for the **like-for-like** comparison -- a *base* (governing) magic skill rather than a single
+spell -- the closest analogue is an item this project already repaired:
+
+| | gives | total |
+|---|---|---|
+| `Book of Death` | +15 to one base skill | +15 |
+| **Sceptre of Bone** (fixed in 0.39.0) | **+2 to eight** base skills | **+16** |
+| **`The Mage` as described** | **+4 to twelve** base skills | **+48** |
+
+So `The Mage` is roughly **three times the Sceptre of Bone**, which is a defensible place for a
+`5 Unique` worth 10,000 -- the most expensive wand in the game -- and nothing like "the strongest item
+by a wide margin against a +8 ceiling." Shipped as described, at +4.
+
+**And "nothing but text" was wrong too.** Both were buildable from `Swarm`'s shape; what was actually
+missing was the **design decision** about `The Mage`'s magnitude, not a mechanism. There are **12**
+base magic skills -- four per category -- which is the number that makes the +4 meaningful:
+
+| category | base skills |
+|---|---|
+| Magic Thought | Defensive, Electrical, Fire, Ice |
+| Magic Tribal | Defensive, Domination, Summoning, Wounding |
+| Magic Divine | Defensive, Divine Favor, Fortitude, Smite |
+
+### What they are now
+
+| | implementation |
+|---|---|
+| **`Fire and Ice`** | **two** `CPlugInBehaviorWand` entries -- Fireball *and* Ice Storm, 5-10 shared charges -- plus +15% fire and cold resistance. Value was **0**; now 8,500, the midpoint of its own already-written 5,000 / 8,500 / 12,000 band |
+| **`The Mage`** | Lightning Bolt x5 and Fear x5 as two wand behaviours, **+4 to all twelve base magic skills**, and +10% fire, cold and electrical resistance. Value stays 10,000 |
+
+Both are in `Wand selection MAGIC` at **weighting 5**, matching Swarm; the pool is now
+`Array Count=18`.
+
+**A two-spell wand has no vanilla precedent** -- all 16 implemented wands cast exactly one spell, and
+no single spell in the game deals both fire and cold, so "at the same time in the same place" could
+not come from an existing skill. The plugin array demonstrably holds multiple plugins (Swarm carries
+two of different types), so two wand behaviours is the only route that delivers the text without
+authoring a 93rd `.Skill` -- which is the structural risk `EH5` exists for. `FI2` is the row that
+checks both spells actually surface.
+
+### A latent bug in Swarm, found while copying it
+
+Swarm tops the player's skill up with a bare subtraction:
+
+```
+skilllevel = CCacheFirstResult( 30 - CVariableSkill(Insect Plague) )
+```
+
+For a player whose Insect Plague is already above 30 that is **negative**, so the wand quietly
+*reduces* a real caster's skill. Both new wands guard it instead -- lift the player to the stated
+level only if they are below it, otherwise zero:
+
+```
+CIfExpression( skill < N ? (N - skill) : 0 )   wrapped in CCacheFirstResult
+```
+
+**Swarm itself is left alone for now**, since changing a shipped 0.38.0 item is a separate decision
+from building two new ones. Recorded here so it is not lost.
+
+## Wands as a system
+
+Worth stating separately, because it reads as a cut feature rather than an oversight: of 17 wand
+recipes, only **`Wand Lightning Major`** is placed anywhere.
+
+The machinery is complete -- `CPlugInBehaviorWand` with charge counters, a `Wands/*.InventoryAddition`
+per wand, and a `Fake Wand Spells/*` skill stub per effect -- but the wands are almost absent from the
+world.
+
+The `Fake Wand Spells` skills are **862-byte stubs** with no oval, no magnitude and no effect body;
+they are skill-shaped handles that the InventoryAddition points at. (`ENEMY Magical Shield` borrows one
+as a convenient unlistable parent, which is the only other thing in the game that touches them.)
+
+---
+
+## Enemies: 48 cans spawned nowhere
+
+Of 478 monster cans, **48 are referenced by nothing** -- no map generator, no character template, no
+script. They cluster, which is the informative part:
+
+| group | count | what it is |
+|---|---|---|
+| **`English in Caverns of Nostrodomus`** | **17** | the *entire* act 5 English garrison -- the `Nos Soldier1/2/3` ladders, the bow variants, `Nos Ogre2`, the Priests |
+| **Sewers thieves** | **11** | `Sewer Theif Boss` x3, `Theif3 Mace` x3, `Theif4 Bow` x3, `Theif4 Sword` Super/Tough |
+| **`Summoned Cans/Monster Summoning Level 4` and `5`** | **6** | see [the summon tiers](#the-summon-tiers-the-best-single-find) |
+| goblin named and elite | 4 | `Grum`, `Hat Super`, `Khan`, `Rakeb` -- Fixt used `Hat Super` in 0.31.0 and built Rakeb dialogue |
+| singles | 10 | `Rabid Wolf Tough`, `Assasin EarlyLevels`, `Priestess Tough`, `Sand Spirit2 Super`, `Wererat boss Super`, `Hired Goon` x2, `Theif Pale` x2, `Vodyanoi 01` |
+
+**All 48 have working models and working races.** Nothing here needs art.
+
+**Confidence note.** These are matched by full path *or* bare basename, because references go both
+ways -- `Prime wererat.can` spawns `Wererat PRIME` by bare name and `Andre the Titan.can` spawns
+`Rock Titan Lucious` the same way. Bare-name matching means short or common names can produce a false
+"used" reading (`Caster` matches `SPELLCASTER`). **The group totals are sound; verify an individual
+single before acting on it.**
+
+---
+
+## The summon tiers: the best single find
+
+**Nothing anywhere in the game references `Monster Summoning Level 4` or `Monster Summoning Level 5`.**
+Six cans, each with its own dedicated race file, fully built and unreachable:
+
+| tier | model | HP |
+|---|---|---|
+| Level 4 01 | `Characters/Monsters/Snake Women` | 90 |
+| Level 4 02 | `Characters/Monsters/Ogre variant` | 120 |
+| Level 4 03 | `Characters/Monsters/Wererat boss` | 90 |
+| Level 5 01 | **`Characters/Monsters/Rock Titan Blue`** | **170** |
+| Level 5 02 | `Characters/Monsters/Desert Beast` | 120 |
+| Level 5 03 | `Characters/Monsters/Sand Spirit` | 120 |
+
+A Tribal mage's `Monster Summoning` can never produce any of them, so the top two tiers of the
+summoning line are content that was finished and then disconnected. A level-5 summon that puts a
+**Rock Titan** on the field is a real capstone for the school.
+
+`Rock Titan Blue` resolves to both a `Cache/Models/*.mdl16` and a
+`Models3D/Enemies/Rock Titan/Models/Rock Titan Blue/Rock Titan Blue.MODEL.GR2`, so **no art is
+needed** -- this is a wiring job.
+
+**One tell that they were abandoned mid-polish:** all six races carry `Display Name=Black Wolf`,
+copied from the wolf summon and never renamed. That is the same signature as the Templar helm keeping
+its shield art.
+
+---
+
+## Skills: nothing was cut
+
+All 92 `.Skill` files are accounted for. Only **six** are hidden from the player, and each is hidden
+deliberately by an **always-false display requirement** (`CIsEqualTo` of two different constants):
+
+| skill | parent | why it is hidden |
+|---|---|---|
+| `Fake Wand Spells/Cure Major Wounds` | `Thieving/Barter` | a handle for the wand item's own effect |
+| `Fake Wand Spells/Cure Small Wounds` | `Thieving/Barter` | " |
+| `Fake Wand Spells/Poison Touch` | `Thieving/Barter` | " |
+| `Fake Wand Spells/Rigor Mortis` | `Thieving/Barter` | " |
+| `Fake Wand Spells/Secret Reveal` | `Thieving/Barter` | " |
+| `Magic Thought/Defensive/ENEMY Magical Shield` | `Fake Wand Spells/Cure Major Wounds` | the enemy-variant spell |
+
+The nonsensical parents are part of the hiding -- a wand stub is filed under Barter so it cannot
+appear in a magic tree.
+
+The other **86 are ordinary player skills** sitting in the tree with real icons. **No spell line was
+cut and no school is orphaned.**
+
+> An earlier pass of this survey reported *"75 of 92 skills that nothing presets or selects."* That
+> measured **enemy** usage and so counted Barter, Sneak, Speech and Healing as unused. The right test
+> is player reachability, and it gives six.
+
+---
+
+## Perks: five titles nothing awards
+
+98 `.Perk` files, and the split is structural rather than accidental:
+
+| | count |
+|---|---|
+| selectable at level-up | **85** |
+| title perks, unselectable by design | **13** |
+
+The 13 title perks carry a deliberately **impossible requirement** --
+`CIsGreaterThanOrEqual` of the constants `0` and `1`, so `0 >= 1` can never be true. They can only
+ever be *granted* by script, through `CGiveCharacterPerkAction`. This is the same hiding trick the
+`ENEMY` skills use, and recognising it is what makes the survey possible: a title perk that nothing
+grants is unreachable, whereas a *selectable* perk needs no grant at all.
+
+### The five nothing grants
+
+| perk | title awarded | its own text |
+|---|---|---|
+| `FACTION Inquisitor Killer` | **Enemy of the Inquisition** | *"You have slain an agent of the Inquisition."* |
+| `FACTION Templar Killer` | **Enemy of the Knights Templar** | *"You have slain a Knight Templar."* |
+| `FACTION Wielder Killer` | **Enemy of the Wielders** | *"You have slain one of the Wielders of Barcelona."* |
+| `Goblin Slayer` | **Goblin Slayer** | *"...slain a great number of goblins. Your brave actions have kept their population in check..."* |
+| `Ruler of Calle Perdida` | **Dark Lord of Calle Perdida** | *"...mastered the Dark Arts under the tutelage of Relican and delivered La Calle Perdida to the cruel..."* |
+
+Vanilla had **six**. Fixt has since wired up `Child Killer`, which is why the figure is five now.
+
+### The faction-killer three are the clearest repair in the whole survey
+
+There are **four** `FACTION * Killer` perks and **exactly one works**:
+`FACTION Saladin Killer`, granted in `Levels/1 Barcelona/Gate District.zax` by a
+`CAIInteractionSpecifier` whose action is a plain `CGiveCharacterPerkAction`:
+
+```
+Action=CGiveCharacterPerkAction
+{
+    Character to give perk to=$Instigator
+    Perk to give=Perks/!Event Title Perks/FACTION Saladin Killer
+}
+```
+
+The Inquisitor, Templar and Wielder equivalents exist, read identically, and nothing fires them. This
+is not cut content -- it is **three quarters of a shipped pattern left unconnected**, with the working
+quarter sitting beside it as a reference implementation. All three name live factions whose members
+the player can already kill.
+
+**The scope caveat matters, though.** The Saladin version is granted by a *trigger in one map*, not by
+a death hook on the faction's members. Wiring the other three properly means deciding where detection
+lives, and a per-member `Destroyed Script Action` -- the approach the goblin work used -- is the robust
+answer rather than copying one line. And a death hook has a known trap: a generator's
+`CSetDestroyedScriptActionAction` **replaces** the can's death slot rather than adding to it, which is
+how the Lava Troll Hide was dead code from 0.10.0 until 0.30.1 caught it. Any death-hook approach must
+check the generators that spawn those members, not just the cans.
+
+### The other two are different in kind
+
+**`Goblin Slayer`** wants a *kill count* -- *"a great number of goblins"* -- and **the counter
+already exists and already works.** `Derived Character Attributes/Goblin Kill Counter` is written and
+read by six shipped files: `Goblin Warrens.zax`, `Mongol Camp.zax`, `Goblin King.can`, `Rakeb.can`,
+`Mongol Archer Village.can` and `Mongol SwordsmanVillage.can`. So this needs a **threshold read**
+granting the perk, not a mechanism built -- which makes it one of the cheapest items on this list
+rather than one of the most expensive.
+
+> An earlier version of this document said *"no counter mechanism has turned up in the engine."* That
+> was wrong, and wrong twice over: a general counter pattern exists (see
+> [below](#counters-and-set-bonuses-the-mechanism-i-said-did-not-exist)) **and** a goblin-specific
+> counter is already live.
+
+**`Ruler of Calle Perdida`** is the dark-path ending of a questline whose *other* outcome,
+`Exposer of Calle Perdida`, **is** granted. So this is a missing **branch**, not a missing hook -- the
+questline resolves one way and not the other.
+
+---
+
+## Counters and set bonuses: the mechanism I said did not exist
+
+An earlier version of this document, and the conversation that produced it, stated that **no
+set-bonus mechanism exists in the engine** -- having searched for `CHasItemEquipped`,
+`CCheckEquipped`, `CHasInventoryItem`, `CIsWearing`, "Set Bonus" and "Matched Set", none of which
+appear anywhere. That conclusion was wrong, and the error is instructive: the mechanism does not
+*check* equipment at all, so no query shaped like a check could ever find it.
+
+**It counts.** The **Voodoo set** is the shipped reference:
+
+| piece | what it does |
+|---|---|
+| `Inventory Additions/Miscellaneous/Necklaces/Voodoo` | +1 to all four Tribal branches, **and `Number of Voodoo Items` +1** |
+| `Inventory Additions/Miscellaneous/Belts/Voodoo` | the same four branches, **and `Number of Voodoo Items` +1** |
+
+Each piece increments a derived character attribute through `CCharacterModifierDerivedAttribute` with
+**`Allow Accumulation=1`**. The *bonus* then lives in a different, **computed** derived attribute that
+reads the total. `Skill Points Per Level` is literally:
+
+```
+10 + Intelligence + (Number of Voodoo Items == 2 ? 1 : 0)
+```
+
+Wear one piece and the counter reads 1 and nothing happens; wear both and it reads 2 and you gain a
+skill point every level. Both items say so in their own description text, and both are
+`Addition Rarity/4 Very Rare` at 850 value.
+
+**So the pattern is: an equipped item writes a counter, and a computed attribute reads it.** That
+single pattern covers set bonuses, kill counts, and any "how many of X" condition. Of the 129 computed
+derived attributes in the game, any can host such a term.
+
+### Orphaned counters worth knowing about
+
+| attribute | state |
+|---|---|
+| `Goblin Kill Counter` | **live** -- written and read by six files; the hook `Goblin Slayer` needs |
+| `FACTION LEADERS KILLED` | **orphan** -- defined, written by nothing, read by nothing |
+| `Is Wearing Necklace of Voodoo` | **orphan** -- defined and read by nothing; superseded by the counter |
+
+`FACTION LEADERS KILLED` is suggestive next to the three ungranted `FACTION * Killer` perks, though
+nothing proves they were meant to connect.
+
+---
+
+## Factions: all thirteen reachable
+
+Every one of the 13 `.Faction` files is assigned by something, through
+`CAssignFactionToCharacterAction`. **No unused factions.**
+
+| faction line | ranks | assigned by |
+|---|---|---|
+| Inquisitor | `Acolyte`, `Hallowed`, `Inquisitor` | vanilla |
+| Templar | `Squire`, `Warden`, `Paladin` | vanilla |
+| Wielder | `Mage`, `Conjurer`, `Wizard` | vanilla |
+| Saladin | `Aswaran`, `Exalted` | vanilla |
+| Saladin | `Blessed` | **Fixt only** -- `Jafar.DialogTree` |
+
+`Saladin Blessed` is the one worth knowing about: vanilla defines it and never assigns it, so it was
+already an orphan that Fixt restored. It is also the file Fixt's own goblin factions were modelled on,
+which is why that line matters beyond its own rank.
+
+This is a useful **control group** for the method. A survey that reports "nothing is used" is
+measuring itself; factions coming back 13-for-13 is evidence the grant detection works.
+
+---
+
+## Done so far
+
+### 0.37.0 - Monster Summoning levels 4 and 5
+
+The six cans were wired into the spell's tier ladder. **The tier table is not in the skill** --
+`Monster Summoning.Skill` references no cans at all; it fires a `Spellcast` relay and selection
+happens in `Spell Projectiles/Monster Summoning Instant Hit Projectile.InventoryItem`. That file
+branches on `single` versus `multi` and **the two sides are shaped differently**: single is a tier
+ladder on skill value, multi has no skill gating at all and draws from two flat pools.
+
+The single ladder now runs `< 50`, `< 100`, `< 150`, `< 200`, else -- keeping vanilla's own 50-point
+spacing, where tier 3 previously covered skill 100 to the cap. The multi high pool grew from 3 to 9.
+Tier 4 and 5 blocks are **clones of the tier-3 block with the can names swapped**, so each keeps its
+`CAddAIAction` mana upkeep byte-for-byte; both verified at 3 mana.
+
+Two instructive failures on the way: assuming the two branches were identical ladders, and getting
+the conditional's fields wrong -- `CIfExpressionAction` takes **`If Expression`**, plus
+`Character to get attributes from`, and has **no** `Return failure` tail, unlike `CConditionalAction`.
+
+`SM1`-`SM14` in [`qa.md`](qa.md). **`SM10` is worth knowing in advance**: all six races carry
+`Display Name=Black Wolf` in vanilla, so a summoned Rock Titan will probably be *called* a Black Wolf
+until that is fixed deliberately.
+
+### 0.36.0 - the Templar set
+
+**`Helm of the Templars` was unfinished, which is very likely why nobody placed it.** A
+`Character Slot Types/Head` item carrying **shield art in every other field**:
+
+| field | vanilla | repaired from `Inventory Items/Helmet.InventoryItem` |
+|---|---|---|
+| `On the ground` | `Special Items/LionShield_PU` | `Items/PickUps/Misc Items/Helmet_PU` |
+| `Basic` / `Better` / `Special` | `Armor/Shield Large Better` | `Items/Inventory Images/Armor/Helmet1` |
+| `Catagory for display Grouping` | `Grouping Catagories/Shield Large` | `Inventory/Grouping Catagories/Armor` |
+
+Someone cloned the shield, changed the name, description and slot, and stopped. `Encumbrance=2` and `Value=100` are untouched.
+
+**The art repair was only half the problem.** Both pieces shipped with **no mechanical effect at
+all** -- their only behaviours were the pickup and putdown *sounds*. No armour class, no resistances,
+no `Wearing a Helmet` flag, and `Inventory Addition Group=!None` so neither could ever be enchanted.
+An item described as *"shines with the power of the Templars"* was strictly worse than a plain helmet
+off any thug.
+
+Stats were added, and then **retuned once** -- the first pass matched the vanilla item of the same
+*encumbrance*, which priced a unique set at mid-tier and left it outclassed by gear from acts 1 and 2.
+Encumbrance is the wrong yardstick; the ceiling for the two slots is:
+
+| | the set | the best alternative for that slot |
+|---|---|---|
+| Helm, enc 2 | AC **+6** | `Helmet` AC **+3** -- the best base, and `Helmets/Protection` adds **+0** AC, so nothing in the game beats +3 in the head slot |
+| Shield, enc 5 | AC **+8**, Piercing **+15**, Slashing **+12**, Crushing **+12**, speed **-0.03** | `ShieldLarge` AC **+7**, P15 S10 C10 -- but at encumbrance **10** and speed **-0.08** |
+| both worn | **+4** AC more | the best AC *enchantments* in the game are +4 to +6, rarity 3 Rare |
+
+**Pair total: +18 AC** against the roughly **+10** those two slots otherwise allow. For scale, base AC
+is `2*(Agility+10) + 10 + Evasion` -- about 42 at Agility 6 -- and upgrading body armour from Hard
+Leather to Hauberk Mail is +10. So the set is a strong reward for committing two slots to it, without
+rewriting the character.
+
+The distinguishing feature is **weight**: it protects like a great shield and carries like a medium
+one, which is what a blessed Templar kit should feel like. Encumbrance and value stay at vanilla's 2
+and 5, and 100.
+
+**Two more bonuses were added on request**, and neither could be a *set* bonus. The +4 AC works
+because `(AC) Armor Class` is a **computed** derived attribute, so a conditional term in its
+expression re-evaluates when the counter changes. `Skills/Fighting/OneHandedMelee` is a Skill and
+`Character Attributes/(LK) Luck` is plain storage with no `Expression=`, so neither has an expression
+to host a condition. Both sit on the pieces unconditionally:
+
+| | | calibration |
+|---|---|---|
+| Shield | `OneHandedMelee` **+5** | unique weapons give +10 to +20 (`Kublai Khans Sword` +10, `TRUE CROSS` +10, `Axe Unholy Smite` +20 Evasion) and enchantments +8 to +15 (`Falcon` +8, `Evader` +15). +5 sits below the enchantment floor, which is right for armour rather than a weapon. A Templar fights sword-and-shield, so it belongs on the shield |
+| Helm | `(LK) Luck` **+1** | the blessing |
+
+**The Luck point has no unconditional precedent, and that is worth knowing.** Of the 18
+`InventoryItem`s that use `CCharacterModifierAttribute`, the shape is always *conditional* --
+`Crossbow` grants +1 Perception only with the `Sharpshooter` perk. So this is the only flat attribute
+bonus on any item in the game, and Luck is not a cheap stat: `Fortune`, `CriticalChance` and the Cold,
+Fire and Electrical resistances all read it. The field shape is copied from the Crossbow exactly; it
+is the *unconditional* part that is new, and that is a balance judgement rather than a technical one.
+
+The Helm also sets the `Wearing a Helmet` flag that three shipped files read.
+
+**And a two-piece set bonus of +4 AC**, built on the Voodoo pattern described
+[above](#counters-and-set-bonuses-the-mechanism-i-said-did-not-exist): each piece increments a new
+`Number of Templar Items` counter, and `(AC) Armor Class` gains a conditional term reading it at
+`== 2`. That edits a core attribute, so `TS12` and `TS13` exist to prove it is inert for anyone
+without both pieces.
+
+**`Spirit Templar Shield` needed nothing**: `Hand` slot, `LionShield_PU`, `Shield Large` icon and
+grouping, `Encumbrance=5`. Coherent in vanilla; it only ever lacked a placement.
+
+**Both are carried by `Dead Knight Templar 5`**, inlined as full `CInventoryItem` blocks inside the
+corpse's `CAIInventory` -- which is how the amulet those corpses already carry is stored, since the
+array holds definitions rather than paths. Of the five dead-Templar templates that is the only one
+used just **twice**, both in act 3's `02 Hamlet Burned` where Templars died; the others serve 9 to 15
+corpses each and would have scattered a unique set far too widely. Editing the template rather than
+the map means **no new map entity**, so this reaches any save that has not yet entered that map.
+
+Tested by `TS1`-`TS10` in [`qa.md`](qa.md).
+
+---
+
+## What to pick up next
+
+**Superseded by [Re-measured at 0.94.0](unused-content.md#re-measured-at-0940----the-live-list).** Kept for the
+reasoning behind what was picked up and what was left.
+
+Rewritten after 0.39.0-0.42.0; the previous version still listed items that have since shipped.
+
+**Before picking anything up, classify it.** Three releases of chasing orphans produced the
+taxonomy at the end of this document, and the first instinct was wrong every time. An orphan is
+either **filename drift** (rename it), an **unreachable branch** (wire it), or a **superseded
+draft** (leave it dead). Two superseded drafts have already been caught this way.
+
+### Shipped since this list was last written
+
+| | |
+|---|---|
+| 0.39.0 | both Trapped Spirit items, the Sceptre of Bone's missing bind step, `Ruler of Calle Perdida` |
+| 0.40.0 | `Convince DaVinci to Join the Dark Wielders`, implemented from a 0-state stub |
+| 0.41.0 | the Lucius betrayal marker, `1002`, Brother Michel's `400` pair, and six renamed recordings |
+| 0.42.0 | Andre's two `900` greetings |
+
+### Open, re-verified after 0.46.0
+
+Re-counted against the **current Fixt build** (earlier releases' work counting as present), not
+against vanilla. Two entries this list used to carry turned out to be shipped and two were wrong.
+
+**Genuinely unreferenced, and the mechanism is already there:**
+
+**Both perk entries below shipped in 0.47.0** and are struck through; they are kept because the
+reasoning about where detection lives is what made that release work. The whole of this subsection is
+now closed, and the live backlog is
+[the voiceover sweep](unused-content.md#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted).
+
+| | refs | what makes it cheap |
+|---|---|---|
+| ~~**`Goblin Slayer`**~~ | **0** | **done in 0.47.0.** `Goblin Kill Counter.DerivedCharacterAttribute` is live and **7 maps write to it**. The perk exists with `Display Name=Goblin Slayer` and **no actions at all** -- a title granted by nothing. This is a threshold read away. **The trap:** `Bounty Hunter Camp.zax` looks like it references the perk, but the match is an entity named `Goblin Slayer Xp Giver` -- a substring collision, not a grant |
+| ~~**The three `FACTION * Killer` perks**~~ | **0** each | **done in 0.47.0, and the fourth was dead too** -- the Saladin grant this list called the working reference sits on an `Active=0` part nothing activates. All four hook each member can's own empty `Destroyed Script Action`: 33 cans, 568 spawn points, instead of 700 generators.  Their display names are already written and good: *"Enemy of the Inquisition"*, *"Enemy of the Knights Templar"*, *"Enemy of the Wielders"*. A shipped pattern with a working quarter as reference. Needs a decision about where detection lives -- a per-member death slot rather than a map trigger -- but invents nothing |
+| ~~`Inquisitor Feralkin Journal`~~ | -- | **done in 0.50.0** -- added to Weng Choi's rotation as its 11th book, to his rare-book check as its 10th, and noticed by an inquisitor |
+| ~~`Bolt selection MAGIC`~~ | -- | **done in 0.51.0.** And the diagnosis was too narrow: `All Arrows and Bolts.can`, which **38 maps** use for ammunition loot, yielded only *mundane* ammunition, so `Arrow selection MAGIC` at one map was barely better off. Both are now in that aggregate at weighting 6 and 4 |
+
+**Reachable only from a test map:**
+
+| | refs | |
+|---|---|---|
+| ~~wands `Fire and Ice` and `Mage`~~ | -- | **built in 0.49.0** from `Swarm`'s shape, and pooled at weighting 5 |
+
+**Open and real, but awkward:**
+
+| | |
+|---|---|
+| ~~`100 Respond ask about Tank`~~ | **a false positive -- the node is live.** See the correction below |
+| `GrandInquisitor / 120 combat.ogg` | 172 KB, and **statically undecidable** -- see below |
+
+### Two corrections to this list
+
+**The Titan items are superseded drafts -- do not restore them.** Their only references are to their
+**inventory icon art** (`Items/Inventory Images/Quest Items/...`), not to the items, which is the
+art-path/item-path collision this document warns about further down. Their own descriptions give them
+away against the live items that reuse their icons:
+
+| | description | superseded by |
+|---|---|---|
+| `Titan Crystal` | *"Large and unwieldly. Smells bad."* -- a dev joke | **`Lucius' Mneme`**, which uses the Titan Crystal icon |
+| `Titan Sphere` | *"Spirit gem"* -- a bare label, not prose | **the four named stonehearts** (Lethos, Iapetus, Menoetius, Rhea), which use the Titan Sphere icon and have real prose: *"cold, heavy, and inert"* |
+
+Same shape as the Horror: a generic draft replaced by named versions, with the art carried over.
+
+**"The 17 Nostradamus English" was wrong -- it is 2.** There are **14** `Nos *` monster cans and
+**12 of them spawn**. The only two that do not are `Nos Ogre2 English` and `Nos Ogre2 English Tough`,
+and those are the same `Ogre strong`-model tier drafts already identified above -- not a lost
+garrison. Nothing here needs level design after all.
+
+### Shipped since the previous version of this list
+
+| | |
+|---|---|
+| 0.43.0 | `DaVinci Tank Gear`, via the Magic Machine's three prices |
+| 0.44.0 | `Hangover Cure Potion`, across two acts and three people |
+| 0.45.0 | the horse |
+| 0.46.0 | the creatures sent after Machiavelli, and the level gate on his quest |
+
+### Settled: do not pick these up
+
+| | why |
+|---|---|
+| `Help Andre the Titan with his tasks` | superseded by the live `Recover Lucius' Mneme` (6 states, 5 activated) |
+| Blacksmith `80 Do You Have The Item I Need?` | superseded by the live `07 what more`, which has 15 replies against its 13 including a quest hand-in |
+| `Juanita Suarez / 200 my fee`, `GoblinKhan / 400 Where are you going` | recordings exist but the nodes are `Should Have Voiceover=0`; possibly silenced deliberately |
+| the siege tank's *"it needs a spirit"* line | deliberate vanilla foreshadowing, not a missing step. **Reported from play as a broken quest** and checked end to end below |
+
+#### The siege tank still wanting a spirit is not a bug
+
+Reported from play, and worth recording because it reads exactly like a dangling quest step:
+
+> Leonardo has a bonus quest when you reach his secret pocket-plane. Asks for gears for the Tank,
+> the Steam Engine can be Persuaded into giving them. When you install the part, the last quest
+> dialogue will remain, as apparently the Tank still needs a spirit.
+
+**What the player is seeing is a vanilla lore reply with `Requirement=!None`**, sitting in the same
+list as 0.43.0's gear quest:
+
+```
+Reply:  "Why do you need a spirit for the siege engine?"      Requirement=!None
+Node:   900 siege engine explanation                           Should Have Voiceover=1
+  "...For my machines to work, I need to instill in them a spirit, a source of power to turn the
+   gears. I will need a *special* spirit indeed to move this war machine. But I think I might
+   know just the place to find one..."
+```
+
+That reply is Black Isle's, it is permanently available, and it is recorded. **It is the line that
+makes the tank's appearance in `08 Final Encounter` a payoff rather than a non sequitur**, so it
+should stay. The spirit step was never added, on purpose.
+
+**The gear quest itself closes correctly**, checked in both directions:
+
+| reply | gate | after the gear is fitted |
+|---|---|---|
+| `901 Fixt the rotary gear` | `Fixt Tank Gear Not Started` -> `CWasQuestEverActivatedAction` | closed, the quest was activated |
+| `902 Fixt the gear fitted` | `Fixt Tank Gear Carried` -> `CActionCheckForInventoryItem` | closed, the gear **is** removed |
+
+Both fitting paths -- `DaVinciBarcelona / 902` and `Leonardo DaVinci Invention / 3 Fixt the empty
+shaft` -- call `CActionRemoveInventoryItem` on `Quest Items/DaVinci Tank Gear` alongside
+`CSetQuestSatusToCompletedAction` and the experience award. The first pass through this said nothing
+consumed the gear, which was wrong: the class is `CActionRemoveInventoryItem` (302 uses), not
+`CRemoveInventoryItemAction` or `CActionRemoveStandardInventoryItem`, neither of which exists.
+
+**The steam engine side does not leak either**, which was the real risk, because
+`Fixt Tank Gear Asked` tests the quest's **state** and not its **status**. The quest carries two
+states: Leonardo's ask activates `T3MK9WQZ` (*"his talking steam engine"*) and the machine's
+hand-over activates `V8BRC4JN` (*"carry it to DaVinci's hidden chamber"*). `Magic Machine /
+600 pull lever 2` gates its *"the old man wants a turret gear"* reply on the first, so it closes the
+moment you are holding the gear rather than waiting on completion.
+
+**How to apply:** if this is reported again, the answer is that the quest works and the spirit line
+is a hook for the endgame. The only lever worth considering is the wording of that one reply, and it
+is Leonardo's voice in a vanilla recording -- see
+[[lionheart_read_the_line_beside_vanilla]] for why rewriting his register has gone wrong before.
+
+
+---
+
+## Done in 0.39.0 - the Enchanter's Bargain
+
+**The two Trapped Spirit items** shipped as shells: correct slot, art and grouping, but
+`Is Magic=0`, value 0, only pickup/putdown behaviours, the placeholder description "The abilities
+of this amulet are a mystery", and referenced by nothing. They are now the reward for the Trapped
+Ether Plane's non-lethal resolution -- the one route of the three that vanilla paid nothing for,
+while both lethal routes drop `Kublai Khans Sword`. Amulet for sparing the Enchanter, Ring as well
+for allying him to Relican, and a counting set bonus on `Number of Trapped Spirit Items`.
+
+**`Wielder DARK Quest Rod Bone NO Spirit`** was referenced by nothing at all, against 3 files for
+the spirited version -- while the Wielder path's equivalent shell is referenced by 3 and has a whole
+quest (`Bind Spirit to Rod`, Galileo and the Observatory) for filling it. The Dark Wielder
+initiation had the same two items and no middle step. DaVinci's chamber now yields the shell and the
+spirit is bound at the ether plane, with Relican binding it himself as a fallback so the initiation
+can never dead-end.
+
+**`Ruler of Calle Perdida`** -- "Dark Lord of Calle Perdida" -- was granted by nothing, though its
+text describes the Summoning Ring's Yes branch word for word and its sibling
+`Exposer of Calle Perdida` is granted by `InquisitorRaphael.DialogTree`. Now granted on that branch.
+
+**Still open on this path:** `Convince DaVinci to Join the Dark Wielders` -- but see the
+section below; calling it "an unreachable fifth Dark Wielder task", as this document first
+did, overstates it badly. And
+`Rod Spirits WITH Spirit`, the *Wielder* rod, advertises "2 skill points in the Divine and Thought
+spell disciplines, as well as 25 to Mana Capacity" and implements none of it: zero
+`CCharacterModifierSkill`, its only derived modifier being attack-animation speed.
+
+**A method note worth keeping.** The Mad Enchanter was findable as Relican-adjacent only by reading
+`Race=` and `Model=` rather than names or dialogue: `Trapped Wizard.can` and `Relican.can` are the
+only two cans in the game using `Races/NPCs/Relican` and
+`Characters/NPC/Barcelona/Wielders/Relican`. Searching the writing for a connection between them
+finds nothing, because the connection was only ever made in the art and the statistics.
+
+
+## Two method corrections, and what they cost
+
+### An empty quest file is not evidence of a cut
+
+**33 of the game's 151 quest definitions have `Item Count=0`** -- 22% of them. Three are
+**containers** whose children carry the journal text (`Initiation Quest for the Inquisition` has 6
+children, `Initiation Quest of the Knights Templar` has 7). The other 30 have no states *and* no
+children.
+
+But several of those 30 are content that is unquestionably **in the shipped game**:
+
+| empty, orphaned quest file | yet in the game as |
+|---|---|
+| `Find the Hair of a Saint` | state `7PL8VY1D` of `Create a Rod of the Inquisitor` |
+| `Discover the location of La Calle Perdida` | playable; tracked elsewhere |
+| `Find and rescue Galileo` | playable; Galileo is rescued in the Inquisition chambers |
+| `Find the Yellow Node within the Sewers` | named in `Lord Relican.DialogTree` |
+
+So these 33 files are a **vestigial design-era quest list**, not an inventory of cut features. The
+journal text for the live ones lives under *other* quest definitions.
+
+**The cost of getting this wrong:** reference-counting flags an empty stub identically to genuinely
+cut content such as `Wielder DARK Quest Rod Bone NO Spirit`, and the two are nothing alike. The
+sceptre shell had a complete item definition, an authored description, art and a slot -- everything
+but a placement. `Convince DaVinci to Join the Dark Wielders` has a filename. Do not report them in
+the same breath, which this document did until 0.39.0.
+
+### Orphaned voiceover is the strongest signal there is
+
+VO lives in a `<TreeName> VOs/` folder beside each `.DialogTree`, one `.ogg` per node, named for the
+node ID. So a recording whose node no longer exists is a line that was **written, cast and
+performed**, and then unhooked.
+
+**Method confidence, measured before trusting it:** across **1,330** recordings in **50** paired VO
+folders, **1,314 (98.8%)** match a node by name. An orphan therefore means something.
+
+**Result: 16 orphaned recordings across 11 trees.** The largest cluster is a coherent betrayal
+storyline with no dialogue nodes at all:
+
+| tree | orphaned recording | size |
+|---|---|---|
+| `TitanAndre` | `1001 Lucious Exposed` | **293 KB** |
+| `TitanAndre` | `1002 Hearts in Hand but Lucious betrayed` | **306 KB** |
+| `TitanAndre` | `1003 Return after the quest is complete but Lucious betrayed` | 55 KB |
+| `BrotherMichel` | `400 Lucious thrown out of town` | **149 KB** |
+| `BrotherMichel` | `400 Lucious thrown out of town 2` | 25 KB |
+
+Five lines, roughly **830 KB of finished voice acting**, two named Montaillou characters, one plot.
+Two of them are near 300 KB, so these are speeches rather than barks. Lucious exists as a character
+besides: `Rock Titan Lucious.can`, three race files including two Toulouse variants, and his own
+named combat set (`Lucious Titan_attk/death/hurt`).
+
+**That reading was wrong, and the section below corrects it.** The nodes were never deleted; they
+exist and most of them are reachable. The recordings are silent because their *filenames* kept an
+older spelling of the character's name. See "The Lucius thread" below.
+
+The other orphans, one or two per tree: `Captain Isabella` (2, Grace as a companion), `Shylocke` (2),
+`Blacksmith`, `DaVinciBarcelona`, `Cervantes` (`500 convince don quixote 2`), `GrandInquisitor`
+(`120 combat`), `SirAuric` (`400 attack auric alt`), `Juanita Suarez` (`200 my fee`), `GoblinKhan`
+(`400 Where are you going`).
+
+## Convince DaVinci to Join the Dark Wielders -- the verdict
+
+Asked repeatedly whether this is restorable. It is not *restorable*, because nothing was built:
+
+| evidence | finding |
+|---|---|
+| quest definition | `Item Count=0`, `Sub-Quest of=!None`, no children, registry-only reference |
+| his dialogue | **112 nodes, zero** mentions of Relican, Dark Wielders, necromancy or the Dark Arts |
+| his voiceover | 127 recordings, **none** dark; his single orphan is `1001 goodbye montaillou` |
+| dark-path VO game-wide | **50 files**, every one Relican's, Cedric's, or Relican's combat grunts |
+| Relican's dialogue | 27 nodes, never mentions DaVinci at all |
+
+Compare its wired sibling `Convince Quinn the Herbalist to Join the Dark Wielders`: 3 states with
+journal text, parented to the Dark Wielder initiation, a reply attached at **7** places in Quinn's
+tree, and a `700`/`710`/`720` branch with three gated persuasion routes.
+
+**And there are two reasons the design outgrew it.** DaVinci is already a Wielder with his own ether
+pocket -- *"Wielders who know how to access this plane can learn to shape their own domains here -
+though mine is modest, there are larger ethereal pockets"* -- and he is the **referral to the good
+Wielders**: *"If you seek the Wielders, go to Quinn and mention that I sent you."*
+
+More decisively, **`Races/NPCs/Wielders/Leonardo DaVinci` is AC 1000 / HP 10000**, the same
+deliberate-immortality pattern as the game's children. He is unkillable on purpose, because
+`08 Final Encounter.zax` carries **232** DaVinci references and its endings are a matrix over
+{Old Man escapes / killed / talked to death} x {DaVinci alive or dead} x {Galileo alive or dead} x
+{player good or evil}. His life is already an ending variable, resolved in act 8 by a scripted
+attacker.
+
+So Quinn's quest shape -- *"Convince him to join us or destroy him"* -- **cannot** be given to
+DaVinci. The "or destroy him" half is precisely what the developers engineered away. Any
+implementation has to be persuasion-only, which is also what makes it mechanically distinct: the
+only Dark Wielder task that cannot be solved with a sword.
+
+**Implemented in 0.40.0** as persuasion-only, with three parallel routes (`Speech moreequal 50`, a
+`COR` of vanilla's `General Thought/Tribal Skills moreequal 80`, or holding the Ring of the Trapped
+Spirit from 0.39.0's pact), an ungated attempt that fails, and a back-out that leaves it retryable.
+Refusing withdraws nothing -- he argues the player off the path instead -- and both outcomes call
+`CSetQuestSatusToCompletedAction` so no journal entry dangles. Offered on Relican's hub rather than
+inside the task 1-2-3 chain, so it is genuinely optional. `LD1`-`LD16` in [`qa.md`](qa.md).
+
+Still untouched on this path, and deliberately: no kill option, and nothing reaching act 8.
+
+
+## The Lucius thread, and a bug class worth more than the thread
+
+### Andre is Lucius, and his storyline ships complete
+
+The first claim made about this -- five recorded lines with their nodes deleted -- was wrong in
+every part. `Andre the Titan.can` has `Race=Races/Enemies/Toulouse/Rock Titan Lucious`. The
+"Lucious" race files are **his own**. Lucius is Andre's real name, and his storyline is shipped,
+wired and playable.
+
+What it is: Andre is a rock titan hiding in Montaillou, passing himself off as the town's
+protector. He asks the player to keep his secret and to kill the titans of Toulouse -- who are his
+own tribe's elders, the ones who exiled him. They are all in the game under Greek titan names:
+**Rhea, Lethos, Iapetus, Menoetius, Klao, Mathuo, Tereo, Baktron, Poimaino, ephebos**.
+
+> **`820 PC Saves the day`:** *"you must slay all of the titans in Toulouse. You must do it
+> quickly, and without mercy."*
+
+> **`1000 Hearts in Hand`:** *"Ah, I see it is true, you have slain them. Ah, Rhea, I am sorry I
+> had to do this to you, but it was you or me."*
+
+> **`1001 Lucius Exposed`:** *"These cold hearts belonged to the other elders of my tribe, the ones
+> who forced me to run for my life."*
+
+The player can keep his secret for gold or expose him to the mayor, which changes his closing
+lines. There are nodes for tricking him, convincing him, letting him flee, killing him, and him
+being run out of town -- 151 mentions of Lucius in his tree alone.
+
+### His name is spelled six ways
+
+| where | spelling |
+|---|---|
+| character template, portrait | **Andre** |
+| his race files, his monster can | Rock Titan **Lucious** |
+| dialogue node IDs | **Lucius** |
+| voice recordings | **Lucious** |
+| quest journal `Name=` | Help **Marcus** the Titan |
+
+### The bug class: a filename apart from its node is silent forever
+
+There is **no VO-file field anywhere in any DialogTree** -- zero `Voiceover File`, `VO File` or
+`Voice File` across all 131. Voiceover resolves purely as `<TreeName> VOs/<Node ID>.ogg`. So a
+filename that disagrees with its node ID by one character is a line that can never play.
+
+Measured against the **current** files rather than vanilla -- which matters, see the method note
+below -- the 16 exact-match misses split four ways:
+
+| | count | note |
+|---|---|---|
+| **silent, reachable node, recording misnamed** | **3** | fixed in 0.41.0 |
+| silent, but the node is **unreachable in vanilla** anyway | 4 | renaming achieves nothing; needs wiring |
+| flagged `Should Have Voiceover=0` | 2 | a rename alone would not play them; possibly silenced on purpose |
+| spare alternate takes (`alt`, `2`) | 4 | the node has its own recording too; working as intended |
+| no node resembles it at all | 1 | `GrandInquisitor / 120 combat`, 172 KB, unexplained |
+
+Plus 2 that an **earlier Fixt release had already fixed** (`Captain Isabella`, where vanilla's
+node names were `asks to return` and `rejoined companion`).
+
+**The 4 unreachable ones are the interesting remainder**, because the audio is finished and waiting:
+`1002 Hearts in Hand but Lucius betrayed` is the betrayal variant of Andre's ending;
+`400 Lucius thrown out of town` and its `2` sibling are Brother Michel's reaction to it; and
+`80 Do You Have The Item I Need?` is a Blacksmith line. Nothing links to any of them. Restoring
+those is a wiring job, not a rename, and it needs a decision about where each should branch from.
+
+### Two method corrections
+
+**Run the VO diff against `files/`, not vanilla.** The first pass used `zf.read()` and so reported
+two Captain Isabella lines as broken when an earlier Fixt release had already repaired them. This
+is the mirror image of the rule that edits must be sourced through `lhbuild.read()`: sourcing an *edit* from vanilla
+destroys work, and sourcing an *audit* from vanilla invents work.
+
+**Renaming a node that was already orphaned in vanilla creates a false reachability failure.**
+`reachability.py` tolerates 190 nodes that vanilla itself never links, matched **by name**. Renaming
+one makes it look like a brand-new orphan. That is what flagged 4 of the 7 renames first attempted
+here, and it is a useful signal rather than a nuisance: it distinguishes "silent line the player
+could hear" from "silent line on a node the player can never reach."
+
+### The quest that cannot start is a superseded duplicate -- leave it alone
+
+`Help Andre the Titan with his tasks.Quest.txt` has two states, **`7LOVAAS1`** and **`3MGFA36C`**,
+and nothing activates either, so it can never begin. Its journal name reads *"Help Marcus the
+Titan"*, naming a character who is not in the game.
+
+**It should stay dead.** Its two states describe *"Find Marcus' cousin and take sphere from him"*
+and *"Return Sphere to Marcus"* -- and that material is covered by a **live** quest,
+`Recover Lucius' Mneme.Quest.txt` (journal name *"Retrieve the Crystal Mneme from Lucius"*), which
+has **6** states, **5** of them activated by real maps, cans and dialogue trees. Andre is "Memnos,
+the Eater of Memories"; the Mneme quest is the finished version of the same idea, written after the
+character stopped being called Marcus.
+
+Wiring the old one would put a duplicate entry in the journal beside the live quest. The name fix
+was built and then reverted for the same reason: on a quest that never activates it changes nothing
+a player can see, and bringing the file into `files/` turns `validate.py` permanently red on the two
+dead states.
+
+One genuine loose end inside the live quest: state **`QYINZUKM`** (*"You have decided to allow
+Lucius to live..."*) is activated by nothing, though its siblings `496ZH7F7` and `Q8U40TYQ` cover
+the stay-out-of-it outcome, so the branch is not lost.
+
+
+## Wired in 0.41.0 - the betrayal nobody could trigger
+
+The root defect: `951 Furious Mayor` fires
+`COtherMapAction{CActivateAction{Target Name=Lucius thrown out}}` into `01 Hamlet Exterior`, and
+**no entity of that name was declared in any map in the game**. The flag could never be set, so
+every consequence hanging off it was dead. The developers knew -- that reply carries the note
+**`Action work in progress=kick luscious out, seal of this branch`** (an eighth spelling of the
+name, after Andre, Lucious, Lucius, Marcus and `Lucious dead`).
+
+Its sibling marker `Lucius extorted` **is** declared in that map and **is** read by `TitanAndre`,
+which gave an exact template for both the entity and the check. The pattern is well attested: 40
+vanilla markers are read positively by `CCheckExistenceAction`, declared `Active=0` with
+`Model=Editor/Checker` and switched on by `CActivateAction` -- among them `Beggars dead`,
+`Blacksmith offered payment`, `Darsh is Dead` and `Has Cervantes Been Jailed`. (The opposite
+convention also exists: 30 markers start present and are **deactivated** to record an event, which
+is how `Relican started giving quests already to player` works. Read which direction a marker uses
+before writing a check for it.)
+
+**What was connected:**
+
+| | before | after |
+|---|---|---|
+| `Lucius thrown out` marker | declared nowhere | declared in `01 Hamlet Exterior`, `Active=0` |
+| `1002 Hearts in Hand but Lucius betrayed` | 0 incoming links | 3, one beside each loyal hearts reply |
+| `400 Lucius thrown out of town` (+ ` 2`) | 0 incoming, no replies | opened as a greeting pair, copying this tree's own `Lucious dead` -> `05`/`07` `CSeriesAction` shape |
+| `1003 Return after ... betrayed` | opened for **every** post-quest return | now requires betrayal as well as quest completion |
+
+That last row was a live defect in its own right: a player who kept Lucius's secret was given the
+cold shoulder they never earned.
+
+`reachability.py`'s tolerated vanilla-orphan count fell from **190 to 187**, which is exactly the
+three nodes connected -- a cheap, precise confirmation that the wiring took.
+
+**And then the renames became worth making.** Three recordings were renamed to match these nodes
+earlier in the session and immediately reverted, correctly: while the nodes were unreachable,
+matching their audio achieved nothing and merely disguised three known vanilla orphans from the
+gate. With the nodes wired, the renames landed: **0.88 MB** of recorded dialogue across six lines
+now plays that never did.
+
+**Andre's own two post-betrayal greetings were wired next**, in 0.42.0 -- see below. The
+Blacksmith's `80 Do You Have The Item I Need?` was investigated next and should **stay** dead -- see
+below.
+
+Also noted while here: `Titan Andre requires PC to have sphere from other titan.can` is an **empty
+canned requirement** (`Object=` with no value), one of the 27 already on this list.
+
+
+## Wired in 0.42.0 - Andre's own reaction to being sold
+
+The last two orphans on this branch, both voiced and both with **0** incoming links in vanilla:
+
+> **`900 Lucius thrown out of town`** (96 KB) -- *"You are a very, very bad man and you lead a trite
+> and meaningless existence. Now leave me alone."*
+
+> **`900 Lucius extorted and thrown out of town`** (84 KB) -- *"I paid you your blood money and
+> still you betray me! I have had all I can stand from you, runt!"* -- and its reply carries
+> **`CGoToCombatAction`**, so he attacks.
+
+Unlike the six lines renamed in 0.41.0, **these two recordings were already correctly named**. They
+were silent purely because nothing could reach the nodes. That is worth separating: filename drift
+and unreachability are two different faults, and only the second one applies here.
+
+Two flags decide between them and both now exist: `Lucius thrown out`, declared in 0.41.0, and
+`Lucius extorted`, which is vanilla's own, set by five replies in `TitanAndre` that also hand over
+gold.
+
+**The ordering.** The shipped cascade in both `Lucius Wrasslin` and `Talked past Lucius` is kept
+byte-for-byte and demoted inside two new tests:
+
+| test | result |
+|---|---|
+| betrayed **and** extorted | `900 Lucius extorted and thrown out of town` -- he fights |
+| betrayed **and** titan hunt unfinished | `900 Lucius thrown out of town` -- the brush-off |
+| *the shipped cascade, unchanged* | quest complete + betrayed -> `1003`; else Mneme -> `03`; else `02` |
+
+Taking his hush money and selling him anyway is the worst thing available on this branch, so it
+outranks everything. The `NOT quest completed` on the second test is what keeps 0.41.0's `1003`
+reachable -- a betrayer who finished the hunt still gets the terse post-quest dismissal rather than
+the generic one.
+
+`reachability.py`'s tolerated vanilla-orphan count fell **187 -> 185**, exactly the two nodes
+connected.
+
+**Running total for this one branch: 1.05 MB** of recorded dialogue across eight lines that the
+shipped game could never play -- six silenced by filename drift, two by unreachable nodes.
+
+
+## The Blacksmith's node 80 is a superseded draft -- do not wire it
+
+`80 Do You Have The Item I Need?` in `Blacksmith.DialogTree` has 0 incoming links, no map opens it,
+and an 81 KB recording sitting beside it under the name `80 Do You Have The Item I Need` (no
+question mark). On the surface that is the same shape as the Lucius orphans. It is not.
+
+**What it is.** The smith's answer when a commission is ready: *"Yes, I have finished it - que
+aproveche! Is there anything else you wish to see while you are here?"* -- followed by a 13-reply
+hub.
+
+**Why it must stay dead.** That role is filled by **`07 what more`**, which is live, voiced,
+reachable from both hand-over nodes, and **better content**:
+
+| | `80` (orphan) | `07 what more` (live) |
+|---|---|---|
+| replies | 13 | **15** |
+| reachable | no | yes, from `63 here is your shield` and `64 here is your scimitar` |
+| recording | present but misnamed | present and correctly named |
+| Red Ore hand-in reply | **absent** | *"Here is some Red Ore. Can you use it to complete Davinci's design"* |
+| tainted-race variant reply | absent | present |
+
+Nine of node 80's thirteen replies are identical to `07`'s. The four that differ are the ones `07`
+has and `80` lacks -- including **a live quest hand-in** for the Red Ore that Cortes' arm needs.
+Wiring node 80 would duplicate a working hub *and* hand the player a worse menu that silently drops
+a quest step.
+
+**And the premise was designed out.** Node 80's title is the player asking *"Do you have the item I
+need?"*, which no reply anywhere asks -- because in the shipped flow the smith does not wait to be
+asked. The map opens `63`/`64` directly when the commission is ready and he hands the item over
+unprompted, closing with *"Is there anything else Eduardo can do for you?"* -> `07 what more`. The
+question node 80 answers stopped existing.
+
+## Done in 0.43.0 - the turret ring
+
+`DaVinci Tank Gear` was the last hand-authored quest item referenced by nothing. **Cortes' arm did
+not supplant it** -- the crossbow (`DaVinci Crossbow Gears`, live), the arm (`Cortez Arm Gears` +
+`Cortez Arm Rod`, live) and the tank are three separate projects, and the tank was the only
+unfinished one.
+
+**Half the quest already shipped**, which is why this was the cheapest lead left: the hidden chamber
+exists and is furnished, the war machines are modelled in it (`DaVinci Objects/Catapult`,
+`DaVinci Objects/Death Machine`) and examinable through `1 Catapult` / `1 Sweeper` /
+`1 Siege Tank` -- all three saying the machine is **incomplete** -- and DaVinci states on screen
+that the engine needs a spirit, feeding the **live 4-state** `Obtain the Spirit Gem for DaVinci`.
+Only the gear half was missing.
+
+**Two drafts were discarded, and the reasons are the useful part.** The first sent the player to
+Eduardo the blacksmith, which made the whole quest "go and talk to a man" -- and was wrong on the
+content too, since gears in this game come from the talking steam engine, which already sells
+`DaVinci Crossbow Gears` for a potion at `650 collect gears`. The second put the machine at the
+centre but let the player keep or break its promise with two replies **at the hand-over**, in the
+secret chamber: the machine is not in that room, and a promise breakable only by pressing a button
+marked "break it" is a menu rather than a promise.
+
+What shipped: three prices (a potion, consumed; `Barter moreequal 35`; or the promise), all
+converging on one gear. The promise **outlives the quest** -- the gear is handed over and the quest
+completes in the chamber, but the debt can only be settled afterwards at
+`3 Return Dialogue Workshop`, with the engine in earshot, exactly where it demands. It is broken by
+never going back; there is no betrayal option at all.
+
+**Still open on this thread:** `100 Respond ask about Tank` in `DaVinci Ending.DialogTree`
+(*"Time will tell if it does us any good..."*, 0 incoming links, act 8), and the act-8 `Siege Tank`
+part is `Active=0` and activated from elsewhere. That is its own job on the far side of the game.
+
+
+## Done in 0.44.0 - the morning after
+
+The `Hangover Cure Potion` was a shell item referenced by nothing, and three live things could not
+reach each other:
+
+| what shipped | state |
+|---|---|
+| `1500 return after give gold` (the Drunken Boxing drunkard) | live, map-opened, **zero replies** |
+| Quinn's `30 Special Order` | live: *"I can brew a concoction to cure many afflictions of the mind and body... come to me"* -- unacceptable by anything |
+| `Gather Nightshade Root for Quinn` | a **0-state stub** |
+
+Joined into: he asks after Montserrat -> Quinn needs nightshade, which *"does not grow south of the
+mountains"* -> **Na Roqua in Montaillou** gives it free with a warning about the dose -> Quinn brews
+it -> he drinks it and teaches **`Clear Head`** (+3 Find Traps and Secret Doors). The third entry in
+Fixt's own Quinn ingredient series, after `Troll Hide` and `Wasp Stingers`, and the only one with a
+scene at both ends.
+
+**Montaillou rather than Montserrat** because Montserrat's grove has no containers and no
+herbalist -- its druids are act 7 content -- so the root would have needed placing by coordinate in
+an 1,087-part map. **No new art:** the root reuses `RareHerb_PU`, which `Darkwood` already uses.
+**The perk is authored, not restored** -- all nine NPC-given perks are already granted -- and mirrors
+`Drunken Boxing.Perk` including its impossible level-up guard.
+
+### A method rule this release produced: requirement cans do not resolve across levels
+
+Measured rather than assumed, because the first build put Barcelona gates in reach of an act-3 tree:
+
+| a bare `Requirement=` name resolves from | vanilla cases |
+|---|---|
+| the global `Resources/Dialog/Requirements` | **335** |
+| the dialogue tree's own folder | 220 |
+| a different district in the **same level** | **26** -- e.g. `Magic Machine` reading a Port District can |
+| a different **level** | **0** |
+| unresolved | 0 |
+
+Cross-district is shipped practice, so 0.40.0's `Fixt DaVinci *` cans in Gate District read from La
+Calle Perdida are fine. **Cross-level never occurs**, and `validate.py` does not check it: the gate
+would evaluate as nothing and silently hide its reply with no error anywhere. For any chain spanning
+acts, put the cans in the global root. Every Fixt dialogue tree has since been audited -- zero
+cross-level or unresolved references.
+
+
+## Done in 0.45.0 - the horse, and what the "unused enemies" number actually means
+
+### The horse
+
+`Monster Cans/Animals/Horse.can` -- a complete 54 KB can with a 36 KB model, a cached render and
+its own 27 KB death sound -- was placed in **zero** maps. Its animation set is **Idle, Walk, Death**
+and nothing else (the Deer has four, the War Golem ten including two attacks), so it was built as an
+**ambient animal**, and it was the only one of them never used:
+
+| Wolf Gray | Deer | Chicken 01 / 02 | Horse |
+|---|---|---|---|
+| 16 maps | 5 maps | 3 maps each | **0** |
+
+Its `Race=Wolf Gray` was first read as evidence of being unfinished. **Wrong** -- the other ambient
+animals borrow stat blocks the same way. Now Alvaro's cart horse at the Crossroads, with
+`CSetDamagedScriptActionAction` -> a relay -> `CGoToCombatAction{Enemy Name=Alvaro}`, copied from
+Alvaro's own generator. `HR1`-`HR12` in [`qa.md`](qa.md).
+
+### The "48 enemy cans spawned nowhere" entry was misleading and is replaced
+
+Recounted against every reference form, not just map `Entity=`: **56** of 611 monster cans are
+referenced by nothing. But sorted properly, almost none of it is lost content:
+
+| kind | roughly | what it actually is |
+|---|---|---|
+| **tier variants** of live families | ~30 | `Super` / `Tough` cans whose base spawns normally. The generators' mojo bands never reach them -- a **balance** observation, not cut content |
+| **duplicates** of live cans | ~15 | `Mongol Goblin Grum` and `Goblin Grumdjum` share race **and** model; same for `Mongol Goblin Rakeb` / `Rakeb`. `Sewers/Sewer Theif Boss` ×3 duplicates `Thugs/Theif Boss` ×3, which is spawned |
+| **test / broken** | 2 | `Simon Spell Cast Test`; and `Horse`, now placed |
+| **draft cans with no unique art** | **4** | see below -- I called these "genuinely distinct" and that was **wrong** |
+
+### Correction: the four "genuinely distinct" cans are drafts, and none has its own art
+
+0.45.0 claimed **`Horror`** was "the only unused enemy in the game with a dedicated mesh" and "the
+best remaining enemy lead by far." **Both halves are false.** I matched a *folder name*
+(`Models3D/Enemies/Horror/`) and reported it as a dedicated asset -- the exact inverse of this
+file's own **find cut content by asset, not by name** rule. Hashing the meshes settles it:
+
+| mesh | sha256 (12) | also at |
+|---|---|---|
+| `Enemies/Horror/Terror.MODEL.gr2` | `0a42036b5b1b` | `Terrors/Models/Terror/`, `English Priestess/`, `Mimic/` -- **4 byte-identical copies** |
+
+**`Horror` is an early draft of the shipped `Terror`**, and the Terror is one of the most-used
+enemies in the game: 21 live cans spawning **823** times across 200 maps. Horror spawns 0 times. The
+proof is layered:
+
+| | Horror (unused) | Terror (live) |
+|---|---|---|
+| mesh | byte-identical to the Terror's | same file |
+| animations | byte-identical to `Terrors/Shared Animations/original/` | **points at that same `original/` folder** |
+| `Race=` | `Races/Demokin` -- a **player** `CRace`, no presets | `Races/Enemies/Undead/Terror` |
+| death sound in `.mdl16` | `Enemies/Orc Death.ogg` -- an **orc** sound on an undead | `Terror Death` + `Death2` + `activate` |
+| model cache | 8,630 bytes / 79 strings | 37,991 bytes / 540 strings |
+| behaviour | none | `CPatrolAreaAI`, `Can Be Knocked Around`, Medium Disease damage/duration |
+| can size | 42,978 bytes | 57,518 bytes |
+
+The live Terror's own cache still loads `Shared Animations/original/` -- so `Enemies/Horror/` is not a
+leftover beside the real art, it **is** the pre-reorganisation copy of art that is still in service.
+This is kind three of [the orphan taxonomy](qa.md): a **superseded draft**, and the action for those
+is to **leave it dead**. There is nothing here to restore.
+
+Two signals were tested and **discarded** rather than relied on, because both looked damning and
+neither is:
+
+- **`Sound=...wav` paths that do not exist.** Horror has three. So do **147 of 1,698** cans, live
+  ones among them (`Terror Super`, `Goblin King`, `Old Man of the Mountain`). A vanilla wart, not a
+  dating artifact.
+- **`Display Name=unnamed`.** Horror has it. So do **421 of 478** monster cans. Not a signal at all.
+
+The other three fall the same way -- all four share art with live families:
+
+| can | model | shared with | verdict |
+|---|---|---|---|
+| `Horror` | `Monsters/Horror` | the live Terror's mesh, 4 copies | draft of Terror |
+| `Caster` | `Rock Titan` | **15** cans incl. `Andre the Titan` | tier draft; the titans are live |
+| `Nos Ogre2 English` ×2 | `Ogre strong` | 6 cans, all live ogres | tier draft |
+| `Assasin EarlyLevels` | `Assasin` | 6 cans, all live assassins | tier draft |
+
+**So the honest count of genuinely distinct unused enemies with their own art is 0, not 4.** Every
+unreferenced monster can in this game is a tier variant, a duplicate, a draft, or a test.
+
+### What the Horror hunt actually turned up: a live act-1 quest shipped broken
+
+The one signal that survived was rare: **`Race=` pointing at a *player* race**. Only **3** of 478
+monster cans do it -- and the third is spawned.
+
+| can | refs | |
+|---|---|---|
+| `Horror` | 0 | draft |
+| `Assasin EarlyLevels` | 0 | draft |
+| **`Assassin Machiavelli`** | **1** | **live, in `1 Barcelona/House of Ilk map.zax`** |
+
+**The name misled me twice and the map settled it.** `Assassin Machiavelli` is not Machiavelli-the-
+assassin; it is *the assassins sent after Machiavelli*. `House of Ilk map.zax` holds a complete
+**act-1 escort quest** -- `Machiavelli generator`, `Protect Mach`, `Mach Reward`, `saved machiavelli`,
+`Swap Mach Dialogue`, `gavekarma`, four `Machiavelli Exit` parts -- and all of it is **live**:
+
+| part | state |
+|---|---|
+| `Machiavelli generator` | `Active=1`, spawns `Character Templates/Temple District/Machiavelli` |
+| `Protect Mach` / `Mach Reward` / `saved machiavelli` | `Active=1` |
+| `Trigger Assassins Relay` | `Active=0`, armed by the quest -- correct |
+| `Machiavelli Door` in `Temple District.zax` | `Active=1`, dialogue hooked up |
+
+Machiavelli hires you as a guardian (node `75 Task 2`: *"These plans have earned me dangerous
+opponents that seek to end my ambitions and my life"*), the ambush fires as you leave
+(node `150 Machiavelli Attacked when you leave his building`), and saving him pays out in Barcelona
+and again in Montaillou (node `300 machiavelli helps you in montaillou`). It ties into the Slaver
+Cells opening and the Master of Assassins.
+
+**The four attackers arrive with no stats at all.** All four generators spawn the one can, whose
+`Race=Races/Demokin` is a plain **`CRace`**: character-creation attribute ranges, no
+`DerivedCharacterAttribute` array, no `Skill` array, so there is nothing to inherit. The player can
+even see it -- `Races/Demokin` has `Display Name=Demokin`, so the creatures attacking Machiavelli are
+**labelled "Demokin"** in-game.
+
+**The control that makes this airtight:** `Assasin.can`, which has a correct race, *also* carries
+`(HP) Hit Points=0`, `(AC) Armor Class=0` and `OneHandedMelee=0` in the can itself. Can values are
+placeholders filled from `Race=` at spawn, so a race with no presets yields nothing. Same class as
+the four self-referential wererat/thief templates; same symptom -- dies in a couple of hits for no
+visible reason.
+
+#### Which family -- settled by vanilla's own words, not by the name
+
+The can's `Model=Characters/Monsters/Snake Women` is the same model the **12 live `Snakebreed*`
+cans** use, so the asset says snake-women. The authored dialogue says the same thing twice, which is
+what makes it certain rather than inferred:
+
+> **`210 Assassins`:** *"Those were **creatures** sent by the infidel assassins from the East"*
+> **`200 Saved Machiavelli Return Greeting`:** *"you must tell me about those **creatures**"*
+
+Creatures *sent by* the assassins -- not assassins. So the Snakebreed family is correct and the
+assassin races are not. Had I gone by the can's name I would have given them AC 280 / HP 150 /
+melee 75 instead of the Snakebreed's gentler band, and made a wrong guess permanent.
+
+| | `Races/Demokin` (shipped) | `Snakebreed` | `Snakebreed Boss` | `Snakebreed Venom` |
+|---|---|---|---|---|
+| (AC) Armor Class | **nothing** | 150 | 175 | 160 |
+| (HP) Hit Points | **nothing** | 60 | 100 | 50 |
+| skill | **nothing** | melee 30 | melee 35 | **ranged 25** |
+
+**Fixed in 0.46.0** as 1 Boss leader + 2 base + 1 ranged Venom, placed by distance from the entry at
+(600,676): the Boss nearest at (551,517), the venom-spitter farthest at (447,317). Machiavelli's own
+can keeps its name and becomes the leader (race and model repointed to the Boss tier, matching the
+family's own model/race pairing); the other three generators point at shipped `Snakebreed` and
+`Snakebreed Venom` cans, so **no new can was authored**. Five changed lines in total: two in the can,
+three `Entity=` values in the map.
+
+Two traps checked and cleared rather than assumed:
+
+- **Mojo budget.** The groups cap `Max Party Mojo=3`, and a costlier can would silently fail to
+  spawn. **No race in the game sets a Mojo preset**, so the cap binds nothing here.
+- **The name `Assassin`.** All four generators set `New Name=Assassin`, and names broadcast in this
+  engine. Nothing in the map targets that name, so `New Name=` was left untouched.
+
+#### One genuinely empty stub, left alone
+
+`Mach Sets Ambush Relay` (`Active=0`, named by nothing) has **`Action=` empty**. It suggests the
+ambush was once meant to be armed by Machiavelli himself rather than on exit, but there is no payload
+to restore -- writing one would be authoring new content, not restoring it. Recorded, not touched.
+
+
+## Settled by decompilation: `CSeriesAction`'s index is per-instance
+
+Three releases of one-shot enemy behaviour -- 0.33.0's priest shield, 0.34.0's twelve veteran
+draughts, and 0.48.0's thirty-six self-buffs -- all rest on one assumption: that a `CSeriesAction`
+used as a one-shot advances its counter **per spawned creature** rather than once for the whole can.
+`PO2` was written as the row that decides it, and it was never played. **It is now settled without
+playing it**, and the answer is per-instance.
+
+### What the binary says
+
+| finding | where |
+|---|---|
+| `CSeriesAction` registers with parent `CMultipleActionsAction` and instance size **0x20** | `0x0056fb30` |
+| **`Debug/Next Action Index` is a field at offset `0x14` *inside the object*** -- the counter is object state, not a global | field table at `0x0056fbe0` |
+| `Require Success To Advance` at `0x18`, `When Done` at `0x1c` (default `Repeat Series`) | same |
+| `Damaged Script Action` is a **pointer field at offset `0x90` on the entity** (with `Destroyed Script Action` at `0x88`, `Destroyed Effect Action` at `0x84`) -- so each entity points at its own action tree | `FUN_00535b00` |
+| The engine offers exactly **two** options for a canned object: `Shared Global Instance` (1) and **`Local Copy` (2)** | enum table at `0x007051d4` |
+
+That last one matters twice. Sharing is an **opt-in**, which is only worth offering if copying is the
+norm -- and it is a standing caution for this project's own work: every Fixt requirement can is
+written `Use=Shared Global Instance`, which is right for a stateless predicate and **would be wrong
+for anything carrying state.** Never put a `CSeriesAction` inside a shared canned object.
+
+### What the shipped data says, which is what actually closes it
+
+- **755** `Next Action Index` fields across **155** vanilla maps: every *placed* entity serialises
+  its own copy of its action tree.
+- Vanilla ships the exact one-shot idiom -- `When Done=Repeat Last Action` with
+  `Require Success To Advance=1` -- **350 times**, and **in monster cans**, not just maps:
+  `Snakebreed Summoner`, `Greater Titan Summoner`, `Rhea`, `Ghoul Male Large` and
+  `Swordsman ShieldHelmet` each run a one-shot `CCloneAction` summon sequence out of
+  `Shoot Completed`.
+
+**That is the clincher.** If the index were shared per can, only the *first* Snakebreed Summoner ever
+spawned would summon anything -- and they arrive in waves. Vanilla's own design depends on
+per-instance series state, in a monster can, which is exactly where this project's one-shots live.
+
+### A route that does not work, and one correction
+
+**The save file cannot answer this.** `Autosave.sav` is 3.2 MB and contains **zero** plain-text
+entity fields -- no `CEntityBase`, no `Damaged Script Action`, no `Next Action Index`. Only the
+current level's top-level stats are plain text; every entity tree lives in the binary `TempFile`
+blobs, so there is nothing to grep.
+
+**And a correction made mid-investigation:** `DjinnArenaMonster4` looked at first like vanilla
+shipping a one-time *self*-buff, which would have been perfect precedent. It is not --
+its `CAddCharacterModifierToCharacterAction` targets **`$Instigator`**, so it slows the *player*, and
+the `CDisplayAffectingPlayerIconAction` beside it puts a HUD icon on the player. So vanilla has no
+one-time self-buff on a creature; 0.48.0's are new in that respect, even though the mechanism around
+them is vanilla's. It also means `CDisplayAffectingPlayerIconAction` is the wrong tell for an enemy
+buffing itself -- that is a player-HUD action -- and `CSpawnEffectAction` is right.
+
+
+## The last backlog item was a false positive, and it failed the same test twice
+
+`100 Respond ask about Tank` in `8 Alamut/Dialog/DaVinci Ending.DialogTree` was the last entry on
+this document's open list, recorded as *"the node is present with 0 incoming links."* **That is true
+and it means nothing.**
+
+### Why the measurement was wrong
+
+**Every one of the 13 nodes in that tree has 0 incoming links.** The tree has no internal branching
+at all -- `08 Final Encounter.zax` opens each node directly as a balloon. Counting `Go to node ID=`
+within the tree was the wrong instrument:
+
+| node | incoming links | opened by a map |
+|---|---|---|
+| all 13, including `100 Respond ask about Tank` | **0** | **`08 Final Encounter.zax`** |
+
+`reachability.py` never flagged it, because that tool checks map openers as well as links. **The tool
+was right and the hand-written note was wrong**, which is the part worth remembering.
+
+### What the node actually is
+
+It sits in the middle of the act-8 opening cutscene, and the chain reads:
+
+```
+MASTER Start level NIS   (Active=1, relay-fired)
+  -> DaVinci Ending / 100 Respond ask about Tank   "Time will tell if it does us any good..."
+  -> activate  Tank Camera,  Siege Tank,  Old Man Camera
+  -> OldMan / 40 ruse
+```
+
+So it is **DaVinci's line immediately before the siege tank rolls in**, and the camera cuts to the
+tank on the very next action. The node's name means "DaVinci responding *about* the tank", not "a
+reply to the player asking about the tank". It plays in every run of act 8.
+
+### The second failure, which is the method lesson
+
+This document's own note said the `Siege Tank` part *"is `Active=0` and activated from elsewhere, so
+it is its own job."* It observed the activation and still treated the part as a problem. **`Active=0`
+plus an activator is the normal idiom for a scripted entrance, not a defect** -- it is exactly how
+`Trigger Assassins Relay` works in the House of Ilk ambush that 0.46.0 repaired, and how the four
+tank-related parts here work:
+
+| part | state |
+|---|---|
+| `Siege Tank`, `Tank Camera`, `Path blocker behind Tank`, `Collide poly for Tank` | `Active=0` **and activated** by `MASTER Start level NIS` |
+| `Tank Path`, `Hit Spot for Tank Cannon`, `Sound of Tank location`, `DaVinci goto when tank arrives` | `Active=1` |
+
+The tank arrives, a camera follows it, a path blocker drops in behind it, and DaVinci walks over to
+meet it. The whole sequence is finished and shipped.
+
+**Nothing was built for this, and nothing should be.** With it struck, the open list from the
+original survey is empty.
+
+---
+
+### Where it is
+
+| tree | nodes | MB | with replies |
+|---|---|---|---|
+| `Demonic Spirit` | 9 | 1.36 | 6 |
+| `GrandInquisitor` | 8 | 1.13 | 6 |
+| `Beast Spirit` | 9 | 1.06 | 3 |
+| `DaVinciBarcelona` | 9 | 1.03 | 4 |
+| `Elemental Spirit` | 10 | 0.93 | 4 |
+| `InquisitorRaphael` | 8 | 0.84 | 2 |
+| `weirdwoman` | 5 | 0.79 | 1 |
+| `cortes` | 21 | 0.66 | 9 |
+| `BrotherMichel` | 5 | 0.60 | 0 |
+| `shakespeare` | 7 | 0.46 | 3 |
+| `Shylocke` | 4 | 0.45 | 4 |
+| `Jafar` | 3 | 0.30 | 2 |
+| `Cervantes` | 10 | 0.26 | 1 |
+| 12 more trees | 36 | 1.66 | 11 |
+
+The split that matters more than the sizes: **53 nodes carry replies** and are authored branches,
+needing a reply written or a requirement fixed. The other **79 carry none** and are barks, balloons
+and scene beats, needing a **trigger placed in a map** instead.
+
+### What is new here, and what is not
+
+**Entry 1 below is a re-find, not a discovery, and the sweep gave no sign of it.** 0.9.0 investigated
+`Purify the Shadow Dryad` at length, scoped it as that release's **headline** restoration, and then
+cut it on evidence -- see *Tier 1 - the Inquisition's second task: half built, half impossible* in
+[releases.md](releases.md) and the "not in this release, deliberately" list in
+[qa.md](qa.md). Its verdict is corrected into entry 1 rather than left to collide with it.
+
+**`--with-mod` cannot catch this.** The overlay hides what Fixt *built*; it cannot hide what Fixt
+*decided not to build*, because the shape of that decision is a node left exactly as vanilla wrote
+it. A deliberately-unopened node and a never-noticed node are byte-identical. **So grep
+releases.md and qa.md for a lead's own node ids before calling it open** -- the same way the map
+files must be grepped before assuming a node is unused.
+
+Genuinely new from this sweep: **the quantification** (204 / 19.27 MB shipped, 132 / 11.48 MB
+remaining), the **spirit companions' encounter reactions** in entry 2, the **sibling-wired seven** in
+entry 3, and most of entry 4.
+
+---
+
+### 2. The spirit companions were written to react to what you meet
+
+Each of the three starting spirits has a set of nodes a map or can opens directly -- 12 for Beast, 14
+for Demonic, 12 for Elemental -- so **the mechanism is placed and working**:
+
+| wired, in all three | from |
+|---|---|
+| `30 dragon encounter` | `02 Shifting Dunes.zax` |
+| `300 aesma warning` / `300 prime wererat warning` | `Wererat Cave.zax` |
+| `400 khan demon` | `Goblin Warrens.zax` |
+| `600 wizard tremblethorn aka manah` | `Ogre Conjurer Cave.zax` |
+| `700 old man warning` | `07 Dark Temple.zax` |
+| `800 weird woman` | `01 Hamlet Exterior.zax` |
+| `1100 Found Mana` / `1101 Found Health` | `First Mana Pickup Spirit Call.can` -- a **can**, not a map |
+
+And beside them, recorded and entered by nothing:
+
+| | Beast | Demonic | Elemental |
+|---|---|---|---|
+| `35 undead encounter` | 98 KB | 156 KB | 93 KB |
+| `750 name` | 268 KB | 238 KB | 67 KB |
+| `20 prime werewolf encounter` | 70 KB | -- | -- |
+| `750 good and evil` | 248 KB | -- | -- |
+| `200 beast compliment` / `200 divine compliment` | 71 KB | -- | 53 KB |
+| `1000 druid finale` | 197 KB | 216 KB | 163 KB |
+| `1000 adversary` + `part 2` | -- | -- | 257 KB |
+| `1000 ...alamut reply` | -- | -- | 175 KB |
+
+~~`35 undead encounter` in **all three** is the clearest shape: one trigger, never placed in any map, three recordings.~~ **Done in 0.59.0.** `1000 druid finale` in all three is the next: a story beat with a per-companion
+reaction written for each, which is how this game writes its companions.
+
+**The classification question for this group**, which must be answered before anything is built:
+Demonic has a live `20 general danger encounter warning` and Elemental a live `20 generic danger
+sense`, either of which could be the **superseding** generic version of the specific encounter lines.
+Check that first. The `750` pair looks like a cut "tell me about yourself" branch rather than an
+encounter trigger, and belongs to a different question.
+
+---
+
+### 3. Seven lines whose own name sibling is already wired
+
+The cheapest class in the whole sweep: a map already opens another node in the same name family, so
+nothing has to be designed, only pointed at. `tools/vo_reach.py` reports these first.
+
+| node | KB | siblings a map already opens | |
+|---|---|---|---|
+| ~~`weirdwoman / 200 nis weird woman conclusion 2`~~ | 117 | `200 nis weird woman conclusion` | 0.57.0 |
+| ~~`DaVinciBarcelona / 700 montaillou banter 4`~~ | 55 | `700 montaillou banter`, `2`, `5`, `6` | 0.63.0 |
+| ~~`JoanofArc / 400 combat banter 1`~~ | 40 | `400 combat banter 2` | 0.56.0 |
+| ~~`JoanofArc / 400 combat banter 3`~~ | 22 | `400 combat banter 2` | 0.56.0 |
+| ~~`JoanofArc / 400 combat banter 4`~~ | 42 | `400 combat banter 2` | 0.56.0 |
+| ~~`JoanofArc / 400 combat banter 5`~~ | 31 | `400 combat banter 2` | 0.56.0 |
+| ~~`cortes / 800 cortes wild addition 1`~~ | 18 | `800 cortes wild addition 2` | 0.56.0 |
+
+**Joan of Arc has five recorded combat lines and one of them plays.** She fights beside the player
+with four fifths of her combat voice unreachable. DaVinci's Montaillou banter wires four of five.
+
+---
+
+### Measured in 0.65.0 -- the Cortes arm and the cave already run, end to end
+
+The note here used to say *"How much of it currently runs is unmeasured; do that before anything
+else."* It was measured, and the answer is **all of it**. Every reply on the path below is
+`Requirement=!None`, and it starts from a node the map opens:
+
+```
+1 Conversation Start            <- Tavern Port District.zax opens this
+  "Why are you no longer a conquistador?"      -> 30 conquistador -> 31 conquistador 2
+  "Tell me about the one way to repay your debt."  -> 130 hidden treasure -> 2 -> 3
+  "Why are you unable to enter the cave?"       -> 133 cave monsters -> 134 cave monsters 2
+  "Is there a way I could help you compensate for your lost arm?"
+                                                -> 164 cortes needs to repair the arm
+                                                   = Give Cortes a Hand, state EPVSO4Y0
+```
+
+From there the quest is wired across three NPCs: DaVinci sets `WEDKYW9X` and `YJ2T7PXI`, the
+blacksmith sets `3KL9W1JQ` nine ways and `M3GF3HGM`, `3 Return Dialogue Arm` sets `VTH2DOJX` when the
+arm is ready, and `220 cortes receives new arm` -- *"Dios mio! This mechanical arm is perfect! Now I
+am ready."* -- offers the expedition. The cave itself is map-driven: `600 cave map`,
+`600 arrive at river`, `310 cross the river`, `310 mayan transmute`, `600 cortes sees dragon`,
+`600 enter cave`, `920 Cortes get his treasure and leaves`, `921 Cortes gives half treasure and
+leaves` are all opened by maps. Five of the quest's six states are activated by live content; only
+`VTH2DOJX`'s activator sits on a node the map opens rather than a reply, which is why it reads as
+unreferenced.
+
+**So the recordings still listed as unreachable around this thread are a draft layer, and one of them
+would have broken the quest:**
+
+| node | KB | why not |
+|---|---|---|
+| `cortes / 165 help with arm`, `165 help with arm 2`, `170 accept cortes arm quest` | 186 | A second way to ask, off `15 Return Greeting`, which nothing opens. The live ask is `134 cave monsters 2` -> `164 cortes needs to repair the arm`, and `165 help with arm 2` activates the same `WEDKYW9X` |
+| `cortes / 300 secret cave` | 54 | Draft of `310 cross the river`, which the map opens. Both are *the cave is past this river and I know a charm* |
+| `cortes / 160 cortes cave quest female response` | 57 | **Wiring this would break the expedition.** It carries **2** actions where the live `160 cortes cave quest` carries **5**: it never activates `Recover the hidden treasure`, never prints the map marker, and recruits `Companion=Cortes` where the live node recruits `Companion=Cortes with arm`. It predates the arm being part of the thread |
+| `shylocke / 7 return with shakepeares money` | 120 | Draft of `700 complete collect from shakespeare quest`, which `Shylocke Shop.zax` opens and whose `700 complete quest part 2` pays the share **and** gives the bartering book |
+| `shylocke / 500 shylocke gets gold` | 99 | A fixed 500 gold against the live `50 special loan`, which asks how much you want and halves its thirty percent interest |
+| `shylocke / 140 no resolution` | 139 | Its only reply names `151 no resolution 2`, **a node that exists in cortes's tree and not in Shylocke's** -- the 0.61.0 defect class, harmless only because nothing reaches it |
+| `shylocke / 312 charge` | 101 | An entry into the haggle at `315 barter charge` / `330 pay the price` / `400 threat`, which other nodes already enter |
+
+**The general lesson, now paid for twice.** `vo_reach.py` cannot tell a draft from a gap: both are a
+recording with nothing pointing at it. The KB column is not a measure of what is missing from the
+game, it is a measure of what was recorded and then replaced. Before planning work from a size, read
+the live sibling and count its actions -- the female cave response looks like a gendered variant and
+is actually a pre-arm draft that drops three actions.
+
+
+### Adjudicated in 0.65.0 -- four that stay unwired
+
+The "answer whose question was never written" class is the cheapest kind of restoration and it has
+paid three times (0.61.0, 0.63.0, 0.65.0). This is the other side of it: four candidates that look
+identical from the tool's output and are **drafts or unused variants**, where the finished line is
+already in the player's game. Wiring any of them would add a second, worse copy.
+
+| node | KB | the live version |
+|---|---|---|
+| `weirdwoman / 400 cathars` | 222 | `50 cathars`, from `50 Caverns`. Same paragraph plus one sentence |
+| `goblinkhan / 10 Goodbye` | 149 | `13 Have Earned Goodbye`, off the fully wired `11 Earn Goodbye` |
+| `blacksmith / 6 Return Dialogue Wizard` | 144 | `03 Return Dialogue 1, Insulted`; the map opens seven entry nodes and not this one |
+| `lordjavier / 500 pyrenees` | 96 | `400 NIS Dialogue 4b` into `400 NIS Montserrat Directions`, granting the same `WB7EAGTQ` |
+
+**The test that separates them from a real lead:** read the live siblings' text before classifying.
+`vo_reach.py` cannot tell a draft from a gap, because both are a recording with nothing pointing at
+it. A near-verbatim twin that is reachable is the signature, and it is only visible if you read both.
+
+
+### 4. The rest of the reply-carrying leads
+
+Ranked by what exists, not by size. **Stale:** most of this table was classified or built between
+0.58.0 and 0.65.0, and the sections above and [the live list](unused-content.md#re-measured-at-0940----the-live-list)
+have the current state. Kept because the descriptions are still accurate.
+
+| lead | KB | what it looks like |
+|---|---|---|
+| `cortes / 165 help with arm`, `165 help with arm 2`, `170 accept cortes arm quest` | 186 | Cortes asking for the mechanical arm. **DaVinci's half is live** -- `2010 give arm` is opened by `DaVinci Workshop interior.zax` -- and the quest `Give Cortes a Hand` has **6 states**. How much of it currently runs is unmeasured; do that before anything else |
+| `cortes / 300 secret cave`, `160 cortes cave quest female response` | 111 | the treasure expedition; the quest `Recover the hidden treasure for Cortes` exists with 1 state |
+| `InquisitorRaphael / 500 Return from Montaillou`, `321 chapter 2 mission 2` | 468 | act-boundary Inquisition dialogue |
+| `GrandInquisitor / 400 NIS Dialogue 4b` + `Jafar / 400 NIS Dialogue 4b` | 171+ | an alternate branch of the council scene, in **both** trees |
+| ~~`DaVinciBarcelona / 500 davinci gives a gift ... male` / `female`~~ | 554 | a starting gift, gendered pair, the largest single pair in the sweep. **Done in 0.58.0** |
+| ~~`shakespeare / 1000 in wilderness`, `in wilderness 2`~~ | 294 | Shakespeare encountered in the Wilderness, scripting *Richard II* in the player's honour. **Done in 0.60.0**; `1000 extended shakespeares debt` is a draft and stays unwired, see below |
+| `Shylocke / 140 no resolution`, `312 charge`, `500 shylocke gets gold`, `7 return with shakepeares money` | 459 | the arbitration's unresolved branches, matching `cortes / 151 no resolution 2` and `800 Return Dialogue` on the other side of the same dispute |
+| `Demonic Spirit / 500 divine explanation demon` | 414 | the largest single recording in the sweep |
+| `weirdwoman / 100 Return` | 63 | **9 replies.** Na Roqua's return conversation |
+| `WengChoi / 600 something else`, `570 scroll give`, `580 no help` | 137 | 8 replies on the first; a shop branch |
+| ~~`CedricAlsen / 60 too much`~~ (**adjudicated** -- the notes call it a superseded draft, its join reply gated on Templar AND Inquisitor, which no character can be), `Jafar / 42 thefts`, `LordJavier / 500 pyrenees`, `Blacksmith / 6 Return Dialogue Wizard`, `Cervantes / 500 magic quill explanation`, `Elemental Spirit / 1 Completed Skills Tutorial Elemental`, `GoblinKhan / 10 Goodbye`, `Relican / 5 Raised from the dead as a zombie!` | 760 | singles, each needing its own look |
+
+**Not leads, and already settled above:** `Blacksmith / 80 Do You Have The Item I Need?` and the
+`10 Don't use this node` family are superseded drafts, and `Juanita Suarez / 200 my fee` and
+`GoblinKhan / 400 Where are you going` are `Should Have Voiceover=0`. They appear in a raw survey and
+should not be re-reported as discoveries.
+
+**Still blocked:** `GrandInquisitor / 120 combat` remains the one recording matching **no** node at
+all, undecidable without listening to the file.
+
+---
+
+### Done in 0.61.0 -- the Divine Ones, and the druid finale ruled a design decision
+
+**The largest single unreachable recording in the game, restored by one reply.**
+`demonic spirit / 500 divine explanation demon`, 414 KB, had zero ways in while its twin
+`500 daevas explanation demon` is reached seven times. Its own closing clause -- *"if you ask me,
+which you did"* -- names the slot: it is an answer, so the ask goes at the end of the Daeva lecture.
+**A node that answers a question nobody can ask is the easiest class in this whole survey**, and it
+is worth looking for the tell in the text itself before searching maps.
+
+**It also carried a vanilla defect.** Its two replies were both *"What is a Daeva?"*, and one
+pointed at `500 daevas explanation elemental` -- another spirit's node id, absent from this tree.
+The same copy-paste-between-spirit-trees error 0.57.0 found in the witch scene. **When a node is
+unreachable, the defects inside it are invisible too, so wiring one means reading its replies.**
+
+### NOT done: the druid finale, and why it is a design decision
+
+`1000 druid finale` in all three trees (576 KB), plus `1000 adversary`, `1000 adversary part 2` and
+the two `alamut reply` nodes behind it -- about **1 MB**, the largest family left in the sweep.
+
+It is the beat where the Old Man of the Mountain is revealed behind the druids and the enemy escapes
+through a portal. **The thread was cut whole**, not just the lines:
+
+- no map opens any node of the family;
+- the two quests that would frame it, `Find the portals used by the English forces` (3 Montaillou)
+  and `Pursue the retreating English forces and recover the True Cross` (6 Barcelona Attack), are
+  **defined and referenced by nothing**, exactly like the nodes;
+- act 6's only `portal` is a prop with no activity, in `Temple District Siege.zax`.
+
+So there is no moment to attach it to. Restoring it means choosing where act 6's story turns and
+building the scene around it, which is **writing**, not wiring, and it needs a decision before it
+needs a release. Recorded here so the next sweep does not re-find it as cheap.
+
+### Done in 0.60.0 -- Shakespeare in the Wilderness, and a draft that was left alone
+
+**The file is `shakespeare.dialogtree`, lowercase.** Every `*.DialogTree` search in this project's
+ad-hoc tooling misses it; the engine does not care. `vo_reach.py` found the lead anyway because it
+works from the voiceover folders rather than the tree names, which is the second time it has seen
+something a name-based search could not. **If a tree seems to be missing, check the case of its
+extension before concluding the file was cut.**
+
+**Restored:** five nodes, 0.34 MB -- the arrival, the Richard II pitch, his delight, his retreat and
+*"the fruit of the tree is too young and not yet ripe"* for every visit after. Delivered as three
+`CDisplayDialogTreeAction`s in a `CSeriesAction` with `When Done=Repeat Last Action` on one
+specifier, the `Secret Leo` idiom, because **these nodes carry replies**. That is the dividing line
+this run established: replies mean a conversation, no replies means a balloon
+([[lionheart-a-replyless-node-is-a-balloon]]).
+
+**Also fixed, and it was broken before it shipped:** the reply "This place is too dangerous for you.
+Return to Barcelona." had **no action at all**, so he would have agreed to leave and then stood in
+the Wilderness permanently.
+
+### NOT done, and why: `1000 extended shakespeares debt`
+
+It reads like an unreached reward -- 500 XP from a marker that **does** exist in his house, a
+generated amulet, +75 karma. It is a **draft that lost**, and three things say so:
+
+1. the shipped reply that would open it (*"I convinced Shylocke to extend your debt"*, gated on state
+   `33MF7UWD`) already **completes the quest** and already **pays the experience from that same
+   marker**;
+2. the draft's own action list pays that experience a **second** time, so wiring it double-pays;
+3. the live node it goes to instead, `255 side with shakespeare`, carries a developer's note in the
+   file: `Action work in progress=(speak with shylocke quest)`.
+
+**Adding the amulet and the karma to the live reply would be a design decision, not a restoration.**
+It is a reasonable one -- the extended-debt route currently pays less than the murder route does in
+karma terms -- but it is a change to a shipped reward and belongs to whoever is tuning rewards, not
+to a restoration pass.
+
+### Done in 0.59.0 -- the undead warning, and the classification question answered
+
+**The notes asked for this group to be classified before anything was built, and the answer is that
+the live generic lines are not supersessions.** Demonic's `20 general danger encounter warning` and
+Elemental's `20 generic danger sense` are vague on purpose -- *"Something just ahead would like to
+separate your head from your shoulders"*, *"I sense a formidable power nearby"* -- while
+`35 undead encounter` names what it senses. Specific, recorded in all three trees, placed nowhere.
+
+**The reply count told me how to fire it, and the earlier reading of that signal was wrong.** Every
+wired spirit warning carries replies and opens as a conversation: `30 dragon encounter` three,
+`300 aesma warning` two, `800 weird woman` two. `35 undead encounter` has none -- and so does
+`1100 Found Mana`, which **is** wired, as a **balloon**, from
+`Common Objects and Scripts/First Mana Pickup Spirit Call.can`. So in this family a reply-less node is
+not an unfinished node, it is a balloon, and that can is the template for every one of them.
+
+**That can is also the cheapest possible host.** It creates its own marker at `$Trigger` and ends its
+own non-interactive sequence, so a new scene costs **one** level part, where the wererat and ogre cave
+scenes each need four (`spirit nis switch`, `goblin spirit scene relay`, `Spawn Spirit Here`,
+`end spirit nis`). 0.59.0's can is vanilla's with four substitutions, proved by reversing them and
+comparing byte for byte.
+
+**Still unplaced in this group:** `200 beast compliment` / `200 divine compliment` and
+`20 prime werewolf encounter` (Beast). Both are reply-less lines about something that just
+happened in a fight, so they want a combat trigger rather than a reply.
+
+~~`1000 druid finale` (all three), `1000 adversary` + `part 2`, the two `1000 ... alamut reply`
+nodes~~ **done in 0.62.0**, from one trigger on the Crossroads-to-England road.
+
+~~`750 name` (all three), `750 good and evil` (Beast)~~ **done in 0.63.0 -- and this entry was
+misfiled here.** They are not balloons wanting a trigger. "I am Armati, a divine spirit" is an
+answer to a question, and the question was missing from `1 Exit Skill Tutorial`, the spirit's own
+hub. That is the 0.61.0 class, not the 0.59.0 one: read what a node SAYS before classifying it by
+its reply count.
+
+### Done in 0.58.0 -- the parting gift, and what its node shape gave away
+
+**554 KB, the largest unreachable pair in the sweep, and the classification was in the node's own
+fields.** `500 davinci gives a gift to help you get started male` / `female` have blank reply text,
+no target node and `Custom Action=CSendAIDoneMessage{Target=DaVinci}`. That trio is the **cutscene**
+signature -- a node a map displays and then releases the character's AI -- not a conversation branch.
+Reading it that way named the host before any map was searched: a scene opening *"Oh, how could I
+have forgotten?"* belongs after a goodbye, and `1000 you need allies exit` is his goodbye, shown once
+per game by a `Trigger Only Once=1` relay that deactivates itself, with no reply in the tree pointing
+at it. The gift inherited that gate instead of needing one.
+
+**A form check that saved a release:** firing the scene from the reply directly looked obvious, and
+has **zero** precedent -- both vanilla uses of `CDisplayDialogTreeAction` inside a dialogue tree are
+nested in an interaction specifier being added to a character. A reply triggering a relay has 661.
+Same shape of error as the `$Trigger` experience award two releases earlier.
+
+**Rule this adds:** read a node's reply fields before deciding what it is. `Reply Text=` blank plus
+`Go to node ID=` blank plus `CSendAIDoneMessage` means a map was supposed to show it, so the question
+is *which map and which moment*, not *which reply should point here*.
+
+### Done in 0.56.0 -- the companions had voices
+
+**Fifteen recorded lines, 0.30 MB, and not one new word written.** Every balloon points at the node
+that already held the line, so the voiceover plays because `<Tree> VOs/<Node ID>.ogg` resolves as it
+always did.
+
+| who | hook | rate | lines |
+|---|---|---|---|
+| Joan of Arc | `Shoot Completed` | 1 in 8 | 5 combat calls, 4 of them dead |
+| Cortez / Cortez with arm | `Shoot Completed` | 1 in 10 | `800 general attack ` and 2-4 |
+| Cortez / Cortez with arm | `Damaged Script Action` | 1 in 12 | `cortes hurt 1`, `2` |
+| Cervantes | `Shoot Completed` | 1 in 16 | `400 companion attack general`, his only attack line |
+| Cervantes | `Damaged Script Action` | 1 in 12 | `under attack`, `under attack 2`, **wrapped** beside the shipped relay |
+| Cortes, `01 Grove Exterior` | the companion-remark relay | alternates | `wild addition 1` joins `2` |
+| Cervantes, `Barcelona Coast` | his approach cycle | 3rd entry | `500 wilderness quips` joins the cycle |
+
+**Four findings worth keeping:**
+
+- **Balloons play voiceover.** 325 vanilla balloon firings land on nodes that have recordings,
+  Joan's own cutscene lines among them. This was checked before building, because the whole value
+  of the work rested on it.
+- **Every bark in this game is Fixt's.** Zero vanilla cans fire a balloon from `Shoot Completed` or
+  `Damaged Script Action`; all 95 and 13 are ours. Vanilla uses `Shoot Completed` for skill
+  selection and summoning only.
+- **A wired sibling does not mean a bank exists.** `400 combat banter 2` is wired, but as one beat
+  inside the plateau cutscene, with `After Action` advancing the scene. Pointing the other four at
+  that site would have spliced barks into a cutscene. `tools/vo_reach.py` reports the sibling and
+  cannot report what *kind* of site it is, so the site must be read.
+- **The same node id, two opposite rules.** `800 general attack ` carries a trailing space. A
+  can-to-node reference is matched **byte-exactly** -- a mismatch is a hard crash on map entry, which
+  is how the Goblin Warrens crash shipped in the 0.1.x line, and `validate.py` A0.7b caught it here.
+  The recording, meanwhile, is `800 general attack.ogg` **without** the space, so voiceover resolves
+  on the **trimmed** id. Both are true at once, and a verifier that strips gets the first one wrong.
+
+Left out deliberately, with reasons: `cervantes / 500 don quixote attacks` duplicates a node that is
+live in Don Quixote's own tree; `don quixote / 206 cervantes dies` is the other outcome of the
+Quixote duel and is quest logic rather than a bark; `joanofarc / 15 combat` needs classifying against
+`601 Joan Leaves party and Attacks Player`, which 0.17.0 wired for the same beat.
+
+### The sweep got four things wrong before it got them right
+
+All three were caught inside the hour, by checking a claim against the data instead of against the
+shape of the data. They are recorded because the pattern repeats.
+
+**1. A hand-rolled byte window invented a wiring gap.** Looking for entry points by scanning 900
+bytes either side of each `Dialog Tree File=` reported `600 davinci stroll banter 7` as unwired, in a
+series whose other eight are wired -- a perfect-looking find. A map **does** open it; the window
+simply missed the `Node ID=` in that block. `reachability.py` already solves this properly with a
+brace walk and documents why, so `tools/vo_reach.py` imports the same logic. **Do not re-solve a
+problem this repo has a tool for.**
+
+**2. A gap in a numbered series needs the node to exist.** `Cervantes` wires tree attacks 1, 2, 3, 4
+and 6, which reads as a missing 5. There is **no** `112 tree attack 5` node, so nothing is missing. A
+series gap is a finding only when the node is present *and* unreachable *and* ideally recorded, which
+is what the sibling column now tests.
+
+**3. The headline lead was already adjudicated, and it was ranked first anyway.**
+`Purify the Shadow Dryad` was 0.9.0's scoped headline, investigated to the bottom and cut with its
+reasoning written out in releases.md and its exclusion listed in qa.md. The sweep could not know
+that -- a node left deliberately closed is byte-identical to one never noticed -- but **a grep of
+this project's own notes for those node ids would have, and it was not run until the author asked
+whether this had been worked on before.** The cost is not the wasted read; it is that the first
+version of this section told the author something false about his own repository.
+
+**4. A broken query looked like a clean result.** The quest-state sweep matched `Name=` for state ids
+when the field is `ID=`, and printed *"0 quests with state ids, 0 never-referenced"* -- a result that
+reads like good news. The fixed query finds **24** quests carrying a state nothing activates, but
+most of those states are **duplicate prose**: the author copied a state, wired one copy and left the
+other. Only `Purify the Shadow Dryad` has an unreferenced state with its own distinct text. So the
+quest-state axis is **weak on its own** and useful only as corroboration, which is exactly how it was
+used above.
+
+### Three kinds, wanting three different kinds of work
+
+**Stranded** -- an item exists, uses generic art, and art named for it sits unused. One field, and
+the asset's own name is the evidence that it belongs.
+
+| item | uses | stranded art | confidence |
+|---|---|---|---|
+| Amulet of Dour Tidings | `AmuletGreenOpal`, shared with 8 other amulets | `Images for RED file/Amulet Dour Tidings` | **named for the item** |
+| Wielder Quest Rod Spirits (x2) | generic `Misc Items/Wand_PU` | `Misc Items/Wands/RodOfSpirits` | **named for the item** |
+| Wielder DARK Quest Rod Bone (x2) | generic `Misc Items/Wand_PU` | `Misc Items/Wands/RodOfBone` | **named for the item** |
+| **Nightshade Root** | `Quest Items/Darkwood`, shared with Darkwood | `Quest Items/Rare Herb` | **ours, and the clearest** |
+| Gauntlets of La Mancha | generic `Armor/Gauntlets` | `Armor/Gauntlets Spike` | inferred, see below |
+
+**Nightshade Root is our own.** It does not exist in vanilla -- Fixt authored it for the
+hangover-cure chain -- and it was given Darkwood's icon, so the two herbs are visually identical in
+the inventory while a third herb icon sits unused. Both also share `RareHerb_PU` on the ground, which
+is correct and should stay: that sprite is generic herb-on-the-floor art and Darkwood uses it too.
+Only the inventory icon is wrong. This is the one entry in the table that is a Fixt defect rather
+than a 2003 one, which also makes it the one with no ambiguity about intent.
+
+The rods are the cleanest vanilla work in this document. Fixt already wired **`RodOfInquisitor`** to the Rod
+of the Inquisitor, so the mechanism is placed, the precedent is ours, and two of the three are simply
+unfinished. Prefer the sibling.
+
+**La Mancha is an inference, not a match.** Nothing names `Gauntlets Spike` for it. The case is that
+it is the only unused gauntlet icon and La Mancha is the only unique gauntlet without its own, plus a
+dating argument: the Gauntlets of Hellfire's icon lives in `Misc Items/Images for RED file/`, a
+late-addition folder, while `Gauntlets Spike` sits in the ordinary `Armor/` folder beside
+`Bracers Stealthy Cunning`, which *is* wired. Spike reads as the earlier unique-gauntlet art,
+stranded when Hellfire's was added. Good enough to ship; not good enough to claim as restoration.
+
+**Complete but unowned** -- a full art set and no item. One case, and it is the largest find here.
+
+**The buckler is a fourth shield type that was never made.** Two meshes (`Buckler`,
+`BucklerSpecial`), two icons (`Shield Buckler`, `Shield Buckler Best`), both meshes registered in
+*both* player composites so either sex could wear one, and **no item, no can, no script mention of
+the word anywhere in the game**. The game ships Small, Medium and Large; a buckler would have been
+the fourth. This is not a repair -- it needs an item authored, stats chosen against the three that
+exist, a pool decided and a placement. Treat it as a design item, not a wiring item.
+
+Worth noting what it already has that the magic-weapon work in 0.89.0 had to build by hand: the
+composite registration. A missing registry name renders nothing at all, silently, and the buckler's
+is already there.
+
+#### The buckler, designed
+
+A fourth rung on the same ladder is the least interesting thing to do with it. The three shields are
+**one** design -- flat mitigation, AC and crushing/piercing/slashing resistance climbing together,
+paid for with escalating Unarmed and casting penalties:
+
+| | AC | C/P/S resist | magic speed | Unarmed | enc | value |
+|---|---|---|---|---|---|---|
+| Small | +2 | 3/3/3 | -- | -5 | 3 | 2 |
+| Medium | +4 | 5/5/5 | -0.03 | -10 | 5 | 5 |
+| Large | +7 | 15/10/10 | -0.08 | -15 | 10 | 15 |
+
+A buckler is not a smaller wall. Historically it is a fist shield strapped to the forearm, used to
+parry and to punch, which is the opposite proposition: it mitigates nothing and improves the fight.
+
+**The proposed line:**
+
+| | AC | C/P/S resist | Unarmed | crit chance | enc | value |
+|---|---|---|---|---|---|---|
+| **Buckler** | +1 | **none** | **+4** | **+2** | 1 | 1 |
+
+**+4 Unarmed is the identity, and it completes a set with exactly one gap.** Seventeen things in the
+game modify the Unarmed skill -- the Monk belt at +10, the Weng Choi perk at +20, TRUE CROSS at +10,
+Dervish of the Crescent at +5, Gauntlets of La Mancha at +4, Feral Power and Wyrm at +4, Brawler and
+Drunken Boxing and Dark Majesty at +3 -- plus three rings and belts driving
+`Unarmed Damage Multiplier`. An unarmed build has gear for every slot **except the off-hand**,
+because all four shields penalise it: -5, -10, -15, and the Lion Shield -10. +4 matches
+`Gauntlets of La Mancha`, the closest comparable and itself an unarmed item.
+
+It is also proven to do work rather than being a cosmetic skill number:
+`UnarmedDamageMinimum` and `UnarmedDamageMaximum` both read `Skills/Fighting/Unarmed`, and
+`UnarmedDamage` composes those with `MeleeDamage` and the multiplier. +4 raises the floor and the
+ceiling of unarmed damage.
+
+**+2 crit, and the reason it is not +5.** `CriticalChance` reads:
+
+    Luck + IF (Bow equipped OR Crossbow equipped)
+             THEN Ranged skill (50..300 scaled to 1..10) + Perception band (0..4)
+             ELSE 0
+
+Luck is added **unconditionally**, so crit is live for melee and unarmed characters and a flat
+modifier stacks on top whatever is equipped -- `Blade of Berserker` and `Sacred Scimitar` are not
+broken. But that also means a melee character's *entire* crit chance is their Luck, and the
+Perception bands in that expression top out at 12, so Luck sits somewhere around 5 to 10. **+5 would
+roughly double it**, which makes the buckler a major offensive item competing hard with Shield Small
+for every melee build. +2 is a real 20 to 40 per cent relative gain and nowhere near a reason to drop
+a shield you wanted.
+
+**+1 AC is for legibility, not power.** A shield-slot item with zero armour value reads as broken to
+a player who picks it up. +1 sits below Small's +2 and changes no comparison.
+
+**The balance exposure is close to nil**, which is the strongest argument for this version over the
+two I tried first. At +1 AC and no resistance, no armed build has a reason to take it over a real
+shield, so it never competes. An unarmed character currently carries **nothing** in that hand, so for
+them it is an upgrade from empty. Nothing existing needs re-tuning.
+
+**Higher tiers, as the other shields have them.** Magic bucklers draw from a new
+`Shield BUCKLER Additions` group, 12 copies of the shield additions, exactly as the game already
+triplicates them for Small, Medium and Large:
+
+| grade | additions | mesh it names | icon |
+|---|---|---|---|
+| Basic | Armor Class Bonus, Electrical / Fire / Poison Absorbtion | none, keeps `Buckler` | `Shield Buckler` |
+| Better | Arrow Deflector, Cold Dragon, Fire Lizard, Mana Well | **none** -- no Better art exists | `Shield Buckler` |
+| Special | Charismatic Totem, Crushing Defiance, Metal Skill, Slashing Defiance | `BucklerSpecial` | `Shield Buckler Best` |
+
+The missing Better tier is the **Scimitar case from 0.89.0**, where a weapon had art at one grade
+only, and the nested no-visual pool pattern for it is already built and shipped. A tier reusing the
+grade below it for its icon is also shipped practice: the plain Long Bow's Better icon is the base
+`Bow`.
+
+Two things a copy must repoint, both established by 0.89.0: each addition's
+`CInventoryAdditionsNamedExpressionExpression` self-references, of which `Cold Dragon`, `Fire Lizard`
+and `Metal Skill` carry three each; and the **`Fire Absorbtion` and `Fire Lizard` mutual exclusion**,
+which must point at the copied siblings or it silently stops firing -- the Composite Long Bow case.
+
+**Placement, and the lever is not the obvious one.** Measured references:
+
+| can | referenced by | what it reaches |
+|---|---|---|
+| `All Shields` | **69 places** | chests and drops across the whole game |
+| `All Armor and Shields` | **28 places** | including ten merchants: the Blacksmith, Pierre, Aidan, Alvaro, Mauldo, the Traveling Merchant |
+| `Shield Mojo Begin Standard` | **1** | `Simon.zax` |
+| `Shield Mojo Low Standard` | **1** | `Small Trinkets.can` |
+
+The Mojo tiers look like the natural home and are almost unreferenced, so adding the buckler there
+would do close to nothing. **Put it in `All Armor and Shields` only.** That reaches ten merchants, so
+a player building unarmed can reliably *buy* one, which matters far more for a build-specific item
+than appearing in drops. It leaves the 69-place `All Shields` path untouched, so no chest or drop
+anywhere in the game has its shield mix diluted.
+
+**One asset is genuinely missing.** The three shields each have three ground sprites -- base, BETTER
+and SPECIAL. The buckler has none, so it would reuse `Shield_Small_PU`. That is the only visibly
+unfinished part of the whole item, and the only place a player could notice the seam.
+
+**Roughly 15 files:** one item, one addition group, twelve addition copies, one can edit.
+
+**The first QA row is the one thing the files cannot answer.** `Unarmed.InventoryItem` carries **no
+plugins at all**, so unarmed damage is entirely engine-side and nothing in the data says whether that
+path consults `CriticalChance`. So: does an unarmed attack crit? If yes, the buckler gives an unarmed
+build damage and crit while giving an armed one crit alone, which is the intended shape. If no, the
++2 is for armed builds only and the write-up should say so rather than implying a benefit that does
+not land. The Playtest Kit can settle it in five minutes with a granted buckler and a fists-only
+character.
+
+#### Who was Bjon
+
+Worth its own note, because the answer is "nobody, as far as the game is concerned", and that took
+some proving.
+
+The name survives in exactly one place: the filename of a 24x30 ground-pickup sprite, plus the
+sprite's own self-name inside the file. Every byte of every entry in `data.dat` was searched for
+Bjon, Bjorn, Bjarn and Bjon-with-an-umlaut, binaries included; all 22 content matches were
+coincidental byte runs inside compressed pixel and audio data -- `BJONG` inside a tree texture,
+`BjOn` inside a forest ambience track. No dialogue, map, can, item, voiceover or texture retains him.
+
+**The obvious alternative was tested and failed.** If "Bjon" were an early name for the war hammer
+that did ship -- the one the Bounty Hunter Sword Everlasting confusingly uses -- this would be a
+renamed asset rather than a lost character. It is not: `HammerBjon_PU` is 24x30 and
+`WarHammerPain_PU` is 49x31. Different art.
+
+**What does speak is the convention.** In `Special Items`, every owner-named pickup belongs to
+someone real: `EstebanDagger_PU` to Guard Esteban, `FelgnashSword_PU` to Felgnash, `KhansSword_PU`
+to Kublai Khan, `PolosBoots_PU` to Marco Polo, `ShakespearesMuse_PU` to Shakespeare, `ArmRod_PU` to
+Cortez. `HammerBjon_PU` is the only owner-named pickup in that folder with no character behind it.
+The pattern is "a named NPC's signature possession, which you can pick up", so Bjon was a named
+character carrying a hammer, cut early enough that the sprite outlived every other trace of him.
+
+Past that, only the name. "Bjon" reads Scandinavian, a variant of Bjorn, "bear" -- which in a cast
+that already includes Shakespeare, Da Vinci, Cortez and Kublai Khan would fit a Norse figure on the
+historical guest list. **That is a guess about a name and nothing more**, recorded so the next person
+does not spend the same hour on it. There is no thread here to restore, only a sprite and a
+convention.
+
+### Suggested order
+
+**All done except item 5**, which stays a lead rather than work.
+
+1. **Nightshade Root.** Ours, unambiguous, and currently indistinguishable from Darkwood in the
+   inventory. One field.
+2. **The two rods.** Two fields, the sibling precedent is already ours, the art is named for the
+   items. No judgement required.
+3. **Amulet of Dour Tidings.** One field, art named for the item, and it currently shares an icon
+   with eight other amulets so the gain is visible.
+4. **Gauntlets of La Mancha.** One field, inferred rather than matched. Say so in the notes.
+5. **Esteban's dagger and the Tregethia scroll** as leads rather than work. Esteban is the only one
+   attached to a character who exists. Bjon is written up above and is closed, not open.
+6. **The buckler**, if and only if a fourth shield is wanted. Everything except the item exists.
+
+Steps 1 to 4 are five files and a changelog row. A `WM`-style QA row for each is just "look at it in
+the inventory", because a wrong icon path renders blank rather than wrong -- which is also the
+failure mode to watch for, and the reason to check all four in the built archive before shipping.
