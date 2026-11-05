@@ -14,9 +14,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import lhbuild
 from lhbuild import FX
+from slide_rhythm_companions import BATCH_1
 
 SLIDES = "Resources/Levels/8 Alamut/Dialog/Fixt Ending Slides.DialogTree"
-DOC = Path(__file__).resolve().parent.parent / "docs" / "ending-slides.md"
+DOCS = [Path(__file__).resolve().parent.parent / "docs" / n for n in ("ending-slides.md", "companion-endings.md")]
 
 OPENING = "The Knights Templar came out of the siege with their chapter houses standing and their numbers halved. "
 KNELT = "Within the year Lord Javier swore the order to the power he had called his benefactor. "
@@ -169,7 +170,7 @@ REMAINDER = {
         "badly, and she never once corrected them."),
 }
 
-BATCHES = [TEMPLAR, SALADIN, WIELDER, HORDE, REMAINDER]
+BATCHES = [TEMPLAR, SALADIN, WIELDER, HORDE, REMAINDER, BATCH_1]
 
 
 def apply_tree(batch):
@@ -182,15 +183,17 @@ def apply_tree(batch):
 
 
 def apply_doc(batch):
-    raw = DOC.read_bytes().decode("utf8")
-    nl = "\r\n" if "\r\n" in raw else "\n"
-    t = raw.replace(nl, "\n")
     for nid, text in batch.items():
-        t, n = re.subn(r"(    node id: " + re.escape(nid) + r"\n\n)(?:[^\n]+\n)+",
-                       lambda m: m.group(1) + textwrap.fill(text, 100, break_long_words=False, break_on_hyphens=False) + "\n",
-                       t)
-        assert n == 1, nid
-    DOC.write_bytes(t.replace("\n", nl).encode("utf8"))
+        hits = 0
+        for doc in DOCS:
+            raw = doc.read_bytes().decode("utf8")
+            nl = "\r\n" if "\r\n" in raw else "\n"
+            t, n = re.subn(r"(    node id: " + re.escape(nid) + r"\n\n)(?:[^\n]+\n)+",
+                           lambda m: m.group(1) + textwrap.fill(text, 100, break_long_words=False, break_on_hyphens=False) + "\n",
+                           raw.replace(nl, "\n"))
+            hits += n
+            doc.write_bytes(t.replace("\n", nl).encode("utf8"))
+        assert hits == 1, nid
 
 
 def main():
