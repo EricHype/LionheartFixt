@@ -6114,6 +6114,13 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK14 | Finish the game, TK11's character | Watch the slides | `900 order inquisition dark`, and not the `killer` slide |
 | TK15 | Finish the game, TK12's character with no faction | Watch the slides | `900 order inquisition broken`, and **not** the no-allegiance slide. Then a Templar killer: broken **and** their own order's slide |
 | TK16 | **Judgement.** Fight him at the level you reach him | Is 260 HP / AC 225 right? Does he feel like the head of the Inquisition, or a tall guard? | The stats are a starting number, and he carries no unique reward. Say what it wants |
+| TK17 | No cult dealings at all, finish the game | Watch the slides | **No** cult slide, and the series carries on. This is the regression: a missing branch here would hang the ending |
+| TK18 | Kill all five without ever meeting Diego, finish the game | - | `900 order cult ended`. If it is absent, the fifth-death write did not run |
+| TK19 | Finish Diego's quest, report to Torquemada, finish the game | - | `900 order cult told` |
+| TK20 | Destroy them **and** kill Torquemada | - | `900 order cult ended dead`, after his own slide |
+| TK21 | Kill Diego for them, finish the game | - | `900 order cult served`, with Diego's `sold` slide in its usual place |
+| TK22 | The same, and kill Torquemada | - | `900 order cult inherited` |
+| TK23 | Kill Diego for them, collect, then kill all five | - | `ended`, **not** `served`. There is no cult left to prosper |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

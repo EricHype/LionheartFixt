@@ -87,7 +87,7 @@ Relay Name=Fixt order epilogue relay
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=900 order inquisition exposer
-Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. Part of that standing was your doing. You walked into the Temple District and told them where La Calle Perdida was, and your directions were good, because you had been inside it as a friend. The Holy Office took the quarter apart over nine days and spent thirty years cataloguing what it found there. The men who did the work were promoted on the strength of your word, the pyres were lit in the plaza where the markets had been, and the cities paid for the wood.
+Text=The Inquisition came out of the siege with its command intact, and the city handed it the rebuilding. Part of that standing was your doing. You told them where La Calle Perdida was, and your directions were good, because you had been inside it as a friend. The Holy Office took the quarter apart in nine days. It spent thirty years cataloguing what it found. The men who did the work were promoted on your word. The pyres were lit in the plaza where the markets had been, and the cities paid for the wood.
 Should Have Voiceover=1
 
 Requirement=!None
@@ -100,7 +100,7 @@ Relay Name=Fixt order epilogue relay
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=900 order inquisition killer
-Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. You had worn its mark and you had killed its own, and the Holy Office is an organisation that keeps careful records of a name entered twice. Its fires burned on through the peace exactly as they had burned through the war, because a frightened city asks its inquisitors for more work rather than less, and the cities paid for the wood without being asked twice. Nothing was ever formally charged against you. But there were four towns between Barcelona and the coast that you never entered again, and you knew all four names.
+Text=The Inquisition came out of the siege with its command intact, and the city handed it the rebuilding. You had worn its mark and you had killed its own. The Holy Office keeps careful records of a name entered twice. Its fires burned on through the peace as they had through the war, because a frightened city asks its inquisitors for more work, not less. The cities paid for the wood. Nothing was ever charged against you. But there were four towns between Barcelona and the coast that you never entered again, and you knew all four names.
 Should Have Voiceover=1
 
 Requirement=!None
@@ -113,7 +113,7 @@ Relay Name=Fixt order epilogue relay
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=900 order inquisition high
-Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. You had risen high in the Holy Office, high enough that the work reached you as paper rather than as duty, and high enough to sign what other men then carried out. Its fires burned on through the peace exactly as they had burned through the war, because a frightened city asks its inquisitors for more work rather than less. The cities paid for the wood. Your signature was on enough of it that the archive eventually gave you a box of your own.
+Text=The Inquisition came out of the siege with its command intact, and the city handed it the rebuilding. You had risen high in the Holy Office, high enough that the work reached you as paper. You signed what other men carried out. Its fires burned on through the peace as they had through the war, because a frightened city asks its inquisitors for more work, not less. The cities paid for the wood. Your signature was on enough of it that the archive gave you a box of your own.
 Should Have Voiceover=1
 
 Requirement=!None
@@ -152,7 +152,72 @@ Relay Name=Fixt order epilogue relay
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=900 order inquisition
-Text=The Inquisition came out of the siege with the most intact command structure left in Barcelona, and the city handed it the rebuilding. You had worn its mark and done its work, and for a few years afterward the mark was worth a good deal more than the work had been. It opened doors in the new Barcelona, and then it went on opening doors you had stopped wanting to walk through. Its fires burned on through the peace exactly as they had burned through the war, and the cities paid for the wood. You stopped wearing the mark somewhere in the third year, and nobody ever came to ask you why.
+Text=The Inquisition came out of the siege with its command intact, and the city handed it the rebuilding. You had worn its mark and done its work. For a few years the mark was worth more than the work had been. It opened doors in the new Barcelona. Then it went on opening doors you no longer wanted to walk through. Its fires burned on through the peace as they had through the war, and the cities paid for the wood. You stopped wearing the mark in the third year. Nobody ever asked you why.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order cult ended
+Text=The Dark Inquisitors did not survive you. You found them on the northern plains and you ended what they were doing there. Their habits were burned where they lay. The shepherds brought their flocks back within the year. Nobody in Barcelona asked what had happened, because nobody in Barcelona wanted the answer. The Holy Office went on saying that such men had never been its own. You knew better. You had seen the habits.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order cult told
+Text=The Dark Inquisitors did not survive you. You found them on the northern plains, you ended them, and you told Torquemada to his face. He paid you and he kept his word. It was never written down. The Holy Office holds no record of the cult, or the habits, or the men who wore them. Within a generation you were the last who knew. He had called it rot from inside the house. The house stayed standing, and nobody ever looked for the rest.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order cult ended dead
+Text=You ended the Dark Inquisitors on the plains, and you ended Torquemada in his own chambers. The Holy Office lost its heretics and its head to the same hand. It could not praise you for the first without naming you for the second. So it did neither. Both entries were struck from the record. In the archive, the two pages sit side by side with nothing written on them.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order cult served
+Text=The Dark Inquisitors paid what they promised. Bishop Diego was dead on the south road, and nobody was left to write letters about them. They grew. Their habits spread from the northern plains to the hill towns, and then to parishes that had never heard the name. Within ten years it was hard to say where the cult stopped and the Holy Office began. Some of them knew your name. They said it the way the faithful say a saint's.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order cult inherited
+Text=The Dark Inquisitors paid you for Bishop Diego. Nobody paid you for Torquemada, though it was the job they wanted most. The Holy Office was still fighting over his chair when they came down from the plains, in good habits, with good letters. There was no honest bishop left to read them. Within a generation the chair was theirs, and few could have said when it changed. The fires had burned low. They burned again, and no city was asked to pay for the wood.
 Should Have Voiceover=1
 
 Requirement=!None

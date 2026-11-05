@@ -12,6 +12,11 @@ form. A voice for these can be anyone's, with no performance to match.
 to six sentences, plain past tense, written to be read aloud at a measured pace. Each one states the
 outcome, then the mechanism, then a concrete particular, then the long view.
 
+**Being rewritten to the game's own rhythm, a group at a time.** Vanilla dialogue averages 10.2 words
+a sentence, with 3% past 25. These slides averaged 21.4, with 36%. The Inquisition and Dark Inquisitor
+slides are done, at about 10 words a sentence and 60 to 100 words a slide. Keep the particulars and
+allow one long sentence where it earns its place, because in several slides the length is the joke.
+
 **Each slide covers three things: status, your impact, near future.** The beats take their values
 from different places, which is what makes the futures differ:
 
@@ -130,50 +135,125 @@ heard.
 
 ## The Inquisition
 
+### when: Dark Inquisitor, a member who killed Torquemada
+
+    node id: 900 order inquisition dark
+
+The Inquisition entered the siege without a head. It came out with several. Torquemada died in his
+own chambers, and the Holy Office recorded it as a fever. The truth was worse: the hand that killed
+him still wore the mark. The cult on the plains had wanted this for years. You did it in an
+afternoon. His successors agreed on nothing, and the fires burned low. Within ten years, some cities
+stopped paying for the wood. No one ever named you. But the archive keeps a box with nothing written
+on it, and its keepers lower their voices.
+
+### when: Breaker of the Hammer, anyone else who killed him
+
+    node id: 900 order inquisition broken
+
+The Inquisition entered the siege without a head. Barcelona would not rebuild under men who could
+not say who led them. Torquemada died in his own chambers, at the hand of someone who owed the Holy
+Office nothing. You walked out past what was left of his guards. His successors fought over his
+chair for years. The fires did not go out, but they burned low. Within ten years, some cities
+stopped paying for the wood. No one in those cities knew your name. The Holy Office did. It kept the
+page open.
+
 ### when: Exposer of Calle Perdida (with or without rank)
 
     node id: 900 order inquisition exposer
 
-The Inquisition came out of the siege with the most intact command structure left in Barcelona, and
-the city handed it the rebuilding. Part of that standing was your doing. You walked into the Temple
-District and told them where La Calle Perdida was, and your directions were good, because you had
-been inside it as a friend. The Holy Office took the quarter apart over nine days and spent thirty
-years cataloguing what it found there. The men who did the work were promoted on the strength of your
-word, the pyres were lit in the plaza where the markets had been, and the cities paid for the wood.
+The Inquisition came out of the siege with its command intact, and the city handed it the
+rebuilding. Part of that standing was your doing. You told them where La Calle Perdida was, and your
+directions were good, because you had been inside it as a friend. The Holy Office took the quarter
+apart in nine days. It spent thirty years cataloguing what it found. The men who did the work were
+promoted on your word. The pyres were lit in the plaza where the markets had been, and the cities
+paid for the wood.
 
 ### when: Inquisition Rank > 0 and Enemy of the Inquisition
 
     node id: 900 order inquisition killer
 
-The Inquisition came out of the siege with the most intact command structure left in Barcelona, and
-the city handed it the rebuilding. You had worn its mark and you had killed its own, and the Holy
-Office is an organisation that keeps careful records of a name entered twice. Its fires burned on
-through the peace exactly as they had burned through the war, because a frightened city asks its
-inquisitors for more work rather than less, and the cities paid for the wood without being asked
-twice. Nothing was ever formally charged against you. But there were four towns between Barcelona and
-the coast that you never entered again, and you knew all four names.
+The Inquisition came out of the siege with its command intact, and the city handed it the
+rebuilding. You had worn its mark and you had killed its own. The Holy Office keeps careful records
+of a name entered twice. Its fires burned on through the peace as they had through the war, because
+a frightened city asks its inquisitors for more work, not less. The cities paid for the wood.
+Nothing was ever charged against you. But there were four towns between Barcelona and the coast that
+you never entered again, and you knew all four names.
 
 ### when: Inquisition Rank > 2
 
     node id: 900 order inquisition high
 
-The Inquisition came out of the siege with the most intact command structure left in Barcelona, and
-the city handed it the rebuilding. You had risen high in the Holy Office, high enough that the work
-reached you as paper rather than as duty, and high enough to sign what other men then carried out.
-Its fires burned on through the peace exactly as they had burned through the war, because a
-frightened city asks its inquisitors for more work rather than less. The cities paid for the wood.
-Your signature was on enough of it that the archive eventually gave you a box of your own.
+The Inquisition came out of the siege with its command intact, and the city handed it the
+rebuilding. You had risen high in the Holy Office, high enough that the work reached you as paper.
+You signed what other men carried out. Its fires burned on through the peace as they had through the
+war, because a frightened city asks its inquisitors for more work, not less. The cities paid for the
+wood. Your signature was on enough of it that the archive gave you a box of your own.
 
 ### when: Inquisition Rank > 0
 
     node id: 900 order inquisition
 
-The Inquisition came out of the siege with the most intact command structure left in Barcelona, and
-the city handed it the rebuilding. You had worn its mark and done its work, and for a few years
-afterward the mark was worth a good deal more than the work had been. It opened doors in the new
-Barcelona, and then it went on opening doors you had stopped wanting to walk through. Its fires
-burned on through the peace exactly as they had burned through the war, and the cities paid for the
-wood. You stopped wearing the mark somewhere in the third year, and nobody ever came to ask you why.
+The Inquisition came out of the siege with its command intact, and the city handed it the
+rebuilding. You had worn its mark and done its work. For a few years the mark was worth more than
+the work had been. It opened doors in the new Barcelona. Then it went on opening doors you no longer
+wanted to walk through. Its fires burned on through the peace as they had through the war, and the
+cities paid for the wood. You stopped wearing the mark in the third year. Nobody ever asked you why.
+
+---
+
+## The Dark Inquisitors
+
+Shown after the Inquisition slide, to anyone who dealt with the cult, whatever their faction.
+A character who did not sees nothing here. Destroyed outranks served.
+
+### when: cult destroyed, and Torquemada dead
+
+    node id: 900 order cult ended dead
+
+You ended the Dark Inquisitors on the plains, and you ended Torquemada in his own chambers. The Holy
+Office lost its heretics and its head to the same hand. It could not praise you for the first
+without naming you for the second. So it did neither. Both entries were struck from the record. In
+the archive, the two pages sit side by side with nothing written on them.
+
+### when: cult destroyed, and reported to Torquemada
+
+    node id: 900 order cult told
+
+The Dark Inquisitors did not survive you. You found them on the northern plains, you ended them, and
+you told Torquemada to his face. He paid you and he kept his word. It was never written down. The
+Holy Office holds no record of the cult, or the habits, or the men who wore them. Within a
+generation you were the last who knew. He had called it rot from inside the house. The house stayed
+standing, and nobody ever looked for the rest.
+
+### when: cult destroyed
+
+    node id: 900 order cult ended
+
+The Dark Inquisitors did not survive you. You found them on the northern plains and you ended what
+they were doing there. Their habits were burned where they lay. The shepherds brought their flocks
+back within the year. Nobody in Barcelona asked what had happened, because nobody in Barcelona
+wanted the answer. The Holy Office went on saying that such men had never been its own. You knew
+better. You had seen the habits.
+
+### when: killed Diego for them, and Torquemada dead
+
+    node id: 900 order cult inherited
+
+The Dark Inquisitors paid you for Bishop Diego. Nobody paid you for Torquemada, though it was the
+job they wanted most. The Holy Office was still fighting over his chair when they came down from the
+plains, in good habits, with good letters. There was no honest bishop left to read them. Within a
+generation the chair was theirs, and few could have said when it changed. The fires had burned low.
+They burned again, and no city was asked to pay for the wood.
+
+### when: killed Diego for them
+
+    node id: 900 order cult served
+
+The Dark Inquisitors paid what they promised. Bishop Diego was dead on the south road, and nobody
+was left to write letters about them. They grew. Their habits spread from the northern plains to the
+hill towns, and then to parishes that had never heard the name. Within ten years it was hard to say
+where the cult stopped and the Holy Office began. Some of them knew your name. They said it the way
+the faithful say a saint's.
 
 ---
 

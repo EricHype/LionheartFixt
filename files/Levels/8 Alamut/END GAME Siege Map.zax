@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=25
+							Item Count=26
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -334,6 +334,225 @@ CLayerSaveData
 											}
 										}
 									}
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Dark Inquisitors Destroyed
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CIfExpressionAction
+								{
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Dark Inquisitor
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order cult ended dead
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order cult ended dead
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Told Torquemada of the Cult
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order cult told
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order cult ended
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+										}
+									}
+								}
+								Else=CIfAction
+								{
+									If=CWasQuestStateActivatedAction
+									{
+										Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+										State=E711FKUT
+									}
+									Then=CIfExpressionAction
+									{
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Dark Inquisitor
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order cult ended dead
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CHasPerkExpression
+											{
+												Perks To Check For=Array
+												{
+													Item Count=1
+													Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order cult ended dead
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CIfExpressionAction
+											{
+												If Expression=CIsGreaterThan
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Told Torquemada of the Cult
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0
+													}
+												}
+												Character to get attributes from=Player1
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order cult told
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order cult ended
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+											}
+										}
+									}
+									Else=CIfAction
+									{
+										If=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/Wilderness/Quests/Eliminate Bishop Diego
+											State=AS4T5BB5
+										}
+										Then=CIfExpressionAction
+										{
+											If Expression=CHasPerkExpression
+											{
+												Perks To Check For=Array
+												{
+													Item Count=1
+													Perk To Check For=Perks/!Event Title Perks/Dark Inquisitor
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order cult inherited
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CIfExpressionAction
+											{
+												If Expression=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+													}
+												}
+												Character to get attributes from=Player1
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order cult inherited
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order cult served
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+											}
+										}
+										Else=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Return failure if the If failes=0
+									}
+									Return failure if the If failes=0
 								}
 							}
 							Action=CIfExpressionAction

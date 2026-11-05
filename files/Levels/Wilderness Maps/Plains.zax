@@ -12937,254 +12937,87 @@ CLayerSaveData
 							Action=
 							Action=
 							Action=
-							Action=CIfAction
+							Action=CMultipleActionsAction
 							{
-								If=CIsQuestStateTheCurrentStateAction
+								Action=Array
 								{
-									Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
-									State=QUUZ5Q1O
-								}
-								Then=CIfAction
-								{
-									If=CCheckExistenceAction
+									Item Count=2
+									Action=CForEachPlayerAction
 									{
-										Name To Check For=Diego is currently your companion
-										Desired Minimum Count=1
-									}
-									Then=CDelayAction
-									{
-										Next Action=CMultipleActionsAction
+										Action=CAddCharacterModifierToCharacterAction
 										{
-											Action=Array
+											Modifier Description=
+											Modification is permanent=0
+											Character to modify=$Instigator
+											Modifiers=Array
 											{
-												Item Count=4
-												Action=CReleaseCompanionAction
+												Item Count=1
+												Modifier=CCharacterModifierDerivedAttribute
 												{
-													Companion To Release=Bishop Diego
-												}
-												Action=CPrintCombatTextAction
-												{
-													Text to print=A companion has left your party
-													Character to show text to=$Instigator
-													Emphasize=0
-													Suppress Duplicates=0
-												}
-												Action=CSendMessageAction
-												{
-													Message=Released Companion
-													Target=Bishop Diego
-												}
-												Action=CAssignTemporaryTaskAction
-												{
-													Target=Bishop Diego
-													Temporary Task AI=CSkeletonAI
+													Modification Amount=CConstant
 													{
-														Marked For Deletion=0
-														Publisher=
-														Patrol AI=CPatrolAreaAI
+														Constant Value=1
+													}
+													Modification amount is a percent=0
+													Allow Accumulation=0
+													Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Dark Inquisitors Destroyed
+												}
+											}
+											OPTIONAL Duration=
+											Expression Context=$Instigator
+										}
+									}
+									Action=CIfAction
+									{
+										If=CIsQuestStateTheCurrentStateAction
+										{
+											Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+											State=QUUZ5Q1O
+										}
+										Then=CIfAction
+										{
+											If=CCheckExistenceAction
+											{
+												Name To Check For=Diego is currently your companion
+												Desired Minimum Count=1
+											}
+											Then=CDelayAction
+											{
+												Next Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=4
+														Action=CReleaseCompanionAction
 														{
-															Marked For Deletion=0
-															Publisher=
-															Radius=200
-															TimeOfLastChangeDirectionDueToCollide=0
-															Moving=CEntityBehaviorMoveToPos
-															{
-																Old Stationary Flag=0
-																Angle To Turn To=0
-																Facing Backwards=0
-																Idle Behavior=CEntityBehaviorIdle
-																{
-																	Num Seconds=1
-																	Seconds Have Transitioned=0
-																	Override Fidget Options=
-																	Current Fidget Data=
-																	Time Until Next Fidget=0
-																	Fidgeting=0
-																}
-																Play Ratio=1
-																Smooth Turning=0
-																Do Path Finding=1
-																Finished=1
-																Failed Last Path=0
-																Idle Begin Called=0
-																Move To Rate=0
-																CurTargetNormalX=0
-																CurTargetNormalY=0
-																Path Finding Params=CWayPointPath
-																{
-																	Start Point=0,0
-																	End Point=0,0
-																	Length=0
-																	Max Dist To Travel=0
-																	Num Failed Paths=0
-																	Max Failed Paths=0
-																	Pos To Move Index=0
-																	Dist So Far=0
-																	Path=
-																}
-																Pos Moving From=0.000000,0.000000
-																Final Dest=0.000000,0.000000
-																Dest Radius=0
-																Cur Dest Move To=0.000000,0.000000
-																Last Neg Dist=0
-																NumTimesLostGound=0
-																Sequence=
-																Planed Path For=
-															}
-															Retry New Point=0
+															Companion To Release=Bishop Diego
 														}
-														Patrol Start Action=
-														Patrol End Action=
-														Respond to calls for reinforcements=1
-														Time Until Next Search For Target=0
-														Target shooter if hit=1
-														Never Unacquire=0
-														Time Since Acquiring Shooter=999
-														Sneak Adjustment=0
-														Target Type=CEntityBehaviorStateSetClosestTarget
+														Action=CPrintCombatTextAction
 														{
-															Max Distance=550
-															Vision Cone=360
-															Name To Target=
-															Must Be Collideable=1
-															Must Have HPs=1
-															Valid Targets=Player
+															Text to print=A companion has left your party
+															Character to show text to=$Instigator
+															Emphasize=0
+															Suppress Duplicates=0
 														}
-														Has Seen Target=0
-														Max dist from home=1200
-														Pursue AI=CChasePursueAI
+														Action=CSendMessageAction
 														{
-															Marked For Deletion=0
-															Publisher=
-															AFloat=CEntityBehaviorMoveToPos
-															{
-																Old Stationary Flag=0
-																Angle To Turn To=0
-																Facing Backwards=0
-																Idle Behavior=CEntityBehaviorIdle
-																{
-																	Num Seconds=1
-																	Seconds Have Transitioned=0
-																	Override Fidget Options=
-																	Current Fidget Data=
-																	Time Until Next Fidget=0
-																	Fidgeting=0
-																}
-																Play Ratio=1
-																Smooth Turning=0
-																Do Path Finding=1
-																Finished=1
-																Failed Last Path=0
-																Idle Begin Called=0
-																Move To Rate=0
-																CurTargetNormalX=0
-																CurTargetNormalY=0
-																Path Finding Params=CWayPointPath
-																{
-																	Start Point=0,0
-																	End Point=0,0
-																	Length=0
-																	Max Dist To Travel=0
-																	Num Failed Paths=0
-																	Max Failed Paths=0
-																	Pos To Move Index=0
-																	Dist So Far=0
-																	Path=
-																}
-																Pos Moving From=0.000000,0.000000
-																Final Dest=0.000000,0.000000
-																Dest Radius=0
-																Cur Dest Move To=0.000000,0.000000
-																Last Neg Dist=0
-																NumTimesLostGound=0
-																Sequence=
-																Planed Path For=
-															}
-															Play Ratio=0
-															Next Try To Move=0
-															Max Radius From Final Pos To Get Within=0
-															Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+															Message=Released Companion
+															Target=Bishop Diego
 														}
-														Pursue Start Action=
-														Pursue End Action=
-														Force Pursue Shooter=2
-														Max distance from home=1000
-														Investigate End Action=
-														Investigate Start Action=
-														Investigate AI=CChaseInvestigateAI
+														Action=CAssignTemporaryTaskAction
 														{
-															Marked For Deletion=0
-															Publisher=
-															AFloat=CEntityBehaviorMoveToPos
-															{
-																Old Stationary Flag=0
-																Angle To Turn To=0
-																Facing Backwards=0
-																Idle Behavior=CEntityBehaviorIdle
-																{
-																	Num Seconds=1
-																	Seconds Have Transitioned=0
-																	Override Fidget Options=
-																	Current Fidget Data=
-																	Time Until Next Fidget=0
-																	Fidgeting=0
-																}
-																Play Ratio=1
-																Smooth Turning=0
-																Do Path Finding=1
-																Finished=1
-																Failed Last Path=0
-																Idle Begin Called=0
-																Move To Rate=0
-																CurTargetNormalX=0
-																CurTargetNormalY=0
-																Path Finding Params=CWayPointPath
-																{
-																	Start Point=0,0
-																	End Point=0,0
-																	Length=0
-																	Max Dist To Travel=0
-																	Num Failed Paths=0
-																	Max Failed Paths=0
-																	Pos To Move Index=0
-																	Dist So Far=0
-																	Path=
-																}
-																Pos Moving From=0.000000,0.000000
-																Final Dest=0.000000,0.000000
-																Dest Radius=0
-																Cur Dest Move To=0.000000,0.000000
-																Last Neg Dist=0
-																NumTimesLostGound=0
-																Sequence=
-																Planed Path For=
-															}
-															Turn Behavior=CEntityBehaviorTurnToAngle
-															{
-																Old Stationary Flag=0
-																Angle To Turn To=0
-																Facing Backwards=0
-															}
-															Play Ratio=0
-															Next Try To Move=0
-															Time To Investigate=5
-															Count To Investigate=0
-															Radius to Investigate Point=0
-															Run To Investigate=1
-															State=Chasing
-															Investigate AI=CScanInvestigateAI
+															Target=Bishop Diego
+															Temporary Task AI=CSkeletonAI
 															{
 																Marked For Deletion=0
 																Publisher=
-																AI=CScanAreaAI
+																Patrol AI=CPatrolAreaAI
 																{
 																	Marked For Deletion=0
 																	Publisher=
-																	Play Ratio=0
-																	Next Try To Move=0
-																	State=Scanning
-																	Go Home Range=300
-																	Move To Behavior=CEntityBehaviorMoveToPos
+																	Radius=200
+																	TimeOfLastChangeDirectionDueToCollide=0
+																	Moving=CEntityBehaviorMoveToPos
 																	{
 																		Old Stationary Flag=0
 																		Angle To Turn To=0
@@ -13228,218 +13061,417 @@ CLayerSaveData
 																		Sequence=
 																		Planed Path For=
 																	}
-																	Starting Angle=-45
-																	Ending Angle=45
-																	Turning Speed=10
-																	Time Between Turning=0
-																	Start Out Waiting=0
-																	Start Counterclockwise=0
-																	Turning Flag=0
-																	Turn Sequence Name=Idle
-																	End Turn Action=
-																	Execute Each Turn=0
-																	Reset Each Begin=1
-																	Current Time To Wait=0
-																	Current Start Angle=0
-																	Current End Angle=0
-																	Waiting=1
-																	Starting Facing Angle=-999
-																	Complete Turn Time=0
-																	Current Turn Time=0
-																	Idle Behavior=CEntityBehaviorIdle
+																	Retry New Point=0
+																}
+																Patrol Start Action=
+																Patrol End Action=
+																Respond to calls for reinforcements=1
+																Time Until Next Search For Target=0
+																Target shooter if hit=1
+																Never Unacquire=0
+																Time Since Acquiring Shooter=999
+																Sneak Adjustment=0
+																Target Type=CEntityBehaviorStateSetClosestTarget
+																{
+																	Max Distance=550
+																	Vision Cone=360
+																	Name To Target=
+																	Must Be Collideable=1
+																	Must Have HPs=1
+																	Valid Targets=Player
+																}
+																Has Seen Target=0
+																Max dist from home=1200
+																Pursue AI=CChasePursueAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	AFloat=CEntityBehaviorMoveToPos
 																	{
-																		Num Seconds=1
-																		Seconds Have Transitioned=0
-																		Override Fidget Options=
-																		Current Fidget Data=
-																		Time Until Next Fidget=0
-																		Fidgeting=0
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=
+																		Planed Path For=
+																	}
+																	Play Ratio=0
+																	Next Try To Move=0
+																	Max Radius From Final Pos To Get Within=0
+																	Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+																}
+																Pursue Start Action=
+																Pursue End Action=
+																Force Pursue Shooter=2
+																Max distance from home=1000
+																Investigate End Action=
+																Investigate Start Action=
+																Investigate AI=CChaseInvestigateAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	AFloat=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=
+																		Planed Path For=
+																	}
+																	Turn Behavior=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Play Ratio=0
+																	Next Try To Move=0
+																	Time To Investigate=5
+																	Count To Investigate=0
+																	Radius to Investigate Point=0
+																	Run To Investigate=1
+																	State=Chasing
+																	Investigate AI=CScanInvestigateAI
+																	{
+																		Marked For Deletion=0
+																		Publisher=
+																		AI=CScanAreaAI
+																		{
+																			Marked For Deletion=0
+																			Publisher=
+																			Play Ratio=0
+																			Next Try To Move=0
+																			State=Scanning
+																			Go Home Range=300
+																			Move To Behavior=CEntityBehaviorMoveToPos
+																			{
+																				Old Stationary Flag=0
+																				Angle To Turn To=0
+																				Facing Backwards=0
+																				Idle Behavior=CEntityBehaviorIdle
+																				{
+																					Num Seconds=1
+																					Seconds Have Transitioned=0
+																					Override Fidget Options=
+																					Current Fidget Data=
+																					Time Until Next Fidget=0
+																					Fidgeting=0
+																				}
+																				Play Ratio=1
+																				Smooth Turning=0
+																				Do Path Finding=1
+																				Finished=1
+																				Failed Last Path=0
+																				Idle Begin Called=0
+																				Move To Rate=0
+																				CurTargetNormalX=0
+																				CurTargetNormalY=0
+																				Path Finding Params=CWayPointPath
+																				{
+																					Start Point=0,0
+																					End Point=0,0
+																					Length=0
+																					Max Dist To Travel=0
+																					Num Failed Paths=0
+																					Max Failed Paths=0
+																					Pos To Move Index=0
+																					Dist So Far=0
+																					Path=
+																				}
+																				Pos Moving From=0.000000,0.000000
+																				Final Dest=0.000000,0.000000
+																				Dest Radius=0
+																				Cur Dest Move To=0.000000,0.000000
+																				Last Neg Dist=0
+																				NumTimesLostGound=0
+																				Sequence=
+																				Planed Path For=
+																			}
+																			Starting Angle=-45
+																			Ending Angle=45
+																			Turning Speed=10
+																			Time Between Turning=0
+																			Start Out Waiting=0
+																			Start Counterclockwise=0
+																			Turning Flag=0
+																			Turn Sequence Name=Idle
+																			End Turn Action=
+																			Execute Each Turn=0
+																			Reset Each Begin=1
+																			Current Time To Wait=0
+																			Current Start Angle=0
+																			Current End Angle=0
+																			Waiting=1
+																			Starting Facing Angle=-999
+																			Complete Turn Time=0
+																			Current Turn Time=0
+																			Idle Behavior=CEntityBehaviorIdle
+																			{
+																				Num Seconds=1
+																				Seconds Have Transitioned=0
+																				Override Fidget Options=
+																				Current Fidget Data=
+																				Time Until Next Fidget=0
+																				Fidgeting=0
+																			}
+																		}
 																	}
 																}
-															}
-														}
-														Max Dist=100
-														Attack AI=
-														Attack Start Action=
-														Attack End Action=
-														Check Range When Firing=0
-														Ignore line of sight if in range=0
-														Retreat when=0
-														Retreat Start Action=
-														Has Started Retreat=0
-														State=Any
-														Allowed To Roam Anywhere=0
-														Transition=Array
-														{
-															Array Count=1
-															Array Item=CSkeletonTransition
-															{
-																Trigger=Every Time
-																From State=Any
-																To State=Attack
-																Action=CMultipleActionsAction
+																Max Dist=100
+																Attack AI=
+																Attack Start Action=
+																Attack End Action=
+																Check Range When Firing=0
+																Ignore line of sight if in range=0
+																Retreat when=0
+																Retreat Start Action=
+																Has Started Retreat=0
+																State=Any
+																Allowed To Roam Anywhere=0
+																Transition=Array
 																{
-																	Action=Array
+																	Array Count=1
+																	Array Item=CSkeletonTransition
 																	{
-																		Item Count=9
-																		Action=CBeginNonInteractiveSequenceAction
+																		Trigger=Every Time
+																		From State=Any
+																		To State=Attack
+																		Action=CMultipleActionsAction
 																		{
-																			Options=CNonInteractiveSequence
+																			Action=Array
 																			{
-																				Pause Characters=1
-																				Disable Player Controls=1
-																				Can Fast Forward=1
-																			}
-																		}
-																		Action=CSetTargetTypeAction
-																		{
-																			Entity Name=$Trigger
-																			Name To Target=
-																			Valid Targets=
-																		}
-																		Action=CSetQuestSatusToCompletedAction
-																		{
-																			Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
-																		}
-																		Action=CGiveExperiencePointsToAllPlayersAction
-																		{
-																			Get XP Frome=Kill Rogue Inquisitors for Bishop Diego XP
-																			Experience Points To Add=1
-																		}
-																		Action=CActionGiveStandardInventoryItem
-																		{
-																			Who to give to=$instigator
-																			Delete Trigger=0
-																			Notify Player=1
-																			Inventory Item To Give=Inventory Items/Potion
-																			Additions to add=Array
-																			{
-																				Item Count=1
-																				Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Extra Healing
-																			}
-																		}
-																		Action=CActionGiveStandardInventoryItem
-																		{
-																			Who to give to=$instigator
-																			Delete Trigger=0
-																			Notify Player=1
-																			Inventory Item To Give=Inventory Items/Potion
-																			Additions to add=Array
-																			{
-																				Item Count=1
-																				Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Mana Recharge
-																			}
-																		}
-																		Action=CGiveMoneyToAllPlayersAction
-																		{
-																			Value to give=100
-																		}
-																		Action=CAddCharacterModifierToCharacterAction
-																		{
-																			Modifier Description=
-																			Modification is permanent=1
-																			Character to modify=$Instigator
-																			Modifiers=Array
-																			{
-																				Item Count=1
-																				Modifier=CCharacterModifierDerivedAttribute
+																				Item Count=9
+																				Action=CBeginNonInteractiveSequenceAction
 																				{
-																					Modification Amount=CConstant
+																					Options=CNonInteractiveSequence
 																					{
-																						Constant Value=100
+																						Pause Characters=1
+																						Disable Player Controls=1
+																						Can Fast Forward=1
 																					}
-																					Modification amount is a percent=0
-																					Allow Accumulation=1
-																					Derived character attribute to modify=Derived Character Attributes/Karma
 																				}
-																			}
-																			OPTIONAL Duration=
-																			Expression Context=$Instigator
-																		}
-																		Action=CDisplayDialogBalloonAction
-																		{
-																			Dialog Tree File=Levels/Wilderness/Dialog/Diego
-																			Node ID=150 Congratulations
-																			Name of Position=$Trigger
-																			Position Offset=0.000000,-75.000000
-																			After Action=CMultipleActionsAction
-																			{
-																				Action=Array
+																				Action=CSetTargetTypeAction
 																				{
-																					Item Count=2
-																					Action=CFadeScreenDownAction
+																					Entity Name=$Trigger
+																					Name To Target=
+																					Valid Targets=
+																				}
+																				Action=CSetQuestSatusToCompletedAction
+																				{
+																					Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+																				}
+																				Action=CGiveExperiencePointsToAllPlayersAction
+																				{
+																					Get XP Frome=Kill Rogue Inquisitors for Bishop Diego XP
+																					Experience Points To Add=1
+																				}
+																				Action=CActionGiveStandardInventoryItem
+																				{
+																					Who to give to=$instigator
+																					Delete Trigger=0
+																					Notify Player=1
+																					Inventory Item To Give=Inventory Items/Potion
+																					Additions to add=Array
 																					{
-																						Time Until Auto Fade Up=2
+																						Item Count=1
+																						Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Extra Healing
 																					}
-																					Action=CDelayAction
+																				}
+																				Action=CActionGiveStandardInventoryItem
+																				{
+																					Who to give to=$instigator
+																					Delete Trigger=0
+																					Notify Player=1
+																					Inventory Item To Give=Inventory Items/Potion
+																					Additions to add=Array
 																					{
-																						Next Action=CMultipleActionsAction
+																						Item Count=1
+																						Addition to add=Inventory/Inventory Additions/Miscellaneous/Potions/Mana Recharge
+																					}
+																				}
+																				Action=CGiveMoneyToAllPlayersAction
+																				{
+																					Value to give=100
+																				}
+																				Action=CAddCharacterModifierToCharacterAction
+																				{
+																					Modifier Description=
+																					Modification is permanent=1
+																					Character to modify=$Instigator
+																					Modifiers=Array
+																					{
+																						Item Count=1
+																						Modifier=CCharacterModifierDerivedAttribute
 																						{
-																							Action=Array
+																							Modification Amount=CConstant
 																							{
-																								Item Count=2
-																								Action=CEndNonInteractiveSequenceAction
+																								Constant Value=100
+																							}
+																							Modification amount is a percent=0
+																							Allow Accumulation=1
+																							Derived character attribute to modify=Derived Character Attributes/Karma
+																						}
+																					}
+																					OPTIONAL Duration=
+																					Expression Context=$Instigator
+																				}
+																				Action=CDisplayDialogBalloonAction
+																				{
+																					Dialog Tree File=Levels/Wilderness/Dialog/Diego
+																					Node ID=150 Congratulations
+																					Name of Position=$Trigger
+																					Position Offset=0.000000,-75.000000
+																					After Action=CMultipleActionsAction
+																					{
+																						Action=Array
+																						{
+																							Item Count=2
+																							Action=CFadeScreenDownAction
+																							{
+																								Time Until Auto Fade Up=2
+																							}
+																							Action=CDelayAction
+																							{
+																								Next Action=CMultipleActionsAction
 																								{
+																									Action=Array
+																									{
+																										Item Count=2
+																										Action=CEndNonInteractiveSequenceAction
+																										{
+																										}
+																										Action=CDeleteAction
+																										{
+																											Target Name=$Trigger
+																										}
+																									}
 																								}
-																								Action=CDeleteAction
-																								{
-																									Target Name=$Trigger
-																								}
+																								Delay=1
+																								Plus or Minus=0
+																								Forget Trigger=0
 																							}
 																						}
-																						Delay=1
-																						Plus or Minus=0
-																						Forget Trigger=0
 																					}
+																					Include In Log=1
 																				}
 																			}
-																			Include In Log=1
 																		}
+																		IsDone=0
 																	}
 																}
-																IsDone=0
 															}
+															Original AI Type=CSkeletonAI
+															Completion Message to wait for=AI Done
+															Suppress can't assign error=0
 														}
 													}
-													Original AI Type=CSkeletonAI
-													Completion Message to wait for=AI Done
-													Suppress can't assign error=0
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Else=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CActivateQuestStateAction
+													{
+														Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
+														State=E711FKUT
+													}
+													Action=CActivateAction
+													{
+														Target Name=All Rogue Inquisitors killed
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
 												}
 											}
+											Return failure if the If failes=0
 										}
-										Delay=1
-										Plus or Minus=0
-										Forget Trigger=0
-									}
-									Else=CMultipleActionsAction
-									{
-										Action=Array
+										Else=CActivateAction
 										{
-											Item Count=2
-											Action=CActivateQuestStateAction
-											{
-												Quest=Levels/Wilderness/Quests/Bring the Rogue Inquisitors to Justice
-												State=E711FKUT
-											}
-											Action=CActivateAction
-											{
-												Target Name=All Rogue Inquisitors killed
-												Play Activate Sound=0
-												Delay Between Activations=0
-												Warp Behavior=
-											}
+											Target Name=All Rogue Inquisitors killed
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
 										}
+										Return failure if the If failes=0
 									}
-									Return failure if the If failes=0
 								}
-								Else=CActivateAction
-								{
-									Target Name=All Rogue Inquisitors killed
-									Play Activate Sound=0
-									Delay Between Activations=0
-									Warp Behavior=
-								}
-								Return failure if the If failes=0
 							}
 						}
 						When Done=Repeat Series

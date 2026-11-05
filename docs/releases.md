@@ -225,6 +225,26 @@ Both are written to the game's rhythm rather than the slides'. Vanilla dialogue 
 sentence and 3% run past 25, and the existing slides, pitched at New Vegas in 0.71.0, average 21.4 and
 36%. These two average about 10, so they sit shorter than their siblings until those are rewritten.
 
+### What you did about the cult now shows
+
+The cult on the plains was a real choice with nothing at the end of it: Diego's slide reported it, and
+the Inquisition's own ending never heard of them. A slide now follows the Inquisition's, for anyone who
+dealt with them, whatever their faction.
+
+| what you did | slide |
+|---|---|
+| destroyed them, Torquemada dead | `900 order cult ended dead` -- the Holy Office lost its heretics and its head to one hand |
+| destroyed them and told Torquemada | `900 order cult told` -- *"It will not be written down"*, and it was not |
+| destroyed them | `900 order cult ended` |
+| killed Diego for them | `900 order cult served` -- the cult prospers inside the order |
+| the same, Torquemada dead | `900 order cult inherited` -- they take his chair |
+
+Destroyed outranks served, because taking their money and then killing them leaves no cult to prosper.
+That needed a new variable, written by the relay all five report to, since `E711FKUT` only fires for
+the quest. A second records the report to Torquemada, whose marker sits in a map that has expired by the
+end. The Inquisition's four older slides are rewritten to the game's rhythm with their particulars
+intact. The `inherited` slide lets the fires burn again, which the two new slides say had burned low.
+
 ### Known limits
 
 - **Nobody reacts.** Raphael and the Inquisition guards behave as before once it is over, and no member
@@ -235,7 +255,7 @@ sentence and 3% run past 25, and the existing slides, pitched at New Vegas in 0.
   at this point in the game. Guards are the Generic can, AC 75 / HP 60.
 - **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
 
-`TK1`-`TK16` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+`TK1`-`TK23` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
 practice means a new game or a very early save.
 
 ---
