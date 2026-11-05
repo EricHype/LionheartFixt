@@ -319,6 +319,69 @@ were on it. In sixty years the list did not get any longer.
 
 ---
 
+## The two forks of the Order of Saladin
+
+Shown after the Saladin slide. Amir's second task is the Shard or the Scimitar, and Kabool's trial is
+intellect or strength. A member with neither perk sees nothing here.
+
+### when: Shard, intellect
+
+    node id: 900 order saladin shard scholar
+
+You brought the Shard of Dreams out of the slavers' lair and put it in Amir's hands. Then Kabool
+offered you the blade or your wits, and you chose your wits. He named you Scholar of the Crescent, a
+great honor among the people of the east. The order has told that story for sixty years. It has
+never once told it as a fight.
+
+### when: Shard, strength
+
+    node id: 900 order saladin shard dervish
+
+You brought the Shard of Dreams out of the slavers' lair and put it in Amir's hands. Then Kabool
+offered you the blade or your wits, and you took the blade. You walked out of the Trial of Dreams
+with a Sacred Scimitar, forged in the image of Saladin's own. The order still teaches its novices
+how you fought. Few of them ever manage it.
+
+### when: Scimitar, intellect
+
+    node id: 900 order saladin scimitar scholar
+
+Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back,
+and Amir handed it to you again. Then Kabool offered you the blade or your wits, and you chose your
+wits, with the blade at your side the whole time. He named you Scholar of the Crescent. The order
+found that very funny. Later it found it wise.
+
+### when: Scimitar, strength
+
+    node id: 900 order saladin scimitar dervish
+
+Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back,
+and Amir handed it to you again. You took it into the Trial of Dreams and you won. Kabool said a
+second blade would be no gift, and he closed his hand around yours. When he opened it the steel was
+burning. It did not stop. The order still asks what became of it.
+
+### when: Scimitar, intellect, and the Shard brought back unasked
+
+    node id: 900 order saladin scimitar scholar unasked
+
+Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back,
+and Amir handed it to you again. Then Kabool offered you the blade or your wits, and you chose your
+wits, with the blade at your side the whole time. He named you Scholar of the Crescent. The order
+found that very funny. Later it found it wise. You brought him the Shard anyway, and he paid you for
+it, because the order does not take a sacred thing as a gift.
+
+### when: Scimitar, strength, and the Shard brought back unasked
+
+    node id: 900 order saladin scimitar dervish unasked
+
+Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back,
+and Amir handed it to you again. You took it into the Trial of Dreams and you won. Kabool said a
+second blade would be no gift, and he closed his hand around yours. When he opened it the steel was
+burning. It did not stop. The order still asks what became of it. You brought him the Shard anyway,
+and he paid you for it, because the order does not take a sacred thing as a gift.
+
+---
+
 ## The Wielders
 
 Three fates, not one. The city survives, is raided, or is destroyed by your own hand.

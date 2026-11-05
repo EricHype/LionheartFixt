@@ -6125,6 +6125,10 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK25 | Templar, take the Aegis from Sir Roger, finish the game | - | `900 order templar aegis`. Check the handover scene still exits through `10 accept` and gives you control back |
 | TK26 | Templar who passed through the Crypt or killed Jehanne, finish the game | - | **No** shield slide, and the series carries on |
 | TK27 | Non-Templar who freed the knights, finish the game | - | **No** shield slide. Jehanne's `released` slide is theirs |
+| TK28 | Knight of Saladin, Shard route, riddles, finish the game | - | `900 order saladin shard scholar`, straight after the Saladin slide. Then combat instead: `shard dervish` |
+| TK29 | Scimitar route, riddles, finish the game | - | `900 order saladin scimitar scholar`. Then combat instead: `scimitar dervish`, the burning blade |
+| TK30 | Scimitar route, hand Amir the Shard unasked, finish the game | - | The `unasked` version, with the closing line about the coin. Also check the scene itself still ends normally |
+| TK31 | Not a Knight of Saladin, finish the game | - | **No** slide here, and the series carries on |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

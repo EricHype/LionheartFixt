@@ -2860,6 +2860,28 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=<Take the coin. Arguing would be worse.>
 Go to node ID=
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Shard Returned Unasked
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 Icon=Exit Icon
 Is Default Reply=1
 }

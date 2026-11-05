@@ -294,6 +294,84 @@ Relay Name=Fixt order epilogue relay
 }
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=900 order saladin shard scholar
+Text=You brought the Shard of Dreams out of the slavers' lair and put it in Amir's hands. Then Kabool offered you the blade or your wits, and you chose your wits. He named you Scholar of the Crescent, a great honor among the people of the east. The order has told that story for sixty years. It has never once told it as a fight.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin shard dervish
+Text=You brought the Shard of Dreams out of the slavers' lair and put it in Amir's hands. Then Kabool offered you the blade or your wits, and you took the blade. You walked out of the Trial of Dreams with a Sacred Scimitar, forged in the image of Saladin's own. The order still teaches its novices how you fought. Few of them ever manage it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin scimitar scholar
+Text=Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back, and Amir handed it to you again. Then Kabool offered you the blade or your wits, and you chose your wits, with the blade at your side the whole time. He named you Scholar of the Crescent. The order found that very funny. Later it found it wise.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin scimitar dervish
+Text=Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back, and Amir handed it to you again. You took it into the Trial of Dreams and you won. Kabool said a second blade would be no gift, and he closed his hand around yours. When he opened it the steel was burning. It did not stop. The order still asks what became of it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin scimitar scholar unasked
+Text=Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back, and Amir handed it to you again. Then Kabool offered you the blade or your wits, and you chose your wits, with the blade at your side the whole time. He named you Scholar of the Crescent. The order found that very funny. Later it found it wise. You brought him the Shard anyway, and he paid you for it, because the order does not take a sacred thing as a gift.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order saladin scimitar dervish unasked
+Text=Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back, and Amir handed it to you again. You took it into the Trial of Dreams and you won. Kabool said a second blade would be no gift, and he closed his hand around yours. When he opened it the steel was burning. It did not stop. The order still asks what became of it. You brought him the Shard anyway, and he paid you for it, because the order does not take a sacred thing as a gift.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=900 order wielder ring
 Text=La Calle Perdida was never found, because by the end of that year there was nothing left of it to find. You put on Relican's ring and turned it on the hidden city yourself, and the few who walked out gave you the only title that fit, which was Dark Lord of a place that no longer existed. What the Church had spent three hundred years failing to drown, you buried in an afternoon. The Tome of Geomancy went down with it, the Five Ways crystals were never gathered again, and nobody taught any of it in the open, then or afterward.
 Should Have Voiceover=1

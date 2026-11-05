@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=27
+							Item Count=28
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -654,6 +654,160 @@ CLayerSaveData
 											Node ID=900 order saladin
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
+										}
+									}
+								}
+								Else=CTriggerRelayAction
+								{
+									Relay Name=Fixt order epilogue relay
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CUseCannedExpressionExpression
+								{
+									Canned Expression=Dialog/Requirements/Faction/Saladin IS
+								}
+								Character to get attributes from=Player1
+								Then=CIfExpressionAction
+								{
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!NPC or Event Given Perks/Dervish of the Crescent
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CIsQuestCompletedAction
+										{
+											Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order saladin shard dervish
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CIfAction
+										{
+											If=CIsQuestCompletedAction
+											{
+												Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+											}
+											Then=CIfExpressionAction
+											{
+												If Expression=CIsGreaterThan
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shard Returned Unasked
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0
+													}
+												}
+												Character to get attributes from=Player1
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order saladin scimitar dervish unasked
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order saladin scimitar dervish
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+											}
+											Else=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!NPC or Event Given Perks/Scholar of the Crescent
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CIfAction
+										{
+											If=CIsQuestCompletedAction
+											{
+												Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Recover the Shard of Dreams
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order saladin shard scholar
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CIfAction
+											{
+												If=CIsQuestCompletedAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Forge a Sacred Scimitar
+												}
+												Then=CIfExpressionAction
+												{
+													If Expression=CIsGreaterThan
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shard Returned Unasked
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=0
+														}
+													}
+													Character to get attributes from=Player1
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order saladin scimitar scholar unasked
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order saladin scimitar scholar
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+												}
+												Else=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
+										}
+										Else=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
 										}
 									}
 								}

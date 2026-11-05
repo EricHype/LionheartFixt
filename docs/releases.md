@@ -256,6 +256,18 @@ Templar one, for a Templar who completed `Release the Doomed Knights`. The Aegis
 written at Sir Roger's `70 the relic`, because the item can be sold. The quest stands in for the Holy
 Shield, so a Templar who somehow lost the Lion Shield before the wish still reads the relic slide.
 
+### The two forks of the Order of Saladin
+
+The three Saladin slides are rewritten to the game's rhythm. They read rank and whether you killed a
+knight, while every member goes through two forks: Amir's second task, the Shard or the Scimitar, and
+Kabool's trial, intellect or strength. Those are `Scholar` and `Dervish of the Crescent` plus two quests,
+all on the character, so the new slide after the Saladin one needs no flags. That includes the payoff the
+game already had: bring your own scimitar to the combat trial and Kabool sets it burning for good.
+
+The one thing not recorded was bringing Amir the Shard unasked on the scimitar route, so
+`216 the shard unasked` writes a variable and the scimitar slides gain a closing line. It is dialogue
+only, so it reaches an existing save.
+
 ### Known limits
 
 - **Nobody reacts.** Raphael and the Inquisition guards behave as before once it is over, and no member
@@ -266,7 +278,7 @@ Shield, so a Templar who somehow lost the Lion Shield before the wish still read
   at this point in the game. Guards are the Generic can, AC 75 / HP 60.
 - **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
 
-`TK1`-`TK27` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+`TK1`-`TK31` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
 practice means a new game or a very early save.
 
 ---
