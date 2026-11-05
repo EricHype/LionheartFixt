@@ -44,6 +44,14 @@ wrong are more reusable than the results.
 | `200 beast compliment`, `200 divine compliment` | 124 KB | a trigger on fighting well |
 | `Purify the Shadow Dryad` | 732 KB | a policy decision, see entry 1 below. The biggest story thread left |
 
+### Planned, not yet built
+
+| item | what it needs |
+|---|---|
+| **Killing tree Brambles as an evil act for the Dark Wielders** | The author's request. His tree has no way to be attacked: `Brambles Roots` is scenery with no scripts, and `Brambles Head` is named by scripts but not defined as a part in `Calle Perdida.zax`, so find it first. It needs a reachable attack, a death flag, and a Dark Wielder slide line to replace *"Brambles stayed a tree"* |
+| Curing Brambles and then killing the man | `Brambles as Wizard.can` has no death script, so the slides still send him home to his grandchildren. A flag through `CForEachPlayerAction`, plus a variant of each slide that mentions the cure. It would fire for any death of his, including `80 war` |
+| A Dark Wielder turning on Relican at `80 war` | The Relican slide does not read it, and covering it doubles the nine Dark Wielder versions |
+
 ### What came back clean, which is why the list is short
 
 | check | result |

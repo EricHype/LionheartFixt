@@ -268,6 +268,20 @@ The one thing not recorded was bringing Amir the Shard unasked on the scimitar r
 `216 the shard unasked` writes a variable and the scimitar slides gain a closing line. It is dialogue
 only, so it reaches an existing save.
 
+### What you did about Relican
+
+The five Wielder slides are rewritten to the game's rhythm. They read rank and two perks, so the city's
+central quarrel ended nowhere, and neither did the man Relican turned into a tree. A slide now follows
+them, for any faction: Cedric's hunt, the refused ring, Brambles cured, or the Dark Wielder's service,
+which varies by what you did to Quinn and asked of Leonardo. Brambles closes the Dark version as a tree,
+from the game's own *"curse you, dark wielder"*.
+
+An early reading of this work reported a defect: that a Dark Wielder who refused the ring would be told
+they were welcome in the city. It does not happen. `Lord Relican` opens only inside La Calle Perdida,
+after the ring, so every Dark Wielder holds `Ruler of Calle Perdida`.
+
+A Dark Wielder can still turn on Relican at `80 war` and kill him, and the slide does not read that.
+
 ### Known limits
 
 - **Nobody reacts.** Raphael and the Inquisition guards behave as before once it is over, and no member
@@ -278,7 +292,7 @@ only, so it reaches an existing save.
   at this point in the game. Guards are the Generic can, AC 75 / HP 60.
 - **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
 
-`TK1`-`TK31` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+`TK1`-`TK37` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
 practice means a new game or a very early save.
 
 ---

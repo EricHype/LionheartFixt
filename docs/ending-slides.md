@@ -391,55 +391,130 @@ Three fates, not one. The city survives, is raided, or is destroyed by your own 
     node id: 900 order wielder ring
 
 La Calle Perdida was never found, because by the end of that year there was nothing left of it to
-find. You put on Relican's ring and turned it on the hidden city yourself, and the few who walked out
-gave you the only title that fit, which was Dark Lord of a place that no longer existed. What the
-Church had spent three hundred years failing to drown, you buried in an afternoon. The Tome of
-Geomancy went down with it, the Five Ways crystals were never gathered again, and nobody taught any
-of it in the open, then or afterward.
+find. You put on Relican's ring and turned it on the hidden city yourself. The few who walked out
+gave you the only title that fit: Dark Lord of a place that no longer existed. What the Church had
+spent three hundred years failing to drown, you buried in an afternoon. The Tome of Geomancy went
+down with it. The Five Ways crystals were never gathered again. Nobody taught any of it in the open,
+then or afterward.
 
 ### when: Exposer of Calle Perdida (with or without Wielder rank)
 
     node id: 900 order wielder exposed
 
 La Calle Perdida was found, and it was found because you told the Inquisition where to look. You had
-been inside as a friend first, which is the only reason your directions were good enough to act on.
-The Holy Office took the quarter apart over nine days, and what the Wielders had kept hidden for a
-century was catalogued, carted out and burned in the open. Cedric's library went in the third load. A
-handful got away through the sewers and taught what they could remember to people who did not
-understand what they were being given, and inside two generations it was gone.
+been inside as a friend first, which is the only reason your directions were good enough. The Holy
+Office took the quarter apart in nine days. What the Wielders had kept hidden for a century was
+catalogued, carted out and burned in the open. Cedric's library went in the third load. A handful
+got away through the sewers. They taught what they could remember to people who did not understand
+what they were being given, and inside two generations it was gone.
 
 ### when: Wielder Rank > 0 and Enemy of the Wielders
 
     node id: 900 order wielder killer
 
 La Calle Perdida was never found, not by the Inquisition and not by the knights. You had walked its
-streets as a friend and left Wielder dead behind you, and in a city that small both of those were
-known before you reached the gate. The magic the Church had tried to drown went on under the streets
-without you, and was taught in the open again long after everyone who had hidden it was dead. The
-door you had been given was not opened a second time. They never hunted you for it, which was its own
-kind of answer.
+streets as a friend and left Wielder dead behind you. In a city that small, both were known before
+you reached the gate. The magic the Church had tried to drown went on under the streets without you.
+It was taught in the open again long after everyone who had hidden it was dead. The door you had
+been given was not opened a second time. They never hunted you for it, which was its own kind of
+answer.
 
 ### when: Wielder Rank > 2
 
     node id: 900 order wielder high
 
-La Calle Perdida was never found, not by the Inquisition and not by the knights, and after the siege
-it took in more of Barcelona's unwanted than it had room for. You had risen high among the Wielders,
-a scion of Richard's line who chose the sorcerers over the cross, and that choice was argued over in
-both houses for a century. The magic the Church had tried to drown went on breathing under the
-streets, and was taught in the open again long after everyone who had hidden it was dead. When it
-was, the first teachers cited you, and got the details wrong.
+La Calle Perdida was never found, not by the Inquisition and not by the knights. After the siege it
+took in more of Barcelona's unwanted than it had room for. You had risen high among the Wielders, a
+scion of Richard's line who chose the sorcerers over the cross. That choice was argued over in both
+houses for a century. The magic the Church had tried to drown went on breathing under the streets.
+It was taught in the open again long after everyone who had hidden it was dead. When it was, the
+first teachers cited you, and got the details wrong.
 
 ### when: Wielder Rank > 0
 
     node id: 900 order wielder
 
-La Calle Perdida was never found, not by the Inquisition and not by the knights, and after the siege
-it took in more of Barcelona's unwanted than it had room for. You had walked the hidden city as a
+La Calle Perdida was never found, not by the Inquisition and not by the knights. After the siege it
+took in more of Barcelona's unwanted than it had room for. You had walked the hidden city as a
 friend, and the Wielders put your name somewhere the Inquisition's archive was never going to reach
-it. The magic the Church had tried to drown went on breathing under the streets, and was taught in
-the open again long after everyone who had hidden it was dead. You were welcome there for the rest of
-your life. You went back twice.
+it. The magic the Church had tried to drown went on breathing under the streets. It was taught in
+the open again long after everyone who had hidden it was dead. You were welcome there for the rest
+of your life. You went back twice.
+
+---
+
+## What you did about Relican
+
+Shown after the Wielder slide, to any faction. The Dark Wielder slide has nine versions, from Quinn
+(joined, killed, or never reached) by Leonardo (agreed, refused, or never asked), so only two are given here.
+
+### when: Hunt down Relican completed
+
+    node id: 900 order relican hunted
+
+Cedric sent you after Relican, and you found the exile in the western forest and destroyed him.
+Nothing in La Calle Perdida marked it. The Wielders had cast him out once already, and they do not
+celebrate their own. Cedric heard your report and went back to his books. The street slept well
+after that. Few of those sleeping there knew who to thank.
+
+### when: the same, and Brambles cured
+
+    node id: 900 order relican hunted cured
+
+Cedric sent you after Relican, and you found the exile in the western forest and destroyed him.
+Nothing in La Calle Perdida marked it. The Wielders had cast him out once already, and they do not
+celebrate their own. Cedric heard your report and went back to his books. You poured the potion on
+Brambles's roots. The tree split, and there was a man inside it, stiff in the legs and late for his
+grandchildren. The street slept well after that. Few of those sleeping there knew who to thank.
+
+### when: refused the ring
+
+    node id: 900 order relican refused
+
+Relican gave you a ring, and a city to use it on. You stood in La Calle Perdida with it burning in
+your hand, and you let it go. It shook itself to pieces, and something wailed as it went. Nobody in
+the hidden city ever knew how close it came. Cedric went on teaching. You went back sometimes. You
+never told them.
+
+### when: the same, and Brambles cured
+
+    node id: 900 order relican refused cured
+
+Relican gave you a ring, and a city to use it on. You stood in La Calle Perdida with it burning in
+your hand, and you let it go. It shook itself to pieces, and something wailed as it went. Nobody in
+the hidden city ever knew how close it came. Cedric went on teaching. You poured the potion on
+Brambles's roots. The tree split, and there was a man inside it, stiff in the legs and late for his
+grandchildren. You went back sometimes. You never told them.
+
+### when: Brambles cured, neither of those
+
+    node id: 900 order relican cured
+
+Relican cursed a vitality potion, and Brambles stood rooted in La Calle Perdida for years because of
+it. Quinn could not cure him. You took the cure from Relican himself. You poured the potion on
+Brambles's roots. The tree split, and there was a man inside it, stiff in the legs and late for his
+grandchildren. He thanked you and went to find them. The street has one less tree in it, and nobody
+there has ever been sorry.
+
+### when: Dark Wielder, Quinn joined, Leonardo agreed
+
+    node id: 900 order relican dark joined joined
+
+Relican made you a Dark Wielder, and he made you work for it. You bent Quinn the herbalist with your
+words, and he served Relican faithfully. Leonardo gave you his word that he would not stand against
+you. He kept it, and he did not forgive himself. Brambles stayed a tree. He creaked at you whenever
+you passed, and it could have been the wind. There was no one left in Barcelona who would say your
+name and his in the same breath.
+
+### when: Dark Wielder, Quinn killed, Leonardo refused
+
+    node id: 900 order relican dark killed refused
+
+Relican made you a Dark Wielder, and he made you work for it. Quinn the herbalist refused, so you
+killed him. His shop in the Gate District stayed shut. Leonardo asked you to turn back. He was the
+only one who ever did. Brambles stayed a tree. He creaked at you whenever you passed, and it could
+have been the wind. There was no one left in Barcelona who would say your name and his in the same
+breath.
 
 ---
 

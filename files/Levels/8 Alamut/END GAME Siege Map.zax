@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=28
+							Item Count=29
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -905,6 +905,252 @@ CLayerSaveData
 											Relay Name=Fixt order epilogue relay
 										}
 									}
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Ruler of Calle Perdida
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CIfExpressionAction
+								{
+									If Expression=CUseCannedExpressionExpression
+									{
+										Canned Expression=Dialog/Requirements/Faction/Wielder IS
+									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+											State=FPC9941A
+										}
+										Then=CIfAction
+										{
+											If=CWasQuestStateActivatedAction
+											{
+												Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+												State=RB4NW8TJ
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order relican dark joined joined
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CIfAction
+											{
+												If=CWasQuestStateActivatedAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+													State=ZH6PC3YF
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order relican dark joined refused
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order relican dark joined none
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
+										}
+										Else=CIfAction
+										{
+											If=CWasQuestStateActivatedAction
+											{
+												Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince Quinn the Herbalist to Join the Dark Wielders
+												State=QQ2PE9WJ
+											}
+											Then=CIfAction
+											{
+												If=CWasQuestStateActivatedAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+													State=RB4NW8TJ
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order relican dark killed joined
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CIfAction
+												{
+													If=CWasQuestStateActivatedAction
+													{
+														Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+														State=ZH6PC3YF
+													}
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order relican dark killed refused
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order relican dark killed none
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Return failure if the If failes=0
+												}
+												Return failure if the If failes=0
+											}
+											Else=CIfAction
+											{
+												If=CWasQuestStateActivatedAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+													State=RB4NW8TJ
+												}
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order relican dark none joined
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CIfAction
+												{
+													If=CWasQuestStateActivatedAction
+													{
+														Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+														State=ZH6PC3YF
+													}
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order relican dark none refused
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order relican dark none none
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Return failure if the If failes=0
+												}
+												Return failure if the If failes=0
+											}
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
+									}
+									Else=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+								}
+								Else=CIfAction
+								{
+									If=CIsQuestCompletedAction
+									{
+										Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Hunt down Relican
+									}
+									Then=CIfAction
+									{
+										If=CIsQuestCompletedAction
+										{
+											Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order relican hunted cured
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order relican hunted
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Return failure if the If failes=0
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Ring Refused
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CIfAction
+										{
+											If=CIsQuestCompletedAction
+											{
+												Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order relican refused cured
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order relican refused
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Return failure if the If failes=0
+										}
+										Else=CIfAction
+										{
+											If=CIsQuestCompletedAction
+											{
+												Quest=Levels/1 Barcelona/Quests/Calle Perdida/Find the cure to restore Brambles
+											}
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order relican cured
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Return failure if the If failes=0
+										}
+									}
+									Return failure if the If failes=0
 								}
 							}
 							Action=CIfExpressionAction

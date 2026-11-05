@@ -6129,6 +6129,12 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK29 | Scimitar route, riddles, finish the game | - | `900 order saladin scimitar scholar`. Then combat instead: `scimitar dervish`, the burning blade |
 | TK30 | Scimitar route, hand Amir the Shard unasked, finish the game | - | The `unasked` version, with the closing line about the coin. Also check the scene itself still ends normally |
 | TK31 | Not a Knight of Saladin, finish the game | - | **No** slide here, and the series carries on |
+| TK32 | Finish `Hunt down Relican` for Cedric, finish the game | - | `900 order relican hunted`, after the Wielder slide. Then cure Brambles too: `hunted cured` |
+| TK33 | Refuse the ring, finish the game | - | `900 order relican refused`. The scene itself must still end normally, and it needs a save that has not yet refused |
+| TK34 | Cure Brambles, no Cedric, any faction | - | `900 order relican cured` |
+| TK35 | Use the ring and complete Relican's service, with Quinn joined and Leonardo agreed | - | `900 order relican dark joined joined`, straight after `900 order wielder ring` |
+| TK36 | The same, Quinn killed and Leonardo refused | - | `dark killed refused` |
+| TK37 | Use the ring and take no rank from Relican. Then, separately, do none of this | - | **No** Relican slide in either case, and the series carries on |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

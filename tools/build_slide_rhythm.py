@@ -74,7 +74,40 @@ SALADIN = {
         "the hospitality. You were on it. In sixty years the list did not get any longer."),
 }
 
-BATCHES = [TEMPLAR, SALADIN]
+NEVER = "La Calle Perdida was never found, not by the Inquisition and not by the knights. "
+UNWANTED = "After the siege it took in more of Barcelona's unwanted than it had room for. "
+DROWN = "The magic the Church had tried to drown went on "
+OPEN = "It was taught in the open again long after everyone who had hidden it was dead. "
+
+WIELDER = {
+    "900 order wielder ring": (
+        "La Calle Perdida was never found, because by the end of that year there was nothing left of it to find. "
+        "You put on Relican's ring and turned it on the hidden city yourself. The few who walked out gave you the "
+        "only title that fit: Dark Lord of a place that no longer existed. What the Church had spent three hundred "
+        "years failing to drown, you buried in an afternoon. The Tome of Geomancy went down with it. The Five Ways "
+        "crystals were never gathered again. Nobody taught any of it in the open, then or afterward."),
+    "900 order wielder exposed": (
+        "La Calle Perdida was found, and it was found because you told the Inquisition where to look. You had been "
+        "inside as a friend first, which is the only reason your directions were good enough. The Holy Office took "
+        "the quarter apart in nine days. What the Wielders had kept hidden for a century was catalogued, carted out "
+        "and burned in the open. Cedric's library went in the third load. A handful got away through the sewers. "
+        "They taught what they could remember to people who did not understand what they were being given, and "
+        "inside two generations it was gone."),
+    "900 order wielder killer": (
+        NEVER + "You had walked its streets as a friend and left Wielder dead behind you. In a city that small, both "
+        "were known before you reached the gate. " + DROWN + "under the streets without you. " + OPEN + "The door you "
+        "had been given was not opened a second time. They never hunted you for it, which was its own kind of answer."),
+    "900 order wielder high": (
+        NEVER + UNWANTED + "You had risen high among the Wielders, a scion of Richard's line who chose the sorcerers "
+        "over the cross. That choice was argued over in both houses for a century. " + DROWN + "breathing under the "
+        "streets. " + OPEN + "When it was, the first teachers cited you, and got the details wrong."),
+    "900 order wielder": (
+        NEVER + UNWANTED + "You had walked the hidden city as a friend, and the Wielders put your name somewhere the "
+        "Inquisition's archive was never going to reach it. " + DROWN + "breathing under the streets. " + OPEN +
+        "You were welcome there for the rest of your life. You went back twice."),
+}
+
+BATCHES = [TEMPLAR, SALADIN, WIELDER]
 
 
 def apply_tree(batch):
