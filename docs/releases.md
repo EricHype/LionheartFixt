@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.93.7 are published** -- 190 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.94.0 are published** -- 191 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,95 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.94.0 - four lines that were one wire away, and monks under the cathedral
+
+The unused-content survey had drifted 30 releases behind the mod, so this started as a re-measurement.
+Most of what it called open had been built or ruled on. Four small things were left, each a recorded
+line a single connection away from being heard, and one of them was a defect no sweep could have found.
+
+### The reply that answered itself with a goodbye
+
+DaVinci, in Montaillou, on the Inquisition holding his gem. Vanilla:
+
+> **Reply:** *"I could try to speak with the Inquisition about the gem."* -> `10 Goodbye`
+
+> **Recorded, unreachable, in the same tree:** `320 speak to inquisition`, *"Ah, I would owe you a great
+> debt if you would speak to the Inquisition. Grazie!"*
+
+The two other answers on that menu each get their own reply from him. This one was pointed at his
+generic farewell, in both places the reply appears. The fix is one field twice. `10 Goodbye` also
+fires a relay, `DaVinci tells you to get quest`, which exists only in Gate District, so nothing is lost
+in Montaillou. **This is a kind of orphan the survey had no name for**, and `vo_reach.py` could not
+have proposed the fix, so `tools/misrouted_replies.py` now looks for it.
+
+### The gem hand-in finds its voice
+
+The live scene, `3001 Gem recovered`, has no recording. `340 return spirit`, *"You've returned with a
+feisty spirit! His tempestuous nature should be able to power the siege machine"*, has 104 KB of one
+and nothing reaching it. 0.8.0 left it because no gate could be derived from the files, but the live
+hand-in supplies the gate: both replies that hand the gem over now go through 340 into 3001.
+
+340 carried its own payout, 400 gold and 1 XP, from before the reward moved to `3002 gem reward`, which
+pays 1000. Keeping it would double-pay, so it went. The reply became a blank auto-advance, the shape
+vanilla uses 348 times.
+
+### "Lead the way, O Dark One"
+
+The Demonic spirit has three karma-tiered goodbyes, and the low one was the only one nothing reached.
+So the spirit that should enjoy an evil character most could not say so. Worse, the druid finale's
+*"Agreed, we must pursue our enemy"* answered **everybody** with *"O good and noble one."*
+
+Three exits now split at karma 800, the threshold 0.16.0 already uses for "bad" at the Crypt: the two
+on `30 defeat dragon` and the one on `1000 druid finale`. The split needed care. There is no
+`Karma LESS 800` can, and `Karma moreequal 800` overlaps `equalless 800` at exactly 800, while
+`moreequal 850` would leave 801-849 with no exit from a cutscene at all. So the dark reply uses the can
+and the other uses an inline `CIsGreaterThan` of 800, which is an exact complement and the shape
+`Nostradamus.DialogTree` ships.
+
+### Eduardo remembers the jail
+
+0.64.0 left `100 attacked blacksmith` -- *"Perhaps now you will think twice about attacking me, eh?
+Behave yourself in my shop. Or else."* -- because nothing remembered an attack. 0.72.0 built that for
+Raphael, and Eduardo turns out to be the same case: he is invulnerable, the fight always ends in
+`Eduardo Sends you to jail`, and `RESET MAP for Invulnerable Eduardo` rebuilds him on every entry.
+
+A checker `eduardo jailed you` is set by the jail relay with no delay, so it is map state before the
+relocate. The spawn point then waits two seconds for him to exist, plays the line once and clears the
+checker. Raphael's touching poly was not copied, because a spawn point is already the moment that
+matters here and costs no new part beyond the checker.
+
+### Brother Michel had one slot left
+
+His can barks *"Brothers! Help me!"* on the `First Time` transition into combat, unless `Lucious dead`,
+when the `Then=` was blank. That is the player who killed his protector and has come back for him,
+and `999 Michel pushed to the edge` is *"By God you are a fiend that doesn't deserve life!"*
+
+`1000 After Michel Attacked` stays dead, and 0.64.0's note grouping it with Eduardo's line was wrong.
+Attacking Michel removes his interaction specifier for good and he can die, so no calm return visit
+exists for it to play on.
+
+### The crypt gets its own music
+
+The audio sweep found **10 of 262** music and ambient tracks named by nothing, and the longest,
+`MX_CHAMB_MED`, turned out on listening to be monks chanting. The Cathedral Crypt had nothing of its
+own: the same ambient loop as the cathedral above it, the menu theme as a default, and a wilderness
+cue. Saint Bartholomew's coffin is down there, so the chant is its ambient track now.
+
+**This is a placement, not a restoration.** Nothing records where the track was meant to go, and
+"CHAMB" may mean the Inquisition Chambers. Only the Ambient slot changed, one field. Medium and Full
+stay as they were, and act 6's siege crypt is a separate map and is untouched.
+
+### Also in this release
+
+`docs/unused-content.md` has a new opening section with the current state, and corrections where it
+had gone stale. The other nine orphaned tracks include the only faction theme with no use,
+`MX_FACT_KNIGHTTEMPLAR1`, which is still waiting for a scene.
+
+`LE1`-`LE14` in [`qa.md`](qa.md). **The Eduardo half needs a save that has not entered the Blacksmith
+map, Michel's needs one where he has not spawned, and the crypt's needs one that has not entered it
+if the map's music turns out to be saved.**
+
+---
 ## 0.93.7 - linen, not paper
 
 0.93.6's white was too bright: it read as a modern surcoat and fought the gold rim beside it.

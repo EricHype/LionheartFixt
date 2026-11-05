@@ -1324,7 +1324,7 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Spirit Tran
 }
 }
 Reply Text=Is this the gem you're looking for?
-Go to node ID=3001 Gem recovered
+Go to node ID=340 return spirit
 Custom Action=CMultipleActionsAction
 {
 Action=Array
@@ -1502,7 +1502,7 @@ Should Have Voiceover=1
 
 Requirement=!None
 Reply Text=I could try to speak with the Inquisition about the gem.
-Go to node ID=10 Goodbye
+Go to node ID=320 speak to inquisition
 
 Requirement=!None
 Reply Text=I could 'appropriate' the gem from the Inquisition.
@@ -1557,7 +1557,7 @@ Should Have Voiceover=1
 
 Requirement=!None
 Reply Text=I could try to speak with the Inquisition about the gem.
-Go to node ID=10 Goodbye
+Go to node ID=320 speak to inquisition
 
 Requirement=!None
 Custom Requirement=CExpressionNot
@@ -1663,24 +1663,7 @@ Should Have Voiceover=1
 
 Requirement=!None
 Reply Text=
-Go to node ID=
-Action work in progress=(if deliver spirit to davinci, give xp and gold)
-Custom Action=CMultipleActionsAction
-{
-Action=Array
-{
-Item Count=2
-Action=CGiveExperiencePointsToAllPlayersAction
-{
-Get XP Frome=$Trigger
-Experience Points To Add=1
-}
-Action=CGiveMoneyToAllPlayersAction
-{
-Value to give=400
-}
-}
-}
+Go to node ID=3001 Gem recovered
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=300 Enter Workshop
@@ -2656,7 +2639,7 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Spirit Tran
 }
 }
 Reply Text=I have the gem you've been looking for.
-Go to node ID=3001 Gem recovered
+Go to node ID=340 return spirit
 Custom Action=CMultipleActionsAction
 {
 Action=Array

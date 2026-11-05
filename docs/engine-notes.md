@@ -1035,6 +1035,21 @@ sentence by someone playing, and each took under an hour to find once reported.
 
 ---
 
+### Audio is referenced from binary
+
+Spell and creature sounds are named inside `.mdl16` model caches, so a search of text fields reports
+them as unused: 457 files where the true figure is 130, and 46 of those look like engine-built names.
+**Search bytes across every entry and the exe** before calling a sound orphaned, which is what
+`tools/orphan_audio.py` does. Music and ambient tracks are the exception, named in full in maps and
+trees by `CMixInSongAndPlayAmbientTrackAction`.
+
+### Two requirement cans do not make a complement
+
+Splitting one reply on a threshold must leave exactly one copy on offer, or a cutscene exit vanishes.
+`Karma equalless 800` and `Karma moreequal 800` overlap at 800, and the cans step by 50, so the next
+one up leaves a gap. Use the can on one side and an inline comparison on the other, the shape
+`Nostradamus.DialogTree` ships.
+
 ## What each lesson cost
 
 | lesson | found by | release |

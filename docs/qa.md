@@ -6090,6 +6090,29 @@ with. A tester reporting "unchanged" may simply be holding the old one.
 | TS12 | **Judgement, not pass/fail.** Equip the Aegis and let something hit you in melee | Watch its health | It should take a visible share back -- 15% -- without the fight becoming trivial. **This number is calibrated against `Dragon Scales` (10%, permanent) and `Backlash` (20-35%, temporary) and has never been measured in play.** If attackers melt, it is too high; if nothing is observable, the attribute may not be read for permanent item modifiers at all |
 | TS13 | **The regression.** Play a non-Templar through the Crypt | Finish the act normally | Nothing about the Doomed Knights questline changed: same dialogue, same quest states, same XP. The only addition is one conditional action that does nothing without the Lion Shield |
 
+## 0.94.0 - four lines that were one wire away, and monks under the cathedral
+
+Three rows want a specific setup. **`LE7` and `LE9` need a save that has never entered the Blacksmith
+map, and `LE10` needs Michel not yet spawned**, because a map's entity list is frozen on first visit and
+a can edit reaches only creatures spawned after install. `LE1`-`LE6` work on any save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| LE1 | Montaillou, DaVinci, the gem is with the Inquisitor | Reply *"I could try to speak with the Inquisition about the gem."* | You **hear** *"Ah, I would owe you a great debt..."* and the conversation ends. It must not be his goodbye. Fails with goodbye: the retarget did not ship |
+| LE2 | Same, via *"I could not, in good conscience, oppose the Inquisition"* | Take the same reply from `320 no to inquisition` | Same line. The reply appears in two places and both were moved |
+| LE3 | Same, after LE1 | Talk to him again | He is still there and still talkable, and the gem quest is unchanged. `10 Goodbye` used to run here, so this is the row that proves it did nothing he needed |
+| LE4 | DaVinci, holding the Spirit Transfer Gem | Hand it over, either reply | You **hear** *"You've returned with a feisty spirit!"*, then 3001's silent text follows with no click on a blank reply |
+| LE5 | Same | Finish the scene, count your gold | **1000** gold, once. If you see 1400, 340's payout survived |
+| LE6 | Demonic spirit, karma 800 or below. The dragon warning, and the druid finale | Take any of the three exits | *"Lead the way, O Dark One."* and **you get control back**: the node has to end the spirit's scene. Then repeat above 800: unchanged, and exactly **one** copy of each exit is offered |
+| LE7 | **Fresh save.** Attack Eduardo | Get jailed, escape, walk back into the shop | About two seconds in: *"Perhaps now you will think twice about attacking me..."*, voiced, over **his** head. Judge the delay. If he is not standing yet there is no line, and `Delay=2` needs raising |
+| LE8 | Same | Leave and come back | Silence. It plays once |
+| LE9 | **The regression.** Fresh save, never attack him | Enter the shop, buy something, leave, return | No line, customers as normal, greeting unchanged. The spawn point is shared with both of his setup relays |
+| LE10 | **Fresh spawn.** Kill Andre, then attack Michel | - | *"By God you are a fiend that doesn't deserve life!"* |
+| LE11 | Attack Michel with Andre alive | - | *"Brothers! Help me!"* as always |
+| LE12 | **Judgement.** Read the Demonic split beside vanilla | Does *"Dark One"* land at 800, or does it want a lower bar? | Karma 1000 is neutral and 0 is the worst there is, so 800 is a moderately bad character. Each of the three exits carries the number twice, in `tools/build_loose_ends.py` |
+| LE13 | Barcelona Cathedral, walk down into the crypt | Stand there a full 2:18 | The monks fade in as the cathedral's ambience fades out, and the loop point is not jarring. **Note whether this save had already entered the crypt.** If an old save keeps the cathedral loop and a fresh one chants, the mix is frozen into the save and the release notes must say so |
+| LE14 | Same | Go back upstairs, then fight the spirits in the crypt if you have not | Upstairs is the cathedral's own ambience again, so the chant has not followed you. Note what plays in the fight: it should be whatever played before, because Medium and Full were left alone |
+
 ## The twenty-one meshes, and the pools that deliver them
 
 0.89.0 wires magic weapons to the Better and Special meshes the game shipped and never used. Two

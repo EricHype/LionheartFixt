@@ -516,12 +516,47 @@ Requirement=!None
 Reply Text=Could if be possible to convince Azi Dahaka to let us pass?
 Go to node ID=30 speak with dragon
 
+Requirement=Karma equalless 800
+Reply Text=I've heard enough out of you. Begone.
+Go to node ID=5 goodbye low karma
+Icon=Exit Icon
+
 Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=800
+}
+}
 Reply Text=I've heard enough out of you. Begone.
 Go to node ID=5 goodbye neutral karma
 Icon=Exit Icon
 
+Requirement=Karma equalless 800
+Reply Text=Thank you spirit. We should continue on now.
+Go to node ID=5 goodbye low karma
+Icon=Exit Icon
+Is Default Reply=1
+
 Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=800
+}
+}
 Reply Text=Thank you spirit. We should continue on now.
 Go to node ID=5 goodbye neutral karma
 Icon=Exit Icon
@@ -904,7 +939,24 @@ Node ID=1000 druid finale
 Text=As I suspected, those simple *druids* lacked the mental capacity to so effectively act alone against the Knights Templar. It appears the Old Man of the Mountain has moved his pawns brilliantly, placing the world in *check*. Perhaps we should pursue with haste before he declares *mate*.
 Should Have Voiceover=1
 
+Requirement=Karma equalless 800
+Reply Text=Agreed, we must pursue our enemy and recover the relics.
+Go to node ID=5 goodbye low karma
+Is Default Reply=1
+
 Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Karma
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=800
+}
+}
 Reply Text=Agreed, we must pursue our enemy and recover the relics.
 Go to node ID=5 goodbye good karma
 Is Default Reply=1

@@ -87,6 +87,36 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=eduardo jailed you
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=472
+			Position Y=530
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Inventory for Blacksmith
 			Child List=
 			Visible=0
@@ -1647,7 +1677,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CTriggerRelayAction
 							{
 								Relay Name=RESET MAP for Invulnerable Eduardo
@@ -1655,6 +1685,42 @@ CLayerSaveData
 							Action=CTriggerRelayAction
 							{
 								Relay Name=Visiting Customers for Blacksmith generator
+							}
+							Action=CDelayAction
+							{
+								Next Action=CIfAction
+								{
+									If=CCheckExistenceAction
+									{
+										Name To Check For=eduardo jailed you
+										Desired Minimum Count=1
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Blacksmith
+												Node ID=100 attacked blacksmith
+												Name of Position=eduardo
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDeactivateAction
+											{
+												Target Name=eduardo jailed you
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Delay=2
+								Plus or Minus=0
+								Forget Trigger=0
 							}
 						}
 					}
@@ -5467,7 +5533,14 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=8
+							Item Count=9
+							Action=CActivateAction
+							{
+								Target Name=eduardo jailed you
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
 							Action=CDeactivateAction
 							{
 								Target Name=Eduardo Sends you to jail

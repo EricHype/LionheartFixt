@@ -7,6 +7,9 @@ claim about it can be **checked** rather than trusted.
 Measured against `data.dat.vanilla.bak` and cross-checked against Fixt's own `files/`, because
 several of these have already been used by Fixt and would otherwise read as still open.
 
+**The current state is [Re-measured at 0.94.0](#re-measured-at-0940----the-live-list).** Read that
+first: older sections are kept for their reasoning, and several of their numbers have moved.
+
 **Read [How this was measured](#how-this-was-measured) before acting on any number here.** Four of the
 findings in this document were wrong on the first attempt, one of them badly, and the ways they were
 wrong are more reusable than the results.
@@ -15,6 +18,7 @@ wrong are more reusable than the results.
 
 ## Contents
 
+- [**Re-measured at 0.94.0**](#re-measured-at-0940----the-live-list) -- the live list, orphaned audio, and the misrouted reply
 - [Summary](#summary)
 - [Quest items](#quest-items-hand-authored-uniques)
 - [Magic items](#magic-items-a-disconnected-pipeline)
@@ -30,7 +34,102 @@ wrong are more reusable than the results.
 - [What to pick up next](#what-to-pick-up-next)
 - [How this was measured](#how-this-was-measured)
 - [**Voiceover on nodes nobody can reach**](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted) -- the current backlog, and the richest vein left
-- [**Orphaned art**](#orphaned-art----the-axis-this-survey-never-looked-at) -- 13 icons, 10 pickups and 21 meshes named by nothing, the five that are one field each, and who Bjon was, plus [a design for the buckler](#the-buckler-designed)
+- [**Orphaned art**](#orphaned-art----the-axis-this-survey-never-looked-at) -- 7 icons, 8 pickups and 21 meshes named by nothing, who Bjon was, and [the buckler's design](#the-buckler-designed), shipped in 0.91.0
+
+---
+
+## Re-measured at 0.94.0 -- the live list
+
+**Start here.** This document grew by appending, so older sections describe the game as it stood when
+they were written. Everything in this section was measured against the 0.94.0 build on 2026-11-04.
+Sections further down are kept for their reasoning, and where one disagrees with this one, this one
+wins.
+
+### What came back open
+
+| lead | size | what it needs |
+|---|---|---|
+| `MX_FACT_KNIGHTTEMPLAR1` | 13 s | a Templar moment. Every other faction's theme plays somewhere |
+| `GrandInquisitor / 120 combat` | 14.6 s | still needs ears. The length is itself a clue: that is a speech, not a bark |
+| named combat voice sets | 24 files | `Lucious Titan_*`, `DRUID_*`, `Goblin Grumjum_*`, `River Dryad_death_*`, `DRUNKARD_death_*`. Nothing names them, so those characters may be fighting in someone else's voice. Unclassified |
+| `200 beast compliment`, `200 divine compliment` | 124 KB | a trigger on fighting well |
+| `Purify the Shadow Dryad` | 732 KB | a policy decision, see entry 1 below. The biggest story thread left |
+
+### What came back clean, which is why the list is short
+
+| check | result |
+|---|---|
+| quests with a live state that nothing can close | **0** of 163 |
+| maps nothing names | **1**, `Test Maps/Lars/polygons` |
+| additions no item can roll | **0** of 552 |
+| equipment nothing hands out | **1**, `Unarmed`, which is the fists |
+| weapon pools | all 16 bases populated, including the three Great weapons this document still calls empty further down. 0.89.0 filled them |
+
+### Orphaned audio -- a new axis
+
+The art survey never had an audio twin. `tools/orphan_audio.py` runs it:
+
+| | tracks | named by nothing |
+|---|---|---|
+| music and ambient | 262 | **9**, 1.5 MB, after 0.94.0 placed `MX_CHAMB_MED` |
+| all non-voiceover audio | 1,542 | **129**, 3.06 MB |
+
+**The first pass said 457 files and 15.5 MB, and most of that was false.** It searched text field
+values, and spell and creature sounds are referenced from inside binary `.mdl16` caches. A byte search
+of every entry, every Fixt file and the exe is the only version to trust, and even it over-reports:
+the 32 footsteps are surface folders of identically named `Zax Footstep...` files, and 14 weapon sounds
+are numbered sets, so both are probably names the engine builds at runtime.
+
+**The ten tracks are the reliable part**, because maps and trees name music in full, through
+`CMixInSongAndPlayAmbientTrackAction{Song To Mix In=...}`, and that action works from a dialogue
+reply as well as a map. Placing one is a single action, or a single field in a map's own
+`Music Mix`. **The nine left:** `MX_FACT_KNIGHTTEMPLAR1`, `ForestAmbient01`, `ForestAmbient05`, `DesertWindAmbient02`,
+`DesertWindAmbient03`, `OutsidePeopleAmbient`, `BarAmbient`, `FireEmbersAmbient02`, `Wolf Howl startgame`.
+
+**`MX_CHAMB_MED` went to the cathedral crypt in 0.94.0**, on the author's ear: it is monks chanting,
+2:18 long. That is a new placement and not a restoration. Nothing says where it was meant to go, and
+"CHAMB" may well mean the Inquisition Chambers, whose Medium slot is also the `Main Menu` default.
+
+**Each map has a `Music Mix` of three slots,** `Ambiant Song`, `Med Mix Song` and `Full Mix Song`.
+Nothing here settles what selects between them; danger or combat is a guess from the names. `Main
+Menu.ogg` fills the Medium slot on **46** maps and the Full slot on 24, so in those slots it reads as
+an unset default rather than a choice. Barcelona's Medium slot is that default on 20 maps.
+
+### The misrouted reply -- a fifth kind of orphan
+
+The taxonomy below has unreachable branches, where no reply points at a node. 0.94.0 found the
+neighbouring case, where a reply exists, asks exactly the right question, and goes somewhere else:
+
+> **Reply:** *"I could try to speak with the Inquisition about the gem."* -> `10 Goodbye`
+> **Unreachable, recorded, beside it:** `320 speak to inquisition`, *"Ah, I would owe you a great debt
+> if you would speak to the Inquisition. Grazie!"*
+
+`vo_reach.py` reports the node and has no way to suggest the reply, because a recording with nothing
+pointing at it looks the same either way. `tools/misrouted_replies.py` ranks replies against
+unreachable nodes by shared words. It is noisy, one real hit in 21 on its first run, so read both ends.
+
+### Done in 0.94.0
+
+Five nodes, 0.34 MB. `vo_reach.py` went **71 -> 66** nodes and **5.48 -> 5.14 MB**.
+
+| node | what connected it |
+|---|---|
+| `davincibarcelona / 320 speak to inquisition` | the misrouted reply above, in both places it appears |
+| `davincibarcelona / 340 return spirit` | opens the gem hand-in, whose live `3001 Gem recovered` has no recording. Its own 400 gold and 1 XP were removed, because `3002 gem reward` pays 1000 |
+| `demonic spirit / 5 goodbye low karma` | three exits split at karma 800. *"Agreed, we must pursue our enemy"* also said *"O good and noble one"* to everybody |
+| `blacksmith / 100 attacked blacksmith` | he is invulnerable and always ends in jail, so this is Raphael's return beat from 0.72.0 |
+| `brothermichel / 999 Michel pushed to the edge` | his can's `First Time` transition barks *"Brothers! Help me!"* unless `Lucious dead`, and that branch's `Then=` was blank |
+
+### Looked at and left alone in 0.94.0
+
+- **`brothermichel / 1000 After Michel Attacked`** has no state to play in. Attacking him fires
+  `CRemoveAIAction` on his interaction specifier, so there is never another conversation, and he is
+  killable, so there is no return visit where he is calm. 0.64.0 filed this with Eduardo's line as the
+  same problem. They are not: Eduardo's fight ends in jail and a respawn.
+- **`brothermichel / 07 Andre Dead greeting 2`** is not half of a pair, whatever 0.41.0's notes say.
+  The map's second entry is `03 Return Dialogue`, which is what keeps his questline open. This node is
+  terminal, so wiring it would cost the player every later conversation with him.
+- **`davincibarcelona / 320 general surly response 3`** is still a third escalation with no gate.
 
 ---
 
@@ -45,11 +144,12 @@ wrong are more reusable than the results.
 | Summon tiers | 5 | 2 | **2** -- levels 4 and 5, six cans |
 | Perks (`.Perk`) | 98 | 5 | **0 left** -- all five were awarded in 0.47.0 |
 | Factions (`.Faction`) | 13 | 0 | **0** -- one was restored by Fixt |
-| Voiced dialogue nodes | 1,573 recordings | **117** sit on unreachable nodes | **11.18 MB** written, cast, performed and unhearable (was 132 / 11.48 before 0.56.0) |
+| Voiced dialogue nodes | 1,573 recordings | **66** sit on unreachable nodes | **5.14 MB**, of which most is now classified as draft or adjudicated (vanilla 204 / 19.27 MB) |
+| Music and ambient | 262 tracks | **9** | **1.5 MB**, new in 0.94.0 -- see [the live list](#orphaned-audio----a-new-axis) |
 
-That last row is the one to read first, and it was [measured backwards until
-2026-10-11](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted). It is now
-the largest open category in this document by a wide margin.
+The voiceover row was [measured backwards until
+2026-10-11](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted). Its size no
+longer measures what is missing: what remains is mostly recorded and replaced.
 
 **Nothing in the unused set is missing art.** Across all 478 monster cans there are **zero**
 unresolvable models and **zero** unresolvable races. The unused creatures are complete; they are
@@ -214,6 +314,9 @@ Walked properly as a graph -- `item -> group -> nested groups <- addition` --
 
 So there is no orphaned-enchantment backlog. The disconnection in this game was never at the
 addition end; it was at the *generator* end, which is what 0.38.0 fixed above.
+
+> **Fixed for the three Great weapons in 0.89.0**, which gave `Great Melee Additions` 29 members
+> through nested groups. The table is how it stood before that.
 
 **The inert direction is the opposite one: six items name a pool that has no members**, so they
 can never roll anything at all.
@@ -700,6 +803,9 @@ Tested by `TS1`-`TS10` in [`qa.md`](qa.md).
 ---
 
 ## What to pick up next
+
+**Superseded by [Re-measured at 0.94.0](#re-measured-at-0940----the-live-list).** Kept for the
+reasoning behind what was picked up and what was left.
 
 Rewritten after 0.39.0-0.42.0; the previous version still listed items that have since shipped.
 
@@ -1708,6 +1814,7 @@ python tools/vo_reach.py --replies-only --min-kb 100
 | **vanilla as shipped** | **204** (97 carry replies) | **19.27 MB** | 33 |
 | **as Fixt left it after 0.55.0** | **132** (53 carry replies) | **11.48 MB** | 25 |
 | **as Fixt leaves it after 0.56.0** | **117** (53 carry replies) | **11.18 MB** | 25 |
+| **as Fixt leaves it after 0.94.0** | **66** (34 carry replies) | **5.14 MB** | 23 |
 
 Earlier releases had already recovered **72 nodes and 7.79 MB** of it, every one as a side effect
 of chasing something else. Nobody was aiming at this number, because nobody had taken it. 0.56.0
@@ -1989,7 +2096,9 @@ it. A near-verbatim twin that is reachable is the signature, and it is only visi
 
 ### 4. The rest of the reply-carrying leads
 
-Ranked by what exists, not by size. None of these is classified yet.
+Ranked by what exists, not by size. **Stale:** most of this table was classified or built between
+0.58.0 and 0.65.0, and the sections above and [the live list](#re-measured-at-0940----the-live-list)
+have the current state. Kept because the descriptions are still accurate.
 
 | lead | KB | what it looks like |
 |---|---|---|
@@ -2231,7 +2340,9 @@ was never surveyed, and art orphans are a different shape -- an asset that exist
 named by nothing. `tools/orphan_art.py` runs it. The find that prompted it was a player noticing
 that the **Gauntlets of La Mancha** is the only unique gauntlet wearing the generic gauntlet icon.
 
-As of 0.89.0: **13 inventory icons, 10 ground pickups and 21 meshes** are named by nothing.
+As of 0.94.0: **7 inventory icons, 8 ground pickups and 21 meshes** are named by nothing. It was
+13, 10 and 21 at 0.89.0. **0.90.0 built the stranded table below, 0.91.0 the buckler, 0.92.0 the
+bracers, and 0.93.x the Holy Shield**, so what remains is the nameless list and the drafts.
 
 ### The method correction that has to come first
 
@@ -2445,6 +2556,8 @@ The remaining pickups are generic duplicates: `Bow_Pickup` beside the used `Bow_
 spirit-energy ground lights. Superseded naming, not content.
 
 ### Suggested order
+
+**All done except item 5**, which stays a lead rather than work.
 
 1. **Nightshade Root.** Ours, unambiguous, and currently indistinguishable from Darkwood in the
    inventory. One field.
