@@ -192,33 +192,36 @@ def paint(rgb, w, h, ghost, gild=False):
 
     out = [c[:] for c in px]
     if not gild:
-        # The Holy Shield is the original Templar shield with the lion FADED and the order's
-        # cross laid over it. Field, rim and wear are untouched; only the lion is pulled back.
+        # The Holy Shield is the Templar shield proper: a WHITE field with a red cross, laid
+        # over the shield you forged. The rim and its rivets stay as they were -- this is the
+        # same object, resurfaced, not a new one.
         #
-        # 0.93.0 repainted the whole face in steel, which made it the furthest of the three
-        # shields from the one it upgrades. 0.93.1 kept the field but left the lion at full
-        # strength, so the cross looked stuck on top of an unchanged shield rather than
-        # succeeding the device it covers.
-        rimpx = [i for i in range(w * h) if shield[i] and not is_int[i] and not mask[i]]
-        fld = [i for i in range(w * h) if is_int[i] and not mask[i]]
-        fl = max(1.0, sum(lum[i] for i in fld) / len(fld))
-        fr = sum(px[i][0] for i in fld) / len(fld) / fl
-        fg = sum(px[i][1] for i in fld) / len(fld) / fl
-        fb = sum(px[i][2] for i in fld) / len(fld) / fl
+        # The lion survives underneath at `ghost`, showing through the white. It is meant to
+        # be noticed rather than announced: an eagle-eyed player sees the beast under the
+        # consecration, and everyone else sees a Templar shield.
+        #
+        # Earlier passes got this wrong twice: 0.93.0 repainted the face in steel, which made
+        # it the furthest of the three shields from the one it upgrades, and 0.93.1 kept the
+        # original field so the cross looked stuck onto an unchanged shield.
+        WHITE = (236, 233, 225)      # linen, not paper: it has to sit beside gold
+        RED = (168, 32, 34)
+        face = [i for i in range(w * h) if shield[i] and dist[i] > 5]
+        fl = max(1.0, sum(lum[i] for i in face) / len(face))
+        # Whiten right up to the rim, not just the interior band. `is_int` keeps 9px clear of
+        # the silhouette so the gold border and its rivets survive, but that band is wider than
+        # the rim itself and left a ring of the old olive field showing between the two.
+        WHITE_EDGE = 4
         for i in range(w * h):
-            if not (shield[i] and mask[i]):
+            if not shield[i] or dist[i] <= WHITE_EDGE:
                 continue
-            # where the lion was, put the field back at the inpainted brightness, then blend
-            # `ghost` of the original lion over it
-            base = [min(255, int(fr * clean[i])), min(255, int(fg * clean[i])),
-                    min(255, int(fb * clean[i]))]
-            out[i] = [int(base[c] * (1 - ghost) + px[i][c] * ghost) for c in range(3)]
-        for i in cross:
-            L = lum[i] * 0.45
-            out[i] = [int(L * 0.95), int(L * 0.97), min(255, int(L * 1.02))]
-        for i in outline:
-            L = max(80, min(160, lum[i]))
-            out[i] = [min(255, int(L * 1.85)), int(L * 0.26), int(L * 0.24)]
+            # Compress ALL contrast toward the face mean rather than masking the lion and
+            # fading only that: the lion's dark outline is not caught by a brightness
+            # threshold, so a mask leaves it at full strength and the beast dominates the
+            # white instead of haunting it. This fades lion, outline, grain and wear together.
+            L = fl + (lum[i] - fl) * ghost
+            k = max(0.55, min(1.30, L / fl))
+            src = RED if i in cross else WHITE
+            out[i] = [min(255, int(c * k)) for c in src]
     else:
         for i in range(w * h):
             if not shield[i]:

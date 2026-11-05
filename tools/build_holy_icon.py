@@ -53,13 +53,26 @@ def main():
     SW, SH = x1 - x0, y1 - y0
 
     # the lion, dilated to take its dark outline with it
+    # The lion is its bright body AND its dark outline, and both must fade together. A
+    # threshold alone takes only the body -- the outline is among the darkest 32% of the icon --
+    # so it survived at full strength and the beast dominated the white field instead of
+    # haunting it. Dilate once to catch the anti-aliased edge, then crawl along DARK
+    # neighbours, which follows the outline without eating into the field.
     mask = {p for p in opaque if lum[p] > LION}
-    for _ in range(2):
+    grow = set()
+    for (x, y) in mask:
+        for q in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
+            if q in lum:
+                grow.add(q)
+    mask |= grow
+    for _ in range(4):
         grow = set()
         for (x, y) in mask:
             for q in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
-                if q in lum:
+                if q in lum and q not in mask and lum[q] < 95:
                     grow.add(q)
+        if not grow:
+            break
         mask |= grow
     field = [p for p in opaque if p not in mask]
     print("lion %d px, field %d px" % (len(mask), len(field)))
@@ -109,19 +122,52 @@ def main():
     # no thickening pass: at 84x129 a 2px outline closes the ring's quadrant holes and the
     # device turns into a red blob. The skin at 256x256 does thicken.
 
-    # Build the faded shield FIRST, then draw the cross from the faded luminance. Drawing it
-    # from the original made the lion modulate the cross fill, so the beast showed straight
-    # through the device that is supposed to supersede it.
-    faded = {}
-    for (x, y) in opaque:
-        p0 = (x, y)
-        r, g, b, _ = rows[y][x]
-        if p0 in mask:
-            base = (min(255, int(fr * clean[p0])), min(255, int(fg * clean[p0])),
-                    min(255, int(fb * clean[p0])))
-            r, g, b = (int(base[c] * (1 - GHOST) + (r, g, b)[c] * GHOST) for c in range(3))
-        faded[p0] = (r, g, b)
-    flum = {p0: int(0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) for p0, c in faded.items()}
+    # A WHITE field with a red cross, laid over the shield you forged -- the Templar shield
+    # proper. The lion survives underneath at GHOST, showing through the white: meant to be
+    # noticed rather than announced.
+    #
+    # The rim is kept. Distance from the silhouette decides what is rim: anything further in
+    # than RIM px is resurfaced, which is tighter than the interior band the mesh uses, or a
+    # ring of the old olive field shows between the gold border and the white.
+    from collections import deque
+    WHITE = (236, 233, 225)
+    RED = (168, 32, 34)
+    RIM = 4
+
+    # Seed only from transparent pixels connected to the FRAME, not from every transparent
+    # pixel. This icon has 146 enclosed holes inside the art, and seeding from those puts a
+    # "distance from the edge" of nearly zero in the middle of the shield -- so the lion's
+    # surroundings were classed as rim and kept their old olive while everything else turned
+    # white. Second time these holes have caused a bug; the first made the cross speckle red.
+    outside = set()
+    q = deque()
+    for y in range(H):
+        for x in range(W):
+            if (x in (0, W - 1) or y in (0, H - 1)) and rows[y][x][3] < 128:
+                outside.add((x, y))
+                q.append((x, y))
+    while q:
+        x, y = q.popleft()
+        for nq in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
+            nx, ny = nq
+            if 0 <= nx < W and 0 <= ny < H and nq not in outside and rows[ny][nx][3] < 128:
+                outside.add(nq)
+                q.append(nq)
+
+    dist = {}
+    q = deque()
+    for pt in outside:
+        dist[pt] = 0
+        q.append(pt)
+    while q:
+        x, y = q.popleft()
+        for nq in ((x+1, y), (x-1, y), (x, y+1), (x, y-1)):
+            if nq in lum and nq not in dist:
+                dist[nq] = dist[(x, y)] + 1
+                q.append(nq)
+
+    inner = [p0 for p0 in opaque if dist.get(p0, 0) > RIM]
+    fl = max(1.0, sum(lum[p0] for p0 in inner) / max(1, len(inner)))
 
     out = []
     for y in range(H):
@@ -129,16 +175,27 @@ def main():
         for x in range(W):
             p0 = (x, y)
             if rows[y][x][3] < 128:
-                row.append((0, 0, 0, 0))
+                if p0 in outside:
+                    row.append((0, 0, 0, 0))
+                    continue
+                # An enclosed hole. Against the old olive art these were invisible; against a
+                # white field they read as holes punched in the shield, so they are closed at
+                # the field's own brightness.
+                row.append(tuple(min(255, int(c)) for c in WHITE) + (255,))
                 continue
-            if p0 in outline:
-                L = max(90, min(150, flum[p0]))
-                row.append((min(255, int(L * 1.90)), int(L * 0.24), int(L * 0.22), 255))
-            elif p0 in cross:
-                L = max(30, min(120, flum[p0])) * 0.55
-                row.append((int(L * 0.95), int(L * 0.97), min(255, int(L * 1.02)), 255))
-            else:
-                row.append(faded[p0] + (255,))
+            if dist.get(p0, 0) <= RIM:
+                row.append(rows[y][x][:3] + (255,))        # the rim, untouched
+                continue
+            # Compress ALL contrast toward the field's mean, rather than masking the lion
+            # and fading only that. A threshold took the lion's bright body and left its
+            # outline and its mid-tones at full strength, so the beast dominated the white
+            # instead of haunting it. Flattening everything to GHOST of its original spread
+            # fades the lion, its outline, the grain and the wear together -- which is what
+            # "faintly showing through" actually means.
+            L = fl + (lum[p0] - fl) * GHOST
+            k = max(0.55, min(1.30, L / fl))
+            src = RED if p0 in cross else WHITE
+            row.append(tuple(min(255, int(c * k)) for c in src) + (255,))
         out.append(row)
 
     donor = zf.read(DONOR)
