@@ -150,7 +150,7 @@ on the six replies that enter that node, as `130 initiated` does for Cedric, so 
 fires on every route through the slavers. `210 give gold`, joining as an initiate, stays silent on purpose: the
 author's reading of "officially accepted" is the knighting.
 
-Dialogue only, so it reaches any save not yet knighted. `TK59`.
+Dialogue only, so it reaches any save not yet knighted. `HH59`.
 
 ---
 ## 0.96.0 - the vacant chair
@@ -203,7 +203,7 @@ assumed an empty chair, so a Raphael who lives gets `900 order cult contested`.
 - **Unnamed Inquisitors stay neutral.** Several of the Temple and Gate walkers have no `New Name`, so a relay
   cannot address them.
 
-`TK46`-`TK58` in [`qa.md`](qa.md), and `TK10` is reversed.
+`HH46`-`HH58` in [`qa.md`](qa.md), and `HH10` is reversed.
 
 ---
 ## 0.95.1 - the companions, in the game's rhythm
@@ -386,7 +386,7 @@ Duke and a Spanish ending joins it. That closes the order slides. The companions
   at this point in the game. Guards are the Generic can, AC 75 / HP 60.
 - **The guards' positions** come from a known floor point and a midpoint, not from the walk map.
 
-`TK1`-`TK45` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
+`HH1`-`HH45` in [`qa.md`](qa.md). **It needs a save that has not entered his chambers**, which in
 practice means a new game or a very early save.
 
 ---

@@ -1943,7 +1943,7 @@ generated after installing.
 | TK7 | TK5 or TK6 | Remove either piece | The cloak drops back to **+4 Stealth, +4 Evasion, +0 Find Traps**; the belt keeps its own bonus |
 | TK8 | TK5 | Equip and unequip each piece **six times**, reading all three skills each time | Every figure returns to exactly its previous value. **Any upward creep in any of the three is the leak** -- 0.83.0's first build added 15 Find Traps and subtracted 0 on every cycle, and a row that only checked "the bonus applies" would have passed it |
 | TK9 | TK5, reading Armor Class | - | AC reads **+3** over bare with the set, not +2. Evasion 23 moves `trunc(1 + 0.2*(Evasion-5))` from 3 to 4. This is correct and must not be "fixed" |
-| TK10 | Leave mid-fight and return | - | **Reversed in 0.96.0.** He and his guards are still hostile, and so is everyone in `TK46`. There must be no duplicate guards |
+| TK10 | A character below mojo 7, looting magic misc items | - | Cloaks appear, and the only enchantments on them are Cold, Fire or Poison Resistance. Before this release cloaks could not drop in that band at all |
 | TK11 | Any resistance cloak | Read its tooltip, then the character window | The tooltip states a figure between 5 and 15 and the window shows that resistance by that amount. **A zero or a mismatch means the addition is still reading the belt's amount** through its cloned self-reference |
 | TK12 | Abandoned Cave, after Bernat packs up and leaves | - | **His campfire is out.** The bales and crate go with it. Before this it burned on in an empty camp |
 | TK13 | Montaillou, Hamlet Exterior, the Pain and Nanghaithya exchange | Try to walk away while it plays | **You cannot.** The scene holds the controls for its thirteen seconds and the demons are held with you |
@@ -6094,69 +6094,69 @@ with. A tester reporting "unchanged" may simply be holding the old one.
 
 **All of this needs a save that has never entered the Inquisition Chambers**, because the map's entity
 list is frozen on first visit. The speech itself is a dialogue edit and works on any save, which is what
-`TK1` proves. On an older save nothing else changes, so a fight that never comes is not a failure there.
+`HH1` proves. On an older save nothing else changes, so a fight that never comes is not a failure there.
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
-| TK1 | His chambers, **before** Montserrat. Admit to the taint and reply *"You are the one who will burn"* | Listen | The full 14 seconds, **voiced**, then jail. **You must not see "Perhaps some time in a cell"** |
-| TK2 | Same | Hit him instead of talking | As before: the cell line, then jail. This is the regression on vanilla's behaviour |
-| TK3 | Same | Cast a spell near him as a magic user | *"Magic use has been detected!"* and jail, unchanged |
-| TK4 | **Before** Montserrat | Look at his replies | *"I have come to end you"* is **absent** at every greeting |
-| TK5 | **After** Montserrat, any faction | Talk to him at each greeting you can reach | The reply is present, with a fight icon |
-| TK6 | Same | Take it | The speech, then a fight. **He attacks you**, two guards arrive, and *"Arrogant fool! Guards! Restrain this heretic!"* plays. You must **never** be jailed. This is the row that proves the release |
-| TK7 | Same | Hit him instead | The same fight with no speech |
-| TK8 | Same, as a mage | Damage him with a spell | It lands. In vanilla `Spell Immunity` would have blocked it |
-| TK9 | Hurt the pit guards first, then start the fight | Let the guards reach you | Still no jail. The chase poly fires on enemies and the fight has to disarm it |
-| TK10 | Leave mid-fight and return | - | He is back at full health and calm, with no duplicate guards, and the fight can be started again |
-| TK11 | **Kill him as an Inquisitor** | Check perks and journal | **Dark Inquisitor** and **Enemy of the Inquisition**. `Create a Rod` and `Slay the Goblin Khan` fail if open |
-| TK12 | **Kill him as anyone else** | Check perks | **Breaker of the Hammer** and **Enemy of the Inquisition**, and not Dark Inquisitor |
-| TK13 | Leave and come back | - | He stays dead, and the Old Man cutscene does not play over the empty room |
-| TK14 | Finish the game, TK11's character | Watch the slides | `900 order inquisition dark`, and not the `killer` slide |
-| TK15 | Finish the game, TK12's character with no faction | Watch the slides | `900 order inquisition broken`, and **not** the no-allegiance slide. Then a Templar killer: broken **and** their own order's slide |
-| TK16 | **Judgement.** Fight him at the level you reach him | Is 260 HP / AC 225 right? Does he feel like the head of the Inquisition, or a tall guard? | The stats are a starting number, and he carries no unique reward. Say what it wants |
-| TK17 | No cult dealings at all, finish the game | Watch the slides | **No** cult slide, and the series carries on. This is the regression: a missing branch here would hang the ending |
-| TK18 | Kill all five without ever meeting Diego, finish the game | - | `900 order cult ended`. If it is absent, the fifth-death write did not run |
-| TK19 | Finish Diego's quest, report to Torquemada, finish the game | - | `900 order cult told` |
-| TK20 | Destroy them **and** kill Torquemada | - | `900 order cult ended dead`, after his own slide |
-| TK21 | Kill Diego for them, finish the game | - | `900 order cult served`, with Diego's `sold` slide in its usual place |
-| TK22 | The same, and kill Torquemada | - | `900 order cult inherited` |
-| TK23 | Kill Diego for them, collect, then kill all five | - | `ended`, **not** `served`. There is no cult left to prosper |
-| TK24 | Templar, knights freed, no Aegis, finish the game | - | `900 order templar relic`, straight after the Templar slide |
-| TK25 | Templar, take the Aegis from Sir Roger, finish the game | - | `900 order templar aegis`. Check the handover scene still exits through `10 accept` and gives you control back |
-| TK26 | Templar who passed through the Crypt or killed Jehanne, finish the game | - | **No** shield slide, and the series carries on |
-| TK27 | Non-Templar who freed the knights, finish the game | - | **No** shield slide. Jehanne's `released` slide is theirs |
-| TK28 | Knight of Saladin, Shard route, riddles, finish the game | - | `900 order saladin shard scholar`, straight after the Saladin slide. Then combat instead: `shard dervish` |
-| TK29 | Scimitar route, riddles, finish the game | - | `900 order saladin scimitar scholar`. Then combat instead: `scimitar dervish`, the burning blade |
-| TK30 | Scimitar route, hand Amir the Shard unasked, finish the game | - | The `unasked` version, with the closing line about the coin. Also check the scene itself still ends normally |
-| TK31 | Not a Knight of Saladin, finish the game | - | **No** slide here, and the series carries on |
-| TK32 | Finish `Hunt down Relican` for Cedric, finish the game | - | `900 order relican hunted`, after the Wielder slide. Then cure Brambles too: `hunted cured` |
-| TK33 | Refuse the ring, finish the game | - | `900 order relican refused`. The scene itself must still end normally, and it needs a save that has not yet refused |
-| TK34 | Cure Brambles, no Cedric, any faction | - | `900 order relican cured` |
-| TK35 | Use the ring and complete Relican's service, with Quinn joined and Leonardo agreed | - | `900 order relican dark joined joined`, straight after `900 order wielder ring` |
-| TK36 | The same, Quinn killed and Leonardo refused | - | `dark killed refused` |
-| TK37 | Use the ring and take no rank from Relican. Then, separately, do none of this | - | **No** Relican slide in either case, and the series carries on |
-| TK38 | Kill the Khan **without** Torquemada's quest, on a save that has not entered the Warrens | Finish the game | `900 order goblins khan`. This is the row that proves the flag is in the right slot |
-| TK39 | Kill the Khan for Torquemada, on an older save | Finish the game | The same slide, through the quest state |
-| TK40 | Earn `Goblin Slayer`, Khan alive, then return the poems | Finish the game | `900 order goblins count poems` |
-| TK41 | Bring Rakeb the eyes and kill Esteban for the patrol | Finish the game | `900 order goblins eyes esteban`, as one slide |
-| TK42 | Do none of this, in any faction | Finish the game | Neither slide, and the series carries on. Then read the Khan's greeting: *Plumdjum* |
-| TK43 | Give Fawkes the plans, decline the Duke, finish the game | - | `900 order england`, unchanged |
-| TK44 | Lure the Duke to the gunpowder, finish the game | - | `900 order england duke`, with the keg line |
-| TK45 | Kill Fawkes for the Duke of Medina, finish the game | - | `900 order spain`, and the England slide does not fire |
-| TK46 | Start the fight with Torquemada and run, new game | Walk through the Foyer, the Temple, Gate and Port Districts, and the Forest Exterior | Named Inquisitors and guards attack on sight. **You are never arrested.** This is the row that proves the release |
-| TK47 | Same, then Montaillou | The inn and the church | The Inquisitor Agent and Fournier attack. The siege is unchanged later |
-| TK48 | **The regression.** Never fight him | Play Barcelona normally | Nobody is hostile, jail still works, and every district's arrival still does what it did. The relay is on all 74 spawn points |
-| TK49 | Ran from Torquemada, in the Foyer | - | Raphael is **absent**, not an invincible enemy |
-| TK50 | Kill Torquemada, reach Raphael as an Inquisitor | Take the deal | No gold taken. A short fade, he is gone, and the guards are calm |
-| TK51 | Same, as an outsider with gold | Hand over your purse | **Your gold is exactly 0.** Try an odd amount, this is the only proof of the ladder |
-| TK52 | After either deal | Temple District, then Montaillou | Neutral everywhere |
-| TK53 | Refuse him | - | *"To the hellfire with you, heathen!"* He fights, guards join, and you are not jailed |
-| TK54 | Run from that fight and return | - | Still hostile, and no deal is offered |
-| TK55 | Kill him | Check perks | **Sede Vacante**. He stays dead, and the Inquisition stays hostile |
-| TK56 | Finish the game, TK50's character | Watch the slides | `900 order inquisition dark`: Raphael in the chair |
-| TK57 | Finish the game, TK51's, then an outsider who never reached him | - | `donated`, then `broken` |
-| TK58 | Finish the game, TK55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
-| TK59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
+| HH1 | His chambers, **before** Montserrat. Admit to the taint and reply *"You are the one who will burn"* | Listen | The full 14 seconds, **voiced**, then jail. **You must not see "Perhaps some time in a cell"** |
+| HH2 | Same | Hit him instead of talking | As before: the cell line, then jail. This is the regression on vanilla's behaviour |
+| HH3 | Same | Cast a spell near him as a magic user | *"Magic use has been detected!"* and jail, unchanged |
+| HH4 | **Before** Montserrat | Look at his replies | *"I have come to end you"* is **absent** at every greeting |
+| HH5 | **After** Montserrat, any faction | Talk to him at each greeting you can reach | The reply is present, with a fight icon |
+| HH6 | Same | Take it | The speech, then a fight. **He attacks you**, two guards arrive, and *"Arrogant fool! Guards! Restrain this heretic!"* plays. You must **never** be jailed. This is the row that proves the release |
+| HH7 | Same | Hit him instead | The same fight with no speech |
+| HH8 | Same, as a mage | Damage him with a spell | It lands. In vanilla `Spell Immunity` would have blocked it |
+| HH9 | Hurt the pit guards first, then start the fight | Let the guards reach you | Still no jail. The chase poly fires on enemies and the fight has to disarm it |
+| HH10 | Leave mid-fight and return | - | **Reversed in 0.96.0.** He and his guards are still hostile, and so is everyone in `HH46`. There must be no duplicate guards |
+| HH11 | **Kill him as an Inquisitor** | Check perks and journal | **Dark Inquisitor** and **Enemy of the Inquisition**. `Create a Rod` and `Slay the Goblin Khan` fail if open |
+| HH12 | **Kill him as anyone else** | Check perks | **Breaker of the Hammer** and **Enemy of the Inquisition**, and not Dark Inquisitor |
+| HH13 | Leave and come back | - | He stays dead, and the Old Man cutscene does not play over the empty room |
+| HH14 | Finish the game, HH11's character | Watch the slides | `900 order inquisition dark`, and not the `killer` slide |
+| HH15 | Finish the game, HH12's character with no faction | Watch the slides | `900 order inquisition broken`, and **not** the no-allegiance slide. Then a Templar killer: broken **and** their own order's slide |
+| HH16 | **Judgement.** Fight him at the level you reach him | Is 260 HP / AC 225 right? Does he feel like the head of the Inquisition, or a tall guard? | The stats are a starting number, and he carries no unique reward. Say what it wants |
+| HH17 | No cult dealings at all, finish the game | Watch the slides | **No** cult slide, and the series carries on. This is the regression: a missing branch here would hang the ending |
+| HH18 | Kill all five without ever meeting Diego, finish the game | - | `900 order cult ended`. If it is absent, the fifth-death write did not run |
+| HH19 | Finish Diego's quest, report to Torquemada, finish the game | - | `900 order cult told` |
+| HH20 | Destroy them **and** kill Torquemada | - | `900 order cult ended dead`, after his own slide |
+| HH21 | Kill Diego for them, finish the game | - | `900 order cult served`, with Diego's `sold` slide in its usual place |
+| HH22 | The same, and kill Torquemada | - | `900 order cult inherited` |
+| HH23 | Kill Diego for them, collect, then kill all five | - | `ended`, **not** `served`. There is no cult left to prosper |
+| HH24 | Templar, knights freed, no Aegis, finish the game | - | `900 order templar relic`, straight after the Templar slide |
+| HH25 | Templar, take the Aegis from Sir Roger, finish the game | - | `900 order templar aegis`. Check the handover scene still exits through `10 accept` and gives you control back |
+| HH26 | Templar who passed through the Crypt or killed Jehanne, finish the game | - | **No** shield slide, and the series carries on |
+| HH27 | Non-Templar who freed the knights, finish the game | - | **No** shield slide. Jehanne's `released` slide is theirs |
+| HH28 | Knight of Saladin, Shard route, riddles, finish the game | - | `900 order saladin shard scholar`, straight after the Saladin slide. Then combat instead: `shard dervish` |
+| HH29 | Scimitar route, riddles, finish the game | - | `900 order saladin scimitar scholar`. Then combat instead: `scimitar dervish`, the burning blade |
+| HH30 | Scimitar route, hand Amir the Shard unasked, finish the game | - | The `unasked` version, with the closing line about the coin. Also check the scene itself still ends normally |
+| HH31 | Not a Knight of Saladin, finish the game | - | **No** slide here, and the series carries on |
+| HH32 | Finish `Hunt down Relican` for Cedric, finish the game | - | `900 order relican hunted`, after the Wielder slide. Then cure Brambles too: `hunted cured` |
+| HH33 | Refuse the ring, finish the game | - | `900 order relican refused`. The scene itself must still end normally, and it needs a save that has not yet refused |
+| HH34 | Cure Brambles, no Cedric, any faction | - | `900 order relican cured` |
+| HH35 | Use the ring and complete Relican's service, with Quinn joined and Leonardo agreed | - | `900 order relican dark joined joined`, straight after `900 order wielder ring` |
+| HH36 | The same, Quinn killed and Leonardo refused | - | `dark killed refused` |
+| HH37 | Use the ring and take no rank from Relican. Then, separately, do none of this | - | **No** Relican slide in either case, and the series carries on |
+| HH38 | Kill the Khan **without** Torquemada's quest, on a save that has not entered the Warrens | Finish the game | `900 order goblins khan`. This is the row that proves the flag is in the right slot |
+| HH39 | Kill the Khan for Torquemada, on an older save | Finish the game | The same slide, through the quest state |
+| HH40 | Earn `Goblin Slayer`, Khan alive, then return the poems | Finish the game | `900 order goblins count poems` |
+| HH41 | Bring Rakeb the eyes and kill Esteban for the patrol | Finish the game | `900 order goblins eyes esteban`, as one slide |
+| HH42 | Do none of this, in any faction | Finish the game | Neither slide, and the series carries on. Then read the Khan's greeting: *Plumdjum* |
+| HH43 | Give Fawkes the plans, decline the Duke, finish the game | - | `900 order england`, unchanged |
+| HH44 | Lure the Duke to the gunpowder, finish the game | - | `900 order england duke`, with the keg line |
+| HH45 | Kill Fawkes for the Duke of Medina, finish the game | - | `900 order spain`, and the England slide does not fire |
+| HH46 | Start the fight with Torquemada and run, new game | Walk through the Foyer, the Temple, Gate and Port Districts, and the Forest Exterior | Named Inquisitors and guards attack on sight. **You are never arrested.** This is the row that proves the release |
+| HH47 | Same, then Montaillou | The inn and the church | The Inquisitor Agent and Fournier attack. The siege is unchanged later |
+| HH48 | **The regression.** Never fight him | Play Barcelona normally | Nobody is hostile, jail still works, and every district's arrival still does what it did. The relay is on all 74 spawn points |
+| HH49 | Ran from Torquemada, in the Foyer | - | Raphael is **absent**, not an invincible enemy |
+| HH50 | Kill Torquemada, reach Raphael as an Inquisitor | Take the deal | No gold taken. A short fade, he is gone, and the guards are calm |
+| HH51 | Same, as an outsider with gold | Hand over your purse | **Your gold is exactly 0.** Try an odd amount, this is the only proof of the ladder |
+| HH52 | After either deal | Temple District, then Montaillou | Neutral everywhere |
+| HH53 | Refuse him | - | *"To the hellfire with you, heathen!"* He fights, guards join, and you are not jailed |
+| HH54 | Run from that fight and return | - | Still hostile, and no deal is offered |
+| HH55 | Kill him | Check perks | **Sede Vacante**. He stays dead, and the Inquisition stays hostile |
+| HH56 | Finish the game, HH50's character | Watch the slides | `900 order inquisition dark`: Raphael in the chair |
+| HH57 | Finish the game, HH51's, then an outsider who never reached him | - | `donated`, then `broken` |
+| HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
+| HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 
