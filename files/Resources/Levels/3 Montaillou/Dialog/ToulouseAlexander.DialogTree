@@ -1,0 +1,1122 @@
+CDialogTree
+{
+Name=Thierry
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Bubble 1
+Text=Psst, over here! Be careful of the guard!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 Bubble 2
+Text=We can talk over here.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=01 Welcome
+Text=We must speak quickly before we're noticed. Who are you? Why are you here, did you speak to my wife? Is Esclarmonde okay? Did she make it to Montaillou? What of the others?  
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Your wife is in Montaillou. She sent me to help you escape, what must I do?
+Go to node ID=60 Hero
+
+Requirement=!None
+Reply Text=Your wife is safe in Montaillou, and she sent me here to try to help you. First, I have some questions.
+Go to node ID=20 Questions
+
+Requirement=!None
+Reply Text=You're right, I don't want to be seen here. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=02 Return Welcome
+Text=Do you bring good news?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=ULG53LU2
+}
+}
+Reply Text=I'm not ready yet, but I have some questions I'd like to ask.
+Go to node ID=20 Questions
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Path is clear
+Desired Minimum Count=1
+}
+}
+Reply Text=The guards are distracted, you must go quickly.
+Go to node ID=100 See you in Montaillou
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsAliveAction
+{
+Name To Check For=poimaino
+Desired Minimum Count=1
+}
+Action=CIsAliveAction
+{
+Name To Check For=mathuo
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=I have slain the guards, there is no time to waste.
+Go to node ID=100 See you in Montaillou
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have some questions.
+Go to node ID=20 Questions
+
+Requirement=!None
+Reply Text=I'm working on it.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I must go.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Fixt the camp is quiet
+Text=The camp has gone quiet. No shouting, no ogres at the fence, and nobody has come for the sheep. I have been a prisoner long enough to distrust quiet. What has happened out there?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=The titans have gone. All of them. You are free to go.
+Go to node ID=04 Fixt free to go
+
+Requirement=!None
+Reply Text=I will come back for you.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=04 Fixt free to go
+Text=Gone? Walked away, with nobody dead at the fence? <He grips the rail for a moment.> I will not ask what you said to them. I have a wife in Montaillou who thinks I am a dead man, and I intend to correct her.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then go. I will see you in Montaillou.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt pen walks out
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Questions
+Text=I will answer your questions if it will help you free us, but we must speak quickly. 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=PC is told Toulouse was harboring Lucius
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans said this town was harboring one of their kind, is that true?
+Go to node ID=30 Lucius
+Action work in progress=only if flag 1 PC is told Toulouse was harboring Lucius
+
+Requirement=!None
+Reply Text=Where are the rest of the townspeople?
+Go to node ID=25 The rest of the townspeople
+------------------------------------------------------------
+Node ID=25 The rest of the townspeople
+Text=This is all of us. Several were killed when the titans and ogres tore this town to pieces, they've taken away and eaten perhaps two dozen, several more fled with my wife, and that just leaves us.  
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=PC is told Toulouse was harboring Lucius
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans said this town was harboring one of their kind, is that true?
+Go to node ID=30 Lucius
+Action work in progress=only if flag 1 PC is told Toulouse was harboring Lucius
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN greater than or equal to 4
+}
+Reply Text=Have you actually seen a titan eating a human?
+Go to node ID=42 Heard it
+Icon=Attribute Icon
+------------------------------------------------------------
+Node ID=30 Lucius
+Text=Bah, it was that fool Alexander. He lived on a secluded farm outside of town. In the days before the monsters came, he was boasting that he had a secret friend who could do the work of a dozen men.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=32 Lucius 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=32 Lucius 2
+Text=Alexander was a great lover of wine, and could frequently be found at the bottom of a bottle. Nobody gave the slightest thought to his stories. It wasn't until a couple of days ago that we realized he must have been talking about a titan. By then it was too late.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What do you mean "too late"?
+Go to node ID=34 Alexander eaten
+
+Requirement=!None
+Reply Text=Have you tried talking to the titans?
+Go to node ID=34 Don't talk to monsters
+------------------------------------------------------------
+Node ID=34 Alexander eaten
+Text=Alexander's was one of the first bodies found half-eaten by these blue monsters and their ogres. His "secret friend" must have been their scout. The blood of the dead of Montaillou are on that damn fool's hands. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are you sure he was eaten by the titans?
+Go to node ID=40 Titan food
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/IN greater than or equal to 4
+}
+Reply Text=Did you see Alexander or anybody else get eaten?
+Go to node ID=42 Heard it 
+------------------------------------------------------------
+Node ID=34 Don't talk to monsters
+Text=Are you mad? To attract the attention of those fiends is to invite your own death! The only time they approach us now is to take more victims out to be slaughtered for their table.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard about demon
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans claim a demon is eating your people.
+Go to node ID=45 Traitor!
+
+Requirement=!None
+Reply Text=What can I do?
+Go to node ID=60 Hero
+
+Requirement=!None
+Reply Text=I must go now before the guard notices me. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Titan food
+Text=If the titans aren't eating us, what is? There are no animals around here that would eat a man, especially in the middle of town. If it wasn't the blue giants or the grey ones, then what? 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard about demon
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans claim a demon is eating your people.
+Go to node ID=45 Traitor!
+
+Requirement=!None
+Reply Text=I must go now before the guard notices me. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=42 Heard it
+Text=No, I haven't seen it, but I've heard it. What's worse? To see a man die, or to hear his screams as he's ripped apart? They come here, take one or two people, and not much time passes before we hear their shrieks. Is that not proof enough? 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=heard about demon
+Desired Minimum Count=1
+}
+}
+Reply Text=The titans claim a demon is eating your people.
+Go to node ID=45 Traitor!
+
+Requirement=!None
+Reply Text=What can I do?
+Go to node ID=60 Hero
+
+Requirement=!None
+Reply Text=I must go now before the guard notices me. Goodbye.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Traitor!
+Text=What? You've spoken to those monsters? How could you? They're responsible for destroying this town, for killing and *eating* many of its inhabitants. Are you in league with these fiends?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, I'm just trying to figure out what is going on around here.
+Go to node ID=46 What's up
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=46 What's up
+Text=I'll tell you what's going on: we're at the mercy of those murderers. Now will you help us or not? 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, what must I do?
+Go to node ID=60 Hero
+
+Requirement=!None
+Reply Text=Yes, but it is dangerous work, you know.
+Go to node ID=70 Mercenary hero
+
+Requirement=!None
+Reply Text=I can't help you at this time, but I will return if I can.
+Go to node ID=100 Goodbye
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Not. Goodbye.
+Go to node ID=100 Evil Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Hero
+Text=Just south of here, a small trail leads west through the woods. That is how Esclarmonde escaped. If any titans between here and there could be...taken care of...I think we could slip out of town.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Path is clear
+Desired Minimum Count=1
+}
+}
+Reply Text=The path is already open, you must go quickly.
+Go to node ID=100 See you in Montaillou
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIsAliveAction
+{
+Name To Check For=poimaino
+Desired Minimum Count=1
+}
+Action=CIsAliveAction
+{
+Name To Check For=mathuo
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+}
+Reply Text=I have slain the guards, there is no time to waste.
+Go to node ID=100 See you in Montaillou
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I have some questions.
+Go to node ID=20 Questions
+
+Requirement=!None
+Reply Text=I will let you know when it's safe.
+Go to node ID=100 Hero Goodbye
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=GBT135MI
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=70 Mercenary hero
+Text=Of course, we would not ask you to risk your life if we were not willing to, umm, to make it worth your while. Before the titans ripped the roof from my home, I hid a large fortune beneath the floorboards. Once we are safely in Montaillou, I will tell you where it is. Do we have a deal?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Very well. I will let you know when it's safe to proceed.
+Go to node ID=60 Hero
+
+Requirement=!None
+Reply Text=I have some questions.
+Go to node ID=20 Questions
+
+Requirement=!None
+Reply Text=Perhaps I could find this treasure on my own.
+Go to node ID=100 Evil Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 Goodbye
+Text=Do not forget us, friend!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Evil Goodbye
+Text=I may die, but I will die but once. A coward like you dies a thousand deaths.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Hero Goodbye
+Text=I will pray for your success, my friend.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 See you in Montaillou
+Text=Look for me in Montaillou, then, friend.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Good luck.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=ZQSA71EU
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Prisoners escape
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=99 Follow me
+Text=Follow me, brothers!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 Montaillou Greeting
+Text=Thank you! Thank you for rescuing me from that deathtrap. I thought I was doomed to be a monster's meal, to spend my last gasping seconds in the bowels of a beast!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+}
+}
+Reply Text=I would appreciate a token of your gratitude.
+Go to node ID=210 Reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Thierry Reward
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Thierry Reward hard
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=rescue the people of toulouse
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=!None
+Reply Text=What will you do now?
+Go to node ID=220 Move to Barcelona
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+}
+Reply Text=I do this sort of thing all the time. Farewell and good luck.
+Go to node ID=300 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Thierry Good Karma Reward
+}
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=rescue the people of toulouse
+Experience Points To Add=1
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 Reward
+Text=Of course, of course! It is the least we can do for you. You will find the wreck of my house in the northwest corner of Toulouse. Search the yard and beneath a tree stump you will find concealed a cache of a thousand pieces of gold.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What will you do now?
+Go to node ID=220 Move to Barcelona
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Found Thierry's stash
+Desired Minimum Count=1
+}
+}
+Reply Text=I think I've already found that.
+Go to node ID=240 Already found it
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Found Thierry's stash
+Desired Minimum Count=1
+}
+}
+Reply Text=You should hide your valuables better, I've already found it. What else do you have?
+Go to node ID=240 Already found it evil
+Custom Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Found Thierry's stash
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I think you have greater need of it than I. Use it to rebuild your life.
+Go to node ID=230 Saint
+Action work in progress=give karma bonus, end quest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Thierry Reward
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Thierry Good Karma Reward
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Thierry Reward hard
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Found Thierry's stash
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I will search there. Good luck and farewell.
+Go to node ID=300 Goodbye
+Action work in progress=update quest state
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Found Thierry's stash
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=It had better be there, or you'll wish you were eaten.
+Go to node ID=300 Goodbye
+Action work in progress=update quest state
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 Move to Barcelona
+Text=With so many dead in Toulouse we cannot bear to return. And how could we ever feel safe there again? No, we will travel until we find a safe, quiet spot and start our life anew. Perhaps Barcelona, surely a city so grand must be the safest place in the world.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+}
+}
+Reply Text=Don't you think a reward is in order?
+Go to node ID=210 Reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Thierry Reward
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Thierry Reward hard
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=rescue the people of toulouse
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=!None
+Reply Text=Good luck, I hope you find the peace you seek. 
+Go to node ID=300 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Then=
+Else=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=rescue the people of toulouse
+Experience Points To Add=1
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=That sounds very, very dull. Goodbye.
+Go to node ID=300 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Then=
+Else=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=rescue the people of toulouse
+Experience Points To Add=1
+}
+}
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=230 Saint
+Text=Mon Dieu! You are a saint, monsieur, a true saint!  My family and I will be able to build a new life thanks to your kindness. If there were more like you this cruel orb would be a true paradise! 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Farewell and good luck, friend. 
+Go to node ID=300 Goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Then=
+Else=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=240 Already found it
+Text=Sometimes, it seems, the world can anticipate good deeds! Enjoy your reward, monsieur, you've earned it and more. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What will you do now?
+Go to node ID=220 Move to Barcelona
+
+Requirement=!None
+Reply Text=Farewell and good luck, friend. 
+Go to node ID=300 Goodbye
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Then=
+Else=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=240 Already found it evil
+Text=I...I...but, monsieur, you can see that we are destitute, I have barely the coin to feed my family, surely you cannot want what little we have! 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I do.
+Go to node ID=300 Evil Goodbye
+Action work in progress=bad karma
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+
+Requirement=!None
+Reply Text=It would be a shame if you survived the titans only to meet your end here...wouldn't it? 
+Go to node ID=300 Evil Goodbye
+Action work in progress=bad karma
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Bad karma
+}
+
+Requirement=!None
+Reply Text=Very well, keep your pitiful coin.  
+Go to node ID=300 Evil Goodbye 
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Then=
+Else=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Else=
+Return failure if the If failes=0
+}
+Return failure if the If failes=0
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 Goodbye
+Text=Farewell, friend. Our hearth will always welcome you. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 Evil Goodbye
+Text=It seems that sometimes even the basest villain can inadvertently do good. Farewell, monsieur.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=200 Montaillou Greeting Esc Dead
+Text=Thank you! Thank you for rescuing me from that deathtrap. I thought I was doomed to be a monster's meal, to spend my last gasping seconds in the bowels of a beast! As soon as I find Esclarmonde, all will be well! She must be around here somewhere...
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+}
+}
+Reply Text=I would appreciate a token of your gratitude.
+Go to node ID=210 Reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Thierry Reward
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Thierry Reward hard
+}
+Other Map Name=3 Montaillou/Titan Village
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=rescue the people of toulouse
+Experience Points To Add=1
+}
+}
+}
+
+Requirement=!None
+Reply Text=What will you do now?
+Go to node ID=220 Move to Barcelona
+
+Requirement=!None
+Reply Text=Actually, I killed her.
+Go to node ID=100 Evil Goodbye Attack
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+State=M05I2C3Z
+}
+}
+}
+Reply Text=Good luck finding her.
+Go to node ID=300 Goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Thierry Good Karma Reward
+}
+Action=CIfAction
+{
+If=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+}
+Then=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/3 Montaillou/Quests/Rescue the people of Toulouse
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=rescue the people of toulouse
+Experience Points To Add=1
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Evil Goodbye Attack
+Text=I may die, but I will die but once. A coward like you dies a thousand deaths.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+Icon=Fight Icon
+Is Default Reply=1
+}

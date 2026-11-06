@@ -6158,6 +6158,21 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.97.2 - the pen at Toulouse (issue #9)
+
+**All of it needs a save that has not entered Toulouse**, because a map's entity list is frozen on first visit.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| FP1 | Talk Lethos into leaving with Thierry alive | Watch the fade | The titans go. **The prisoners and Thierry are still in the pen afterwards**, and nobody attacks |
+| FP2 | FP1, click a villager man or woman | - | *"The ogres have gone, and nobody will say why..."*, not the old downcast line. The child says *"Is it over?..."* |
+| FP3 | FP1, click Thierry | *"The titans have gone. All of them. You are free to go."*, then *"Then go..."* | *"Follow me, brothers!"*, then he **and all three villagers walk** out along the path. If they stand still, the AI Done did not land |
+| FP4 | FP3, follow them | Wait 30 seconds | They disappear at the end of the path and do not stand there forever. Clicking one mid-walk does nothing |
+| FP5 | FP3, go to Montaillou | - | Thierry is at the north of the hamlet, once. Esclarmonde thanks you. His reward works |
+| FP6 | **Walk away.** FP1, leave Toulouse without talking to him, go to Montaillou, come back | - | Thierry is in Montaillou, and the pen is empty on your return. **He must not be in both** |
+| FP7 | **Thierry dead.** Kill him or let him die, then FP1 | Click a villager man or woman | *"Thierry is dead..."*, then *"You are free to go."* Everyone walks. No balloon, and Esclarmonde still offers the dead-husband reply. The child never offers this |
+| FP8 | **The regression.** Any other ending: free them through Thierry, kill the titans, or Memnos | - | Exactly as before. `TD3`-`TD4` still pass, and no villager uses the new lines |
+
 ## 0.97.1 - everything DaVinci recorded
 
 **`DL3` needs a save that has never entered the workshop, and `DL5` a save that has never walked through the portcullis.** The

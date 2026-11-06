@@ -13,6 +13,42 @@ Node ID=50 Ogre 2
 Text=A spasm of rage briefly crosses this ogre's face as you pass by.
 Should Have Voiceover=0
 ------------------------------------------------------------
+Node ID=60 Fixt ask Thierry
+Text=The ogres have gone, and nobody will say why. Thierry will know what to do. Ask him, please.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=69 Fixt the child
+Text=Is it over? Can we go home now?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=67 Fixt no Thierry
+Text=Thierry is dead, and the ones who killed him walked away as if it were nothing. Is it true? Is there nobody left to keep us here?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=They are gone. You are free to go.
+Go to node ID=68 Fixt no Thierry 2
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=68 Fixt no Thierry 2
+Text=Then we walk, and we do not stop until somebody stops us. God keep you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Go safely.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt pen walks out
+}
+Icon=Quest Icon
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=60 Villager Man 1
 Text=This man avoids looking in your eyes, as though his spirit has been completely crushed.
 Should Have Voiceover=0
