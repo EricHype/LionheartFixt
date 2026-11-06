@@ -6156,6 +6156,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK56 | Finish the game, TK50's character | Watch the slides | `900 order inquisition dark`: Raphael in the chair |
 | TK57 | Finish the game, TK51's, then an outsider who never reached him | - | `donated`, then `broken` |
 | TK58 | Finish the game, TK55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
+| TK59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

@@ -39,7 +39,6 @@ wrong are more reusable than the results.
 
 | lead | size | what it needs |
 |---|---|---|
-| `MX_FACT_KNIGHTTEMPLAR1` | 13 s | a Templar moment. Every other faction's theme plays somewhere |
 | named combat voice sets | 24 files | `Lucious Titan_*`, `DRUID_*`, `Goblin Grumjum_*`, `River Dryad_death_*`, `DRUNKARD_death_*`. Nothing names them, so those characters may be fighting in someone else's voice. Unclassified |
 | `200 beast compliment`, `200 divine compliment` | 124 KB | a trigger on fighting well |
 | `Purify the Shadow Dryad` | 732 KB | a policy decision, see entry 1 below. The biggest story thread left |
@@ -68,7 +67,7 @@ The art survey never had an audio twin. `tools/orphan_audio.py` runs it:
 
 | | tracks | named by nothing |
 |---|---|---|
-| music and ambient | 262 | **9**, 1.5 MB, after 0.94.0 placed `MX_CHAMB_MED` |
+| music and ambient | 262 | **8**, 1.3 MB, after placing `MX_CHAMB_MED` and `MX_FACT_KNIGHTTEMPLAR1` |
 | all non-voiceover audio | 1,542 | **129**, 3.06 MB |
 
 **The first pass said 457 files and 15.5 MB, and most of that was false.** It searched text field
@@ -80,7 +79,7 @@ are numbered sets, so both are probably names the engine builds at runtime.
 **The ten tracks are the reliable part**, because maps and trees name music in full, through
 `CMixInSongAndPlayAmbientTrackAction{Song To Mix In=...}`, and that action works from a dialogue
 reply as well as a map. Placing one is a single action, or a single field in a map's own
-`Music Mix`. **The nine left:** `MX_FACT_KNIGHTTEMPLAR1`, `ForestAmbient01`, `ForestAmbient05`, `DesertWindAmbient02`,
+`Music Mix`. **The eight left:** `ForestAmbient01`, `ForestAmbient05`, `DesertWindAmbient02`,
 `DesertWindAmbient03`, `OutsidePeopleAmbient`, `BarAmbient`, `FireEmbersAmbient02`, `Wolf Howl startgame`.
 
 **`MX_CHAMB_MED` went to the cathedral crypt in 0.94.0**, on the author's ear: it is monks chanting,
@@ -119,7 +118,7 @@ unreachable nodes by shared words. It is noisy, one real hit in 21 on its first 
 | Perks (`.Perk`) | 98 | **0**. All five orphans awarded in 0.47.0 |
 | Factions (`.Faction`) | 13 | **0**. One restored by Fixt |
 | Voiced dialogue nodes | 1,573 recordings | **66** unreachable, **5.14 MB**, most of it now classified as draft or adjudicated (vanilla 204 / 19.27 MB) |
-| Music and ambient | 262 tracks | **9**, **1.5 MB**, new in 0.94.0 -- see [the live list](#orphaned-audio----a-new-axis) |
+| Music and ambient | 262 tracks | **8**, **1.3 MB**, new in 0.94.0 -- see [the live list](#orphaned-audio----a-new-axis) |
 
 The voiceover row was [measured backwards until
 2026-10-11](#voiceover-on-nodes-nobody-can-reach----the-sweep-the-first-one-inverted). Its size no
