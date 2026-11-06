@@ -160,27 +160,55 @@ it in a hall, and nobody there could say whose it had been.
 
 ## The Inquisition
 
-### when: Dark Inquisitor, a member who killed Torquemada
+### when: Dark Inquisitor, Raphael alive
 
     node id: 900 order inquisition dark
 
-The Inquisition entered the siege without a head. It came out with several. Torquemada died in his
-own chambers, and the Holy Office recorded it as a fever. The truth was worse: the hand that killed
-him still wore the mark. The cult on the plains had wanted this for years. You did it in an
-afternoon. His successors agreed on nothing, and the fires burned low. Within ten years, some cities
-stopped paying for the wood. No one ever named you. But the archive keeps a box with nothing written
-on it, and its keepers lower their voices.
+The Inquisition entered the siege with a new head. Torquemada died in his own chambers, and the Holy
+Office recorded it as a fever. The truth was worse: the hand that killed him still wore the mark.
+Raphael knew. He took the chair within the year, and he burned more than Torquemada ever had, with
+better records. The cities paid for the wood. No one ever named you. He never needed to. The archive
+keeps a box with nothing written on it, and its keepers lower their voices.
 
-### when: Breaker of the Hammer, anyone else who killed him
+### when: Breaker of the Hammer, Raphael alive, no deal
 
     node id: 900 order inquisition broken
 
-The Inquisition entered the siege without a head. Barcelona would not rebuild under men who could
-not say who led them. Torquemada died in his own chambers, at the hand of someone who owed the Holy
-Office nothing. You walked out past what was left of his guards. His successors fought over his
-chair for years. The fires did not go out, but they burned low. Within ten years, some cities
-stopped paying for the wood. No one in those cities knew your name. The Holy Office did. It kept the
-page open.
+The Inquisition entered the siege with a new head. Torquemada died in his own chambers, at the hand
+of someone who owed the Holy Office nothing, and it recorded a fever. Raphael took the chair within
+the year. He burned more than Torquemada ever had, with better records. Within ten years, no city
+dared stop paying for the wood. No one in those cities knew your name. The Holy Office did. It kept
+the page open.
+
+### when: Breaker of the Hammer, and you paid Raphael
+
+    node id: 900 order inquisition donated
+
+The Inquisition entered the siege with a new head. Torquemada died in his own chambers, at the hand
+of someone who owed the Holy Office nothing, and it recorded a fever. Raphael took the chair within
+the year. He burned more than Torquemada ever had, with better records. Your gold paid for the first
+of the wood. Within ten years, no city dared stop paying for the rest. The receipt is in the
+archive, made out to a penitent. It is the only page with your name on it.
+
+### when: Dark Inquisitor, and you killed Raphael too
+
+    node id: 900 order inquisition dark sede
+
+The Inquisition entered the siege without a head, and without the man who would have been the next
+one. You had worn its mark, and you killed them both. Nobody was left to write a fever. The Holy
+Office lost its chair and its story in the same week. His would-be successors agreed on nothing, and
+the fires burned low. Within ten years, some cities stopped paying for the wood. The archive keeps
+your name under a heading it invented for the purpose. Nobody has ever been entered there since.
+
+### when: Breaker of the Hammer, and you killed Raphael too
+
+    node id: 900 order inquisition broken sede
+
+The Inquisition entered the siege without a head, and without the man who would have been the next
+one. You owed the Holy Office nothing, and you killed them both. Nobody was left to write a fever.
+Its would-be successors fought over the chair for years. The fires did not go out, but they burned
+low. Within ten years, some cities stopped paying for the wood. No one in those cities knew your
+name. The Holy Office did. It never again had the strength to do anything about it.
 
 ### when: Exposer of Calle Perdida (with or without rank)
 
@@ -279,6 +307,17 @@ was left to write letters about them. They grew. Their habits spread from the no
 hill towns, and then to parishes that had never heard the name. Within ten years it was hard to say
 where the cult stopped and the Holy Office began. Some of them knew your name. They said it the way
 the faithful say a saint's.
+
+---
+
+### when: killed Diego for them, Torquemada dead, Raphael alive
+
+    node id: 900 order cult contested
+
+The Dark Inquisitors paid you for Bishop Diego. Nobody paid you for Torquemada, though it was the
+job they wanted most. They came down from the plains in good habits, with good letters, and found
+Raphael in the chair. There was no honest bishop left to read them, and he did not need one. Within
+a generation it was hard to say whether he had burned them or hired them.
 
 ---
 

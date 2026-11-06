@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.95.1 are published** -- 193 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.96.0 are published** -- 194 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,59 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.96.0 - the vacant chair
+
+0.95.0 let you kill the Grand Inquisitor and left the Inquisition unbothered. Now it is the most expensive
+thing in the game.
+
+### Starting the fight is the point of no return
+
+`Fixt Torquemada fight` sets `Fixt Inquisition Hostile` the moment the fight begins, so running does not save
+you. From then on every Inquisitor in Barcelona and Montaillou attacks on sight. It stops at Montaillou: the
+siege and the ending are unchanged, and Darsh and Diego never hear.
+
+The cans share no switch, so each of eight maps gained one relay, `Fixt Inquisition turns`, run from every spawn
+point, 74 in all. It reads two player variables and names the Inquisitors of that map, as spawned. Guards carry
+damage and spell scripts that end in jail, so it stands those relays down first: a hostile guard that could still
+arrest you would have ended the fight in a cutscene.
+
+### Raphael sees an opportunity
+
+Raphael is written cold, not hot: *"The Inquisition is infallible"*, *"I suppose I expected too much of you."* A
+man like that does not avenge Torquemada. Once Torquemada is dead he stands apart in the foyer, and if you reach
+him he offers to sign the fever.
+
+| | |
+|---|---|
+| **Deal** | The Inquisition stands down and he leaves. An Inquisitor pays nothing, because he now owns them. Anyone else pays all their gold, a small price for the absolution of their sin |
+| **Refuse or attack** | A real fight, at AC 200 / HP 220, and the deal is gone for good |
+| **Kill him** | **Sede Vacante**, the Church's term for the empty seat: *"The seat of the Holy Office stands empty, and you emptied it. Twice."* |
+
+The engine can only take a fixed sum and cannot read a purse, so the donation is a ladder of `CHasMoneyAction` and
+`CTakeMoneyAction` from 2^19 down to 1. Before Torquemada dies Raphael stays invulnerable, so you cannot skip to
+him, and if you ran from Torquemada he is absent rather than an invincible enemy. `RESET MAP for Invulnerable
+Raphael` is the switch, as it was for his master.
+
+### The easy road is the worse one
+
+The two 0.95.0 slides said Torquemada's successors agreed on nothing and the fires burned low. That only holds if
+Raphael dies too, and a fever nobody lived to sign cannot be recorded. So they split. Deal with him, or never reach
+him, and he takes the chair and burns more than Torquemada ever did. Kill him and the order breaks. An outsider who
+paid has a slide of their own, because their gold bought the first of the wood. The cult's `inherited` slide
+assumed an empty chair, so a Raphael who lives gets `900 order cult contested`.
+
+### Limits
+
+- **The hostility reaches only a save that has not entered those maps.** The Temple District is entered early, so
+  in practice this is a new game.
+- **The positions Raphael's guards fight from, and his stats,** are starting points. Nothing here has been played.
+- **He has `AttackPunch` and `SpellCast9` but no hit sequence**, as his model always did.
+- **Unnamed Inquisitors stay neutral.** Several of the Temple and Gate walkers have no `New Name`, so a relay
+  cannot address them.
+
+`TK46`-`TK58` in [`qa.md`](qa.md), and `TK10` is reversed.
+
+---
 ## 0.95.1 - the companions, in the game's rhythm
 
 All 47 companion slides, finishing what 0.95.0 began. The whole set of 116 now averages 13.3 words a

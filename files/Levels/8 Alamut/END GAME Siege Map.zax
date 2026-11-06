@@ -291,12 +291,31 @@ CLayerSaveData
 									}
 								}
 								Character to get attributes from=Player1
-								Then=CDisplayDialogTreeAction
+								Then=CIfExpressionAction
 								{
-									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-									Node ID=900 order inquisition dark
-									Speaker=Fake Talker for NIS
-									Player Being Spoken To=Player1
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Sede Vacante
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order inquisition dark sede
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order inquisition dark
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
 								}
 								Else=CIfExpressionAction
 								{
@@ -309,12 +328,54 @@ CLayerSaveData
 										}
 									}
 									Character to get attributes from=Player1
-									Then=CDisplayDialogTreeAction
+									Then=CIfExpressionAction
 									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-										Node ID=900 order inquisition broken
-										Speaker=Fake Talker for NIS
-										Player Being Spoken To=Player1
+										If Expression=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Sede Vacante
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order inquisition broken sede
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order inquisition donated
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order inquisition broken
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+										}
 									}
 									Else=CIfExpressionAction
 									{
@@ -566,12 +627,31 @@ CLayerSaveData
 												}
 											}
 											Character to get attributes from=Player1
-											Then=CDisplayDialogTreeAction
+											Then=CIfExpressionAction
 											{
-												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-												Node ID=900 order cult inherited
-												Speaker=Fake Talker for NIS
-												Player Being Spoken To=Player1
+												If Expression=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/Sede Vacante
+													}
+												}
+												Character to get attributes from=Player1
+												Then=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order cult inherited
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order cult contested
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
 											}
 											Else=CIfExpressionAction
 											{
@@ -584,12 +664,31 @@ CLayerSaveData
 													}
 												}
 												Character to get attributes from=Player1
-												Then=CDisplayDialogTreeAction
+												Then=CIfExpressionAction
 												{
-													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-													Node ID=900 order cult inherited
-													Speaker=Fake Talker for NIS
-													Player Being Spoken To=Player1
+													If Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Sede Vacante
+														}
+													}
+													Character to get attributes from=Player1
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order cult inherited
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order cult contested
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
 												}
 												Else=CDisplayDialogTreeAction
 												{

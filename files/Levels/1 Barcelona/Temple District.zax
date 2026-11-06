@@ -87,6 +87,204 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Inquisition turns
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDelayAction
+					{
+						Next Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=
+								Else=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=6
+										Action=CDeactivateAction
+										{
+											Target Name=Yard sends you to jail
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Traveler going from Church
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Traveler going from Church
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Traveler going from Church
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Mateo
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Mateo
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Mateo
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Traveler going to Temple District
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Traveler going to Temple District
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Traveler going to Temple District
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Inquisitor
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Inquisitor
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Inquisitor
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Exorcist Inquisitor
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Exorcist Inquisitor
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Exorcist Inquisitor
+												}
+											}
+										}
+									}
+								}
+							}
+							Else=
+						}
+						Delay=1.5
+						Plus or Minus=0
+						Forget Trigger=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=40
+			Position Y=40
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=
 			Child List=
 			Visible=1
@@ -6729,43 +6927,54 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=6
-							Action=CCloseDoorAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Door Name=Church Doors
-								Delay Between Doors=0
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CDeactivateAction
+							Action=CMultipleActionsAction
 							{
-								Target Name=Church go inside poly
-							}
-							Action=CDeactivateAction
-							{
-								Target Name=Guards attack Poly
-							}
-							Action=CDeactivateAction
-							{
-								Target Name=guards mad poly
-							}
-							Action=CDelayAction
-							{
-								Next Action=CDelayAction
+								Action=Array
 								{
-									Next Action=CTriggerRelayAction
+									Item Count=6
+									Action=CCloseDoorAction
 									{
-										Relay Name=Close Inquisition Doors
+										Door Name=Church Doors
+										Delay Between Doors=0
 									}
-									Delay=0
-									Plus or Minus=0
-									Forget Trigger=0
+									Action=CDeactivateAction
+									{
+										Target Name=Church go inside poly
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Guards attack Poly
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=guards mad poly
+									}
+									Action=CDelayAction
+									{
+										Next Action=CDelayAction
+										{
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Close Inquisition Doors
+											}
+											Delay=0
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Delay=0
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
 								}
-								Delay=0
-								Plus or Minus=0
-								Forget Trigger=0
-							}
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
 							}
 						}
 					}
@@ -7566,9 +7775,20 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CAutoSaveAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Display Name for Save Game=
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CAutoSaveAction
+							{
+								Display Name for Save Game=
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -17515,23 +17735,34 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
-							Action=CDeactivateAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Target Name=Relocate into Home NEAR Ilk if Door Relocate fails poly
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CCloseDoorAction
+							Action=CMultipleActionsAction
 							{
-								Door Name=Door House near Ilk
-								Delay Between Doors=0
-							}
-							Action=CDeactivateAction
-							{
-								Target Name=Relocate Poly House Near Ilk
-							}
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
+								Action=Array
+								{
+									Item Count=4
+									Action=CDeactivateAction
+									{
+										Target Name=Relocate into Home NEAR Ilk if Door Relocate fails poly
+									}
+									Action=CCloseDoorAction
+									{
+										Door Name=Door House near Ilk
+										Delay Between Doors=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Relocate Poly House Near Ilk
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
+								}
 							}
 						}
 					}
@@ -17573,17 +17804,28 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=
-							Action=
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=
+									Action=
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=0
@@ -24020,23 +24262,34 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
-							Action=CDeactivateAction
-							{
-								Target Name=Relocate into Machiavelli if Door Relocate fails poly
-							}
-							Action=CCloseDoorAction
-							{
-								Door Name=Machiavelli Door
-								Delay Between Doors=0
-							}
+							Item Count=2
 							Action=CTriggerRelayAction
 							{
-								Relay Name=mach scene
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CAutoSaveAction
+							Action=CMultipleActionsAction
 							{
-								Display Name for Save Game=
+								Action=Array
+								{
+									Item Count=4
+									Action=CDeactivateAction
+									{
+										Target Name=Relocate into Machiavelli if Door Relocate fails poly
+									}
+									Action=CCloseDoorAction
+									{
+										Door Name=Machiavelli Door
+										Delay Between Doors=0
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=mach scene
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
+								}
 							}
 						}
 					}
@@ -27817,19 +28070,30 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CDeactivateAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Target Name=Relocate into Small Center Home if Door Relocate fails poly
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CCloseDoorAction
+							Action=CMultipleActionsAction
 							{
-								Door Name=Door Small Center Home
-								Delay Between Doors=0
-							}
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
+								Action=Array
+								{
+									Item Count=3
+									Action=CDeactivateAction
+									{
+										Target Name=Relocate into Small Center Home if Door Relocate fails poly
+									}
+									Action=CCloseDoorAction
+									{
+										Door Name=Door Small Center Home
+										Delay Between Doors=0
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
+								}
 							}
 						}
 					}
@@ -31141,17 +31405,28 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=
-							Action=
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=
+									Action=
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -34535,33 +34810,44 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CDelayAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Next Action=CMultipleActionsAction
+						Action=Array
 						{
-							Action=Array
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Item Count=3
-								Action=CSetCurSequenceAction
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
 								{
-									Sequence=open
-									Target Name=Inquisition door on left
+									Action=Array
+									{
+										Item Count=3
+										Action=CSetCurSequenceAction
+										{
+											Sequence=open
+											Target Name=Inquisition door on left
+										}
+										Action=CCloseDoorAction
+										{
+											Door Name=Inquisition door on left
+											Delay Between Doors=0
+										}
+										Action=CSetCurSequenceAction
+										{
+											Sequence=closed
+											Target Name=Inquisition Door Outside Right
+										}
+									}
 								}
-								Action=CCloseDoorAction
-								{
-									Door Name=Inquisition door on left
-									Delay Between Doors=0
-								}
-								Action=CSetCurSequenceAction
-								{
-									Sequence=closed
-									Target Name=Inquisition Door Outside Right
-								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
 							}
 						}
-						Delay=0
-						Plus or Minus=0
-						Forget Trigger=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -34605,24 +34891,35 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
-							}
+							Item Count=2
 							Action=CTriggerRelayAction
 							{
-								Relay Name=Spawn different guys walking to Temple District
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CDelayAction
+							Action=CMultipleActionsAction
 							{
-								Next Action=CTriggerRelayAction
+								Action=Array
 								{
-									Relay Name=Close Inquisition Doors
+									Item Count=3
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Spawn different guys walking to Temple District
+									}
+									Action=CDelayAction
+									{
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Close Inquisition Doors
+										}
+										Delay=0
+										Plus or Minus=0
+										Forget Trigger=0
+									}
 								}
-								Delay=0
-								Plus or Minus=0
-								Forget Trigger=0
 							}
 						}
 					}
@@ -40304,17 +40601,28 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=
-							Action=
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=
+									Action=
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=0
@@ -49608,9 +49916,20 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CAutoSaveAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Display Name for Save Game=
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CAutoSaveAction
+							{
+								Display Name for Save Game=
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -51335,9 +51654,20 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CAutoSaveAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Display Name for Save Game=
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CAutoSaveAction
+							{
+								Display Name for Save Game=
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -55242,40 +55572,51 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=6
-							Action=CSetCurSequenceAction
-							{
-								Sequence=open
-								Target Name=Sewer entrance
-							}
-							Action=CRemoveAIAction
-							{
-								Target Name=Sewer entrance
-								AI=CAIInteractionSpecifier
-								Delay Between Removes=0
-							}
-							Action=CDelayAction
-							{
-								Next Action=CCloseDoorAction
-								{
-									Door Name=Sewer entrance
-									Delay Between Doors=0
-								}
-								Delay=0
-								Plus or Minus=0
-								Forget Trigger=0
-							}
-							Action=CDeactivateAction
-							{
-								Target Name=Relocate into Sewer if Door Relocate fails poly
-							}
+							Item Count=2
 							Action=CTriggerRelayAction
 							{
-								Relay Name=Lost Knight Saved
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CAutoSaveAction
+							Action=CMultipleActionsAction
 							{
-								Display Name for Save Game=
+								Action=Array
+								{
+									Item Count=6
+									Action=CSetCurSequenceAction
+									{
+										Sequence=open
+										Target Name=Sewer entrance
+									}
+									Action=CRemoveAIAction
+									{
+										Target Name=Sewer entrance
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+									Action=CDelayAction
+									{
+										Next Action=CCloseDoorAction
+										{
+											Door Name=Sewer entrance
+											Delay Between Doors=0
+										}
+										Delay=0
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Relocate into Sewer if Door Relocate fails poly
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Lost Knight Saved
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
+								}
 							}
 						}
 					}
@@ -60157,19 +60498,30 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CDeactivateAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Target Name=Relocate into Shylocke if Door Relocate fails poly
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CCloseDoorAction
+							Action=CMultipleActionsAction
 							{
-								Door Name=Shylocke Door
-								Delay Between Doors=0
-							}
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
+								Action=Array
+								{
+									Item Count=3
+									Action=CDeactivateAction
+									{
+										Target Name=Relocate into Shylocke if Door Relocate fails poly
+									}
+									Action=CCloseDoorAction
+									{
+										Door Name=Shylocke Door
+										Delay Between Doors=0
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
+								}
 							}
 						}
 					}
@@ -61943,9 +62295,20 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CAutoSaveAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Display Name for Save Game=
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CAutoSaveAction
+							{
+								Display Name for Save Game=
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -61985,9 +62348,20 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CAutoSaveAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Display Name for Save Game=
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CAutoSaveAction
+							{
+								Display Name for Save Game=
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -70776,39 +71150,50 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
-							Action=CDeactivateAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Target Name=Relocate into Inquisition RIGHT side if Door Relocate fails poly
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CConditionalAction
+							Action=CMultipleActionsAction
 							{
-								Try Action=CCheckCurSequenceAction
+								Action=Array
 								{
-									Target Name=Inquisition Door Outside Right
-									Animation=Open
-								}
-								Succeed Action=CDelayAction
-								{
-									Next Action=CCloseDoorAction
+									Item Count=4
+									Action=CDeactivateAction
 									{
-										Door Name=Inquisition Door Outside Right
-										Delay Between Doors=0
+										Target Name=Relocate into Inquisition RIGHT side if Door Relocate fails poly
 									}
-									Delay=0
-									Plus or Minus=0
-									Forget Trigger=0
+									Action=CConditionalAction
+									{
+										Try Action=CCheckCurSequenceAction
+										{
+											Target Name=Inquisition Door Outside Right
+											Animation=Open
+										}
+										Succeed Action=CDelayAction
+										{
+											Next Action=CCloseDoorAction
+											{
+												Door Name=Inquisition Door Outside Right
+												Delay Between Doors=0
+											}
+											Delay=0
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Poly Trigger to set up Fugitive NIS
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
 								}
-								Fail Action=
-								Return failure if the TryAction failes=0
-							}
-							Action=CDeactivateAction
-							{
-								Target Name=Poly Trigger to set up Fugitive NIS
-							}
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
 							}
 						}
 					}
@@ -83458,42 +83843,53 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CDelayAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Next Action=CMultipleActionsAction
+						Action=Array
 						{
-							Action=Array
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Item Count=4
-								Action=CDeactivateAction
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
 								{
-									Target Name=Relocate into Inquisition RIGHT side if Door Relocate fails poly
-								}
-								Action=CSetCurSequenceAction
-								{
-									Sequence=open
-									Target Name=Inquisition Door Outside Right
-								}
-								Action=CCloseDoorAction
-								{
-									Door Name=Inquisition Door Outside Right
-									Delay Between Doors=0
-								}
-								Action=CDelayAction
-								{
-									Next Action=CAutoSaveAction
+									Action=Array
 									{
-										Display Name for Save Game=
+										Item Count=4
+										Action=CDeactivateAction
+										{
+											Target Name=Relocate into Inquisition RIGHT side if Door Relocate fails poly
+										}
+										Action=CSetCurSequenceAction
+										{
+											Sequence=open
+											Target Name=Inquisition Door Outside Right
+										}
+										Action=CCloseDoorAction
+										{
+											Door Name=Inquisition Door Outside Right
+											Delay Between Doors=0
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAutoSaveAction
+											{
+												Display Name for Save Game=
+											}
+											Delay=0
+											Plus or Minus=0
+											Forget Trigger=0
+										}
 									}
-									Delay=0
-									Plus or Minus=0
-									Forget Trigger=0
 								}
+								Delay=0
+								Plus or Minus=0
+								Forget Trigger=0
 							}
 						}
-						Delay=0
-						Plus or Minus=0
-						Forget Trigger=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -86533,9 +86929,20 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CAutoSaveAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Display Name for Save Game=
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CAutoSaveAction
+							{
+								Display Name for Save Game=
+							}
+						}
 					}
 					Per Character Spawn Action=CIfAction
 					{

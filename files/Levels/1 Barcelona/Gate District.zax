@@ -87,6 +87,200 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Inquisition turns
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDelayAction
+					{
+						Next Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=
+								Else=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Traveler going to Temple District
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Traveler going to Temple District
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Traveler going to Temple District
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Acolyte Garcia
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Acolyte Garcia
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Acolyte Garcia
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Traveller from Gate to Crossroads
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Traveller from Gate to Crossroads
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Traveller from Gate to Crossroads
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Inquisitor by Herbalist
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Inquisitor by Herbalist
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Inquisitor by Herbalist
+												}
+											}
+										}
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Traveler to Port District
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Traveler to Port District
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Traveler to Port District
+												}
+											}
+										}
+									}
+								}
+							}
+							Else=
+						}
+						Delay=1.5
+						Plus or Minus=0
+						Forget Trigger=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=40
+			Position Y=40
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=detect player for davinci gift
 			Child List=
 			Visible=0
@@ -3538,99 +3732,110 @@ CLayerSaveData
 							Item Count=2
 							Action=CTriggerRelayAction
 							{
-								Relay Name=From Crossroads and Multiplayer return series relay
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CDelayAction
+							Action=CMultipleActionsAction
 							{
-								Next Action=CIfAction
+								Action=Array
 								{
-									If=CIsAliveAction
+									Item Count=2
+									Action=CTriggerRelayAction
 									{
-										Name To Check For=Darsh
-										Desired Minimum Count=1
+										Relay Name=From Crossroads and Multiplayer return series relay
 									}
-									Then=CMultipleActionsAction
+									Action=CDelayAction
 									{
-										Action=Array
+										Next Action=CIfAction
 										{
-											Item Count=4
-											Action=CMixInSongAndPlayAmbientTrackAction
+											If=CIsAliveAction
 											{
-												Song To Mix In=1 Barcelona/MX_FACT_INQUISITION2.ogg
+												Name To Check For=Darsh
+												Desired Minimum Count=1
 											}
-											Action=CActionResetPointClickAI
-											{
-												Character with PointClickAI=$instigator
-											}
-											Action=CMultipleActionsAction
+											Then=CMultipleActionsAction
 											{
 												Action=Array
 												{
 													Item Count=4
-													Action=CAddCategoryAction
+													Action=CMixInSongAndPlayAmbientTrackAction
 													{
-														Target Name=Darsh
-														Categories to add=NonInteractiveSequence Actor
+														Song To Mix In=1 Barcelona/MX_FACT_INQUISITION2.ogg
 													}
-													Action=CBeginNonInteractiveSequenceAction
+													Action=CActionResetPointClickAI
 													{
-														Options=CNonInteractiveSequence
+														Character with PointClickAI=$instigator
+													}
+													Action=CMultipleActionsAction
+													{
+														Action=Array
 														{
-															Pause Characters=1
-															Disable Player Controls=1
-															Can Fast Forward=1
-														}
-													}
-													Action=CReleaseCompanionAction
-													{
-														Companion To Release=Darsh
-													}
-													Action=CDisplayDialogBalloonAction
-													{
-														Dialog Tree File=Levels/Wilderness/Dialog/Inquisitor Darsh
-														Node ID=500 saved darsh
-														Name of Position=Darsh
-														Position Offset=0.000000,-80.000000
-														After Action=CDisplayDialogBalloonAction
-														{
-															Dialog Tree File=Levels/Wilderness/Dialog/Inquisitor Darsh
-															Node ID=500 saved darsh 2
-															Name of Position=Darsh
-															Position Offset=0.000000,-80.000000
-															After Action=CMultipleActionsAction
+															Item Count=4
+															Action=CAddCategoryAction
 															{
-																Action=Array
+																Target Name=Darsh
+																Categories to add=NonInteractiveSequence Actor
+															}
+															Action=CBeginNonInteractiveSequenceAction
+															{
+																Options=CNonInteractiveSequence
 																{
-																	Item Count=2
-																	Action=CTriggerRelayAction
-																	{
-																		Relay Name=rescue darsh
-																	}
-																	Action=CGiveExperiencePointsToAllPlayersAction
-																	{
-																		Get XP Frome=Saved Darsh
-																		Experience Points To Add=1
-																	}
+																	Pause Characters=1
+																	Disable Player Controls=1
+																	Can Fast Forward=1
 																}
 															}
-															Include In Log=1
+															Action=CReleaseCompanionAction
+															{
+																Companion To Release=Darsh
+															}
+															Action=CDisplayDialogBalloonAction
+															{
+																Dialog Tree File=Levels/Wilderness/Dialog/Inquisitor Darsh
+																Node ID=500 saved darsh
+																Name of Position=Darsh
+																Position Offset=0.000000,-80.000000
+																After Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/Wilderness/Dialog/Inquisitor Darsh
+																	Node ID=500 saved darsh 2
+																	Name of Position=Darsh
+																	Position Offset=0.000000,-80.000000
+																	After Action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CTriggerRelayAction
+																			{
+																				Relay Name=rescue darsh
+																			}
+																			Action=CGiveExperiencePointsToAllPlayersAction
+																			{
+																				Get XP Frome=Saved Darsh
+																				Experience Points To Add=1
+																			}
+																		}
+																	}
+																	Include In Log=1
+																}
+																Include In Log=1
+															}
 														}
-														Include In Log=1
+													}
+													Action=CDeactivateAction
+													{
+														Target Name=darsh return poly
 													}
 												}
 											}
-											Action=CDeactivateAction
-											{
-												Target Name=darsh return poly
-											}
+											Else=
+											Return failure if the If failes=0
 										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
-									Else=
-									Return failure if the If failes=0
 								}
-								Delay=0.1
-								Plus or Minus=0
-								Forget Trigger=0
 							}
 						}
 					}
@@ -3971,117 +4176,128 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=CMultipleActionsAction
+							Action=CTriggerRelayAction
 							{
-								Action=Array
-								{
-									Item Count=7
-									Action=CTriggerRelayAction
-									{
-										Relay Name=Relay to open Temple District gate
-									}
-									Action=CDeactivateAction
-									{
-										Target Name=Player come through from Temple District
-									}
-									Action=CConditionalAction
-									{
-										Try Action=CExpressionAction
-										{
-											Expression=CHasPerkExpression
-											{
-												Perks To Check For=Array
-												{
-													Item Count=1
-													Perk To Check For=Perks/!Event Title Perks/Child Killer
-												}
-											}
-											Character to get attributes from=$Instigator
-										}
-										Succeed Action=CDeactivateAction
-										{
-											Target Name=Player is a child killer
-										}
-										Fail Action=
-										Return failure if the TryAction failes=0
-									}
-									Action=CTriggerRelayAction
-									{
-										Relay Name=Saw Dead Body in House then return to map
-									}
-									Action=CTriggerRelayAction
-									{
-										Relay Name=Spawn different guys walking to Temple District
-									}
-									Action=CTriggerRelayAction
-									{
-										Relay Name=open gate relay
-									}
-									Action=CAutoSaveAction
-									{
-										Display Name for Save Game=
-									}
-								}
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CMultipleActionsAction
+							Action=CSeriesAction
 							{
 								Action=Array
 								{
-									Item Count=3
-									Action=CConditionalAction
+									Item Count=2
+									Action=CMultipleActionsAction
 									{
-										Try Action=CExpressionAction
+										Action=Array
 										{
-											Expression=CHasPerkExpression
+											Item Count=7
+											Action=CTriggerRelayAction
 											{
-												Perks To Check For=Array
-												{
-													Item Count=1
-													Perk To Check For=Perks/!Event Title Perks/Child Killer
-												}
+												Relay Name=Relay to open Temple District gate
 											}
-											Character to get attributes from=$Instigator
-										}
-										Succeed Action=CMultipleActionsAction
-										{
-											Action=Array
+											Action=CDeactivateAction
 											{
-												Item Count=2
-												Action=CDeactivateAction
+												Target Name=Player come through from Temple District
+											}
+											Action=CConditionalAction
+											{
+												Try Action=CExpressionAction
+												{
+													Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Child Killer
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Succeed Action=CDeactivateAction
 												{
 													Target Name=Player is a child killer
 												}
-												Action=CTriggerRelayAction
+												Fail Action=
+												Return failure if the TryAction failes=0
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Saw Dead Body in House then return to map
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Spawn different guys walking to Temple District
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=open gate relay
+											}
+											Action=CAutoSaveAction
+											{
+												Display Name for Save Game=
+											}
+										}
+									}
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=3
+											Action=CConditionalAction
+											{
+												Try Action=CExpressionAction
+												{
+													Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Child Killer
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Succeed Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDeactivateAction
+														{
+															Target Name=Player is a child killer
+														}
+														Action=CTriggerRelayAction
+														{
+															Relay Name=Saw Dead Body in House then return to map
+														}
+													}
+												}
+												Fail Action=CTriggerRelayAction
 												{
 													Relay Name=Saw Dead Body in House then return to map
 												}
+												Return failure if the TryAction failes=0
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Spawn different guys walking to Temple District
+											}
+											Action=CAutoSaveAction
+											{
+												Display Name for Save Game=
 											}
 										}
-										Fail Action=CTriggerRelayAction
-										{
-											Relay Name=Saw Dead Body in House then return to map
-										}
-										Return failure if the TryAction failes=0
-									}
-									Action=CTriggerRelayAction
-									{
-										Relay Name=Spawn different guys walking to Temple District
-									}
-									Action=CAutoSaveAction
-									{
-										Display Name for Save Game=
 									}
 								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
 							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -7566,7 +7782,10 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CTriggerRelayAction
+					{
+						Relay Name=Fixt Inquisition turns
+					}
 					Per Character Spawn Action=CTriggerRelayAction
 					{
 						Relay Name=Boots of Marco Polo speak once exit Calle
@@ -12826,11 +13045,22 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CPlaySoundAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Sound=Doors/Barcelona wood door close.ogg
-						Position=$Trigger
-						Multiplayer=Heard by all players
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Doors/Barcelona wood door close.ogg
+								Position=$Trigger
+								Multiplayer=Heard by all players
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -24273,17 +24503,28 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=
-							Action=
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=
+									Action=
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=0
@@ -36978,43 +37219,54 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
-							Action=CEnablePointOfInterestOnWorldMapAction
-							{
-								Point Of Interest to Enable=Interface/World Map/Barcelona
-							}
+							Item Count=2
 							Action=CTriggerRelayAction
 							{
-								Relay Name=start spirit nis relay
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=COtherMapAction
+							Action=CMultipleActionsAction
 							{
-								Action=CMultipleActionsAction
+								Action=Array
 								{
-									Action=Array
+									Item Count=4
+									Action=CEnablePointOfInterestOnWorldMapAction
 									{
-										Item Count=2
-										Action=CActivateAction
+										Point Of Interest to Enable=Interface/World Map/Barcelona
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=start spirit nis relay
+									}
+									Action=COtherMapAction
+									{
+										Action=CMultipleActionsAction
 										{
-											Target Name=After Death Portal
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
+											Action=Array
+											{
+												Item Count=2
+												Action=CActivateAction
+												{
+													Target Name=After Death Portal
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+												Action=CActivateAction
+												{
+													Target Name=Gate District
+													Play Activate Sound=0
+													Delay Between Activations=0
+													Warp Behavior=
+												}
+											}
 										}
-										Action=CActivateAction
-										{
-											Target Name=Gate District
-											Play Activate Sound=0
-											Delay Between Activations=0
-											Warp Behavior=
-										}
+										Other Map Name=Multiplayer/Multiplayer All Party Dead
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
 									}
 								}
-								Other Map Name=Multiplayer/Multiplayer All Party Dead
-							}
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
 							}
 						}
 					}
@@ -37108,11 +37360,22 @@ CLayerSaveData
 							Item Count=2
 							Action=CTriggerRelayAction
 							{
-								Relay Name=From Crossroads and Multiplayer return series relay
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CAutoSaveAction
+							Action=CMultipleActionsAction
 							{
-								Display Name for Save Game=
+								Action=Array
+								{
+									Item Count=2
+									Action=CTriggerRelayAction
+									{
+										Relay Name=From Crossroads and Multiplayer return series relay
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
+									}
+								}
 							}
 						}
 					}
@@ -38518,135 +38781,146 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=CMultipleActionsAction
+							Action=CTriggerRelayAction
 							{
-								Action=Array
-								{
-									Item Count=7
-									Action=CActivateAction
-									{
-										Target Name=Citizen Leaving
-										Play Activate Sound=0
-										Delay Between Activations=0
-										Warp Behavior=
-									}
-									Action=CActivateAction
-									{
-										Target Name=Child Leaving
-										Play Activate Sound=0
-										Delay Between Activations=0
-										Warp Behavior=
-									}
-									Action=CConditionalAction
-									{
-										Try Action=CExpressionAction
-										{
-											Expression=CHasPerkExpression
-											{
-												Perks To Check For=Array
-												{
-													Item Count=1
-													Perk To Check For=Perks/!Event Title Perks/Child Killer
-												}
-											}
-											Character to get attributes from=$Instigator
-										}
-										Succeed Action=CDeactivateAction
-										{
-											Target Name=Player is a child killer
-										}
-										Fail Action=
-										Return failure if the TryAction failes=0
-									}
-									Action=CTriggerRelayAction
-									{
-										Relay Name=Saw Dead Body in House then return to map
-									}
-									Action=CIfAction
-									{
-										If=CIsAliveAction
-										{
-											Name To Check For=Guard on Bridge
-											Desired Minimum Count=1
-										}
-										Then=
-										Else=COnlyOnceAction
-										{
-											Action=CActivateAction
-											{
-												Target Name=Bridge walker guard starter
-												Play Activate Sound=0
-												Delay Between Activations=0
-												Warp Behavior=
-											}
-										}
-										Return failure if the If failes=0
-									}
-									Action=CTriggerRelayAction
-									{
-										Relay Name=Trigger spawn people coming out of Barcelona
-									}
-									Action=CAutoSaveAction
-									{
-										Display Name for Save Game=
-									}
-								}
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CMultipleActionsAction
+							Action=CSeriesAction
 							{
 								Action=Array
 								{
 									Item Count=2
-									Action=CConditionalAction
+									Action=CMultipleActionsAction
 									{
-										Try Action=CExpressionAction
+										Action=Array
 										{
-											Expression=CHasPerkExpression
+											Item Count=7
+											Action=CActivateAction
 											{
-												Perks To Check For=Array
-												{
-													Item Count=1
-													Perk To Check For=Perks/!Event Title Perks/Child Killer
-												}
+												Target Name=Citizen Leaving
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
 											}
-											Character to get attributes from=$Instigator
-										}
-										Succeed Action=CMultipleActionsAction
-										{
-											Action=Array
+											Action=CActivateAction
 											{
-												Item Count=2
-												Action=CDeactivateAction
+												Target Name=Child Leaving
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Action=CConditionalAction
+											{
+												Try Action=CExpressionAction
+												{
+													Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Child Killer
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Succeed Action=CDeactivateAction
 												{
 													Target Name=Player is a child killer
 												}
-												Action=CTriggerRelayAction
+												Fail Action=
+												Return failure if the TryAction failes=0
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Saw Dead Body in House then return to map
+											}
+											Action=CIfAction
+											{
+												If=CIsAliveAction
+												{
+													Name To Check For=Guard on Bridge
+													Desired Minimum Count=1
+												}
+												Then=
+												Else=COnlyOnceAction
+												{
+													Action=CActivateAction
+													{
+														Target Name=Bridge walker guard starter
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+												}
+												Return failure if the If failes=0
+											}
+											Action=CTriggerRelayAction
+											{
+												Relay Name=Trigger spawn people coming out of Barcelona
+											}
+											Action=CAutoSaveAction
+											{
+												Display Name for Save Game=
+											}
+										}
+									}
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CConditionalAction
+											{
+												Try Action=CExpressionAction
+												{
+													Expression=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Child Killer
+														}
+													}
+													Character to get attributes from=$Instigator
+												}
+												Succeed Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDeactivateAction
+														{
+															Target Name=Player is a child killer
+														}
+														Action=CTriggerRelayAction
+														{
+															Relay Name=Saw Dead Body in House then return to map
+														}
+													}
+												}
+												Fail Action=CTriggerRelayAction
 												{
 													Relay Name=Saw Dead Body in House then return to map
 												}
+												Return failure if the TryAction failes=0
+											}
+											Action=CAutoSaveAction
+											{
+												Display Name for Save Game=
 											}
 										}
-										Fail Action=CTriggerRelayAction
-										{
-											Relay Name=Saw Dead Body in House then return to map
-										}
-										Return failure if the TryAction failes=0
-									}
-									Action=CAutoSaveAction
-									{
-										Display Name for Save Game=
 									}
 								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
 							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -38690,9 +38964,20 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CTriggerRelayAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Relay Name=From Crossroads and Multiplayer return series relay
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CTriggerRelayAction
+							{
+								Relay Name=From Crossroads and Multiplayer return series relay
+							}
+						}
 					}
 					Per Character Spawn Action=CSpawnEffectAction
 					{
@@ -43250,48 +43535,59 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CDeactivateAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Target Name=Relocate into Blacksmith if Door Relocate fails poly
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CCloseDoorAction
+							Action=CMultipleActionsAction
 							{
-								Door Name=Blacksmith Door
-								Delay Between Doors=0
-							}
-							Action=COnlyOnceAction
-							{
-								Action=CConditionalAction
+								Action=Array
 								{
-									Try Action=CCheckExistenceAction
+									Item Count=3
+									Action=CDeactivateAction
 									{
-										Name To Check For=Make unspawned guard in gate district pissed
-										Desired Minimum Count=1
+										Target Name=Relocate into Blacksmith if Door Relocate fails poly
 									}
-									Succeed Action=
-									Fail Action=CMultipleActionsAction
+									Action=CCloseDoorAction
 									{
-										Action=Array
+										Door Name=Blacksmith Door
+										Delay Between Doors=0
+									}
+									Action=COnlyOnceAction
+									{
+										Action=CConditionalAction
 										{
-											Item Count=2
-											Action=CActivateAction
+											Try Action=CCheckExistenceAction
 											{
-												Target Name=Dialog starter for unhappy customer
-												Play Activate Sound=0
-												Delay Between Activations=0
-												Warp Behavior=
+												Name To Check For=Make unspawned guard in gate district pissed
+												Desired Minimum Count=1
 											}
-											Action=CActivateAction
+											Succeed Action=
+											Fail Action=CMultipleActionsAction
 											{
-												Target Name=Customer1 Generator
-												Play Activate Sound=0
-												Delay Between Activations=0
-												Warp Behavior=
+												Action=Array
+												{
+													Item Count=2
+													Action=CActivateAction
+													{
+														Target Name=Dialog starter for unhappy customer
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+													Action=CActivateAction
+													{
+														Target Name=Customer1 Generator
+														Play Activate Sound=0
+														Delay Between Activations=0
+														Warp Behavior=
+													}
+												}
 											}
+											Return failure if the TryAction failes=0
 										}
 									}
-									Return failure if the TryAction failes=0
 								}
 							}
 						}
@@ -68857,17 +69153,28 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CSeriesAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=
-							Action=
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CSeriesAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=
+									Action=
+								}
+								When Done=Repeat Last Action
+								Require Success To Advance=1
+								Next Action Index=0
+							}
 						}
-						When Done=Repeat Last Action
-						Require Success To Advance=1
-						Next Action Index=0
 					}
 					Per Character Spawn Action=CSpawnEffectAction
 					{
@@ -69010,36 +69317,47 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CDeactivateAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Target Name=Relocate into Herbalist if Door Relocate fails poly
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CCloseDoorAction
+							Action=CMultipleActionsAction
 							{
-								Door Name=Herbalist door
-								Delay Between Doors=0
-							}
-							Action=CConditionalAction
-							{
-								Try Action=CExpressionAction
+								Action=Array
 								{
-									Expression=CHasPerkExpression
+									Item Count=3
+									Action=CDeactivateAction
 									{
-										Perks To Check For=Array
-										{
-											Item Count=1
-											Perk To Check For=Perks/!Event Title Perks/Child Killer
-										}
+										Target Name=Relocate into Herbalist if Door Relocate fails poly
 									}
-									Character to get attributes from=$Instigator
+									Action=CCloseDoorAction
+									{
+										Door Name=Herbalist door
+										Delay Between Doors=0
+									}
+									Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CHasPerkExpression
+											{
+												Perks To Check For=Array
+												{
+													Item Count=1
+													Perk To Check For=Perks/!Event Title Perks/Child Killer
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CDeactivateAction
+										{
+											Target Name=Player is a child killer
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
 								}
-								Succeed Action=CDeactivateAction
-								{
-									Target Name=Player is a child killer
-								}
-								Fail Action=
-								Return failure if the TryAction failes=0
 							}
 						}
 					}
@@ -69638,12 +69956,23 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CActivateAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Target Name=Saw Dead Body in House then return to map
-						Play Activate Sound=0
-						Delay Between Activations=0
-						Warp Behavior=
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CActivateAction
+							{
+								Target Name=Saw Dead Body in House then return to map
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -76831,14 +77160,25 @@ CLayerSaveData
 						Action=Array
 						{
 							Item Count=2
-							Action=CDeactivateAction
+							Action=CTriggerRelayAction
 							{
-								Target Name=Relocate into Weng if Door Relocate fails poly
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CCloseDoorAction
+							Action=CMultipleActionsAction
 							{
-								Door Name=Wengs Door
-								Delay Between Doors=0
+								Action=Array
+								{
+									Item Count=2
+									Action=CDeactivateAction
+									{
+										Target Name=Relocate into Weng if Door Relocate fails poly
+									}
+									Action=CCloseDoorAction
+									{
+										Door Name=Wengs Door
+										Delay Between Doors=0
+									}
+								}
 							}
 						}
 					}
@@ -78027,7 +78367,10 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CTriggerRelayAction
+					{
+						Relay Name=Fixt Inquisition turns
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=60
@@ -81668,10 +82011,21 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CCloseDoorAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Door Name=Herbalist door
-						Delay Between Doors=0
+						Action=Array
+						{
+							Item Count=2
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Fixt Inquisition turns
+							}
+							Action=CCloseDoorAction
+							{
+								Door Name=Herbalist door
+								Delay Between Doors=0
+							}
+						}
 					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
@@ -90232,75 +90586,86 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=8
+							Item Count=2
 							Action=CTriggerRelayAction
 							{
-								Relay Name=open gate relay
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CConditionalAction
+							Action=CMultipleActionsAction
 							{
-								Try Action=CExpressionAction
+								Action=Array
 								{
-									Expression=CHasPerkExpression
+									Item Count=8
+									Action=CTriggerRelayAction
 									{
-										Perks To Check For=Array
-										{
-											Item Count=1
-											Perk To Check For=Perks/!Event Title Perks/Child Killer
-										}
+										Relay Name=open gate relay
 									}
-									Character to get attributes from=$Instigator
-								}
-								Succeed Action=CMultipleActionsAction
-								{
-									Action=Array
+									Action=CConditionalAction
 									{
-										Item Count=2
-										Action=CDeactivateAction
+										Try Action=CExpressionAction
 										{
-											Target Name=Player is a child killer
+											Expression=CHasPerkExpression
+											{
+												Perks To Check For=Array
+												{
+													Item Count=1
+													Perk To Check For=Perks/!Event Title Perks/Child Killer
+												}
+											}
+											Character to get attributes from=$Instigator
 										}
-										Action=CTriggerRelayAction
+										Succeed Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDeactivateAction
+												{
+													Target Name=Player is a child killer
+												}
+												Action=CTriggerRelayAction
+												{
+													Relay Name=Saw Dead Body in House then return to map
+												}
+											}
+										}
+										Fail Action=CTriggerRelayAction
 										{
 											Relay Name=Saw Dead Body in House then return to map
 										}
+										Return failure if the TryAction failes=0
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Spawn different guys walking to Port District
+									}
+									Action=CDelayAction
+									{
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Sayings trigger over Grumpy Guard
+										}
+										Delay=0
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=activate sayings over grumpy guard
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Activates second customer for Merchant near gate
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=open gate relay
+									}
+									Action=CAutoSaveAction
+									{
+										Display Name for Save Game=
 									}
 								}
-								Fail Action=CTriggerRelayAction
-								{
-									Relay Name=Saw Dead Body in House then return to map
-								}
-								Return failure if the TryAction failes=0
-							}
-							Action=CTriggerRelayAction
-							{
-								Relay Name=Spawn different guys walking to Port District
-							}
-							Action=CDelayAction
-							{
-								Next Action=CTriggerRelayAction
-								{
-									Relay Name=Sayings trigger over Grumpy Guard
-								}
-								Delay=0
-								Plus or Minus=0
-								Forget Trigger=0
-							}
-							Action=CDeactivateAction
-							{
-								Target Name=activate sayings over grumpy guard
-							}
-							Action=CTriggerRelayAction
-							{
-								Relay Name=Activates second customer for Merchant near gate
-							}
-							Action=CTriggerRelayAction
-							{
-								Relay Name=open gate relay
-							}
-							Action=CAutoSaveAction
-							{
-								Display Name for Save Game=
 							}
 						}
 					}

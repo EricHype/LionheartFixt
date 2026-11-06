@@ -2578,6 +2578,410 @@ Go to node ID=10 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=1300 Fixt the fever member
+Text=The Grand Inquisitor has died of a fever. It will be recorded so by nightfall, and I will sign it. <He does not look up.> You were his instrument, child. Now you are mine, whether you wish it or not. Leave Barcelona. The men at the door do not read what I sign.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Say nothing, and leave the mark where it is.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Raphael deal
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=You are next, Raphael.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt Raphael fight
+}
+Icon=Fight Icon
+------------------------------------------------------------
+Node ID=1300 Fixt the fever
+Text=A fever took the Grand Inquisitor. That is what the Holy Office will write, because the alternative is that one heathen walked into these chambers and out again. <He looks at you at last.> I suppose I expected too much of him. You will make a donation to the Holy Office. All of it. It is a small price for the absolution of your sin.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Hand over your purse.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=22
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=524288
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=524288
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=262144
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=262144
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=131072
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=131072
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=65536
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=65536
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=32768
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=32768
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=16384
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=16384
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=8192
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=8192
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=4096
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=4096
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=2048
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=2048
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1024
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1024
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=512
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=512
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=256
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=256
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=128
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=128
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=64
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=64
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=32
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=32
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=16
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=16
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=8
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=8
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=4
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=4
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=2
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=2
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CIfAction
+{
+If=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=1
+}
+Then=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=1
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Raphael deal
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I did not kill one Inquisitor to pay another.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt Raphael fight
+}
+Icon=Fight Icon
+------------------------------------------------------------
 Node ID=1000 attack raphael
 Text=To the hellfire with you, heathen! 
 Should Have Voiceover=1

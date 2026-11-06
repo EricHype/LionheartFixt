@@ -1943,7 +1943,7 @@ generated after installing.
 | TK7 | TK5 or TK6 | Remove either piece | The cloak drops back to **+4 Stealth, +4 Evasion, +0 Find Traps**; the belt keeps its own bonus |
 | TK8 | TK5 | Equip and unequip each piece **six times**, reading all three skills each time | Every figure returns to exactly its previous value. **Any upward creep in any of the three is the leak** -- 0.83.0's first build added 15 Find Traps and subtracted 0 on every cycle, and a row that only checked "the bonus applies" would have passed it |
 | TK9 | TK5, reading Armor Class | - | AC reads **+3** over bare with the set, not +2. Evasion 23 moves `trunc(1 + 0.2*(Evasion-5))` from 3 to 4. This is correct and must not be "fixed" |
-| TK10 | A character below mojo 7, looting magic misc items | - | Cloaks appear, and the only enchantments on them are Cold, Fire or Poison Resistance. Before this release cloaks could not drop in that band at all |
+| TK10 | Leave mid-fight and return | - | **Reversed in 0.96.0.** He and his guards are still hostile, and so is everyone in `TK46`. There must be no duplicate guards |
 | TK11 | Any resistance cloak | Read its tooltip, then the character window | The tooltip states a figure between 5 and 15 and the window shows that resistance by that amount. **A zero or a mismatch means the addition is still reading the belt's amount** through its cloned self-reference |
 | TK12 | Abandoned Cave, after Bernat packs up and leaves | - | **His campfire is out.** The bales and crate go with it. Before this it burned on in an empty camp |
 | TK13 | Montaillou, Hamlet Exterior, the Pain and Nanghaithya exchange | Try to walk away while it plays | **You cannot.** The scene holds the controls for its thirteen seconds and the demons are held with you |
@@ -6143,6 +6143,19 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TK43 | Give Fawkes the plans, decline the Duke, finish the game | - | `900 order england`, unchanged |
 | TK44 | Lure the Duke to the gunpowder, finish the game | - | `900 order england duke`, with the keg line |
 | TK45 | Kill Fawkes for the Duke of Medina, finish the game | - | `900 order spain`, and the England slide does not fire |
+| TK46 | Start the fight with Torquemada and run, new game | Walk through the Foyer, the Temple, Gate and Port Districts, and the Forest Exterior | Named Inquisitors and guards attack on sight. **You are never arrested.** This is the row that proves the release |
+| TK47 | Same, then Montaillou | The inn and the church | The Inquisitor Agent and Fournier attack. The siege is unchanged later |
+| TK48 | **The regression.** Never fight him | Play Barcelona normally | Nobody is hostile, jail still works, and every district's arrival still does what it did. The relay is on all 74 spawn points |
+| TK49 | Ran from Torquemada, in the Foyer | - | Raphael is **absent**, not an invincible enemy |
+| TK50 | Kill Torquemada, reach Raphael as an Inquisitor | Take the deal | No gold taken. A short fade, he is gone, and the guards are calm |
+| TK51 | Same, as an outsider with gold | Hand over your purse | **Your gold is exactly 0.** Try an odd amount, this is the only proof of the ladder |
+| TK52 | After either deal | Temple District, then Montaillou | Neutral everywhere |
+| TK53 | Refuse him | - | *"To the hellfire with you, heathen!"* He fights, guards join, and you are not jailed |
+| TK54 | Run from that fight and return | - | Still hostile, and no deal is offered |
+| TK55 | Kill him | Check perks | **Sede Vacante**. He stays dead, and the Inquisition stays hostile |
+| TK56 | Finish the game, TK50's character | Watch the slides | `900 order inquisition dark`: Raphael in the chair |
+| TK57 | Finish the game, TK51's, then an outsider who never reached him | - | `donated`, then `broken` |
+| TK58 | Finish the game, TK55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 

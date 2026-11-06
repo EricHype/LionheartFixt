@@ -87,6 +87,112 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Inquisition turns
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDelayAction
+					{
+						Next Action=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=
+								Else=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=1
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CAddCategoryAction
+												{
+													Target Name=Fournier
+													Categories to add=Enemy
+												}
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=Fournier
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=Fournier
+												}
+											}
+										}
+									}
+								}
+							}
+							Else=
+						}
+						Delay=1.5
+						Plus or Minus=0
+						Forget Trigger=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=40
+			Position Y=40
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt the Order is in the register
 			Child List=
 			Visible=1
@@ -940,7 +1046,10 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CTriggerRelayAction
+					{
+						Relay Name=Fixt Inquisition turns
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=310
@@ -2550,29 +2659,40 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CSpawnEffectAction
+							Item Count=2
+							Action=CTriggerRelayAction
 							{
-								Explosion Model=Special Effects/Teleport Generic
-								Location Entity=$Trigger
-								Make effect a child of the location entity=0
-								X Offset=0
-								Y Offset=0
-								Height Offset=0
-								Play Default Sound=1
-								Action to execute After Effect=
+								Relay Name=Fixt Inquisition turns
 							}
-							Action=CFadeToOpacityAction
+							Action=CMultipleActionsAction
 							{
-								Opacity To Fade To=0
-								Seconds To Fade=0
-								Part To Fade=$Instigator
-							}
-							Action=CFadeToOpacityAction
-							{
-								Opacity To Fade To=1
-								Seconds To Fade=1
-								Part To Fade=$Instigator
+								Action=Array
+								{
+									Item Count=3
+									Action=CSpawnEffectAction
+									{
+										Explosion Model=Special Effects/Teleport Generic
+										Location Entity=$Trigger
+										Make effect a child of the location entity=0
+										X Offset=0
+										Y Offset=0
+										Height Offset=0
+										Play Default Sound=1
+										Action to execute After Effect=
+									}
+									Action=CFadeToOpacityAction
+									{
+										Opacity To Fade To=0
+										Seconds To Fade=0
+										Part To Fade=$Instigator
+									}
+									Action=CFadeToOpacityAction
+									{
+										Opacity To Fade To=1
+										Seconds To Fade=1
+										Part To Fade=$Instigator
+									}
+								}
 							}
 						}
 					}
@@ -6177,7 +6297,10 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CTriggerRelayAction
+					{
+						Relay Name=Fixt Inquisition turns
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=225
@@ -6216,7 +6339,10 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CTriggerRelayAction
+					{
+						Relay Name=Fixt Inquisition turns
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=225

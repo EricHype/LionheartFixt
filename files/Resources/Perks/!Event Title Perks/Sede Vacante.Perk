@@ -1,0 +1,26 @@
+CCharacterPerk
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=0
+	}
+	Display Name=Sede Vacante
+	Description=TITLE PERK: The seat of the Holy Office stands empty, and you emptied it. Twice.
+	Requirements=Array
+	{
+		Item Count=1
+		Requirements=CIsGreaterThanOrEqual
+		{
+			Operand1=CConstant
+			{
+				Constant Value=0
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+	}
+	Number of ranks=1
+}
