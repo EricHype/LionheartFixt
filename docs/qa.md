@@ -6158,6 +6158,21 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.97.3 - the war in the caves
+
+**All of it needs a save that has not entered act 5**, because a map's entity list is frozen on first visit.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HJ1 | `01 Heart Entrance`, reach Huko without fighting if you can | *"I have come to help the Prophet."* | The Hujark **standing around you** stop attacking at once. This row proves the retarget. If they keep swinging, the names or the spawn timing are wrong |
+| HJ2 | HJ1, walk on to `02`, `03` and `04` | - | No Hujark attacks you. `03 Tourniquet of Pain` is the map that failed most |
+| HJ3 | **The war.** HJ2, stand back on 02 or 03 | Watch | English and Hujark fight each other without you |
+| HJ4 | Hit an allied Hujark | - | He turns on you, as before. Note whether the rest do |
+| HJ5 | **The seer.** Ally, reach `05`, kill the Assassin and the English guard only | - | You can talk to Nostradamus **without touching the shaman or the Hujark guard** |
+| HJ6 | **Safe conduct**, Speech 75 | Walk the whole act | Same as HJ1, HJ2 and HJ5 |
+| HJ7 | **The regression.** Ignore Huko, or fight him | Walk the act | Hujark attack as always. No English appear |
+| HJ8 | **Judgement.** Compare a full walk on the ally route with the ignore route | - | The ally route should now feel like choosing a side. Note if the two armies leave too little to do, or too much |
+
 ## 0.97.2 - the pen at Toulouse (issue #9)
 
 **All of it needs a save that has not entered Toulouse**, because a map's entity list is frozen on first visit.

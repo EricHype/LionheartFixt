@@ -110,85 +110,98 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=10
-							Action=CActivateAction
+							Item Count=2
+							Action=CMultipleActionsAction
 							{
-								Target Name=the Hujark let you live, Huko granted passage, English Generator
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
+								Action=Array
 								{
-									Relay Name=Passage granted
+									Item Count=10
+									Action=CActivateAction
+									{
+										Target Name=the Hujark let you live, Huko granted passage, English Generator
+										Play Activate Sound=0
+										Delay Between Activations=0
+										Warp Behavior=
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/02 Clan of the Hand A
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/03 Tourniquet of Pain
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/04 Clan of the Skull B
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/05 Nostrodomus Demesne
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/06 Cave 1
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/07 Cave 2
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/08 Cave 3
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/09 Cave 4
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Passage granted
+										}
+										Other Map Name=5 Nostrodomus/10 Cave 5
+									}
 								}
-								Other Map Name=5 Nostrodomus/02 Clan of the Hand A
 							}
-							Action=COtherMapAction
+							Action=CSetTargetTypeAction
 							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/03 Tourniquet of Pain
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/04 Clan of the Skull B
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/05 Nostrodomus Demesne
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/06 Cave 1
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/07 Cave 2
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/08 Cave 3
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/09 Cave 4
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Passage granted
-								}
-								Other Map Name=5 Nostrodomus/10 Cave 5
+								Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+								Name To Target=
+								Valid Targets=Scripted Custom 2
 							}
 						}
 					}
@@ -13398,108 +13411,121 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=14
-							Action=CDeactivateAction
+							Item Count=2
+							Action=CMultipleActionsAction
 							{
-								Target Name=Druid defaulter
-							}
-							Action=CActivateAction
-							{
-								Target Name=English Generator
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=CActivateQuestStateAction
-							{
-								Quest=Levels/5 Nostrodomus/Quests/Protect Nostradamus from the invading English forces
-								State=DH253J5T
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
+								Action=Array
 								{
-									Relay Name=Activate English generators
+									Item Count=14
+									Action=CDeactivateAction
+									{
+										Target Name=Druid defaulter
+									}
+									Action=CActivateAction
+									{
+										Target Name=English Generator
+										Play Activate Sound=0
+										Delay Between Activations=0
+										Warp Behavior=
+									}
+									Action=CActivateQuestStateAction
+									{
+										Quest=Levels/5 Nostrodomus/Quests/Protect Nostradamus from the invading English forces
+										State=DH253J5T
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/02 Clan of the Hand A
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/03 Tourniquet of Pain
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/04 Clan of the Skull B
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/05 Nostrodomus Demesne
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/06 Cave 1
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/07 Cave 2
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/08 Cave 3
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/09 Cave 4
+									}
+									Action=COtherMapAction
+									{
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Activate English generators
+										}
+										Other Map Name=5 Nostrodomus/10 Cave 5
+									}
+									Action=CActivateAction
+									{
+										Target Name=sided with the Hujark
+										Play Activate Sound=0
+										Delay Between Activations=0
+										Warp Behavior=
+									}
+									Action=CActivateAction
+									{
+										Target Name=the Hujark let you live
+										Play Activate Sound=0
+										Delay Between Activations=0
+										Warp Behavior=
+									}
 								}
-								Other Map Name=5 Nostrodomus/02 Clan of the Hand A
 							}
-							Action=COtherMapAction
+							Action=CSetTargetTypeAction
 							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/03 Tourniquet of Pain
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/04 Clan of the Skull B
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/05 Nostrodomus Demesne
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/06 Cave 1
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/07 Cave 2
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/08 Cave 3
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/09 Cave 4
-							}
-							Action=COtherMapAction
-							{
-								Action=CTriggerRelayAction
-								{
-									Relay Name=Activate English generators
-								}
-								Other Map Name=5 Nostrodomus/10 Cave 5
-							}
-							Action=CActivateAction
-							{
-								Target Name=sided with the Hujark
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=CActivateAction
-							{
-								Target Name=the Hujark let you live
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
+								Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+								Name To Target=
+								Valid Targets=Scripted Custom 2
 							}
 						}
 					}
@@ -16426,7 +16452,86 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Player,Player Friend,Scripted Custom 2
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=$Instigator
+								Categories to add=Scripted Custom 1
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=Scripted Custom 2
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Action=CSetDamagedScriptActionAction
+									{
+										New Damaged Action=CIfAction
+										{
+											If=CCheckCategoryAction
+											{
+												Target Name=$Instigator
+												Category to check for=Player,Player Friend
+											}
+											Then=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
+												{
+													Name To Check For=the Hujark let you live
+													Desired Minimum Count=1
+												}
+												Succeed Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CTriggerRelayAction
+														{
+															Relay Name=Passage revoked
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=$Trigger
+														}
+													}
+												}
+												Fail Action=
+												Return failure if the TryAction failes=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Target Name=$Instigator
+									}
+								}
+							}
+						}
+					}
 					New Facing Angle=0.523599
 					Angle Variation=0.523599
 				}
@@ -23394,7 +23499,86 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Player,Player Friend,Scripted Custom 2
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=$Instigator
+								Categories to add=Scripted Custom 1
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=Scripted Custom 2
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Action=CSetDamagedScriptActionAction
+									{
+										New Damaged Action=CIfAction
+										{
+											If=CCheckCategoryAction
+											{
+												Target Name=$Instigator
+												Category to check for=Player,Player Friend
+											}
+											Then=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
+												{
+													Name To Check For=the Hujark let you live
+													Desired Minimum Count=1
+												}
+												Succeed Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CTriggerRelayAction
+														{
+															Relay Name=Passage revoked
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=$Trigger
+														}
+													}
+												}
+												Fail Action=
+												Return failure if the TryAction failes=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Target Name=$Instigator
+									}
+								}
+							}
+						}
+					}
 					New Facing Angle=2.02458
 					Angle Variation=0.523599
 				}
@@ -24375,7 +24559,86 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=$Instigator
+								Name To Target=
+								Valid Targets=Player,Player Friend,Scripted Custom 2
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=$Instigator
+								Categories to add=Scripted Custom 1
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CConditionalAction
+									{
+										Try Action=CCheckExistenceAction
+										{
+											Name To Check For=the Hujark let you live
+											Desired Minimum Count=1
+										}
+										Succeed Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=Scripted Custom 2
+										}
+										Fail Action=
+										Return failure if the TryAction failes=0
+									}
+									Action=CSetDamagedScriptActionAction
+									{
+										New Damaged Action=CIfAction
+										{
+											If=CCheckCategoryAction
+											{
+												Target Name=$Instigator
+												Category to check for=Player,Player Friend
+											}
+											Then=CConditionalAction
+											{
+												Try Action=CCheckExistenceAction
+												{
+													Name To Check For=the Hujark let you live
+													Desired Minimum Count=1
+												}
+												Succeed Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CTriggerRelayAction
+														{
+															Relay Name=Passage revoked
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=$Trigger
+														}
+													}
+												}
+												Fail Action=
+												Return failure if the TryAction failes=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Target Name=$Instigator
+									}
+								}
+							}
+						}
+					}
 					New Facing Angle=2.02458
 					Angle Variation=0.523599
 				}

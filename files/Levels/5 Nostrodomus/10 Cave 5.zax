@@ -338,12 +338,25 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Action=CActivateAction
+					Action=CMultipleActionsAction
 					{
-						Target Name=the Hujark let you live, Huko granted passage, English Generator
-						Play Activate Sound=0
-						Delay Between Activations=0
-						Warp Behavior=
+						Action=Array
+						{
+							Item Count=2
+							Action=CActivateAction
+							{
+								Target Name=the Hujark let you live, Huko granted passage, English Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+								Name To Target=
+								Valid Targets=Scripted Custom 2
+							}
+						}
 					}
 					Trigger Only Once=0
 					Was Triggered=0
@@ -1928,12 +1941,25 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Action=CActivateAction
+					Action=CMultipleActionsAction
 					{
-						Target Name=English Generator, sided with the Hujark, Hujark voice Generator, the Hujark let you live
-						Play Activate Sound=0
-						Delay Between Activations=0
-						Warp Behavior=
+						Action=Array
+						{
+							Item Count=2
+							Action=CActivateAction
+							{
+								Target Name=English Generator, sided with the Hujark, Hujark voice Generator, the Hujark let you live
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+								Name To Target=
+								Valid Targets=Scripted Custom 2
+							}
+						}
 					}
 					Trigger Only Once=0
 					Was Triggered=0

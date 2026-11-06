@@ -6552,7 +6552,11 @@ CLayerSaveData
 																			{
 																				Action=Array
 																				{
-																					Item Count=3
+																					Item Count=4
+																					Action=CTriggerRelayAction
+																					{
+																						Relay Name=Kill all 3 guys get AI added to Nostrodomus
+																					}
 																					Action=CDelayAction
 																					{
 																						Next Action=CDisplayDialogBalloonAction
