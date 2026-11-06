@@ -6158,6 +6158,20 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.97.1 - everything DaVinci recorded
+
+**`DL3` needs a save that has never entered the workshop, and `DL5` a save that has never walked through the portcullis.** The
+others are dialogue and reach existing saves.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| DL1 | Montaillou, first talk to DaVinci | Take *"A pity you survived the crash."* | His usual *"It pains me to see a dark nature..."*, as vanilla |
+| DL2 | Talk again, *"What are you doing here?"*, then *"Why are you checking on my progress?"*, then *"And what makes you think..."* | - | You **hear** *"I have suffered quite enough of your insolence..."*, and afterwards he resumes his muttering at the flying machine. Only one copy of the reply shows |
+| DL3 | Workshop, press a coloured button on the steam engine three times, and a fourth | Watch DaVinci | First press only hisses. Second: *"No! Not that button!"* Third and fourth: fire, 25 damage, and **you hear** *"Don't touch that button again!"* |
+| DL4 | **The regression.** A polite character in Montaillou | Ask for his help once, never insult him | *"Youth today..."* is the only route to any rebuke, and `320 general surly response 3` cannot appear on the first one |
+| DL5 | New game, wait for Guard Tomas to open the gate, then walk through | Listen | *"Come, let's explore this grand city!"* over DaVinci as he follows you in, once only, then *"Now what did I need from the market again?"* when he arrives. **Judgement:** does it overlap his portcullis line or the market line? Rushing the gate may clip the portcullis line |
+| DL6 | Secret chamber, hand him the rotary gear | *"Your rotary gear. Your engine cut it."* | You **hear** *"Ah! There! It is complete."*, then with no click the silent `902` text. The gear leaves your inventory and the quest completes once |
+
 ## 0.97.0 - caltrops, and captives in the yard
 
 **`SP5`-`SP12` need a save that has not left the Slave Pits**, because the opening map's entity list is frozen on

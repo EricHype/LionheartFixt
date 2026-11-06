@@ -53476,7 +53476,26 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=5
+							Action=CIfAction
+							{
+								If=CCheckExistenceAction
+								{
+									Name To Check For=DaVinci
+									Desired Minimum Count=1
+								}
+								Then=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/DaVinciBarcelona
+									Node ID=800 davinci travel banter
+									Name of Position=DaVinci
+									Position Offset=0.000000,-80.000000
+									After Action=
+									Include In Log=1
+								}
+								Else=
+								Return failure if the If failes=0
+							}
 							Action=CSendAIDoneMessage
 							{
 								Target=DaVinci

@@ -1146,6 +1146,28 @@ Go to node ID=310 help
 Requirement=!None
 Reply Text=A pity you survived the crash.
 Go to node ID=320 general surly response 2
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt DaVinci Rebuked
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 
 Requirement=!None
 Custom Requirement=CExpressionNot
@@ -1417,8 +1439,58 @@ Go to node ID=400 nostradamus
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt DaVinci Rebuked
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
 Reply Text=And what makes you think that I want your *help*, old one?
 Go to node ID=320 general surly response
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt DaVinci Rebuked
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt DaVinci Rebuked
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=And what makes you think that I want your *help*, old one?
+Go to node ID=320 general surly response 3
 
 Requirement=!None
 Custom Requirement=CExpressionNot
@@ -2477,7 +2549,7 @@ Icon=Quest Icon
 
 Requirement=Fixt Tank Gear Carried
 Reply Text=Your rotary gear. Your engine cut it.
-Go to node ID=902 Fixt the gear fitted
+Go to node ID=2030 give crossbow
 Icon=Quest Icon
 
 Requirement=!None
@@ -2588,7 +2660,7 @@ Icon=Quest Icon
 
 Requirement=Fixt Tank Gear Carried
 Reply Text=Your rotary gear. Your engine cut it.
-Go to node ID=902 Fixt the gear fitted
+Go to node ID=2030 give crossbow
 Icon=Quest Icon
 
 Requirement=!None
@@ -3014,6 +3086,11 @@ Is Default Reply=1
 Node ID=2030 give crossbow
 Text=Ah! There! It is complete.
 Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=902 Fixt the gear fitted
+Is Default Reply=1
 ------------------------------------------------------------
 Node ID=5000000 <Sigh>
 Text=<Sigh>
@@ -3215,7 +3292,7 @@ Is Default Reply=1
 
 ------------------------------------------------------------
 Node ID=902 Fixt the gear fitted
-Text=Si, that is the profile! Hold the lamp. There - you feel that? <He sits back on his heels, delighted.> It will turn now. All it wants is a spirit willing to live in it, and that I must still arrange. Grazie, my friend!
+Text=<He sits back on his heels, delighted.> Si, that is the profile! You feel that? It will turn now. All it wants is a spirit willing to live in it, and that I must still arrange. Grazie, my friend!
 Should Have Voiceover=0
 
 Requirement=!None

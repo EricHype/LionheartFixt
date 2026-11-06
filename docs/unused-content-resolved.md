@@ -117,7 +117,7 @@ Five nodes, 0.34 MB. `vo_reach.py` went **71 -> 66** nodes and **5.48 -> 5.14 MB
 - **`brothermichel / 07 Andre Dead greeting 2`** is not half of a pair, whatever 0.41.0's notes say.
   The map's second entry is `03 Return Dialogue`, which is what keeps his questline open. This node is
   terminal, so wiring it would cost the player every later conversation with him.
-- **`davincibarcelona / 320 general surly response 3`** is still a third escalation with no gate.
+- ~~`davincibarcelona / 320 general surly response 3`~~ **Done in 0.97.1**, gated on a second insult. The same release placed `400 touch machines`, `800 davinci travel banter` and `2030 give crossbow`.
 
 ---
 

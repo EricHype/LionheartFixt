@@ -299,6 +299,7 @@ python tools/vo_reach.py --replies-only --min-kb 100
 | **as Fixt left it after 0.55.0** | **132** (53 carry replies) | **11.48 MB** | 25 |
 | **as Fixt leaves it after 0.56.0** | **117** (53 carry replies) | **11.18 MB** | 25 |
 | **as Fixt leaves it after 0.94.0** | **66** (34 carry replies) | **5.14 MB** | 23 |
+| **as Fixt leaves it after 0.97.1** | **62** | **4.87 MB** | 22 |
 
 Earlier releases had already recovered **72 nodes and 7.79 MB** of it, every one as a side effect
 of chasing something else. Nobody was aiming at this number, because nobody had taken it. 0.56.0
