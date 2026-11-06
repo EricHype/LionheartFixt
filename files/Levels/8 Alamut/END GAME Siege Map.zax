@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=31
+							Item Count=32
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -1250,6 +1250,79 @@ CLayerSaveData
 										}
 									}
 									Return failure if the If failes=0
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Noble Killed
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 order pits killed
+									Speaker=Fake Talker for NIS
+									Player Being Spoken To=Player1
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Noble Sold
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order pits sold
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Noble Freed
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order pits freed
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+									}
 								}
 							}
 							Action=CIfExpressionAction

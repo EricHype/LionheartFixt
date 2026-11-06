@@ -757,3 +757,9 @@ you in it. They told it badly, and she never once corrected them.
 
 Recording one later: save it as `<node id>.ogg` beside the tree and it plays. Every node ships
 flagged for voiceover already, so nothing in the mod has to change.
+
+## The Slave Pits
+
+`900 order pits` runs in the order sequence just before `900 order horde traitor`, and tests `Fixt Noble Killed`,
+`Fixt Noble Sold` and `Fixt Noble Freed` in that order. No flag means no slide, because the captives appear only on a
+return trip and only in a new save. Added in 0.97.0.

@@ -25,7 +25,7 @@ CCannedObject
 			{
 				Marked For Deletion=0
 				Publisher=
-				Trigger Only Once=1
+				Trigger Only Once=0
 				Was Triggered=0
 				Auto-Flip Switch=1
 				Trigge Must Have HP=0
@@ -35,152 +35,166 @@ CCannedObject
 				Triggered By Enemies=0
 				Triggered By Projectiles=0
 				Triggered By Name=
-				Enter Action=CMultipleActionsAction
+				Enter Action=
+				Exit Action=
+				Repeat Action=CSeriesAction
 				{
 					Action=Array
 					{
-						Item Count=3
-						Action=CSpawnEffectAction
+						Item Count=2
+						Action=CSucceedAction
 						{
-							Explosion Model=Spell Effects/Shots/Spike Hit
-							Location Entity=$Instigator
-							Make effect a child of the location entity=1
-							X Offset=0
-							Y Offset=0
-							Height Offset=0
-							Play Default Sound=1
-							Action to execute After Effect=
+							Action=
 						}
-						Action=CConditionalAction
+						Action=CMultipleActionsAction
 						{
-							Try Action=CExpressionAction
+							Action=Array
 							{
-								Expression=CIsGreaterThanOrEqual
+								Item Count=3
+								Action=CSpawnEffectAction
 								{
-									Operand1=CVariableDerivedCharacterAttribute
-									{
-										Character Attribute=Derived Character Attributes/Mojo
-									}
-									Operator=
-									Operand2=CConstant
-									{
-										Constant Value=16
-									}
+									Explosion Model=Spell Effects/Shots/Spike Hit
+									Location Entity=$Instigator
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
 								}
-								Character to get attributes from=$Instigator
-							}
-							Succeed Action=CActionDoDamage
-							{
-								Character Doing Damage=$trigger
-								Character To Damage=$instigator
-								Defend Against=1
-								No Friendly Fire Check=0
-								Damages=Array
+								Action=CConditionalAction
 								{
-									Item Count=1
-									Damage=CXRPGDamage
+									Try Action=CExpressionAction
 									{
-										Damage Type=Damage Types/Piercing
-										Damage Amount=CRandom
+										Expression=CIsGreaterThanOrEqual
 										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Mojo
+											}
 											Operator=
-											Minimum=CConstant
+											Operand2=CConstant
 											{
-												Constant Value=12
+												Constant Value=16
 											}
-											Maximum=CConstant
+										}
+										Character to get attributes from=$Instigator
+									}
+									Succeed Action=CActionDoDamage
+									{
+										Character Doing Damage=$trigger
+										Character To Damage=$instigator
+										Defend Against=1
+										No Friendly Fire Check=0
+										Damages=Array
+										{
+											Item Count=1
+											Damage=CXRPGDamage
 											{
-												Constant Value=18
+												Damage Type=Damage Types/Piercing
+												Damage Amount=CRandom
+												{
+													Operator=
+													Minimum=CConstant
+													{
+														Constant Value=12
+													}
+													Maximum=CConstant
+													{
+														Constant Value=18
+													}
+												}
 											}
 										}
 									}
+									Fail Action=CConditionalAction
+									{
+										Try Action=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Mojo
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=10
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Succeed Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Piercing
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=8
+														}
+														Maximum=CConstant
+														{
+															Constant Value=12
+														}
+													}
+												}
+											}
+										}
+										Fail Action=CActionDoDamage
+										{
+											Character Doing Damage=$trigger
+											Character To Damage=$instigator
+											Defend Against=1
+											No Friendly Fire Check=0
+											Damages=Array
+											{
+												Item Count=1
+												Damage=CXRPGDamage
+												{
+													Damage Type=Damage Types/Piercing
+													Damage Amount=CRandom
+													{
+														Operator=
+														Minimum=CConstant
+														{
+															Constant Value=5
+														}
+														Maximum=CConstant
+														{
+															Constant Value=9
+														}
+													}
+												}
+											}
+										}
+										Return failure if the TryAction failes=0
+									}
+									Return failure if the TryAction failes=0
+								}
+								Action=CDeleteAction
+								{
+									Target Name=$Trigger
 								}
 							}
-							Fail Action=CConditionalAction
-							{
-								Try Action=CExpressionAction
-								{
-									Expression=CIsGreaterThanOrEqual
-									{
-										Operand1=CVariableDerivedCharacterAttribute
-										{
-											Character Attribute=Derived Character Attributes/Mojo
-										}
-										Operator=
-										Operand2=CConstant
-										{
-											Constant Value=10
-										}
-									}
-									Character to get attributes from=$Instigator
-								}
-								Succeed Action=CActionDoDamage
-								{
-									Character Doing Damage=$trigger
-									Character To Damage=$instigator
-									Defend Against=1
-									No Friendly Fire Check=0
-									Damages=Array
-									{
-										Item Count=1
-										Damage=CXRPGDamage
-										{
-											Damage Type=Damage Types/Piercing
-											Damage Amount=CRandom
-											{
-												Operator=
-												Minimum=CConstant
-												{
-													Constant Value=8
-												}
-												Maximum=CConstant
-												{
-													Constant Value=12
-												}
-											}
-										}
-									}
-								}
-								Fail Action=CActionDoDamage
-								{
-									Character Doing Damage=$trigger
-									Character To Damage=$instigator
-									Defend Against=1
-									No Friendly Fire Check=0
-									Damages=Array
-									{
-										Item Count=1
-										Damage=CXRPGDamage
-										{
-											Damage Type=Damage Types/Piercing
-											Damage Amount=CRandom
-											{
-												Operator=
-												Minimum=CConstant
-												{
-													Constant Value=5
-												}
-												Maximum=CConstant
-												{
-													Constant Value=9
-												}
-											}
-										}
-									}
-								}
-								Return failure if the TryAction failes=0
-							}
-							Return failure if the TryAction failes=0
-						}
-						Action=CDeleteAction
-						{
-							Target Name=$Trigger
 						}
 					}
+					When Done=Repeat Last Action
+					Require Success To Advance=1
+					Next Action Index=0
 				}
-				Exit Action=
-				Repeat Action=
-				Repeat Every=0
+				Repeat Every=1.25
 				Touching LayerPart=
 				Next Repeat Time=0
 				X Radius=55
@@ -192,12 +206,12 @@ CCannedObject
 		Used In=QuestMode
 		Current Target=
 		Publisher=
-		Model=Spell Effects/Ground lights/Smoke
+		Model=Environments/Outpost/Generic/Trap Spike 1
 		Position X=0
 		Position Y=0
 		Rendering Height=0
 		Rendering Height Float=0
-		Cur Sequence=Idle
+		Cur Sequence=Closed
 		Cur Damage=0
 		Destroyed Script Action=
 		Destroyed Effect Action=

@@ -6158,6 +6158,27 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.97.0 - caltrops, and captives in the yard
+
+**`SP5`-`SP12` need a save that has not left the Slave Pits**, because the opening map's entity list is frozen on
+first visit. `SP1`-`SP4` need enemies spawned after install.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SP1 | Any `Theif`, `Sewer Theif` or `Assasin`, melee | Hit one until it drops a patch | You **see** spikes on the ground. If you see nothing, the model or `Cur Sequence` is wrong |
+| SP2 | Same | Stand on the patch | A hit about a second later, with the Spike Hit effect, and the patch is gone |
+| SP3 | Same | Step off before the tick | No damage, and the patch stays armed |
+| SP4 | **The regression.** Slave Pits, wound the slavers | - | No caltrops from any `Thug`. They are not guild thieves, and 0.97.0 briefly gave them the drop |
+| SP4a | Montserrat grove, then an Assassin Master in the Assassins' caves | Wound one | One patch, once each, as `SP1`. A spellcaster that never closes to melee should still drop one when hurt |
+| SP5 | Leave the pits, come back through the exterior | Walk to the yard | Five captives and the buyer stand there, idle, and none of them fights |
+| SP6 | Same, goblins | Look at them | They animate as goblins, not frozen or in a T-pose |
+| SP7 | Don Alfonso | **Free** | His thanks, 300 gold, +50 karma, he disappears. **Karma must not also fall by 100**: this row proves the `Gone` guard |
+| SP8 | Reload, Don Alfonso | **Sell** | His line, 750 gold, -75 karma, he disappears |
+| SP9 | Reload, Don Alfonso | **Kill** | He dies at once and karma falls by 100, once |
+| SP10 | Reload, a Sylvant | Attack with a weapon rather than the reply | If the game lets you, the kill costs 125 karma. Note if it will not let you target them |
+| SP11 | After any choice | Leave and come back twice | Nobody who was freed, sold or killed returns, and nobody is doubled. This row proves `Placed` |
+| SP12 | Finish the game after SP7, SP8 and SP9 in turn | Watch the slides | Exactly one `900 order pits` slide, matching the choice, none if you never decided. With `Fixt Inquisition Hostile` set, no buyer and no Sell reply |
+
 ## 0.94.0 - four lines that were one wire away, and monks under the cathedral
 
 Three rows want a specific setup. **`LE7` and `LE9` need a save that has never entered the Blacksmith

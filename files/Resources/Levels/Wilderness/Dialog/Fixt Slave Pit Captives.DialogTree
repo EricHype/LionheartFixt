@@ -1,0 +1,1001 @@
+CDialogTree
+{
+Name=Captive
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=noble hello
+Text=You there. I am Don Alfonso de Cardona, and these animals have held me four months for a ransom my family will not pay fast enough. Open this. My house will remember you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Break the chain.> Go.
+Go to node ID=noble freed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Noble Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=300
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Noble Freed
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt Slave Buyer
+Desired Minimum Count=1
+}
+}
+Reply Text=<Call the Inquisition's buyer over.>
+Go to node ID=noble sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Noble Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=750
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Noble Sold
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+
+Requirement=!None
+Reply Text=<Kill him where he stands.>
+Go to node ID=
+Custom Action=CActionDoDamage
+{
+Character Doing Damage=$instigator
+Character To Damage=Fixt Captive Noble
+Defend Against=0
+No Friendly Fire Check=1
+Damages=Array
+{
+Item Count=1
+Damage=CXRPGDamage
+{
+Damage Type=Damage Types/Piercing
+Damage Amount=CConstant
+{
+Constant Value=9999
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=noble freed
+Text=You have the word of a Cardona. That is worth more than you know. <He presses a hidden purse into your hand, and he is gone.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Noble
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=noble sold
+Text=You cannot. Do you know who I am? Do you know what they will do to--
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Noble
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=sylvant1 hello
+Text=Do not look at me like that. I know what I am, and so did the man who sold me. Have you come to buy, or to stare?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Break the chain.> Go.
+Go to node ID=sylvant1 freed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Sylvant1 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt Slave Buyer
+Desired Minimum Count=1
+}
+}
+Reply Text=<Call the Inquisition's buyer over.>
+Go to node ID=sylvant1 sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Sylvant1 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-100
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=200
+}
+}
+}
+
+Requirement=!None
+Reply Text=<Kill him where he stands.>
+Go to node ID=
+Custom Action=CActionDoDamage
+{
+Character Doing Damage=$instigator
+Character To Damage=Fixt Captive Sylvant 1
+Defend Against=0
+No Friendly Fire Check=1
+Damages=Array
+{
+Item Count=1
+Damage=CXRPGDamage
+{
+Damage Type=Damage Types/Piercing
+Damage Amount=CConstant
+{
+Constant Value=9999
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=sylvant1 freed
+Text=The fire in my blood has cost me everything I ever had. You are the first who did not ask me to pay for it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Sylvant 1
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=sylvant1 sold
+Text=Of course. The Inquisition pays by the head, and it is always my kind.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Sylvant 1
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=sylvant2 hello
+Text=They took my daughter to the ship and left me here. If you have a key, use it. If you have not, walk on.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Break the chain.> Go.
+Go to node ID=sylvant2 freed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Sylvant2 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=75
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt Slave Buyer
+Desired Minimum Count=1
+}
+}
+Reply Text=<Call the Inquisition's buyer over.>
+Go to node ID=sylvant2 sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Sylvant2 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-100
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=200
+}
+}
+}
+
+Requirement=!None
+Reply Text=<Kill her where she stands.>
+Go to node ID=
+Custom Action=CActionDoDamage
+{
+Character Doing Damage=$instigator
+Character To Damage=Fixt Captive Sylvant 2
+Defend Against=0
+No Friendly Fire Check=1
+Damages=Array
+{
+Item Count=1
+Damage=CXRPGDamage
+{
+Damage Type=Damage Types/Piercing
+Damage Amount=CConstant
+{
+Constant Value=9999
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=sylvant2 freed
+Text=She sailed for Marseilles. I will find her.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Sylvant 2
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=sylvant2 sold
+Text=<She says nothing at all, and looks at you until you look away.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Sylvant 2
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=goblin1 hello
+Text=Morsel, mind this chain of mine. I was told on brains I soon would dine. Now a priest has come to name my price. Break it, and I shall call you nice.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Break the chain.> Go.
+Go to node ID=goblin1 freed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Goblin1 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt Slave Buyer
+Desired Minimum Count=1
+}
+}
+Reply Text=<Call the Inquisition's buyer over.>
+Go to node ID=goblin1 sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Goblin1 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=75
+}
+}
+}
+
+Requirement=!None
+Reply Text=<Kill him where he stands.>
+Go to node ID=
+Custom Action=CActionDoDamage
+{
+Character Doing Damage=$instigator
+Character To Damage=Fixt Captive Goblin 1
+Defend Against=0
+No Friendly Fire Check=1
+Damages=Array
+{
+Item Count=1
+Damage=CXRPGDamage
+{
+Damage Type=Damage Types/Piercing
+Damage Amount=CConstant
+{
+Constant Value=9999
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=goblin1 freed
+Text=You are as ugly as the rest of your race, but I shall not forget your face.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Goblin 1
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=goblin1 sold
+Text=The Holy Office has no taste. Such a fine brain, gone to waste.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Goblin 1
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=goblin2 hello
+Text=Nine of us came here on this chain. Two are left. Now count again. The man who feeds us wears a knife. Spare a goblin one more life.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Break the chain.> Go.
+Go to node ID=goblin2 freed
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Goblin2 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt Slave Buyer
+Desired Minimum Count=1
+}
+}
+Reply Text=<Call the Inquisition's buyer over.>
+Go to node ID=goblin2 sold
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CForEachPlayerAction
+{
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Captive Goblin2 Gone
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveMoneyAction
+{
+Give to=$instigator
+Value to give=75
+}
+}
+}
+
+Requirement=!None
+Reply Text=<Kill him where he stands.>
+Go to node ID=
+Custom Action=CActionDoDamage
+{
+Character Doing Damage=$instigator
+Character To Damage=Fixt Captive Goblin 2
+Defend Against=0
+No Friendly Fire Check=1
+Damages=Array
+{
+Item Count=1
+Damage=CXRPGDamage
+{
+Damage Type=Damage Types/Piercing
+Damage Amount=CConstant
+{
+Constant Value=9999
+}
+}
+}
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=goblin2 freed
+Text=Khara'Khorum will hear of you, though no one there will think it true.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Goblin 2
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=goblin2 sold
+Text=Sold twice this year, for less each time. A falling price is the only crime.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CDeleteAction
+{
+Target Name=Fixt Captive Goblin 2
+}
+Is Default Reply=1
+}

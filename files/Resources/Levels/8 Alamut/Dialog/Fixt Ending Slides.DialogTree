@@ -892,6 +892,45 @@ Relay Name=Fixt order epilogue relay
 }
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=900 order pits freed
+Text=Don Alfonso de Cardona went home, and his family's gratitude lasted longer than most. He told the story of the slave pits at table for thirty years. In his version he broke the chain himself. Your name came up once a year, at the feast of his return, and the house of Cardona paid for one mass in it. Nobody there knew what you had been doing in that yard.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order pits sold
+Text=Don Alfonso de Cardona was entered in the Holy Office's ledger as a heretic, which was cheaper than admitting what he was worth. His family paid a ransom for two years to men who no longer had him. You had the money by then. The house of Cardona never learned who sold him. It is still looking.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order pits killed
+Text=Don Alfonso de Cardona was found in the yard of the slave pits with his chain still on. The house of Cardona paid for the search, for the mass, and for a man to ask questions along the western road. He was good at his work. He got as far as a name. He never got a face to go with it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=900 order none
 Text=Every order came out of the siege smaller than it had gone in, and every one of them claimed the ending as its own. You had taken no oath and worn no mark. No faction anywhere could produce a document with your name on it. The Templars wrote that a knight had finished it. The Inquisition wrote that a faithful servant had. The Wielders wrote that one of their own had. The Horde told it as a story about a westerner who had owed them a favour. All four accounts survive in the archives, and not one of them is true.
 Should Have Voiceover=1
