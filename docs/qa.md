@@ -6158,6 +6158,13 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.98.1 - where the four roads met
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| XS22 | Crossroads Siege, on a save that has not entered it | Walk the road to the junction | The stand is at the junction just west of the catapult rocks, whole, and nothing is drawn over it. You can walk up to it from the road and click it. The description fires as you approach |
+| XS23 | The same, with Jehanne or the golem, and soldiers still alive around you | Take that route | They reach the base of the stand before they die. If frozen men block them, the 12 second timer still ends the scene |
+
 ## 0.98.0 - the standard at the crossroads
 
 **All of it needs a save that has not entered `Crossroads Siege`.** `XS6` and `XS7` also need that companion with you, and

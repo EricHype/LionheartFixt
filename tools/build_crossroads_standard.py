@@ -44,7 +44,7 @@ JOAN_ENDS, GOLEM_ENDS = "Fixt Standard Joan arrives", "Fixt Standard Golem arriv
 WOKE = "Fixt Standard Woke"
 LINES = ["80 woke 1", "81 woke 2", "82 woke 3", "83 woke 4", "84 woke 5", "85 woke 6", "86 woke 7", "87 woke 8"]
 THOUGHT_FX, DIVINE_FX, TRIBAL_FX, BRUTE_FX = "Fixt Standard Thought", "Fixt Standard Divine", "Fixt Standard Tribal", "Fixt Standard Brute"
-X, Y = 2450, 1450  # a sprite draws over anything north of its base: Pine1 D at 2454, 1335 stands 308 tall, so clear it, not just the trunks
+X, Y = 1600, 1630  # the junction, where The Crossing says it is. Further east Catapult A at 1889, 1682 draws over it
 BROKEN, JOAN_VAR, GOLEM_VAR = VARS + "Fixt Standard Broken", VARS + "Fixt Standard Joan", VARS + "Fixt Standard Golem"
 BLOOD = VARS + "Fixt Standard Blood"
 JOAN, GOLEM = "Joan of Arc", "Golem"
@@ -321,7 +321,7 @@ def move_the_description(z):
     i = z.index("\t\t\tName=what the standard is" + CR)
     a = z.index("Polygon=", i)
     e = z.index(CR, a)
-    return z[:a] + "Polygon=2300, 1300, 2600, 1300, 2600, 1600, 2300, 1600, 2300, 1300" + z[e:]
+    return z[:a] + "Polygon=1450, 1480, 1750, 1480, 1750, 1780, 1450, 1780, 1450, 1480" + z[e:]
 
 
 def crossroads():
