@@ -1579,7 +1579,7 @@ CCannedObject
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CAddCharacterModifierToCharacterAction
 							{
 								Modifier Description=vents its furnace
@@ -1614,6 +1614,13 @@ CCannedObject
 									Constant Value=20
 								}
 								Expression Context=$Trigger
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=Fire WarGolem vents its furnace: +20 fire resistance and faster attacks for 20 seconds.
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=0
 							}
 							Action=CSpawnEffectAction
 							{

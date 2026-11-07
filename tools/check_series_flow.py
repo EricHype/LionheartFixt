@@ -125,8 +125,19 @@ def check():
     return bad
 
 
+def names():
+    """A script aimed at a name only a nameless spawn would bear reaches nobody. See build_spawn_names.py."""
+    import build_spawn_names as b
+    bad = []
+    for f in sorted(FILES.rglob("*.zax")):
+        rel = f.relative_to(FILES).as_posix()
+        if rel not in b.SKIP:
+            bad += [f"{rel}: scripts aim at `{n}`, which only nameless spawns bear, so they reach nobody" for n in b.missed(lhbuild.read(rel))]
+    return bad
+
+
 def main():
-    bad = check()
+    bad = check() + names()
     for b in bad:
         print(" -", b)
     print(f"{len(bad)} series fault(s)")

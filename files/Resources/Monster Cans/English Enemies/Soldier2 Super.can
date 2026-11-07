@@ -1773,7 +1773,7 @@ CCannedObject
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CAddCharacterModifierToCharacterAction
 							{
 								Modifier Description=fights with both hands
@@ -1808,6 +1808,13 @@ CCannedObject
 									Constant Value=15
 								}
 								Expression Context=$Trigger
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=English Sergeant fights with both hands: +2 Strength and faster attacks for 15 seconds.
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=0
 							}
 							Action=CSpawnEffectAction
 							{

@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.97.4 are published** -- 200 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.98.0 are published** -- 201 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,74 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.98.0 - the standard at the crossroads
+
+Act 6 scored 1 out of 5 by route: one line to walk, no fork, and 108 men nobody talks to. Vanilla's own dying soldiers say
+*"It is as if a fog has been lifted from my eyes"* and *"I do not know why we came with swords drawn"*, so the army is
+held, and the standard `The Crossing` already describes is what holds it.
+
+| Route | Needs | Price |
+|---|---|---|
+| Obliterate it | Thought 150 | All your mana, half your health |
+| Exorcise it | Divine 150 | The same |
+| Take their spirits back | Tribal 150 | The same |
+| Tear it out | ST 10 and EN 8 | Two thirds of your health |
+| Jehanne | She is with you | She dies, if you let her |
+| The War Golem | It is with you | You order it to destroy itself |
+
+Jehanne and the golem walk to the standard first and die there, and the body stays. A twelve second timer starts the scene anyway if they are blocked.
+
+Everyone else fights or runs, as before. It stands about 200 units north of the line through the map with golems around it, so reaching it is a
+choice. Every route is a cutscene: nothing moves but the people in it, so paying cannot get you killed, and the standard
+cannot be clicked twice. A character too wounded to pay in full pays half, then nothing.
+
+**A correction that reaches past this feature.** A name list compares an entity's `Name`, and a generator with a blank `New Name`
+over a can with a blank `Name` spawns a character with none. `User Assigned Name` is only a display name. So the note 0.79.4
+was built on was wrong, and every script aimed at those names has reached nobody: the Montserrat garrison lists, the ogre charm,
+and 0.97.3's Hujark retarget. `tools/build_spawn_names.py` names the generators those scripts depend on, and `validate.py`
+now fails on the fault. Montserrat's stand-downs, the ogre charm and Huko's retarget may therefore behave differently from what
+has been tested, because they have never run. `Gate District` and `Maw of the Assasin` are left alone: their references are
+vanilla's, and waking them would change fights.
+
+**The soldiers' draught can be stopped.** Since 0.34.0 an English soldier healed inside the hit that took him under 40%, with no
+animation and no counter. Now he stops and fidgets for three seconds (the models have no drink or cast sequence), and heals at the
+end. Each hit in that window has a 40% chance to spill it and send him back to fighting, and either way it is his only one. `tools/build_soldier_draught.py`
+does the 12 cans. The fidgets run 8.0, 4.33 and 3.0 seconds, so bow and sword play sped up to fit.
+
+**The woken soldiers can be spoken to.** They get a talk interaction when the standard falls, so a click is one of their eight lines and not an attack. Each man also says one line as he wakes, scattered over three seconds, and the slower barks carry on after that.
+A click reads only the first specifier on an entity and every soldier's can already has a fight one, so that one is removed first, and
+it comes back when he is hit. That swap ends the attack the player was holding, so the first hit on a woken man stops you and the next click
+attacks as normal. Force attack still works. It runs once per man: run on every hit, it stopped the player at every swing.
+
+**The standard is the druids' lamp-stand.** `TorchStand1` from the Council maps replaces the burnt banner, which read as already destroyed, and the
+text followed. It sits at 2450, 1450, the first spot checked against sprite height and not only position, and a silent Charm effect pulses at its
+lamps every four to six seconds until it breaks.
+
+**Breaking it wakes every soldier on the map**, about 94 of the 108 at mojo 20, because the engine can address enemies by
+name but not by distance. That is why the prices are high. The three Druids, the golems and the wolves stay hostile.
+
+**150 is a school's total, not a spell.** A school's value is the sum of its spells, and a spell only doubles in cost past
+50, so a mage spreading points pays one for one. 80 is what a dabbler reaches and 120 a hybrid. Vanilla's gates stop at 80,
+and the skill system is why 150 means a main school. The level this assumes is an estimate, and `XS9` asks.
+
+Woken men can still be attacked. The one you hit fights back, each one you kill costs 50 Karma, and XP and drops stay. The
+first kill turns `900 order standard` into `900 order standard blood`, which says what you did.
+
+Four new end slides: `900 order standard`, `900 order standard blood`, and `900 friend joan standard` and `900 friend golem standard`, which are tested
+ahead of each companion's whole slide so the sacrifice holds whatever the companion variable records.
+
+Also here, from the Phase 0 audit: a balloon takes exactly one match, so the sewer stash shout and the ogres' charm line, which each named a whole family, never played. The shout now comes from the stash, and the first ogre to tick says the other.
+
+Map edit, so it needs a save that has not entered the Crossroads Siege. `XS1`-`XS14`, `XS16`-`XS21`.
+
+Passed in play: the standard, breaking it, the stand-down, talking to the men and fighting one. Not played: the scripts on the other maps that the naming woke, and the waking lines of `XS21`.
+
+**Reported from play, and fixed here.** The 48 enemy abilities of 0.33.0 and 0.34.0 healed or buffed with an effect and no
+line in the log, so you saw a flash and your damage vanish. Each now says what it did, *"Royal Guardsman drinks a healing draught
+and recovers a third of their health."* And no English model carries a shield, so `<He sets his shield and advances>` and
+`Shields up!` became `<He sets his feet and advances>` and `Blades up!`. `XS15`.
+
+---
 ## 0.97.4 - the ending can finish
 
 **Since 0.71.0 the end slides could not have played through, and since 0.73.0 no companion slide could be reached.** Found

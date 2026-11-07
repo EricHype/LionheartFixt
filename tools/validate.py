@@ -1140,7 +1140,7 @@ check_dangling_names(fails)
 check_empty_blocks(fails)
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import check_series_flow
-fails.extend(check_series_flow.check())
+fails.extend(check_series_flow.check() + check_series_flow.names())
 check_corpse_specifier(fails)
 check_repeatable_grants(fails)
 print("checked %d files (%d binary payloads skipped)" % (len(files), binary))

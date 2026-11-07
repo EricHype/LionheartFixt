@@ -6158,6 +6158,37 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.98.0 - the standard at the crossroads
+
+**All of it needs a save that has not entered `Crossroads Siege`.** `XS6` and `XS7` also need that companion with you, and
+nothing has proved a companion survives the act 5 portal, so **note if Joan or the golem is missing when you arrive.**
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| XS1 | Crossroads Siege, walk to the centre, north of the line through the map | - | You **see** the standard, upright, and it reads as a standard. If it lies flat or looks wrong, the mesh needs changing |
+| XS2 | Click it, with none of the routes | - | The description and only *<Leave it.>* |
+| XS3 | Thought 150 | *<Obliterate it.>* and click on | Fire, lightning, ice, shake. **All mana gone, about half your health.** The standard vanishes and a burn mark stands in its place |
+| XS3a | The same | Compare your mana before and after | It is **zero**. 0.98.0's first draft took nothing, because a take larger than the pool fails |
+| XS4 | **The row this exists for.** After any route | Stand among the soldiers | **Every English soldier stops attacking** and you can walk through. Stay among them for a minute, near bowmen and near melee men: barks keep coming from individual soldiers on screen, *"This is Spain..."*, and they keep coming as you walk Druids, golems and wolves still attack. If soldiers keep swinging, the names or the pacify failed |
+| XS5 | Divine 150, Tribal 150, and ST 10 with EN 8 | Each in turn | Each with its own text and effects. Brute force takes about two thirds of your health and no mana |
+| XS6 | Joan with you | *<Look to Jehanne.>*, *Do it.* | She **walks to the standard** before the light takes her, her body stays there, the soldiers wake, and the ending shows `900 friend joan standard`. **Refusing keeps her** and the standard stands |
+| XS6a | **The cutscene.** XS6 or XS7, in the thick of the fight | - | **Nothing moves but the one walking, and you take no damage.** The camera follows them to the standard and holds on the body, then returns to you with your controls back. **If you are left unable to move, that is the bug this row exists for** |
+| XS7 | War Golem with you | *<Order the golem to destroy it.>* | It **walks to the standard**, then explodes, and the ending shows `900 friend golem standard` |
+| XS8 | **Wounded.** At 60% health, and again below 25%, any route | - | You survive it, and **nothing hits you during the scene**. Controls come back afterwards |
+| XS9 | **Judgement.** A mage at the Siege | What is your level, and your school total? | Is 150 a main school rather than a hybrid? |
+| XS10 | **The regression.** Finish the game without breaking it | - | No `900 order standard` slide, and Joan's and the golem's usual slides |
+| XS11 | **The price.** After any route | Attack one woken soldier in melee, then one with a bow or spell | He alone fights back in **both** cases. The rest stand. **Karma falls by 50 per kill.** XP and the drop still arrive |
+| XS12 | XS11, then finish the game | - | `900 order standard blood`, not the plain slide |
+| XS13 | Sewers stash at low Sneak; break an ogre charm with ogres in view | - | *"Oi! Hands off..."* appears over the stash. The charm line comes from one ogre, which may be off screen, so note whether it reads as silent |
+| XS15 | **Fresh spawns.** Fight a Royal Guardsman, a Sergeant, a Bowman and a War Golem down past half | - | Each ability prints a line in the log naming the enemy and what it did, once per enemy, and no English bark mentions a shield |
+| XS16 | **Draught, undisturbed.** Hit a Royal Guardsman, English Captain, English Lieutenant and English Bowmaster to under 40% health, then stop damaging that man for three seconds | - | Each logs *"reaches for a healing draught"*, stands fidgeting and does not attack or move, then logs *"drinks a healing draught"* with visibly more health and the Divine Strength effect, and goes back to fighting. A bowman's fidget is sped up, not cut off |
+| XS17 | **Draught, spilled.** Same four, but land any hit inside those three seconds | - | About 40% of hits log *"is struck and spills the draught"*: health does **not** rise, and he attacks again at once rather than finishing the fidget. The rest log *"takes the blow and keeps drinking"* and he still heals at the end unless a later hit spills it. Bring him under 40% again: he never reaches for another |
+| XS18 | **Killing blow.** Take one from above 40% to dead in a single hit, and kill another mid-fidget | - | The first plays his death and stays down with no *"reaches for"* line; the second stays dead with no heal or effect afterwards |
+| XS21 | **Waking.** Stand among soldiers and break the standard | - | Within about three seconds of the scene ending, every man in view says a bewildered line once, not all in the same instant, with none of them in the log. After that it settles to the occasional line |
+| XS20 | **The stand.** Find it at the crossroads before breaking it | - | A dark twisted druid lamp-stand, whole and fully visible with nothing drawn over it, and the opening text calls it a lamp-stand. The charm effect pulses at its lamps every four to six seconds, silently, and stops the moment it breaks. After it falls the burn scar sits under where its base was, and sacrifices walk to its base |
+| XS19 | **Talking to them.** After the standard breaks, hover and click several English soldiers. Then force attack one | - | The cursor shows talk, not attack, on a man you have not hit. The player walks up and he says one of the eight waking lines over his own head. Force attack still works. A soldier you have damaged fights back. Your attack stops after that first hit, and one more click on him then attacks continuously as normal, without stopping at each swing |
+| XS14 | **Save and reload.** Save just after the break, reload, leave the map and return | - | Soldiers stay stood down. If barks stop after a reload that is minor; note it. Karma and the slide flag survive |
+
 ## 0.97.4 - the ending can finish
 
 **Use a spare save.** Playtest Kit, Merchant Lope or Jafar, travel, *The end of the game*. This is the only release whose

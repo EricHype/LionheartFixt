@@ -1083,3 +1083,23 @@ one up leaves a gap. Use the can on one side and an inline comparison on the oth
 | Blank the field, do not remove the activity | "I'd prefer the wandering without the fighting" | 0.60.5 |
 | An orphan block crashes the engine and passes every gate | a screenshot of the crash | 0.60.6 |
 | `CSkeletonAI` is a bundle, and `Valid Targets` is inside it | "it sees and follows me around the map" | 0.60.7 |
+
+## Following a moving character with the camera
+
+`CAIAttractCamera` is on a fixed marker in all 125 vanilla uses, but it reads its owner's position every tick (`0x4ab080`), so added to a character with `CAddAIAction` it is a follow camera. Keep `Disable Self When Camera Arrives=0`: on arrival it deactivates the owner, which is harmless on a marker and not on a person. Remove it with `CRemoveAIAction` when the scene ends. `CCameraTrakerAI` is the player's own tracker, which the attractor switches off each tick, and no data file names it. With `Pause Characters=1` only a `NonInteractiveSequence Actor` moves.
+
+## Three actions that fail in silence
+
+`Name of Position` on a balloon takes exactly one match and draws nothing on two (`0x41ef10`), while `Target Name` broadcasts. `CTakeManaFromCharacterAction` takes nothing when the amount exceeds the pool (`0x48be00`): use `CExpressionManaRemaining`. A relay fires inline and a series advances only after its step returns, so a step firing its own relay recurses (`0x56ffc0`, `0x422c00`), and an If returns false from Else (`0x58fe40`). `check_series_flow.py` catches the last.
+
+## A spawn may have no name at all
+
+Name lists compare an entity's `Name` (`0x62bc00`, through `0x5b9b40`) and skip an empty one. A generator with a blank `New Name` over a can with a blank `Name` spawns exactly that, and `User Assigned Name` is never read. Anything here or in `releases.md` before 0.98.0 saying blank spawns carry their can's display name is wrong. `check_series_flow.names()` fails on it. A generator mixing bow and melee cans cannot be split by name.
+
+## Making a creature stop and do something
+
+`CAssignTemporaryTaskAction` pauses the AI named in `Original AI Type` for a `CPlaySequenceOnceAI`, whose `Speed To Play` (set `Cur Speed To Play` too) scales the clip and whose `Stop Action` runs at the end and must send `CSendAIDoneMessage` to release him. It works from a can with `$Trigger`, and the Stop Action dies with the creature, which a `CDelayAction` does not. `CPlayAnimationAction` with `AI To Interrupt` builds the same task (`0x5761d0`) but has no speed field and refuses if a task is already running. A sequence the model lacks is a silent no-op (`0x5406f0`). Clip lengths are `Duration` in the `.ANIMATION.GR2`. The `.mdl16` lists every sequence, so read all of it: a keyword filter hid Fidget, Run and GetUp from me.
+
+## A click reads the first specifier
+
+A click uses the first `CAIInteractionSpecifier` on the entity (`0x46b0f0`, through the entity vtable at `+0x120`). Every monster can already carries `GetCloseThenTriggerAndFight` (all 49 English cans), so a `CAddAIAction` adds a second one that nothing ever reads. Remove first, then add, as vanilla does for its customers, and when he turns hostile again put the fight specifier back, because a creature with none cannot be clicked at all. `GetCloseThenTalk` has `Fight When Attack Is Forced=1`, so force attack still works on him.

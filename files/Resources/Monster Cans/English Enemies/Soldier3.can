@@ -1749,70 +1749,235 @@ CCannedObject
 		}
 		Damaged Script Action=CIfAction
 		{
-			If=CExpressionAction
+			If=CCheckCategoryAction
 			{
-				Expression=CIsLessThanOrEqual
+				Target Name=$Trigger
+				Category to check for=Scripted Custom 2
+			}
+			Then=CIfAction
+			{
+				If=CExpressionAction
 				{
-					Operand1=CExpressionHealthPercent
+					Expression=CIsLessThan
 					{
+						Operand1=CRandom
+						{
+							Operator=
+							Minimum=CConstant
+							{
+								Constant Value=0
+							}
+							Maximum=CConstant
+							{
+								Constant Value=100
+							}
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=40
+						}
 					}
-					Operator=
-					Operand2=CConstant
+					Character to get attributes from=$Trigger
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
 					{
-						Constant Value=40
+						Item Count=3
+						Action=CRemoveCategoryAction
+						{
+							Target Name=$Trigger
+							Categories To Remove=Scripted Custom 2
+						}
+						Action=CPrintCombatTextAction
+						{
+							Text to print=English Captain is struck and spills the draught.
+							Character to show text to=Player1
+							Emphasize=0
+							Suppress Duplicates=0
+						}
+						Action=CSendAIDoneMessage
+						{
+							Target=$Trigger
+						}
 					}
 				}
-				Character to get attributes from=$Trigger
-			}
-			Then=CSeriesAction
-			{
-				Action=Array
+				Else=CPrintCombatTextAction
 				{
-					Item Count=2
-					Action=CMultipleActionsAction
+					Text to print=English Captain takes the blow and keeps drinking.
+					Character to show text to=Player1
+					Emphasize=0
+					Suppress Duplicates=0
+				}
+				Return failure if the If failes=0
+			}
+			Else=CIfAction
+			{
+				If=CExpressionAction
+				{
+					Expression=CIsLessThanOrEqual
+					{
+						Operand1=CExpressionHealthPercent
+						{
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=40
+						}
+					}
+					Character to get attributes from=$Trigger
+				}
+				Then=CIfAction
+				{
+					If=CExpressionAction
+					{
+						Expression=CIsGreaterThan
+						{
+							Operand1=CExpressionHealthPercent
+							{
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=0
+							}
+						}
+						Character to get attributes from=$Trigger
+					}
+					Then=CSeriesAction
 					{
 						Action=Array
 						{
 							Item Count=2
-							Action=CGiveHealthToCharacterAction
+							Action=CMultipleActionsAction
 							{
-								Character to give health to=$Trigger
-								Amount of health to give=CMultiply
+								Action=Array
 								{
-									Operand1=CVariableDerivedCharacterAttribute
+									Item Count=3
+									Action=CAddCategoryAction
 									{
-										Character Attribute=Derived Character Attributes/(HP) Hit Points
+										Target Name=$Trigger
+										Categories to add=Scripted Custom 2
 									}
-									Operator=
-									Operand2=CConstant
+									Action=CPrintCombatTextAction
 									{
-										Constant Value=0.35
+										Text to print=English Captain reaches for a healing draught.
+										Character to show text to=Player1
+										Emphasize=0
+										Suppress Duplicates=0
+									}
+									Action=CAssignTemporaryTaskAction
+									{
+										Target=$Trigger
+										Temporary Task AI=CPlaySequenceOnceAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Behavior=CEntityBehaviorPlaySequenceOnce
+											{
+												Sequence=Fidget
+												Speed To Play=1.44
+												Done Sequence=Idle
+												Done Frame=0
+												Was Stationary=0
+												Old Play Ratio=0
+												Move With Sequence=0
+												After Action=
+												Cur Speed To Play=1.44
+											}
+											Stop Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CIfAction
+													{
+														If=CCheckCategoryAction
+														{
+															Target Name=$Trigger
+															Category to check for=Scripted Custom 2
+														}
+														Then=CMultipleActionsAction
+														{
+															Action=Array
+															{
+																Item Count=4
+																Action=CRemoveCategoryAction
+																{
+																	Target Name=$Trigger
+																	Categories To Remove=Scripted Custom 2
+																}
+																Action=CGiveHealthToCharacterAction
+																{
+																	Character to give health to=$Trigger
+																	Amount of health to give=CMultiply
+																	{
+																		Operand1=CVariableDerivedCharacterAttribute
+																		{
+																			Character Attribute=Derived Character Attributes/(HP) Hit Points
+																		}
+																		Operator=
+																		Operand2=CConstant
+																		{
+																			Constant Value=0.35
+																		}
+																	}
+																	Expression Context=$Trigger
+																}
+																Action=CPrintCombatTextAction
+																{
+																	Text to print=English Captain drinks a healing draught and recovers a third of their health.
+																	Character to show text to=Player1
+																	Emphasize=0
+																	Suppress Duplicates=0
+																}
+																Action=CSpawnEffectAction
+																{
+																	Explosion Model=Spell Effects/Hits and Effects/Target Affected/Divine Strength
+																	Location Entity=$Trigger
+																	Make effect a child of the location entity=0
+																	X Offset=0
+																	Y Offset=0
+																	Height Offset=35
+																	Play Default Sound=1
+																}
+															}
+														}
+														Else=
+														Return failure if the If failes=0
+													}
+													Action=CSendAIDoneMessage
+													{
+														Target=$Trigger
+													}
+												}
+											}
+											Execute Action Only Once=1
+											Stop Action Executed=0
+										}
+										Original AI Type=CSkeletonAI
+										Completion Message to wait for=AI Done
+										Suppress can't assign error=1
 									}
 								}
-								Expression Context=$Trigger
 							}
-							Action=CSpawnEffectAction
+							Action=CSucceedAction
 							{
-								Explosion Model=Spell Effects/Hits and Effects/Target Affected/Divine Strength
-								Location Entity=$Trigger
-								Make effect a child of the location entity=0
-								X Offset=0
-								Y Offset=0
-								Height Offset=35
-								Play Default Sound=1
+								Action=
 							}
 						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
 					}
-					Action=CSucceedAction
-					{
-						Action=
-					}
+					Else=
+					Return failure if the If failes=0
 				}
-				When Done=Repeat Last Action
-				Require Success To Advance=1
-				Next Action Index=0
+				Else=
+				Return failure if the If failes=0
 			}
-			Else=
 			Return failure if the If failes=0
 		}
 		Damaged Effect Action=CRandomAction

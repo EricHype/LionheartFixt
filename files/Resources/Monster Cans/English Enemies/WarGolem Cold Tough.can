@@ -1600,7 +1600,7 @@ CCannedObject
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CAddCharacterModifierToCharacterAction
 							{
 								Modifier Description=rimes over
@@ -1635,6 +1635,13 @@ CCannedObject
 									Constant Value=20
 								}
 								Expression Context=$Trigger
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=Ice WarGolem rimes over: +20 cold resistance and faster attacks for 20 seconds.
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=0
 							}
 							Action=CSpawnEffectAction
 							{

@@ -1324,7 +1324,7 @@ CCannedObject
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CAddCharacterModifierToCharacterAction
 							{
 								Modifier Description=prays faster
@@ -1349,6 +1349,13 @@ CCannedObject
 									Constant Value=20
 								}
 								Expression Context=$Trigger
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=Druidess prays faster: quicker casting for 20 seconds.
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=0
 							}
 							Action=CSpawnEffectAction
 							{

@@ -110,7 +110,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=32
+							Item Count=33
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -1334,6 +1334,62 @@ CLayerSaveData
 										}
 									}
 									Return failure if the If failes=0
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Standard Broken
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Standard Blood
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order standard blood
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 order standard
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+								}
+								Else=CDelayAction
+								{
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 							Action=CIfExpressionAction
@@ -2574,23 +2630,23 @@ CLayerSaveData
 							}
 							Action=CIfExpressionAction
 							{
-								If Expression=CIsEqualTo
+								If Expression=CIsGreaterThan
 								{
 									Operand1=CVariableDerivedCharacterAttribute
 									{
-										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Joan of Arc
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Standard Joan
 									}
 									Operator=
 									Operand2=CConstant
 									{
-										Constant Value=1
+										Constant Value=0
 									}
 								}
 								Character to get attributes from=Player1
 								Then=CDisplayDialogTreeAction
 								{
 									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-									Node ID=900 friend joan
+									Node ID=900 friend joan standard
 									Speaker=Fake Talker for NIS
 									Player Being Spoken To=Player1
 								}
@@ -2605,14 +2661,14 @@ CLayerSaveData
 										Operator=
 										Operand2=CConstant
 										{
-											Constant Value=3
+											Constant Value=1
 										}
 									}
 									Character to get attributes from=Player1
 									Then=CDisplayDialogTreeAction
 									{
 										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-										Node ID=900 friend joan dead
+										Node ID=900 friend joan
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
@@ -2627,57 +2683,80 @@ CLayerSaveData
 											Operator=
 											Operand2=CConstant
 											{
-												Constant Value=2
+												Constant Value=3
 											}
 										}
 										Character to get attributes from=Player1
 										Then=CDisplayDialogTreeAction
 										{
 											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-											Node ID=900 friend joan killed
+											Node ID=900 friend joan dead
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
 										}
-										Else=CIfAction
+										Else=CIfExpressionAction
 										{
-											If=CIsQuestCompletedAction
+											If Expression=CIsEqualTo
 											{
-												Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Joan of Arc
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=2
+												}
 											}
+											Character to get attributes from=Player1
 											Then=CDisplayDialogTreeAction
 											{
 												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-												Node ID=900 friend joan released
+												Node ID=900 friend joan killed
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
 											Else=CIfAction
 											{
-												If=CWasQuestStateActivatedAction
+												If=CIsQuestCompletedAction
 												{
 													Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
-													State=CRY2CURS
 												}
 												Then=CDisplayDialogTreeAction
 												{
 													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-													Node ID=900 friend joan passed
+													Node ID=900 friend joan released
 													Speaker=Fake Talker for NIS
 													Player Being Spoken To=Player1
 												}
-												Else=CDelayAction
+												Else=CIfAction
 												{
-													Next Action=CTriggerRelayAction
+													If=CWasQuestStateActivatedAction
 													{
-														Relay Name=Fixt order epilogue relay
+														Quest=Levels/4 Crypt/Quests/Release the Doomed Knights from their torment
+														State=CRY2CURS
 													}
-													Delay=0.1
-													Plus or Minus=0
-													Forget Trigger=0
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 friend joan passed
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Else=CDelayAction
+													{
+														Next Action=CTriggerRelayAction
+														{
+															Relay Name=Fixt order epilogue relay
+														}
+														Delay=0.1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+													Return failure if the If failes=0
 												}
 												Return failure if the If failes=0
 											}
-											Return failure if the If failes=0
 										}
 									}
 								}
@@ -3291,23 +3370,23 @@ CLayerSaveData
 							}
 							Action=CIfExpressionAction
 							{
-								If Expression=CIsEqualTo
+								If Expression=CIsGreaterThan
 								{
 									Operand1=CVariableDerivedCharacterAttribute
 									{
-										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Golem
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Standard Golem
 									}
 									Operator=
 									Operand2=CConstant
 									{
-										Constant Value=1
+										Constant Value=0
 									}
 								}
 								Character to get attributes from=Player1
 								Then=CDisplayDialogTreeAction
 								{
 									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-									Node ID=900 friend golem
+									Node ID=900 friend golem standard
 									Speaker=Fake Talker for NIS
 									Player Being Spoken To=Player1
 								}
@@ -3322,26 +3401,49 @@ CLayerSaveData
 										Operator=
 										Operand2=CConstant
 										{
-											Constant Value=3
+											Constant Value=1
 										}
 									}
 									Character to get attributes from=Player1
 									Then=CDisplayDialogTreeAction
 									{
 										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-										Node ID=900 friend golem dead
+										Node ID=900 friend golem
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CDelayAction
+									Else=CIfExpressionAction
 									{
-										Next Action=CTriggerRelayAction
+										If Expression=CIsEqualTo
 										{
-											Relay Name=Fixt order epilogue relay
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Golem
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=3
+											}
 										}
-										Delay=0.1
-										Plus or Minus=0
-										Forget Trigger=0
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 friend golem dead
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDelayAction
+										{
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
 									}
 								}
 							}

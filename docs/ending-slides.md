@@ -763,3 +763,7 @@ flagged for voiceover already, so nothing in the mod has to change.
 `900 order pits` runs in the order sequence just before `900 order horde traitor`, and tests `Fixt Noble Killed`,
 `Fixt Noble Sold` and `Fixt Noble Freed` in that order. No flag means no slide, because the captives appear only on a
 return trip and only in a new save. Added in 0.97.0.
+
+## The standard at the crossroads
+
+`900 order standard`, or `900 order standard blood` if you killed woken men, runs just before `900 order pits` on any route that broke it. `900 friend joan standard` and `900 friend golem standard` are tested ahead of those companions' other slides, on `Fixt Standard Joan` and `Fixt Standard Golem`. Added in 0.98.0.

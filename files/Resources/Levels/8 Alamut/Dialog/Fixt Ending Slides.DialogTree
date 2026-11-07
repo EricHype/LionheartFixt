@@ -931,6 +931,58 @@ Relay Name=Fixt order epilogue relay
 }
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=900 order standard
+Text=The English at the crossroads woke in one moment, in the wrong country, with blood on them. Most of them went home. Nobody in England would hear what had happened, because the druids had already told it differently. The men stopped talking about it. You knew what you had broken, and you were the only one who did.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 order standard blood
+Text=The English at the crossroads woke in one moment, in the wrong country, with blood on them. You killed a good many of them while they were still asking where they were. The rest went home and told nobody, because nobody in England would have heard it. You knew what you had broken, and you knew what you had done after.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 friend joan standard
+Text=Jehanne d'Arc died at the crossroads outside Barcelona with her hands on a druid's standard. An English army woke in the same moment and did not know her name. The Crypt she had held for two hundred years went unguarded. Most of the men who went home would not speak of that road. One of them paid for a mass at Rennes every year, and would not say why.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 friend golem standard
+Text=The golem ended at the crossroads outside Barcelona, on your order. It had been built in England to break a line, and it broke the thing that was holding this one. The men who woke there never learned what freed them. A shoulder plate with its makers' marks turned up in the paving. A church in Cornwall kept it as a relic, without any idea what it was.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=900 order none
 Text=Every order came out of the siege smaller than it had gone in, and every one of them claimed the ending as its own. You had taken no oath and worn no mark. No faction anywhere could produce a document with your name on it. The Templars wrote that a knight had finished it. The Inquisition wrote that a faithful servant had. The Wielders wrote that one of their own had. The Horde told it as a story about a westerner who had owed them a favour. All four accounts survive in the archives, and not one of them is true.
 Should Have Voiceover=1

@@ -85,6 +85,52 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=Fixt the charm voice
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CDisplayDialogBalloonAction
+					{
+						Dialog Tree File=Levels/Wilderness/Dialog/Ogre Canned
+						Node ID=40 charm broken
+						Name of Position=$Trigger
+						Position Offset=0.000000,-60.000000
+						After Action=
+						Include In Log=1
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=60
+			Position Y=60
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=pass hover dead ground
@@ -388,20 +434,22 @@ CLayerSaveData
 									Name To Check For=Ogre
 									Desired Minimum Count=1
 								}
-								Then=CDelayAction
+								Then=CAddAIAction
 								{
-									Next Action=CDisplayDialogBalloonAction
+									Target Name=Ogre
+									AI=CRepeatTimerTriggerAI
 									{
-										Dialog Tree File=Levels/Wilderness/Dialog/Ogre Canned
-										Node ID=40 charm broken
-										Name of Position=Ogre
-										Position Offset=0.000000,-60.000000
-										After Action=
-										Include In Log=1
+										Marked For Deletion=0
+										Publisher=
+										Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt the charm voice
+										}
+										Delay Between Actions=1
+										Plus or Minus=0
+										Seconds Till Next Execute=1
 									}
-									Delay=1
-									Plus or Minus=0
-									Forget Trigger=0
+									Delay Between Adds=0
 								}
 								Else=
 								Return failure if the If failes=0
@@ -22246,7 +22294,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -23923,7 +23971,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -24976,7 +25024,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre Hurler
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -25859,7 +25907,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -26732,7 +26780,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -28414,7 +28462,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -29089,7 +29137,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre Hurler
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -30941,7 +30989,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre Hurler
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -31762,7 +31810,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Ogre Hurler
 					Remove Default AIs=0
 					AIs to Add=Array
 					{

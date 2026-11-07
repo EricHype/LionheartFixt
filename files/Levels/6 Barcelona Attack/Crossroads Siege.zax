@@ -87,6 +87,1997 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt The Standard
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=2
+				Activity=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTalk
+					Action=CDisplayDialogTreeAction
+					{
+						Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+						Node ID=1 the standard
+						Speaker=$trigger
+						Player Being Spoken To=$Instigator
+					}
+					X Radius=90
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CSpawnEffectAction
+					{
+						Explosion Model=Spell Effects/Hits and Effects/Target Affected/Charm
+						Location Entity=Fixt Standard Spot
+						Make effect a child of the location entity=0
+						X Offset=0
+						Y Offset=0
+						Height Offset=90
+						Play Default Sound=0
+						Action to execute After Effect=
+					}
+					Delay Between Actions=5
+					Plus or Minus=1
+					Seconds Till Next Execute=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Druid Grove/Torches/TorchStand1
+			Position X=2450
+			Position Y=1370
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Scar
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Environments/Heart of Fire/Burned Pieces/Burn Ground 01 A
+			Position X=2450
+			Position Y=1450
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Spot
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=2450
+			Position Y=1450
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Falls
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=10
+							Action=CDeleteAction
+							{
+								Target Name=Fixt The Standard
+							}
+							Action=CActivateAction
+							{
+								Target Name=Fixt Standard Scar
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+								Categories To Remove=Enemy
+							}
+							Action=CSetDamagedScriptActionAction
+							{
+								New Damaged Action=CIfAction
+								{
+									If=CCheckCategoryAction
+									{
+										Target Name=$Instigator
+										Category to check for=Player,Player Friend
+									}
+									Then=CIfAction
+									{
+										If=CNotAction
+										{
+											Action=CCheckCategoryAction
+											{
+												Target Name=$Trigger
+												Category to check for=Enemy
+											}
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=5
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Trigger
+													Name To Target=
+													Valid Targets=Player,Player Friend
+												}
+												Action=CAddCategoryAction
+												{
+													Target Name=$Trigger
+													Categories to add=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Trigger
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Trigger
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+														Action=
+														X Radius=50
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+												Action=CGoToCombatAction
+												{
+													Enemy Name=$Trigger
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CIfAction
+								{
+									If=CWasDamagedByPlayerAction
+									{
+										Entity To Check For Damage=$Trigger
+									}
+									Then=CForEachPlayerAction
+									{
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=
+													Modification is permanent=0
+													Character to modify=$Instigator
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=-50
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/Karma
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=
+													Modification is permanent=0
+													Character to modify=$Instigator
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=0
+															Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Standard Blood
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Target Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+							}
+							Action=CAddAIAction
+							{
+								Target Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+								AI=CRepeatTimerTriggerAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Standard Woke
+									}
+									Delay Between Actions=4
+									Plus or Minus=3
+									Seconds Till Next Execute=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+								AI=CRepeatTimerTriggerAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Action=CSeriesAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDelayAction
+											{
+												Next Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=8
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=80 woke 1
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=81 woke 2
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=82 woke 3
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=83 woke 4
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=84 woke 5
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=85 woke 6
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=86 woke 7
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+															Node ID=87 woke 8
+															Name of Position=$Trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=0
+														}
+													}
+												}
+												Delay=1.5
+												Plus or Minus=1.5
+												Forget Trigger=0
+											}
+											Action=CSucceedAction
+											{
+												Action=
+											}
+										}
+										When Done=Repeat Last Action
+										Require Success To Advance=0
+										Next Action Index=0
+									}
+									Delay Between Actions=600
+									Plus or Minus=0
+									Seconds Till Next Execute=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=English Soldier, English Bowman, English Bowmaster, English Sergeant, English Captain, English Lieutenant, English Guardsman, Royal Guardsman
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTalk
+									Action=CRandomAction
+									{
+										Action=Array
+										{
+											Item Count=8
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=80 woke 1
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=81 woke 2
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=82 woke 3
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=83 woke 4
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=84 woke 5
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=85 woke 6
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=86 woke 7
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+												Node ID=87 woke 8
+												Name of Position=$trigger
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+										}
+									}
+									X Radius=50
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2470
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Woke
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CShuffledSeriesAction
+					{
+						Action=Array
+						{
+							Item Count=8
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=80 woke 1
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=81 woke 2
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=82 woke 3
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=83 woke 4
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=84 woke 5
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=85 woke 6
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=86 woke 7
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+										Node ID=87 woke 8
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Action=CDeactivateAction
+									{
+										Target Name=Fixt Standard Woke
+									}
+									Action=CDelayAction
+									{
+										Next Action=CActivateAction
+										{
+											Target Name=Fixt Standard Woke
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Delay=6
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+						}
+						When Done=Repeat Series
+						Require Success To Advance=0
+						Next Action Index=0
+					}
+					Trigger Only Once=0
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2490
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Thought
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=6
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Falls
+								}
+								Delay=2.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Fire Attacks/Fireball Med Lrg Hit
+								Location Entity=Fixt Standard Spot
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CShakeScreenAction
+							{
+								Time to Shake=3
+								Pixels To Shake=CLengthEnvelope
+								{
+									Start Value=4
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=0
+									Using Start=1
+									Direction=1
+								}
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Storm
+									Location Entity=Fixt Standard Spot
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=0.7
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Ice Attacks/Ice Ring Large
+									Location Entity=Fixt Standard Spot
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=1.4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2410
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Divine
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Falls
+								}
+								Delay=2.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Target Affected/Exorcise
+								Location Entity=Fixt Standard Spot
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Shield/Holy Fire Divine
+									Location Entity=Fixt Standard Spot
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2390
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Tribal
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Falls
+								}
+								Delay=2.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Corpse Effects/Absorb Spirit
+								Location Entity=Fixt Standard Spot
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Special Effects/Spirit Calls/Ancestral
+									Location Entity=Fixt Standard Spot
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2370
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Brute
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=4
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=3
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Falls
+								}
+								Delay=1.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CShakeScreenAction
+							{
+								Time to Shake=2
+								Pixels To Shake=CLengthEnvelope
+								{
+									Start Value=3
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=0
+									Using Start=1
+									Direction=1
+								}
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Electrical Burst Med
+								Location Entity=Fixt Standard Spot
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2350
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Joan
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=9
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Joan arrives
+								}
+								Delay=12
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CBeginNonInteractiveSequenceAction
+							{
+								Options=CNonInteractiveSequence
+								{
+									Pause Characters=1
+									Disable Player Controls=1
+									Can Fast Forward=0
+								}
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Attackers dialog balloons
+							}
+							Action=CReleaseCompanionAction
+							{
+								Companion To Release=Joan of Arc
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=Joan of Arc
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Joan of Arc
+								AI=CAIAttractCamera
+								{
+									Marked For Deletion=0
+									Publisher=
+									Camera Arrived Action=
+									Disable Self When Camera Arrives=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Joan of Arc
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Joan of Arc
+								Categories to add=NonInteractiveSequence Actor
+							}
+							Action=CAssignTemporaryTaskAction
+							{
+								Target=Joan of Arc
+								Temporary Task AI=CGoToAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Destination=Fixt Standard Spot
+									Offset=0.000000,0.000000
+									Starting Action=
+									Finished=0
+									Move Finished=0
+									Failed Path=0
+									Target Was Set By Goto AI=0
+									Move Behavior=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
+									}
+									Done action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Standard Joan arrives
+									}
+									Run=0
+									Make New Home=0
+									Play Ratio=0
+									Time To Try To Move=0
+									Set Facing Angle=0
+									Turn Sequence Name=Idle
+									Facing Angle=CEntityBehaviorTurnToAngle
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+									}
+									Need to Call Start=1
+								}
+								Original AI Type=CSkeletonAI
+								Completion Message to wait for=AI Done
+								Suppress can't assign error=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2330
+			Position Y=1510
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Golem
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=9
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Golem arrives
+								}
+								Delay=12
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CBeginNonInteractiveSequenceAction
+							{
+								Options=CNonInteractiveSequence
+								{
+									Pause Characters=1
+									Disable Player Controls=1
+									Can Fast Forward=0
+								}
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Attackers dialog balloons
+							}
+							Action=CReleaseCompanionAction
+							{
+								Companion To Release=Golem
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=Golem
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Golem
+								AI=CAIAttractCamera
+								{
+									Marked For Deletion=0
+									Publisher=
+									Camera Arrived Action=
+									Disable Self When Camera Arrives=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Golem
+								Name To Target=
+								Valid Targets=
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Golem
+								Categories to add=NonInteractiveSequence Actor
+							}
+							Action=CAssignTemporaryTaskAction
+							{
+								Target=Golem
+								Temporary Task AI=CGoToAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Destination=Fixt Standard Spot
+									Offset=0.000000,0.000000
+									Starting Action=
+									Finished=0
+									Move Finished=0
+									Failed Path=0
+									Target Was Set By Goto AI=0
+									Move Behavior=CEntityBehaviorMoveToPos
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+										Play Ratio=1
+										Smooth Turning=0
+										Do Path Finding=1
+										Finished=1
+										Failed Last Path=0
+										Idle Begin Called=0
+										Move To Rate=0
+										CurTargetNormalX=0
+										CurTargetNormalY=0
+										Path Finding Params=CWayPointPath
+										{
+											Start Point=0,0
+											End Point=0,0
+											Length=0
+											Max Dist To Travel=0
+											Num Failed Paths=0
+											Max Failed Paths=0
+											Pos To Move Index=0
+											Dist So Far=0
+											Path=
+										}
+										Pos Moving From=0.000000,0.000000
+										Final Dest=0.000000,0.000000
+										Dest Radius=0
+										Cur Dest Move To=0.000000,0.000000
+										Last Neg Dist=0
+										NumTimesLostGound=0
+										Sequence=
+										Planed Path For=
+									}
+									Done action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Standard Golem arrives
+									}
+									Run=0
+									Make New Home=0
+									Play Ratio=0
+									Time To Try To Move=0
+									Set Facing Angle=0
+									Turn Sequence Name=Idle
+									Facing Angle=CEntityBehaviorTurnToAngle
+									{
+										Old Stationary Flag=0
+										Angle To Turn To=0
+										Facing Backwards=0
+									}
+									Need to Call Start=1
+								}
+								Original AI Type=CSkeletonAI
+								Completion Message to wait for=AI Done
+								Suppress can't assign error=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2310
+			Position Y=1510
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Joan arrives
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=6
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CRemoveAIAction
+								{
+									Target Name=Joan of Arc
+									AI=CAIAttractCamera
+									Delay Between Removes=0
+								}
+								Delay=4.8
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Falls
+								}
+								Delay=2.6
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CPainAction
+										{
+											Hit Points=99999
+											Damage Type=Unavoidable
+											Sound=!None.wav
+											Target=Joan of Arc
+										}
+										Action=CDelayAction
+										{
+											Next Action=CIfAction
+											{
+												If=CIsAliveAction
+												{
+													Name To Check For=Joan of Arc
+													Desired Minimum Count=1
+												}
+												Then=CDeleteAction
+												{
+													Target Name=Joan of Arc
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Delay=4
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Delay=2.4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Divine Radial Cast Effect
+								Location Entity=Joan of Arc
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Shield/Holy Fire Divine 2
+									Location Entity=Joan of Arc
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=1.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2330
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Standard Golem arrives
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=8
+							Action=CDelayAction
+							{
+								Next Action=CEndNonInteractiveSequenceAction
+								{
+								}
+								Delay=4.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CRemoveAIAction
+								{
+									Target Name=Golem
+									AI=CAIAttractCamera
+									Delay Between Removes=0
+								}
+								Delay=4.3
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Standard Falls
+								}
+								Delay=2.2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CPainAction
+										{
+											Hit Points=99999
+											Damage Type=Unavoidable
+											Sound=!None.wav
+											Target=Golem
+										}
+										Action=CDelayAction
+										{
+											Next Action=CIfAction
+											{
+												If=CIsAliveAction
+												{
+													Name To Check For=Golem
+													Desired Minimum Count=1
+												}
+												Then=CDeleteAction
+												{
+													Target Name=Golem
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Delay=4
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+								Delay=2
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Electrical Burst Lrg
+								Location Entity=Golem
+								Make effect a child of the location entity=0
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CShakeScreenAction
+							{
+								Time to Shake=4
+								Pixels To Shake=CLengthEnvelope
+								{
+									Start Value=6
+									End Value=0
+									Speed=0
+									Ending Behavior=Stop at end
+									Current Value=0
+									Using Start=1
+									Direction=1
+								}
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Fire Attacks/Fireball Med Lrg Hit
+									Location Entity=Golem
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Fire Attacks/Fire Circle Medium
+									Location Entity=Fixt Standard Spot
+									Make effect a child of the location entity=0
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Delay=1.6
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=2310
+			Position Y=1490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Dynamic Properties=1
 			{
 				Comment=Spirit 4 Generator
@@ -1414,7 +3405,7 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Polygon=2347, 853, 2647, 853, 2647, 1153, 2347, 1153, 2347, 853
+			Polygon=2300, 1300, 2600, 1300, 2600, 1600, 2300, 1600, 2300, 1300
 			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CFreeRangePoly
@@ -5038,7 +7029,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -5529,7 +7520,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -6034,7 +8025,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -6743,7 +8734,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -7216,7 +9207,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -8135,7 +10126,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -8546,7 +10537,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -11289,7 +13280,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -11554,7 +13545,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -11817,7 +13808,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -12966,7 +14957,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -13271,7 +15262,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -13474,7 +15465,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -15135,7 +17126,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -15758,7 +17749,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -16161,7 +18152,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -16496,7 +18487,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -17205,7 +19196,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -18070,7 +20061,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -18583,7 +20574,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -19536,7 +21527,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -19681,7 +21672,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -19844,7 +21835,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -20828,7 +22819,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -20961,7 +22952,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -22116,7 +24107,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -22987,7 +24978,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -23250,7 +25241,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -24421,7 +26412,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -27572,7 +29563,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -28327,7 +30318,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -29486,7 +31477,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -31452,7 +33443,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -31635,7 +33626,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=English Bowman
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
