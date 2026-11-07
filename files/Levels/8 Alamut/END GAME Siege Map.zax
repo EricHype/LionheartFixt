@@ -151,9 +151,15 @@ CLayerSaveData
 											Player Being Spoken To=Player1
 										}
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 								Else=CIfExpressionAction
@@ -219,9 +225,15 @@ CLayerSaveData
 											}
 										}
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 								Return failure if the If failes=0
@@ -269,15 +281,27 @@ CLayerSaveData
 											Player Being Spoken To=Player1
 										}
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 									Return failure if the If failes=0
 								}
-								Else=CTriggerRelayAction
+								Else=CDelayAction
 								{
-									Relay Name=Fixt order epilogue relay
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 							Action=CIfExpressionAction
@@ -443,9 +467,15 @@ CLayerSaveData
 													}
 												}
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 										}
 									}
@@ -699,9 +729,15 @@ CLayerSaveData
 												}
 											}
 										}
-										Else=CTriggerRelayAction
+										Else=CDelayAction
 										{
-											Relay Name=Fixt order epilogue relay
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
 										}
 										Return failure if the If failes=0
 									}
@@ -756,9 +792,15 @@ CLayerSaveData
 										}
 									}
 								}
-								Else=CTriggerRelayAction
+								Else=CDelayAction
 								{
-									Relay Name=Fixt order epilogue relay
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 							Action=CIfExpressionAction
@@ -828,9 +870,15 @@ CLayerSaveData
 													Player Being Spoken To=Player1
 												}
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 											Return failure if the If failes=0
 										}
@@ -896,23 +944,41 @@ CLayerSaveData
 														Player Being Spoken To=Player1
 													}
 												}
-												Else=CTriggerRelayAction
+												Else=CDelayAction
 												{
-													Relay Name=Fixt order epilogue relay
+													Next Action=CTriggerRelayAction
+													{
+														Relay Name=Fixt order epilogue relay
+													}
+													Delay=0.1
+													Plus or Minus=0
+													Forget Trigger=0
 												}
 												Return failure if the If failes=0
 											}
 											Return failure if the If failes=0
 										}
-										Else=CTriggerRelayAction
+										Else=CDelayAction
 										{
-											Relay Name=Fixt order epilogue relay
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
 										}
 									}
 								}
-								Else=CTriggerRelayAction
+								Else=CDelayAction
 								{
-									Relay Name=Fixt order epilogue relay
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 							Action=CIfExpressionAction
@@ -999,9 +1065,15 @@ CLayerSaveData
 												}
 											}
 										}
-										Else=CTriggerRelayAction
+										Else=CDelayAction
 										{
-											Relay Name=Fixt order epilogue relay
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
 										}
 									}
 								}
@@ -1159,9 +1231,15 @@ CLayerSaveData
 										}
 										Return failure if the If failes=0
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 								Else=CIfAction
@@ -1242,9 +1320,15 @@ CLayerSaveData
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 											Return failure if the If failes=0
 										}
@@ -1318,9 +1402,15 @@ CLayerSaveData
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
 										}
-										Else=CTriggerRelayAction
+										Else=CDelayAction
 										{
-											Relay Name=Fixt order epilogue relay
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
 										}
 									}
 								}
@@ -1397,9 +1487,15 @@ CLayerSaveData
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 										}
 									}
@@ -1433,9 +1529,15 @@ CLayerSaveData
 									}
 									Return failure if the If failes=0
 								}
-								Else=CTriggerRelayAction
+								Else=CDelayAction
 								{
-									Relay Name=Fixt order epilogue relay
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 								Return failure if the If failes=0
 							}
@@ -1617,9 +1719,15 @@ CLayerSaveData
 													Speaker=Fake Talker for NIS
 													Player Being Spoken To=Player1
 												}
-												Else=CTriggerRelayAction
+												Else=CDelayAction
 												{
-													Relay Name=Fixt order epilogue relay
+													Next Action=CTriggerRelayAction
+													{
+														Relay Name=Fixt order epilogue relay
+													}
+													Delay=0.1
+													Plus or Minus=0
+													Forget Trigger=0
 												}
 												Return failure if the If failes=0
 											}
@@ -1673,9 +1781,15 @@ CLayerSaveData
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 									Return failure if the If failes=0
 								}
@@ -1745,9 +1859,15 @@ CLayerSaveData
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 									Return failure if the If failes=0
 								}
@@ -1778,9 +1898,15 @@ CLayerSaveData
 										}
 									}
 									Character to get attributes from=Player1
-									Then=CTriggerRelayAction
+									Then=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 									Else=CDisplayDialogTreeAction
 									{
@@ -1790,9 +1916,15 @@ CLayerSaveData
 										Player Being Spoken To=Player1
 									}
 								}
-								Else=CTriggerRelayAction
+								Else=CDelayAction
 								{
-									Relay Name=Fixt order epilogue relay
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 							Action=CIfExpressionAction
@@ -1948,9 +2080,15 @@ CLayerSaveData
 																					{
 																						Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
 																					}
-																					Then=CTriggerRelayAction
+																					Then=CDelayAction
 																					{
-																						Relay Name=Fixt order epilogue relay
+																						Next Action=CTriggerRelayAction
+																						{
+																							Relay Name=Fixt order epilogue relay
+																						}
+																						Delay=0.1
+																						Plus or Minus=0
+																						Forget Trigger=0
 																					}
 																					Else=CIfExpressionAction
 																					{
@@ -1963,9 +2101,15 @@ CLayerSaveData
 																							}
 																						}
 																						Character to get attributes from=Player1
-																						Then=CTriggerRelayAction
+																						Then=CDelayAction
 																						{
-																							Relay Name=Fixt order epilogue relay
+																							Next Action=CTriggerRelayAction
+																							{
+																								Relay Name=Fixt order epilogue relay
+																							}
+																							Delay=0.1
+																							Plus or Minus=0
+																							Forget Trigger=0
 																						}
 																						Else=CDisplayDialogTreeAction
 																						{
@@ -1977,98 +2121,147 @@ CLayerSaveData
 																					}
 																					Return failure if the If failes=0
 																				}
-																				Else=CTriggerRelayAction
+																				Else=CDelayAction
+																				{
+																					Next Action=CTriggerRelayAction
+																					{
+																						Relay Name=Fixt order epilogue relay
+																					}
+																					Delay=0.1
+																					Plus or Minus=0
+																					Forget Trigger=0
+																				}
+																			}
+																			Else=CDelayAction
+																			{
+																				Next Action=CTriggerRelayAction
 																				{
 																					Relay Name=Fixt order epilogue relay
 																				}
+																				Delay=0.1
+																				Plus or Minus=0
+																				Forget Trigger=0
 																			}
-																			Else=CTriggerRelayAction
+																		}
+																		Else=CDelayAction
+																		{
+																			Next Action=CTriggerRelayAction
 																			{
 																				Relay Name=Fixt order epilogue relay
 																			}
+																			Delay=0.1
+																			Plus or Minus=0
+																			Forget Trigger=0
 																		}
-																		Else=CTriggerRelayAction
+																	}
+																	Else=CDelayAction
+																	{
+																		Next Action=CTriggerRelayAction
 																		{
 																			Relay Name=Fixt order epilogue relay
 																		}
+																		Delay=0.1
+																		Plus or Minus=0
+																		Forget Trigger=0
 																	}
-																	Else=CTriggerRelayAction
+																}
+																Else=CDelayAction
+																{
+																	Next Action=CTriggerRelayAction
 																	{
 																		Relay Name=Fixt order epilogue relay
 																	}
+																	Delay=0.1
+																	Plus or Minus=0
+																	Forget Trigger=0
 																}
-																Else=CTriggerRelayAction
+															}
+															Else=CDelayAction
+															{
+																Next Action=CTriggerRelayAction
 																{
 																	Relay Name=Fixt order epilogue relay
 																}
+																Delay=0.1
+																Plus or Minus=0
+																Forget Trigger=0
 															}
-															Else=CTriggerRelayAction
+														}
+														Else=CDelayAction
+														{
+															Next Action=CTriggerRelayAction
 															{
 																Relay Name=Fixt order epilogue relay
 															}
+															Delay=0.1
+															Plus or Minus=0
+															Forget Trigger=0
 														}
-														Else=CTriggerRelayAction
+													}
+													Else=CDelayAction
+													{
+														Next Action=CTriggerRelayAction
 														{
 															Relay Name=Fixt order epilogue relay
 														}
+														Delay=0.1
+														Plus or Minus=0
+														Forget Trigger=0
 													}
-													Else=CTriggerRelayAction
+												}
+												Else=CDelayAction
+												{
+													Next Action=CTriggerRelayAction
 													{
 														Relay Name=Fixt order epilogue relay
 													}
+													Delay=0.1
+													Plus or Minus=0
+													Forget Trigger=0
 												}
-												Else=CTriggerRelayAction
+											}
+											Else=CDelayAction
+											{
+												Next Action=CTriggerRelayAction
 												{
 													Relay Name=Fixt order epilogue relay
 												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
-											Else=CTriggerRelayAction
+										}
+										Else=CDelayAction
+										{
+											Next Action=CTriggerRelayAction
 											{
 												Relay Name=Fixt order epilogue relay
 											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
 										}
-										Else=CTriggerRelayAction
+									}
+									Else=CDelayAction
+									{
+										Next Action=CTriggerRelayAction
 										{
 											Relay Name=Fixt order epilogue relay
 										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
-									Else=CTriggerRelayAction
+								}
+								Else=CDelayAction
+								{
+									Next Action=CTriggerRelayAction
 									{
 										Relay Name=Fixt order epilogue relay
 									}
-								}
-								Else=CTriggerRelayAction
-								{
-									Relay Name=Fixt order epilogue relay
-								}
-							}
-							Action=CMultipleActionsAction
-							{
-								Action=Array
-								{
-									Item Count=3
-									Action=CFadeScreenDownAction
-									{
-										Time Until Auto Fade Up=3.5
-									}
-									Action=CDelayAction
-									{
-										Next Action=CEndNonInteractiveSequenceAction
-										{
-										}
-										Delay=1
-										Plus or Minus=0
-										Forget Trigger=0
-									}
-									Action=CDelayAction
-									{
-										Next Action=CShowCreditsAction
-										{
-										}
-										Delay=1
-										Plus or Minus=0
-										Forget Trigger=0
-									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 							Action=CIfExpressionAction
@@ -2165,9 +2358,15 @@ CLayerSaveData
 													Speaker=Fake Talker for NIS
 													Player Being Spoken To=Player1
 												}
-												Else=CTriggerRelayAction
+												Else=CDelayAction
 												{
-													Relay Name=Fixt order epilogue relay
+													Next Action=CTriggerRelayAction
+													{
+														Relay Name=Fixt order epilogue relay
+													}
+													Delay=0.1
+													Plus or Minus=0
+													Forget Trigger=0
 												}
 												Return failure if the If failes=0
 											}
@@ -2236,9 +2435,15 @@ CLayerSaveData
 										}
 									}
 								}
-								Else=CTriggerRelayAction
+								Else=CDelayAction
 								{
-									Relay Name=Fixt order epilogue relay
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 								Return failure if the If failes=0
 							}
@@ -2352,9 +2557,15 @@ CLayerSaveData
 													Speaker=Fake Talker for NIS
 													Player Being Spoken To=Player1
 												}
-												Else=CTriggerRelayAction
+												Else=CDelayAction
 												{
-													Relay Name=Fixt order epilogue relay
+													Next Action=CTriggerRelayAction
+													{
+														Relay Name=Fixt order epilogue relay
+													}
+													Delay=0.1
+													Plus or Minus=0
+													Forget Trigger=0
 												}
 											}
 										}
@@ -2454,9 +2665,15 @@ CLayerSaveData
 													Speaker=Fake Talker for NIS
 													Player Being Spoken To=Player1
 												}
-												Else=CTriggerRelayAction
+												Else=CDelayAction
 												{
-													Relay Name=Fixt order epilogue relay
+													Next Action=CTriggerRelayAction
+													{
+														Relay Name=Fixt order epilogue relay
+													}
+													Delay=0.1
+													Plus or Minus=0
+													Forget Trigger=0
 												}
 												Return failure if the If failes=0
 											}
@@ -2584,9 +2801,15 @@ CLayerSaveData
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
 										}
-										Else=CTriggerRelayAction
+										Else=CDelayAction
 										{
-											Relay Name=Fixt order epilogue relay
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
 										}
 									}
 								}
@@ -2664,9 +2887,15 @@ CLayerSaveData
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 											Return failure if the If failes=0
 										}
@@ -2684,9 +2913,15 @@ CLayerSaveData
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 											Return failure if the If failes=0
 										}
@@ -2751,9 +2986,15 @@ CLayerSaveData
 											Speaker=Fake Talker for NIS
 											Player Being Spoken To=Player1
 										}
-										Else=CTriggerRelayAction
+										Else=CDelayAction
 										{
-											Relay Name=Fixt order epilogue relay
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
 										}
 										Return failure if the If failes=0
 									}
@@ -2803,9 +3044,15 @@ CLayerSaveData
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 							}
@@ -2853,9 +3100,15 @@ CLayerSaveData
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 							}
@@ -2935,9 +3188,15 @@ CLayerSaveData
 										}
 										Return failure if the If failes=0
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 							}
@@ -2963,9 +3222,15 @@ CLayerSaveData
 									Speaker=Fake Talker for NIS
 									Player Being Spoken To=Player1
 								}
-								Else=CTriggerRelayAction
+								Else=CDelayAction
 								{
-									Relay Name=Fixt order epilogue relay
+									Next Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt order epilogue relay
+									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 							Action=CIfExpressionAction
@@ -3012,9 +3277,15 @@ CLayerSaveData
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 							}
@@ -3062,9 +3333,15 @@ CLayerSaveData
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CTriggerRelayAction
+									Else=CDelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Next Action=CTriggerRelayAction
+										{
+											Relay Name=Fixt order epilogue relay
+										}
+										Delay=0.1
+										Plus or Minus=0
+										Forget Trigger=0
 									}
 								}
 							}
@@ -3141,9 +3418,15 @@ CLayerSaveData
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 											Return failure if the If failes=0
 										}
@@ -3161,18 +3444,53 @@ CLayerSaveData
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CTriggerRelayAction
+											Else=CDelayAction
 											{
-												Relay Name=Fixt order epilogue relay
+												Next Action=CTriggerRelayAction
+												{
+													Relay Name=Fixt order epilogue relay
+												}
+												Delay=0.1
+												Plus or Minus=0
+												Forget Trigger=0
 											}
 											Return failure if the If failes=0
 										}
 									}
 								}
 							}
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CFadeScreenDownAction
+									{
+										Time Until Auto Fade Up=3.5
+									}
+									Action=CDelayAction
+									{
+										Next Action=CEndNonInteractiveSequenceAction
+										{
+										}
+										Delay=1
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Action=CDelayAction
+									{
+										Next Action=CShowCreditsAction
+										{
+										}
+										Delay=1
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
 						}
 						When Done=Do Nothing
-						Require Success To Advance=1
+						Require Success To Advance=0
 						Next Action Index=0
 					}
 					Trigger Only Once=0

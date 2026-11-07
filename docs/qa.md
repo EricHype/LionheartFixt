@@ -6158,6 +6158,20 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.97.4 - the ending can finish
+
+**Use a spare save.** Playtest Kit, Merchant Lope or Jafar, travel, *The end of the game*. This is the only release whose
+fix has never been seen working before this, so `EF1` stands in for `ES1` and `OE1`, which were never played. `EF1` passed in play on the kit warp: no crash, two slides, credits.
+
+| # | Who | Steps | Pass |
+|---|---|---|---|
+| EF1 | **The row this exists for.** A character in no faction with no companions | Take the kit's ending warp and click through | **The game does not crash**, some slides play, and **the credits roll**. A freeze or a crash to desktop means the recursion or the advance is still wrong |
+| EF2 | A character who has had companions | The same | Companion slides appear **after** the order slides, and the credits come last. This has never once played |
+| EF3 | Any | Press Escape on a slide | The next slide comes up and the credits still roll |
+| EF4 | A character with no slide for several steps in a row | Watch the gaps | No visible hang: empty steps pass in a blink. If there is a long blank pause, tell me how long |
+| EF5 | **Judgement.** A full character | Read the whole ending | Does it drag? Up to about 30 slides can now play |
+| EF6 | Ally with Huko and reach the seer | - | *"Thank you! Now quickly come with me."* now appears over the shaman |
+
 ## 0.97.3 - the war in the caves
 
 **All of it needs a save that has not entered act 5**, because a map's entity list is frozen on first visit.

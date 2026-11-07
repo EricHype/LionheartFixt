@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.97.3 are published** -- 199 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.97.4 are published** -- 200 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,30 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.97.4 - the ending can finish
+
+**Since 0.71.0 the end slides could not have played through, and since 0.73.0 no companion slide could be reached.** Found
+by adversarial review and read from the engine and the map. No character has finished the game on any of these builds, so
+`ES1` and `OE1` never caught it, and every gate passed because every reference resolved.
+
+- **It recursed.** A series advances only after its step returns, and a relay fires in the same call. A step with no slide
+  fired its own relay, so the same step ran again until the stack gave out. `Fixt order epilogue relay` was the only relay in
+  the game that did this. Its 53 self-fires now sit in a 0.1 second delay, so they land after the advance.
+- **It could not advance.** An If's Else path always returns failure, and Require Success held the index there. It is off.
+- **Half of it was unreachable.** The credits were step 17 of 32 and fire nothing, so all fifteen steps of companion and
+  shade slides behind them never ran. The credits are now last, so the slides from 0.73.0 and every rewrite since play for the first time.
+
+Every slide a character qualifies for now plays, so **the ending is longer than anyone has seen it**, and `EF5` asks whether it drags.
+
+`150 Final encounter` moves from the guard to the shaman, because a balloon fails on two matches and 0.97.3 keeps the guard and
+his English twin alive together.
+
+`tools/check_series_flow.py` runs in `validate.py` and fails on a relay firing itself inline, and on steps stranded behind one
+that never continues in a chained Fixt series.
+
+The Playtest Kit gains *The end of the game* under travel. `EF1`-`EF6`.
+
+---
 ## 0.97.3 - the war in the caves
 
 Huko's choice now does what it says. Scoring act 5 by route showed that allying with the Hujark or taking safe conduct
