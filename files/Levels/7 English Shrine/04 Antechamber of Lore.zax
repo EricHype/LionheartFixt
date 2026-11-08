@@ -87,6 +87,947 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt companions remark
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CIfAction
+									{
+										If=CIsAliveAction
+										{
+											Name To Check For=Sir Roger Templeton
+											Desired Minimum Count=1
+										}
+										Then=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Companions
+											Node ID=3 roger lore
+											Name of Position=Sir Roger Templeton
+											Position Offset=0.000000,-80.000000
+											After Action=
+											Include In Log=1
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Action=CDelayAction
+									{
+										Next Action=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Grace
+												Desired Minimum Count=1
+											}
+											Then=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Companions
+												Node ID=4 grace lore
+												Name of Position=Grace
+												Position Offset=0.000000,-80.000000
+												After Action=
+												Include In Log=1
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Delay=4
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt companions remark
+							}
+						}
+					}
+					Delay Between Actions=600
+					Plus or Minus=0
+					Seconds Till Next Execute=3
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=60
+			Position Y=60
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=English BIG PILE Generator
+			}
+			Name=Fixt Antechamber druid post 1
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=CRectangleGeneratorArea
+					{
+						Width=1029
+						Height=260
+						Angle=0.698132
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=16
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=23
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest Super
+								}
+							}
+						}
+					}
+					New Name=Antechamber Druid
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=1.23918
+					Angle Variation=0.523599
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=4113
+			Position Y=2515
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=English BIG PILE Generator
+			}
+			Name=Fixt Antechamber druid post 2
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=CRectangleGeneratorArea
+					{
+						Width=404
+						Height=417
+						Angle=0.698132
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=16
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=23
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/English Enemies/Priest Super
+								}
+							}
+						}
+					}
+					New Name=Antechamber Druid
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=5.23599
+					Angle Variation=0.523599
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=2172
+			Position Y=5042
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Antechamber druids fall
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=6
+									Action=CSetTargetTypeAction
+									{
+										Entity Name=Antechamber Soldier
+										Name To Target=
+										Valid Targets=
+									}
+									Action=CRemoveCategoryAction
+									{
+										Target Name=Antechamber Soldier
+										Categories To Remove=Enemy
+									}
+									Action=CSetDamagedScriptActionAction
+									{
+										New Damaged Action=CIfAction
+										{
+											If=CCheckCategoryAction
+											{
+												Target Name=$Instigator
+												Category to check for=Player,Player Friend
+											}
+											Then=CIfAction
+											{
+												If=CNotAction
+												{
+													Action=CCheckCategoryAction
+													{
+														Target Name=$Trigger
+														Category to check for=Enemy
+													}
+												}
+												Then=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=5
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Antechamber Soldier
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CAddCategoryAction
+														{
+															Target Name=Antechamber Soldier
+															Categories to add=Enemy
+														}
+														Action=CRemoveAIAction
+														{
+															Target Name=Antechamber Soldier
+															AI=CAIInteractionSpecifier
+															Delay Between Removes=0
+														}
+														Action=CAddAIAction
+														{
+															Target Name=Antechamber Soldier
+															AI=CAIInteractionSpecifier
+															{
+																Marked For Deletion=0
+																Publisher=
+																Trigger Only Once=0
+																Was Triggered=0
+																Auto-Flip Switch=1
+																Trigge Must Have HP=0
+																Triggered By Anything=0
+																Triggered By Players=1
+																Triggered By Player Friends=0
+																Triggered By Enemies=0
+																Triggered By Projectiles=0
+																Triggered By Name=
+																Interaction Description=
+																Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+																Action=
+																X Radius=50
+																Attacker Range Modifier=0
+																YX Ratio=0.712766
+																Highlight Self Time=0
+																Highlight Until Clicked=0
+																Is Locked=0
+																Allow Interact If Has Target=1
+																Lock Pick Adjustment=0
+																Inventory item to use as key=Inventory Items/!None
+																Is Bussy Talking=0
+															}
+															Delay Between Adds=0
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=$Trigger
+														}
+													}
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Target Name=Antechamber Soldier
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Antechamber Soldier
+										AI=CRepeatTimerTriggerAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Action=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDelayAction
+													{
+														Next Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=8
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=1 where
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=2 priests
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=3 dragon
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=4 weeks
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=5 stand down
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=6 orders
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=7 lord
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+																	Node ID=8 forgive
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+															}
+														}
+														Delay=1.5
+														Plus or Minus=1.5
+														Forget Trigger=0
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=0
+												Next Action Index=0
+											}
+											Delay Between Actions=600
+											Plus or Minus=0
+											Seconds Till Next Execute=0
+										}
+										Delay Between Adds=0
+									}
+									Action=CRemoveAIAction
+									{
+										Target Name=Antechamber Soldier
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Antechamber Soldier
+										AI=CAIInteractionSpecifier
+										{
+											Marked For Deletion=0
+											Publisher=
+											Trigger Only Once=0
+											Was Triggered=0
+											Auto-Flip Switch=1
+											Trigge Must Have HP=0
+											Triggered By Anything=0
+											Triggered By Players=1
+											Triggered By Player Friends=0
+											Triggered By Enemies=0
+											Triggered By Projectiles=0
+											Triggered By Name=
+											Interaction Description=
+											Interaction Type=Interaction Specifiers/GetCloseThenTalk
+											Action=CRandomAction
+											{
+												Action=Array
+												{
+													Item Count=8
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=1 where
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=2 priests
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=3 dragon
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=4 weeks
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=5 stand down
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=6 orders
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=7 lord
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Shrine Woken
+														Node ID=8 forgive
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+												}
+											}
+											X Radius=50
+											Attacker Range Modifier=0
+											YX Ratio=0.712766
+											Highlight Self Time=0
+											Highlight Until Clicked=0
+											Is Locked=0
+											Allow Interact If Has Target=1
+											Lock Pick Adjustment=0
+											Inventory item to use as key=Inventory Items/!None
+											Is Bussy Talking=0
+										}
+										Delay Between Adds=0
+									}
+								}
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt Antechamber druid watch
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=4113.0
+			Position Y=2575.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Antechamber druid watch
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CIsAliveAction
+							{
+								Name To Check For=Antechamber Druid
+								Desired Minimum Count=1
+							}
+						}
+						Then=CTriggerRelayAction
+						{
+							Relay Name=Fixt Antechamber druids fall
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Delay Between Actions=2
+					Plus or Minus=0
+					Seconds Till Next Execute=10
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=4133.0
+			Position Y=2575.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Fixt Druid Wolf Source
+			}
+			Name=Fixt Druid Wolf Source
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=116
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=16
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Wolf Gray
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=23
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Wolf Gray Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Wolf Black Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Wolf Black Super
+								}
+							}
+						}
+					}
+					New Name=Druid Wolf
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Spells/Monster Summon.ogg
+								Position=$Trigger
+								Multiplayer=Heard by all players
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDeleteAction
+								{
+									Target Name=Fixt Used Druid Wolf Source
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					New Facing Angle=0
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=2089
+			Position Y=744
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Templar quartermaster 04
 			Child List=
 			Visible=0
@@ -1137,7 +2078,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -1202,12 +2143,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -1748,7 +2689,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -1793,7 +2734,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -3786,7 +4727,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -3871,7 +4812,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -4015,7 +4956,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -4080,12 +5021,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -4422,7 +5363,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -4447,7 +5388,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -6297,7 +7238,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -6382,7 +7323,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -6666,7 +7607,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -6791,12 +7732,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -7707,7 +8648,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -8532,7 +9473,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -9158,7 +10099,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -9283,12 +10224,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -9532,7 +10473,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -11367,7 +12308,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -11452,7 +12393,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -12175,7 +13116,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -12240,12 +13181,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -13662,7 +14603,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -13707,7 +14648,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -14790,7 +15731,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -14835,7 +15776,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -15488,7 +16429,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -15613,12 +16554,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -17741,7 +18682,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -17786,7 +18727,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -18226,7 +19167,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -18271,7 +19212,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -19573,7 +20514,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -19698,12 +20639,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -19977,7 +20918,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -20002,7 +20943,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -21200,7 +22141,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -21285,7 +22226,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -22554,7 +23495,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest
 								}
 							}
 						}
@@ -22679,12 +23620,12 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -25752,7 +26693,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Super
 								}
 							}
 						}
@@ -25797,7 +26738,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -26717,7 +27658,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Levels/7 English Shrine/Character Templates/Druid
+									Entity=Monster Cans/English Enemies/Priest Tough
 								}
 							}
 						}
@@ -26762,7 +27703,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Antechamber Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{

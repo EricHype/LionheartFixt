@@ -116,44 +116,39 @@ lines alone.
 
     node id: 900 friend cervantes
 
-Miguel de Cervantes went home with his quill and without the beast, and could not have explained
-either to anybody who asked. He had kept notes on every road you walked. The notes outlasted the
-hunt by four hundred years. Years later he published a long book about a madman who believed himself
-a knight. It sold badly and was copied everywhere. He never once set a scene in Barcelona and never
-wrote down what the quill was. He died in Madrid, in debt, and is buried somewhere nobody has since
-managed to find.
+Miguel de Cervantes went home with DaVinci's quill and without the beast. He could explain neither.
+Years later he finished his long book about a madman who believed himself a knight. It sold badly
+and was copied everywhere. Near the end he sent the madman to Barcelona to be beaten. He never wrote
+down what the quill was. He died in Madrid, in debt, and his grave was lost for four hundred years.
 
 ### when: died in your service
 
     node id: 900 friend cervantes dead
 
-Cervantes was buried where he fell with the quill still on him, and whoever went through his pockets
-could not read. A bookseller in Valladolid later claimed to have owned a manuscript about a madman
-who believed himself a knight. He could never produce it and was not believed. The book was never
-written. A Templar inventory of his effects lists four notebooks, a sword he could not have lifted,
-and one quill. It values the quill at nothing at all. The beast was still out there, and nobody else
-had ever seen it either. His brother collected nothing, there being nothing to collect.
+Cervantes was buried where he fell, with the quill still on him. Whoever went through his pockets
+could not read. A bookseller in Valladolid later claimed to own a manuscript about a madman who
+believed himself a knight. He could never produce it. The book was never finished. A Templar
+inventory of his effects lists four notebooks, a sword and one quill. It values the quill at
+nothing. Nobody else ever saw the beast.
 
 ### when: he died and never travelled with you
 
     node id: 900 friend cervantes dead alone
 
-Cervantes died in Barcelona with the quill still on him. No book was written and no beast was
-hunted. The quill went into an evidence chest in the Chambers of the Inquisition, entered by a clerk
-as a quill, and is presumably there yet. Nobody in Spain has heard of him. Don Quixote de la Mancha
-exists in no library anywhere. The gap it leaves is not shaped like anything, so nobody has ever
-noticed that it is missing, and nobody ever will. The beast was never found either, by him or by
-anybody who came after him.
+Cervantes died in Barcelona with the quill still on him. His novel was never finished and the beast
+was never slain. The quill went into an evidence chest in the Chambers of the Inquisition. A clerk
+entered it as a quill, and it is presumably there yet. Nobody in Spain has heard of him. Don Quixote
+de la Mancha exists in no library anywhere. The gap has no shape, so nobody has ever noticed it.
 
 ### when: you heard him out and left him to it
 
     node id: 900 friend cervantes alone
 
-You listened to him about the beast and left him to it, which is what the whole Port District had
-been doing for a year. He hunted it alone. He was arrested for what he did to a wall while hunting
-it, and released once the Templars decided he was harmless rather than heretical. He published
-anyway. The book is about a madman who believed himself a knight, and the man who wrote it had been
-followed down the street by one. No reader has ever needed to know that to laugh at it.
+You listened to him about the beast and left him to it, as everybody else had. He hunted it alone.
+The Knights Templar arrested him for attacking city property. They released him once they decided he
+was harmless. He published anyway. The book is about a madman who believed himself a knight. Its
+author had once offered you the post of squire. No reader has ever needed to know that to laugh at
+it.
 
 ---
 
@@ -234,56 +229,46 @@ recorded**, is the shade thanking you for killing the author, and that is unreac
 
     node id: 900 friend cortes
 
-Cortes came out of the desert with a mechanical arm, a share of a treasure, and the first clear
-accounts of his life. He paid Shylocke in full in front of witnesses and asked for the note back so
-he could burn it himself. The arm wanted a smith twice a year. He paid that too, out of the share,
-and never once asked DaVinci for a discount. He talked about the cave for the rest of his life, and
-about the river before it, and about the arm. He never mentioned the debt to anybody who had not
-already heard about it from Shylocke.
+Cortes came out of the cave with a mechanical arm and a share of a treasure. He paid Shylocke in
+full in front of witnesses. He burned the note himself. The arm wanted a smith twice a year. He paid
+that too, and never asked DaVinci for a discount. His next expedition stayed in preparation for the
+rest of his life. He talked about the cave instead, and the river before it.
 
 ### when: died in your service
 
     node id: 900 friend cortes dead
 
-Cortes died with DaVinci's arm still on him, and it was the arm that came home. A Templar sergeant
-carried it back to Barcelona because it was obviously worth something. DaVinci took it apart on the
-bench where he had built it and did not rebuild it. He kept the hand in a drawer and showed it to
-visitors for years, and told the story of it wrong every time. The debt was never paid and never
-pursued, Shylocke being a man who kept accounts and also kept score. The treasure stayed where it
-was. Nobody else in Barcelona knew where the cave was, because Cortes had told only you.
+Cortes died with DaVinci's arm still on him, and the arm was what came home. A Templar sergeant
+carried it back to Barcelona because it was obviously worth something. DaVinci took it apart on his
+bench and did not rebuild it. He kept the hand in a drawer and showed it to visitors for years. He
+told the story wrong every time. The debt was never paid. Only you now knew where the cave was.
 
 ### when: you judged the dispute for Cortes, and parted there
 
     node id: 900 friend cortes vindicated
 
-You heard both men out and found for the conquistador, and Shylocke did not get the ship. Cortes
-never sailed again regardless, having no crew and one arm and no credit anywhere in Barcelona, but
-he kept the ship tied up where he could see it from the tavern and paid harbour fees on it for nine
-years. He told the story of the hearing to everybody. In his telling you are a judge rather than a
-stranger who happened to be standing there. Shylocke's version is shorter and he tells it less.
-Cortes is in the harbour ledgers for nine years running and in no other record of the city at all.
+You heard both men out and found for the conquistador. Shylocke did not get the ship. Cortes never
+sailed again regardless. He had no crew, one arm and no credit anywhere in Barcelona. He kept the
+ship tied up in sight of the tavern, and paid harbour fees for nine years. He told the story of the
+hearing to everybody. In his telling you were a judge, not a stranger.
 
 ### when: you judged the dispute for Shylocke
 
     node id: 900 friend cortes shylocke
 
-You found for the moneylender, and he took the ship inside a fortnight and sold it inside a month.
-Cortes said one thing about it at the time: *"here I thought you would vindicate me."* He said
-nothing afterwards, to you or about you. He drank in La Serpienta Vieja on credit extended out of
-pity by a landlord who had heard the story. He never went back into the desert, and the treasure is
-still in the cave. Shylocke, who had been entirely within his rights, did not thank you either. The
-landlord's charity outlasted the moneylender's profit on the ship by about six years.
+You found for the moneylender. He took the ship inside a fortnight and sold it inside a month.
+Cortes said, "And here I thought you would vindicate me." After that he had nothing to say to you.
+He drank in La Serpienta Vieja, on credit a landlord extended out of pity. He never reached the
+cave, and the treasure is still in it. Shylocke returned the favour with a cheaper loan.
 
 ### when: you would not judge it
 
     node id: 900 friend cortes no verdict
 
-You declined to settle it and the two of them went on arguing. That suited Shylocke, time being the
-only thing in the dispute that was working for him. The case was heard eventually by a Templar
-magistrate who had no patience for either man and split the difference badly. Cortes kept half a
-ship and a debt he could not service. *"I suppose I should not have rested my hopes on a stranger,"*
-he had said. He was right, in a way he had not intended. Shylocke billed him for the magistrate's
-time as well, and collected.
+You declined to settle it. Shylocke said he would take the matter to the magistrates, and he did.
+They had no patience for either man and split the difference badly. Cortes kept half a ship and a
+debt he could not service. "I suppose I should not have rested my hopes on a stranger," he had said.
+Shylocke billed him for the magistrates' time as well, and collected.
 
 ---
 
@@ -293,55 +278,48 @@ time as well, and collected.
 
     node id: 900 friend joan
 
-Jehanne d'Arc left the Crypt of the Bleeding Lance for the first time in two hundred years and did
-not look back at it. She had been set there to guard a relic and had guarded it well past the point
-where anyone was coming to relieve her. In France she was given soldiers, briefly, and then given to
-a court. The court was told what she had been doing in a crypt in Spain and did not believe that
-either. She was certain the entire time. She asked after you once, by rank, and was told that nobody
-of that name had ever been knighted.
+Jehanne d'Arc left the Crypt of the Bleeding Lance after two hundred years and went back to France.
+She was still a corpse, and she did not hide it. Soldiers followed her anyway, for a while. She had
+been burned by a court at Rouen, so she kept clear of courts. The Council stayed silent. She asked
+after you once, as the crusader. Nobody in France could say who that was.
 
 ### when: died in your service
 
     node id: 900 friend joan dead
 
-Jehanne d'Arc died away from the Crypt she had held for two hundred years. She would have counted
-that as the worse of the two losses. The Bleeding Lance went to whoever reached the chamber next,
-and the Templars did not record who. Her certainty was the thing people remembered and the thing
-they got wrong. It had never been about France, she had said so plainly, and France was written into
-it anyway. A chapel outside Orleans carried her name within a century, built by men who could not
-have named the relic she died for.
+Jehanne d'Arc died in your service, after two hundred years of holding one gallery. This time no
+wish kept her standing. The Templars never recorded who carried the Bleeding Lance after her. People
+remembered her as the maid, the commander, the witch or the saint, whatever the year required. A
+chapel outside Orleans carried her name within a century. The men who built it could not have named
+the relic she had guarded.
 
 ### when: you broke the curse and released her
 
     node id: 900 friend joan released
 
-Jehanne d'Arc stopped. Two hundred years of holding one gallery ended in a sentence somebody else
-worded carefully to an efreet. She had time to say *Dieu est avec vous* before the rest of it caught
-up with her. Her knights went in the same minute, all down the corridor, in no particular order and
-without being told to. The Lance stayed where it was. The Spirit Council never explained itself to
-anybody. What was left in that crypt afterwards was ordinary stone, which is the first thing it had
-been in two centuries.
+Jehanne d'Arc stopped. Two hundred years of holding one gallery ended in a wish you worded to an
+efreet. She thanked you and passed the guarding of the relic into your keeping. Then she went to the
+place beyond. The souls of her knights were freed by the same wish. The Spirit Council never
+explained itself to anybody. What was left in that crypt afterwards was ordinary stone, for the
+first time in two centuries.
 
 ### when: she raised the gate and you left her holding it
 
     node id: 900 friend joan passed
 
-Jehanne raised the gate and let you by, which she had done for nobody in two hundred years. Then she
-went back to standing exactly where she had been standing. You took the Lance out of the tomb below
-her and she did not stop you. Somebody she believed had told her that the Council wished it so. The
-Council never spoke to her again, and she went on listening for it. She was still there when the
-crypt was sealed. Nobody ever lifted the curse, and she would not have asked anybody twice.
+You learned of the curse on Jehanne d'Arc, and you left it. She went on standing where she had stood
+for two hundred years. The Council never spoke to her again, and she went on listening for it. Her
+knights stayed in that crypt with her. She was still there when the crypt was sealed. Nobody came
+back to lift it.
 
 ### when: you killed her for the Lance
 
     node id: 900 friend joan killed
 
-You killed Jehanne d'Arc where she stood, with the Council she had trusted for two centuries not
-answering. You took the Bleeding Lance off a knight who had been set to guard it and never once
-relieved. Her knights fought on until there was nothing left to fight for. The curse was never
-lifted, there being nobody left for it to be on. She had told you she was the maiden and the
-commander of the army of France. She had been telling the truth the entire time. The gallery was
-quiet afterwards for the first time in two hundred years.
+You killed Jehanne d'Arc in her own crypt, with her Council not answering. She had helped crown a
+King of France and had won at Orleans. She had held that gallery for two hundred years. The Bleeding
+Lance lay sealed in a tomb below her, and you went down for it. Her Council had called her their
+Pious Child. Nobody was left to call her anything. The gallery was quiet afterwards.
 
 ---
 
@@ -351,34 +329,28 @@ quiet afterwards for the first time in two hundred years.
 
     node id: 900 friend roger
 
-Sir Roger Templeton went back to an England that had changed sides while he was out of it. He spent
-his remaining service explaining to Templars younger than himself that the druids had once fought
-beside them. He was believed by about half. He kept the habit of addressing people by rank,
-including you, including long after it had stopped being accurate. The Shrine was sealed, properly
-this time, by men he had personally argued into doing it. He is in the order's rolls as having died
-in Spain, which he found funny and never corrected.
+Sir Roger Templeton went back to an England whose Queen still kept druids. His order had gone to the
+Shrine without her leave, and it was told off for that. He went on calling you Lionheart long after
+you had left. The Shrine was sealed by men he had argued into doing it. He is in the order's rolls
+as having died in Spain. He found that funny and never corrected it.
 
 ### when: died in your service
 
     node id: 900 friend roger dead
 
-Sir Roger Templeton died in the field, and the order's rolls got it right by accident. They had
-already recorded him dead in Spain once. The men who sealed the Shrine afterwards had never heard
-his argument about the druids, and sealed it on general principle instead. England stopped
-remembering the alliance inside a generation, there being nobody left who had been told to argue
-about it. His sword went to a nephew who sold it. The entry beside his name reads *abroad*, which is
-the whole of what the order knew.
+Sir Roger Templeton died in the field, with his sword still yours. The men who sealed the Shrine
+afterwards had never met him. They sealed it on general principle. His order had gone there without
+the Queen's leave, so the Queen sent no word. His sword went to a nephew who sold it. The entry
+beside his name in the order's rolls reads "abroad". That was the whole of what the order knew.
 
 ### when: you met him at the Shrine and left him there
 
     node id: 900 friend roger alone
 
-Sir Roger Templeton offered you his sword three times, in the formula his order keeps for strangers
-of rank. You went into the Shrine without him. He went in later with men of his own and came out
-with fewer of them. The order wrote the action up as a success because the Cross came back. He was
-given a garrison in Kent and the kind of duty that goes to men who are owed something and trusted
-with nothing. He never told anybody that he had made the offer, which is the only part of it he was
-ashamed of.
+Sir Roger Templeton told you it was an honor to meet you and offered you his sword. You went into
+the Shrine without him. He went home with the men he had brought. The order wrote the business up as
+a success, though the Cross was gone. He was given a garrison in Kent. It was the duty that goes to
+men owed something and trusted with nothing. He told nobody you had refused him.
 
 ---
 
@@ -388,35 +360,31 @@ ashamed of.
 
     node id: 900 friend grumdjum
 
-Grumdjum got his verse. He had been threatening you with poetry for a year. He delivered, at length,
-in a hall full of goblins who had never been further east than the pass. The poem is accurate about
-the fighting and ruinous about everything else. You are in it under a name he invented and would not
-explain. He outlived three Khans by the simple method of being the only goblin anyone wanted to hear
-from. Goblin children still recite the Alamut stanza, badly, and the stanza is wrong about Alamut.
-He dictated the last third of it, being by then far too grand to write.
+Grumdjum got his verse. He delivered it at length, in a hall full of goblins who had never seen
+Alamut. It was accurate about the fighting and ruinous about everything else. The meter was a bit
+off. You are in it as the dark knight. He outlived three Khans by being the only goblin anyone
+wanted to hear. Goblin children still recite the Alamut stanza, badly. In it he eats the Old Man's
+brain.
 
 ### when: died in your service
 
     node id: 900 friend grumdjum dead
 
-Grumdjum died before he could finish it, which he would have called the single worst outcome
-available. The verses he had already made were remembered correctly for about ten years. Then they
-merged with four other poems about four other goblins. The composite hero is braver than Grumdjum
-and much less funny. The best line in it is about a brave crusader who threatened to vanquish a
-knave. Nobody who recites it knows that it was written about you, by a goblin who had decided he
-liked you and never once said so out loud. The hall he would have recited it in was still standing
-eighty years later, and was never used for poetry again.
+Grumdjum went to the stewpot beyond before his verse was finished. The lines he had already made
+were remembered correctly for about ten years. Then they merged with four other poems about four
+other goblins. The composite hero is braver than Grumdjum and much less funny. Nobody who recites it
+knows you are in it. The hall he would have used was still standing eighty years later. It was never
+used for poetry again.
 
 ### when: you killed him
 
     node id: 900 friend grumdjum killed
 
-Grumdjum died in the Wilderness at your hands, mid-sentence, which was the one ending he had never
-thought to compose. He had been working on the verse for years and reciting it to whoever stopped
-walking, and it went with him. Goblins who had heard pieces of it argued about the pieces for a
-season and then stopped. The dryad he wanted dead outlived him by a century. He had promised to make
-an epic of your long torture, and he had been joking. He was the only goblin in the Horde who would
-have bothered to joke with you.
+Grumdjum died in the Wilderness at your hands, with his new poem unfinished. His own guards had
+called hearing it a misfortune. Goblins who knew pieces of it argued about the pieces for a season,
+and then stopped. He had been the clever one, by the Khan's own account. Bloodspiller the Pensive
+and Bonecrusher the Pedantic lost their last reader. Nobody finished the poem, and no goblin asked
+anybody to.
 
 ---
 
@@ -426,45 +394,37 @@ have bothered to joke with you.
 
     node id: 900 friend diego
 
-Bishop Diego's eyes went entirely inside two years and he kept working. He was given a reader and a
-boy to lead him, and he outlasted both posts. He heard confession in a stone room in the Wilderness
-and got more out of voices than he had ever got out of faces. He blessed you by name at the end of
-every conversation, including the ones in which you had told him nothing. The Inquisition left him
-there because he was useful and because moving him would have required somebody to make a decision.
-He called you *my child* to the last, being about ninety.
+Bishop Diego's eyes went entirely inside two years, and he kept working. He was given a reader and a
+boy to lead him, and he outlasted both posts. He heard confession in a stone room on the plains. He
+got more out of voices than he had ever got out of faces. The Inquisition left him there, because
+moving him needed a decision. He called everyone "my child" to the last, at about ninety.
 
 ### when: died in your service
 
     node id: 900 friend diego dead
 
-Bishop Diego died in the Wilderness with his eyes most of the way gone. His post stood unfilled for
-six years afterwards. The Inquisition had no record of anyone ever being assigned to it. He had gone
-out with you knowing exactly how little he could see. The stone room became a shepherds' shelter and
-then a ruin. Nobody local could say what the old blind man had been doing there. They knew only that
-he had been there a long time, and had called everyone *my child*, and had meant it. He had asked to
-be buried where he fell and was, under a cairn the shepherds kept adding to.
+Bishop Diego died on the plains, with his eyes most of the way gone. He had gone out with you
+knowing how little he could see. His post stood unfilled for six years. Shepherds buried him under a
+cairn and kept adding to it. Nobody local could say what the old man had been doing there. They knew
+only that he had called them "my child", and had meant it.
 
 ### when: you killed him for the Dark Inquisitors
 
     node id: 900 friend diego sold
 
-You took the Dark Inquisitors' coin and killed a blind bishop on the south road of the plains. It
-took a good deal less doing than they had led you to expect. They paid, and spoke about you
-afterwards in the admiring way of people who have found somebody worse than themselves. The stone
-room stood empty for six years and then became a shepherds' shelter. He had called you *my child* at
-the end of every conversation the two of you ever had. That included the last one, which he did not
-know was the last one.
+You took the Dark Inquisitors' commission and killed Bishop Diego near the south road of the plains.
+His eyes were not so good, so it cannot have been hard. They paid you in a few items, then let you
+buy from their cache. They spoke of you afterwards in the admiring way of people who have found
+somebody worse than themselves. Nobody came to fill his post. He had called you "my child".
 
 ### when: you dealt with the cult for him, and parted there
 
     node id: 900 friend diego defended
 
 You dealt with the Dark Inquisitors on his behalf and went on your way. Bishop Diego kept his post
-and his failing eyes for another decade. He never learned how close the cult had come to buying his
-death. The only man who could have told him was the man who had turned the offer down. He blessed
-you by name whenever you came back, having long since no idea what you looked like. The Inquisition
-left him there because he was useful and because moving him would have needed somebody to decide
-something.
+and his failing eyes for another decade. He had told you faith would guide you, and afterwards he
+gave it the credit. He blessed you whenever you came back. He no longer knew what you looked like.
+The Inquisition left him there, since moving him needed somebody to decide something.
 
 ---
 
@@ -474,34 +434,30 @@ something.
 
     node id: 900 friend darsh
 
-Inquisitor Darsh wrote his own rescue up as a tactical withdrawal and was promoted on it. He had
-been in a goblin camp long enough to be written off. He came out with his magic and most of his
-dignity intact, and he never once used the word rescue in your hearing. His report mentions a young
-one who was present. He ran the Wilderness chapter for eleven years and concealed considerably more
-heretics than he burned, for reasons he took to the grave. He would have been appalled to hear it
-put that way. He was buried in the chapter house with full honours, the withdrawal cited by name.
+Inquisitor Darsh reported to the Grand Inquisitor and wrote his rescue up as a tactical withdrawal.
+He was promoted on it. The goblins had held him for days and taken an ear. His report mentioned a
+young one who was present. He ran the Wilderness chapter for eleven years. He concealed more
+heretics than he burned, and never said why. He was buried in the chapter house with full honours,
+the withdrawal cited by name.
 
 ### when: died in your service
 
     node id: 900 friend darsh dead
 
-Inquisitor Darsh died out of the camp, and that was the most that could be said for it. The
-Inquisition recorded him lost in the Wilderness, which was accurate, complete, and about a tenth of
-the story. Nobody senior enough to be curious ever asked how he had got out of the goblin camp in
-the first place. So the part you did goes unrecorded in an archive that records everything. The last
-thing he said to you he had been saying to everyone for forty years, in exactly that tone: *you
-disappoint me, young one.*
+Inquisitor Darsh died on the way home to Barcelona. He had been a prisoner for days, and he was an
+ear short when you found him. He had wanted every goblin in the village dead, and he did not live to
+see it. The Inquisition recorded a tragic ending to a loyal Inquisitor. Nobody senior asked how he
+had got out. The part you did went unrecorded, in an archive that recorded everything.
 
 ### when: you never got him out of the camp
 
     node id: 900 friend darsh eaten
 
-Darsh was never taken out of the goblin camp, and the goblins did what goblins do. The Warrens
-argued for a fortnight afterwards about whether he had been better with the red spice or the grey,
-settled on the grey by a narrow margin, and still cite the argument as the time there was something
-in the Warrens worth arguing about. The Inquisition recorded him lost in the Wilderness. Raphael
-asked after him twice in eleven years and was told nothing, there being nothing anybody wished to
-put in writing. The Khan's daughter was not consulted and remembers the whole business differently.
+Inquisitor Darsh never left the goblin village. The goblins had sent Barcelona his severed ear with
+a ransom note, and the Inquisition did not bargain. Then the goblins did what goblins do. The camp
+argued for a fortnight over the red spice and the grey. The grey won by a narrow margin. The
+Inquisition recorded a tragic ending to a loyal Inquisitor. The Khan's daughter was not consulted,
+and she remembers it differently.
 
 ---
 
@@ -511,23 +467,19 @@ put in writing. The Khan's daughter was not consulted and remembers the whole bu
 
     node id: 900 friend goblin girl
 
-The Khan's daughter left the Warrens with you and did not come back. It cost her father a daughter,
-a bargaining chip and a quantity of face. Her mother was proved right about you at a volume audible
-from the pass. She grew into something the Horde had no word for, being neither Khan's blood in the
-Warrens nor anything at all anywhere else. It turned out to suit her. She kept a running count of
-everything she had eaten on the road and recited it to strangers. Nobody who met her later believed
-she had been a Khan's daughter, and she never minded.
+The Khan's daughter never left the Warrens. She followed you to the way out and would not go past
+it. Her momma called you a no-account loser and kept saying so. She grew into something the Horde
+had no word for, and it turned out to suit her. She kept a running count of everything she had eaten
+and recited it to strangers. She watched that cave mouth longer than she admitted. Momma noticed.
 
 ### when: died in your service
 
     node id: 900 friend goblin girl dead
 
-The Khan's daughter died away from the Warrens, in company her mother had warned her about. The
-Horde took it the way a Horde takes such things. The Khan wanted a name. He was given yours,
-eventually, by a goblin who had been there. He did nothing about it, for reasons that were political
-rather than paternal. Her mother was right twice and took no satisfaction in it either time. She had
-asked you once whether there were more of you and whether they were all so cute. She had been told,
-and had not believed it.
+The Khan's daughter died in the Warrens, behind you, in company her momma had warned her about. The
+Khan wanted a name, and a goblin who had been there gave him yours. He did nothing about it, for
+reasons political rather than paternal. Her momma took no satisfaction in being right. The first
+thing she ever asked you was what you were. Nobody could tell her.
 
 ---
 
@@ -537,23 +489,21 @@ and had not believed it.
 
     node id: 900 friend saladin knight
 
-The Knight of Saladin rode east from Alamut and reported, at length and accurately, and was not
-entirely believed about the Old Man. The order had expected to lose him and had already said the
-prayers. He spent the rest of his service training men for a fortress that was no longer there. The
-next one, he reasoned, would be similar. He greeted everybody with *Salaam*, including men he was
-about to fight. His students copied it without understanding why. Your name is in his report,
-spelled three different ways in the same paragraph.
+The Knight of Saladin reported to his order, at length and accurately. He was not entirely believed
+about the Old Man. He spent the rest of his service training men for fortresses like Alamut. There
+would be another, he reasoned. He opened every greeting with Salaam, and his students copied it
+without understanding why. Your name went into his report, spelled three different ways in the same
+paragraph.
 
 ### when: died in your service
 
     node id: 900 friend saladin knight dead
 
-The Knight of Saladin died inside the fortress he had ridden a thousand miles to enter. The order
-said the prayers it had already said once. His report was never written. What was in Alamut stayed a
-rumour in the east for two generations and then stopped being discussed at all. The men he would
-have trained were trained by somebody else, less well. He had told you his sword was yours in the
-first minute of knowing you, in the formula his order kept for strangers. He had meant it in a way
-the formula does not require.
+The Knight of Saladin died at Alamut. He had offered you his service in the first minute of knowing
+you, and he kept the offer. His report was never written. What lay inside the fortress stayed a
+rumour in the east for two generations. Then people stopped discussing it at all. The men he would
+have trained were trained by somebody else, less well. His order learned where he fell, and very
+little else.
 
 ---
 
@@ -563,44 +513,37 @@ the formula does not require.
 
     node id: 900 friend fernand
 
-Fernand Desoto went back to the water. It surprised everyone who had watched him begging for help on
-the dock, and nobody who had sailed with him. He and Juan worked the Barcelona coast for another
-thirty years and never once went north past the island. He told the story of his brother's rescue to
-every crew he ever shipped with. In his version he did rather more and you did rather less. Juan
-corrected him in front of them every time. He named a boat after you. It was a small boat and it
-leaked.
+Fernand Desoto went back to the water. He had agreed to follow you for a short time, to repay a
+debt. He and Juan worked the Barcelona coast for thirty more years and never went north past the
+island. He told every crew how Juan was saved. In his version he did rather more and you did rather
+less. Juan corrected him every time. He named a small boat after you, and it leaked.
 
 ### when: died in your service
 
     node id: 900 friend fernand dead
 
-Fernand Desoto died inland, which for a sailor is its own joke and one he would have made first.
-Juan heard about it in a port three weeks later, from a man who had all the details wrong. He worked
-the coast alone after that and stopped going near the island altogether. He told the rescue story
-exactly once a year, accurately, which is how everyone who heard it knew he had not made it up.
-There is no boat named after you. Juan considered it and could not afford a boat, and kept his
-brother's name on the licence for the rest of his working life.
+Fernand Desoto died ashore, following you to repay a debt. Juan heard three weeks later, from a man
+who had the details wrong. He worked the coast alone after that. He told the rescue story once a
+year, accurately. Fernand had told him twice not to fish off the island alone. No boat was named
+after you. Juan could not afford one, and he kept his brother's name on the licence.
 
 ### when: Juan was not saved, and Fernand outlived him
 
     node id: 900 friend fernand brother lost
 
-Fernand Desoto went back to the water alone, which the dock had expected of him and he had not. He
-worked the Barcelona coast for another thirty years and never once went north past the island. He
-never told a crew why, and every crew he shipped with understood. He told the rescue story once, to
-a man who asked him twice. He told it accurately, which is how that man knew not to ask a third
-time. There is a boat named after you. He bought it cheap and kept it afloat long past its worth.
+Fernand Desoto went back to the water alone. He had thanked you for trying, and he had asked how he
+could ever face his father again. He worked the coast for thirty more years and never went north
+past the island. He told the story once, to a man who asked him twice. That man did not ask a third
+time. He named a boat after you, and kept it afloat long past its worth.
 
 ### when: you both died, the brother first
 
     node id: 900 friend fernand dead both
 
-Fernand Desoto died inland, which for a sailor is its own joke and the one he would have made first.
-There was nobody left who would have got it. The brothers are in no parish register in Barcelona,
-having been born somewhere that kept none either. A landlord in the Port District held their account
-open for two years, out of a habit he could not account for. Then he closed it. The island is still
-there. Nothing on that coast is named for either of them, or for you. The boat he had meant to buy
-went to somebody else and sank inside the year.
+Fernand Desoto died ashore, and Juan was already dead. He had been the eldest of the Desoto family.
+He had asked how he could ever face his father again, and in the end he never had to. Their father
+asked after them at the docks for two years. Then he stopped. The island stayed where it was.
+Nothing on that coast was named for either son, or for you.
 
 ## Grace O'Malley
 
@@ -619,12 +562,11 @@ work contradicted by this roster.
 
     node id: 900 friend grace dead
 
-Grace O'Malley died a long way from the sea, which she had told you more than once was the only end
-she was afraid of. Her ships were taken by a cousin who had been waiting on exactly that news, and
-were sailing under another name inside the year. The Crown took the harbour she had kept from it by
-the following spring. No Irish survivor was ever told where she had gone or what she had been doing
-there. The story her crews told about Barcelona stopped having an ending, so in time they stopped
-telling it.
+Grace O'Malley died on land, with Ireland already under the sea. She had spent two years being
+Captain Isabella to bring Spain against England. You had spared her in Barcelona, and she drifted
+ashore in England when the Armada went down. A cousin took what was left of her ships and renamed
+them. No Irish survivor was told where she had gone. Her crews stopped telling the story, for want
+of an ending.
 
 ---
 
@@ -634,22 +576,20 @@ telling it.
 
     node id: 900 friend fang
 
-The cub grew. He had come to you small enough to carry. He ended the campaign big enough that
-strangers crossed the road, and he never learned to be quiet about either. He outlived most of the
-party, bears being durable and the Crossroads being a great deal safer than Alamut. Hunters in that
-country stopped working the eastern woods for a decade, and gave reasons that got taller every year.
-He is in Grumdjum's poem, which calls him a demon. He is in a Templar's report, which calls him *the
-beast, trained, in the company of the Scion*.
+Fang grew. At the Crossroads he had been a runt, barely worth an arrow by the hunter's own count. In
+later years strangers crossed the road for him. He outlived most of the party. Hunters stopped
+working the woods around the Crossroads for a decade, and gave reasons that got taller every year. A
+Templar's report called him the beast, trained, in the company of the Scion. It was the only pelt
+anyone got.
 
 ### when: died in your service
 
     node id: 900 friend fang dead
 
-The cub died grown, in a fight he had no business being in and was not asked about. The hunters were
-back in the eastern woods inside two years. Nobody wrote him down except Grumdjum. He put the cub in
-the poem as a demon, and gave him a stanza he had not earned and would have been pleased by. You had
-taken him off a man who was going to sell him. On the balance of it he got years he would not
-otherwise have had, and a death he would not have chosen, in that order.
+Fang died a cub, in a fight he had no business being in. Nobody asked him. The hunters were back
+around the Crossroads inside two years. Nobody wrote him down. A hunter had once told him to his
+face what his pelt would fetch. You had got in the way of that. He got more time than the man meant
+to give him, and a death he would not have chosen.
 
 ---
 
@@ -659,24 +599,19 @@ otherwise have had, and a death he would not have chosen, in that order.
 
     node id: 900 friend golem
 
-The golem stopped. It had been made in England to break a line. It spent its last campaign walking
-behind you instead, obeying instructions it gave no sign of understanding. When it finally stopped
-it was in a cave in the giants' country, upright, facing the way you had gone. The English makers'
-marks on the shoulder plate were still legible two centuries later, when a shepherd found it and
-took the arm for scrap. Nobody who saw it move ever agreed on whether it had been alive. It never
-once indicated a preference. The shepherd's family used the shoulder plate as a doorstep for sixty
-years.
+The golem stopped. It had been built in England to break a line. Its last campaign was spent walking
+behind you. You said follow or stay, and it answered in the same few noises. It stopped in a cave in
+the giants' country, upright, facing the way you had gone. Two centuries later a shepherd found it
+and took the arm for scrap. His family kept a shoulder plate as a doorstep for sixty years.
 
 ### when: died in your service
 
     node id: 900 friend golem dead
 
-The golem was broken rather than stopped, which may or may not be a distinction. It came apart
-inside one piece of work, the way the English had built it to. What was left would not have been
-worth a shepherd's trouble. Its makers were dead, its line was broken, and there was no second one
-anywhere. Whatever it had been doing when it chose to follow you, it was the last of its kind to do
-it. There was nobody to ask, and nothing left in it that could have answered. The English never
-built a second, the war having moved on to men.
+The golem was broken in your service. It had been built in England to break a line, and it went down
+in yours. What was left was an empty suit of armor, badly damaged, buzzing a little. The English
+sent others like it up the streets of Barcelona. Nobody could have told this one from them. There
+was nobody to ask, and nothing left in it that could have answered.
 
 ---
 
@@ -686,44 +621,37 @@ built a second, the war having moved on to men.
 
     node id: 900 friend lost knight
 
-The Lost Knight got out of the sewers, which he had been certain of the whole time and had been
-wrong about until you arrived. He reported to Auric that his brothers had sent help. That was not
-what had happened, and Auric let it stand. He never afterwards referred to the thieves as anything
-but accursed. He never explained to anyone junior how he had come to be lying in their vault with
-his head open. He was a good knight for twenty more years. It was all on the strength of a rescue he
-had confidently predicted and could not possibly have survived without.
+The Lost Knight got out of the sewers, and you were the only reason he did. He told Auric his
+brothers had sent help, and Auric let it stand. He served twenty more years and never spoke of the
+thieves without calling them accursed. He never told a junior how he came to be lying in their vault
+with his head open.
 
 ### when: died in your service
 
     node id: 900 friend lost knight dead
 
-The Lost Knight died under Barcelona after all, which was the ending the thieves had arranged for
-him before you ever got there. He had been entirely sure his brothers were coming. Auric never
-learned whether they had, having sent nobody. The order recorded him missing, missing being the
-entry that required no further action. The thieves kept the vault another eleven years. The last
-thing he said was that he had expected a more seasoned knight. He said it as a compliment he had not
-yet finished building. Auric prayed for him annually, from a list, among nineteen other names.
+The Lost Knight died under Barcelona after all. He had been sure his brothers were coming. Auric had
+sent nobody but you. The order wrote him down as missing, and the thieves kept the vault another
+eleven years. He had told you he expected a more seasoned knight. Auric prayed for him every year,
+from a list, among nineteen other names.
 
 ### when: you killed him
 
     node id: 900 friend lost knight killed
 
-You killed a Templar in a thieves' vault. Then you told Sir Auric that he had met an unfortunate end
-in the sewers. That was true in every particular and complete in none of them. Auric wrote it up as
-a patrol lost underground and stopped sending patrols. The thieves kept the vault for another eleven
-years and never learned they had been done a favour. He had been entirely certain that his brothers
-were coming for him. Nobody has ever told them that one of them did. Auric prayed for him annually,
-from a list, among nineteen other names.
+You killed a Templar in a thieves' vault, then told Sir Auric he had met an unfortunate end in the
+sewers. It was true, as far as it went. Auric wrote it up as a patrol lost underground and stopped
+sending patrols. The thieves kept the vault another eleven years. The knight had been certain his
+brothers were coming. Auric prayed for him every year, from a list, among nineteen other names.
 
 ### when: you walked him out and he went back to work
 
     node id: 900 friend lost knight returned
 
-The Lost Knight went back to his duties, which is the phrase he used and the whole of the thanks he
-gave. He was perfectly sincere in both. He told the order that his brothers had come for him. That
-was what he had been certain of underground, and he was not going to start doubting it in daylight.
-Auric, who had sent one stranger, did not correct him. He served another twenty years. He never once
-explained to anybody junior how he had come to be lying in a vault with his head open.
+The Lost Knight went back to his duties. That was his phrase for it, and all the thanks you got. He
+told the order his brothers had come for him, because that was what he had been sure of underground.
+Auric had sent one stranger, and did not correct him. He served twenty more years and never said how
+he came to be lying in a vault with his head open.
 
 ---
 

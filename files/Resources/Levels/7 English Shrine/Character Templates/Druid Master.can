@@ -1023,7 +1023,31 @@ CCannedObject
 		Rendering Height Float=0
 		Cur Sequence=Idle
 		Cur Damage=0
-		Destroyed Script Action=
+		Destroyed Script Action=CForEachPlayerAction
+		{
+			Action=CAddCharacterModifierToCharacterAction
+			{
+				Modifier Description=
+				Modification is permanent=0
+				Character to modify=$Instigator
+				Modifiers=Array
+				{
+					Item Count=1
+					Modifier=CCharacterModifierDerivedAttribute
+					{
+						Modification Amount=CConstant
+						{
+							Constant Value=1
+						}
+						Modification amount is a percent=0
+						Allow Accumulation=0
+						Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Druid Master Killed
+					}
+				}
+				OPTIONAL Duration=
+				Expression Context=$Instigator
+			}
+		}
 		Destroyed Effect Action=CIfAction
 		{
 			If=CWasDamagedByPlayerAction

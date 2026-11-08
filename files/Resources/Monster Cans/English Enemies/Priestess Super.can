@@ -1309,80 +1309,166 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=CIfAction
+		Damaged Script Action=CMultipleActionsAction
 		{
-			If=CWasDamagedByPlayerAction
+			Action=Array
 			{
-				Entity To Check For Damage=$Trigger
-			}
-			Then=CSeriesAction
-			{
-				Action=Array
+				Item Count=2
+				Action=CIfAction
 				{
-					Item Count=2
-					Action=CMultipleActionsAction
+					If=CWasDamagedByPlayerAction
+					{
+						Entity To Check For Damage=$Trigger
+					}
+					Then=CSeriesAction
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CAddCharacterModifierToCharacterAction
+							Item Count=2
+							Action=CMultipleActionsAction
 							{
-								Modifier Description=prays faster
-								Modification is permanent=0
-								Character to modify=$Trigger
-								Modifiers=Array
+								Action=Array
 								{
-									Item Count=1
-									Modifier=CCharacterModifierDerivedAttribute
+									Item Count=3
+									Action=CAddCharacterModifierToCharacterAction
 									{
-										Modification Amount=CConstant
+										Modifier Description=prays faster
+										Modification is permanent=0
+										Character to modify=$Trigger
+										Modifiers=Array
 										{
-											Constant Value=0.25
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=0.25
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Speed/Attack Magic Speed Multiplier
+											}
 										}
-										Modification amount is a percent=0
-										Allow Accumulation=1
-										Derived character attribute to modify=Derived Character Attributes/Speed/Attack Magic Speed Multiplier
+										OPTIONAL Duration=CConstant
+										{
+											Constant Value=20
+										}
+										Expression Context=$Trigger
+									}
+									Action=CPrintCombatTextAction
+									{
+										Text to print=Druidess prays faster: quicker casting for 20 seconds.
+										Character to show text to=Player1
+										Emphasize=0
+										Suppress Duplicates=0
+									}
+									Action=CSpawnEffectAction
+									{
+										Explosion Model=Spell Effects/Hits and Effects/Target Affected/Vilify
+										Location Entity=$Trigger
+										Make effect a child of the location entity=0
+										X Offset=0
+										Y Offset=0
+										Height Offset=35
+										Play Default Sound=1
 									}
 								}
-								OPTIONAL Duration=CConstant
-								{
-									Constant Value=20
-								}
-								Expression Context=$Trigger
 							}
-							Action=CPrintCombatTextAction
+							Action=CSucceedAction
 							{
-								Text to print=Druidess prays faster: quicker casting for 20 seconds.
-								Character to show text to=Player1
-								Emphasize=0
-								Suppress Duplicates=0
-							}
-							Action=CSpawnEffectAction
-							{
-								Explosion Model=Spell Effects/Hits and Effects/Target Affected/Vilify
-								Location Entity=$Trigger
-								Make effect a child of the location entity=0
-								X Offset=0
-								Y Offset=0
-								Height Offset=35
-								Play Default Sound=1
+								Action=
 							}
 						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
 					}
-					Action=CSucceedAction
+					Else=CFailAction
 					{
 						Action=
 					}
+					Return failure if the If failes=0
 				}
-				When Done=Repeat Last Action
-				Require Success To Advance=1
-				Next Action Index=0
+				Action=CIfAction
+				{
+					If=CExpressionAction
+					{
+						Expression=CIsLessThanOrEqual
+						{
+							Operand1=CExpressionHealthPercent
+							{
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=50
+							}
+						}
+						Character to get attributes from=$Trigger
+					}
+					Then=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CIsGreaterThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=$Trigger
+						}
+						Then=CSeriesAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CPrintCombatTextAction
+										{
+											Text to print=Druidess calls a wolf to her side.
+											Character to show text to=Player1
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Action=CCloneAction
+										{
+											New Location=$Trigger
+											Copy Height=0
+											Random Location Delta=80
+											Warp Behavior=
+											Source Name=Fixt Druid Wolf Source
+											New Name=Fixt Used Druid Wolf Source
+											Set Facing Angle=0
+											New Facing Angle=0
+										}
+									}
+								}
+								Action=CSucceedAction
+								{
+									Action=
+								}
+							}
+							When Done=Repeat Last Action
+							Require Success To Advance=1
+							Next Action Index=0
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Else=
+					Return failure if the If failes=0
+				}
 			}
-			Else=CFailAction
-			{
-				Action=
-			}
-			Return failure if the If failes=0
 		}
 		Damaged Effect Action=CMultipleActionsAction
 		{

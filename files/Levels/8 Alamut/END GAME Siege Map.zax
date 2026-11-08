@@ -87,6 +87,115 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt to the epilogue stage
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CFadeScreenDownAction
+							{
+								Time Until Auto Fade Up=4
+							}
+							Action=CEndNonInteractiveSequenceAction
+							{
+							}
+							Action=CDelayAction
+							{
+								Next Action=CForEachPlayerAction
+								{
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CIfAction
+											{
+												If=CCheckExistenceAction
+												{
+													Name To Check For=Player talked way into Ahriman death
+													Desired Minimum Count=1
+												}
+												Then=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=
+													Modification is permanent=0
+													Character to modify=$Instigator
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=0
+															Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Talked Ahriman Dead
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Action=CTeleportAction
+											{
+												Return to map=never
+												New Map Name=8 Alamut/Fixt Epilogue Stage
+												New Location=Fixt Stage Arrival
+												Who To Switch=$Instigator
+												Relative Position=0
+												Ignore Party Ready Rules=1
+												Warp Behavior=
+											}
+										}
+									}
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1293
+			Position Y=490
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt order epilogue relay
 			Child List=
 			Visible=0
@@ -110,7 +219,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=33
+							Item Count=34
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -2318,6 +2427,100 @@ CLayerSaveData
 									Delay=0.1
 									Plus or Minus=0
 									Forget Trigger=0
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Druid Master Talked Down
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 order shrine talked
+									Speaker=Fake Talker for NIS
+									Player Being Spoken To=Player1
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Druid Master Killed
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Druid Ambush Spoiled
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order shrine spoiled
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order shrine killed
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+									}
+									Else=CIfAction
+									{
+										If=CIsQuestCompletedAction
+										{
+											Quest=Levels/7 English Shrine/Quests/Stop the Druids
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order shrine left
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDelayAction
+										{
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Return failure if the If failes=0
+									}
 								}
 							}
 							Action=CIfExpressionAction
@@ -11692,7 +11895,7 @@ CLayerSaveData
 								{
 									Next Action=CTriggerRelayAction
 									{
-										Relay Name=Fixt order epilogue relay
+										Relay Name=Fixt to the epilogue stage
 									}
 									Delay=1
 									Plus or Minus=0
@@ -11708,7 +11911,7 @@ CLayerSaveData
 									{
 										Next Action=CTriggerRelayAction
 										{
-											Relay Name=Fixt order epilogue relay
+											Relay Name=Fixt to the epilogue stage
 										}
 										Delay=1
 										Plus or Minus=0

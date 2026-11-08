@@ -6158,6 +6158,34 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## Unreleased - the English Shrine
+
+**Needs a save that has not entered act 7** (the kit jump to the English Shrine works on a fresh character). Spawns are fixed on a map's first visit.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SH1 | 05 Exalted Chambers | Talk to the Druid Master | She is voiced: her lines play aloud. Before this she was silent |
+| SH2 | 10 Inner Sanctum | Pull the three stones in any order | Each opens what it opens, then a separate line counts down: two left, one left, the last of them. Not "Two stones left" three times |
+| SH3 | 02, Sir Roger, Servant of the Queen perk | Reach "The Queen keeps druids" and answer "That changes nothing. Stand aside." | The scene ends and you can move; he can be spoken to again. Before this you were stuck |
+| SH4 | 02 at Sneak 25 | Take the second passage, go on to 05, then come back the vanilla way | One payment of the passage XP and balloon, on the way in only |
+| SH5 | 02, 03, 04 | Look at the enemies | Some are druids in robes casting spells, not soldiers standing still until struck. None stands idle while his friends fight |
+| SH6 | Any act 7 map | Bring a druid under half health | The log says she calls a wolf, a wolf appears beside her with a summoning flash, and she does it once only |
+| SH7 | 02, 03 or 04 | Kill every druid on the map, leave the soldiers | Within a few seconds every soldier on that map stops fighting and says one dazed line; clicking one talks. A map with druids alive keeps fighting |
+| SH8 | The same, after the stand-down | Force attack one soldier | Every soldier on that map turns hostile again, not just the one; the first hit stops your attack and one more click carries on. No Karma lost |
+| SH9 | Crossroads to England | - | Three of the archer pairs are druids |
+| SH10 | 03, 04, 05 with Roger and Grace | Enter each map the first time | Each says one line, Roger first. Neither says it twice, and with one of them absent the other still speaks |
+| SH11 | Finish the shrine four ways: talk her down; spoil the ambush and kill her; kill her; walk on with her alive | Reach England to Alamut with Roger, then the ending | Roger says the line for that outcome, and the ending shows the matching Shrine slide with the Druid Master on the stage, before the companions |
+
+## Unreleased - the epilogue stage
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| ES20 | Finish the game, or `Ending tests` then `As I am` | - | After Javier the screen goes black and the stage opens with no visible pan. No crash on the teleport |
+| ES21 | The same | Read through | Every slide this character earned plays, in order, with the right figure centre-stage and none left over from the slide before. Slides with no figure (the pits, the Savage Heart, the woodcutter, no allegiance) play on the empty stage |
+| ES22 | The same, having talked Ahriman into death | - | The Templar slide is the one that says the order was never sworn to him: the flag survived the teleport |
+| ES23 | The same | Press Escape on a slide | It advances to the next slide, and the credits still roll at the end |
+| ES24 | With companions alive | - | Nobody you travelled with wanders into frame, and every figure stands still, including the golem and Fang |
+
 ## 0.98.1 - where the four roads met
 
 | # | Where | Steps | Pass |

@@ -224,6 +224,24 @@ print("\n--- every unreachable recording, largest first")
 for r in sorted(rows, key=lambda r: -r["kb"]):
     print("  %6.0f KB %2dr  %s / %s" % (r["kb"], r["replies"], r["tree"], r["node"]))
 
+# A folder whose stem matches no tree plays for nobody. The join above is on the same basename, so it cannot
+# see this, which is how the Druid Master's ten recordings sat silent: her tree is DruidMaste, her folder DruidMaster VOs.
+shipped = set(vo)
+for p in F.rglob("*.ogg"):
+    if VO_DIR in p.as_posix().lower():
+        shipped.add(p.parent.name[:-4].strip().lower())
+named = {basename(t) for t in trees}
+stray = sorted(k for k in shipped if k not in named)
+print("\n--- voice folders that match no tree, so nothing in them can play: %d" % len(stray))
+copies = {}
+for p in F.rglob("*.ogg"):
+    if VO_DIR in p.as_posix().lower():
+        copies.setdefault(p.parent.name[:-4].strip().lower(), set()).add(p.name.lower())
+for k in stray:
+    have = set(vo.get(k, {}))
+    fixed = [c for c, names in copies.items() if c in named and have and {h + ".ogg" for h in have} <= names]
+    print("  %s VOs%s" % (k, "  (copied as %s VOs, so it plays)" % fixed[0] if fixed else ""))
+
 print("\nA recording here means the line was written, cast and performed. Classify before "
       "building:\nfilename drift, unreachable branch, or superseded draft -- see the orphan "
       "taxonomy in\ndocs/unused-content.md. Nodes with no replies are usually barks and "

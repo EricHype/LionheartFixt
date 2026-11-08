@@ -142,6 +142,32 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## Unreleased - the English Shrine, and the epilogue stage
+
+Act 7 scored 2 of 5 with about five kinds of encounter across 138 generators. A survey found what 0.19.0 had meant and missed.
+
+**The druids were soldiers.** 0.19.0 put `Character Templates/Druid` into 195 spawn slots. That can is a vanilla English Soldier with the
+pacified shape (blank Category and Valid Targets, Max Distance 40), so the cult it meant to add stood still until struck. Each slot now takes
+the real Druid or Druidess can at its tier, Druids on the front maps and Druidesses deeper. The Priestess templates were placed nowhere in vanilla.
+
+**Druids call wolves.** Once each, at half health, by vanilla's Snakebreed Summoner pattern: the can clones a hidden generator the map holds.
+
+**Druids hold the soldiers.** On Temple Initiate, Stone Chamber and the Antechamber, two druid posts stand among the soldiers. Kill every druid
+of a map and its soldiers stand down, dazed and talkable. Hit one and the whole map turns on you again. No Karma: they were fighting you.
+Exalted Chambers and the Secret Chamber mix soldiers and druids in every generator, and a generator names all it spawns, so they are not held.
+
+**How the Druid Master ended now matters.** Talked down, ambush spoiled, killed, or left alive: a new ending slide in four variants, and a
+line from Sir Roger at England to Alamut. Roger and Grace each speak once in Stone Chamber, the Antechamber and Exalted Chambers.
+
+Repairs: the Druid Master's ten recordings play (her tree is `DruidMaste`, her folder `DruidMaster VOs`, and `vo_reach.py` now lists any
+folder like it); the sanctum stones count down instead of all saying "Two stones left"; Sir Roger's "Stand aside" ends his scene; and the
+second passage pays once.
+
+**The epilogue stage.** The end slides play on a stage map, each with its character centre stage. See `tools/build_epilogue_stage.py`.
+
+Not played. `SH1`-`SH11`, `ES20`-`ES24`.
+
+---
 ## 0.98.1 - where the four roads met
 
 `The Crossing` has always said the standard stands *"where the four roads met... at the centre of it"*, and 0.98.0 put it about 700 units east of the junction,
