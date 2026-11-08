@@ -1,5 +1,8 @@
 # Lionheart Fixt
 
+> **Enjoying Fixt?** It is free and always will be. If you would like to say thanks, you can
+> [buy me a coffee](https://buymeacoffee.com/erichype112).
+
 A cumulative restoration-and-repair mod for *Lionheart: Legacy of the Crusader*, named
 after Fallout Fixt and following the same discipline: one mod, one install, and every
 release visible in all three registers - **fix**, **restore**, **extend**.
@@ -17,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.74.0](https://github.com/EricHype/LionheartFixt/releases/tag/v0.74.0).
+-- currently [0.98.1](https://github.com/EricHype/LionheartFixt/releases/tag/v0.98.1).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -81,7 +84,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.74.0 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.98.1 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).
