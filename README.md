@@ -69,7 +69,7 @@ The most recent releases:
 | **0.95.0** | the hammer of heretics | The Grand Inquisitor's battle speech, recorded and never heard, plays when you finally cross him. |
 | **0.94.0** | four lines one wire away | Four recorded lines, each a single connection from being heard, are heard, and there are monks under the cathedral. |
 
-Releases up to 0.92.0 are one line each in [`docs/changelog.md`](docs/changelog.md), and every release is written up in full in [`docs/releases.md`](docs/releases.md).
+Every release is one line in [`docs/changelog.md`](docs/changelog.md), and every release is written up in full in [`docs/releases.md`](docs/releases.md).
 
 Everything the shipped game defines and then references from nothing -- unplaced quest items, the enemy cans that nothing spawns, and why that count was first reported as 48 and is honestly zero, two whole summon tiers, and which of them Fixt has since picked up -- is surveyed in [`docs/unused-content.md`](docs/unused-content.md), along with the four ways that survey was wrong before it was right.
 
