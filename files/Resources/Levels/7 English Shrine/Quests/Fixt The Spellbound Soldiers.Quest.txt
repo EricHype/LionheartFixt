@@ -1,0 +1,14 @@
+CQuestDefinition
+{
+	Name=The Spellbound Soldiers
+	States=Array
+	{
+		Item Count=1
+		State=CQuestStateDefinition
+		{
+			Text=The English soldiers in the shrine fight with blank faces, as though spellbound. Their druid priests stand among them.
+			ID=FXHOLD01
+		}
+	}
+	Sub-Quest of=Levels/7 English Shrine/Quests/Stop the Druids
+}

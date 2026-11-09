@@ -1444,7 +1444,16 @@ CCannedObject
 							{
 								Action=Array
 								{
-									Item Count=3
+									Item Count=4
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/7 English Shrine/Dialog/Fixt Soldier Barks
+										Node ID=90 reaches for a potion
+										Name of Position=$Trigger
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=0
+									}
 									Action=CAddCategoryAction
 									{
 										Target Name=$Trigger

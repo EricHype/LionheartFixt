@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.2** | showing, not telling | Hints that show rather than tell: the Shrine's soldiers seem spellbound in the journal and to Sir Roger, a soldier reaching for a potion says so over his head, and the Acid Wash valve's line plays only for whoever finds it. |
 | **0.99.1** | what the game already said | Every line Fixt has written was checked against the game's own dialogue, quests and scripts, and 166 were corrected. Jehanne was never burned at Rouen, the Daeva of Pain is Boruta, the Hujark took Nostradamus in, and the troll peace no longer credits you with an argument you never made. |
 | **0.99.0** | the Shrine, Alamut, and the epilogue stage | **Released untested.** Act 7's "druids" were passive soldiers; real druids now call wolves and hold the soldiers on three maps, and how the Druid Master ends gets its own slide. Alamut: the Acid Wash hurts everyone and hides a valve, Assassin Masters may call dogs, and the dark endings show slides. Every ending now plays on a stage with each character in view. |
 | **0.98.1** | where the four roads met | The druids' standard now stands at the junction the game's own text describes, so you fight through half the siege to reach it. |

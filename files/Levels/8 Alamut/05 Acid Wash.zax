@@ -375,7 +375,16 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
+							Action=CDisplayDialogBalloonAction
+							{
+								Dialog Tree File=Levels/8 Alamut/Dialog/The Acid Wash
+								Node ID=6 the valve
+								Name of Position=$Trigger
+								Position Offset=0.000000,-60.000000
+								After Action=
+								Include In Log=1
+							}
 							Action=CShowAction
 							{
 								Target Name=$Trigger

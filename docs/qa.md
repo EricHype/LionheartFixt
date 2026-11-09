@@ -6158,6 +6158,14 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.2 - showing, not telling
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HN1 | 02 Temple Initiate, first visit, on a save that has not entered it | Open the journal | Under the druid quest, "The Spellbound Soldiers" says they fight as though spellbound. It tells you nothing to do. With Sir Roger along he says something has hold of them |
+| HN2 | Any act with the English draught soldiers | Bring one under 40% health | `<Reaches for a potion>` appears over him as he starts his fidget |
+| HN3 | 05 Acid Wash | Walk the channel without the search skill, then with it | No valve line without it. With it, the line plays as the valve is revealed |
+
 ## 0.99.0 - Alamut
 
 **Needs a save that has not entered act 8** for the map changes; the ending changes reach any save that has not finished the game.
