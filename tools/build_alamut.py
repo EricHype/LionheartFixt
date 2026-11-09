@@ -201,7 +201,9 @@ def summon_dogs(who):
     roll = ("CExpressionAction", [("Expression", ("CIsLessThan", [
         ("Operand1", ("CRandom", [("Operator", ""), ("Minimum", ("CConstant", [("Constant Value", "0")])), ("Maximum", ("CConstant", [("Constant Value", "100")]))])),
         ("Operator", ""), ("Operand2", ("CConstant", [("Constant Value", "50")]))])), ("Character to get attributes from", "$Trigger")])
-    once = ("CSeriesAction", [("Action", [("Action", if_action(roll, multi([line, clone]))), ("Action", ("CSucceedAction", [("Action", "")]))]),
+    # only where a map says the dogs are there (build_back_half_fixes.py places the marker): the Slave Pits have none
+    here = ("CCheckExistenceAction", [("Name To Check For", "Fixt assassin dogs here"), ("Desired Minimum Count", "1")])
+    once = ("CSeriesAction", [("Action", [("Action", if_action(roll, if_action(here, multi([line, clone])))), ("Action", ("CSucceedAction", [("Action", "")]))]),
                               ("When Done", "Repeat Last Action"), ("Require Success To Advance", "0"), ("Next Action Index", "0")])
 
     def hp(cmp, v):

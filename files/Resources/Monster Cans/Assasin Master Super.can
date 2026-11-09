@@ -1285,30 +1285,40 @@ CCannedObject
 										}
 										Character to get attributes from=$Trigger
 									}
-									Then=CMultipleActionsAction
+									Then=CIfAction
 									{
-										Action=Array
+										If=CCheckExistenceAction
 										{
-											Item Count=2
-											Action=CPrintCombatTextAction
+											Name To Check For=Fixt assassin dogs here
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
 											{
-												Text to print=Assassin Master whistles, and guard dogs come running.
-												Character to show text to=Player1
-												Emphasize=0
-												Suppress Duplicates=0
-											}
-											Action=CCloneAction
-											{
-												New Location=$Trigger
-												Copy Height=0
-												Random Location Delta=80
-												Warp Behavior=
-												Source Name=Fixt Assassin Dog Source
-												New Name=Fixt Used Assassin Dog Source
-												Set Facing Angle=0
-												New Facing Angle=0
+												Item Count=2
+												Action=CPrintCombatTextAction
+												{
+													Text to print=Assassin Master whistles, and guard dogs come running.
+													Character to show text to=Player1
+													Emphasize=0
+													Suppress Duplicates=0
+												}
+												Action=CCloneAction
+												{
+													New Location=$Trigger
+													Copy Height=0
+													Random Location Delta=80
+													Warp Behavior=
+													Source Name=Fixt Assassin Dog Source
+													New Name=Fixt Used Assassin Dog Source
+													Set Facing Angle=0
+													New Facing Angle=0
+												}
 											}
 										}
+										Else=
+										Return failure if the If failes=0
 									}
 									Else=
 									Return failure if the If failes=0

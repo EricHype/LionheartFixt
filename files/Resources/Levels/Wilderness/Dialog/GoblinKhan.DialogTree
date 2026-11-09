@@ -1459,6 +1459,30 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=
 Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CRemoveAIAction
+{
+Target Name=Rumjun Khan
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+{
+Target Name=Rumjun Khan
+New Category=Player Friend,Goblin
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=Rumjun Khan
+Name To Target=
+Valid Targets=Enemy
+}
+}
+}
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=502 Too bad

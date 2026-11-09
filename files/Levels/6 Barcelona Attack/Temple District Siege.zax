@@ -87,6 +87,138 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Temple Siege druid watch
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CIsAliveAction
+						{
+							Name To Check For=Temple Siege Druid
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CActivateAction
+								{
+									Target Name=Fixt Temple Siege druid watch armed
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Fixt Temple Siege druid watch
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Delay Between Actions=2
+					Plus or Minus=0
+					Seconds Till Next Execute=3
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=775
+			Position Y=1752
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Temple Siege druid watch armed
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CIsAliveAction
+							{
+								Name To Check For=Temple Siege Druid
+								Desired Minimum Count=1
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CTriggerRelayAction
+								{
+									Relay Name=Fixt Temple Siege druids fall
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Fixt Temple Siege druid watch armed
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Delay Between Actions=2
+					Plus or Minus=0
+					Seconds Till Next Execute=2
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=795
+			Position Y=1752
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt Temple Siege druids fall
 			Child List=
 			Visible=0
@@ -463,61 +595,6 @@ CLayerSaveData
 			Publisher=
 			Model=Editor/Relay
 			Position X=755.0
-			Position Y=1752.0
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Fixt Temple Siege druid watch
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CRepeatTimerTriggerAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CIfAction
-					{
-						If=CNotAction
-						{
-							Action=CIsAliveAction
-							{
-								Name To Check For=Temple Siege Druid
-								Desired Minimum Count=1
-							}
-						}
-						Then=CTriggerRelayAction
-						{
-							Relay Name=Fixt Temple Siege druids fall
-						}
-						Else=
-						Return failure if the If failes=0
-					}
-					Delay Between Actions=2
-					Plus or Minus=0
-					Seconds Till Next Execute=10
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Position Marker
-			Position X=775.0
 			Position Y=1752.0
 			Rendering Height=0
 			Rendering Height Float=0
