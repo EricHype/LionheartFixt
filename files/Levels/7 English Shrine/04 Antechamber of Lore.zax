@@ -2142,7 +2142,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -2723,7 +2960,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -4796,7 +5270,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -5000,7 +5711,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -5357,7 +6305,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -7287,7 +8472,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -7691,7 +9113,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -10173,7 +11832,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -12332,7 +14228,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -13115,7 +15248,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -14572,7 +16942,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -15695,7 +18302,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -16468,7 +19312,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -18631,7 +21712,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -19111,7 +22429,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 2
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -20533,7 +24088,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 2
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -20827,7 +24619,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -22105,7 +26134,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 1
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -23494,7 +27760,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 2
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -26602,7 +31105,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 2
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{
@@ -27562,7 +32302,244 @@ CLayerSaveData
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
-						Item Count=0
+						Item Count=1
+						AI=CRepeatTimerTriggerAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsLessThanOrEqual
+									{
+										Operand1=CExpressionHealthPercent
+										{
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+								}
+								Then=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Trigger
+											Category to check for=Enemy
+										}
+										Then=CIfAction
+										{
+											If=CIsAliveAction
+											{
+												Name To Check For=Antechamber Druid
+												Desired Minimum Count=1
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CRandomAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=1 fall back
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=2 hurt
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																	Action=CDisplayDialogBalloonAction
+																	{
+																		Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt Soldier Retreat
+																		Node ID=3 hold them
+																		Name of Position=$Trigger
+																		Position Offset=0.000000,-80.000000
+																		After Action=
+																		Include In Log=0
+																	}
+																}
+															}
+															Action=CAssignTemporaryTaskAction
+															{
+																Target=$Trigger
+																Temporary Task AI=CGoToAI
+																{
+																	Marked For Deletion=0
+																	Publisher=
+																	Destination=Fixt Antechamber druid post 2
+																	Offset=0.000000,0.000000
+																	Starting Action=
+																	Finished=0
+																	Move Finished=0
+																	Failed Path=0
+																	Target Was Set By Goto AI=0
+																	Move Behavior=CEntityBehaviorMoveToPos
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																		Idle Behavior=CEntityBehaviorIdle
+																		{
+																			Num Seconds=1
+																			Seconds Have Transitioned=0
+																			Override Fidget Options=
+																			Current Fidget Data=
+																			Time Until Next Fidget=0
+																			Fidgeting=0
+																		}
+																		Play Ratio=1
+																		Smooth Turning=0
+																		Do Path Finding=1
+																		Finished=1
+																		Failed Last Path=0
+																		Idle Begin Called=0
+																		Move To Rate=0
+																		CurTargetNormalX=0
+																		CurTargetNormalY=0
+																		Path Finding Params=CWayPointPath
+																		{
+																			Start Point=0,0
+																			End Point=0,0
+																			Length=0
+																			Max Dist To Travel=0
+																			Num Failed Paths=0
+																			Max Failed Paths=0
+																			Pos To Move Index=0
+																			Dist So Far=0
+																			Path=
+																		}
+																		Pos Moving From=0.000000,0.000000
+																		Final Dest=0.000000,0.000000
+																		Dest Radius=0
+																		Cur Dest Move To=0.000000,0.000000
+																		Last Neg Dist=0
+																		NumTimesLostGound=0
+																		Sequence=Run
+																		Planed Path For=
+																	}
+																	Done action=CMultipleActionsAction
+																	{
+																		Action=Array
+																		{
+																			Item Count=2
+																			Action=CIfAction
+																			{
+																				If=CIsAliveAction
+																				{
+																					Name To Check For=Antechamber Druid
+																					Desired Minimum Count=1
+																				}
+																				Then=CGiveHealthToCharacterAction
+																				{
+																					Character to give health to=$Trigger
+																					Amount of health to give=CMultiply
+																					{
+																						Operand1=CVariableDerivedCharacterAttribute
+																						{
+																							Character Attribute=Derived Character Attributes/(HP) Hit Points
+																						}
+																						Operator=
+																						Operand2=CConstant
+																						{
+																							Constant Value=0.25
+																						}
+																					}
+																					Expression Context=$Trigger
+																				}
+																				Else=
+																				Return failure if the If failes=0
+																			}
+																			Action=CSendAIDoneMessage
+																			{
+																				Target=$Trigger
+																			}
+																		}
+																	}
+																	Run=0
+																	Make New Home=0
+																	Play Ratio=0
+																	Time To Try To Move=0
+																	Set Facing Angle=0
+																	Turn Sequence Name=Idle
+																	Facing Angle=CEntityBehaviorTurnToAngle
+																	{
+																		Old Stationary Flag=0
+																		Angle To Turn To=0
+																		Facing Backwards=0
+																	}
+																	Need to Call Start=1
+																}
+																Original AI Type=CSkeletonAI
+																Completion Message to wait for=AI Done
+																Suppress can't assign error=1
+															}
+														}
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Delay Between Actions=1
+							Plus or Minus=0
+							Seconds Till Next Execute=2
+						}
 					}
 					Canned AIs to Add=Array
 					{

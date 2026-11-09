@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.10 are published** -- 213 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.11 are published** -- 214 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,27 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.11 - falling back
+
+The engine has a retreat and never uses it. `CSkeletonAI` registers `Retreat when` (+0xA4, "% Health or less", editor default
+40), a `Retreat Start Action` (+0xA8) and a Retreat state, 3. The state setter (`0x473b00`) fires the start action on entering it,
+but none of its 31 callers ever passes 3, and the tick (`0x4726d0`) has no case for it, so setting the field on a can does
+nothing. What the thief archers do is ordinary archer spacing, `Minimum Attack Distance=350` on every bow can.
+
+So the retreat is built from parts already proven. `CAssignTemporaryTaskAction` pauses the combat AI mid-fight, as 0.98.0's
+draught does and was played, and Darsh's own `CGoToAI` walk is released by `CSendAIDoneMessage` to `$Trigger`, as vanilla's
+18 walks end. Where the druids hold the English (Temple Initiate, Stone Chamber, the Antechamber of Lore, and the Gate and
+Temple District sieges), once each, below 30% health, while he is still hostile and a druid of his room lives, a soldier
+breaks off with a shout and runs to the nearest druid post. If a druid still lives when he arrives, he is healed for a
+quarter of his health; either way he goes back to the fight. A hit does not stop him, so you can chase him down or let him
+go. Kill the druids first and there is nowhere to run.
+
+It rides in a timer each soldier generator adds, not the can's damage slot, which the stand-down replaces. 136 soldier
+generators across the five maps. The siege druids' generators share their names with other parts, so a uniquely named
+rally marker stands on each; the Shrine's posts are already named. There is no timed release for a man whose path is
+blocked, because a second AI Done to a man already fighting is untested. `tools/build_soldier_retreat.py`. `FB1`-`FB4`.
+
+---
 ## 0.99.10 - what the re-score found
 
 Acts 4 to 8 were scored by route again at 0.99.9, the same way as at 0.97.2: creatures near the shortest path per route,

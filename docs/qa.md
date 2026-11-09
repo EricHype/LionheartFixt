@@ -6158,6 +6158,15 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.11 - falling back
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| FB1 | Temple Initiate, Stone Chamber or Antechamber, or a Barcelona siege after its druids appear, first visit | Wound an English soldier below a third of his health while a druid lives | He shouts and runs toward the druids, not fighting back while he runs, then returns healed |
+| FB2 | The same | Chase and hit him as he runs | He keeps running; he can be killed on the way |
+| FB3 | The same, with the room's druids dead | Wound a soldier badly | He does not run; he fights on |
+| FB4 | The same | Watch every soldier who ran | Every one comes back and fights again; none stands idle by a post. Report any that does, with the map |
+
 ## 0.99.10 - what the re-score found
 
 | # | Where | Steps | Pass |
