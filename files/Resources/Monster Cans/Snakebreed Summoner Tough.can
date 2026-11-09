@@ -1863,38 +1863,79 @@ CCannedObject
 		Cur Sequence=Idle
 		Cur Damage=0
 		Destroyed Script Action=
-		Destroyed Effect Action=CIfAction
+		Destroyed Effect Action=CMultipleActionsAction
 		{
-			If=CWasDamagedByPlayerAction
+			Action=Array
 			{
-				Entity To Check For Damage=$Trigger
-			}
-			Then=CMultipleActionsAction
-			{
-				Action=Array
+				Item Count=2
+				Action=CIfAction
 				{
-					Item Count=3
-					Action=CGiveExperiencePointsToAllPlayersAction
+					If=CWasDamagedByPlayerAction
 					{
-						Get XP Frome=$Trigger
-						Experience Points To Add=300
+						Entity To Check For Damage=$Trigger
 					}
-					Action=CUseCannedActionAction
+					Then=CMultipleActionsAction
 					{
-						Canned Object=Inventory/Enemy Drop Items Cans/Gold/3SmallMedium Pile Gold Drop Action
-					}
-					Action=CUseCannedActionAction
-					{
-						Dynamic Properties=1
+						Action=Array
 						{
-							Comment=generates 2small spirit
+							Item Count=3
+							Action=CGiveExperiencePointsToAllPlayersAction
+							{
+								Get XP Frome=$Trigger
+								Experience Points To Add=300
+							}
+							Action=CUseCannedActionAction
+							{
+								Canned Object=Inventory/Enemy Drop Items Cans/Gold/3SmallMedium Pile Gold Drop Action
+							}
+							Action=CUseCannedActionAction
+							{
+								Dynamic Properties=1
+								{
+									Comment=generates 2small spirit
+								}
+								Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/2Small Spirit Charge Drop Action
+							}
 						}
-						Canned Object=Inventory/Enemy Drop Items Cans/Spirit Energy/2Small Spirit Charge Drop Action
 					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Action=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Summoned Snakebreed
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CPrintCombatTextAction
+							{
+								Text to print=The summoner dies, and the brood it called unravels with it.
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Spells/Monster Summon.ogg
+								Position=$Trigger
+								Multiplayer=Heard by all players
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Summoned Snakebreed
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
 				}
 			}
-			Else=
-			Return failure if the If failes=0
 		}
 		Damaged Script Action=
 		Damaged Effect Action=CMultipleActionsAction

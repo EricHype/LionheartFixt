@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.8](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.8).
+-- currently [0.99.9](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.9).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.9** | the brood dies with the caller | Montserrat's Snakebreed Summoners summon their brood, and when one dies, everything summoned on that map dies with it. |
 | **0.99.8** | the raid has a leader | The raid on the burned hamlet has a Druid War-Priest. Kill him, out-talk him, wrest his men free with Tribal, or have the Weird Woman call off the Cathars. |
 | **0.99.7** | the war leaders | Wilderness goblin bands have war leaders. Kill one and his band loses heart and attacks slower. |
 | **0.99.6** | the hall stands down | [Issue #11](https://github.com/EricHype/LionheartFixt/issues/11): Sahar's ring now stands down the hall group and its runner in the abbey's first level, who were left off the list. |
@@ -89,7 +90,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.8 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.9 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

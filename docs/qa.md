@@ -6158,6 +6158,14 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.9 - the brood dies with the caller
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SB1 | Grove Exterior or Druid Council Level 1, a save that has not entered it | Fight a Snakebreed Summoner | It casts, says a summoning line, and snakebreed appear beside it. They vanish on their own about a minute later |
+| SB2 | The same | Kill the Summoner while its brood lives | The log says the brood unravels, and every summoned snakebreed on the map is gone. Ordinary snakebreed are not |
+| SB3 | The same, peaceful route | Take Sahar's ring or the parley while a brood is out | The summoned snakebreed stand down with the rest |
+
 ## 0.99.8 - the raid has a leader
 
 | # | Where | Steps | Pass |
