@@ -311,7 +311,7 @@ the unproven half of any design that depends on it.
 character cannot come from swapping it. The engine has others, but `CStandStillAttackAI` is the only working one,
 `CStandGroundAttackAI` is an alias of this class, and `CChargeAttackAI` and `CStrafeAttackAI` are abstract and crash the
 game if named: see [Dormant engine features](dormant-engine.md). Standing ground is this class with
-`Minimum Attack Distance=0`. It comes from the `Shoot Completed` slot, which fires
+`Minimum Attack Distance=Do not move while attacking` (the label for 0, as 202 vanilla cans write it). It comes from the `Shoot Completed` slot, which fires
 after each swing: 1,365 monsters leave it empty and simply hit things, 74 put a `CRandomAction`
 there, and **the branch count is the rate denominator**. The Snakebreed Summoner's three branches
 are melee, melee, gated summon; `Shaman Greater Super` has six, each a `CActionSelectSkill` over

@@ -123,7 +123,8 @@ It overrides only begin (+0x78, `0x00474530`) and tick (+0x7C, `0x00474570`).
 - **The tick only ticks those two behaviours:** it turns toward the target and fires the current weapon or skill.
   Nothing moves the creature.
 - **It still moves out of range.** CSkeletonAI keeps checking range every tick. When the target passes the skeleton's
-  `Attack Max Dist` (+0x90, default 200 px), it switches to Pursue, and the Pursue AI walks the creature after the target.
+  attack range (+0x90, registered as "Attack/Max Dist", so the key in a can is `Max Dist`; default 200 px), it switches
+  to Pursue, and the Pursue AI walks the creature after the target.
 - **A shot can be cut off.** Only `CNormalAttackAI` is protected from losing the attack state mid-shot (its +0x51/+0x52 flags).
 - **For a true turret,** also neutralise `Pursue AI`. The pursue state null-checks it, so with none it waits for the
   target to come back. That data can blank the field is not yet confirmed.
@@ -142,7 +143,8 @@ Prefer the next entry unless you need what this class drops.
 
 **Works** (code). `CNormalAttackAI` (registration `0x00456930`, size 0x68, vtable `0x006bc1b0`, tick `0x00457570`) is the
 attack AI every vanilla creature uses. Its movement code is skipped when `Move Behavior` is empty **or**
-`Minimum Attack Distance` is 0, which the engine labels "Do not move while attacking" (tick lines 139 to 140). The
+`Minimum Attack Distance` is 0, which the engine labels "Do not move while attacking" (tick lines 139 to 140). Write it
+the way 202 vanilla cans do, as the label itself: `Minimum Attack Distance=Do not move while attacking`, not `0`. The
 creature then stands, turns and fires, and keeps the mid-shot protection that `CStandStillAttackAI` lacks.
 
 | Field | Offset | Default | Meaning |
@@ -155,8 +157,10 @@ creature then stands, turns and fires, and keeps the mid-shot protection that `C
 | `Use Primary Shoot Behavior` | +0x58 | 1 | |
 | `Shoot Completed` | +0x64 | empty | actions after each shot; the attack bank (see engine-notes) |
 
-- **Every vanilla bow can sets `Minimum Attack Distance=350` and `Max Attack Range=500`** (thief, English, goblin archers alike).
-  That is the backing-off the thief archers show. A melee thief has 100 and 35.
+- **Every vanilla bow can sets `Minimum Attack Distance=350`** (thief, English, goblin archers alike). That is the
+  backing-off the thief archers show; a melee thief has 100. The `Max Attack Range=500` (35 for the mace) seen in the
+  same cans is **not** an attack AI field: it belongs to the weapon, the `CPlugInBehaviorAttack` on the can's
+  `CAIInventory` default item. `CNormalAttackAI` has no such field. (Corrected by the can editor's build, 2026-11-09.)
 - **`CStandGroundAttackAI` is not a class.** It is an alias for `CNormalAttackAI`, added at `0x00456fc0`, almost
   certainly the class's old name, so it loads as a plain `CNormalAttackAI` with no behaviour of its own.
 - **Melee creatures set to 0 are useless** against a target that keeps its distance. Use it on archers and casters.
