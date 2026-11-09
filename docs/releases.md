@@ -156,8 +156,10 @@ A probe, built to be played before the two mechanics go any wider. Both come fro
   within its `Max Distance` that listens and can target the caller's target; 88 of 92 undead cans listen. A listener
   sees 550, so the 500 default can only reach creatures that have already seen you; the Deathwatch calls at 800. It fires
   from a `CSkeletonTransition` on its first switch to Attack, and prints *"The Deathwatch raises the alarm!"*. To be
-  beatable it sees 350 and 180 degrees (stock creatures see 550 and 360, wider than half the screen), so it is on screen
-  before it sees you and can be reached from behind; Sneak, which Perception raises, is a chance to stay unseen. It
+  beatable it sees 355 and 180 degrees. The player sees only as far as the fog of war is pushed back, 355 to 460
+  (`Resurrect player.can`: 380, minus 25 for a helmet, plus up to 80 for Perception), so a stock creature at 550 always
+  sees you first. Against the Deathwatch a low-Perception character in a plain helmet is seen as they see it; everyone
+  else sees it first, and it can be reached from behind; Sneak, which Perception raises, is a chance to stay unseen. It
   replaces its generator's one to three undead, 37 walk units from the route, with two listening groups about 700 units
   off the route inside its call. The Bonecaller's cans stop listening, so no alarm turns its conversation into a fight.
   `tools/build_sentries.py`.
@@ -165,7 +167,13 @@ A probe, built to be played before the two mechanics go any wider. Both come fro
 Measured on the way, and recorded because it changes the plan: Act 4 is mostly a corridor where everything already sees
 you (Retreat of Souls has 63 of about 89 creatures within 150 units of the route), so the best on-path sentry on the
 Plateau rouses only two or three. Clustered camps elsewhere, the Unholy Oubliette, Ravine Cave East, Darkwood Cave and
-the Mongol Camp, would rouse 7 to 16. The playtest kit gains a jump to the Plateau. `AL1`-`AL2`, `DW1`-`DW4`.
+the Mongol Camp, would rouse 7 to 16. The playtest kit gains a jump to the Plateau.
+
+- **Helmets that do not cost sight.** The game has one helmet item, and it sets `Wearing a Helmet` to 1, so every
+  helmet costs 25 units of sight. The flag has no minimum, so two new helmet additions give it back: **of the Watch**
+  (Uncommon) sets it to 0, no penalty, and **of Farsight** (Rare) to -2, 50 units more than bare-headed. They roll on
+  random magic helmets like the vanilla additions. `tools/build_sight_helmets.py`. The fog formula is now in
+  `engine-notes.md`. `AL1`-`AL2`, `DW1`-`DW4`, `HM1`-`HM2`.
 
 ---
 ## 0.99.11 - falling back

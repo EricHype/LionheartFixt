@@ -1,0 +1,101 @@
+CInventoryAddition
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorModifyCharacterWhenSelected
+		{
+			Modifier Description=$Instigator
+			Modification is permanent=0
+			Modifiers=Array
+			{
+				Item Count=1
+				Modifier=CCharacterModifierDerivedAttribute
+				{
+					Modification Amount=CConstant
+					{
+						Constant Value=-3
+					}
+					Modification amount is a percent=0
+					Allow Accumulation=1
+					Derived character attribute to modify=Derived Character Attributes/Wearing a Helmet
+				}
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorXRPGCharacterCompositeGrannyModelOverride
+		{
+			Override Models=Array
+			{
+				Character Slot Types/!None=Models3D/!None/!None
+				Character Slot Types/Arm=Models3D/!None/!None
+				Character Slot Types/Arrow=Models3D/!None/!None
+				Character Slot Types/Body=Models3D/Enemies/Barcelona/Hired Goon Sword/Mail
+				Character Slot Types/Bolt=Models3D/!None/!None
+				Character Slot Types/Finger=Models3D/!None/!None
+				Character Slot Types/Foot=Models3D/!None/!None
+				Character Slot Types/Hand=Models3D/!None/!None
+				Character Slot Types/Head=Models3D/!None/!None
+				Character Slot Types/HotKey=Models3D/!None/!None
+				Character Slot Types/Neck=Models3D/!None/!None
+				Character Slot Types/Shield=Models3D/!None/!None
+				Character Slot Types/Waist=Models3D/!None/!None
+				Character Slot Types/Weapon=Models3D/!None/!None
+			}
+			Override Names=Array
+			{
+				Character Slot Types/!None=
+				Character Slot Types/Arm=
+				Character Slot Types/Arrow=
+				Character Slot Types/Body=
+				Character Slot Types/Bolt=
+				Character Slot Types/Finger=
+				Character Slot Types/Foot=
+				Character Slot Types/Hand=
+				Character Slot Types/Head=Helmet3
+				Character Slot Types/HotKey=
+				Character Slot Types/Neck=
+				Character Slot Types/Shield=
+				Character Slot Types/Waist=
+				Character Slot Types/Weapon=
+			}
+			Override Active=0
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=2400
+	}
+	Is Magic=1
+	Encumbrance=3
+	On the ground=Items/PickUps/Misc Items/Helmet3_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Farsight
+	Description=Instead of reducing the wearer's sight, as other helmets do, it lets them see farther than with no helmet at all.
+	Item Grade=Basic
+	Inventory Window=Items/Inventory Images/Armor/Helmet3
+	Minimum Value=2400
+	Minimum Addition Ammount=0
+	Inbetween Value=2400
+	Inbetween Addition Ammount=0
+	Maximum Value=2400
+	Maximum Addition Ammount=0
+	Sample Value=0
+	Addition Ammount=0
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=0
+		}
+	}
+	Inventory Addition Group=Inventory/Inventory Addition Groups/Items/Specific Item/Helmet Additions
+	Addition Rarity=Inventory Item Rarity/3 Rare
+	Replaces matching plugins=0
+	Additions Cannot Be Combined With=Array
+	{
+		Item Count=0
+	}
+}

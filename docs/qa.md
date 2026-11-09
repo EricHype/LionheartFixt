@@ -6168,6 +6168,8 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | DW2 | The same, new attempt | Kill the Deathwatch before it notices you (from behind, or sneaking) | No alarm line; the northern undead stay where they are |
 | DW3 | The same | Approach it head-on in the open | It does not see you until you are well on screen |
 | DW4 | The same, after an alarm | Find and talk to the Bonecaller | It still talks; the alarm did not pull it into the fight |
+| HM1 | Any merchant or loot with magic helmets | Find a Helmet of the Watch, read it, wear it | It says it does not reduce sight; with it on, the clear area around you is as large as with no helmet |
+| HM2 | The same | Wear a Helmet of Farsight | The clear area is visibly larger than with no helmet at all |
 
 ## 0.99.11 - falling back
 

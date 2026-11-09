@@ -1104,6 +1104,24 @@ Name lists compare an entity's `Name` (`0x62bc00`, through `0x5b9b40`) and skip 
 
 `CAssignTemporaryTaskAction` pauses the AI named in `Original AI Type` for a `CPlaySequenceOnceAI`, whose `Speed To Play` (set `Cur Speed To Play` too) scales the clip and whose `Stop Action` runs at the end and must send `CSendAIDoneMessage` to release him. It works from a can with `$Trigger`, and the Stop Action dies with the creature, which a `CDelayAction` does not. `CPlayAnimationAction` with `AI To Interrupt` builds the same task (`0x5761d0`) but has no speed field and refuses if a task is already running. A sequence the model lacks is a silent no-op (`0x5406f0`). Clip lengths are `Duration` in the `.ANIMATION.GR2`. The `.mdl16` lists every sequence, so read all of it: a keyword filter hid Fidget, Run and GetUp from me.
 
+## How far the player can see
+
+There is no vision stat. The player sees as far as the fog of war is pushed back, and creatures in the fog fade out
+(`CAISetOpacityBasedOnVisibility`, on every monster can). The push is a `CAIPushFogOfWar` set up in
+`Resurrect player.can`, on the same flattened oval as everything else (`YX Ratio=0.712766`):
+
+    radius = 380 - 25 x Wearing a Helmet + (Perception <= 4: 0; 5 to 12: 10 x (Perception - 4); above 12: 80)
+
+So a player sees 355 to 460 across and about 0.71 of that up and down, which sits at the edge of an 800x600 screen.
+`Shamans Eye` pushes it further. `Wearing a Helmet` is set to 1 by the one helmet item in the game ("+3 AC, slightly
+reduces sight distance") and has **no minimum**, so an addition can push it below 0 to give sight back: 0.99.12's
+`of the Watch` (to 0) and `of Farsight` (to -2, +50).
+
+Detection runs the other way on the enemy's own numbers: `Max Distance` (550 almost everywhere) inside its `Vision Cone`
+(360 on 1,317 placements, 90 on 145), and while you sneak inside a cone, the Sneak skill is the percentage chance to stay
+unseen for each window of seconds the engine's help text describes. Perception raises Sneak. So a stock creature always
+sees you before you see it, by 90 to 195 units: an enemy you are meant to spot first must see less than 355.
+
 ## A click reads the first specifier
 
 A click uses the first `CAIInteractionSpecifier` on the entity (`0x46b0f0`, through the entity vtable at `+0x120`). Every monster can already carries `GetCloseThenTriggerAndFight` (all 49 English cans), so a `CAddAIAction` adds a second one that nothing ever reads. Remove first, then add, as vanilla does for its customers, and when he turns hostile again put the fight specifier back, because a creature with none cannot be clicked at all. `GetCloseThenTalk` has `Fight When Attack Is Forced=1`, so force attack still works on him.

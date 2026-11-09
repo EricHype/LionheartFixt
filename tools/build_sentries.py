@@ -10,9 +10,12 @@ not, the call must reach past 550; the probe uses 800. The sentry fires it from 
 Target, Any to Attack, the hook vanilla uses 509 times for a creature's alert sound.
 
 The sentry has to be beatable. Detection is the enemy's: `Max Distance` 550 and a 360 degree `Vision Cone` on nearly every
-creature, with the Sneak skill as a chance to stay unseen. 550 is wider than half the screen, so a stock creature sees
-you first. The Deathwatch sees 350 and only 180 degrees (vanilla uses 90 on 145 creatures), so it is on screen before it
-can see you, and you can come at it from behind. It carries its own name, so it can be picked out.
+creature, with the Sneak skill as a chance to stay unseen. The player sees only as far as the fog of war is pushed back,
+`380 - 25 for a helmet + a Perception bonus` (`Resurrect player.can`), 355 to 460, and creatures in the fog fade out, so a
+stock creature at 550 always sees you first. The Deathwatch sees 355 and only 180 degrees (vanilla uses 90 on 145
+creatures): a low-Perception character in a plain helmet is seen as it is seen, every other character sees it first, by up
+to 135 units with a Farsight helmet (build_sight_helmets.py), and you can come at it from behind. It carries its own name,
+so it can be picked out.
 
 A sentry replaces its generator's spawn rather than adding to it: one Deathwatch where one to three undead stood.
 
@@ -40,7 +43,7 @@ COPY = "Monster Cans/Fixt Sentry/"
 SPOTS = [("Levels/4 Crypt/7 Doomed Plateau.zax", (1903, 3084),
           [("14", U + "Skeleton"), ("18", U + "Skeleton Tough"), ("22", U + "Skeleton Super"), ("60", U + "Skeleton Super")],
           "Deathwatch", "800")]
-SIGHT, CONE = "350", "180"
+SIGHT, CONE = "355", "180"
 DEAF = [U + "Boss Lich", U + "Boss Lich Tough", U + "Boss Lich Super"]  # the Bonecaller
 
 
