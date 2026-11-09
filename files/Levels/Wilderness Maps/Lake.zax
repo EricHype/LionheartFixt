@@ -87,6 +87,1264 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Lake Band 1 war leader
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=70
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=16
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=23
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader Super
+								}
+							}
+						}
+					}
+					New Name=Lake Band 1 Leader
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CSkeletonAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Patrol AI=CScanAreaAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Play Ratio=0
+								Next Try To Move=0
+								State=Scanning
+								Go Home Range=300
+								Move To Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Starting Angle=-25
+								Ending Angle=25
+								Turning Speed=5
+								Time Between Turning=0
+								Start Out Waiting=0
+								Start Counterclockwise=0
+								Turning Flag=0
+								Turn Sequence Name=Idle
+								End Turn Action=
+								Execute Each Turn=0
+								Reset Each Begin=1
+								Current Time To Wait=0
+								Current Start Angle=0
+								Current End Angle=0
+								Waiting=1
+								Starting Facing Angle=-999
+								Complete Turn Time=0
+								Current Turn Time=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+							}
+							Patrol Start Action=
+							Patrol End Action=
+							Respond to calls for reinforcements=1
+							Time Until Next Search For Target=0
+							Target shooter if hit=1
+							Never Unacquire=0
+							Time Since Acquiring Shooter=999
+							Sneak Adjustment=0
+							Target Type=CEntityBehaviorStateSetClosestTarget
+							{
+								Max Distance=550
+								Vision Cone=360
+								Name To Target=
+								Must Be Collideable=1
+								Must Have HPs=1
+								Valid Targets=Player,Player Friend
+							}
+							Has Seen Target=0
+							Max dist from home=1200
+							Pursue AI=CChasePursueAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=1
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Max Radius From Final Pos To Get Within=0
+								Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+							}
+							Pursue Start Action=
+							Pursue End Action=
+							Force Pursue Shooter=2
+							Max distance from home=1000
+							Investigate End Action=
+							Investigate Start Action=
+							Investigate AI=CChaseInvestigateAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Turn Behavior=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Time To Investigate=5
+								Count To Investigate=0
+								Radius to Investigate Point=0
+								Run To Investigate=1
+								State=Chasing
+								Investigate AI=CScanInvestigateAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CScanAreaAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Play Ratio=0
+										Next Try To Move=0
+										State=Scanning
+										Go Home Range=300
+										Move To Behavior=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Starting Angle=-45
+										Ending Angle=45
+										Turning Speed=10
+										Time Between Turning=0
+										Start Out Waiting=0
+										Start Counterclockwise=0
+										Turning Flag=0
+										Turn Sequence Name=Idle
+										End Turn Action=
+										Execute Each Turn=0
+										Reset Each Begin=1
+										Current Time To Wait=0
+										Current Start Angle=0
+										Current End Angle=0
+										Waiting=1
+										Starting Facing Angle=-999
+										Complete Turn Time=0
+										Current Turn Time=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+									}
+								}
+							}
+							Max Dist=350
+							Attack AI=CNormalAttackAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Use Primary Shoot Behavior=1
+								Shoot Behavior=CShootEntityBehavior
+								{
+									Play Sequence=
+									Play Reload Sequence=
+								}
+								Shoot Completed=
+								Turn Behavior=CPointWeaponAtTargetEntityBehavior
+								{
+								}
+								MoveBehavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Minimum Attack Distance=100
+								Move Buffer Zone=50
+								Waiting For Threshold=0
+								Moving State=1
+								Firing Complete=1
+								Firing In Progress=0
+								Waiting To Shoot=0
+								Time To Next State Change=0
+								Time To Next MoveRevision=0
+								Began Shooting From=0.000000,0.000000
+							}
+							Attack Start Action=
+							Attack End Action=
+							Check Range When Firing=0
+							Ignore line of sight if in range=0
+							Retreat when=0
+							Retreat Start Action=
+							Has Started Retreat=0
+							State=Any
+							Allowed To Roam Anywhere=0
+							Transition=Array
+							{
+								Array Count=0
+							}
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=5.53269
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=1183
+			Position Y=2257
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Lake Band 1 heart
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CIsAliveAction
+							{
+								Name To Check For=Lake Band 1 Leader
+								Desired Minimum Count=1
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CAddAIAction
+								{
+									Target Name=Lake Band 1
+									AI=CRepeatTimerTriggerAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Action=CSeriesAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=lost heart
+													Modification is permanent=1
+													Character to modify=$Trigger
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=-0.25
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=0
+															Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Trigger
+												}
+												Action=CSucceedAction
+												{
+													Action=
+												}
+											}
+											When Done=Repeat Last Action
+											Require Success To Advance=0
+											Next Action Index=0
+										}
+										Delay Between Actions=600
+										Plus or Minus=0
+										Seconds Till Next Execute=0
+									}
+									Delay Between Adds=0
+								}
+								Action=CPrintCombatTextAction
+								{
+									Text to print=Their war leader is dead, and the goblins around him lose heart.
+									Character to show text to=Player1
+									Emphasize=0
+									Suppress Duplicates=0
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Fixt Lake Band 1 heart
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Delay Between Actions=2
+					Plus or Minus=0
+					Seconds Till Next Execute=10
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=1183.0
+			Position Y=2297.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Lake Band 2 war leader
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=28
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=16
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=23
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=1
+							Quantity to generate max=1
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Levels/Wilderness/Character Templates/Fixt Goblin War Leader Super
+								}
+							}
+						}
+					}
+					New Name=Lake Band 2 Leader
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=1
+						AI=CSkeletonAI
+						{
+							Marked For Deletion=0
+							Publisher=
+							Patrol AI=CScanAreaAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Play Ratio=0
+								Next Try To Move=0
+								State=Scanning
+								Go Home Range=300
+								Move To Behavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Starting Angle=-25
+								Ending Angle=25
+								Turning Speed=5
+								Time Between Turning=0
+								Start Out Waiting=0
+								Start Counterclockwise=0
+								Turning Flag=0
+								Turn Sequence Name=Idle
+								End Turn Action=
+								Execute Each Turn=0
+								Reset Each Begin=1
+								Current Time To Wait=0
+								Current Start Angle=0
+								Current End Angle=0
+								Waiting=1
+								Starting Facing Angle=-999
+								Complete Turn Time=0
+								Current Turn Time=0
+								Idle Behavior=CEntityBehaviorIdle
+								{
+									Num Seconds=1
+									Seconds Have Transitioned=0
+									Override Fidget Options=
+									Current Fidget Data=
+									Time Until Next Fidget=0
+									Fidgeting=0
+								}
+							}
+							Patrol Start Action=
+							Patrol End Action=
+							Respond to calls for reinforcements=1
+							Time Until Next Search For Target=0
+							Target shooter if hit=1
+							Never Unacquire=0
+							Time Since Acquiring Shooter=999
+							Sneak Adjustment=0
+							Target Type=CEntityBehaviorStateSetClosestTarget
+							{
+								Max Distance=550
+								Vision Cone=360
+								Name To Target=
+								Must Be Collideable=1
+								Must Have HPs=1
+								Valid Targets=Player,Player Friend
+							}
+							Has Seen Target=0
+							Max dist from home=1200
+							Pursue AI=CChasePursueAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=1
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Max Radius From Final Pos To Get Within=0
+								Max Radius Aspect Ratio From Final Pos To Get Within=0.712766
+							}
+							Pursue Start Action=
+							Pursue End Action=
+							Force Pursue Shooter=2
+							Max distance from home=1000
+							Investigate End Action=
+							Investigate Start Action=
+							Investigate AI=CChaseInvestigateAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								AFloat=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Turn Behavior=CEntityBehaviorTurnToAngle
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+								}
+								Play Ratio=0
+								Next Try To Move=0
+								Time To Investigate=5
+								Count To Investigate=0
+								Radius to Investigate Point=0
+								Run To Investigate=1
+								State=Chasing
+								Investigate AI=CScanInvestigateAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CScanAreaAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Play Ratio=0
+										Next Try To Move=0
+										State=Scanning
+										Go Home Range=300
+										Move To Behavior=CEntityBehaviorMoveToPos
+										{
+											Old Stationary Flag=0
+											Angle To Turn To=0
+											Facing Backwards=0
+											Idle Behavior=CEntityBehaviorIdle
+											{
+												Num Seconds=1
+												Seconds Have Transitioned=0
+												Override Fidget Options=
+												Current Fidget Data=
+												Time Until Next Fidget=0
+												Fidgeting=0
+											}
+											Play Ratio=1
+											Smooth Turning=0
+											Do Path Finding=1
+											Finished=1
+											Failed Last Path=0
+											Idle Begin Called=0
+											Move To Rate=0
+											CurTargetNormalX=0
+											CurTargetNormalY=0
+											Path Finding Params=CWayPointPath
+											{
+												Start Point=0,0
+												End Point=0,0
+												Length=0
+												Max Dist To Travel=0
+												Num Failed Paths=0
+												Max Failed Paths=0
+												Pos To Move Index=0
+												Dist So Far=0
+												Path=
+											}
+											Pos Moving From=0.000000,0.000000
+											Final Dest=0.000000,0.000000
+											Dest Radius=0
+											Cur Dest Move To=0.000000,0.000000
+											Last Neg Dist=0
+											NumTimesLostGound=0
+											Sequence=
+											Planed Path For=
+										}
+										Starting Angle=-45
+										Ending Angle=45
+										Turning Speed=10
+										Time Between Turning=0
+										Start Out Waiting=0
+										Start Counterclockwise=0
+										Turning Flag=0
+										Turn Sequence Name=Idle
+										End Turn Action=
+										Execute Each Turn=0
+										Reset Each Begin=1
+										Current Time To Wait=0
+										Current Start Angle=0
+										Current End Angle=0
+										Waiting=1
+										Starting Facing Angle=-999
+										Complete Turn Time=0
+										Current Turn Time=0
+										Idle Behavior=CEntityBehaviorIdle
+										{
+											Num Seconds=1
+											Seconds Have Transitioned=0
+											Override Fidget Options=
+											Current Fidget Data=
+											Time Until Next Fidget=0
+											Fidgeting=0
+										}
+									}
+								}
+							}
+							Max Dist=350
+							Attack AI=CNormalAttackAI
+							{
+								Marked For Deletion=0
+								Publisher=
+								Use Primary Shoot Behavior=1
+								Shoot Behavior=CShootEntityBehavior
+								{
+									Play Sequence=
+									Play Reload Sequence=
+								}
+								Shoot Completed=
+								Turn Behavior=CPointWeaponAtTargetEntityBehavior
+								{
+								}
+								MoveBehavior=CEntityBehaviorMoveToPos
+								{
+									Old Stationary Flag=0
+									Angle To Turn To=0
+									Facing Backwards=0
+									Idle Behavior=CEntityBehaviorIdle
+									{
+										Num Seconds=1
+										Seconds Have Transitioned=0
+										Override Fidget Options=
+										Current Fidget Data=
+										Time Until Next Fidget=0
+										Fidgeting=0
+									}
+									Play Ratio=1
+									Smooth Turning=0
+									Do Path Finding=1
+									Finished=1
+									Failed Last Path=0
+									Idle Begin Called=0
+									Move To Rate=0
+									CurTargetNormalX=0
+									CurTargetNormalY=0
+									Path Finding Params=CWayPointPath
+									{
+										Start Point=0,0
+										End Point=0,0
+										Length=0
+										Max Dist To Travel=0
+										Num Failed Paths=0
+										Max Failed Paths=0
+										Pos To Move Index=0
+										Dist So Far=0
+										Path=
+									}
+									Pos Moving From=0.000000,0.000000
+									Final Dest=0.000000,0.000000
+									Dest Radius=0
+									Cur Dest Move To=0.000000,0.000000
+									Last Neg Dist=0
+									NumTimesLostGound=0
+									Sequence=
+									Planed Path For=
+								}
+								Minimum Attack Distance=100
+								Move Buffer Zone=50
+								Waiting For Threshold=0
+								Moving State=1
+								Firing Complete=1
+								Firing In Progress=0
+								Waiting To Shoot=0
+								Time To Next State Change=0
+								Time To Next MoveRevision=0
+								Began Shooting From=0.000000,0.000000
+							}
+							Attack Start Action=
+							Attack End Action=
+							Check Range When Firing=0
+							Ignore line of sight if in range=0
+							Retreat when=0
+							Retreat Start Action=
+							Has Started Retreat=0
+							State=Any
+							Allowed To Roam Anywhere=0
+							Transition=Array
+							{
+								Array Count=0
+							}
+						}
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+					New Facing Angle=0.71548
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=78
+			Position Y=565
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Lake Band 2 heart
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CIsAliveAction
+							{
+								Name To Check For=Lake Band 2 Leader
+								Desired Minimum Count=1
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CAddAIAction
+								{
+									Target Name=Lake Band 2
+									AI=CRepeatTimerTriggerAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Action=CSeriesAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=lost heart
+													Modification is permanent=1
+													Character to modify=$Trigger
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=-0.25
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=0
+															Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Trigger
+												}
+												Action=CSucceedAction
+												{
+													Action=
+												}
+											}
+											When Done=Repeat Last Action
+											Require Success To Advance=0
+											Next Action Index=0
+										}
+										Delay Between Actions=600
+										Plus or Minus=0
+										Seconds Till Next Execute=0
+									}
+									Delay Between Adds=0
+								}
+								Action=CPrintCombatTextAction
+								{
+									Text to print=Their war leader is dead, and the goblins around him lose heart.
+									Character to show text to=Player1
+									Emphasize=0
+									Suppress Duplicates=0
+								}
+								Action=CDeactivateAction
+								{
+									Target Name=Fixt Lake Band 2 heart
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Delay Between Actions=2
+					Plus or Minus=0
+					Seconds Till Next Execute=10
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=78.0
+			Position Y=605.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt the Horde's heart
 			Child List=
 			Visible=0
@@ -132,13 +1390,13 @@ CLayerSaveData
 										Item Count=3
 										Action=CSetTargetTypeAction
 										{
-											Entity Name=Horde Goblin, Goblin Lake map, Goblin upper right near node
+											Entity Name=Horde Goblin, Lake Band 1, Lake Band 2, Lake Band 1 Leader, Lake Band 2 Leader, Goblin Lake map, Goblin upper right near node
 											Name To Target=
 											Valid Targets=
 										}
 										Action=CRemoveCategoryAction
 										{
-											Target Name=Horde Goblin, Goblin Lake map, Goblin upper right near node
+											Target Name=Horde Goblin, Lake Band 1, Lake Band 2, Lake Band 1 Leader, Lake Band 2 Leader, Goblin Lake map, Goblin upper right near node
 											Categories To Remove=Enemy
 										}
 										Action=CPrintCombatTextAction
@@ -172,7 +1430,7 @@ CLayerSaveData
 											Item Count=2
 											Action=CAddAIAction
 											{
-												Target Name=Horde Goblin, Goblin Lake map, Goblin upper right near node
+												Target Name=Horde Goblin, Lake Band 1, Lake Band 2, Lake Band 1 Leader, Lake Band 2 Leader, Goblin Lake map, Goblin upper right near node
 												AI=CRepeatTimerTriggerAI
 												{
 													Marked For Deletion=0
@@ -1105,7 +2363,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=Horde Goblin
+					New Name=Lake Band 2
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -18532,7 +19790,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=Horde Goblin
+					New Name=Lake Band 1
 					Remove Default AIs=0
 					AIs to Add=Array
 					{

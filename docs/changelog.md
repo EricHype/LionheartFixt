@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.7** | the war leaders | Wilderness goblin bands have war leaders. Kill one and his band loses heart and attacks slower. |
 | **0.99.6** | the hall stands down | [Issue #11](https://github.com/EricHype/LionheartFixt/issues/11): Sahar's ring now stands down the hall group and its runner in the abbey's first level, who were left off the list. |
 | **0.99.5** | the sieges are held too | In the Gate and Temple District sieges, kill every druid priest and the English soldiers stand down, wake in Spain, and can be talked to; hit one and the siege turns again. |
 | **0.99.4** | the acolytes' ward | The first enemy role. While any Hujark Acolyte on a map lives, the Hujark warriors there are warded, and the ward breaks when the last acolyte falls. Seven act 5 maps. |

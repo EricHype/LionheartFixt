@@ -6158,6 +6158,13 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.7 - the war leaders
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| GL1 | Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit | Find a band with a hat goblin named Goblin War Leader, kill him | The log says the goblins around him lose heart, and his band attacks visibly slower. Other bands are unchanged |
+| GL2 | The same, as the Khan's Champion | Walk in | The bands and their war leaders keep their distance |
+
 ## 0.99.6 - the hall stands down
 
 | # | Where | Steps | Pass |
