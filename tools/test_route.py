@@ -19,6 +19,10 @@ OLD_SAVE = re.compile(r"(?i)old save|older save|existing save|save (that|which|f
                       r"pre-0\.|on an older|a 0\.\d+\.\d+ save|needs a save from|cannot (pass|be run) on a new game|not on a new game")
 
 
+PLACES = [("Siege", "6 Barcelona Attack"), ("Temple Initiate", "7 English Shrine"), ("Stone Chamber", "7 English Shrine"),
+          ("Antechamber", "7 English Shrine"), ("Exalted", "7 English Shrine"), ("Secret Chamber", "7 English Shrine"),
+          ("Inner Sanctum", "7 English Shrine"), ("Alamut", "8 Alamut"), ("Desert Sprawl", "8 Alamut"), ("Final Encounter", "8 Alamut"),
+          ("Slave Pits", "1 Barcelona"), ("Montserrat", "2 Montserrat"), ("Grove", "2 Montserrat"), ("Hamlet", "3 Montaillou")]
 LOG_NAME = ("Expected names here came from race names, but 0.60.3 found the log prints the can's User Assigned Name "
             "(a hat goblin logs Goblin Striker). A different name is not a failure on its own; check it against the can.")
 
@@ -35,14 +39,31 @@ def version(section):
 
 
 def load():
-    rows = {r["line"]: r for r in json.loads((D / "rows.json").read_text(encoding="utf8"))}
-    out = []
+    # keyed by (section, id, nth), not by line: a new section in qa.md moves every line below it
+    rows, nth = {}, collections.Counter()
+    for r in json.loads((D / "rows.json").read_text(encoding="utf8")):
+        k = (r["section"], r["id"])
+        rows[k + (nth[k],)] = r
+        nth[k] += 1
+    out, seen = [], set()
     for n in range(1, 8):
         for c in json.loads((D / f"classified-{n}.json").read_text(encoding="utf8")):
-            r = dict(rows[c["line"]])
-            r.update({k: v for k, v in c.items() if k != "line"})
+            key = (c["section"], c["id"], c["nth"])
+            if key not in rows:
+                continue
+            r = dict(rows[key])
+            r.update({k: v for k, v in c.items() if k not in ("line", "section", "id", "nth")})
             out.append(r)
-    assert len(out) == len(rows), (len(out), len(rows))
+            seen.add(key)
+    # cases added to qa.md after the classification: kept, and placed by the place they name
+    for line, r in rows.items():
+        if line in seen:
+            continue
+        r = dict(r)
+        where = r.get("where", "") + " " + r.get("section", "")
+        act = next((a for k, a in PLACES if k.lower() in where.lower()), "Anywhere")
+        r.update({"status": "keep", "act": act, "map": "", "by": "", "check": "eye", "savecheck": "", "note": "added after the 1.0 classification"})
+        out.append(r)
     return out
 
 

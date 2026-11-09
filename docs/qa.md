@@ -6158,6 +6158,19 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.10 - what the re-score found
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| BF1 | Gate or Temple District Siege, first visit | Fight until a druid priest appears, kill every one | The soldiers keep fighting until the last druid falls, then stand down and wake. Arriving alone does NOT stand them down |
+| BF2 | Temple Initiate, Stone Chamber, Antechamber | Walk the main route | You meet a druid post on the route in each map; killing both of a room's druids stands its soldiers down |
+| BF3 | The same | Watch the stood-down men | None of them is a Priest wearing a soldier's waking line |
+| BF4 | Exalted Chambers, Secret Chamber, Inner Sanctum | Fight the priestesses | At a low level no Super priestess appears; at a high level no base one |
+| BF5 | Alamut, the Knight of Saladin | Ask about the tribute and the tent | No sentence repeats |
+| BF6 | Final Encounter, as a Saladin high-level | Take the standing-order reply to the Old Man | It says "every year since", not "eighty" |
+| BF7 | Desert Sprawl, through the goblin gate | Click Rumjun Khan, choose "accompany me" | He talks rather than fights; after the reply he attacks the desert's enemies and not you |
+| BF8 | Slave Pits, then any act 8 map | Bring an Assassin Master below half health | No whistle line in the Slave Pits; in act 8, sometimes the line and two dogs |
+
 ## 0.99.9 - the brood dies with the caller
 
 | # | Where | Steps | Pass |

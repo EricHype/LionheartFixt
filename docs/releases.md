@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.9 are published** -- 212 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.10 are published** -- 213 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,38 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.10 - what the re-score found
+
+Acts 4 to 8 were scored by route again at 0.99.9, the same way as at 0.97.2: creatures near the shortest path per route,
+unavoidable bosses, the mix, and real forks, judged by what stops being hostile. They came out 2, 3, 2, 2, 2 (were 2, 2, 1, 2, 2).
+Act 5 rose because 0.97.3's ally fix now reaches real names; Act 6 because the standard is a priced fork. The re-score also
+found that much of the recent work sat off the path or did not run. `tools/build_back_half_fixes.py`. `BF1`-`BF8`.
+
+- **The siege holds broke themselves (0.99.5).** Each siege's watch looked for its druids ten seconds after arrival, but every
+  siege druid sits in a generator a trigger switches on later (`fight4`, `fight5`, `fight8`). So the soldiers already there stood
+  down at once, and killing the druids did nothing. The watch now arms only once a druid has been seen alive, as 0.99.8's raid does.
+- **Druids hidden among the Shrine's soldiers.** 0.19.0's swap left 74 Priest entries across the front maps' soldier generators,
+  which spawned under the soldier name the room's watch ignores. They leave the soldier generators; the posts are the room's druids.
+- **The posts were off the path.** Temple Initiate's and Stone Chamber's posts stood 1,500 to 2,500 walk units from the route, and
+  the Antechamber's second beside its exit. One post per map moves to a generator spot on the route.
+- **Priest and Priestess tiers follow mojo.** They had been placed by a group's position in the file, so a 60-mojo group could hold
+  the base Priestess. Below 23 is base, below 40 Tough, else Super, across the whole act.
+- **The Knight of Saladin repeated himself** in nodes 22 and 23, where 0.99.1 inserted its new sentences beside the old ones.
+- **The Old Man contradicted him.** The Knight's standing order became "all the centuries since" in 0.99.1; the Old Man's reply
+  still said "eighty" years and now says "every year since".
+- **Rumjun Khan could not be spoken to.** His can's first specifier fights and a click reads only the first, so clicking him in the
+  Desert Sprawl attacked him. His spawn now drops it and the Enemy category before taking the talk one. "Accompany me" led to an
+  empty node in vanilla too; it now makes him a Player Friend who fights the desert's enemies beside you. He does not follow.
+- **The dog whistle with no dogs.** The Assassin Master cans summon from a source only act 8's maps hold, so in the Slave Pits the
+  "whistles, and guard dogs come running" line printed and nothing came. It runs only where a map carries `Fixt assassin dogs here`.
+- **Fire and Ice and The Mage** described their second spell as raising your own; since 0.88.1 both are castable wand spells.
+- **Five builders reverted shipped work on a rerun** (alamut, buckler, slave pens, slide rhythm, weapon meshes), each carrying text or
+  files older than what ships. They leave the shipped file alone now; all 43 rerun to zero changes.
+
+Not done, and still suspected: allied Hujark may summon a hostile viper at half health, and the Bonewright's death stops new risers
+without settling the risen. Act 4 is unchanged and still the weakest act.
+
+---
 ## 0.99.9 - the brood dies with the caller
 
 Act 2 fields 40 Snakebreed Summoners, inside the Grove's and Druid Council Level 1's `Snakebreed` generators. The can summons only
