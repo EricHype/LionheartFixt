@@ -6158,6 +6158,12 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.6 - the hall stands down
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MS1 | Montserrat peaceful route, a save that has not entered Druid Council Level 1 | Take Sahar's ring, then walk back through Level 1 and the Grove | No snakebreed or assassin attacks you, including the group in the hall and its runner; the wounded assassin still talks |
+
 ## 0.99.5 - the sieges are held too
 
 | # | Where | Steps | Pass |
