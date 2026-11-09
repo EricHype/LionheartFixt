@@ -189,6 +189,11 @@ def fix_registry():
             p += 4 + ln
         return first - 8, count, out, p
 
+    # Later work (BucklerBetter, the Templar shields) registers more meshes in the shipped composite. It is built from
+    # vanilla here, so once it exists a rerun would drop theirs.
+    if (FX / MALE).exists():
+        print("registry: male composite already shipped, left alone")
+        return
     orig = zf.read(MALE)
     at, count, before, end = registry(orig)
     paths = [s for _, s in before]

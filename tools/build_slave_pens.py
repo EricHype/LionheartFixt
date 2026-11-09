@@ -120,6 +120,9 @@ def cans():
 
 
 def tree():
+    # 0.99.1's fact-check rewrote lines in the shipped tree, so it is the authority now; a rerun must not restore these
+    if (FX / TREE).exists():
+        return
     nodes = []
     buyer = "CActionExpression" + CR + "{" + CR + "Action=" + B(*exists(BUYER)) + "}" + CR
     for key, (name, _, _, shown, _, kar, gold) in CAPTIVES.items():

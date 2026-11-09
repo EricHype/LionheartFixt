@@ -61,6 +61,10 @@ MAGIC = "Inventory/Creating Random Magic Items/"
 NEW_CAN = MAGIC + "All Shields and Buckler"
 ARM = T * 4 + "Character Slot Types/Arm="
 
+# build_buckler_better.py repoints the Better tier at its own skin afterwards, and a rerun here would put it back.
+if (FX / DEST).exists() and "Shield Buckler Better" in (FX / DEST).read_bytes().decode("latin-1"):
+    sys.exit("build_buckler: build_buckler_better.py has already run over this; a rerun would undo its art. Nothing written.")
+
 
 def write(rel, text):
     assert text.count("\n") == text.count(CR), rel + " is not all-CRLF"

@@ -2,9 +2,11 @@
 
 Vanilla dialogue averages 10.2 words a sentence and 3% run past 25. The slides, pitched at New Vegas in
 0.71.0, averaged 21.4 and 36%. Every particular stays. One long sentence stays where the length is doing
-something. A rerun is a no-op, and `docs/ending-slides.md` is rewritten from the same text.
+something. `docs/ending-slides.md` is rewritten from the same text.
 
-    python tools/build_slide_rhythm.py
+The slides have been rewritten by hand since, so this text is older than what ships, and it runs only on purpose:
+
+    python tools/build_slide_rhythm.py --force
 """
 import re
 import sys
@@ -197,6 +199,10 @@ def apply_doc(batch):
 
 
 def main():
+    # The slides were rewritten by hand after this ran (the shorter companion pass and 0.99.1's fact-check), so this
+    # text is older than what ships. Running it again would put the old text back.
+    if "--force" not in sys.argv:
+        sys.exit("build_slide_rhythm: the shipped slides are newer than this script's text. Pass --force only to rebuild from it on purpose.")
     for batch in BATCHES:
         apply_tree(batch)
         apply_doc(batch)

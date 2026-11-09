@@ -107,7 +107,9 @@ def goblin_gate():
         both = multi([("CForEachPlayerAction", [("Action", flag(KHAN_DEAD))]), ("CFixtKeep", [])])
         text = B(*both).replace(B("CFixtKeep", []), c[v:e] + CR).rstrip()
         lhbuild.write_map(KING_CAN, c[:v] + text + c[e:])
-    write_var(KHAN_DEAD, "Fixt Goblin Khan Dead", "1 means the Goblin Khan died. The act 8 goblin gate reads it, because the marker it read lives on another map.")
+    # build_carryovers.py renamed and re-described this record when it merged the two Khan variables; keep its version
+    if not (FX / ("Resources/" + KHAN_DEAD + ".DerivedCharacterAttribute")).exists():
+        write_var(KHAN_DEAD, "Fixt Goblin Khan Dead", "1 means the Goblin Khan died. The act 8 goblin gate reads it, because the marker it read lives on another map.")
     register(["Resources/" + KHAN_DEAD + ".DerivedCharacterAttribute", KING_CAN[len("Resources/") - len("Resources/"):]])
     rel = A + "01 Desert Sprawl.zax"
     z = lhbuild.read(rel)
