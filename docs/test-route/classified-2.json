@@ -1,0 +1,3642 @@
+[
+ {
+  "line": 1515,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.87.1, line 1621 (WP5)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.87.1 made every wand unable to attack at all"
+ },
+ {
+  "line": 1516,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand discharges.'; inventory Wand Charge count drops by exactly 1",
+  "note": ""
+ },
+ {
+  "line": 1517,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand has no charges left'; Wand Charge count unchanged",
+  "note": ""
+ },
+ {
+  "line": 1518,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "count 'The wand discharges.' lines in the log against the starting Wand Charge count",
+  "note": ""
+ },
+ {
+  "line": 1519,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.87.1, lines 1621 and 1623; 0.88.1 line 1582",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Rigor Mortis strike behaviour was removed in 0.87.1"
+ },
+ {
+  "line": 1520,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.87.1, line 1617 (WP1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Poisonous Touch now poisons the target it is cast at, not your weapon"
+ },
+ {
+  "line": 1521,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.87.1, lines 1617 and 1621",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1522,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.87.1, line 1620 (WP4)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1523,
+  "act": "Anywhere",
+  "map": "any locked chest",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1524,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.87.1, line 1621 (WP5)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "no wand can strike anything since 0.87.1"
+ },
+ {
+  "line": 1525,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1526,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.88.1, lines 1572 and 1577",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.88.1 moved all nine onto Wand Charges"
+ },
+ {
+  "line": 1527,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Pre-0.87.0 save only; known cosmetic gap, unreachable on a new game"
+ },
+ {
+  "line": 1553,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "WI1 proves the release"
+ },
+ {
+  "line": 1554,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1555,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1556,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1557,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand discharges.'; inventory Wand Charge count drops by exactly 1 (with a charge); 'no charges left' line without one",
+  "note": ""
+ },
+ {
+  "line": 1572,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand discharges.'; inventory Wand Charge count drops by exactly 1",
+  "note": ""
+ },
+ {
+  "line": 1573,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1574,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand has no charges left'; Wand Charge count unchanged",
+  "note": ""
+ },
+ {
+  "line": 1575,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1576,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1577,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "one 'The wand discharges.' log line and one Wand Charge spent per cast",
+  "note": ""
+ },
+ {
+  "line": 1578,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "two Wand Charges spent and two discharge log lines for one Fireball and one Ice Storm",
+  "note": ""
+ },
+ {
+  "line": 1579,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1580,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1581,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand discharges.'; inventory Wand Charge count drops by exactly 1",
+  "note": ""
+ },
+ {
+  "line": 1582,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "second cast logs 'The wand has no charges left' and Wand Charge stack is gone",
+  "note": ""
+ },
+ {
+  "line": 1583,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1584,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1585,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "WE14 proves the area conversion"
+ },
+ {
+  "line": 1586,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand discharges.'; inventory Wand Charge count drops by exactly 1",
+  "note": ""
+ },
+ {
+  "line": 1617,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has 'The wand discharges.'; inventory Wand Charge count drops by exactly 1",
+  "note": ""
+ },
+ {
+  "line": 1618,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1619,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1620,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 1557 (0.88.2 WI5)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1621,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1622,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Pin is now 139, not 134, after 0.88.2; the pass condition is unchanged"
+ },
+ {
+  "line": 1623,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.88.1, line 1582 (WE11)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.88.1 found the freeze applied twice; WE11 checks the corrected cast"
+ },
+ {
+  "line": 1624,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Pre-0.74.0 character only; known cosmetic gap"
+ },
+ {
+  "line": 1625,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1649,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1650,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1651,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1652,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The row that matters"
+ },
+ {
+  "line": 1653,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1654,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1655,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 1937 (0.83.0 TK1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1681,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1682,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1683,
+  "act": "1 Barcelona",
+  "map": "a magic vendor (Weng Choi)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1684,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1685,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "One jump means the delay chain broke"
+ },
+ {
+  "line": 1686,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1687,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1688,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1689,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Risk row: losing ticks is fine, a crash or stuck effect is not"
+ },
+ {
+  "line": 1690,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1691,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1692,
+  "act": "1 Barcelona",
+  "map": "Herbalist's shop",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1693,
+  "act": "1 Barcelona",
+  "map": "Weng Choi; also Weird woman (Hamlet Burned), Witch Interior, Rogue Inquisitor (Plains)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1694,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1695,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Needs a Demokin with Vampiric Fury"
+ },
+ {
+  "line": 1696,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1721,
+  "act": "Sewers",
+  "map": "Skulker / thieves' vault",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "XP rises by 600 and gold by 400 after the hand-over",
+  "note": ""
+ },
+ {
+  "line": 1722,
+  "act": "Sewers",
+  "map": "Skulker",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "gold rises by a further 50 (450 total)",
+  "note": ""
+ },
+ {
+  "line": 1723,
+  "act": "Sewers",
+  "map": "Skulker",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1724,
+  "act": "Sewers",
+  "map": "Skulker / thieves' vault",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "gold rises by 500 after the hand-over",
+  "note": ""
+ },
+ {
+  "line": 1725,
+  "act": "Sewers",
+  "map": "Skulker",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "gold rises by a further 200 (700 total)",
+  "note": ""
+ },
+ {
+  "line": 1726,
+  "act": "Sewers",
+  "map": "Skulker",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "gold delta 400 on the kill save vs 500 on the quiet save",
+  "note": "The row the feature turns on"
+ },
+ {
+  "line": 1727,
+  "act": "Sewers",
+  "map": "Skulker",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1728,
+  "act": "Sewers",
+  "map": "thieves' vault",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "strongbox entity stored Active=0 before the quest is set",
+  "note": ""
+ },
+ {
+  "line": 1729,
+  "act": "Sewers",
+  "map": "thieves' vault",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "combat log has 'You have the thieves' strongbox. It is too big for your pack...' and the quest state advanced",
+  "note": ""
+ },
+ {
+  "line": 1730,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Re-walk of FB3 under 0.85.2's forced-target fix"
+ },
+ {
+  "line": 1739,
+  "act": "1 Barcelona",
+  "map": "Port District; Slave Pits",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1740,
+  "act": "1 Barcelona",
+  "map": "Dream Djinni Map",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1741,
+  "act": "1 Barcelona",
+  "map": "Inquisition Pit3; Slave Pits; Lava Troll",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1742,
+  "act": "1 Barcelona",
+  "map": "Gate, Port and Temple Districts; Shylocke's shop",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1754,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1755,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1756,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.85.2, line 1730 (FB3 re-walk)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.85.2 changed how the fight-back target works; the re-walk carries the new pass condition"
+ },
+ {
+  "line": 1757,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "companion entity Valid Targets back to blank after the stand-down, stance still 2",
+  "note": ""
+ },
+ {
+  "line": 1758,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1759,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Fixt Companion Stance=2 on the one companion entity only",
+  "note": ""
+ },
+ {
+  "line": 1760,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "Game Scripting Variables/Fixt Companion Stance=2 on the companion",
+  "note": ""
+ },
+ {
+  "line": 1761,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log has the report lines and 'A companion has left your party'",
+  "note": ""
+ },
+ {
+  "line": 1762,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1763,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Six companions' cans are not named after them"
+ },
+ {
+  "line": 1764,
+  "act": "Anywhere",
+  "map": "Mongol vendor village; deactivated war golem",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1765,
+  "act": "Anywhere",
+  "map": "Cervantes, Cortes as enemies",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Could break the game"
+ },
+ {
+  "line": 1766,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Old-save limit: companion recruited before install; unreachable on a new game"
+ },
+ {
+  "line": 1767,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Old-save follow-up to FB13"
+ },
+ {
+  "line": 1768,
+  "act": "Anywhere",
+  "map": "Port District, Slave Pits, Clan of the Hand A, Cave 3, Hamlet Exterior and others",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1769,
+  "act": "Anywhere",
+  "map": "Snakebreed Boss, Assassin Master, Bird Man King, Thug Boss, Aka Manah",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1827,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "combat log holds one line per group: health, 'Experience: level N', 'Health at full strength', best weapon, 'Fighting skill'",
+  "note": ""
+ },
+ {
+  "line": 1828,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "combat log has 'Not a scratch on me.' and no other health-group line",
+  "note": ""
+ },
+ {
+  "line": 1829,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Passed in play already"
+ },
+ {
+  "line": 1830,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1831,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Old-save case (companions joined before 0.84.0); unreachable on a new game"
+ },
+ {
+  "line": 1832,
+  "act": "Anywhere",
+  "map": "Fernand",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1833,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1834,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 1761 (0.85.0 FB8)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1835,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "combat log report names the second companion's figures",
+  "note": ""
+ },
+ {
+  "line": 1836,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "log 'Experience: level N' matches the companion entity's stored level",
+  "note": ""
+ },
+ {
+  "line": 1837,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Explained non-defect, not a check"
+ },
+ {
+  "line": 1838,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Fixt Companion Health Watch <name> = 1, and only one watcher on the entity",
+  "note": ""
+ },
+ {
+  "line": 1839,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1840,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1841,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The shipped defect: growth must work without ever opening the menu"
+ },
+ {
+  "line": 1842,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1843,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1844,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1855,
+  "act": "Wilderness",
+  "map": "Crossroads (cross him in Shakespeares Home)",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "the shakespeare-hates-you scripting variable is set",
+  "note": ""
+ },
+ {
+  "line": 1856,
+  "act": "Wilderness",
+  "map": "Crossroads",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1857,
+  "act": "Wilderness",
+  "map": "Crossroads",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1858,
+  "act": "Wilderness",
+  "map": "Crossroads",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1859,
+  "act": "Wilderness",
+  "map": "Crossroads",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "the shakespeare-hates-you scripting variable is set on both characters",
+  "note": ""
+ },
+ {
+  "line": 1860,
+  "act": "Wilderness",
+  "map": "Crossroads",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1871,
+  "act": "1 Barcelona",
+  "map": "Weng Choi or the Herbalist",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1872,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "a fresh Wand Charge stack in inventory has count 2",
+  "note": ""
+ },
+ {
+  "line": 1873,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "inventory holds one merged Wand Charge stack with the summed count",
+  "note": ""
+ },
+ {
+  "line": 1874,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 1518 (0.87.0 WN4)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1875,
+  "act": "1 Barcelona",
+  "map": "Weng Choi's shop",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Open question; observation only"
+ },
+ {
+  "line": 1884,
+  "act": "1 Barcelona",
+  "map": "Port District tavern (Brendan)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1885,
+  "act": "1 Barcelona",
+  "map": "Port District tavern (Brendan)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1886,
+  "act": "1 Barcelona",
+  "map": "Port District tavern (Brendan)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1887,
+  "act": "1 Barcelona",
+  "map": "Port District tavern (Brendan)",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "inventory holds exactly one Sullivan's Clover",
+  "note": ""
+ },
+ {
+  "line": 1888,
+  "act": "1 Barcelona",
+  "map": "Port District tavern (Brendan)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1889,
+  "act": "Automated",
+  "map": "",
+  "status": "automated",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Gate 0 negative test of validate.py A0.19"
+ },
+ {
+  "line": 1900,
+  "act": "2 Montserrat",
+  "map": "4 Animal Cave",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "inventory holds a stack of 2 Wasp Stingers",
+  "note": ""
+ },
+ {
+  "line": 1901,
+  "act": "Anywhere",
+  "map": "every wasp map",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "inventory Wasp Stinger count at least 5",
+  "note": ""
+ },
+ {
+  "line": 1918,
+  "act": "Wilderness",
+  "map": "Scar Ravine",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "Wasp Stinger count against kills in the combat log",
+  "note": ""
+ },
+ {
+  "line": 1919,
+  "act": "Wilderness",
+  "map": "Ravine Cave West",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "Wasp Stinger count against kills",
+  "note": ""
+ },
+ {
+  "line": 1920,
+  "act": "Wilderness",
+  "map": "River",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "inventory gains a Wasp Stinger from River wasps",
+  "note": ""
+ },
+ {
+  "line": 1921,
+  "act": "Wilderness",
+  "map": "Scar Ravine",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1922,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1923,
+  "act": "1 Barcelona",
+  "map": "Quinn",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Quinn's stinger quest at its next state and 5 stingers removed",
+  "note": ""
+ },
+ {
+  "line": 1924,
+  "act": "1 Barcelona",
+  "map": "Quinn",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Quinn's pelt quest advanced",
+  "note": ""
+ },
+ {
+  "line": 1925,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1926,
+  "act": "2 Montserrat",
+  "map": "4 Animal Cave",
+  "status": "duplicate",
+  "by": "line 1900 (0.83.2 QS1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1937,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1938,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1939,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1940,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Pre-0.83.0 save only"
+ },
+ {
+  "line": 1941,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1942,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1943,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1944,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Any upward creep is the leak"
+ },
+ {
+  "line": 1945,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1946,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "looted cloaks carry only Cold, Fire or Poison Resistance additions",
+  "note": ""
+ },
+ {
+  "line": 1947,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1948,
+  "act": "Wilderness",
+  "map": "Abandoned Cave",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "campfire entity in Abandoned Cave stored inactive after Bernat leaves",
+  "note": ""
+ },
+ {
+  "line": 1949,
+  "act": "3 Montaillou",
+  "map": "01 Hamlet Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1958,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1959,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1960,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1961,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1962,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1963,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft then 02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "the Pau-met scripting variable is set after speaking to him",
+  "note": ""
+ },
+ {
+  "line": 1964,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1965,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1966,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Say if it reads as a dead end"
+ },
+ {
+  "line": 1967,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1968,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1969,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1970,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1976,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The row that proves the release"
+ },
+ {
+  "line": 1977,
+  "act": "2 Montserrat",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1978,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1979,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1980,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1988,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Level2 garrison entities still present, Enemy category removed, Valid Targets blank",
+  "note": ""
+ },
+ {
+  "line": 1989,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1990,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma drops by 100 once",
+  "note": ""
+ },
+ {
+  "line": 1991,
+  "act": "2 Montserrat",
+  "map": "Grove Exterior, Druid Council Level1",
+  "status": "superseded",
+  "by": "0.99.6, line 6191 (MS1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "MS1 adds the hall group the 0.80.2 row missed"
+ },
+ {
+  "line": 1992,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "superseded",
+  "by": "0.82.0, line 1970 (PQ13)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "She no longer resumes wandering after the talk; she holds the step"
+ },
+ {
+  "line": 1993,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 1994,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "superseded",
+  "by": "0.81.0, line 1976 (RD1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "She is red now"
+ },
+ {
+  "line": 2003,
+  "act": "1 Barcelona",
+  "map": "Cathedral",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2004,
+  "act": "1 Barcelona",
+  "map": "Cathedral",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2005,
+  "act": "1 Barcelona",
+  "map": "Cathedral",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2006,
+  "act": "1 Barcelona",
+  "map": "Cathedral",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2007,
+  "act": "1 Barcelona",
+  "map": "Cathedral",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2008,
+  "act": "1 Barcelona",
+  "map": "Cathedral",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2009,
+  "act": "1 Barcelona",
+  "map": "Cathedral",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2018,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2019,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2020,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Say so before anything else if they do not weaken"
+ },
+ {
+  "line": 2021,
+  "act": "2 Montserrat",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2022,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "superseded",
+  "by": "0.80.2 line 1994, then 0.81.0 line 1976 (RD1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2023,
+  "act": "2 Montserrat",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 1977 (0.81.0 RD2)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2024,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "duplicate",
+  "by": "line 1978 (0.81.0 RD3)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2025,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2026,
+  "act": "3 Montaillou",
+  "map": "Machiavelli",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2027,
+  "act": "3 Montaillou",
+  "map": "Machiavelli ambush path",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2028,
+  "act": "3 Montaillou",
+  "map": "Machiavelli",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2029,
+  "act": "3 Montaillou",
+  "map": "Machiavelli",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2030,
+  "act": "3 Montaillou",
+  "map": "Machiavelli",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2031,
+  "act": "2 Montserrat",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "no new quest state after killing Sahar; outcome lives in player-scoped scripting variables",
+  "note": ""
+ },
+ {
+  "line": 2040,
+  "act": "2 Montserrat",
+  "map": "Druid Council Level1 to Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2041,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2042,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "superseded",
+  "by": "0.80.0, line 2025 (SC3b)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.79.9's fix never worked; SC3b is the repair"
+ },
+ {
+  "line": 2043,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma drops by 100 after choosing <Draw.>",
+  "note": ""
+ },
+ {
+  "line": 2044,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2045,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2046,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2047,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma unchanged",
+  "note": ""
+ },
+ {
+  "line": 2048,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "duplicate",
+  "by": "lines 2075-2076 (0.79.7 KM1-KM2)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2057,
+  "act": "2 Montserrat",
+  "map": "Grove Exterior, Druid Council Level1, Level2",
+  "status": "superseded",
+  "by": "0.80.2, lines 1988 and 1991; 0.99.6 line 6191",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Grove and Level1 now stand down in place on both routes; only Level2's death-route walk-out remains, in RT3"
+ },
+ {
+  "line": 2058,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "superseded",
+  "by": "0.80.2, line 1988 (GH1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Ring route no longer walks anyone out"
+ },
+ {
+  "line": 2059,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "after Sahar's death, no Level2 garrison entities left in the stored map",
+  "note": "Death route only now; on the ring route they hold the abbey"
+ },
+ {
+  "line": 2060,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "superseded",
+  "by": "0.79.9, line 2041 (SC2)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.79.9 removed his walk-back; he now stands on the stool"
+ },
+ {
+  "line": 2061,
+  "act": "2 Montserrat",
+  "map": "Port District tavern (Barcelona), after the Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Port District stored entities hold exactly one Cortes",
+  "note": ""
+ },
+ {
+  "line": 2062,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2063,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level1",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2064,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2065,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma drops by exactly 200",
+  "note": ""
+ },
+ {
+  "line": 2066,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Plains revealed on the world map and the Montaillou quest state set",
+  "note": ""
+ },
+ {
+  "line": 2075,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma drops by exactly 100",
+  "note": ""
+ },
+ {
+  "line": 2076,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "Karma unchanged after further hits",
+  "note": ""
+ },
+ {
+  "line": 2077,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "duplicate",
+  "by": "line 2065 (0.79.8 RT9)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2078,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma unchanged",
+  "note": ""
+ },
+ {
+  "line": 2079,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma unchanged",
+  "note": ""
+ },
+ {
+  "line": 2080,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma unchanged",
+  "note": ""
+ },
+ {
+  "line": 2081,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Karma unchanged",
+  "note": ""
+ },
+ {
+  "line": 2090,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2091,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2092,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "duplicate",
+  "by": "line 2075 (0.79.7 KM1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2093,
+  "act": "2 Montserrat",
+  "map": "Grove Exterior, Druid Council Level1, Level2",
+  "status": "superseded",
+  "by": "0.80.2, lines 1988-1989; 0.99.6 line 6191",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The garrison now stays, standing down, instead of leaving"
+ },
+ {
+  "line": 2094,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "duplicate",
+  "by": "line 2124 (0.79.4 GR4)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2095,
+  "act": "2 Montserrat",
+  "map": "Grove Exterior, Druid Council Level1, Level2",
+  "status": "superseded",
+  "by": "0.80.2; lines 2059 and 2066",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Grove and Level1 now stand down rather than empty; Level2 survivors still leave"
+ },
+ {
+  "line": 2096,
+  "act": "2 Montserrat",
+  "map": "02 Druid Council Level2",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "inventory still holds Sahar Ring",
+  "note": ""
+ },
+ {
+  "line": 2105,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2106,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2107,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "If he draws on a prisoner still behind bars, the guard is inverted"
+ },
+ {
+  "line": 2108,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "duplicate",
+  "by": "line 2139 (0.79.3 PN3)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2109,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2110,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2121,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2122,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "gate-yard garrison entities stored with Enemy category removed",
+  "note": ""
+ },
+ {
+  "line": 2123,
+  "act": "2 Montserrat",
+  "map": "Grove Exterior, Druid Council Level1, Level2",
+  "status": "superseded",
+  "by": "0.80.2, line 1991; 0.99.6 line 6191 (MS1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The garrison now holds the abbey; nobody leaves on the ring route"
+ },
+ {
+  "line": 2124,
+  "act": "2 Montserrat",
+  "map": "01 Grove Exterior",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2125,
+  "act": "2 Montserrat",
+  "map": "Grove Exterior, Druid Council Level1, Level2",
+  "status": "superseded",
+  "by": "0.80.2; lines 2059 and 2066",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Death route no longer empties Grove and Level1"
+ },
+ {
+  "line": 2126,
+  "act": "2 Montserrat",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2127,
+  "act": "2 Montserrat",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2137,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2138,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2139,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2140,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2141,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2142,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "XP rises by 25",
+  "note": ""
+ },
+ {
+  "line": 2143,
+  "act": "2 Montserrat",
+  "map": "4 Undercroft",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2154,
+  "act": "1 Barcelona",
+  "map": "DaVinci's secret chamber; Relican",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Sceptre quest at the lifeless-sceptre state, then complete; inventory holds the spirited sceptre",
+  "note": ""
+ },
+ {
+  "line": 2155,
+  "act": "1 Barcelona",
+  "map": "DaVinci's secret chamber; Relican",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "Sceptre quest advances on pickup",
+  "note": ""
+ },
+ {
+  "line": 2156,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2157,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2158,
+  "act": "1 Barcelona",
+  "map": "Relican (Enchanter route)",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "inventory: shell gone, spirited sceptre present; quest at deliver-to-Relican",
+  "note": ""
+ },
+ {
+  "line": 2159,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2160,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Already-stuck old save only"
+ },
+ {
+  "line": 2161,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Workaround for an older build, not a test"
+ },
+ {
+  "line": 2173,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2174,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2175,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The row that proves the release"
+ },
+ {
+  "line": 2176,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2177,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2178,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2179,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2180,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2195 and 2198 (0.79.0 AR2, AR5)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2181,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2182,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2194,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2195,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2196,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2197,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2198,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2199,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2200,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2201,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.79.1, lines 2173-2176 and 2181",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.79.1 scaled Voodoo, Divine Attunement and the Sylvant"
+ },
+ {
+  "line": 2202,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2203,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "0.78.1 rows, lines 2215-2224",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2215,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2216,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2217,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2264 (0.78.0 DT7)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2218,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2219,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2220,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2221,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Still the open question: refresh vs stack"
+ },
+ {
+  "line": 2222,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2329 and 2331 (RC7, RC9)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2223,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2302 and 2323-2325",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2224,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2258,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.78.1, line 2215 (SC1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.78.1 reverted Snakebiting to 6 a tick"
+ },
+ {
+  "line": 2259,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.78.1, line 2216 (SC2)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "0.78.1 reverted Venom to 4-20 a tick"
+ },
+ {
+  "line": 2260,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.78.1, lines 2215 and 2221",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The 27-per-tick drops no longer exist"
+ },
+ {
+  "line": 2261,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2221 (0.78.1 SC7)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2262,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2263,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.78.1, line 2224 (SC10)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2264,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "count 'infected' lines in the combat log against landed hits",
+  "note": ""
+ },
+ {
+  "line": 2265,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2266,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2287 (0.77.3 PO6)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2267,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2331 (0.77.1 RC9)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2268,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2302 and 2323-2325",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2269,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2329 and 2219",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2270,
+  "act": "Anywhere",
+  "map": "",
+  "status": "not-a-test",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Timing observation, nothing to pass or fail"
+ },
+ {
+  "line": 2282,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2218 (0.78.1 SC4)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2283,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2284,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2264 (0.78.0 DT7)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2285,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2264 (0.78.0 DT7)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2286,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2224 (0.78.1 SC10)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2287,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2288,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2302 (0.77.2 PS1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2289,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2323-2325",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2290,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2349-2353",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2291,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2329, 2331, 2219",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2292,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.78.1, line 2221 (SC7)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "The open question became a row"
+ },
+ {
+  "line": 2302,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2303,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2304,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2305,
+  "act": "Anywhere",
+  "map": "animals; Sewers creatures",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2306,
+  "act": "4 Crypt",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2307,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2308,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2309,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2329 (0.77.1 RC7)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2310,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2331 (0.77.1 RC9)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2311,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2323-2325",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2312,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2349-2353",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2313,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.77.3/0.78.1, lines 2215-2216",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Both were changed in the next releases"
+ },
+ {
+  "line": 2323,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2324,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2325,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2326,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2327,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2328,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2329,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2330,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.77.2, line 2302 (PS1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Pestilence is now 2/7/26"
+ },
+ {
+  "line": 2331,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2332,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "lines 2349-2353",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2333,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2216 (0.78.1 SC2)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2334,
+  "act": "5 Nostradamus",
+  "map": "10 Cave 5",
+  "status": "duplicate",
+  "by": "line 2364 (0.77.0 BW1)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2335,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2349,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2350,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2351,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2352,
+  "act": "4 Crypt",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2353,
+  "act": "Wilderness",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2354,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Any map outside the Wilderness and Barcelona"
+ },
+ {
+  "line": 2355,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2356,
+  "act": "Wilderness",
+  "map": "Plains (Mauldo)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2357,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.77.1, lines 2324-2325",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Ceilings are now 24/22/21"
+ },
+ {
+  "line": 2358,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.77.2 line 2302; Carnage duplicate of line 2329",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Pestilence moved to 2/7/26"
+ },
+ {
+  "line": 2359,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.77.3 line 2283; 0.78.1 line 2216",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2360,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2264 (0.78.0 DT7)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2361,
+  "act": "Anywhere",
+  "map": "",
+  "status": "duplicate",
+  "by": "line 2224 (0.78.1 SC10)",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2362,
+  "act": "Anywhere",
+  "map": "",
+  "status": "superseded",
+  "by": "0.77.3/0.78.1, line 2215; Double Biting 2219, Ripping 2331",
+  "check": "eye",
+  "savecheck": "",
+  "note": "Snakebiting's ceiling changed"
+ },
+ {
+  "line": 2363,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2364,
+  "act": "5 Nostradamus",
+  "map": "10 Cave 5",
+  "status": "keep",
+  "by": "",
+  "check": "both",
+  "savecheck": "inventory holds Bow of Fiery Smite; XP +50",
+  "note": ""
+ },
+ {
+  "line": 2365,
+  "act": "5 Nostradamus",
+  "map": "10 Cave 5",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2366,
+  "act": "Anywhere",
+  "map": "",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2367,
+  "act": "5 Nostradamus",
+  "map": "10 Cave 5",
+  "status": "keep",
+  "by": "",
+  "check": "save",
+  "savecheck": "combat log has 'You have found an item buried at the base of the pole.'",
+  "note": ""
+ },
+ {
+  "line": 2368,
+  "act": "8 Alamut",
+  "map": "06 Chamber of Torment",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2369,
+  "act": "8 Alamut",
+  "map": "06 Chamber of Torment",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2370,
+  "act": "8 Alamut",
+  "map": "10 Cave 5 and 06 Chamber of Torment",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2371,
+  "act": "Anywhere",
+  "map": "Gate District; Plains; act 3 Secret Cave",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ },
+ {
+  "line": 2372,
+  "act": "5 Nostradamus",
+  "map": "10 Cave 5; Chamber of Torment (act 8)",
+  "status": "keep",
+  "by": "",
+  "check": "eye",
+  "savecheck": "",
+  "note": ""
+ }
+]
