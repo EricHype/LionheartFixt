@@ -6158,7 +6158,27 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
-## Unreleased - the English Shrine
+## 0.99.0 - Alamut
+
+**Needs a save that has not entered act 8** for the map changes; the ending changes reach any save that has not finished the game.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AT1 | Any good ending | Press Escape on each Nostradamus line after the battle | The ending carries on exactly as clicking would, and reaches the stage. Nothing stalls |
+| AT2 | A dark ending (Calle Perdida) | Finish it | After Nostradamus the game goes to the stage, plays the slides this character earned, then the credits. Before this the dark endings showed no slide |
+| AT3 | The Demesne, before either ending | Press Escape on Nostradamus | The scene continues to the right ending map |
+| AT4 | Act 8, Goblin Champion, having killed the Khan before Persia | Enter Desert Sprawl | The Khan does not appear. Likewise Grumdjum, if he died earlier. A save that killed them before this release still shows them |
+| AT5 | Dismiss Grumdjum, then click him | - | He says "Are you ready to continue our quest - to put the Old Man to rest?" aloud before the rejoin conversation |
+| AT6 | Final Encounter | Let the Old Man escape | The escape plays through: camera, spirits, then the ending. Nothing stops at his disappearance |
+| AT7 | The Maw's Assassin Master, the Elemental Spirit, DaVinci's evil lines, Galileo's survival line, the Old Man's Inquisition scene | Hear them | Each speaks aloud where it was silent |
+| AT8 | 05 Acid Wash | Lure an assassin into the channel as a sluice fires | The acid hurts him too. A companion standing in it is hurt as well |
+| AT9 | 05 Acid Wash, near the entrance | Search for secrets (a good trap and secret skill) | A hidden valve is revealed; using it shuts both sluices and opens the spiked gates, as the far switch does. Without the skill it stays hidden |
+| AT10 | 04 to 07 | Bring several Assassin Masters under half health | About half whistle up two guard dogs, with a log line; none does it twice |
+| AT11 | 01, 02 | Look at the packs | Roughly one pack in four is Sand Spirits instead of beasts |
+| AT12 | 05 and 07 with the Knight of Saladin and Grumdjum | Enter each the first time | Each says one line, the knight first; neither repeats |
+| AT13 | Act 8 with the Knight of Saladin from Exalted | Walk 03 to 07 | Only one Knight of Saladin. If two appear, report it with a save |
+
+## 0.99.0 - the English Shrine
 
 **Needs a save that has not entered act 7** (the kit jump to the English Shrine works on a fresh character). Spawns are fixed on a map's first visit.
 
@@ -6176,7 +6196,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | SH10 | 03, 04, 05 with Roger and Grace | Enter each map the first time | Each says one line, Roger first. Neither says it twice, and with one of them absent the other still speaks |
 | SH11 | Finish the shrine four ways: talk her down; spoil the ambush and kill her; kill her; walk on with her alive | Reach England to Alamut with Roger, then the ending | Roger says the line for that outcome, and the ending shows the matching Shrine slide with the Druid Master on the stage, before the companions |
 
-## Unreleased - the epilogue stage
+## 0.99.0 - the epilogue stage
 
 | # | Where | Steps | Pass |
 |---|---|---|---|

@@ -1,0 +1,74 @@
+CDialogTree
+{
+Name=Assassin Master
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Infidel, you will never reach our master! No Westerner may enter these sacred halls and live.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Where is your master?
+Go to node ID=20 master
+
+Requirement=!None
+Reply Text=Step aside, assassin.
+Go to node ID=30 step aside
+
+Requirement=!None
+Reply Text=I intend to kill your master.
+Go to node ID=10 Goodbye
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Save your threats and prepare to die. 
+Go to node ID=
+Action work in progress=(Fight Club)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Map Intro Cutscene MASTER
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=First you must pass me, Infidel, and that you will never do.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Map Intro Cutscene MASTER
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 master
+Text=The master waits on the tallest minaret, surrounded by the most loyal and powerful of the assassins. But you will never reach there, Infidel - your life is forfeit.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Map Intro Cutscene MASTER
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 step aside
+Text=You must kill me first, Infidel. And that you will never do.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Map Intro Cutscene MASTER
+}
+Is Default Reply=1
+}

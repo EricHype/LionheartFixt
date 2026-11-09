@@ -1,0 +1,46 @@
+CDialogTree
+{
+Name=Galileo
+Portrait=Dialog/NPC Portraits/Galileo
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 Good Ending All Survive
+Text=You saved us all, scion of Lionheart. You have more than lived up to the honor that comes with your name.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=11 Galileo Talk EVIL
+Text=I am amazed and disgusted that one evil has been so easily replaced today. What we have been fighting against for years...is all for naught. The Earth is merely going from the jaws of one beast to another.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=15 Galileo Talk Amazed
+Text=Astounding, scion of Lionheart! The honor that comes with your name is well-earned!
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 DaVinci dies
+Text=You saved us all, scion of Lionheart. It saddens me that Leonardo fell in battle, but like you, he will be remembered for all time for the victory today. You have more than lived up to the honor that comes with your name.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Good Ending Old Man Escapes
+Text=A tainted victory, but a victory all the same.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Good Ending Old Man Escapes DaVinci Dies
+Text=Leonardo's passing saddens me greatly, but we must remember his courage and continue on. Your victory here honors him, as you honor your namesake. The evil will return...but not today. Until then, we must prepare and return the relics to the knights.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+}

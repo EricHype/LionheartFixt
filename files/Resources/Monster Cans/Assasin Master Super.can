@@ -1192,28 +1192,143 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=CSeriesAction
+		Damaged Script Action=CMultipleActionsAction
 		{
 			Action=Array
 			{
 				Item Count=2
-				Action=CCreateEntityFromCanAction
+				Action=CSeriesAction
 				{
-					New Location=$Trigger
-					Copy Height=0
-					Random Location Delta=0
-					Warp Behavior=
-					Canned Entity to Create=Common Objects and Scripts/Fixt Caltrops Entity
-					New Name=Fixt Caltrops
+					Action=Array
+					{
+						Item Count=2
+						Action=CCreateEntityFromCanAction
+						{
+							New Location=$Trigger
+							Copy Height=0
+							Random Location Delta=0
+							Warp Behavior=
+							Canned Entity to Create=Common Objects and Scripts/Fixt Caltrops Entity
+							New Name=Fixt Caltrops
+						}
+						Action=CSucceedAction
+						{
+							Action=
+						}
+					}
+					When Done=Repeat Last Action
+					Require Success To Advance=1
+					Next Action Index=0
 				}
-				Action=CSucceedAction
+				Action=CIfAction
 				{
-					Action=
+					If=CExpressionAction
+					{
+						Expression=CIsLessThanOrEqual
+						{
+							Operand1=CExpressionHealthPercent
+							{
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=50
+							}
+						}
+						Character to get attributes from=$Trigger
+					}
+					Then=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CIsGreaterThan
+							{
+								Operand1=CExpressionHealthPercent
+								{
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=$Trigger
+						}
+						Then=CSeriesAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsLessThan
+										{
+											Operand1=CRandom
+											{
+												Operator=
+												Minimum=CConstant
+												{
+													Constant Value=0
+												}
+												Maximum=CConstant
+												{
+													Constant Value=100
+												}
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=50
+											}
+										}
+										Character to get attributes from=$Trigger
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CPrintCombatTextAction
+											{
+												Text to print=Assassin Master whistles, and guard dogs come running.
+												Character to show text to=Player1
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Action=CCloneAction
+											{
+												New Location=$Trigger
+												Copy Height=0
+												Random Location Delta=80
+												Warp Behavior=
+												Source Name=Fixt Assassin Dog Source
+												New Name=Fixt Used Assassin Dog Source
+												Set Facing Angle=0
+												New Facing Angle=0
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Action=CSucceedAction
+								{
+									Action=
+								}
+							}
+							When Done=Repeat Last Action
+							Require Success To Advance=0
+							Next Action Index=0
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Else=
+					Return failure if the If failes=0
 				}
 			}
-			When Done=Repeat Last Action
-			Require Success To Advance=1
-			Next Action Index=0
 		}
 		Damaged Effect Action=CRandomAction
 		{

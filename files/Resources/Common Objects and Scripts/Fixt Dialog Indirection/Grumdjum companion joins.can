@@ -1,10 +1,32 @@
 CCannedObject
 {
-	Object=CDisplayDialogTreeAction
+	Object=CMultipleActionsAction
 	{
-		Dialog Tree File=Levels/Wilderness/Dialog/GoblinGrumdjum
-		Node ID=300 companion joins you
-		Speaker=$trigger
-		Player Being Spoken To=$Instigator
+		Action=Array
+		{
+			Item Count=2
+			Action=CDisplayDialogBalloonAction
+			{
+				Dialog Tree File=Levels/Wilderness/Dialog/GoblinGrumdjum
+				Node ID=300 grumdjum asks to rejoin
+				Name of Position=Goblin Grumdjum
+				Position Offset=0.000000,-80.000000
+				After Action=
+				Include In Log=1
+			}
+			Action=CDelayAction
+			{
+				Next Action=CDisplayDialogTreeAction
+				{
+					Dialog Tree File=Levels/Wilderness/Dialog/GoblinGrumdjum
+					Node ID=300 companion joins you
+					Speaker=$trigger
+					Player Being Spoken To=$Instigator
+				}
+				Delay=2.5
+				Plus or Minus=0
+				Forget Trigger=0
+			}
+		}
 	}
 }

@@ -1,0 +1,74 @@
+CDialogTree
+{
+Name=DaVinci
+Portrait=Dialog/NPC Portraits/Leonardo
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 Evil Ending All Die
+Text=Even nearing death, I have strength enough to prevent you from starting that infernal ritual! We will fight you to the last, Lionheart. To the last...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=15 DaVinci Talk Amazed1
+Text=I am also impressed, young one. You have learned much about the ways of the world...far more than what I could have taught you.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=16 DaVinci Talk Amazed2
+Text=Others will come for these relics to try and piece the demon god together again, no matter what we may tell them. We must safeguard them from idle hands. Well done, Lionheart, you are truly a hero. Now come...we have much to tell the world and much to celebrate.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=17 DaVinci Talk Evil1
+Text=I have misjudged you, young one. The divine promise within you has turned sickly and putrid and has made you more evil than I could have ever forseen.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=18 DaVinci Talk Evil2
+Text=You may have become one with the Darkness, but it will turn against you in the end. Eventually you will be but a servant to what you now control. It is likely that I cannot defeat you, but we shall fight to the last against your evil scourge, scion of Lionheart, to the last...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=20 Evil Ending All Live1
+Text=So, evil destroys evil, but I suppose what we are left with is more treacherous and dangerous than before. Galileo, the relics, take them and go...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=21 Evil Ending All Live2
+Text=You may control the host, but you now lack all the relics to bring about a new Disjunction. While I cannot defeat you, we will gather our forces and fight you to the last, *Lionheart*. To the last...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=30 Good Ending All Survive or Galileo Die
+Text=Unfortunately, the Old Man was right, others will come for these relics to piece the demon god together again. We must return these to the knights immediately. Well done, Lionheart, you are truly a hero. Now come...we have much to do.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Good Ending Old Man Escapes All Live
+Text=There is no shame in our struggle today. The Scion of Lionheart has shown incredible bravery. You have saved us all from a most dreadful fate. The Old Man will return, but not for a long time to come. Until then, we have much to do. These relics must be returned to the Knights for protection.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Good Ending Old Man Escapes Galileo Dies
+Text=You have faced the greatest evil - and forced him to flee. No small feat indeed. He will return, I'm afraid, but not for a long time. Until then, we can prepare ourselves and be ready. We will return the relics to the knights. Come, let us leave this accursed place.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Respond ask about Tank
+Text=Time will tell if it does us any good...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=120 Evil Ending OM escapes
+Text=So, evil chases away evil, but what we are left with is just as treacherous and dangerous as the Old Man of the Mountain. Galileo, the relics, take them and go...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=121 Evil Ending OM escapes2
+Text=You disappoint me. You may have routed the host, but you now lack the relics to bring about a new Disjunction yourself. While I cannot defeat you here, we will gather our forces and fight you to the last, *Lionheart*. To the last...
+Should Have Voiceover=1
+}

@@ -1630,16 +1630,48 @@ CCannedObject
 						Quest=Levels/1 Barcelona/Quests/Temple District/Slay the Goblin Khan
 						State=62VPSJUB
 					}
-					Else=COtherMapAction
+					Else=CMultipleActionsAction
 					{
-						Action=CActivateAction
+						Action=Array
 						{
-							Target Name=Goblin Khan is Dead
-							Play Activate Sound=0
-							Delay Between Activations=0
-							Warp Behavior=
+							Item Count=2
+							Action=CForEachPlayerAction
+							{
+								Action=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=0
+									Character to modify=$Instigator
+									Modifiers=Array
+									{
+										Item Count=1
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CConstant
+											{
+												Constant Value=1
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Goblin Khan Dead
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=$Instigator
+								}
+							}
+							Action=COtherMapAction
+							{
+								Action=CActivateAction
+								{
+									Target Name=Goblin Khan is Dead
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Other Map Name=1 Barcelona/Inquisition Chambers2
+							}
 						}
-						Other Map Name=1 Barcelona/Inquisition Chambers2
 					}
 					Return failure if the If failes=0
 				}

@@ -103,6 +103,357 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt companions remark
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CIfAction
+							{
+								If=CIsAliveAction
+								{
+									Name To Check For=Knight of Saladin
+									Desired Minimum Count=1
+								}
+								Then=CDisplayDialogBalloonAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Alamut Companions
+									Node ID=1 knight acid
+									Name of Position=Knight of Saladin
+									Position Offset=0.000000,-80.000000
+									After Action=
+									Include In Log=1
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Action=CDelayAction
+							{
+								Next Action=CIfAction
+								{
+									If=CIsAliveAction
+									{
+										Name To Check For=Goblin Grumdjum
+										Desired Minimum Count=1
+									}
+									Then=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Alamut Companions
+										Node ID=2 grumdjum acid
+										Name of Position=Goblin Grumdjum
+										Position Offset=0.000000,-80.000000
+										After Action=
+										Include In Log=1
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Delay=4
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt companions remark
+							}
+						}
+					}
+					Delay Between Actions=600
+					Plus or Minus=0
+					Seconds Till Next Execute=3
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=60
+			Position Y=60
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Dynamic Properties=1
+			{
+				Comment=Fixt Assassin Dog Source
+			}
+			Name=Fixt Assassin Dog Source
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CGeneratorAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Area=COvalGeneratorArea
+					{
+						Radius=116
+					}
+					Has Started Generating=0
+					Groups=Array
+					{
+						Item Count=4
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=16
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Guarddog
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=23
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Guarddog Tough
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=40
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Guarddog Super
+								}
+							}
+						}
+						Group=CGeneratorAIGroup
+						{
+							Max Party Mojo=60
+							Quantity to generate min=2
+							Quantity to generate max=2
+							Things to Generate=Array
+							{
+								Item Count=1
+								Thing to Generate=CSpawnableCannedEntity
+								{
+									Weight=1
+									Entity=Monster Cans/Animals/Guarddog Super
+								}
+							}
+						}
+					}
+					New Name=Assassin Dog
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=3
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Summoning/Monster Summoning
+								Location Entity=$Instigator
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Spells/Monster Summon.ogg
+								Position=$Trigger
+								Multiplayer=Heard by all players
+							}
+							Action=CDelayAction
+							{
+								Next Action=CDeleteAction
+								{
+									Target Name=Fixt Used Assassin Dog Source
+								}
+								Delay=1
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					New Facing Angle=0
+					Angle Variation=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Enemy Generator Spot
+			Position X=2089
+			Position Y=744
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt the sluice valve
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CAISecretReveal
+				{
+					Marked For Deletion=0
+					Publisher=
+					Skill Adjustment=20
+					Reveal Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CShowAction
+							{
+								Target Name=$Trigger
+							}
+							Action=CPlaySoundAction
+							{
+								Sound=Skills/Secret Door found.wav
+								Position=$Trigger
+							}
+						}
+					}
+					AIs To Add=Array
+					{
+						Item Count=1
+						AI=CAIInteractionSpecifier
+						{
+							Marked For Deletion=0
+							Publisher=
+							Trigger Only Once=1
+							Was Triggered=0
+							Auto-Flip Switch=1
+							Trigge Must Have HP=0
+							Triggered By Anything=0
+							Triggered By Players=1
+							Triggered By Player Friends=0
+							Triggered By Enemies=0
+							Triggered By Projectiles=0
+							Triggered By Companions=0
+							Triggered By Name=
+							Interaction Description=
+							Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CPrintCombatTextAction
+									{
+										Text to print=Behind a loose stone, a hand valve. You turn it, and up the channel the sluice gates groan shut.
+										Character to show text to=$Instigator
+										Emphasize=0
+										Suppress Duplicates=0
+									}
+									Action=CTriggerRelayAction
+									{
+										Relay Name=End level switch turn traps off
+									}
+								}
+							}
+							X Radius=50
+							Attacker Range Modifier=0
+							YX Ratio=0.712766
+							Highlight Self Time=0
+							Highlight Until Clicked=0
+							Is Locked=0
+							Allow Interact If Has Target=1
+							Lock Pick Adjustment=0
+							Inventory item to use as key=Inventory Items/!None
+							Is Bussy Talking=0
+						}
+					}
+					Has Been Revealed=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Special Effects/Secret Icon
+			Position X=3040
+			Position Y=660
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt Knight of Saladin escort
 			Child List=
 			Visible=0
@@ -3628,9 +3979,9 @@ CLayerSaveData
 					Triggered By Anything=0
 					Triggered By Players=1
 					Triggered By Player Friends=0
-					Triggered By Enemies=0
+					Triggered By Enemies=1
 					Triggered By Projectiles=0
-					Triggered By Companions=0
+					Triggered By Companions=1
 					Triggered By Name=
 					Enter Action=
 					Exit Action=
@@ -15897,9 +16248,9 @@ CLayerSaveData
 					Triggered By Anything=0
 					Triggered By Players=1
 					Triggered By Player Friends=0
-					Triggered By Enemies=0
+					Triggered By Enemies=1
 					Triggered By Projectiles=0
-					Triggered By Companions=0
+					Triggered By Companions=1
 					Triggered By Name=
 					Enter Action=
 					Exit Action=

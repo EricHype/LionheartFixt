@@ -1,0 +1,38 @@
+CDialogTree
+{
+Name=Elemental Spirit
+Portrait=Dialog/NPC Portraits/Spirit Ancestral
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=10 Good Ending All Die
+Text=You have accomplished a great feat worthy of your namesake. Do not mourn your friends, for they lived virtuously and bravely sacrificed themselves to a righteous cause. Theirs were lives well-lived. *Your* life, Lionheart, now stretches before you. Carry this victory and their memory in your heart for the remainder of your days, for a noble spirit such as yours will doubtless face many trials in this world.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Good Ending Old Man Escapes All Die
+Text=While our victory may seem hollow, you have done a great thing this day. Few could have stood before such a powerful evil and blunted its schemes. You have shown tremendous bravery and are worthy of your namesake. Honor your fallen friends, scion of Lionheart, but do not mourn them, for they lived virtuously and bravely sacrificed themselves to a righteous cause.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Good Ending Old Man Escapes DaVinci or Galileo Dies
+Text=While our victory may seem hollow, you have done a great thing this day. Few could have stood before such a powerful evil and blunted its schemes. You have shown tremendous bravery and are worthy of your namesake. Honor your fallen friend, scion of Lionheart, but do not mourn him, for he lived virtuously and bravely sacrificed himself to a righteous cause.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Player wins outright
+Text=You have accomplished a great feat worthy of your namesake. *Your* life, Lionheart, now stretches before you. Carry this victory in your heart for the remainder of your days, for a noble spirit such as yours will doubtless face many trials in this world.
+Should Have Voiceover=1
+}
