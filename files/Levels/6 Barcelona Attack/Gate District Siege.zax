@@ -87,6 +87,444 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt Gate Siege druids fall
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=6
+									Action=CSetTargetTypeAction
+									{
+										Entity Name=Gate Siege Soldier
+										Name To Target=
+										Valid Targets=
+									}
+									Action=CRemoveCategoryAction
+									{
+										Target Name=Gate Siege Soldier
+										Categories To Remove=Enemy
+									}
+									Action=CSetDamagedScriptActionAction
+									{
+										New Damaged Action=CIfAction
+										{
+											If=CCheckCategoryAction
+											{
+												Target Name=$Instigator
+												Category to check for=Player,Player Friend
+											}
+											Then=CIfAction
+											{
+												If=CNotAction
+												{
+													Action=CCheckCategoryAction
+													{
+														Target Name=$Trigger
+														Category to check for=Enemy
+													}
+												}
+												Then=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=5
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Gate Siege Soldier
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CAddCategoryAction
+														{
+															Target Name=Gate Siege Soldier
+															Categories to add=Enemy
+														}
+														Action=CRemoveAIAction
+														{
+															Target Name=Gate Siege Soldier
+															AI=CAIInteractionSpecifier
+															Delay Between Removes=0
+														}
+														Action=CAddAIAction
+														{
+															Target Name=Gate Siege Soldier
+															AI=CAIInteractionSpecifier
+															{
+																Marked For Deletion=0
+																Publisher=
+																Trigger Only Once=0
+																Was Triggered=0
+																Auto-Flip Switch=1
+																Trigge Must Have HP=0
+																Triggered By Anything=0
+																Triggered By Players=1
+																Triggered By Player Friends=0
+																Triggered By Enemies=0
+																Triggered By Projectiles=0
+																Triggered By Name=
+																Interaction Description=
+																Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+																Action=
+																X Radius=50
+																Attacker Range Modifier=0
+																YX Ratio=0.712766
+																Highlight Self Time=0
+																Highlight Until Clicked=0
+																Is Locked=0
+																Allow Interact If Has Target=1
+																Lock Pick Adjustment=0
+																Inventory item to use as key=Inventory Items/!None
+																Is Bussy Talking=0
+															}
+															Delay Between Adds=0
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=$Trigger
+														}
+													}
+												}
+												Else=
+												Return failure if the If failes=0
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+										Target Name=Gate Siege Soldier
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Gate Siege Soldier
+										AI=CRepeatTimerTriggerAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Action=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDelayAction
+													{
+														Next Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=8
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=80 woke 1
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=81 woke 2
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=82 woke 3
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=83 woke 4
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=84 woke 5
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=85 woke 6
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=86 woke 7
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+																	Node ID=87 woke 8
+																	Name of Position=$Trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=0
+																}
+															}
+														}
+														Delay=1.5
+														Plus or Minus=1.5
+														Forget Trigger=0
+													}
+													Action=CSucceedAction
+													{
+														Action=
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=0
+												Next Action Index=0
+											}
+											Delay Between Actions=600
+											Plus or Minus=0
+											Seconds Till Next Execute=0
+										}
+										Delay Between Adds=0
+									}
+									Action=CRemoveAIAction
+									{
+										Target Name=Gate Siege Soldier
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Gate Siege Soldier
+										AI=CAIInteractionSpecifier
+										{
+											Marked For Deletion=0
+											Publisher=
+											Trigger Only Once=0
+											Was Triggered=0
+											Auto-Flip Switch=1
+											Trigge Must Have HP=0
+											Triggered By Anything=0
+											Triggered By Players=1
+											Triggered By Player Friends=0
+											Triggered By Enemies=0
+											Triggered By Projectiles=0
+											Triggered By Name=
+											Interaction Description=
+											Interaction Type=Interaction Specifiers/GetCloseThenTalk
+											Action=CRandomAction
+											{
+												Action=Array
+												{
+													Item Count=8
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=80 woke 1
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=81 woke 2
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=82 woke 3
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=83 woke 4
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=84 woke 5
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=85 woke 6
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=86 woke 7
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/6 Barcelona Attack/Dialog/Fixt The Standard
+														Node ID=87 woke 8
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+												}
+											}
+											X Radius=50
+											Attacker Range Modifier=0
+											YX Ratio=0.712766
+											Highlight Self Time=0
+											Highlight Until Clicked=0
+											Is Locked=0
+											Allow Interact If Has Target=1
+											Lock Pick Adjustment=0
+											Inventory item to use as key=Inventory Items/!None
+											Is Bussy Talking=0
+										}
+										Delay Between Adds=0
+									}
+								}
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt Gate Siege druid watch
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=309.0
+			Position Y=1269.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Gate Siege druid watch
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CIsAliveAction
+							{
+								Name To Check For=Gate Siege Druid
+								Desired Minimum Count=1
+							}
+						}
+						Then=CTriggerRelayAction
+						{
+							Relay Name=Fixt Gate Siege druids fall
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Delay Between Actions=2
+					Plus or Minus=0
+					Seconds Till Next Execute=10
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=329.0
+			Position Y=1269.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Shy Girl Near Murder generator
 			Child List=
 			Visible=0
@@ -2526,7 +2964,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -3871,7 +4309,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -6817,7 +7255,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -7670,7 +8108,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -8041,7 +8479,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -8352,7 +8790,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -11809,7 +12247,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -12861,7 +13299,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -15623,7 +16061,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -16469,7 +16907,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -20078,7 +20516,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -20480,7 +20918,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Druid
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -21513,7 +21951,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -22178,7 +22616,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -24440,7 +24878,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Druid
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -26820,7 +27258,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -27603,7 +28041,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -28506,7 +28944,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -32180,7 +32618,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -33048,7 +33486,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -34654,7 +35092,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -34905,7 +35343,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -36852,7 +37290,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -40128,7 +40566,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -40421,7 +40859,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -42316,7 +42754,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -42864,7 +43302,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -43744,7 +44182,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -45161,7 +45599,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Gate Siege Soldier
 					Remove Default AIs=0
 					AIs to Add=Array
 					{

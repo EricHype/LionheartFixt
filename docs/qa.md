@@ -6158,6 +6158,14 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.5 - the sieges are held too
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SG1 | Gate District Siege, on a save that has not entered it | Kill every druid priest on the map | Within seconds the English soldiers stop fighting, each says a waking line ("This is Spain. Why am I in Spain?"), and clicking one talks |
+| SG2 | The same, after the stand-down | Force attack one soldier | Every English soldier on the map turns hostile again |
+| SG3 | Temple District Siege | Repeat SG1 and SG2, and check the siege still plays to its end | Same results, and nothing in the siege waits forever on English deaths |
+
 ## 0.99.4 - the acolytes' ward
 
 | # | Where | Steps | Pass |
