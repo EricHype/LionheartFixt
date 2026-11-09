@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.11 are published** -- 214 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.12 are published** -- 215 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,32 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.12 - the probe: archers who hold, and a sentry
+
+A probe, built to be played before the two mechanics go any wider. Both come from the Ghidra pass recorded in
+[`dormant-engine.md`](dormant-engine.md), and neither has run in shipped data before.
+
+- **Archers who hold their ground (Temple Initiate).** Every vanilla bow can's attack AI closes to `Minimum Attack
+  Distance=350`, so archers drift into the melee. The engine labels 0 on that field "Do not move while attacking", and 202
+  vanilla cans write it so. The two bow generators on the route (117 and 136 walk units from it) now spawn copies, under
+  `Monster Cans/Fixt Holding/`, that differ from their originals in that one line. Out of their range they still pursue.
+  `tools/build_archer_lines.py`.
+- **A sentry that raises the alarm (the Doomed Plateau).** `CCallForReinforcementsAction` pulls in every idle creature
+  within its `Max Distance` that listens and can target the caller's target; 88 of 92 undead cans listen. A listener
+  sees 550, so the 500 default can only reach creatures that have already seen you; the Deathwatch calls at 800. It fires
+  from a `CSkeletonTransition` on its first switch to Attack, and prints *"The Deathwatch raises the alarm!"*. To be
+  beatable it sees 350 and 180 degrees (stock creatures see 550 and 360, wider than half the screen), so it is on screen
+  before it sees you and can be reached from behind; Sneak, which Perception raises, is a chance to stay unseen. It
+  replaces its generator's one to three undead, 37 walk units from the route, with two listening groups about 700 units
+  off the route inside its call. The Bonecaller's cans stop listening, so no alarm turns its conversation into a fight.
+  `tools/build_sentries.py`.
+
+Measured on the way, and recorded because it changes the plan: Act 4 is mostly a corridor where everything already sees
+you (Retreat of Souls has 63 of about 89 creatures within 150 units of the route), so the best on-path sentry on the
+Plateau rouses only two or three. Clustered camps elsewhere, the Unholy Oubliette, Ravine Cave East, Darkwood Cave and
+the Mongol Camp, would rouse 7 to 16. The playtest kit gains a jump to the Plateau. `AL1`-`AL2`, `DW1`-`DW4`.
+
+---
 ## 0.99.11 - falling back
 
 The engine has a retreat and never uses it. `CSkeletonAI` registers `Retreat when` (+0xA4, "% Health or less", editor default

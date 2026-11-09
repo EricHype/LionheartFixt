@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.12** | the probe: archers who hold, and a sentry | A playtest probe: two archer groups in the Shrine hold their ground, and a Deathwatch on the Doomed Plateau raises the alarm if it sees you. |
 | **0.99.11** | falling back | Badly wounded English soldiers run back to their druids to be healed, while a druid lives. Chase them down or let them go. |
 | **0.99.10** | what the re-score found | The siege holds work, the Shrine's druids stand on the path, Rumjun Khan can be spoken to and joins you, and five smaller repairs. |
 | **0.99.9** | the brood dies with the caller | Montserrat's Snakebreed Summoners summon their brood, and when one dies, everything summoned on that map dies with it. |

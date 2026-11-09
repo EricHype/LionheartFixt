@@ -6158,6 +6158,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.12 - the probe: archers who hold, and a sentry
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AL1 | Temple Initiate, first visit (kit: "Take me to Sir Roger") | Walk the route toward the Stone Chamber exit and fight the archers by it | They stand where they are and shoot, while the swordsmen close; they do not walk into the melee |
+| AL2 | The same | Retreat well out of their bow range | They follow you, then stop and shoot again once in range |
+| DW1 | Doomed Plateau, first visit (kit: "The Doomed Plateau") | Walk west along the path until a skeleton named Deathwatch sees you | The log prints "The Deathwatch raises the alarm!", and within a few seconds a few undead arrive from the north that had not been fighting |
+| DW2 | The same, new attempt | Kill the Deathwatch before it notices you (from behind, or sneaking) | No alarm line; the northern undead stay where they are |
+| DW3 | The same | Approach it head-on in the open | It does not see you until you are well on screen |
+| DW4 | The same, after an alarm | Find and talk to the Bonecaller | It still talks; the alarm did not pull it into the fight |
+
 ## 0.99.11 - falling back
 
 | # | Where | Steps | Pass |
