@@ -7,7 +7,7 @@ to 1 ("+3 AC, slightly reduces sight distance"), so every helmet costs 25 units 
 addition can push it below zero and give sight back:
 
 - **of the Watch** (Uncommon) takes it back to 0: a helmet that costs no sight.
-- **of Farsight** (Rare) takes it to -2: 50 units more sight than going bare-headed, 75 more than a plain helmet.
+- **of Farsight** (Rare) takes it to -4: 100 units more sight than going bare-headed, 125 more than a plain helmet.
 
 They join the helmet's own addition group, so they roll on random magic helmets like the vanilla additions. Both are built
 from `the Eagle`'s shape, fixed value and all, with the Watch on the plainer Helmet2 look that the Uncommon additions use.
@@ -32,7 +32,7 @@ HELMETS = {
     "Watch": dict(name="the Watch", amount="-1", value="600", rarity="Inventory Item Rarity/2 Uncommon", look="Helmet2",
                   icon="Items/Inventory Images/Armor/Helmet2 Mod",
                   text="A helmet that does not reduce the wearer's sight, as other helmets do."),
-    "Farsight": dict(name="Farsight", amount="-3", value="2400", rarity="Inventory Item Rarity/3 Rare", look="Helmet3",
+    "Farsight": dict(name="Farsight", amount="-5", value="2400", rarity="Inventory Item Rarity/3 Rare", look="Helmet3",
                      icon="Items/Inventory Images/Armor/Helmet3",
                      text="Instead of reducing the wearer's sight, as other helmets do, it lets them see farther than with no helmet at all."),
 }

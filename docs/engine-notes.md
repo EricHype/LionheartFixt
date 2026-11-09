@@ -1115,7 +1115,7 @@ There is no vision stat. The player sees as far as the fog of war is pushed back
 So a player sees 355 to 460 across and about 0.71 of that up and down, which sits at the edge of an 800x600 screen.
 `Shamans Eye` pushes it further. `Wearing a Helmet` is set to 1 by the one helmet item in the game ("+3 AC, slightly
 reduces sight distance") and has **no minimum**, so an addition can push it below 0 to give sight back: 0.99.12's
-`of the Watch` (to 0) and `of Farsight` (to -2, +50).
+`of the Watch` (to 0) and `of Farsight` (to -4, +100 from 0.99.13).
 
 Detection runs the other way on the enemy's own numbers: `Max Distance` (550 almost everywhere) inside its `Vision Cone`
 (360 on 1,317 placements, 90 on 145), and while you sneak inside a cone, the Sneak skill is the percentage chance to stay

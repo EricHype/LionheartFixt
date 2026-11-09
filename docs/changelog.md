@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.13** | what the Plateau playtest found | Jehanne no longer hears about a Council you have not met, the Bonewright is named and its risen fall with it, the Revenant Sergeant is named and its whistle calls the undead, and Farsight sees farther. |
 | **0.99.12** | the probe: archers who hold, and a sentry | A playtest probe: two archer groups in the Shrine hold their ground, and a Deathwatch on the Doomed Plateau raises the alarm if it sees you. |
 | **0.99.11** | falling back | Badly wounded English soldiers run back to their druids to be healed, while a druid lives. Chase them down or let them go. |
 | **0.99.10** | what the re-score found | The siege holds work, the Shrine's druids stand on the path, Rumjun Khan can be spoken to and joins you, and five smaller repairs. |

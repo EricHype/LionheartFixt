@@ -450,7 +450,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Undead/Second Guardian
+									Entity=Monster Cans/Fixt Captains/Undead/Second Guardian
 								}
 							}
 						}
@@ -465,7 +465,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Undead/Second Guardian Tough
+									Entity=Monster Cans/Fixt Captains/Undead/Second Guardian Tough
 								}
 							}
 						}
@@ -480,7 +480,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Undead/Second Guardian Super
+									Entity=Monster Cans/Fixt Captains/Undead/Second Guardian Super
 								}
 							}
 						}
@@ -527,7 +527,14 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=3
+										Item Count=4
+										Action=CPainAction
+										{
+											Hit Points=99999
+											Damage Type=Unavoidable
+											Sound=!None.wav
+											Target=Bonewright Risen
+										}
 										Action=CDeactivateAction
 										{
 											Target Name=Fixt Bonewright raises
@@ -725,7 +732,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Bonewright Risen
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -820,7 +827,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Undead/Magical Greater Skeleton
+									Entity=Monster Cans/Fixt Captains/Undead/Magical Greater Skeleton
 								}
 							}
 						}
@@ -835,7 +842,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Undead/Magical Greater Skeleton Tough
+									Entity=Monster Cans/Fixt Captains/Undead/Magical Greater Skeleton Tough
 								}
 							}
 						}
@@ -850,7 +857,7 @@ CLayerSaveData
 								Thing to Generate=CSpawnableCannedEntity
 								{
 									Weight=1
-									Entity=Monster Cans/Undead/Magical Greater Skeleton Super
+									Entity=Monster Cans/Fixt Captains/Undead/Magical Greater Skeleton Super
 								}
 							}
 						}
@@ -872,7 +879,12 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=3
+										Action=CCallForReinforcementsAction
+										{
+											Requester Name=$Trigger
+											Max Distance=600
+										}
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/4 Crypt/Dialog/The Crypt Captains

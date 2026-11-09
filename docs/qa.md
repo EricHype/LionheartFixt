@@ -6158,6 +6158,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.13 - what the Plateau playtest found
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| JC1 | The Doomed Plateau, before meeting the Spirit Council | Talk to Jehanne through every branch | No reply says you have spoken to her Council; after meeting the Council, those replies appear |
+| BW1 | The Doomed Plateau, a save that has not entered it | Hover the captain that raises the dead, and read the log as you fight it | It is named Bonewright, on hover and in the log; its opening line names no standard |
+| BW2 | The same | Let it raise a few, then kill it | The risen fall with it at once, and the line says so |
+| BW3 | Retreat of Souls | Meet the Lance's guardian | It is still the Second Guardian, unchanged |
+| RS1 | The Doomed Plateau, a save that has not entered it | Find the captain that fights the knights and ignores you | It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant |
+| RS2 | The same | Bring it below two thirds of its health yourself | The whistle line, and undead that were idle nearby come for you, besides the escort that appears. Note if they go for the knights instead |
+
 ## 0.99.12 - the probe: archers who hold, and a sentry
 
 | # | Where | Steps | Pass |

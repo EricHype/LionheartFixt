@@ -229,6 +229,14 @@ Reply Text=It still holds the line. That is why I came.
 Go to node ID=44 what we became
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -243,6 +251,14 @@ Text=Then it is an order, and orders drift. Mine was told to hold a relic and it
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -265,6 +281,14 @@ Reply Text=The Church does not answer to its own ashes.
 Go to node ID=30 insult
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -279,6 +303,14 @@ Text=We do. <A pause.> And if your Church wants this relic to keep it out of a n
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -301,6 +333,14 @@ Reply Text=They sent me for the Lance. I am staying for the other thing.
 Go to node ID=48 undo it
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -315,6 +355,14 @@ Text=Then find the lamp, and be more careful with your words than he was. It is 
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -333,6 +381,14 @@ Reply Text=It has a caster. It is in a lamp somewhere below us.
 Go to node ID=48 undo it
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -365,6 +421,14 @@ Text=No. You came for the Lance, like all of them, and you will find it guarded.
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -387,6 +451,14 @@ Reply Text=Then I will take it and go.
 Go to node ID=20 demand lance
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -401,6 +473,14 @@ Text=It is the only sensible thing in this crypt. Names were what I had -- maid,
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -1293,6 +1373,14 @@ Text=Then you know the part of it that nobody writes down. <She looks at what yo
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
@@ -1311,6 +1399,14 @@ Text=There was no charge. There was a necromancer's army and a Saracen's lamp, a
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
 Reply Text=I have spoken to your Council.
 Go to node ID=100 spoke to counsel
 
