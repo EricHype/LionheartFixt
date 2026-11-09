@@ -6158,6 +6158,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.8 - the raid has a leader
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HR1 | Hamlet Burned, first visit | Walk toward the middle of the village | A Druid War-Priest speaks to you before the fight. "Then I will cut them loose myself" starts it |
+| HR2 | The same | Kill the War-Priest | The log says his hold breaks. Every English soldier on the map stands down, says a dazed line about France, and can be talked to. Hit one: only his band turns |
+| HR3 | The same, Speech 75 | Take the parley reply | He vanishes in a flash and the soldiers stand down as in HR2. He does not come back |
+| HR4 | The same, Tribal 75 and at least 20 mana | Take the wrest reply, walk away, wait, come back | Your mana is gone, the band around him stands down. Coming back after 20 seconds, he speaks again ("Back again"), and each cast frees one more band, four in all |
+| HR5 | The same, a Cathar friend of the Weird Woman | Ask her to call the bears off | The bears stop hunting you, including those later fights bring. Without the promise the reply is absent |
+| HR6 | The same | Reach the fight4 or fight6 squad, kill its priest | That squad's soldiers stand down. A squad whose priest has not spawned yet does not stand down early |
+
 ## 0.99.7 - the war leaders
 
 | # | Where | Steps | Pass |

@@ -1,0 +1,279 @@
+CDialogTree
+{
+Name=Druid War-Priest
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 parley
+Text=You carry a spirit, and still you come at us. These men are mine, and they go where I send them.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 75
+Reply Text=Your hold on them is thin. Every man you lose here is one less at your Shrine. Take your spell and go.
+Go to node ID=2 withdraw
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt War-Priest withdraws
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Tribal
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Operator=
+Operand2=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionManaRemaining
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt War-Priest threads left
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=<The spell that holds them is a spirit's work. Take hold of it and pull.>
+Go to node ID=3 wrest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeManaFromCharacterAction
+{
+Character to take mana from=$instigator
+Amount of mana to take=CExpressionManaRemaining
+{
+}
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt War-Priest wrest
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Tribal
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionManaRemaining
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt War-Priest threads left
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=<You can feel his spell, but you have no strength left to pull at it.>
+Go to node ID=
+
+Requirement=!None
+Reply Text=Then I will cut them loose myself.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 withdraw
+Text=Keep your ash heap, then. We have what we came for.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 wrest
+Text=<A thread of his spell tears loose in your hands.> You will not do that twice, spiritbearer.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave.>
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 again
+Text=Back again. I felt you pull at them.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 75
+Reply Text=Your hold on them is thin. Every man you lose here is one less at your Shrine. Take your spell and go.
+Go to node ID=2 withdraw
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt War-Priest withdraws
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Tribal
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Operator=
+Operand2=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionManaRemaining
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt War-Priest threads left
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=<The spell that holds them is a spirit's work. Take hold of it and pull.>
+Go to node ID=3 wrest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeManaFromCharacterAction
+{
+Character to take mana from=$instigator
+Amount of mana to take=CExpressionManaRemaining
+{
+}
+Expression Context=$Instigator
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt War-Priest wrest
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CVariableSkill
+{
+Skill=Skills/Tribal
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=75
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CIsGreaterThanOrEqual
+{
+Operand1=CExpressionManaRemaining
+{
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=20
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Fixt War-Priest threads left
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=<You can feel his spell, but you have no strength left to pull at it.>
+Go to node ID=
+
+Requirement=!None
+Reply Text=Then I will cut them loose myself.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+}

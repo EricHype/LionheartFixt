@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.7 are published** -- 210 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.8 are published** -- 211 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,28 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.8 - the raid has a leader
+
+Hamlet Burned is Act 3's English raid on Montaillou: 21 nameless soldier generators, beside the Templar fights that triggers stage
+later. The Crossroads and the Shrine say the English are held by druid magic, and nothing held this raid. Now a Druid War-Priest does,
+a copy of the Priest cans with its own display name, one tier above the local druid (Tough in the lowest band, Super above), so an
+Act 3 character meets a boss of Act 3's weight. He keeps the priests' wolf and shield. The 21 generators split by position into four
+bands (West 3, Square 9, Northeast 4, Southeast 5), and he stands in the Square.
+
+- **Fight.** Nothing stops you.
+- **Kill the War-Priest.** Every band stands down, wakes with a France line, and can be talked to. Hit a man and only his band turns.
+- **Parley.** He speaks when you come close. Speech 75 talks him out of the village, and his hold goes with him.
+- **The Weird Woman.** A Cathar friend can ask her to call off the Cathars' bears, who were fighting you beside the English.
+  `cathar friend` is an entity in her hut that this map cannot see, so the promise replies, and every reply of the greeting a
+  Cathar friend gets, also set `Fixt Cathar Friend`. A save that promised before this release qualifies once it has spoken to her again.
+- **Wrest a band free.** Tribal 75 and all your mana frees one band per cast, his guard first. He speaks again when you come back,
+  so a weaker character shortens the fight rather than skipping it.
+
+The staged squads fight4 and fight6 are held by their own priest, armed only once he is seen alive. fight8 shares
+`attacker near portal` with a vanilla check, so it is left alone. The planned +50% health on the top tier was dropped: vanilla uses
+`(HP) Hit Points` as a heal, not a cap. Tribal 75 is an estimate, not read from a save. `tools/build_hamlet_raid.py`. `HR1`-`HR6`.
+
+---
 ## 0.99.7 - the war leaders
 
 Goblins are led by warriors and the Khan, not by their shamans, as the maintainer pointed out when the plan said otherwise. The plan named

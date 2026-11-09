@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.8** | the raid has a leader | The raid on the burned hamlet has a Druid War-Priest. Kill him, out-talk him, wrest his men free with Tribal, or have the Weird Woman call off the Cathars. |
 | **0.99.7** | the war leaders | Wilderness goblin bands have war leaders. Kill one and his band loses heart and attacks slower. |
 | **0.99.6** | the hall stands down | [Issue #11](https://github.com/EricHype/LionheartFixt/issues/11): Sahar's ring now stands down the hall group and its runner in the abbey's first level, who were left off the list. |
 | **0.99.5** | the sieges are held too | In the Gate and Temple District sieges, kill every druid priest and the English soldiers stand down, wake in Spain, and can be talked to; hit one and the siege turns again. |
