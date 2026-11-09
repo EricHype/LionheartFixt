@@ -6158,6 +6158,14 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.4 - the acolytes' ward
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HW1 | Clan of the Hand or Skull, first visit, fighting the Hujark | Arrive | The log says the acolytes are chanting a ward over their warriors. Warriors are harder to hit while acolytes live |
+| HW2 | The same | Kill every acolyte on the map | The log says the ward breaks, and within seconds the warriors are as easy to hit as before |
+| HW3 | The same, on the Hujark alliance or safe conduct | Walk through | Nothing changes: the warriors are not hostile, and no English invader is warded on any route |
+
 ## 0.99.3 - what you did follows you
 
 | # | Where | Steps | Pass |

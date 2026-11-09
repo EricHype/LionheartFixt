@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.3](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.3).
+-- currently [0.99.4](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.4).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.4** | the acolytes' ward | The first enemy role. While any Hujark Acolyte on a map lives, the Hujark warriors there are warded, and the ward breaks when the last acolyte falls. Seven act 5 maps. |
 | **0.99.3** | what you did follows you | Two choices reach later acts: break the druids' standard and two archer groups on the road to England have deserted; kill the Goblin Khan and his bands fight with less heart afterwards, or keep their distance from his Champion. |
 | **0.99.2** | showing, not telling | Hints that show rather than tell: the Shrine's soldiers seem spellbound in the journal and to Sir Roger, a soldier reaching for a potion says so over his head, and the Acid Wash valve's line plays only for whoever finds it. |
 | **0.99.1** | what the game already said | Every line Fixt has written was checked against the game's own dialogue, quests and scripts, and 166 were corrected. Jehanne was never burned at Rouen, the Daeva of Pain is Boruta, the Hujark took Nostradamus in, and the troll peace no longer credits you with an argument you never made. |
@@ -84,7 +85,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.3 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.4 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.4** | the acolytes' ward | The first enemy role. While any Hujark Acolyte on a map lives, the Hujark warriors there are warded, and the ward breaks when the last acolyte falls. Seven act 5 maps. |
 | **0.99.3** | what you did follows you | Two choices reach later acts: break the druids' standard and two archer groups on the road to England have deserted; kill the Goblin Khan and his bands fight with less heart afterwards, or keep their distance from his Champion. |
 | **0.99.2** | showing, not telling | Hints that show rather than tell: the Shrine's soldiers seem spellbound in the journal and to Sir Roger, a soldier reaching for a potion says so over his head, and the Acid Wash valve's line plays only for whoever finds it. |
 | **0.99.1** | what the game already said | Every line Fixt has written was checked against the game's own dialogue, quests and scripts, and 166 were corrected. Jehanne was never burned at Rouen, the Daeva of Pain is Boruta, the Hujark took Nostradamus in, and the troll peace no longer credits you with an argument you never made. |
