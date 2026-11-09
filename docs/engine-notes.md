@@ -22,6 +22,7 @@ wrong.
 - [Equipment slots, and the one the game never filled](#equipment-slots-and-the-one-the-game-never-filled)
 - [Method rules](#method-rules)
 - [What each lesson cost](#what-each-lesson-cost)
+- [Dormant engine features](dormant-engine.md) -- a separate page: the 105 classes vanilla never uses, which work, and which crash
 
 ---
 
@@ -306,8 +307,11 @@ the unproven half of any design that depends on it.
 
 ### There is one attack brain, and the repertoire lives beside it
 
-`CNormalAttackAI` is used 1,461 times and is the only attack AI in the game, so a monster's
-character cannot come from swapping it. It comes from the `Shoot Completed` slot, which fires
+`CNormalAttackAI` is used 1,461 times and is the only attack AI vanilla's data uses, so a monster's
+character cannot come from swapping it. The engine has others, but `CStandStillAttackAI` is the only working one,
+`CStandGroundAttackAI` is an alias of this class, and `CChargeAttackAI` and `CStrafeAttackAI` are abstract and crash the
+game if named: see [Dormant engine features](dormant-engine.md). Standing ground is this class with
+`Minimum Attack Distance=0`. It comes from the `Shoot Completed` slot, which fires
 after each swing: 1,365 monsters leave it empty and simply hit things, 74 put a `CRandomAction`
 there, and **the branch count is the rate denominator**. The Snakebreed Summoner's three branches
 are melee, melee, gated summon; `Shaman Greater Super` has six, each a `CActionSelectSkill` over
