@@ -85,6 +85,176 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=Fixt the Horde's heart
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+										}
+									}
+									Character to get attributes from=Player1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=3
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Horde Goblin, Goblin Lake map, Goblin upper right near node
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=Horde Goblin, Goblin Lake map, Goblin upper right near node
+											Categories To Remove=Enemy
+										}
+										Action=CPrintCombatTextAction
+										{
+											Text to print=The goblins here know the Khan's Champion, and keep their distance.
+											Character to show text to=Player1
+											Emphasize=0
+											Suppress Duplicates=1
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CAddAIAction
+											{
+												Target Name=Horde Goblin, Goblin Lake map, Goblin upper right near node
+												AI=CRepeatTimerTriggerAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													Action=CSeriesAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CAddCharacterModifierToCharacterAction
+															{
+																Modifier Description=
+																Modification is permanent=1
+																Character to modify=$Trigger
+																Modifiers=Array
+																{
+																	Item Count=1
+																	Modifier=CCharacterModifierDerivedAttribute
+																	{
+																		Modification Amount=CConstant
+																		{
+																			Constant Value=-0.2
+																		}
+																		Modification amount is a percent=0
+																		Allow Accumulation=0
+																		Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+																	}
+																}
+																OPTIONAL Duration=
+																Expression Context=$Trigger
+															}
+															Action=CSucceedAction
+															{
+																Action=
+															}
+														}
+														When Done=Repeat Last Action
+														Require Success To Advance=0
+														Next Action Index=0
+													}
+													Delay Between Actions=600
+													Plus or Minus=0
+													Seconds Till Next Execute=0
+												}
+												Delay Between Adds=0
+											}
+											Action=CPrintCombatTextAction
+											{
+												Text to print=Without their Khan, the goblins here fight with less heart.
+												Character to show text to=Player1
+												Emphasize=0
+												Suppress Duplicates=1
+											}
+										}
+									}
+									Else=
+								}
+								Return failure if the If failes=0
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt the Horde's heart
+							}
+						}
+					}
+					Delay Between Actions=600
+					Plus or Minus=0
+					Seconds Till Next Execute=3
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=100
+			Position Y=60
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=node hover
@@ -935,7 +1105,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -9172,7 +9342,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -10216,7 +10386,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -11933,7 +12103,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -18362,7 +18532,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -24622,7 +24792,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -29823,7 +29993,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -31445,7 +31615,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{
@@ -32723,7 +32893,7 @@ CLayerSaveData
 							}
 						}
 					}
-					New Name=
+					New Name=Horde Goblin
 					Remove Default AIs=0
 					AIs to Add=Array
 					{

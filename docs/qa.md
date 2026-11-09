@@ -6158,6 +6158,14 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.3 - what you did follows you
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CO1 | Crossroads to England, having broken the standard, on a save that has not walked the road | Walk it | Two archer groups do not attack. Clicking one gives a deserter line. Without the standard broken they fight as before |
+| CO2 | Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit, Khan killed | Fight a band | The log says they fight with less heart, and they attack visibly slower |
+| CO3 | The same, as Goblin Champion | Walk in | The log says they keep their distance, and the bands do not attack. Quest goblins (Grumdjum, the guard at the girl) are unchanged |
+
 ## 0.99.2 - showing, not telling
 
 | # | Where | Steps | Pass |
