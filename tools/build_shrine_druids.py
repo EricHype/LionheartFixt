@@ -129,7 +129,7 @@ def summon(who):
     """Once per druid, at half health: the can's damage slot, beside what it already does."""
     clone = ("CCloneAction", [("New Location", "$Trigger"), ("Copy Height", "0"), ("Random Location Delta", "80"), ("Warp Behavior", ""),
                               ("Source Name", SOURCE), ("New Name", USED), ("Set Facing Angle", "0"), ("New Facing Angle", "0")])
-    line = ("CPrintCombatTextAction", [("Text to print", who + " calls a wolf to her side."), ("Character to show text to", "Player1"),
+    line = ("CPrintCombatTextAction", [("Text to print", who + " calls a wolf to " + ("her" if who == "Druidess" else "his") + " side."), ("Character to show text to", "Player1"),
                                        ("Emphasize", "0"), ("Suppress Duplicates", "0")])
     once = ("CSeriesAction", [("Action", [("Action", multi([line, clone])), ("Action", ("CSucceedAction", [("Action", "")]))]),
                               ("When Done", "Repeat Last Action"), ("Require Success To Advance", "1"), ("Next Action Index", "0")])

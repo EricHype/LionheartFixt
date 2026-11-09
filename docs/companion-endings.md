@@ -551,7 +551,7 @@ She is the one companion who already has a slide, and it is wrong in one case.
 
 `900 order omalley` fires on the `Graces Regard` perk, which is granted in **Barcelona** and then
 checked as a `CHasPerkExpression` on her recruitment reply in England. It records what you did about
-her secret, not whether she lived. So it says *"she was still taking prizes off the Irish coast
+her secret, not whether she lived. So it says *"she was still taking prizes off the English coast
 twenty years after Barcelona"* even when she joined you and died in Alamut, which is 0.71.0's own
 work contradicted by this roster.
 

@@ -293,7 +293,7 @@ def tree():
             {"text": "No. We will find another way.", "icon": "Exit Icon", "default": True}]),
         node("55 joan gives", "Tell them they are free. Tell them who they were.", [
             {"text": "", "action": multi([("CForEachPlayerAction", [("Action", multi([flag(BROKEN), flag(JOAN_VAR)]))]), relay(BY_JOAN)]), "default": True}]),
-        node("60 golem", "<Brrrt> <It turns its head toward you and waits to be sure, as it always has. It was built in England to break a line.>", [
+        node("60 golem", "<Brrrt> <It turns its head toward you and waits to be sure, as it always has. It was built to break a line.>", [
             {"text": "", "action": multi([("CForEachPlayerAction", [("Action", multi([flag(BROKEN), flag(GOLEM_VAR)]))]), relay(BY_GOLEM)]), "default": True}]),
         node("80 woke 1", "Where is this? Who are you people?", []),
         node("81 woke 2", "What have we done? God forgive us, what have we done?", []),
@@ -352,7 +352,7 @@ def crossroads():
 
 SLIDE_TEXT = {
     "900 order standard": "The English at the crossroads woke in one moment, in the wrong country, with blood on them. Most of them went home. Nobody in England would hear what had happened, because the druids had already told it differently. The men stopped talking about it. You knew what you had broken, and you were the only one who did.",
-    "900 order standard blood": "The English at the crossroads woke in one moment, in the wrong country, with blood on them. You killed a good many of them while they were still asking where they were. The rest went home and told nobody, because nobody in England would have heard it. You knew what you had broken, and you knew what you had done after.",
+    "900 order standard blood": "The English at the crossroads woke in one moment, in the wrong country, with blood on them. You drew blood among them while they were still asking where they were. The rest went home and told nobody, because nobody in England would have heard it. You knew what you had broken, and you knew what you had done after.",
     "900 friend joan standard": "Jehanne d'Arc died at the crossroads outside Barcelona, at a druid's standard. She offered to give more than it took, and you told her to do it. An English army woke in the same moment and did not know her name. The Crypt she had held for two hundred years went unguarded. Most of the men would not speak of that road. One of them paid for a mass at Rennes every year.",
     "900 friend golem standard": "The golem ended at the crossroads outside Barcelona, on your order. It turned its head and waited to be sure, and you were. It had been built in England to break a line. It broke the thing that was holding this one. The men who woke there never learned what freed them. A blue shoulder plate turned up in the paving. A church in Cornwall kept it as a relic, not knowing what it was.",
 }

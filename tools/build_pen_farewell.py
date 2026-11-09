@@ -63,13 +63,13 @@ def trees():
         node(LEAD, "The camp has gone quiet. No shouting, no ogres at the fence, and nobody has come for the sheep. I have been a prisoner long enough to distrust quiet. What has happened out there?", [
             {"text": "The titans have gone. All of them. You are free to go.", "go": FREE},
             {"text": "I will come back for you.", "icon": "Exit Icon", "default": True}]),
-        node(FREE, "Gone? Walked away, with nobody dead at the fence? <He grips the rail for a moment.> I will not ask what you said to them. I have a wife in Montaillou who thinks I am a dead man, and I intend to correct her.", [
+        node(FREE, "Gone? Walked away, with nobody dead at the fence? <He grips the rail for a moment.> I will not ask what you said to them. I have a wife in Montaillou who has waited long enough, and I intend to correct her.", [
             {"text": "Then go. I will see you in Montaillou.", "action": relay(WALK), "icon": "Quest Icon", "default": True}]),
     ])
     add_nodes("Resources/" + GENERAL + ".DialogTree", "60 Villager Man 1", [
         node(ASK, "The ogres have gone, and nobody will say why. Thierry will know what to do. Ask him, please.", []),
         node(CHILD, "Is it over? Can we go home now?", []),
-        node(NO_LEAD, "Thierry is dead, and the ones who killed him walked away as if it were nothing. Is it true? Is there nobody left to keep us here?", [
+        node(NO_LEAD, "Thierry is dead, and Thierry is dead, and nobody will tell us how. Is it true? Is there nobody left to keep us here?", [
             {"text": "They are gone. You are free to go.", "go": NO_LEAD_2},
             {"text": "<Leave.>", "icon": "Exit Icon", "default": True}]),
         node(NO_LEAD_2, "Then we walk, and we do not stop until somebody stops us. God keep you.", [

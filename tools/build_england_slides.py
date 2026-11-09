@@ -23,7 +23,7 @@ HANGED = "Any week of it would have hanged you. "
 DUKE = ("You lured the Duke of Medina to a keg of gunpowder behind DaVinci's workshop. The Armada lost its head a "
         "season before it was due to sail. ")
 SPAIN = ("Guy Fawkes told you his real name outside the Gate District, and you killed him for it. The Duke of Medina "
-         "thanked you personally and went back to his ship. Spain never learned how close the powder had been. England "
+         "thanked you personally and went back to his ship. Spain filed it as one more plot against the Duke. England "
          "lost an agent it had never admitted to having. History has no record of Guy Fawkes after that year, and never "
          "had any reason to.")
 

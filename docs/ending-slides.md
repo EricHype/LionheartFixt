@@ -102,7 +102,7 @@ thing worn in the desert's service. The men who carried it there had trained und
 
 The Knights Templar came out of the siege with their chapter houses standing and their numbers
 halved. Within the year Lord Javier swore the order to the power he had called his benefactor. You
-had carried their banner the length of the war, from the Port District chapter to the relic vaults
+had carried their banner the length of the war, from the Cathedral in the Temple District to the relic vaults
 at Montserrat. Knights who had trained beside you rose behind you. The commanderies took their new
 instructions quietly. Those who objected were reassigned to postings they did not come back from.
 Inside a generation the white cross was a thing worn in the desert's service, carried by men who had
@@ -229,7 +229,7 @@ The Inquisition came out of the siege with its command intact, and the city hand
 rebuilding. You had worn its mark and you had killed its own. The Holy Office keeps careful records
 of a name entered twice. Its fires burned on through the peace as they had through the war, because
 a frightened city asks its inquisitors for more work, not less. The cities paid for the wood.
-Nothing was ever charged against you. But there were four towns between Barcelona and the coast that
+Nothing was ever charged against you. But there were four towns between Barcelona and Montaillou that
 you never entered again, and you knew all four names.
 
 ### when: Inquisition Rank > 2
@@ -328,7 +328,7 @@ a generation it was hard to say whether he had burned them or hired them.
     node id: 900 order saladin killer
 
 The Knights of Saladin kept the pact of east and west after the west had stopped keeping it. After
-Alamut they kept it alone. You had eaten at their table in the Gate District and you had killed one
+Alamut they kept it alone. You had been a guest in their tents in the Gate District and you had killed one
 of their knights. The order wrote down both without comment, which is their way of closing a matter.
 They held the eastern shrines for two generations against raids the west never heard about. They
 were called weak for it by men who had never fought them. Guests at their table were told your name,
@@ -340,7 +340,7 @@ and told it carefully, as part of a longer lesson about hospitality.
 
 The Knights of Saladin kept the pact of east and west after the west had stopped keeping it. After
 Alamut they kept it alone. You had been named a Favored One, the first westerner in living memory
-given the title. The men who argued against it were outnumbered, not persuaded. They held the
+given the title. Farshid called you the only foreigner to survive the Dream Djinn. They held the
 eastern shrines for two generations against raids the west never heard about. They were called weak
 for it by men who had never fought them. Your name stayed in the recitation at Alamut long after
 anybody there could have said what you looked like.
@@ -433,7 +433,7 @@ La Calle Perdida was never found, because by the end of that year there was noth
 find. You put on Relican's ring and turned it on the hidden city yourself. The few who walked out
 gave you the only title that fit: Dark Lord of a place that no longer existed. What the Church had
 spent three hundred years failing to drown, you buried in an afternoon. The Tome of Geomancy went
-down with it. The Five Ways crystals were never gathered again. Nobody taught any of it in the open,
+down with it. Nobody tapped the Ways crystals for it again. Nobody taught any of it in the open,
 then or afterward.
 
 ### when: Exposer of Calle Perdida (with or without Wielder rank)
@@ -443,7 +443,7 @@ then or afterward.
 La Calle Perdida was found, and it was found because you told the Inquisition where to look. You had
 been inside as a friend first, which is the only reason your directions were good enough. The Holy
 Office took the quarter apart in nine days. What the Wielders had kept hidden for a century was
-catalogued, carted out and burned in the open. Cedric's library went in the third load. A handful
+catalogued, carted out and burned in the open. Cedric's own house went in the third load. A handful
 got away through the sewers. They taught what they could remember to people who did not understand
 what they were being given, and inside two generations it was gone.
 
@@ -493,7 +493,7 @@ Shown after the Wielder slide, to any faction. The Dark Wielder slide has nine v
 
 Cedric sent you after Relican, and you found the exile in the western forest and destroyed him.
 Nothing in La Calle Perdida marked it. The Wielders had cast him out once already, and they do not
-celebrate their own. Cedric heard your report and went back to his books. The street slept well
+celebrate their own. Cedric heard your report and called you Wielder. The street slept well
 after that. Few of those sleeping there knew who to thank.
 
 ### when: the same, and Brambles cured
@@ -502,7 +502,7 @@ after that. Few of those sleeping there knew who to thank.
 
 Cedric sent you after Relican, and you found the exile in the western forest and destroyed him.
 Nothing in La Calle Perdida marked it. The Wielders had cast him out once already, and they do not
-celebrate their own. Cedric heard your report and went back to his books. You poured the potion on
+celebrate their own. Cedric heard your report and called you Wielder. You poured the potion on
 Brambles's roots. The tree split, and there was a man inside it, stiff in the legs and late for his
 grandchildren. The street slept well after that. Few of those sleeping there knew who to thank.
 
@@ -626,7 +626,7 @@ more work than it could staff. None of it was ever yours, and that was the whole
     node id: 900 order savage heart
 
 The Savage Heart came out of the war the way mercenary companies do, which is richer and with a
-shorter roster. You took Raylark's contract and killed goblins for the bounty, counted by the ear.
+shorter roster. You took Raylark's contract and signed on to hunt goblins for the bounty, counted by the scalp.
 The company's books still carry the entry under your name. In the years after Alamut half of Europe
 wanted men who would do that sort of work and not ask after the paperwork. The Savage Heart raised
 its rate twice in five years. Raylark kept his camp west of Khara'Khorum until he was too old to
@@ -660,7 +660,7 @@ The gates of Barcelona stayed quieter for it, and nobody there ever learned why.
 
     node id: 900 order goblins poems
 
-Butu Khan's poems went back to his line because of you. Hrargrub read them aloud in the east cave,
+You settled Butu Khan's poems with his line, and Hrargrub's goblins let you walk the east cave,
 and goblins who had never heard a verse sat down to listen.
 
 ### when: Hrargrub killed for the Khan
@@ -674,8 +674,8 @@ was called. Nobody else ever did.
 
     node id: 900 order goblins eyes
 
-You brought Rakeb the woodcutter's eyes and his liver. He had said they were beautiful. Nobody came
-looking. A man who lives alone in a forest is not missed until someone needs firewood.
+You cut out the woodcutter's eyes and his liver for Rakeb. He had said they were beautiful. Nobody came
+looking. A woodcutter deep in a forest is not missed until someone needs firewood.
 
 ### when: Esteban killed for the patrol
 
@@ -747,9 +747,9 @@ after that year, and never had any reason to.
 
     node id: 900 order omalley
 
-Grace O'Malley kept her ships, her harbour and her true name. The Crown learned none of the three
+Grace O'Malley kept her life and her true name. The Crown learned neither
 from you. You had been given more than her silence to hold, at a point where selling it would have
-cost you nothing and paid well. She was still taking prizes off the Irish coast twenty years after
+cost you nothing and paid well. She was still taking prizes off the English coast twenty years after
 Barcelona, under the name she had chosen. Her crews told the Barcelona story the entire time, with
 you in it. They told it badly, and she never once corrected them.
 

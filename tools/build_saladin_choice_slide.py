@@ -25,7 +25,7 @@ PERKS = "Perks/!NPC or Event Given Perks/"
 BROUGHT = "You brought the Shard of Dreams out of the slavers' lair and put it in Amir's hands. "
 FORGED = "Amir offered you a choice of tasks, and you took the sword. Eduardo forged it, you carried it back, and Amir handed it to you again. "
 OFFER = "Then Kabool offered you the blade or your wits, and you "
-ANYWAY = " You brought him the Shard anyway, and he paid you for it, because the order does not take a sacred thing as a gift."
+ANYWAY = " You brought Amir the Shard anyway, and he paid you for it, because the order does not take a sacred thing as a gift."
 WITS = ("chose your wits, with the blade at your side the whole time. He named you Scholar of the Crescent. The "
         "order found that very funny. Later it found it wise.")
 BURNING = ("You took it into the Trial of Dreams and you won. Kabool said a second blade would be no gift, and he "

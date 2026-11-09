@@ -36,7 +36,7 @@ CURED = ("You poured the potion on Brambles's roots. The tree split, and there w
          "legs and late for his grandchildren. ")
 HUNTED = ("Cedric sent you after Relican, and you found the exile in the western forest and destroyed him. Nothing "
           "in La Calle Perdida marked it. The Wielders had cast him out once already, and they do not celebrate "
-          "their own. Cedric heard your report and went back to his books. ")
+          "their own. Cedric heard your report and called you Wielder. ")
 SLEPT = "The street slept well after that. Few of those sleeping there knew who to thank."
 REFUSAL = ("Relican gave you a ring, and a city to use it on. You stood in La Calle Perdida with it burning in your "
            "hand, and you let it go. It shook itself to pieces, and something wailed as it went. Nobody in the "
@@ -46,7 +46,7 @@ QUIET = "You went back sometimes. You never told them."
 DARK_QUINN = {"joined": "You bent Quinn the herbalist with your words, and he served Relican faithfully. ",
               "killed": "Quinn the herbalist refused, so you killed him. His shop in the Gate District stayed shut. ",
               "none": ""}
-DARK_LEO = {"joined": "Leonardo gave you his word that he would not stand against you. He kept it, and he did not "
+DARK_LEO = {"joined": "Leonardo gave you his word that he would not stand against Relican. He kept it, and he did not "
                       "forgive himself. ",
             "refused": "Leonardo asked you to turn back. He was the only one who ever did. ",
             "none": ""}

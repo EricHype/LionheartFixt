@@ -41,12 +41,12 @@ SLAIN = ("Plumdjum Khan had drawn plans for six winters when you killed him. He 
 COUNT = ("You killed goblins in such numbers that the tribes stopped counting you as a westerner and started counting "
          "you as weather. The Khan had a word for you. Mothers in Khara'Khorum used it at bedtime. The gates of "
          "Barcelona stayed quieter for it, and nobody there ever learned why.")
-READ = ("Butu Khan's poems went back to his line because of you. Hrargrub read them aloud in the east cave, and "
+READ = ("You settled Butu Khan's poems with his line, and Hrargrub's goblins let you walk the east cave, and "
         "goblins who had never heard a verse sat down to listen.")
 KILLED = ("You killed Hrargrub for the Khan, and Butu's line ended a second time. The Khan did not ask what he was "
           "called. Nobody else ever did.")
-WOOD = ("You brought Rakeb the woodcutter's eyes and his liver. He had said they were beautiful. Nobody came looking. "
-        "A man who lives alone in a forest is not missed until someone needs firewood.")
+WOOD = ("You cut out the woodcutter's eyes and his liver for Rakeb. He had said they were beautiful. Nobody came looking. "
+        "A woodcutter deep in a forest is not missed until someone needs firewood.")
 ROAD = ("You killed Guard Esteban for the goblin patrol, and the road at the Crossroads belonged to the Horde. He had "
         "been paying travellers to thin them out. Soon nobody was paying. Then nobody was travelling.")
 

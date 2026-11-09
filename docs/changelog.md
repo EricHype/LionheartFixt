@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.1** | what the game already said | Every line Fixt has written was checked against the game's own dialogue, quests and scripts, and 166 were corrected. Jehanne was never burned at Rouen, the Daeva of Pain is Boruta, the Hujark took Nostradamus in, and the troll peace no longer credits you with an argument you never made. |
 | **0.99.0** | the Shrine, Alamut, and the epilogue stage | **Released untested.** Act 7's "druids" were passive soldiers; real druids now call wolves and hold the soldiers on three maps, and how the Druid Master ends gets its own slide. Alamut: the Acid Wash hurts everyone and hides a valve, Assassin Masters may call dogs, and the dark endings show slides. Every ending now plays on a stage with each character in view. |
 | **0.98.1** | where the four roads met | The druids' standard now stands at the junction the game's own text describes, so you fight through half the siege to reach it. |
 | **0.98.0** | the standard at the crossroads | **Act 6 gets a real choice.** A druid standard holds the English army at the Crossroads Siege. Break it with Thought, Divine or Tribal magic, brute strength, Jehanne's sacrifice or the War Golem's, and most of the army wakes, stands down and can be talked to. Killing them afterwards costs Karma and darkens your ending. English soldiers now have to work for their healing draught, and enemy heals and buffs print to the log. Many spawns had no script name, so scripts aimed at them reached nobody in 16 maps; they are named now. |

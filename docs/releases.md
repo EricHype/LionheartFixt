@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.0 are published** -- 203 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.1 are published** -- 204 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,6 +142,27 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.1 - what the game already said
+
+Every line Fixt has written, checked against the game's own dialogue, quests and scripts: 915 dialogue nodes in 131 trees, 35 log lines and 47
+quest lines, by six readers, then reviewed by hand. 166 findings. Claims about what happens after the game stay invented by design; claims about
+the past now match the data. The largest:
+
+- **Jehanne was never tried or burned at Rouen** in this game. Her history is "crown the King of France, achieve victory at Orleans", and the Council
+  has her cursed in the crypt battle. Her trial lines and the companion slide that repeated them are gone, and she no longer knows the lamp and the
+  wish at a first meeting, which vanilla says she refuses to believe.
+- The Daeva of Pain is **Boruta**, as he names himself, not Aeshma, and he came from Barcelona a week ago, not ninety years.
+- The Hujark took Nostradamus in, not the reverse. Richard froze the dragon four centuries ago, not eight. Sir Roger's Queen took the druids in;
+  Isabella says they once fought the English. The Toulouse prisoners no longer know what the titans never told them, and titans eat no sheep.
+- **Two logic faults:** breaking the troll peace wrote a journal entry and an Enrique line about an argument the player may never have had. The
+  journal no longer claims it, and Enrique's reply needs the argument.
+- The Sahar Ring wore the four-leaf clover's description. Juan's log line promised any healing potion would do. The male Druid called a wolf "to her
+  side". Eight lines addressed the player as a man regardless of who was playing.
+
+About 130 smaller corrections: the thieves' dogs, not the beggars'; Galileo a stargazer, not a glassmaker; Grace with no harbour; Amir, not Kabool,
+paid for the Shard; corpse positions in the Troll Pit that match the map. The build scripts and docs carrying the same text were corrected with it.
+
+---
 ## 0.99.0 - the Shrine, Alamut, and the epilogue stage
 
 Act 7 scored 2 of 5 with about five kinds of encounter across 138 generators. A survey found what 0.19.0 had meant and missed.

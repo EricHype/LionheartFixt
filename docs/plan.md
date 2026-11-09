@@ -3423,7 +3423,7 @@ self-image — *"we are **Mongol-trained** goblins, the scourge of the land!"* �
 campaign has him saying *"I have drawn plans to invade Nueva Barcelona. My goblins prepare for war"*
 and then asking **the player** to kill Guard Esteban and the gate guards so the horde can flood in.
 
-> *"He has drawn plans. He has drawn plans for six winters. Have you seen them? They are very good
+> *"He has drawn plans. He has drawn plans for a long time. Have you seen them? They are very good
 > plans."*
 
 ### Tier 3 — the quests

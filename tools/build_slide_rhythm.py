@@ -41,7 +41,7 @@ TEMPLAR = {
         "was no record of you being anywhere else. " + QUIET + DESERT + ". The men who carried it there had "
         "trained under you."),
     "900 order templar mid knelt": (
-        OPENING + KNELT + "You had carried their banner the length of the war, from the Port District chapter to "
+        OPENING + KNELT + "You had carried their banner the length of the war, from the Cathedral in the Temple District to "
         "the relic vaults at Montserrat. Knights who had trained beside you rose behind you. " + QUIET + DESERT +
         ", carried by men who had learned how to carry it from watching you."),
     "900 order templar knelt": (
@@ -61,7 +61,7 @@ SHRINES = ("They held the eastern shrines for two generations against raids the 
 
 SALADIN = {
     "900 order saladin killer": (
-        PACT + "You had eaten at their table in the Gate District and you had killed one of their knights. The "
+        PACT + "You had been a guest in their tents in the Gate District and you had killed one of their knights. The "
         "order wrote down both without comment, which is their way of closing a matter. " + SHRINES +
         "Guests at their table were told your name, and told it carefully, as part of a longer lesson about "
         "hospitality."),
@@ -85,13 +85,13 @@ WIELDER = {
         "La Calle Perdida was never found, because by the end of that year there was nothing left of it to find. "
         "You put on Relican's ring and turned it on the hidden city yourself. The few who walked out gave you the "
         "only title that fit: Dark Lord of a place that no longer existed. What the Church had spent three hundred "
-        "years failing to drown, you buried in an afternoon. The Tome of Geomancy went down with it. The Five Ways "
+        "years failing to drown, you buried in an afternoon. Whatever books it still held went down with it. The Five Ways "
         "crystals were never gathered again. Nobody taught any of it in the open, then or afterward."),
     "900 order wielder exposed": (
         "La Calle Perdida was found, and it was found because you told the Inquisition where to look. You had been "
         "inside as a friend first, which is the only reason your directions were good enough. The Holy Office took "
         "the quarter apart in nine days. What the Wielders had kept hidden for a century was catalogued, carted out "
-        "and burned in the open. Cedric's library went in the third load. A handful got away through the sewers. "
+        "and burned in the open. Cedric's own house went in the third load. A handful got away through the sewers. "
         "They taught what they could remember to people who did not understand what they were being given, and "
         "inside two generations it was gone."),
     "900 order wielder killer": (
@@ -137,11 +137,11 @@ HORDE = {
     "900 order savage heart betrayed": (
         ROSTER + "One of the names on the short side was Raylark's. You took his contract, and then you took the "
         "Khan's, and you carried the Everlasting into Khara'Khorum to prove you had earned it. The company does not "
-        "avenge its dead. It prices them. The price it set on you was entered in the books at Marseilles and never "
+        "avenge its dead. It prices them. The price it set on you was entered in the company's books and never "
         "once collected. In the years after Alamut the Savage Heart turned away more work than it could staff. None "
         "of it was ever yours, and that was the whole of its revenge."),
     "900 order savage heart": (
-        ROSTER + "You took Raylark's contract and killed goblins for the bounty, counted by the ear. The company's "
+        ROSTER + "You took Raylark's contract and signed on to hunt goblins for the bounty, counted by the scalp. The company's "
         "books still carry the entry under your name. In the years after Alamut half of Europe wanted men who would "
         "do that sort of work and not ask after the paperwork. The Savage Heart raised its rate twice in five years. "
         "Raylark kept his camp west of Khara'Khorum until he was too old to hold it. The Horde had learned to count "
@@ -163,9 +163,9 @@ REMAINDER = {
         "There was no record anywhere of the reason for either. He was hanged for something else, years "
         "later, and said nothing about you."),
     "900 order omalley": (
-        "Grace O'Malley kept her ships, her harbour and her true name. The Crown learned none of the three from "
+        "Grace O'Malley kept her life and her true name. The Crown learned neither from "
         "you. You had been given more than her silence to hold, at a point where selling it would have cost you "
-        "nothing and paid well. She was still taking prizes off the Irish coast twenty years after Barcelona, under "
+        "nothing and paid well. She was still taking prizes off the English coast twenty years after Barcelona, under "
         "the name she had chosen. Her crews told the Barcelona story the entire time, with you in it. They told it "
         "badly, and she never once corrected them."),
 }

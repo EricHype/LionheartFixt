@@ -49,7 +49,7 @@ REWRITES = {
         "You had worn its mark and you had killed its own. The Holy Office keeps careful records of a name "
         "entered twice. Its fires burned on through the peace as they had through the war, because a frightened "
         "city asks its inquisitors for more work, not less. The cities paid for the wood. Nothing was ever "
-        "charged against you. But there were four towns between Barcelona and the coast that you never entered "
+        "charged against you. But there were four towns between Barcelona and Montaillou that you never entered "
         "again, and you knew all four names."),
     "900 order inquisition high": (
         "The Inquisition came out of the siege with its command intact, and the city handed it the rebuilding. "

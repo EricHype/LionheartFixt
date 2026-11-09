@@ -148,10 +148,23 @@ Icon=Quest Icon
 Requirement=!None
 Custom Requirement=CActionExpression
 {
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
 Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/Sewers/Quests/The Peace You Brokered
 State=CNT4H9RX
+}
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK5N3BQ
+}
+}
+Early Exit=0
 }
 }
 Reply Text=The trolls are dead. You should hear it from me.
@@ -368,10 +381,23 @@ Icon=Quest Icon
 Requirement=!None
 Custom Requirement=CActionExpression
 {
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=2
 Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/Sewers/Quests/The Peace You Brokered
 State=CNT4H9RX
+}
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK5N3BQ
+}
+}
+Early Exit=0
 }
 }
 Reply Text=The trolls are dead. You should hear it from me.
@@ -1461,7 +1487,7 @@ Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=701 never came up
-Text=<The silence goes on a beat too long.>  ...That is not the point. They are trolls, senor. They sit on the lower level with their ore and their...  <he gestures>  ...and everyone knows what they are.  <He is talking a little faster than he was.>  And I have men who will not go down past the fourth turning, and that costs me. It costs me every week.
+Text=<The silence goes on a beat too long.>  ...That is not the point. They are trolls. They sit on the lower level with their ore and their...  <he gestures>  ...and everyone knows what they are.  <He is talking a little faster than he was.>  And I have men who will not go down past the fourth turning, and that costs me. It costs me every week.
 Should Have Voiceover=0
 
 Requirement=Speech moreequal 50
@@ -1574,7 +1600,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=710 a knight argues
-Text=<He notices. You watch him notice.>  ...I am being lectured about mercy toward monsters. By a Templar.  <He laughs, and this time there is something real underneath it, and it is not comfortable.>  Do you know how many of your order have come through this hall telling me what God wants doing to the things in the lower level? All of them, senor. Every one.  <He looks at you differently.>  You are the first one who came down and asked them first.
+Text=<He notices. You watch him notice.>  ...I am being lectured about mercy toward monsters. By a Templar.  <He laughs, and this time there is something real underneath it, and it is not comfortable.>  Do you know how many of your order have come through this hall telling me what God wants doing to the things in the lower level? All of them. Every one.  <He looks at you differently.>  You are the first one who came down and asked them first.
 Should Have Voiceover=0
 
 Requirement=!None
