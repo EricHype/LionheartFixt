@@ -27,9 +27,9 @@ from build_shrine_repairs import register
 ACT = "Levels/5 Nostrodomus/"
 MAPS = ["01 Heart Entrance", "02 Clan of the Hand A", "03 Tourniquet of Pain", "04 Clan of the Skull B",
         "07 Cave 2", "08 Cave 3", "09 Cave 4", "10 Cave 5"]
-ACOLYTE = "Hujark Acolyte"
-WARD_LINE = "The Hujark acolytes here are chanting, and a ward hangs over their warriors."
-BROKEN_LINE = "The last acolyte falls, and the ward over the Hujark warriors breaks."
+ACOLYTE = "Hujark Acolyte"  # the map name of every Hujark caster generator, shamans and acolytes both
+WARD_LINE = "The Hujark shamans and acolytes here are chanting, and a ward hangs over their warriors."
+BROKEN_LINE = "The last of their casters falls, and the ward over the Hujark warriors breaks."
 
 
 def parts(z):

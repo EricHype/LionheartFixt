@@ -165,11 +165,15 @@ Found in the 0.99.12 playtest, on the way to the Deathwatch.
   `CCallForReinforcementsAction` at 600, so idle undead that listen join against the Sergeant's target. Undead already
   fighting do not answer, and if the knights rather than you wounded it, the callers go for the knights.
   `tools/build_bonewright.py`.
+- **The Hujark ward named only the acolytes.** 0.99.4's ward holds while any Hujark caster lives, the greater shamans
+  ("Hujark Shaman") as well as the lesser ("Hujark Acolyte"), but its lines spoke only of acolytes, so killing every
+  Acolyte left the ward up with nothing on screen to say why. Both lines now name shamans and acolytes, in all seven
+  maps. `tools/build_hujark_ward.py`.
 - **Farsight sees twice as far beyond bare-headed**, +100 rather than +50 (the addition takes `Wearing a Helmet` to -4).
   A high-Perception character in it sees the Deathwatch up to 185 units before it sees them.
 
 The Bonewright and Sergeant changes need a save that has not entered the Doomed Plateau yet; Jehanne's gate and the lines do not.
-`JC1`, `BW1`-`BW3`, `RS1`-`RS2`, `HM2`.
+`JC1`, `BW1`-`BW3`, `RS1`-`RS2`, `HW3`, `HM2`.
 
 ---
 ## 0.99.12 - the probe: archers who hold, and a sentry

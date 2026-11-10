@@ -6167,6 +6167,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | BW2 | The same | Let it raise a few, then kill it | The risen fall with it at once, and the line says so |
 | BW3 | Retreat of Souls | Meet the Lance's guardian | It is still the Second Guardian, unchanged |
 | RS1 | The Doomed Plateau, a save that has not entered it | Find the captain that fights the knights and ignores you | It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant |
+| HW3 | Caverns of Nostradamus, a map not yet entered | Read the ward line, then kill the Acolytes but leave a Hujark Shaman alive | The line names shamans and acolytes; the ward holds until the last caster of either kind falls |
 | RS2 | The same | Bring it below two thirds of its health yourself | The whistle line, and undead that were idle nearby come for you, besides the escort that appears. Note if they go for the knights instead |
 
 ## 0.99.12 - the probe: archers who hold, and a sentry
