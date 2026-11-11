@@ -1470,6 +1470,33 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=It was. I changed one word in the order that raised them.
-Go to node ID=10 jehanne
+Go to node ID=711 what do you want
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=711 what do you want
+Text=Then you are a stranger thing than the dead, and a more useful one. <She puts the sword halfway into its sheath, and stops there.> No one has come up that hill wanting anything of me but the Lance. What is it you want?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Joan player spoken to Spirit Council
+Desired Minimum Count=1
+}
+}
+Reply Text=I have spoken to your Council, and I bear their words.
+Go to node ID=100 spoke to counsel
+
+Requirement=!None
+Reply Text=Do you know where the efreet is?
+Go to node ID=170 Efreet
+
+Requirement=!None
+Reply Text=Nothing yet. Keep your quiet. Goodbye.
+Go to node ID=5 Goodbye Joan Likes You
+Icon=Exit Icon
 Is Default Reply=1
 }

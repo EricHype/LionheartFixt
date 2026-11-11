@@ -229,6 +229,29 @@ def build_joan_tree():
     return 1
 
 
+def build_joan_quiet_path():
+    """Her sword-down greeting led into `10 jehanne`, which opens "destroyer of your evil kin" and offers "Words are wasted
+    with the dead". The quiet gets its own way on instead, to the same places her friendly return greeting goes: the Council
+    (behind the gate 0.99.13 put on every such claim), the Efreeti, and goodbye. Winning the gate is still hers to give."""
+    t = lhbuild.read(JOAN_TREE)
+    if "Node ID=711 what do you want" + CR in t:
+        return 0
+    old = "Reply Text=It was. I changed one word in the order that raised them." + CR + "Go to node ID=10 jehanne" + CR
+    assert t.count(old) == 1
+    t = t.replace(old, "Reply Text=It was. I changed one word in the order that raised them." + CR + "Go to node ID=711 what do you want" + CR)
+    met = "CActionExpression" + CR + "{" + CR + "Action=" + flat(exists("Joan player spoken to Spirit Council")) + CR + "}" + CR
+    n711 = ("Node ID=711 what do you want" + CR +
+            "Text=Then you are a stranger thing than the dead, and a more useful one. <She puts the sword halfway into its sheath, and "
+            "stops there.> No one has come up that hill wanting anything of me but the Lance. What is it you want?" + CR +
+            "Should Have Voiceover=0" + CR + CR +
+            reply("I have spoken to your Council, and I bear their words.", "100 spoke to counsel", creq=met) + CR +
+            reply("Do you know where the efreet is?", "170 Efreet") + CR +
+            reply("Nothing yet. Keep your quiet. Goodbye.", "5 Goodbye Joan Likes You", icon="Exit Icon").replace(
+                "Icon=Exit Icon" + CR, "Icon=Exit Icon" + CR + "Is Default Reply=1" + CR))
+    write_tree(JOAN_TREE, append_nodes(t, [n711]))
+    return 1
+
+
 # ---------------------------------------------------------------- the Efreeti
 def build_efreeti():
     t = lhbuild.read(EFREETI)
@@ -309,7 +332,7 @@ def build_map():
 
 
 def main():
-    print("attrs:", build_attrs(), "| captains:", build_captains_tree(), "| door:", build_door_tree(), "| Jehanne:", build_joan_tree(),
+    print("attrs:", build_attrs(), "| captains:", build_captains_tree(), "| door:", build_door_tree(), "| Jehanne:", build_joan_tree(), build_joan_quiet_path(),
           "| Efreeti:", build_efreeti(), "| map:", build_map())
 
 
