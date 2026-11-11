@@ -25,6 +25,16 @@ python tools/validate.py
 python tools/reachability.py
 ```
 
+The engine-rule checks behind `validate.py` now live in LionheartModTools as `lhcheck.py`, so
+any mod can run them. Its `docs/checks.md` says what each check catches and which defect it came
+from, and the tests are in its `tests/test_lhcheck.py`. `tools/validate.py` is a thin wrapper:
+it runs those checks over `files/`, adds Fixt's own (the `PROBE ` check, plus the Fixt settings
+in `tools/_modtools.py`), and prints and exits exactly as before. `--skip ID` and `--only ID`
+take the check IDs that `python <tools>/lhcheck.py --list` prints. `tools/check_series_flow.py`,
+`tools/auto_open_risk.py`, `tools/savecheck.py` and `tools/test_savecheck.py` forward to the mod
+tools the same way. All of them find the mod tools via `--tools`, `LIONHEART_TOOLS`, or
+`../LionheartModTools`. The rows below keep their old wording.
+
 `reachability.py` also has a survey mode - `--survey "Port District"`, `--survey ""` for
 the whole game - which reports what the *developers* wrote and never connected. That is
 a content-discovery tool rather than a gate, and it is how 0.6.0 was scoped.
