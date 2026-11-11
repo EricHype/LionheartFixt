@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.14** | the war you can see | The Doomed Plateau's two armies fight each other, the war tide shows on the battlefield, the Bonecaller moves behind its horde and can be spoken to, a herald offers a truce, and siding with the dead has a price. |
 | **0.99.13** | what the Plateau playtest found | Jehanne no longer hears about a Council you have not met, the Bonewright is named and its risen fall with it, the Revenant Sergeant is named and its whistle calls the undead, and Farsight sees farther. |
 | **0.99.12** | the probe: archers who hold, and a sentry | A playtest probe: two archer groups in the Shrine hold their ground, and a Deathwatch on the Doomed Plateau raises the alarm if it sees you. |
 | **0.99.11** | falling back | Badly wounded English soldiers run back to their druids to be healed, while a druid lives. Chase them down or let them go. |
