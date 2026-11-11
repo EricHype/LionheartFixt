@@ -64,10 +64,21 @@ Custom Requirement=CActionExpression
 {
 Action=CNotAction
 {
-Action=CCheckExistenceAction
+Action=CExpressionAction
 {
-Name To Check For=Fixt sworn to the Bonecaller
-Desired Minimum Count=1
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Sworn to the Bonecaller
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
 }
 }
 }
@@ -84,10 +95,21 @@ Custom Requirement=CActionExpression
 {
 Action=CNotAction
 {
-Action=CCheckExistenceAction
+Action=CExpressionAction
 {
-Name To Check For=Fixt sworn to the Bonecaller
-Desired Minimum Count=1
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Sworn to the Bonecaller
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
 }
 }
 }
@@ -104,10 +126,21 @@ Custom Requirement=CActionExpression
 {
 Action=CNotAction
 {
-Action=CCheckExistenceAction
+Action=CExpressionAction
 {
-Name To Check For=Fixt sworn to the Bonecaller
-Desired Minimum Count=1
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Sworn to the Bonecaller
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
 }
 }
 }
@@ -192,5 +225,60 @@ Should Have Voiceover=0
 ------------------------------------------------------------
 Node ID=180 Random Knight
 Text=We shall be victorious...it is our destiny.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=300 the dead let you walk
+Text=<His sword is up before you are close.> Stand there. I watched you come up through that gallery, and not one of them lifted a hand to you. I have held this line for two hundred years and I have never once seen that. What are you, and what did they promise you? Answer carefully. If I call this line to arms, the Lady will hear it.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 100
+Reply Text=<Lie> They took me for one of their own. I let them.
+Go to node ID=302 fools
+
+Requirement=!None
+Reply Text=Their master wants to bargain. I have not answered him.
+Go to node ID=301 an envoy
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt garrison takes up arms
+}
+
+Requirement=!None
+Reply Text=I owe them nothing, and I owe you less.
+Go to node ID=303 they do not part
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt garrison takes up arms
+}
+
+Requirement=!None
+Reply Text=I will go.
+Go to node ID=304 go then
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=301 an envoy
+Text=Then you are his envoy until you have, and his envoys do not stand in this line. <He raises his voice.> To arms! The dead have sent us a guest!
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=302 fools
+Text=<He does not lower the sword.> Then they are fools, or you are. Stay where I can see you, and keep away from the Lady.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=303 they do not part
+Text=<His eyes go to the dead behind you, and back to you.> They do not part for nothing. To arms!
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=304 go then
+Text=Go, then. And do not come back to this line while they are still letting you walk.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=305 watch that one
+Text=The dead are letting it walk! Watch that one!
 Should Have Voiceover=0
 }

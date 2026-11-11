@@ -6168,6 +6168,37 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.14 - the war you can see
+
+All rows but WF7's refusals need a save that has not entered the Doomed Plateau (the kit's "Travel The Deathwatch" jump with a fresh character).
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| WF1 | The Doomed Plateau, from Retreat of Souls | Walk west past the knights fighting at the door | "One of the dead steps out of the horde..." prints, and the Herald of the Bonecaller comes up and its conversation opens by itself, asking whether you will come |
+| WF2 | The same | Accept, and walk among the dead to the Bonecaller | "The dead let you pass" prints; no undead attacks you or your companions, and your companions do not attack them. Note any that do, by hover name |
+| WF3 | The same, during the truce | Strike one of the dead | "You struck one of the dead..." prints and the horde turns on you |
+| WF4 | Near the Bonecaller | Walk up to it | It calls you over in a balloon, does not attack you, and a click opens its conversation rather than a fight |
+| WF5 | Its conversation | Choose "You said something that is not a sword. Name it." | It makes its offer; with Karma under 600 you can accept it |
+| WF6 | The same, Speech 110 or Divine 80 | Release it | "The truce is over" prints; the horde turns on it and on you, and it fights them |
+| WF7 | The same, Karma under 600 | Swear to it, then walk the rest of the map; later talk to the knights in Retreat of Souls or the Garrison Camp | The dead leave you alone for the rest of the map; no knight offers the "Are you a Knight?" recruitment; the Efreeti later says the knights were freed into a ruin |
+| WF8 | The herald | Refuse it | It turns and fights; the Bonecaller still holds its fire and can be talked to |
+| WF9 | Misc Crypt 1 or 2 before the Plateau | Bar the rear door or bolt the stone door, then walk onto the Plateau | "Knights come up from the rear of the keep..." prints, and three more knights stand forward of the line |
+| WF10 | Misc Crypt 3 or 4, entered from the Plateau | Open the walls or the crypts, so the tide is below zero, and walk back onto the Plateau | "The dead from the opened crypts..." prints; two knights of the line fall at once and new dead come up behind it |
+| WF11 | The middle of the Plateau, about x 3000 | Watch the line without fighting for a minute | Knights and undead fight each other. Note how fast the line wears down |
+| WF12 | Jehanne's fight scene | Play it through | It completes as before |
+| WF14 | During the truce | Click several of the dead, before and after swearing to the Bonecaller | Each answers in a balloon and none attacks; before swearing they send you to him, after it they tell you to keep your word. After the truce ends, a click attacks again |
+| WF15 | The door, during the truce | Watch the door as you accept the herald, then click the knight at the door | He shouts "The dead are letting it walk!"; the click opens his challenge, not his usual line |
+| WF16 | His challenge | Try each answer (reload between) | Speech 100 lie and "I will go" leave him wary but peaceful; the other two set the door's knights, Joan and her line on you; the pillar door still opens when Joan falls |
+| WF17 | The tide below zero by swearing only, no crypt or wall opened | Walk through a tide trigger after swearing | The slip line credits the Bonecaller, not opened galleries; with a gallery opened and no oath, it names the galleries |
+| WF18 | During the truce, without having answered the Bonecaller | Walk up to the knights' line | "You walked past him without a word..." prints and the dead turn on you. Sworn, nothing happens |
+| WF19 | The Burial Chamber, sworn, a save that has not entered it | Take the Lance, with the Bonecaller still alive on the Plateau | "Something has followed you down" prints; the herald comes and asks for the spear. Speech 110 lie: it lets you go. Refuse: it and three groups of dead come for you |
+| WF20 | The Bonecaller | Read its Speech reply | "Two hundred years of the same order" |
+| WF21 | The Plateau, sworn | Go to Jehanne, before and after meeting her | She opens with "You smell of him" and offers only to draw or to let you go; drawing starts her fight, and the pillar door opens when she falls |
+| WF22 | The Plateau, Jehanne a companion | Swear to the Bonecaller | She leaves the party and turns on you with her vanilla line |
+| WF23 | The Ante Chamber and the Burial Chamber, sworn, saves that have not entered them | Enter, click the dead, then strike one | "The dead here know whose word you carry" prints; they leave you alone and answer a click; striking one turns that map's dead on you. In the Burial Chamber, refusing the debt does the same |
+| WF24 | The Plateau, not sworn | Kill the Bonewright, then walk away from where it stood; repeat for the Sergeant | "Knights come up behind you..." prints and two knights stand on the spot. With the tide at zero before, the line now holds on the same walk |
+| WF13 | The Revenant Sergeant, truce not taken | Watch it, then bring it below two thirds yourself | It fights the knights and ignores you, then whistles and comes for you; below a third it fights only you |
+
 ## 0.99.13 - what the Plateau playtest found
 
 | # | Where | Steps | Pass |
@@ -6176,9 +6207,9 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | BW1 | The Doomed Plateau, a save that has not entered it | Hover the captain that raises the dead, and read the log as you fight it | It is named Bonewright, on hover and in the log; its opening line names no standard |
 | BW2 | The same | Let it raise a few, then kill it | The risen fall with it at once, and the line says so |
 | BW3 | Retreat of Souls | Meet the Lance's guardian | It is still the Second Guardian, unchanged |
-| RS1 | The Doomed Plateau, a save that has not entered it | Find the captain that fights the knights and ignores you | It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant |
-| HW3 | Caverns of Nostradamus, a map not yet entered | Read the ward line, then kill the Acolytes but leave a Hujark Shaman alive | The line names shamans and acolytes; the ward holds until the last caster of either kind falls |
+| RS1 | The Doomed Plateau, a save that has not entered it | Find the Revenant Sergeant | It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant. On 0.99.13 it attacks you from the start: it could not reach a knight. 0.99.14 fixes that (WF13) |
 | RS2 | The same | Bring it below two thirds of its health yourself | The whistle line, and undead that were idle nearby come for you, besides the escort that appears. Note if they go for the knights instead |
+| HW3 | Caverns of Nostradamus, a map not yet entered | Read the ward line, then kill the Acolytes but leave a Hujark Shaman alive | The line names shamans and acolytes; the ward holds until the last caster of either kind falls |
 
 ## 0.99.12 - the probe: archers who hold, and a sentry
 

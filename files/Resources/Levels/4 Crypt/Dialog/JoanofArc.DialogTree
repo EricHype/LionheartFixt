@@ -1419,4 +1419,28 @@ Reply Text=Enough of the past. Goodbye.
 Go to node ID=5 Goodbye
 Icon=Exit Icon
 Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=700 the oath
+Text=<Her sword is out before you speak.> You smell of him. For two hundred years that thing has sent my own knights' dead up this hill against us, and you have given it your word. I will not ask what it promised you. Go back to it, or draw.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then we draw.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I am going.
+Go to node ID=701 then go
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=701 then go
+Text=Then go. And if I see you inside my line, I will not be the one who speaks first.
+Should Have Voiceover=0
 }

@@ -18,8 +18,12 @@ Reply Text=I have read the bindings on lesser things than you. Yours is still kn
 Go to node ID=10 bound
 
 Requirement=Speech moreequal 80
-Reply Text=Ninety years of the same order. Who gave it, and are they still alive to lift it?
+Reply Text=Two hundred years of the same order. Who gave it, and are they still alive to lift it?
 Go to node ID=10 bound
+
+Requirement=!None
+Reply Text=You said something that is not a sword. Name it.
+Go to node ID=15 the offer
 
 Requirement=!None
 Reply Text=What are you?
@@ -28,9 +32,20 @@ Go to node ID=5 the answer
 Requirement=!None
 Reply Text=I have nothing to say to the dead.
 Go to node ID=
-Custom Action=CGoToCombatAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Bonecaller fights
+}
+Action=CGoToCombatAction
 {
 Enemy Name=$Trigger
+}
+}
 }
 Icon=Fight Icon
 Is Default Reply=1
@@ -50,9 +65,20 @@ Go to node ID=10 bound
 Requirement=!None
 Reply Text=Enough talk.
 Go to node ID=
-Custom Action=CGoToCombatAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Bonecaller fights
+}
+Action=CGoToCombatAction
 {
 Enemy Name=$Trigger
+}
+}
 }
 Icon=Fight Icon
 Is Default Reply=1
@@ -76,9 +102,20 @@ Go to node ID=21 the bargain
 Requirement=!None
 Reply Text=Then you die with it on.
 Go to node ID=
-Custom Action=CGoToCombatAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Bonecaller fights
+}
+Action=CGoToCombatAction
 {
 Enemy Name=$Trigger
+}
+}
 }
 Icon=Fight Icon
 Is Default Reply=1
@@ -94,7 +131,33 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=6
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt truce ends
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Crypt war tide
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 Action=CGiveExperiencePointsToAllPlayersAction
 {
 Get XP Frome=Fixt Talked the Bonecaller Down XP
@@ -154,7 +217,69 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=8
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=Joan is a companion
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Joan leaves party and attacks player
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt truce begins
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Crypt war tide
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-3
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Sworn to the Bonecaller
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Sworn to the Bonecaller
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 Action=CGiveExperiencePointsToAllPlayersAction
 {
 Get XP Frome=Fixt Sworn to the Bonecaller XP
@@ -163,13 +288,13 @@ Experience Points To Add=1
 Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
 {
 Target Name=$Trigger
-New Category=Player Friend,Undead
+New Category=Player Friend,Scripted Custom 1,Undead
 }
 Action=CSetTargetTypeAction
 {
 Entity Name=$Trigger
 Name To Target=
-Valid Targets=Undead
+Valid Targets=Scripted Custom 2
 }
 Action=CActivateAction
 {
@@ -182,4 +307,126 @@ Warp Behavior=
 }
 Icon=Exit Icon
 Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=130 the dead not us
+Text=Not us. Him. He is waiting.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=131 the dead that way
+Text=Go on. The one who raises us is that way.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=132 the dead told not to
+Text=We were told not to touch you. Do not make us.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=135 the dead his now
+Text=You are his now. Walk.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=136 the dead the door
+Text=The door. You promised him the door.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=137 the dead with you
+Text=Go on. We are with you.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=120 the bonecaller calls
+Text=Here, breathing one. I will not raise a hand to you, which is more than the hill will promise. Come and hear an offer.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=15 the offer
+Text=Then here it is. The knights hold a door, and behind it is the spear I was pointed at before you were born. Break the door for me, and the dead will walk around you for as long as you are on this hill. Refuse, and you are one more thing that breathes on a plateau of things that do not.
+Should Have Voiceover=0
+
+Requirement=Karma LESS 600
+Reply Text=Keep your orders, then. I will open the keep for you, and you will owe me the spear.
+Go to node ID=21 the bargain
+
+Requirement=!None
+Reply Text=There may be another way. Let me look at what binds you.
+Go to node ID=10 bound
+
+Requirement=!None
+Reply Text=No.
+Go to node ID=16 then go
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt truce ends
+}
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=16 then go
+Text=Then go, and take the hill as you find it. I will not hold them back a second time.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=200 the herald
+Text=<A skeleton in the rags of a herald's tabard holds up an empty hand.> The one who raises us would speak with you. He waits close by, behind his dead. Will you come and hear him? If you will, the dead will not lay a hand on you until you have.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I will hear him.
+Go to node ID=201 the herald steps aside
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt truce begins
+}
+
+Requirement=!None
+Reply Text=No. Get out of my way.
+Go to node ID=202 the herald turns
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt herald refused
+}
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=201 the herald steps aside
+Text=<It lowers the hand and steps out of your way.> Then walk. They will not touch you. Do not touch them.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=202 the herald turns
+Text=<The hand closes.> Then you will meet him the other way.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=210 the debt
+Text=<The herald has come down after you, and the doorway behind it is full of the dead.> He kept his word. Not one of them lifted a hand to you on that hill. Now the spear.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 110
+Reply Text=<Lie> He will have it, when I have finished what it is for. Tell him that.
+Go to node ID=211 he can wait
+
+Requirement=!None
+Reply Text=The spear is mine. He was a fool to bargain with me.
+Go to node ID=212 a thing that breaks its word
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt the debt is refused
+}
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=211 he can wait
+Text=<It looks at the spear for a long time.> He has waited two hundred years. He can wait for you. But he will always know where you are.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=212 a thing that breaks its word
+Text=<The hand closes.> Then you are a thing that breaks its word, on a hill that has only ever held two kinds. Take it, then, if you can carry it out.
+Should Have Voiceover=0
 }

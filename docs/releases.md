@@ -142,6 +142,74 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.14 - the war you can see
+
+A review of the Crypt after the 0.99.12 playtest asked whether the tide of the battle turns with the side you take. In the
+data it did not: the war tide was written by four optional levers and read by two lines of dialogue, no map read it, the
+horde and the middle line of knights did not fight each other, and the Bonecaller, the only undead voice, stood behind the
+knights and could not be spoken to. `tools/build_crypt_front.py`. `WF1`-`WF24`.
+
+- **The battle is two-way.** The horde targets `Player,Scripted Custom 2`, and only the intro knights at the door wore
+  `Scripted Custom 2`. The thirteen knights of the middle line now wear it too, by the intro knights' own
+  `CAddCategoryAction`, so the horde fights them instead of walking past them to you.
+- **The Revenant Sergeant does what its lines say.** It spawned on the horde's targets, 780 units from the nearest knight and
+  5,150 from the nearest it could attack, so it came straight for you. It now opens on the knights only, from a horde spot
+  458 units from the line, turns on you at 66% beside its whistle, and narrows to you alone at 33%.
+- **The Plateau reads the tide.** Walk-in triggers at every way onto the map, and leaving the Bonecaller, read `Crypt War Tide`
+  the way vanilla reads a scripting variable. At +1 or more the line holds: three reserve knights come up in front of it.
+  At -1 or less it slips: the dead arrive behind it and the two forward-most knights fall, with the reserve if it came. Each
+  fires once, with a combat-text line, and the slip's line names its cause: the galleries you opened, or the Bonecaller keeping
+  its side of a bargain you made.
+- **The Bonecaller moves east and can be spoken to.** It stood at (1864, 2555), on the keep side of the line and 5,738 units
+  from the door, and its talk specifier sat behind the Boss Lich can's fight one, so clicking it started a fight (the
+  Rumjun Khan defect). It now stands behind its own horde, about 1,550 units from the door, holds its fire against you,
+  forgets the fight specifier before taking the talk one, and fights if you strike it. It calls you over as you approach
+  and makes the offer itself. Its top tier no longer spawns two.
+- **The undead have a recruiter.** Past the knights' skirmish at the door, a Herald of the Bonecaller steps out of the dead and
+  asks you to come and hear it. Accept and a truce holds: every undead on the map, and every one that spawns while it holds,
+  drops you from its targets and the Enemy category (so companions leave them alone) and keeps fighting the knights. Strike
+  one and it breaks. Talking to the Bonecaller ends it, unless you swear to it, which makes it permanent. The 123 nameless
+  undead generators now share the list name `Plateau Dead` so a script can reach them; hover names do not change.
+- **The dead answer a click.** During the truce, clicking one of them no longer attacks it and breaks the truce: like Sahar's
+  stood-down minions, it answers in a balloon, sending you to the Bonecaller, or once you have sworn, telling you to keep your
+  word. The fight click comes back when the truce ends.
+- **The knights at the door have never seen this.** When the truce starts, the knight at the door shouts *"The dead are letting
+  it walk! Watch that one!"*, and while it holds, clicking him opens a challenge instead of his usual line. A Speech 100 lie keeps
+  the peace, walking away keeps it too, and any other answer raises the alarm: the door's knights, then Joan and her line, with the relay vanilla fires when you pick a fight with her, for good,
+  as striking one of them always has.
+- **The truce is not a free pass.** Walk up to the knights' line under it without having answered the Bonecaller, and it lapses:
+  *"You walked past him without a word, and the dead remember it."* The Bonecaller's call now reaches the herald's ground, so
+  you hear where it is when the truce is offered.
+- **The bargain comes due.** The oath is "you will owe me the spear", and now something collects. A sworn player who takes the Lance, while the Bonecaller still stands, and is still on
+  the plinth in the Burial Chamber, meets the herald, which has followed them down: *"He kept his word... Now the
+  spear."* A Speech 110 lie puts it off (*"He can wait for you. But he will always know where you are."*); refusing, or walking
+  away, sends the dead through the doorway after you. The oath is read from the character, so this works on a map the Plateau
+  cannot see.
+- **Jehanne knows.** Every way her conversation opens on the Plateau reads the oath first, and a sworn player gets her sword
+  instead: *"You smell of him... you have given it your word. I will not ask what it promised you. Go back to it, or draw."*
+  Drawing is vanilla's own fight with her, so the pillar door still opens when she falls. Swear with her beside you as a
+  companion and she leaves and turns on you, by the relay vanilla wrote for that.
+- **The oath follows you off the hill.** In the Ante Chamber and the Burial Chamber, an entry trigger reads the oath from the
+  character, and the dead there let a sworn player pass and answer a click with the sworn lines. Striking one breaks it on
+  that map, and so does refusing the debt. Their 90 nameless generators take the list names `Ante Dead` and `Chamber Dead`.
+- **Clearing a captain wins ground.** Killing the Bonewright, the Revenant Sergeant or the Bonecaller moves the tide +1, and
+  when you walk away from where it stood, two knights come up and hold the spot: *"Knights come up behind you and stand where
+  the Bonewright fell. This ground is held."* The tide is read there and then, so the line can hold on the same walk. Not for a
+  sworn player, and not for the Bonecaller once released, which already paid +1. The new knights fight the dead around them,
+  so held ground can still be lost.
+- **Two hundred years.** The Bonecaller's "Ninety years of the same order" was the one count in the act that disagreed with
+  the knights, Jehanne and the Old Man; it now says two hundred.
+- **The Bonecaller moves the tide.** Releasing it is +1. Swearing to it is -3, so swearing always loses the war whatever the
+  corridors did, and the knight at the fire and the Efreeti say so. Swearing also sets a character-carried flag, `Fixt Sworn
+  to the Bonecaller`, which the garrison's three recruitment replies read in place of the Plateau-only checker, so the
+  knights in Retreat of Souls and the Garrison Camp refuse a sworn player too.
+
+The map changes need a save that has not entered the Doomed Plateau, and the oath and the debt ones that have not entered the Ante Chamber or the Burial Chamber; the kit's jump to it with a fresh character is one. The
+Bonecaller's conversation and the garrison gate reach any save that has not had them yet. Unverified in play: that the
+herald's conversation opens on its own, that the truce holds against the Deathwatch's alarm, and that Joan's fight scene
+still completes now that her skeletons can see the knights beside her.
+
+---
 ## 0.99.13 - what the Plateau playtest found
 
 Found in the 0.99.12 playtest, on the way to the Deathwatch.
