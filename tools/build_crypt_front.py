@@ -68,6 +68,11 @@ HERALD_SRC = "Monster Cans/Undead/Greater Skeleton"
 HERALD = "Bonecaller Herald"
 BONECALLER = "Bonecaller"
 TRUCE = "Fixt undead truce"
+QUIET = "Fixt hill quiet"          # the Wielder's rewritten order: nothing on the hill is at war (build_crypt_factions.py)
+MASTER = VARS + "Fixt Master of the Bonecaller"
+QUIET_ATTR = VARS + "Fixt The Hill Is Quiet"   # the Wielder's word, carried on the character so the chambers keep it too   # a Necromancer commands it, so no debt comes due
+KNIGHT_NAMES = ["Knight Joan", "Knight fight with Joan", "Knight Joan Forward", "Knight Joan Reserve", "Knight Intro",
+                "Knight Intro Talker", "Knight Claim"]
 DEAD_NAME = "Plateau Dead"
 BREACH = "Fixt breach dead"
 FORWARD = "Knight Joan Forward"
@@ -223,6 +228,7 @@ def is_dead_gen(x):
 
 SEEK = ["130 the dead not us", "131 the dead that way", "132 the dead told not to"]
 SWORN_LINES = ["135 the dead his now", "136 the dead the door", "137 the dead with you"]
+QUIET_LINES = ["140 the dead keep", "141 the dead the word", "142 the dead nothing climbs"]
 
 
 def pick(nodes):
@@ -232,7 +238,8 @@ def pick(nodes):
 
 def dead_line():
     """What one of the dead says when clicked during the truce, the way Sahar's stood-down minions answer a click."""
-    return if_action(exists("Fixt sworn to the Bonecaller"), pick(SWORN_LINES), pick(SEEK))
+    return if_action(exists(QUIET), pick(QUIET_LINES),
+                     if_action(exists("Fixt sworn to the Bonecaller"), pick(SWORN_LINES), pick(SEEK)))
 
 
 def talk_click(who):
@@ -247,7 +254,9 @@ def fight_click(who):
 def truce_spawn():
     """A spawn's script while the truce holds: the knights only, no Enemy category, a click that talks, and striking it
     breaks the truce."""
-    return if_action(exists(TRUCE), multi([target("$Instigator", "Scripted Custom 2"), drop_enemy("$Instigator")] + talk_click("$Instigator")))
+    return multi([if_action(exists(TRUCE), multi([target("$Instigator", "Scripted Custom 2"), drop_enemy("$Instigator")] + talk_click("$Instigator"))),
+                  # on the quiet hill the dead keep the door and fight nothing
+                  if_action(exists(QUIET), target("$Instigator", ""))])
 
 
 def breaks():
@@ -369,6 +378,7 @@ def build_map():
     tide_check = multi([
         if_action(tide_is("CIsGreaterThanOrEqual", "1"), if_action(not_(exists("Fixt line held")), relay("Fixt the line holds"))),
         if_action(tide_is("CIsLessThanOrEqual", "-1"), if_action(not_(exists("Fixt line slipped")), relay("Fixt the line slips")))])
+    unquiet = [if_action(exists(QUIET), multi([deactivate(QUIET)] + [target(k, "Scripted Custom 1") for k in KNIGHT_NAMES]))]
     herald_spawn = multi([target("$Instigator", ""), drop_enemy("$Instigator"), forget_specifier("$Instigator"),
                           ("CAddAIAction", [("Target Name", "$Instigator"), ("AI", specifier_part("GetCloseThenTrigger", lhbuild.dialog(TREE_REF, "200 the herald", "$trigger"), "120", "1")),
                                             ("Delay Between Adds", "0")]),
@@ -401,9 +411,9 @@ def build_map():
         lhbuild.checker("Fixt Bonecaller hailed", tx + 80, ty + 40), lhbuild.checker("Fixt herald was refused", tx + 100, ty + 40),
         lhbuild.relay_part("Fixt truce begins", multi([activate(TRUCE)] + turn_on +
                                                       [say("The dead let you pass. Do not strike them.")]), tx, ty + 60, once="0"),
-        lhbuild.relay_part("Fixt truce ends", if_action(exists(TRUCE), multi([deactivate(TRUCE)] + turn_off +
+        lhbuild.relay_part("Fixt truce ends", if_action(exists(TRUCE), multi([deactivate(TRUCE)] + turn_off + unquiet +
                                                                           [say("The truce is over. The dead turn towards you.")])), tx + 20, ty + 60, once="0"),
-        lhbuild.relay_part("Fixt truce breaks", if_action(exists(TRUCE), multi([deactivate(TRUCE)] + turn_off +
+        lhbuild.relay_part("Fixt truce breaks", if_action(exists(TRUCE), multi([deactivate(TRUCE)] + turn_off + unquiet +
                                                                             [say("You struck one of the dead, and every one of them remembers what you are.")])), tx + 40, ty + 60, once="0"),
         lhbuild.relay_part("Fixt Bonecaller fights", hostile_bc, tx + 60, ty + 60),
         lhbuild.relay_part("Fixt herald refused", hostile_herald, tx + 80, ty + 60),
@@ -414,8 +424,9 @@ def build_map():
                                                         [if_action(exists("Fixt sworn to the Bonecaller"),
                                                                    say("The Bonecaller keeps its side of the bargain. Its dead come up behind the knights, and the line bends."),
                                                                    say("The dead come up through the galleries you opened, behind the knights, and the line bends."))]), tx + 20, ty + 80),
-        lhbuild.relay_part("Fixt truce lapses", if_action(exists(TRUCE), if_action(not_(exists("Fixt sworn to the Bonecaller")), multi(
-            [deactivate(TRUCE)] + turn_off + [say("You walked past him without a word, and the dead remember it.")]))), tx + 40, ty + 80, once="0"),
+        lhbuild.relay_part("Fixt truce lapses", if_action(exists(TRUCE), if_action(not_(exists("Fixt sworn to the Bonecaller")), if_action(not_(exists(QUIET)), multi(
+            [deactivate(TRUCE)] + turn_off + [say("You walked past him without a word, and the dead remember it.")])))), tx + 40, ty + 80, once="0"),
+        lhbuild.checker(QUIET, tx + 120, ty + 40),
         herald,
         lhbuild.touch_oval("Fixt arrival watch", arrival, arrive[0], arrive[1], radius="200", once="0"),
         # wide enough to reach the herald's ground, so the call is heard where the truce is offered
@@ -504,7 +515,10 @@ def build_debt():
     alive = ("CExpressionAction", [("Expression", ("CIsLessThan", [
         ("Operand1", ("CVariableDerivedCharacterAttribute", [("Character Attribute", BC_DEAD)])), ("Operator", ""),
         ("Operand2", ("CConstant", [("Constant Value", "1")]))])), ("Character to get attributes from", "$Instigator")])
-    due = if_action(not_(exists("Fixt debt called")), if_action(has_lance, if_action(sworn, if_action(alive, relay("Fixt the debt comes due")))))
+    servant = ("CExpressionAction", [("Expression", ("CIsLessThan", [
+        ("Operand1", ("CVariableDerivedCharacterAttribute", [("Character Attribute", MASTER)])), ("Operator", ""),
+        ("Operand2", ("CConstant", [("Constant Value", "1")]))])), ("Character to get attributes from", "$Instigator")])
+    due = if_action(not_(exists("Fixt debt called")), if_action(has_lance, if_action(sworn, if_action(alive, if_action(servant, relay("Fixt the debt comes due"))))))
     herald_spawn = multi([target("$Instigator", ""), drop_enemy("$Instigator"), forget_specifier("$Instigator"),
                           ("CAddAIAction", [("Target Name", "$Instigator"),
                                             ("AI", specifier_part("GetCloseThenTrigger", lhbuild.dialog(TREE_REF, "210 the debt", "$trigger"), "160", "1")),
@@ -829,8 +843,11 @@ def build_joan_map():
         e = balanced(z, s)
         orig = z[s:e]
         oath = orig.replace("Node ID=" + node + CR, "Node ID=700 the oath" + CR, 1)
+        quiet = orig.replace("Node ID=" + node + CR, "Node ID=710 the quiet" + CR, 1)
+        inner = "CIfAction" + CR + "{" + CR + "If=" + flat(exists(QUIET)) + CR + "Then=" + quiet + CR + \
+            "Else=" + orig + CR + "Return failure if the If failes=0" + CR + "}"
         z = z[:s] + "CIfAction" + CR + "{" + CR + "If=" + flat(exists("Fixt sworn to the Bonecaller")) + CR + "Then=" + oath + CR + \
-            "Else=" + orig + CR + "Return failure if the If failes=0" + CR + "}" + z[e:]
+            "Else=" + inner + CR + "Return failure if the If failes=0" + CR + "}" + z[e:]
     lhbuild.write_map(MAP, z)
     register([MAP])
     return 1
@@ -864,16 +881,19 @@ OATH_SKIP = ("Fixt debt dead", HERALD)
 
 def build_oath_map(rel, dead_name, entries):
     entries = sorted(set(entries) | {xy(q) for q in parts(lhbuild.read(rel)) if "CSpawnPointAI" in q and xy(q)})
-    """A sworn player's dead follow the oath off the hill. The oath is on the character, so an entry trigger reads it and
-    switches on a map-local checker that spawn scripts can test; striking one, or refusing the debt, breaks it here."""
+    """A sworn player's dead follow the oath off the hill, and a Wielder's quiet follows the rewritten order. Both are on the
+    character, so an entry trigger reads them and switches on a map-local checker that spawn scripts can test; striking one,
+    or refusing the debt, breaks it here. The quiet's checker picks the lines the dead answer with."""
     z = lhbuild.read(rel)
     if "Name=Fixt oath honoured" + CR in z:
         return 0
     new = z
     names = set()
     honoured = "Fixt oath honoured"
+    quiet_here = "Fixt quiet kept here"
+    answer = if_action(exists(quiet_here), pick(QUIET_LINES), pick(SWORN_LINES))
     calm = multi([target("$Instigator", ""), drop_enemy("$Instigator"), forget_specifier("$Instigator"),
-                  specifier("$Instigator", "GetCloseThenTalk", pick(SWORN_LINES))])
+                  specifier("$Instigator", "GetCloseThenTalk", answer)])
     hit = if_action(by_player(), if_action(exists(honoured), relay("Fixt oath breaks")))
     for p in [q for q in parts(z) if is_dead_gen(q) and (new_name(q) or "") not in OATH_SKIP]:
         q = p
@@ -884,20 +904,28 @@ def build_oath_map(rel, dead_name, entries):
         assert new.count(p) == 1
         new = new.replace(p, q, 1)
     names = sorted(names)
-    on = [a for n in names for a in (target(n, ""), drop_enemy(n), forget_specifier(n), specifier(n, "GetCloseThenTalk", pick(SWORN_LINES)))]
+    on = [a for n in names for a in (target(n, ""), drop_enemy(n), forget_specifier(n), specifier(n, "GetCloseThenTalk", answer))]
     off = [a for n in names for a in (add_cat(n, "Enemy"), target(n, "Player,Player Friend"), forget_specifier(n),
                                       specifier(n, "GetCloseThenTriggerAndFight", ""))]
     sworn = ("CExpressionAction", [("Expression", ("CIsGreaterThanOrEqual", [
         ("Operand1", ("CVariableDerivedCharacterAttribute", [("Character Attribute", SWORN)])), ("Operator", ""),
         ("Operand2", ("CConstant", [("Constant Value", "1")]))])), ("Character to get attributes from", "$Instigator")])
-    enter = if_action(sworn, if_action(not_(exists(honoured)), if_action(not_(exists("Fixt oath broken")), relay("Fixt the oath is honoured"))))
+    quiet = ("CExpressionAction", [("Expression", ("CIsGreaterThanOrEqual", [
+        ("Operand1", ("CVariableDerivedCharacterAttribute", [("Character Attribute", QUIET_ATTR)])), ("Operator", ""),
+        ("Operand2", ("CConstant", [("Constant Value", "1")]))])), ("Character to get attributes from", "$Instigator")])
+    fresh = lambda then: if_action(not_(exists(honoured)), if_action(not_(exists("Fixt oath broken")), then))
+    enter = if_action(quiet, fresh(relay("Fixt the quiet is kept")), if_action(sworn, fresh(relay("Fixt the oath is honoured"))))
     x, y = entries[0]
     new_parts = [
         lhbuild.checker(honoured, x, y + 40), lhbuild.checker("Fixt oath broken", x + 20, y + 40),
         lhbuild.relay_part("Fixt the oath is honoured", multi([activate(honoured)] + on +
                                                               [say("The dead here know whose word you carry. They let you pass.")]), x + 40, y + 40),
-        lhbuild.relay_part("Fixt oath breaks", if_action(exists(honoured), multi([deactivate(honoured), activate("Fixt oath broken")] + off +
-                                                                              [say("The oath is broken. The dead here turn on you.")])), x + 60, y + 40, once="0"),
+        lhbuild.checker(quiet_here, x + 80, y + 40),
+        lhbuild.relay_part("Fixt the quiet is kept", multi([activate(quiet_here), activate(honoured)] + on +
+                                                           [say("The word has come down ahead of you. The dead here keep, and nothing moves against you.")]),
+                           x + 100, y + 40),
+        lhbuild.relay_part("Fixt oath breaks", if_action(exists(honoured), multi([deactivate(honoured), deactivate(quiet_here), activate("Fixt oath broken")] + off +
+                                                                              [say("You struck one of the dead, and the dead here turn on you.")])), x + 60, y + 40, once="0"),
     ] + [lhbuild.touch_oval("Fixt oath watch " + str(n), enter, ex, ey, radius="300", once="0", repeat_action=enter, repeat_every="2")
          for n, (ex, ey) in enumerate(entries, 1)]
     new = lhbuild.add_parts(new, new_parts)
@@ -913,6 +941,126 @@ def build_oath_map(rel, dead_name, entries):
     return 1
 
 
+# ---------------------------------------------------------------- the knights are worth fighting
+# Measured: vanilla's undead tiers keep one XP value per creature and raise health, armour and skill (a Zombie is 82 XP at
+# every tier). The knights had one tier at every party level and paid 102 or 125 XP for 89 HP, 200 AC and 80 melee, which is
+# Greater Skeleton strength, and a Greater Skeleton pays 187. So the knights get Greater Skeleton pay and the undead's own
+# tiering: Tough on vanilla's Knight Templar 4 race (150 HP), Super on Knight Templar 5 (200 HP, 90 melee), chosen by party
+# mojo in the horde's own bands.
+KNIGHT_TEMPLATES = ["Undead Templar 1", "Undead Templar 2"]
+KT = "Levels/4 Crypt/Character Templates/"
+KNIGHT_XP = "187"
+KNIGHT_TIERS = [("12", "", "Knight Templar 1"), ("16", " Tough", "Knight Templar 4"), ("60", " Super", "Knight Templar 5")]
+KNIGHT_MAPS = [MAP, DEBT_MAP]
+
+
+def build_knight_cans():
+    done = 0
+    for base in KNIGHT_TEMPLATES:
+        rel = "Resources/" + KT + base + ".can"
+        t = lhbuild.read(rel)
+        t2, n = re.subn(r"(?m)^(\t\t\tExperience Points=)\d+", lambda m: m.group(1) + KNIGHT_XP, t, count=1)
+        assert n == 1
+        if t2 != t:
+            lhbuild.write_map(rel, t2)
+            register([rel])
+            done += 1
+        for _mojo, suffix, race in KNIGHT_TIERS[1:]:
+            trel = "Resources/" + KT + base + suffix + ".can"
+            if (lhbuild.FX / trel).exists():
+                continue
+            c, n = re.subn(r"Race=Races/NPCs/Knights Templar/Knight Templar 1\r\n", "Race=Races/NPCs/Knights Templar/" + race + CR, t2, count=1)
+            assert n == 1
+            lhbuild.write_map(trel, c)
+            register([trel])
+            done += 1
+    return done
+
+
+def build_knight_tiers(rel):
+    """Every knight spawner becomes the horde's generator kind, with three mojo groups, keeping its own spawn script."""
+    z = lhbuild.read(rel)
+    if KT + "Undead Templar 2 Super" + CR in z or KT + "Undead Templar 1 Super" + CR in z:
+        return 0
+    new = z
+    n = 0
+    for p in parts(z):
+        m = re.search(r"Activity=CSimpleGeneratorForCannedEntitiesAI\r\n", p)
+        e = re.search(r"(?m)^(\s*)Entity=(" + re.escape(KT) + r"Undead Templar [12])\r\n", p)
+        if not m or not e:
+            continue
+        base = e.group(2)
+        groups = B("Array", [("Item Count", "3")] + [("Group", ("CGeneratorAIGroup", [
+            ("Max Party Mojo", mojo), ("Quantity to generate min", "1"), ("Quantity to generate max", "1"),
+            ("Things to Generate", ("Array", [("Item Count", "1"), ("Thing to Generate", ("CSpawnableCannedEntity", [("Weight", "1"), ("Entity", base + suffix)]))]))]))
+            for mojo, suffix, _r in KNIGHT_TIERS]).rstrip()
+        q = p.replace("Activity=CSimpleGeneratorForCannedEntitiesAI" + CR, "Activity=CGeneratorAI" + CR, 1)
+        q = q.replace(e.group(0), e.group(1) + "Area=" + flat(("COvalGeneratorArea", [("Radius", "11")])) + CR +
+                      e.group(1) + "Has Started Generating=0" + CR + e.group(1) + "Groups=" + groups + CR, 1)
+        f = re.search(r"(?m)^(\s*)New Facing Angle=[^\r\n]*\r\n", q)
+        assert f
+        q = q[:f.end()] + f.group(1) + "Angle Variation=0" + CR + q[f.end():]
+        assert new.count(p) == 1
+        new = new.replace(p, q, 1)
+        n += 1
+    lhbuild.write_map(rel, new)
+    register([rel])
+    return n
+
+
+# ---------------------------------------------------------------- the oath pays
+DOOR_XP = ("Fixt The door broken for the Bonecaller XP", "5000")     # vanilla's pacifist award is 5000
+DEBT_XP = ("Fixt The debt put off XP", "2500")
+
+
+def anchor_part(z, name, amount, x, y):
+    src = [q for q in parts(lhbuild.read(MAP)) if name_of(q) == "Fixt Sworn to the Bonecaller XP"][0]
+    a = rename_part(src, name)
+    a = re.sub(r"Experience Points=\d+", "Experience Points=" + amount, a, count=1)
+    return set_xy(a, (x, y)).replace("\t\t" + "Level Part=", "Level Part=", 1) + CR
+
+
+def give_xp(anchor):
+    return ("CGiveExperiencePointsToAllPlayersAction", [("Get XP Frome", anchor), ("Experience Points To Add", "1")])
+
+
+def build_milestones():
+    done = 0
+    z = lhbuild.read(MAP)
+    if "Name=" + DOOR_XP[0] + CR not in z:
+        j = [q for q in parts(z) if name_of(q) == "Joan of Arc Generator"]
+        assert len(j) == 1
+        old = flat(("CTriggerRelayAction", [("Relay Name", "Opens up Joan Door Pillars")]))
+        jp = j[0]
+        k = jp.index("New Destroyed Action=") + len("New Destroyed Action=")
+        end = balanced(jp, k)
+        assert jp[k:end].startswith("CTriggerRelayAction") and "Opens up Joan Door Pillars" in jp[k:end]
+        paid = multi([relay("Opens up Joan Door Pillars"),
+                      if_action(exists("Fixt sworn to the Bonecaller"),
+                                multi([give_xp(DOOR_XP[0]), say("The door is open. Your side of the Bonecaller's bargain is kept.")]))])
+        z = z.replace(jp, jp[:k] + flat(paid) + jp[end:], 1)
+        x, y = xy([q for q in parts(z) if name_of(q) == "Fixt Sworn to the Bonecaller XP"][0])
+        z = lhbuild.add_parts(z, [anchor_part(z, DOOR_XP[0], DOOR_XP[1], x + 20, y)])
+        lhbuild.write_map(MAP, z)
+        register([MAP])
+        done += 1
+    b = lhbuild.read(DEBT_MAP)
+    if "Name=" + DEBT_XP[0] + CR not in b:
+        b = lhbuild.add_parts(b, [anchor_part(b, DEBT_XP[0], DEBT_XP[1], PORTAL[0] - 60, PORTAL[1] - 20)])
+        lhbuild.write_map(DEBT_MAP, b)
+        register([DEBT_MAP])
+        done += 1
+    t = lhbuild.read(TREE)
+    lie = "Reply Text=<Lie> He will have it, when I have finished what it is for. Tell him that." + CR + "Go to node ID=211 he can wait" + CR
+    if t.count(lie) == 1 and "Get XP Frome=" + DEBT_XP[0] not in t:
+        t2 = t.replace(lie, lie + "Custom Action=" + B(*give_xp(DEBT_XP[0])))
+        assert t2.count("\n") == t2.count(CR)
+        (lhbuild.FX / TREE).write_bytes(t2.encode("latin-1"))
+        register([TREE])
+        done += 1
+    return done
+
+
 def main():
     print("files:", build_files())
     print("map:", build_map())
@@ -922,6 +1070,8 @@ def main():
     print("Jehanne: tree", build_joan_tree(), "| map", build_joan_map(), "| leaves", build_joan_leaves())
     print("oath:", [build_oath_map(rel, n, e) for rel, (n, e) in OATH_MAPS.items()])
     print("claims:", build_claims())
+    print("knights: cans", build_knight_cans(), "| tiered", [build_knight_tiers(rel) for rel in KNIGHT_MAPS])
+    print("milestones:", build_milestones())
 
 
 if __name__ == "__main__":

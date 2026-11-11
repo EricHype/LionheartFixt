@@ -6168,6 +6168,20 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.15 - the oath pays
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| WF25 | The Plateau, a save that has not entered it | Kill a knight and read the log; hover several | 187 XP a knight; at Act 4 strength they are the Super tier, noticeably harder than before |
+| WF26 | The Plateau, sworn | Kill Jehanne | "The door is open. Your side of the Bonecaller's bargain is kept." and 5,000 XP; the pillar door opens |
+| WF27 | The Burial Chamber, sworn, Speech 110 | Put off the debt with the lie | 2,500 XP |
+| WF28 | The door, a Templar | Be recruited, then give the order's word; talk to a knight again | +1 tide, the reserve comes up at once; the reply is gone the second time. The herald offers a Templar refusal; sworn, Jehanne answers "I wear the same cross" with "sold it as well as worn it" |
+| WF29 | The Bonecaller, a Wielder with the Necromancer title, Karma 600 or more | "You will follow me" | It takes the new hand; the oath's effects follow; in the Burial Chamber, taking the Lance calls no debt |
+| WF30 | The Bonecaller, a Wielder without the title | At the binding, change take to keep | 4,000 XP; the dead and the knights stop fighting; clicks answer with the new order; striking one starts the war again; Jehanne opens with her sword down |
+| WF31 | The same, then the Ante Chamber, the Burial Chamber and the Efreeti | Walk in, click the dead, then free the knights | "The word has come down ahead of you" prints in each chamber and the dead keep; the Efreeti gives the peace line, not the tide's |
+| WF32 | The door, an Inquisitor | Condemn the hill | The alarm; the Bonecaller offers no bargain and fights; with Jehanne and it both dead, 4,000 XP |
+| WF33 | The Efreeti, a Knight of Saladin | Ask for the wish your elder should have made | Pick a stat; the knights are freed and the stat rises |
+
 ## 0.99.14 - the war you can see
 
 All rows but WF7's refusals need a save that has not entered the Doomed Plateau (the kit's "Travel The Deathwatch" jump with a fresh character).

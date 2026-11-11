@@ -142,6 +142,45 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.15 - the oath pays, and four factions answer the siege
+
+Siding with the dead skipped most of the act's combat and paid about a tenth of its XP: roughly 5,300 against 40,000 to 65,000
+on offer from the undead across the Plateau and the two chambers. And the "neutral" route was only the Templar route with
+the Bonecaller's help, so the maintainer reframed it by faction. Every gate below already exists and is what Jehanne's tier-7
+replies read. Faction options are added beside what anyone can do; only the Wielder's peace is exclusive.
+`tools/build_crypt_front.py`, `tools/build_crypt_factions.py`. `WF25`-`WF33`.
+
+- **The knights are paid like what they are.** Vanilla's undead tiers keep one XP value per creature and raise health, armour
+  and skill (a Zombie is 82 XP at every tier). The knights had no tiers, and paid 102 or 125 XP for 89 HP, 200 AC and 80 melee,
+  which is Greater Skeleton strength at 187. They now pay 187 and tier by party mojo in the horde's own bands: Tough on
+  vanilla's `Knight Templar 4` race (150 HP), Super on `Knight Templar 5` (200 HP, 90 melee). All 33 knight spawners on the
+  Plateau and in the Burial Chamber become the horde's generator kind, keeping their own scripts.
+- **The oath's milestones pay.** Breaking Jehanne's door while sworn pays 5,000, the size of vanilla's own pacifist award;
+  putting off the debt with the Speech lie pays 2,500. With the 2,000 for swearing and the knights' new pay, the sworn route
+  offers about 14,800, against the Templar route's fights on the path. It still pays less, and it is much the easier walk.
+- **Templar: his brothers.** After the door's recruitment a Templar can give the order's word, once a game: *"Two hundred years,
+  and the order still sends word. Then the line goes forward."* +1 tide and the reserve at once. He can refuse the herald as
+  a knight. He can still swear, and Jehanne names it: *"Then you have sold it as well as worn it. Draw."*
+- **Necromancer: a new hand.** A Wielder with the Necromancer title tells the Bonecaller *"You will follow me"*, and it takes
+  the new hand its own words asked for. The oath, without the Karma gate, and because the player is its master the debt never
+  comes due.
+- **Wielder: one word.** A Wielder without the title reads the binding and changes the order from take to keep. The hill goes
+  quiet: the dead stand where they stood and fight nothing, the knights stand down from them, the truce does not lapse, and
+  the dead answer a click with the new order. Striking anything breaks it and both sides take up the war again. 4,000 XP.
+  Jehanne meets it with her sword down, and her own way to the gate must still be won; the Efreeti's freeing names the quiet.
+  The quiet follows the Wielder into the Ante Chamber and the Burial Chamber the way the oath does, read from the character:
+  *"The word has come down ahead of you."*
+- **Inquisitor: the writ.** At the door the Holy Office condemns every dead thing on the hill, the knights included, and the
+  alarm goes up the line. The Bonecaller will not bargain with the Church. When Jehanne and the Bonecaller have both fallen,
+  the purge pays 4,000 XP.
+- **Saladin: the lamp's debt.** The lamp was the order's, and a Saracen knight made the wish that bound the garrison. A
+  Saladin player asks the Efreeti for what his elder should have: the knights freed, and a true wish beside it.
+
+The knights' tiers and the faction map changes need a save that has not entered the Doomed Plateau or the Burial Chamber; the
+dialogue (the door, the Bonecaller, Jehanne's replies, the Efreeti) reaches any save; the debt award reaches any save
+that has not had that conversation.
+
+---
 ## 0.99.14 - the war you can see
 
 A review of the Crypt after the 0.99.12 playtest asked whether the tide of the battle turns with the side you take. In the

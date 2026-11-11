@@ -24,6 +24,10 @@ State=CRY3LAMP
 }
 Icon=Quest Icon
 
+Requirement=Saladin IS
+Reply Text=I am a Knight of Saladin. My order rubbed this lamp before. Hear the wish my elder should have made.
+Go to node ID=101 the order's debt
+
 Requirement=!None
 Reply Text=I wish to undo the curse laid upon Jehanne's soul and the souls of her fellow knights.
 Go to node ID=100 save inga
@@ -103,6 +107,10 @@ State=CRY3LAMP
 }
 Icon=Quest Icon
 
+Requirement=Saladin IS
+Reply Text=I am a Knight of Saladin. My order rubbed this lamp before. Hear the wish my elder should have made.
+Go to node ID=101 the order's debt
+
 Requirement=!None
 Reply Text=I wish to undo the curse laid upon Jehanne's soul and the souls of her fellow knights.
 Go to node ID=100 save inga
@@ -176,6 +184,33 @@ Expression=CIsGreaterThanOrEqual
 {
 Operand1=CVariableDerivedCharacterAttribute
 {
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt The Hill Is Quiet
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Then=CDisplayDialogBalloonAction
+{
+Dialog Tree File=Levels/4 Crypt/Dialog/The Fronts
+Node ID=4 freed in peace
+Name of Position=$Instigator
+Position Offset=0.000000,-60.000000
+After Action=
+Include In Log=1
+}
+Else=CIfAction
+{
+If=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
 Character Attribute=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
 }
 Operator=
@@ -230,6 +265,8 @@ Name of Position=$Instigator
 Position Offset=0.000000,-60.000000
 After Action=
 Include In Log=1
+}
+Return failure if the If failes=0
 }
 Return failure if the If failes=0
 }
@@ -539,4 +576,87 @@ Custom Action=CTriggerRelayAction
 Relay Name=Efreet goes away
 }
 Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=101 the order's debt
+Text=<The flames bank low.> A son of the order that rubbed my lamp. Your elder asked me for aid against the dead, and I gave him precisely that: dead that never stop. You ask the way he should have. Very well. Have both. The knights go free, and you may have the thing he should have asked for besides.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then free them, and make me stronger.
+Go to node ID=100 save inga
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Character attribute to modify=Character Attributes/(ST) Strength
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=Then free them, and make me wiser.
+Go to node ID=100 save inga
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Character attribute to modify=Character Attributes/(IN) Intelligence
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=Then free them, and make me quicker.
+Go to node ID=100 save inga
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Character attribute to modify=Character Attributes/(AG) Agility
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 }

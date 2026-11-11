@@ -1434,6 +1434,10 @@ Relay Name=Joan Player chose combat in dialog
 }
 Icon=Fight Icon
 
+Requirement=Templar IS
+Reply Text=I wear the same cross you do.
+Go to node ID=702 the cross
+
 Requirement=!None
 Reply Text=I am going.
 Go to node ID=701 then go
@@ -1443,4 +1447,29 @@ Is Default Reply=1
 Node ID=701 then go
 Text=Then go. And if I see you inside my line, I will not be the one who speaks first.
 Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=702 the cross
+Text=Then you have sold it as well as worn it. Draw.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=So be it.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Joan Player chose combat in dialog
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=710 the quiet
+Text=<For the first time her sword is down, though she has not let go of it.> The dead have stopped coming up the hill. They stand where they stood, and they do nothing, and my knights do not know what to do with their hands. I have a sword and nothing to point it at. Was that you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=It was. I changed one word in the order that raised them.
+Go to node ID=10 jehanne
+Is Default Reply=1
 }

@@ -21,9 +21,33 @@ Requirement=Speech moreequal 80
 Reply Text=Two hundred years of the same order. Who gave it, and are they still alive to lift it?
 Go to node ID=10 bound
 
-Requirement=!None
+Requirement=Inquisitor NOT
 Reply Text=You said something that is not a sword. Name it.
 Go to node ID=15 the offer
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+}
+Reply Text=I raise the dead too. I will not owe you. You will follow me.
+Go to node ID=25 the new hand
+
+Requirement=Inquisitor IS
+Reply Text=The Holy Office has a writ for every dead thing on this hill.
+Go to node ID=27 the church
 
 Requirement=!None
 Reply Text=What are you?
@@ -96,8 +120,35 @@ Reply Text=It is a knot, not a chain. Hold still and I will take it off you.
 Go to node ID=20 stands down
 
 Requirement=Karma LESS 600
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+}
 Reply Text=Keep your orders. I will open the keep for you, and you will owe me the spear.
 Go to node ID=21 the bargain
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+}
+}
+Reply Text=Your order was to take the spear. I am changing one word in it: keep.
+Go to node ID=26 keep it
 
 Requirement=!None
 Reply Text=Then you die with it on.
@@ -383,6 +434,14 @@ Custom Action=CTriggerRelayAction
 Relay Name=Fixt truce begins
 }
 
+Requirement=Templar IS
+Reply Text=I am a Knight of the Temple. Tell your master no.
+Go to node ID=202 the herald turns
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt herald refused
+}
+
 Requirement=!None
 Reply Text=No. Get out of my way.
 Go to node ID=202 the herald turns
@@ -410,6 +469,11 @@ Should Have Voiceover=0
 Requirement=Speech moreequal 110
 Reply Text=<Lie> He will have it, when I have finished what it is for. Tell him that.
 Go to node ID=211 he can wait
+Custom Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Fixt The debt put off XP
+Experience Points To Add=1
+}
 
 Requirement=!None
 Reply Text=The spear is mine. He was a fool to bargain with me.
@@ -428,5 +492,219 @@ Should Have Voiceover=0
 ------------------------------------------------------------
 Node ID=212 a thing that breaks its word
 Text=<The hand closes.> Then you are a thing that breaks its word, on a hill that has only ever held two kinds. Take it, then, if you can carry it out.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=25 the new hand
+Text=<It looks at you for a long time, the way you would look at a door you had been told was locked.> The pointing has outlived the hand. I said so. And here is a new hand, and it is one of mine. Point, then.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then follow me.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=9
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Master of the Bonecaller
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Master of the Bonecaller
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CIfAction
+{
+If=CCheckExistenceAction
+{
+Name To Check For=Joan is a companion
+Desired Minimum Count=1
+}
+Then=CTriggerRelayAction
+{
+Relay Name=Joan leaves party and attacks player
+}
+Else=
+Return failure if the If failes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt truce begins
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Crypt war tide
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-3
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Crypt War Tide
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Sworn to the Bonecaller
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Sworn to the Bonecaller
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Fixt Sworn to the Bonecaller XP
+Experience Points To Add=1
+}
+Action=COldBad_S_e_t__C_a_t_e_g_o_r_y_Action
+{
+Target Name=$Trigger
+New Category=Player Friend,Scripted Custom 1,Undead
+}
+Action=CSetTargetTypeAction
+{
+Entity Name=$Trigger
+Name To Target=
+Valid Targets=Scripted Custom 2
+}
+Action=CActivateAction
+{
+Target Name=Fixt sworn to the Bonecaller
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=26 keep it
+Text=<Something in the rotted mail goes very still.> Keep. <It says it again, more quietly.> Then I am a guard on the same hill, with the same dead, and the knights are guarding the same door, and two hundred years of the same work can go on without anyone dying of it again. That is not what I was raised for. It is better.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then keep it well.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt the hill goes quiet
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Fixt The order rewritten XP
+Experience Points To Add=1
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=The hill is quiet
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt The Hill Is Quiet
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=27 the church
+Text=<It laughs, or the mail does.> A church court. The last person on this hill who trusted one is still burning in the keep. There is nothing for us to say to each other.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then the writ is served.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Bonecaller fights
+}
+Action=CGoToCombatAction
+{
+Enemy Name=$Trigger
+}
+}
+}
+Icon=Fight Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=140 the dead keep
+Text=Keep. We keep.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=141 the dead the word
+Text=One word. He changed one word.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=142 the dead nothing climbs
+Text=Nothing climbs now. Go where you like.
 Should Have Voiceover=0
 }
