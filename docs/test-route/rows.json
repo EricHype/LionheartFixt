@@ -21099,9 +21099,33 @@
   "pass": "The Templar theme starts under *\"I am proud to bestow upon you the title of Knight\"* on every route, and the game's music returns normally afterwards"
  },
  {
+  "id": "GT1",
+  "section": "0.99.16 - the tank shows its state",
+  "line": 6175,
+  "where": "DaVinci's secret chamber",
+  "steps": "Walk up to the tank before fitting the gear",
+  "pass": "Vanilla's description"
+ },
+ {
+  "id": "GT2",
+  "section": "0.99.16 - the tank shows its state",
+  "line": 6176,
+  "where": "The same",
+  "steps": "Fit the gear at the tank, step away, walk back",
+  "pass": "The seated-ring description, not vanilla's. Works in a save that had already been in the chamber"
+ },
+ {
+  "id": "GT3",
+  "section": "0.99.16 - the tank shows its state",
+  "line": 6177,
+  "where": "The same, after DaVinci has the spirit gem",
+  "steps": "Walk up to the tank",
+  "pass": "\"Something inside the hull is awake... DaVinci has finished it.\""
+ },
+ {
   "id": "WF25",
   "section": "0.99.15 - the oath pays",
-  "line": 6175,
+  "line": 6183,
   "where": "The Plateau, a save that has not entered it",
   "steps": "Kill a knight and read the log; hover several",
   "pass": "187 XP a knight; at Act 4 strength they are the Super tier, noticeably harder than before"
@@ -21109,7 +21133,7 @@
  {
   "id": "WF26",
   "section": "0.99.15 - the oath pays",
-  "line": 6176,
+  "line": 6184,
   "where": "The Plateau, sworn",
   "steps": "Kill Jehanne",
   "pass": "\"The door is open. Your side of the Bonecaller's bargain is kept.\" and 5,000 XP; the pillar door opens"
@@ -21117,7 +21141,7 @@
  {
   "id": "WF27",
   "section": "0.99.15 - the oath pays",
-  "line": 6177,
+  "line": 6185,
   "where": "The Burial Chamber, sworn, Speech 110",
   "steps": "Put off the debt with the lie",
   "pass": "2,500 XP"
@@ -21125,7 +21149,7 @@
  {
   "id": "WF28",
   "section": "0.99.15 - the oath pays",
-  "line": 6178,
+  "line": 6186,
   "where": "The door, a Templar",
   "steps": "Be recruited, then give the order's word; talk to a knight again",
   "pass": "+1 tide, the reserve comes up at once; the reply is gone the second time. The herald offers a Templar refusal; sworn, Jehanne answers \"I wear the same cross\" with \"sold it as well as worn it\""
@@ -21133,7 +21157,7 @@
  {
   "id": "WF29",
   "section": "0.99.15 - the oath pays",
-  "line": 6179,
+  "line": 6187,
   "where": "The Bonecaller, a Wielder with the Necromancer title, Karma 600 or more",
   "steps": "\"You will follow me\"",
   "pass": "It takes the new hand; the oath's effects follow; in the Burial Chamber, taking the Lance calls no debt"
@@ -21141,7 +21165,7 @@
  {
   "id": "WF30",
   "section": "0.99.15 - the oath pays",
-  "line": 6180,
+  "line": 6188,
   "where": "The Bonecaller, a Wielder without the title",
   "steps": "At the binding, change take to keep",
   "pass": "4,000 XP; the dead and the knights stop fighting; clicks answer with the new order; striking one starts the war again; Jehanne opens with her sword down"
@@ -21149,7 +21173,7 @@
  {
   "id": "WF31",
   "section": "0.99.15 - the oath pays",
-  "line": 6181,
+  "line": 6189,
   "where": "The same, then the Ante Chamber, the Burial Chamber and the Efreeti",
   "steps": "Walk in, click the dead, then free the knights",
   "pass": "\"The word has come down ahead of you\" prints in each chamber and the dead keep; the Efreeti gives the peace line, not the tide's"
@@ -21157,7 +21181,7 @@
  {
   "id": "WF32",
   "section": "0.99.15 - the oath pays",
-  "line": 6182,
+  "line": 6190,
   "where": "The door, an Inquisitor",
   "steps": "Condemn the hill",
   "pass": "The alarm; the Bonecaller offers no bargain and fights; with Jehanne and it both dead, 4,000 XP"
@@ -21165,7 +21189,7 @@
  {
   "id": "WF33",
   "section": "0.99.15 - the oath pays",
-  "line": 6183,
+  "line": 6191,
   "where": "The Efreeti, a Knight of Saladin",
   "steps": "Ask for the wish your elder should have made",
   "pass": "Pick a stat; the knights are freed and the stat rises"
@@ -21173,7 +21197,7 @@
  {
   "id": "WF1",
   "section": "0.99.14 - the war you can see",
-  "line": 6191,
+  "line": 6199,
   "where": "The Doomed Plateau, from Retreat of Souls",
   "steps": "Walk west past the knights fighting at the door",
   "pass": "\"One of the dead steps out of the horde...\" prints, and the Herald of the Bonecaller comes up and its conversation opens by itself, asking whether you will come"
@@ -21181,7 +21205,7 @@
  {
   "id": "WF2",
   "section": "0.99.14 - the war you can see",
-  "line": 6192,
+  "line": 6200,
   "where": "The same",
   "steps": "Accept, and walk among the dead to the Bonecaller",
   "pass": "\"The dead let you pass\" prints; no undead attacks you or your companions, and your companions do not attack them. Note any that do, by hover name"
@@ -21189,7 +21213,7 @@
  {
   "id": "WF3",
   "section": "0.99.14 - the war you can see",
-  "line": 6193,
+  "line": 6201,
   "where": "The same, during the truce",
   "steps": "Strike one of the dead",
   "pass": "\"You struck one of the dead...\" prints and the horde turns on you"
@@ -21197,7 +21221,7 @@
  {
   "id": "WF4",
   "section": "0.99.14 - the war you can see",
-  "line": 6194,
+  "line": 6202,
   "where": "Near the Bonecaller",
   "steps": "Walk up to it",
   "pass": "It calls you over in a balloon, does not attack you, and a click opens its conversation rather than a fight"
@@ -21205,7 +21229,7 @@
  {
   "id": "WF5",
   "section": "0.99.14 - the war you can see",
-  "line": 6195,
+  "line": 6203,
   "where": "Its conversation",
   "steps": "Choose \"You said something that is not a sword. Name it.\"",
   "pass": "It makes its offer; with Karma under 600 you can accept it"
@@ -21213,7 +21237,7 @@
  {
   "id": "WF6",
   "section": "0.99.14 - the war you can see",
-  "line": 6196,
+  "line": 6204,
   "where": "The same, Speech 110 or Divine 80",
   "steps": "Release it",
   "pass": "\"The truce is over\" prints; the horde turns on it and on you, and it fights them"
@@ -21221,7 +21245,7 @@
  {
   "id": "WF7",
   "section": "0.99.14 - the war you can see",
-  "line": 6197,
+  "line": 6205,
   "where": "The same, Karma under 600",
   "steps": "Swear to it, then walk the rest of the map; later talk to the knights in Retreat of Souls or the Garrison Camp",
   "pass": "The dead leave you alone for the rest of the map; no knight offers the \"Are you a Knight?\" recruitment; the Efreeti later says the knights were freed into a ruin"
@@ -21229,7 +21253,7 @@
  {
   "id": "WF8",
   "section": "0.99.14 - the war you can see",
-  "line": 6198,
+  "line": 6206,
   "where": "The herald",
   "steps": "Refuse it",
   "pass": "It turns and fights; the Bonecaller still holds its fire and can be talked to"
@@ -21237,7 +21261,7 @@
  {
   "id": "WF9",
   "section": "0.99.14 - the war you can see",
-  "line": 6199,
+  "line": 6207,
   "where": "Misc Crypt 1 or 2 before the Plateau",
   "steps": "Bar the rear door or bolt the stone door, then walk onto the Plateau",
   "pass": "\"Knights come up from the rear of the keep...\" prints, and three more knights stand forward of the line"
@@ -21245,7 +21269,7 @@
  {
   "id": "WF10",
   "section": "0.99.14 - the war you can see",
-  "line": 6200,
+  "line": 6208,
   "where": "Misc Crypt 3 or 4, entered from the Plateau",
   "steps": "Open the walls or the crypts, so the tide is below zero, and walk back onto the Plateau",
   "pass": "\"The dead from the opened crypts...\" prints; two knights of the line fall at once and new dead come up behind it"
@@ -21253,7 +21277,7 @@
  {
   "id": "WF11",
   "section": "0.99.14 - the war you can see",
-  "line": 6201,
+  "line": 6209,
   "where": "The middle of the Plateau, about x 3000",
   "steps": "Watch the line without fighting for a minute",
   "pass": "Knights and undead fight each other. Note how fast the line wears down"
@@ -21261,7 +21285,7 @@
  {
   "id": "WF12",
   "section": "0.99.14 - the war you can see",
-  "line": 6202,
+  "line": 6210,
   "where": "Jehanne's fight scene",
   "steps": "Play it through",
   "pass": "It completes as before"
@@ -21269,7 +21293,7 @@
  {
   "id": "WF14",
   "section": "0.99.14 - the war you can see",
-  "line": 6203,
+  "line": 6211,
   "where": "During the truce",
   "steps": "Click several of the dead, before and after swearing to the Bonecaller",
   "pass": "Each answers in a balloon and none attacks; before swearing they send you to him, after it they tell you to keep your word. After the truce ends, a click attacks again"
@@ -21277,7 +21301,7 @@
  {
   "id": "WF15",
   "section": "0.99.14 - the war you can see",
-  "line": 6204,
+  "line": 6212,
   "where": "The door, during the truce",
   "steps": "Watch the door as you accept the herald, then click the knight at the door",
   "pass": "He shouts \"The dead are letting it walk!\"; the click opens his challenge, not his usual line"
@@ -21285,7 +21309,7 @@
  {
   "id": "WF16",
   "section": "0.99.14 - the war you can see",
-  "line": 6205,
+  "line": 6213,
   "where": "His challenge",
   "steps": "Try each answer (reload between)",
   "pass": "Speech 100 lie and \"I will go\" leave him wary but peaceful; the other two set the door's knights, Joan and her line on you; the pillar door still opens when Joan falls"
@@ -21293,7 +21317,7 @@
  {
   "id": "WF17",
   "section": "0.99.14 - the war you can see",
-  "line": 6206,
+  "line": 6214,
   "where": "The tide below zero by swearing only, no crypt or wall opened",
   "steps": "Walk through a tide trigger after swearing",
   "pass": "The slip line credits the Bonecaller, not opened galleries; with a gallery opened and no oath, it names the galleries"
@@ -21301,7 +21325,7 @@
  {
   "id": "WF18",
   "section": "0.99.14 - the war you can see",
-  "line": 6207,
+  "line": 6215,
   "where": "During the truce, without having answered the Bonecaller",
   "steps": "Walk up to the knights' line",
   "pass": "\"You walked past him without a word...\" prints and the dead turn on you. Sworn, nothing happens"
@@ -21309,7 +21333,7 @@
  {
   "id": "WF19",
   "section": "0.99.14 - the war you can see",
-  "line": 6208,
+  "line": 6216,
   "where": "The Burial Chamber, sworn, a save that has not entered it",
   "steps": "Take the Lance, with the Bonecaller still alive on the Plateau",
   "pass": "\"Something has followed you down\" prints; the herald comes and asks for the spear. Speech 110 lie: it lets you go. Refuse: it and three groups of dead come for you"
@@ -21317,7 +21341,7 @@
  {
   "id": "WF20",
   "section": "0.99.14 - the war you can see",
-  "line": 6209,
+  "line": 6217,
   "where": "The Bonecaller",
   "steps": "Read its Speech reply",
   "pass": "\"Two hundred years of the same order\""
@@ -21325,7 +21349,7 @@
  {
   "id": "WF21",
   "section": "0.99.14 - the war you can see",
-  "line": 6210,
+  "line": 6218,
   "where": "The Plateau, sworn",
   "steps": "Go to Jehanne, before and after meeting her",
   "pass": "She opens with \"You smell of him\" and offers only to draw or to let you go; drawing starts her fight, and the pillar door opens when she falls"
@@ -21333,7 +21357,7 @@
  {
   "id": "WF22",
   "section": "0.99.14 - the war you can see",
-  "line": 6211,
+  "line": 6219,
   "where": "The Plateau, Jehanne a companion",
   "steps": "Swear to the Bonecaller",
   "pass": "She leaves the party and turns on you with her vanilla line"
@@ -21341,7 +21365,7 @@
  {
   "id": "WF23",
   "section": "0.99.14 - the war you can see",
-  "line": 6212,
+  "line": 6220,
   "where": "The Ante Chamber and the Burial Chamber, sworn, saves that have not entered them",
   "steps": "Enter, click the dead, then strike one",
   "pass": "\"The dead here know whose word you carry\" prints; they leave you alone and answer a click; striking one turns that map's dead on you. In the Burial Chamber, refusing the debt does the same"
@@ -21349,7 +21373,7 @@
  {
   "id": "WF24",
   "section": "0.99.14 - the war you can see",
-  "line": 6213,
+  "line": 6221,
   "where": "The Plateau, not sworn",
   "steps": "Kill the Bonewright, then walk away from where it stood; repeat for the Sergeant",
   "pass": "\"Knights come up behind you...\" prints and two knights stand on the spot. With the tide at zero before, the line now holds on the same walk"
@@ -21357,7 +21381,7 @@
  {
   "id": "WF13",
   "section": "0.99.14 - the war you can see",
-  "line": 6214,
+  "line": 6222,
   "where": "The Revenant Sergeant, truce not taken",
   "steps": "Watch it, then bring it below two thirds yourself",
   "pass": "It fights the knights and ignores you, then whistles and comes for you; below a third it fights only you"
@@ -21365,7 +21389,7 @@
  {
   "id": "JC1",
   "section": "0.99.13 - what the Plateau playtest found",
-  "line": 6220,
+  "line": 6228,
   "where": "The Doomed Plateau, before meeting the Spirit Council",
   "steps": "Talk to Jehanne through every branch",
   "pass": "No reply says you have spoken to her Council; after meeting the Council, those replies appear"
@@ -21373,7 +21397,7 @@
  {
   "id": "BW1",
   "section": "0.99.13 - what the Plateau playtest found",
-  "line": 6221,
+  "line": 6229,
   "where": "The Doomed Plateau, a save that has not entered it",
   "steps": "Hover the captain that raises the dead, and read the log as you fight it",
   "pass": "It is named Bonewright, on hover and in the log; its opening line names no standard"
@@ -21381,7 +21405,7 @@
  {
   "id": "BW2",
   "section": "0.99.13 - what the Plateau playtest found",
-  "line": 6222,
+  "line": 6230,
   "where": "The same",
   "steps": "Let it raise a few, then kill it",
   "pass": "The risen fall with it at once, and the line says so"
@@ -21389,7 +21413,7 @@
  {
   "id": "BW3",
   "section": "0.99.13 - what the Plateau playtest found",
-  "line": 6223,
+  "line": 6231,
   "where": "Retreat of Souls",
   "steps": "Meet the Lance's guardian",
   "pass": "It is still the Second Guardian, unchanged"
@@ -21397,7 +21421,7 @@
  {
   "id": "RS1",
   "section": "0.99.13 - what the Plateau playtest found",
-  "line": 6224,
+  "line": 6232,
   "where": "The Doomed Plateau, a save that has not entered it",
   "steps": "Find the Revenant Sergeant",
   "pass": "It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant. On 0.99.13 it attacks you from the start: it could not reach a knight. 0.99.14 fixes that (WF13)"
@@ -21405,7 +21429,7 @@
  {
   "id": "RS2",
   "section": "0.99.13 - what the Plateau playtest found",
-  "line": 6225,
+  "line": 6233,
   "where": "The same",
   "steps": "Bring it below two thirds of its health yourself",
   "pass": "The whistle line, and undead that were idle nearby come for you, besides the escort that appears. Note if they go for the knights instead"
@@ -21413,7 +21437,7 @@
  {
   "id": "HW3",
   "section": "0.99.13 - what the Plateau playtest found",
-  "line": 6226,
+  "line": 6234,
   "where": "Caverns of Nostradamus, a map not yet entered",
   "steps": "Read the ward line, then kill the Acolytes but leave a Hujark Shaman alive",
   "pass": "The line names shamans and acolytes; the ward holds until the last caster of either kind falls"
@@ -21421,7 +21445,7 @@
  {
   "id": "AL1",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6232,
+  "line": 6240,
   "where": "Temple Initiate, first visit (kit: \"Take me to Sir Roger\")",
   "steps": "Walk the route toward the Stone Chamber exit and fight the archers by it",
   "pass": "They stand where they are and shoot, while the swordsmen close; they do not walk into the melee"
@@ -21429,7 +21453,7 @@
  {
   "id": "AL2",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6233,
+  "line": 6241,
   "where": "The same",
   "steps": "Retreat well out of their bow range",
   "pass": "They follow you, then stop and shoot again once in range"
@@ -21437,7 +21461,7 @@
  {
   "id": "DW1",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6234,
+  "line": 6242,
   "where": "Doomed Plateau, first visit (kit: \"The Doomed Plateau\")",
   "steps": "Walk west along the path until a skeleton named Deathwatch sees you",
   "pass": "The log prints \"The Deathwatch raises the alarm!\", and within a few seconds a few undead arrive from the north that had not been fighting"
@@ -21445,7 +21469,7 @@
  {
   "id": "DW2",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6235,
+  "line": 6243,
   "where": "The same, new attempt",
   "steps": "Kill the Deathwatch before it notices you (from behind, or sneaking)",
   "pass": "No alarm line; the northern undead stay where they are"
@@ -21453,7 +21477,7 @@
  {
   "id": "DW3",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6236,
+  "line": 6244,
   "where": "The same",
   "steps": "Approach it head-on in the open",
   "pass": "It does not see you until you are well on screen"
@@ -21461,7 +21485,7 @@
  {
   "id": "DW4",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6237,
+  "line": 6245,
   "where": "The same, after an alarm",
   "steps": "Find and talk to the Bonecaller",
   "pass": "It still talks; the alarm did not pull it into the fight"
@@ -21469,7 +21493,7 @@
  {
   "id": "HM1",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6238,
+  "line": 6246,
   "where": "Any merchant or loot with magic helmets",
   "steps": "Find a Helmet of the Watch, read it, wear it",
   "pass": "It says it does not reduce sight; with it on, the clear area around you is as large as with no helmet"
@@ -21477,7 +21501,7 @@
  {
   "id": "HM2",
   "section": "0.99.12 - the probe: archers who hold, and a sentry",
-  "line": 6239,
+  "line": 6247,
   "where": "The same",
   "steps": "Wear a Helmet of Farsight",
   "pass": "The clear area is visibly larger than with no helmet at all"
@@ -21485,7 +21509,7 @@
  {
   "id": "FB1",
   "section": "0.99.11 - falling back",
-  "line": 6245,
+  "line": 6253,
   "where": "Temple Initiate, Stone Chamber or Antechamber, or a Barcelona siege after its druids appear, first visit",
   "steps": "Wound an English soldier below a third of his health while a druid lives",
   "pass": "He shouts and runs toward the druids, not fighting back while he runs, then returns healed"
@@ -21493,7 +21517,7 @@
  {
   "id": "FB2",
   "section": "0.99.11 - falling back",
-  "line": 6246,
+  "line": 6254,
   "where": "The same",
   "steps": "Chase and hit him as he runs",
   "pass": "He keeps running; he can be killed on the way"
@@ -21501,7 +21525,7 @@
  {
   "id": "FB3",
   "section": "0.99.11 - falling back",
-  "line": 6247,
+  "line": 6255,
   "where": "The same, with the room's druids dead",
   "steps": "Wound a soldier badly",
   "pass": "He does not run; he fights on"
@@ -21509,7 +21533,7 @@
  {
   "id": "FB4",
   "section": "0.99.11 - falling back",
-  "line": 6248,
+  "line": 6256,
   "where": "The same",
   "steps": "Watch every soldier who ran",
   "pass": "Every one comes back and fights again; none stands idle by a post. Report any that does, with the map"
@@ -21517,7 +21541,7 @@
  {
   "id": "BF1",
   "section": "0.99.10 - what the re-score found",
-  "line": 6254,
+  "line": 6262,
   "where": "Gate or Temple District Siege, first visit",
   "steps": "Fight until a druid priest appears, kill every one",
   "pass": "The soldiers keep fighting until the last druid falls, then stand down and wake. Arriving alone does NOT stand them down"
@@ -21525,7 +21549,7 @@
  {
   "id": "BF2",
   "section": "0.99.10 - what the re-score found",
-  "line": 6255,
+  "line": 6263,
   "where": "Temple Initiate, Stone Chamber, Antechamber",
   "steps": "Walk the main route",
   "pass": "You meet a druid post on the route in each map; killing both of a room's druids stands its soldiers down"
@@ -21533,7 +21557,7 @@
  {
   "id": "BF3",
   "section": "0.99.10 - what the re-score found",
-  "line": 6256,
+  "line": 6264,
   "where": "The same",
   "steps": "Watch the stood-down men",
   "pass": "None of them is a Priest wearing a soldier's waking line"
@@ -21541,7 +21565,7 @@
  {
   "id": "BF4",
   "section": "0.99.10 - what the re-score found",
-  "line": 6257,
+  "line": 6265,
   "where": "Exalted Chambers, Secret Chamber, Inner Sanctum",
   "steps": "Fight the priestesses",
   "pass": "At a low level no Super priestess appears; at a high level no base one"
@@ -21549,7 +21573,7 @@
  {
   "id": "BF5",
   "section": "0.99.10 - what the re-score found",
-  "line": 6258,
+  "line": 6266,
   "where": "Alamut, the Knight of Saladin",
   "steps": "Ask about the tribute and the tent",
   "pass": "No sentence repeats"
@@ -21557,7 +21581,7 @@
  {
   "id": "BF6",
   "section": "0.99.10 - what the re-score found",
-  "line": 6259,
+  "line": 6267,
   "where": "Final Encounter, as a Saladin high-level",
   "steps": "Take the standing-order reply to the Old Man",
   "pass": "It says \"every year since\", not \"eighty\""
@@ -21565,7 +21589,7 @@
  {
   "id": "BF7",
   "section": "0.99.10 - what the re-score found",
-  "line": 6260,
+  "line": 6268,
   "where": "Desert Sprawl, through the goblin gate",
   "steps": "Click Rumjun Khan, choose \"accompany me\"",
   "pass": "He talks rather than fights; after the reply he attacks the desert's enemies and not you"
@@ -21573,7 +21597,7 @@
  {
   "id": "BF8",
   "section": "0.99.10 - what the re-score found",
-  "line": 6261,
+  "line": 6269,
   "where": "Slave Pits, then any act 8 map",
   "steps": "Bring an Assassin Master below half health",
   "pass": "No whistle line in the Slave Pits; in act 8, sometimes the line and two dogs"
@@ -21581,7 +21605,7 @@
  {
   "id": "SB1",
   "section": "0.99.9 - the brood dies with the caller",
-  "line": 6267,
+  "line": 6275,
   "where": "Grove Exterior or Druid Council Level 1, a save that has not entered it",
   "steps": "Fight a Snakebreed Summoner",
   "pass": "It casts, says a summoning line, and snakebreed appear beside it. They vanish on their own about a minute later"
@@ -21589,7 +21613,7 @@
  {
   "id": "SB2",
   "section": "0.99.9 - the brood dies with the caller",
-  "line": 6268,
+  "line": 6276,
   "where": "The same",
   "steps": "Kill the Summoner while its brood lives",
   "pass": "The log says the brood unravels, and every summoned snakebreed on the map is gone. Ordinary snakebreed are not"
@@ -21597,7 +21621,7 @@
  {
   "id": "SB3",
   "section": "0.99.9 - the brood dies with the caller",
-  "line": 6269,
+  "line": 6277,
   "where": "The same, peaceful route",
   "steps": "Take Sahar's ring or the parley while a brood is out",
   "pass": "The summoned snakebreed stand down with the rest"
@@ -21605,7 +21629,7 @@
  {
   "id": "HR1",
   "section": "0.99.8 - the raid has a leader",
-  "line": 6275,
+  "line": 6283,
   "where": "Hamlet Burned, first visit",
   "steps": "Walk toward the middle of the village",
   "pass": "A Druid War-Priest speaks to you before the fight. \"Then I will cut them loose myself\" starts it"
@@ -21613,7 +21637,7 @@
  {
   "id": "HR2",
   "section": "0.99.8 - the raid has a leader",
-  "line": 6276,
+  "line": 6284,
   "where": "The same",
   "steps": "Kill the War-Priest",
   "pass": "The log says his hold breaks. Every English soldier on the map stands down, says a dazed line about France, and can be talked to. Hit one: only his band turns"
@@ -21621,7 +21645,7 @@
  {
   "id": "HR3",
   "section": "0.99.8 - the raid has a leader",
-  "line": 6277,
+  "line": 6285,
   "where": "The same, Speech 75",
   "steps": "Take the parley reply",
   "pass": "He vanishes in a flash and the soldiers stand down as in HR2. He does not come back"
@@ -21629,7 +21653,7 @@
  {
   "id": "HR4",
   "section": "0.99.8 - the raid has a leader",
-  "line": 6278,
+  "line": 6286,
   "where": "The same, Tribal 75 and at least 20 mana",
   "steps": "Take the wrest reply, walk away, wait, come back",
   "pass": "Your mana is gone, the band around him stands down. Coming back after 20 seconds, he speaks again (\"Back again\"), and each cast frees one more band, four in all"
@@ -21637,7 +21661,7 @@
  {
   "id": "HR5",
   "section": "0.99.8 - the raid has a leader",
-  "line": 6279,
+  "line": 6287,
   "where": "The same, a Cathar friend of the Weird Woman",
   "steps": "Ask her to call the bears off",
   "pass": "The bears stop hunting you, including those later fights bring. Without the promise the reply is absent"
@@ -21645,7 +21669,7 @@
  {
   "id": "HR6",
   "section": "0.99.8 - the raid has a leader",
-  "line": 6280,
+  "line": 6288,
   "where": "The same",
   "steps": "Reach the fight4 or fight6 squad, kill its priest",
   "pass": "That squad's soldiers stand down. A squad whose priest has not spawned yet does not stand down early"
@@ -21653,7 +21677,7 @@
  {
   "id": "GL1",
   "section": "0.99.7 - the war leaders",
-  "line": 6286,
+  "line": 6294,
   "where": "Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit",
   "steps": "Find a band with a hat goblin named Goblin War Leader, kill him",
   "pass": "The log says the goblins around him lose heart, and his band attacks visibly slower. Other bands are unchanged"
@@ -21661,7 +21685,7 @@
  {
   "id": "GL2",
   "section": "0.99.7 - the war leaders",
-  "line": 6287,
+  "line": 6295,
   "where": "The same, as the Khan's Champion",
   "steps": "Walk in",
   "pass": "The bands and their war leaders keep their distance"
@@ -21669,7 +21693,7 @@
  {
   "id": "MS1",
   "section": "0.99.6 - the hall stands down",
-  "line": 6293,
+  "line": 6301,
   "where": "Montserrat peaceful route, a save that has not entered Druid Council Level 1",
   "steps": "Take Sahar's ring, then walk back through Level 1 and the Grove",
   "pass": "No snakebreed or assassin attacks you, including the group in the hall and its runner; the wounded assassin still talks"
@@ -21677,7 +21701,7 @@
  {
   "id": "SG1",
   "section": "0.99.5 - the sieges are held too",
-  "line": 6299,
+  "line": 6307,
   "where": "Gate District Siege, on a save that has not entered it",
   "steps": "Kill every druid priest on the map",
   "pass": "Within seconds the English soldiers stop fighting, each says a waking line (\"This is Spain. Why am I in Spain?\"), and clicking one talks"
@@ -21685,7 +21709,7 @@
  {
   "id": "SG2",
   "section": "0.99.5 - the sieges are held too",
-  "line": 6300,
+  "line": 6308,
   "where": "The same, after the stand-down",
   "steps": "Force attack one soldier",
   "pass": "Every English soldier on the map turns hostile again"
@@ -21693,7 +21717,7 @@
  {
   "id": "SG3",
   "section": "0.99.5 - the sieges are held too",
-  "line": 6301,
+  "line": 6309,
   "where": "Temple District Siege",
   "steps": "Repeat SG1 and SG2, and check the siege still plays to its end",
   "pass": "Same results, and nothing in the siege waits forever on English deaths"
@@ -21701,7 +21725,7 @@
  {
   "id": "HW1",
   "section": "0.99.4 - the acolytes' ward",
-  "line": 6307,
+  "line": 6315,
   "where": "Clan of the Hand or Skull, first visit, fighting the Hujark",
   "steps": "Arrive",
   "pass": "The log says the acolytes are chanting a ward over their warriors. Warriors are harder to hit while acolytes live"
@@ -21709,7 +21733,7 @@
  {
   "id": "HW2",
   "section": "0.99.4 - the acolytes' ward",
-  "line": 6308,
+  "line": 6316,
   "where": "The same",
   "steps": "Kill every acolyte on the map",
   "pass": "The log says the ward breaks, and within seconds the warriors are as easy to hit as before"
@@ -21717,7 +21741,7 @@
  {
   "id": "HW3",
   "section": "0.99.4 - the acolytes' ward",
-  "line": 6309,
+  "line": 6317,
   "where": "The same, on the Hujark alliance or safe conduct",
   "steps": "Walk through",
   "pass": "Nothing changes: the warriors are not hostile, and no English invader is warded on any route"
@@ -21725,7 +21749,7 @@
  {
   "id": "CO1",
   "section": "0.99.3 - what you did follows you",
-  "line": 6315,
+  "line": 6323,
   "where": "Crossroads to England, having broken the standard, on a save that has not walked the road",
   "steps": "Walk it",
   "pass": "Two archer groups do not attack. Clicking one gives a deserter line. Without the standard broken they fight as before"
@@ -21733,7 +21757,7 @@
  {
   "id": "CO2",
   "section": "0.99.3 - what you did follows you",
-  "line": 6316,
+  "line": 6324,
   "where": "Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit, Khan killed",
   "steps": "Fight a band",
   "pass": "The log says they fight with less heart, and they attack visibly slower"
@@ -21741,7 +21765,7 @@
  {
   "id": "CO3",
   "section": "0.99.3 - what you did follows you",
-  "line": 6317,
+  "line": 6325,
   "where": "The same, as Goblin Champion",
   "steps": "Walk in",
   "pass": "The log says they keep their distance, and the bands do not attack. Quest goblins (Grumdjum, the guard at the girl) are unchanged"
@@ -21749,7 +21773,7 @@
  {
   "id": "HN1",
   "section": "0.99.2 - showing, not telling",
-  "line": 6323,
+  "line": 6331,
   "where": "02 Temple Initiate, first visit, on a save that has not entered it",
   "steps": "Open the journal",
   "pass": "Under the druid quest, \"The Spellbound Soldiers\" says they fight as though spellbound. It tells you nothing to do. With Sir Roger along he says something has hold of them"
@@ -21757,7 +21781,7 @@
  {
   "id": "HN2",
   "section": "0.99.2 - showing, not telling",
-  "line": 6324,
+  "line": 6332,
   "where": "Any act with the English draught soldiers",
   "steps": "Bring one under 40% health",
   "pass": "`<Reaches for a potion>` appears over him as he starts his fidget"
@@ -21765,7 +21789,7 @@
  {
   "id": "HN3",
   "section": "0.99.2 - showing, not telling",
-  "line": 6325,
+  "line": 6333,
   "where": "05 Acid Wash",
   "steps": "Walk the channel without the search skill, then with it",
   "pass": "No valve line without it. With it, the line plays as the valve is revealed"
@@ -21773,7 +21797,7 @@
  {
   "id": "AT1",
   "section": "0.99.0 - Alamut",
-  "line": 6333,
+  "line": 6341,
   "where": "Any good ending",
   "steps": "Press Escape on each Nostradamus line after the battle",
   "pass": "The ending carries on exactly as clicking would, and reaches the stage. Nothing stalls"
@@ -21781,7 +21805,7 @@
  {
   "id": "AT2",
   "section": "0.99.0 - Alamut",
-  "line": 6334,
+  "line": 6342,
   "where": "A dark ending (Calle Perdida)",
   "steps": "Finish it",
   "pass": "After Nostradamus the game goes to the stage, plays the slides this character earned, then the credits. Before this the dark endings showed no slide"
@@ -21789,7 +21813,7 @@
  {
   "id": "AT3",
   "section": "0.99.0 - Alamut",
-  "line": 6335,
+  "line": 6343,
   "where": "The Demesne, before either ending",
   "steps": "Press Escape on Nostradamus",
   "pass": "The scene continues to the right ending map"
@@ -21797,7 +21821,7 @@
  {
   "id": "AT4",
   "section": "0.99.0 - Alamut",
-  "line": 6336,
+  "line": 6344,
   "where": "Act 8, Goblin Champion, having killed the Khan before Persia",
   "steps": "Enter Desert Sprawl",
   "pass": "The Khan does not appear. Likewise Grumdjum, if he died earlier. A save that killed them before this release still shows them"
@@ -21805,7 +21829,7 @@
  {
   "id": "AT5",
   "section": "0.99.0 - Alamut",
-  "line": 6337,
+  "line": 6345,
   "where": "Dismiss Grumdjum, then click him",
   "steps": "-",
   "pass": "He says \"Are you ready to continue our quest - to put the Old Man to rest?\" aloud before the rejoin conversation"
@@ -21813,7 +21837,7 @@
  {
   "id": "AT6",
   "section": "0.99.0 - Alamut",
-  "line": 6338,
+  "line": 6346,
   "where": "Final Encounter",
   "steps": "Let the Old Man escape",
   "pass": "The escape plays through: camera, spirits, then the ending. Nothing stops at his disappearance"
@@ -21821,7 +21845,7 @@
  {
   "id": "AT7",
   "section": "0.99.0 - Alamut",
-  "line": 6339,
+  "line": 6347,
   "where": "The Maw's Assassin Master, the Elemental Spirit, DaVinci's evil lines, Galileo's survival line, the Old Man's Inquisition scene",
   "steps": "Hear them",
   "pass": "Each speaks aloud where it was silent"
@@ -21829,7 +21853,7 @@
  {
   "id": "AT8",
   "section": "0.99.0 - Alamut",
-  "line": 6340,
+  "line": 6348,
   "where": "05 Acid Wash",
   "steps": "Lure an assassin into the channel as a sluice fires",
   "pass": "The acid hurts him too. A companion standing in it is hurt as well"
@@ -21837,7 +21861,7 @@
  {
   "id": "AT9",
   "section": "0.99.0 - Alamut",
-  "line": 6341,
+  "line": 6349,
   "where": "05 Acid Wash, near the entrance",
   "steps": "Search for secrets (a good trap and secret skill)",
   "pass": "A hidden valve is revealed; using it shuts both sluices and opens the spiked gates, as the far switch does. Without the skill it stays hidden"
@@ -21845,7 +21869,7 @@
  {
   "id": "AT10",
   "section": "0.99.0 - Alamut",
-  "line": 6342,
+  "line": 6350,
   "where": "04 to 07",
   "steps": "Bring several Assassin Masters under half health",
   "pass": "About half whistle up two guard dogs, with a log line; none does it twice"
@@ -21853,7 +21877,7 @@
  {
   "id": "AT11",
   "section": "0.99.0 - Alamut",
-  "line": 6343,
+  "line": 6351,
   "where": "01, 02",
   "steps": "Look at the packs",
   "pass": "Roughly one pack in four is Sand Spirits instead of beasts"
@@ -21861,7 +21885,7 @@
  {
   "id": "AT12",
   "section": "0.99.0 - Alamut",
-  "line": 6344,
+  "line": 6352,
   "where": "05 and 07 with the Knight of Saladin and Grumdjum",
   "steps": "Enter each the first time",
   "pass": "Each says one line, the knight first; neither repeats"
@@ -21869,7 +21893,7 @@
  {
   "id": "AT13",
   "section": "0.99.0 - Alamut",
-  "line": 6345,
+  "line": 6353,
   "where": "Act 8 with the Knight of Saladin from Exalted",
   "steps": "Walk 03 to 07",
   "pass": "Only one Knight of Saladin. If two appear, report it with a save"
@@ -21877,7 +21901,7 @@
  {
   "id": "SH1",
   "section": "0.99.0 - the English Shrine",
-  "line": 6353,
+  "line": 6361,
   "where": "05 Exalted Chambers",
   "steps": "Talk to the Druid Master",
   "pass": "She is voiced: her lines play aloud. Before this she was silent"
@@ -21885,7 +21909,7 @@
  {
   "id": "SH2",
   "section": "0.99.0 - the English Shrine",
-  "line": 6354,
+  "line": 6362,
   "where": "10 Inner Sanctum",
   "steps": "Pull the three stones in any order",
   "pass": "Each opens what it opens, then a separate line counts down: two left, one left, the last of them. Not \"Two stones left\" three times"
@@ -21893,7 +21917,7 @@
  {
   "id": "SH3",
   "section": "0.99.0 - the English Shrine",
-  "line": 6355,
+  "line": 6363,
   "where": "02, Sir Roger, Servant of the Queen perk",
   "steps": "Reach \"The Queen keeps druids\" and answer \"That changes nothing. Stand aside.\"",
   "pass": "The scene ends and you can move; he can be spoken to again. Before this you were stuck"
@@ -21901,7 +21925,7 @@
  {
   "id": "SH4",
   "section": "0.99.0 - the English Shrine",
-  "line": 6356,
+  "line": 6364,
   "where": "02 at Sneak 25",
   "steps": "Take the second passage, go on to 05, then come back the vanilla way",
   "pass": "One payment of the passage XP and balloon, on the way in only"
@@ -21909,7 +21933,7 @@
  {
   "id": "SH5",
   "section": "0.99.0 - the English Shrine",
-  "line": 6357,
+  "line": 6365,
   "where": "02, 03, 04",
   "steps": "Look at the enemies",
   "pass": "Some are druids in robes casting spells, not soldiers standing still until struck. None stands idle while his friends fight"
@@ -21917,7 +21941,7 @@
  {
   "id": "SH6",
   "section": "0.99.0 - the English Shrine",
-  "line": 6358,
+  "line": 6366,
   "where": "Any act 7 map",
   "steps": "Bring a druid under half health",
   "pass": "The log says she calls a wolf, a wolf appears beside her with a summoning flash, and she does it once only"
@@ -21925,7 +21949,7 @@
  {
   "id": "SH7",
   "section": "0.99.0 - the English Shrine",
-  "line": 6359,
+  "line": 6367,
   "where": "02, 03 or 04",
   "steps": "Kill every druid on the map, leave the soldiers",
   "pass": "Within a few seconds every soldier on that map stops fighting and says one dazed line; clicking one talks. A map with druids alive keeps fighting"
@@ -21933,7 +21957,7 @@
  {
   "id": "SH8",
   "section": "0.99.0 - the English Shrine",
-  "line": 6360,
+  "line": 6368,
   "where": "The same, after the stand-down",
   "steps": "Force attack one soldier",
   "pass": "Every soldier on that map turns hostile again, not just the one; the first hit stops your attack and one more click carries on. No Karma lost"
@@ -21941,7 +21965,7 @@
  {
   "id": "SH9",
   "section": "0.99.0 - the English Shrine",
-  "line": 6361,
+  "line": 6369,
   "where": "Crossroads to England",
   "steps": "-",
   "pass": "Three of the archer pairs are druids"
@@ -21949,7 +21973,7 @@
  {
   "id": "SH10",
   "section": "0.99.0 - the English Shrine",
-  "line": 6362,
+  "line": 6370,
   "where": "03, 04, 05 with Roger and Grace",
   "steps": "Enter each map the first time",
   "pass": "Each says one line, Roger first. Neither says it twice, and with one of them absent the other still speaks"
@@ -21957,7 +21981,7 @@
  {
   "id": "SH11",
   "section": "0.99.0 - the English Shrine",
-  "line": 6363,
+  "line": 6371,
   "where": "Finish the shrine four ways: talk her down; spoil the ambush and kill her; kill her; walk on with her alive",
   "steps": "Reach England to Alamut with Roger, then the ending",
   "pass": "Roger says the line for that outcome, and the ending shows the matching Shrine slide with the Druid Master on the stage, before the companions"
@@ -21965,7 +21989,7 @@
  {
   "id": "ES20",
   "section": "0.99.0 - the epilogue stage",
-  "line": 6369,
+  "line": 6377,
   "where": "Finish the game, or `Ending tests` then `As I am`",
   "steps": "-",
   "pass": "After Javier the screen goes black and the stage opens with no visible pan. No crash on the teleport"
@@ -21973,7 +21997,7 @@
  {
   "id": "ES21",
   "section": "0.99.0 - the epilogue stage",
-  "line": 6370,
+  "line": 6378,
   "where": "The same",
   "steps": "Read through",
   "pass": "Every slide this character earned plays, in order, with the right figure centre-stage and none left over from the slide before. Slides with no figure (the pits, the Savage Heart, the woodcutter, no allegiance) play on the empty stage"
@@ -21981,7 +22005,7 @@
  {
   "id": "ES22",
   "section": "0.99.0 - the epilogue stage",
-  "line": 6371,
+  "line": 6379,
   "where": "The same, having talked Ahriman into death",
   "steps": "-",
   "pass": "The Templar slide is the one that says the order was never sworn to him: the flag survived the teleport"
@@ -21989,7 +22013,7 @@
  {
   "id": "ES23",
   "section": "0.99.0 - the epilogue stage",
-  "line": 6372,
+  "line": 6380,
   "where": "The same",
   "steps": "Press Escape on a slide",
   "pass": "It advances to the next slide, and the credits still roll at the end"
@@ -21997,7 +22021,7 @@
  {
   "id": "ES24",
   "section": "0.99.0 - the epilogue stage",
-  "line": 6373,
+  "line": 6381,
   "where": "With companions alive",
   "steps": "-",
   "pass": "Nobody you travelled with wanders into frame, and every figure stands still, including the golem and Fang"
@@ -22005,7 +22029,7 @@
  {
   "id": "XS22",
   "section": "0.98.1 - where the four roads met",
-  "line": 6379,
+  "line": 6387,
   "where": "Crossroads Siege, on a save that has not entered it",
   "steps": "Walk the road to the junction",
   "pass": "The stand is at the junction just west of the catapult rocks, whole, and nothing is drawn over it. You can walk up to it from the road and click it. The description fires as you approach"
@@ -22013,7 +22037,7 @@
  {
   "id": "XS23",
   "section": "0.98.1 - where the four roads met",
-  "line": 6380,
+  "line": 6388,
   "where": "The same, with Jehanne or the golem, and soldiers still alive around you",
   "steps": "Take that route",
   "pass": "They reach the base of the stand before they die. If frozen men block them, the 12 second timer still ends the scene"
@@ -22021,7 +22045,7 @@
  {
   "id": "XS1",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6389,
+  "line": 6397,
   "where": "Crossroads Siege, walk to the centre, north of the line through the map",
   "steps": "-",
   "pass": "You **see** the standard, upright, and it reads as a standard. If it lies flat or looks wrong, the mesh needs changing"
@@ -22029,7 +22053,7 @@
  {
   "id": "XS2",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6390,
+  "line": 6398,
   "where": "Click it, with none of the routes",
   "steps": "-",
   "pass": "The description and only *<Leave it.>*"
@@ -22037,7 +22061,7 @@
  {
   "id": "XS3",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6391,
+  "line": 6399,
   "where": "Thought 150",
   "steps": "*<Obliterate it.>* and click on",
   "pass": "Fire, lightning, ice, shake. **All mana gone, about half your health.** The standard vanishes and a burn mark stands in its place"
@@ -22045,7 +22069,7 @@
  {
   "id": "XS3a",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6392,
+  "line": 6400,
   "where": "The same",
   "steps": "Compare your mana before and after",
   "pass": "It is **zero**. 0.98.0's first draft took nothing, because a take larger than the pool fails"
@@ -22053,7 +22077,7 @@
  {
   "id": "XS4",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6393,
+  "line": 6401,
   "where": "**The row this exists for.** After any route",
   "steps": "Stand among the soldiers",
   "pass": "**Every English soldier stops attacking** and you can walk through. Stay among them for a minute, near bowmen and near melee men: barks keep coming from individual soldiers on screen, *\"This is Spain...\"*, and they keep coming as you walk Druids, golems and wolves still attack. If soldiers keep swinging, the names or the pacify failed"
@@ -22061,7 +22085,7 @@
  {
   "id": "XS5",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6394,
+  "line": 6402,
   "where": "Divine 150, Tribal 150, and ST 10 with EN 8",
   "steps": "Each in turn",
   "pass": "Each with its own text and effects. Brute force takes about two thirds of your health and no mana"
@@ -22069,7 +22093,7 @@
  {
   "id": "XS6",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6395,
+  "line": 6403,
   "where": "Joan with you",
   "steps": "*<Look to Jehanne.>*, *Do it.*",
   "pass": "She **walks to the standard** before the light takes her, her body stays there, the soldiers wake, and the ending shows `900 friend joan standard`. **Refusing keeps her** and the standard stands"
@@ -22077,7 +22101,7 @@
  {
   "id": "XS6a",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6396,
+  "line": 6404,
   "where": "**The cutscene.** XS6 or XS7, in the thick of the fight",
   "steps": "-",
   "pass": "**Nothing moves but the one walking, and you take no damage.** The camera follows them to the standard and holds on the body, then returns to you with your controls back. **If you are left unable to move, that is the bug this row exists for**"
@@ -22085,7 +22109,7 @@
  {
   "id": "XS7",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6397,
+  "line": 6405,
   "where": "War Golem with you",
   "steps": "*<Order the golem to destroy it.>*",
   "pass": "It **walks to the standard**, then explodes, and the ending shows `900 friend golem standard`"
@@ -22093,7 +22117,7 @@
  {
   "id": "XS8",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6398,
+  "line": 6406,
   "where": "**Wounded.** At 60% health, and again below 25%, any route",
   "steps": "-",
   "pass": "You survive it, and **nothing hits you during the scene**. Controls come back afterwards"
@@ -22101,7 +22125,7 @@
  {
   "id": "XS9",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6399,
+  "line": 6407,
   "where": "**Judgement.** A mage at the Siege",
   "steps": "What is your level, and your school total?",
   "pass": "Is 150 a main school rather than a hybrid?"
@@ -22109,7 +22133,7 @@
  {
   "id": "XS10",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6400,
+  "line": 6408,
   "where": "**The regression.** Finish the game without breaking it",
   "steps": "-",
   "pass": "No `900 order standard` slide, and Joan's and the golem's usual slides"
@@ -22117,7 +22141,7 @@
  {
   "id": "XS11",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6401,
+  "line": 6409,
   "where": "**The price.** After any route",
   "steps": "Attack one woken soldier in melee, then one with a bow or spell",
   "pass": "He alone fights back in **both** cases. The rest stand. **Karma falls by 50 per kill.** XP and the drop still arrive"
@@ -22125,7 +22149,7 @@
  {
   "id": "XS12",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6402,
+  "line": 6410,
   "where": "XS11, then finish the game",
   "steps": "-",
   "pass": "`900 order standard blood`, not the plain slide"
@@ -22133,7 +22157,7 @@
  {
   "id": "XS13",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6403,
+  "line": 6411,
   "where": "Sewers stash at low Sneak; break an ogre charm with ogres in view",
   "steps": "-",
   "pass": "*\"Oi! Hands off...\"* appears over the stash. The charm line comes from one ogre, which may be off screen, so note whether it reads as silent"
@@ -22141,7 +22165,7 @@
  {
   "id": "XS15",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6404,
+  "line": 6412,
   "where": "**Fresh spawns.** Fight a Royal Guardsman, a Sergeant, a Bowman and a War Golem down past half",
   "steps": "-",
   "pass": "Each ability prints a line in the log naming the enemy and what it did, once per enemy, and no English bark mentions a shield"
@@ -22149,7 +22173,7 @@
  {
   "id": "XS16",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6405,
+  "line": 6413,
   "where": "**Draught, undisturbed.** Hit a Royal Guardsman, English Captain, English Lieutenant and English Bowmaster to under 40% health, then stop damaging that man for three seconds",
   "steps": "-",
   "pass": "Each logs *\"reaches for a healing draught\"*, stands fidgeting and does not attack or move, then logs *\"drinks a healing draught\"* with visibly more health and the Divine Strength effect, and goes back to fighting. A bowman's fidget is sped up, not cut off"
@@ -22157,7 +22181,7 @@
  {
   "id": "XS17",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6406,
+  "line": 6414,
   "where": "**Draught, spilled.** Same four, but land any hit inside those three seconds",
   "steps": "-",
   "pass": "About 40% of hits log *\"is struck and spills the draught\"*: health does **not** rise, and he attacks again at once rather than finishing the fidget. The rest log *\"takes the blow and keeps drinking\"* and he still heals at the end unless a later hit spills it. Bring him under 40% again: he never reaches for another"
@@ -22165,7 +22189,7 @@
  {
   "id": "XS18",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6407,
+  "line": 6415,
   "where": "**Killing blow.** Take one from above 40% to dead in a single hit, and kill another mid-fidget",
   "steps": "-",
   "pass": "The first plays his death and stays down with no *\"reaches for\"* line; the second stays dead with no heal or effect afterwards"
@@ -22173,7 +22197,7 @@
  {
   "id": "XS21",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6408,
+  "line": 6416,
   "where": "**Waking.** Stand among soldiers and break the standard",
   "steps": "-",
   "pass": "Within about three seconds of the scene ending, every man in view says a bewildered line once, not all in the same instant, with none of them in the log. After that it settles to the occasional line"
@@ -22181,7 +22205,7 @@
  {
   "id": "XS20",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6409,
+  "line": 6417,
   "where": "**The stand.** Find it at the crossroads before breaking it",
   "steps": "-",
   "pass": "A dark twisted druid lamp-stand, whole and fully visible with nothing drawn over it, and the opening text calls it a lamp-stand. The charm effect pulses at its lamps every four to six seconds, silently, and stops the moment it breaks. After it falls the burn scar sits under where its base was, and sacrifices walk to its base"
@@ -22189,7 +22213,7 @@
  {
   "id": "XS19",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6410,
+  "line": 6418,
   "where": "**Talking to them.** After the standard breaks, hover and click several English soldiers. Then force attack one",
   "steps": "-",
   "pass": "The cursor shows talk, not attack, on a man you have not hit. The player walks up and he says one of the eight waking lines over his own head. Force attack still works. A soldier you have damaged fights back. Your attack stops after that first hit, and one more click on him then attacks continuously as normal, without stopping at each swing"
@@ -22197,7 +22221,7 @@
  {
   "id": "XS14",
   "section": "0.98.0 - the standard at the crossroads",
-  "line": 6411,
+  "line": 6419,
   "where": "**Save and reload.** Save just after the break, reload, leave the map and return",
   "steps": "-",
   "pass": "Soldiers stay stood down. If barks stop after a reload that is minor; note it. Karma and the slide flag survive"
@@ -22205,7 +22229,7 @@
  {
   "id": "EF1",
   "section": "0.97.4 - the ending can finish",
-  "line": 6420,
+  "line": 6428,
   "who": "**The row this exists for.** A character in no faction with no companions",
   "steps": "Take the kit's ending warp and click through",
   "pass": "**The game does not crash**, some slides play, and **the credits roll**. A freeze or a crash to desktop means the recursion or the advance is still wrong"
@@ -22213,7 +22237,7 @@
  {
   "id": "EF2",
   "section": "0.97.4 - the ending can finish",
-  "line": 6421,
+  "line": 6429,
   "who": "A character who has had companions",
   "steps": "The same",
   "pass": "Companion slides appear **after** the order slides, and the credits come last. This has never once played"
@@ -22221,7 +22245,7 @@
  {
   "id": "EF3",
   "section": "0.97.4 - the ending can finish",
-  "line": 6422,
+  "line": 6430,
   "who": "Any",
   "steps": "Press Escape on a slide",
   "pass": "The next slide comes up and the credits still roll"
@@ -22229,7 +22253,7 @@
  {
   "id": "EF4",
   "section": "0.97.4 - the ending can finish",
-  "line": 6423,
+  "line": 6431,
   "who": "A character with no slide for several steps in a row",
   "steps": "Watch the gaps",
   "pass": "No visible hang: empty steps pass in a blink. If there is a long blank pause, tell me how long"
@@ -22237,7 +22261,7 @@
  {
   "id": "EF5",
   "section": "0.97.4 - the ending can finish",
-  "line": 6424,
+  "line": 6432,
   "who": "**Judgement.** A full character",
   "steps": "Read the whole ending",
   "pass": "Does it drag? Up to about 30 slides can now play"
@@ -22245,7 +22269,7 @@
  {
   "id": "EF6",
   "section": "0.97.4 - the ending can finish",
-  "line": 6425,
+  "line": 6433,
   "who": "Ally with Huko and reach the seer",
   "steps": "-",
   "pass": "*\"Thank you! Now quickly come with me.\"* now appears over the shaman"
@@ -22253,7 +22277,7 @@
  {
   "id": "HJ1",
   "section": "0.97.3 - the war in the caves",
-  "line": 6433,
+  "line": 6441,
   "where": "`01 Heart Entrance`, reach Huko without fighting if you can",
   "steps": "*\"I have come to help the Prophet.\"*",
   "pass": "The Hujark **standing around you** stop attacking at once. This row proves the retarget. If they keep swinging, the names or the spawn timing are wrong"
@@ -22261,7 +22285,7 @@
  {
   "id": "HJ2",
   "section": "0.97.3 - the war in the caves",
-  "line": 6434,
+  "line": 6442,
   "where": "HJ1, walk on to `02`, `03` and `04`",
   "steps": "-",
   "pass": "No Hujark attacks you. `03 Tourniquet of Pain` is the map that failed most"
@@ -22269,7 +22293,7 @@
  {
   "id": "HJ3",
   "section": "0.97.3 - the war in the caves",
-  "line": 6435,
+  "line": 6443,
   "where": "**The war.** HJ2, stand back on 02 or 03",
   "steps": "Watch",
   "pass": "English and Hujark fight each other without you"
@@ -22277,7 +22301,7 @@
  {
   "id": "HJ4",
   "section": "0.97.3 - the war in the caves",
-  "line": 6436,
+  "line": 6444,
   "where": "Hit an allied Hujark",
   "steps": "-",
   "pass": "He turns on you, as before. Note whether the rest do"
@@ -22285,7 +22309,7 @@
  {
   "id": "HJ5",
   "section": "0.97.3 - the war in the caves",
-  "line": 6437,
+  "line": 6445,
   "where": "**The seer.** Ally, reach `05`, kill the Assassin and the English guard only",
   "steps": "-",
   "pass": "You can talk to Nostradamus **without touching the shaman or the Hujark guard**"
@@ -22293,7 +22317,7 @@
  {
   "id": "HJ6",
   "section": "0.97.3 - the war in the caves",
-  "line": 6438,
+  "line": 6446,
   "where": "**Safe conduct**, Speech 75",
   "steps": "Walk the whole act",
   "pass": "Same as HJ1, HJ2 and HJ5"
@@ -22301,7 +22325,7 @@
  {
   "id": "HJ7",
   "section": "0.97.3 - the war in the caves",
-  "line": 6439,
+  "line": 6447,
   "where": "**The regression.** Ignore Huko, or fight him",
   "steps": "Walk the act",
   "pass": "Hujark attack as always. No English appear"
@@ -22309,7 +22333,7 @@
  {
   "id": "HJ8",
   "section": "0.97.3 - the war in the caves",
-  "line": 6440,
+  "line": 6448,
   "where": "**Judgement.** Compare a full walk on the ally route with the ignore route",
   "steps": "-",
   "pass": "The ally route should now feel like choosing a side. Note if the two armies leave too little to do, or too much"
@@ -22317,7 +22341,7 @@
  {
   "id": "FP1",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6448,
+  "line": 6456,
   "where": "Talk Lethos into leaving with Thierry alive",
   "steps": "Watch the fade",
   "pass": "The titans go. **The prisoners and Thierry are still in the pen afterwards**, and nobody attacks"
@@ -22325,7 +22349,7 @@
  {
   "id": "FP2",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6449,
+  "line": 6457,
   "where": "FP1, click a villager man or woman",
   "steps": "-",
   "pass": "*\"The ogres have gone, and nobody will say why...\"*, not the old downcast line. The child says *\"Is it over?...\"*"
@@ -22333,7 +22357,7 @@
  {
   "id": "FP3",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6450,
+  "line": 6458,
   "where": "FP1, click Thierry",
   "steps": "*\"The titans have gone. All of them. You are free to go.\"*, then *\"Then go...\"*",
   "pass": "*\"Follow me, brothers!\"*, then he **and all three villagers walk** out along the path. If they stand still, the AI Done did not land"
@@ -22341,7 +22365,7 @@
  {
   "id": "FP4",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6451,
+  "line": 6459,
   "where": "FP3, follow them",
   "steps": "Wait 30 seconds",
   "pass": "They disappear at the end of the path and do not stand there forever. Clicking one mid-walk does nothing"
@@ -22349,7 +22373,7 @@
  {
   "id": "FP5",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6452,
+  "line": 6460,
   "where": "FP3, go to Montaillou",
   "steps": "-",
   "pass": "Thierry is at the north of the hamlet, once. Esclarmonde thanks you. His reward works"
@@ -22357,7 +22381,7 @@
  {
   "id": "FP6",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6453,
+  "line": 6461,
   "where": "**Walk away.** FP1, leave Toulouse without talking to him, go to Montaillou, come back",
   "steps": "-",
   "pass": "Thierry is in Montaillou, and the pen is empty on your return. **He must not be in both**"
@@ -22365,7 +22389,7 @@
  {
   "id": "FP7",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6454,
+  "line": 6462,
   "where": "**Thierry dead.** Kill him or let him die, then FP1",
   "steps": "Click a villager man or woman",
   "pass": "*\"Thierry is dead...\"*, then *\"You are free to go.\"* Everyone walks. No balloon, and Esclarmonde still offers the dead-husband reply. The child never offers this"
@@ -22373,7 +22397,7 @@
  {
   "id": "FP8",
   "section": "0.97.2 - the pen at Toulouse (issue #9)",
-  "line": 6455,
+  "line": 6463,
   "where": "**The regression.** Any other ending: free them through Thierry, kill the titans, or Memnos",
   "steps": "-",
   "pass": "Exactly as before. `TD3`-`TD4` still pass, and no villager uses the new lines"
@@ -22381,7 +22405,7 @@
  {
   "id": "DL1",
   "section": "0.97.1 - everything DaVinci recorded",
-  "line": 6464,
+  "line": 6472,
   "where": "Montaillou, first talk to DaVinci",
   "steps": "Take *\"A pity you survived the crash.\"*",
   "pass": "His usual *\"It pains me to see a dark nature...\"*, as vanilla"
@@ -22389,7 +22413,7 @@
  {
   "id": "DL2",
   "section": "0.97.1 - everything DaVinci recorded",
-  "line": 6465,
+  "line": 6473,
   "where": "Talk again, *\"What are you doing here?\"*, then *\"Why are you checking on my progress?\"*, then *\"And what makes you think...\"*",
   "steps": "-",
   "pass": "You **hear** *\"I have suffered quite enough of your insolence...\"*, and afterwards he resumes his muttering at the flying machine. Only one copy of the reply shows"
@@ -22397,7 +22421,7 @@
  {
   "id": "DL3",
   "section": "0.97.1 - everything DaVinci recorded",
-  "line": 6466,
+  "line": 6474,
   "where": "Workshop, press a coloured button on the steam engine three times, and a fourth",
   "steps": "Watch DaVinci",
   "pass": "First press only hisses. Second: *\"No! Not that button!\"* Third and fourth: fire, 25 damage, and **you hear** *\"Don't touch that button again!\"*"
@@ -22405,7 +22429,7 @@
  {
   "id": "DL4",
   "section": "0.97.1 - everything DaVinci recorded",
-  "line": 6467,
+  "line": 6475,
   "where": "**The regression.** A polite character in Montaillou",
   "steps": "Ask for his help once, never insult him",
   "pass": "*\"Youth today...\"* is the only route to any rebuke, and `320 general surly response 3` cannot appear on the first one"
@@ -22413,7 +22437,7 @@
  {
   "id": "DL5",
   "section": "0.97.1 - everything DaVinci recorded",
-  "line": 6468,
+  "line": 6476,
   "where": "New game, wait for Guard Tomas to open the gate, then walk through",
   "steps": "Listen",
   "pass": "*\"Come, let's explore this grand city!\"* over DaVinci as he follows you in, once only, then *\"Now what did I need from the market again?\"* when he arrives. **Judgement:** does it overlap his portcullis line or the market line? Rushing the gate may clip the portcullis line"
@@ -22421,7 +22445,7 @@
  {
   "id": "DL6",
   "section": "0.97.1 - everything DaVinci recorded",
-  "line": 6469,
+  "line": 6477,
   "where": "Secret chamber, hand him the rotary gear",
   "steps": "*\"Your rotary gear. Your engine cut it.\"*",
   "pass": "You **hear** *\"Ah! There! It is complete.\"*, then with no click the silent `902` text. The gear leaves your inventory and the quest completes once"
@@ -22429,7 +22453,7 @@
  {
   "id": "SP1",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6478,
+  "line": 6486,
   "where": "Any `Theif`, `Sewer Theif` or `Assasin`, melee",
   "steps": "Hit one until it drops a patch",
   "pass": "You **see** spikes on the ground. If you see nothing, the model or `Cur Sequence` is wrong"
@@ -22437,7 +22461,7 @@
  {
   "id": "SP2",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6479,
+  "line": 6487,
   "where": "Same",
   "steps": "Stand on the patch",
   "pass": "A hit about a second later, with the Spike Hit effect, and the patch is gone"
@@ -22445,7 +22469,7 @@
  {
   "id": "SP3",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6480,
+  "line": 6488,
   "where": "Same",
   "steps": "Step off before the tick",
   "pass": "No damage, and the patch stays armed"
@@ -22453,7 +22477,7 @@
  {
   "id": "SP4",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6481,
+  "line": 6489,
   "where": "**The regression.** Slave Pits, wound the slavers",
   "steps": "-",
   "pass": "No caltrops from any `Thug`. They are not guild thieves, and 0.97.0 briefly gave them the drop"
@@ -22461,7 +22485,7 @@
  {
   "id": "SP4a",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6482,
+  "line": 6490,
   "where": "Montserrat grove, then an Assassin Master in the Assassins' caves",
   "steps": "Wound one",
   "pass": "One patch, once each, as `SP1`. A spellcaster that never closes to melee should still drop one when hurt"
@@ -22469,7 +22493,7 @@
  {
   "id": "SP5",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6483,
+  "line": 6491,
   "where": "Leave the pits, come back through the exterior",
   "steps": "Walk to the yard",
   "pass": "Five captives and the buyer stand there, idle, and none of them fights"
@@ -22477,7 +22501,7 @@
  {
   "id": "SP6",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6484,
+  "line": 6492,
   "where": "Same, goblins",
   "steps": "Look at them",
   "pass": "They animate as goblins, not frozen or in a T-pose"
@@ -22485,7 +22509,7 @@
  {
   "id": "SP7",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6485,
+  "line": 6493,
   "where": "Don Alfonso",
   "steps": "**Free**",
   "pass": "His thanks, 300 gold, +50 karma, he disappears. **Karma must not also fall by 100**: this row proves the `Gone` guard"
@@ -22493,7 +22517,7 @@
  {
   "id": "SP8",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6486,
+  "line": 6494,
   "where": "Reload, Don Alfonso",
   "steps": "**Sell**",
   "pass": "His line, 750 gold, -75 karma, he disappears"
@@ -22501,7 +22525,7 @@
  {
   "id": "SP9",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6487,
+  "line": 6495,
   "where": "Reload, Don Alfonso",
   "steps": "**Kill**",
   "pass": "He dies at once and karma falls by 100, once"
@@ -22509,7 +22533,7 @@
  {
   "id": "SP10",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6488,
+  "line": 6496,
   "where": "Reload, a Sylvant",
   "steps": "Attack with a weapon rather than the reply",
   "pass": "If the game lets you, the kill costs 125 karma. Note if it will not let you target them"
@@ -22517,7 +22541,7 @@
  {
   "id": "SP11",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6489,
+  "line": 6497,
   "where": "After any choice",
   "steps": "Leave and come back twice",
   "pass": "Nobody who was freed, sold or killed returns, and nobody is doubled. This row proves `Placed`"
@@ -22525,7 +22549,7 @@
  {
   "id": "SP12",
   "section": "0.97.0 - caltrops, and captives in the yard",
-  "line": 6490,
+  "line": 6498,
   "where": "Finish the game after SP7, SP8 and SP9 in turn",
   "steps": "Watch the slides",
   "pass": "Exactly one `900 order pits` slide, matching the choice, none if you never decided. With `Fixt Inquisition Hostile` set, no buyer and no Sell reply"
@@ -22533,7 +22557,7 @@
  {
   "id": "LE1",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6500,
+  "line": 6508,
   "where": "Montaillou, DaVinci, the gem is with the Inquisitor",
   "steps": "Reply *\"I could try to speak with the Inquisition about the gem.\"*",
   "pass": "You **hear** *\"Ah, I would owe you a great debt...\"* and the conversation ends. It must not be his goodbye. Fails with goodbye: the retarget did not ship"
@@ -22541,7 +22565,7 @@
  {
   "id": "LE2",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6501,
+  "line": 6509,
   "where": "Same, via *\"I could not, in good conscience, oppose the Inquisition\"*",
   "steps": "Take the same reply from `320 no to inquisition`",
   "pass": "Same line. The reply appears in two places and both were moved"
@@ -22549,7 +22573,7 @@
  {
   "id": "LE3",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6502,
+  "line": 6510,
   "where": "Same, after LE1",
   "steps": "Talk to him again",
   "pass": "He is still there and still talkable, and the gem quest is unchanged. `10 Goodbye` used to run here, so this is the row that proves it did nothing he needed"
@@ -22557,7 +22581,7 @@
  {
   "id": "LE4",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6503,
+  "line": 6511,
   "where": "DaVinci, holding the Spirit Transfer Gem",
   "steps": "Hand it over, either reply",
   "pass": "You **hear** *\"You've returned with a feisty spirit!\"*, then 3001's silent text follows with no click on a blank reply"
@@ -22565,7 +22589,7 @@
  {
   "id": "LE5",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6504,
+  "line": 6512,
   "where": "Same",
   "steps": "Finish the scene, count your gold",
   "pass": "**1000** gold, once. If you see 1400, 340's payout survived"
@@ -22573,7 +22597,7 @@
  {
   "id": "LE6",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6505,
+  "line": 6513,
   "where": "Demonic spirit, karma 800 or below. The dragon warning, and the druid finale",
   "steps": "Take any of the three exits",
   "pass": "*\"Lead the way, O Dark One.\"* and **you get control back**: the node has to end the spirit's scene. Then repeat above 800: unchanged, and exactly **one** copy of each exit is offered"
@@ -22581,7 +22605,7 @@
  {
   "id": "LE7",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6506,
+  "line": 6514,
   "where": "**Fresh save.** Attack Eduardo",
   "steps": "Get jailed, escape, walk back into the shop",
   "pass": "About two seconds in: *\"Perhaps now you will think twice about attacking me...\"*, voiced, over **his** head. Judge the delay. If he is not standing yet there is no line, and `Delay=2` needs raising"
@@ -22589,7 +22613,7 @@
  {
   "id": "LE8",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6507,
+  "line": 6515,
   "where": "Same",
   "steps": "Leave and come back",
   "pass": "Silence. It plays once"
@@ -22597,7 +22621,7 @@
  {
   "id": "LE9",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6508,
+  "line": 6516,
   "where": "**The regression.** Fresh save, never attack him",
   "steps": "Enter the shop, buy something, leave, return",
   "pass": "No line, customers as normal, greeting unchanged. The spawn point is shared with both of his setup relays"
@@ -22605,7 +22629,7 @@
  {
   "id": "LE10",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6509,
+  "line": 6517,
   "where": "**Fresh spawn.** Kill Andre, then attack Michel",
   "steps": "-",
   "pass": "*\"By God you are a fiend that doesn't deserve life!\"*"
@@ -22613,7 +22637,7 @@
  {
   "id": "LE11",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6510,
+  "line": 6518,
   "where": "Attack Michel with Andre alive",
   "steps": "-",
   "pass": "*\"Brothers! Help me!\"* as always"
@@ -22621,7 +22645,7 @@
  {
   "id": "LE12",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6511,
+  "line": 6519,
   "where": "**Judgement.** Read the Demonic split beside vanilla",
   "steps": "Does *\"Dark One\"* land at 800, or does it want a lower bar?",
   "pass": "Karma 1000 is neutral and 0 is the worst there is, so 800 is a moderately bad character. Each of the three exits carries the number twice, in `tools/build_loose_ends.py`"
@@ -22629,7 +22653,7 @@
  {
   "id": "LE13",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6512,
+  "line": 6520,
   "where": "Barcelona Cathedral, walk down into the crypt",
   "steps": "Stand there a full 2:18",
   "pass": "The monks fade in as the cathedral's ambience fades out, and the loop point is not jarring. **Note whether this save had already entered the crypt.** If an old save keeps the cathedral loop and a fresh one chants, the mix is frozen into the save and the release notes must say so"
@@ -22637,7 +22661,7 @@
  {
   "id": "LE14",
   "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-  "line": 6513,
+  "line": 6521,
   "where": "Same",
   "steps": "Go back upstairs, then fight the spirits in the crypt if you have not",
   "pass": "Upstairs is the cathedral's own ambience again, so the chant has not followed you. Note what plays in the fight: it should be whatever played before, because Medium and Full were left alone"
@@ -22645,7 +22669,7 @@
  {
   "id": "WM1",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6533,
+  "line": 6541,
   "where": "**The row that matters.** Any magic melee weapon, from a drop or a merchant",
   "steps": "Read its name and tooltip",
   "pass": "It has an **enchantment name and a working effect** -- *Long Sword of Snakebiting*, not a bare *Long Sword*. If magic melee weapons have stopped rolling enchantments, the per-base group tree is broken and nothing else in this release matters"
@@ -22653,7 +22677,7 @@
  {
   "id": "WM2",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6534,
+  "line": 6542,
   "where": "A **Better** magic long sword, equipped",
   "steps": "Compare against a plain one in hand",
   "pass": "The blade is visibly a different, fancier mesh. Both at the same size: the family shares `Render Scaling=0.55`, so the variant reads about 12% longer and no more"
@@ -22661,7 +22685,7 @@
  {
   "id": "WM3",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6535,
+  "line": 6543,
   "where": "A **Special** magic long sword, equipped",
   "steps": "Compare against plain and Better",
   "pass": "A third distinct mesh, not a repeat of either"
@@ -22669,7 +22693,7 @@
  {
   "id": "WM4",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6536,
+  "line": 6544,
   "where": "A **Special** magic scimitar, on a **male** character",
   "steps": "Equip it and look at the blade",
   "pass": "It **appears**, and the blade hangs **down**. Both halves are fixes: the mesh was absent from the male registry so it rendered nothing, and the art itself was rotated. If it appears blade-up the rotation axis is wrong; if it does not appear, the registry patch did not take"
@@ -22677,7 +22701,7 @@
  {
   "id": "WM5",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6537,
+  "line": 6545,
   "where": "A **Better** magic war hammer, on a **male** character",
   "steps": "Equip it",
   "pass": "It appears. This is the second registry entry, and unlike the scimitar its art needed no rotation"
@@ -22685,7 +22709,7 @@
  {
   "id": "WM6",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6538,
+  "line": 6546,
   "where": "A **Great Mace**, magic or not",
   "steps": "Look at it in hand",
   "pass": "It is **the size it has always been**. An early build of this release shrank it 11% on a pattern match and that was reverted, so a Great Mace that looks smaller than you remember means the revert did not reach the build. A magic one still rolls enchantments but shows no mesh change, because no Great variant art exists"
@@ -22693,7 +22717,7 @@
  {
   "id": "WM7",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6539,
+  "line": 6547,
   "where": "A **Better or Special** magic **Composite** Long Bow",
   "steps": "Compare against a plain Composite Long Bow",
   "pass": "Same mesh, `BowSpecial`. The Composite's own base art is the best bow in the game, so its copies name `BowSpecial` at both tiers rather than downgrading it to `BowBetter`. **The grade is the whole row.** A Composite carrying a Basic addition such as `of Dodging` has already been held in play and looked right, but Basic additions name no mesh, so that proves only that the Composite's pool delivers. Confirm the enchantment is Better or Special before reading anything into the model"
@@ -22701,7 +22725,7 @@
  {
   "id": "WM8",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6540,
+  "line": 6548,
   "where": "A **Better** magic **plain** Long Bow",
   "steps": "Compare against a plain Long Bow",
   "pass": "A different mesh at **the same size**. It rendered 1.8x oversize before the scaling fix, so an obviously huge bow means the `MODEL.TXT` edit did not reach the build"
@@ -22709,7 +22733,7 @@
  {
   "id": "WM9",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6541,
+  "line": 6549,
   "where": "**The regression.** Load a save from 0.88.2 or earlier that holds a magic melee weapon",
   "steps": "Look at it",
   "pass": "It still has its enchantment and its effect. The 29 original additions were deliberately kept and repointed rather than deleted, because saves reference them by path -- if an old magic weapon has lost its enchantment, that decision failed"
@@ -22717,7 +22741,7 @@
  {
   "id": "WM10",
   "section": "The twenty-one meshes, and the pools that deliver them",
-  "line": 6542,
+  "line": 6550,
   "where": "**Judgement, not pass/fail.** Collect magic weapons over a stretch of play",
   "steps": "Watch the variety of enchantments",
   "pass": "It should feel unchanged. Each base weapon's pool is asserted to keep vanilla's 3/20/6 shape with nothing double-weighted, so any felt change in variety is worth reporting as a surprise"
@@ -22725,35 +22749,35 @@
  {
   "id": "S1",
   "section": "Gate 4 - regression and stability",
-  "line": 6548,
+  "line": 6556,
   "check": "Save and reload after gaining Goblin Chum",
   "pass": "Rank and bonuses survive"
  },
  {
   "id": "S2",
   "section": "Gate 4 - regression and stability",
-  "line": 6549,
+  "line": 6557,
   "check": "The other mods in the tools repo still work when enabled alongside",
   "pass": "No conflict on any shared file"
  },
  {
   "id": "S3",
   "section": "Gate 4 - regression and stability",
-  "line": 6550,
+  "line": 6558,
   "check": "No conversation crashes or shows \"the executable or data file has become corrupted\"",
   "pass": "Clean"
  },
  {
   "id": "S4",
   "section": "Gate 4 - regression and stability",
-  "line": 6551,
+  "line": 6559,
   "check": "Leaving and re-entering Goblin Warrens on the same save",
   "pass": "Girl and Guards persist"
  },
  {
   "id": "S5",
   "section": "Gate 4 - regression and stability",
-  "line": 6552,
+  "line": 6560,
   "check": "Killing the Girl / the Guards",
   "pass": "No script errors; camp hostility behaves normally"
  }

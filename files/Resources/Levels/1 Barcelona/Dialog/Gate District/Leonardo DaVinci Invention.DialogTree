@@ -49,7 +49,11 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Tank Stages Swap
+}
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -171,4 +175,14 @@ Reply Text=(not yet)
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=4 Fixt the ring seated
+Text=The turret ring is seated now, and the turret turns a hand's breadth under your palm before it stops. Every part of this machine that should move is ready to. All it lacks is something to drive it.
+Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=5 Fixt the tank awake
+Text=Something inside the hull is awake. The turret follows you across the room, and the great wheels sit with the stillness of a thing that has decided not to move yet. DaVinci has finished it.
+Should Have Voiceover=0
 }

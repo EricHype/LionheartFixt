@@ -1,0 +1,132 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=4
+			Action=CRemoveAIAction
+			{
+				Target Name=$Trigger
+				AI=CAIInteractionSpecifier
+				Delay Between Removes=0
+			}
+			Action=CAddAIAction
+			{
+				Target Name=$Trigger
+				AI=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CIfAction
+					{
+						If=CIsQuestCompletedAction
+						{
+							Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+						}
+						Then=CDisplayDialogTreeAction
+						{
+							Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Leonardo DaVinci Invention
+							Node ID=5 Fixt the tank awake
+							Speaker=$trigger
+							Player Being Spoken To=$Instigator
+						}
+						Else=CDisplayDialogTreeAction
+						{
+							Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Leonardo DaVinci Invention
+							Node ID=4 Fixt the ring seated
+							Speaker=$trigger
+							Player Being Spoken To=$Instigator
+						}
+						Return failure if the If failes=0
+					}
+					X Radius=200
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Delay Between Adds=0
+			}
+			Action=CRemoveAIAction
+			{
+				Target Name=siege tank ai poly
+				AI=CAIInteractionSpecifier
+				Delay Between Removes=0
+			}
+			Action=CAddAIAction
+			{
+				Target Name=siege tank ai poly
+				AI=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+					Action=CIfAction
+					{
+						If=CIsQuestCompletedAction
+						{
+							Quest=Levels/3 Montaillou/Quests/Obtain the spirit gem for DaVinci's siege machine
+						}
+						Then=CDisplayDialogTreeAction
+						{
+							Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Leonardo DaVinci Invention
+							Node ID=5 Fixt the tank awake
+							Speaker=$trigger
+							Player Being Spoken To=$Instigator
+						}
+						Else=CDisplayDialogTreeAction
+						{
+							Dialog Tree File=Levels/1 Barcelona/Dialog/Gate District/Leonardo DaVinci Invention
+							Node ID=4 Fixt the ring seated
+							Speaker=$trigger
+							Player Being Spoken To=$Instigator
+						}
+						Return failure if the If failes=0
+					}
+					X Radius=70
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Delay Between Adds=0
+			}
+		}
+	}
+}

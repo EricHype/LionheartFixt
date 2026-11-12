@@ -142,6 +142,21 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
+## 0.99.16 - the tank shows its state
+
+DaVinci's siege tank said "Once completed..." for ever: fitting the gear changed nothing you could see, and the spirit gem,
+which DaVinci fits offscreen, never showed at all. Its description now reads the two quests when it opens. `tools/build_tank_stages.py`. `GT1`-`GT3`.
+
+- **Gear fitted:** *"The turret ring is seated now... Every part of this machine that should move is ready to. All it lacks is
+  something to drive it."*
+- **Gear and spirit gem:** *"Something inside the hull is awake... DaVinci has finished it."*
+- **Both routes reach the tank.** In a save that has not entered the secret chamber, both of the tank's openers read the quests.
+  In one that has, fitting the gear at the tank swaps the opener that showed it, and the named poly, for openers that read them;
+  the swap lives in a canned object, because a tree that names its own file in an action hangs the loader. A gear fitted before
+  this release, or by DaVinci in his scene, keeps the old text in a chamber already visited: his reply cannot reach a tank with
+  no name.
+
+---
 ## 0.99.15 - the oath pays, and four factions answer the siege
 
 Siding with the dead skipped most of the act's combat and paid about a tenth of its XP: roughly 5,300 against 40,000 to 65,000
