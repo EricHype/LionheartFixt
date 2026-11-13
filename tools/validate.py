@@ -72,10 +72,18 @@ def check_no_probes(ctx):
     return fails
 
 
+def check_title_version(ctx):
+    """The title screen's stamp must be mod.json's version, so a cut cannot ship a stale number.
+    Rerun tools/build_title_version.py after the version bump to fix it."""
+    import build_title_version
+    return [f + " -- rerun tools/build_title_version.py" for f in build_title_version.stamped()]
+
+
 ctx = lhcheck.Context(F, args.vanilla, config=_modtools.fixt_config())
 try:
     findings, stats = lhcheck.run(ctx, only=lhcheck.split_ids(args.only), skip=lhcheck.split_ids(args.skip),
-                                  extra=[("probes", check_no_probes, "self-reference")])
+                                  extra=[("probes", check_no_probes, "self-reference"),
+                                         ("title-version", check_title_version, "probes")])
 except ValueError as e:
     sys.exit(str(e))
 sys.exit(lhcheck.report(findings, stats, ctx.notes))

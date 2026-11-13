@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.16](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.16).
+-- currently [0.99.17](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.17).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.17** | the version on the title screen | The title screen shows "Fixt" and the installed version in white in the lower right of every painting, so you can see at a glance which release you are running. |
 | **0.99.16** | the tank shows its state | DaVinci's siege tank no longer says "once completed" for ever: its description changes when the gear is fitted, and again when DaVinci has given it its spirit gem. |
 | **0.99.15** | the oath pays, and four factions answer the siege | The Crypt's knights are paid and tiered like the undead, the oath's milestones pay, and each faction meets the siege its own way: a Templar's word, a Necromancer's new hand, a Wielder's quiet hill, an Inquisitor's writ, and the wish a Knight of Saladin's elder should have made. |
 | **0.99.14** | the war you can see | The Doomed Plateau's two armies fight each other, the war tide shows on the battlefield, the Bonecaller moves behind its horde and can be spoken to, a herald offers a truce, and siding with the dead has a price. |
@@ -97,7 +98,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.16 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.17 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

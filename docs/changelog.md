@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.17** | the version on the title screen | The title screen shows "Fixt" and the installed version in white in the lower right of every painting, so you can see at a glance which release you are running. |
 | **0.99.16** | the tank shows its state | DaVinci's siege tank no longer says "once completed" for ever: its description changes when the gear is fitted, and again when DaVinci has given it its spirit gem. |
 | **0.99.15** | the oath pays, and four factions answer the siege | The Crypt's knights are paid and tiered like the undead, the oath's milestones pay, and each faction meets the siege its own way: a Templar's word, a Necromancer's new hand, a Wielder's quiet hill, an Inquisitor's writ, and the wish a Knight of Saladin's elder should have made. |
 | **0.99.14** | the war you can see | The Doomed Plateau's two armies fight each other, the war tide shows on the battlefield, the Bonecaller moves behind its horde and can be spoken to, a herald offers a truce, and siding with the dead has a price. |

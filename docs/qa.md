@@ -6168,6 +6168,13 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.17 - the version on the title screen
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TV1 | The title screen | Watch it cycle through all its paintings | "Fixt" and the installed version in the lower right of every one, readable on each |
+| TV2 | The same, the painting with the menu on the right and low (Background 05) | Look at the lower right | The stamp sits below the last button, not under it |
+
 ## 0.99.16 - the tank shows its state
 
 | # | Where | Steps | Pass |
