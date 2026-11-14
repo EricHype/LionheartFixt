@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.20** | caltrops at ankle height | Thieves' caltrops were a single spike as tall as a person. They are now a low cluster of iron points, land near the thief rather than under it, and the combat log tells you when you step on them. |
 | **0.99.19** | Fernand keeps up | Fernand walked noticeably slower than the rest of the party and kept falling behind. He now walks about as fast as Grace, without changing how he fights. |
 | **0.99.18** | Grace in her own voice | Captain Isabella's beat after her confession is rewritten in Grace's own plain, proud register, and a perceptive hero notices how she feels about them. |
 | **0.99.17** | the version on the title screen | The title screen shows "Fixt" and the installed version in white in the lower right of every painting, so you can see at a glance which release you are running. |

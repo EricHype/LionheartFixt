@@ -6169,7 +6169,16 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
-## 0.99.19 - Fernand keeps up
+## 0.99.20 - caltrops at ankle height
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CL1 | Any thief or assassin fight (the Sewers thieves are the earliest) | Hit one so it drops caltrops | A low cluster of four short iron points nearby, well below knee height. **Not** a needle as tall as a person |
+| CL2 | The same | Look at where the cluster sits | On the ground, not floating or sunk into the floor |
+| CL5 | Hit several thieves in turn, in melee | Watch where each patch lands | Somewhere around the thief, within a couple of paces, and **not** every time exactly under it. Never inside a wall or off the walkable floor |
+| CL3 | The same | Stand on it | It still hurts on the 1.25 second tick and disappears after it lands a hit, as before, and the combat log says *"You stepped on some caltrops."* once for that hit |
+| CL4 | Any Crypt or Alamut floor trap | Spring one | The real spike trap is unchanged: the tall needle still shoots up |
+
 
 | # | Where | Steps | Pass |
 |---|---|---|---|

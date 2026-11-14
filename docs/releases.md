@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.19 are published** -- 222 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.20 are published** -- 223 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,7 +142,34 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.99.19 - Fernand keeps up
+## 0.99.20 - caltrops at ankle height
+
+Reported from play: thieves' caltrops looked like giant metal spikes, taller than the thief or the player. 0.35.x showed
+the patch as `Environments/Outpost/Generic/Trap Spike 1` held on `Closed`, which is the Crypt and Alamut floor trap at full
+extension: one needle 5 px wide and 73 px tall. Its other states do not help, and nothing in the game is a scatter of
+caltrops. `tools/build_caltrops_model.py` builds `Environments/Outpost/Generic/Fixt Caltrops` from the same file and points
+`Fixt Caltrops Entity` at it, and `tools/build_caltrops_scatter.py` stops it landing under the thief. `CL1`-`CL5`.
+
+- **Four short spikes from the needle's own pixels**, 9 to 15 px tall in a 15x15 frame, tapered to a point with a glint
+  from the needle's highlight, and staggered for depth.
+- **Only `Closed` and `Closed Shadow` change.** An environment sprite is a serialized entity graph with one CStandAloneFrame
+  per state; each frame delimits itself and nothing outside records its size, so a frame can be replaced by one of another
+  size. `Open`, both `Opening` frames and their shadows are carried over byte for byte, and the builder asserts it.
+- **Buffer 1 only.** The needle's soft edges live in buffers 4/5, which the encoder cannot write, so alpha >= 128 is kept.
+  `Open Shadow` in the same file is already a buffer-1-only frame, and the encoder reproduces it byte for byte. The shadow
+  becomes an empty 1x1 frame, since the vanilla one is entirely buffers 4/5.
+- **The base stays put.** Every state's bottom row sits 32 px below its hotspot anchor (`Closed` 73 tall at y 40, `Open` 4
+  tall at -29), so the cluster's hotspot is `height - 33`, centred where the needle was.
+- **It lands near the thief, not under it.** All 57 layers created the patch at `$Trigger` with `Random Location Delta=0`,
+  and it is laid on first being hurt, almost always in melee, so it appeared exactly under a thief standing still to fight.
+  It now scatters within 80, the most common non-zero delta in vanilla (32 of its 66). It still only hurts players, on the
+  1.25 second tick.
+- **The combat log says so.** When a patch bites, the log prints *"You stepped on some caltrops."*, from a
+  `CPrintCombatTextAction` in the hit step, placed before the `CDeleteAction` that ends it.
+- **First new multi-frame world sprite in Fixt.** Icons and the title screen were single frames; this one has not been seen
+  in game yet, which is what `CL1`-`CL2` are for.
+
+---
 
 Fernand fell behind the party just walking around; only the engine's catch-up run brought him back. Walk speed is
 `Walk Magic Speed Multiplier` x `Base Animation Speed Multiplier` x sneak x encumbrance, and the base multiplier scales

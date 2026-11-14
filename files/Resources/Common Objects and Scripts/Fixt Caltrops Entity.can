@@ -50,7 +50,7 @@ CCannedObject
 						{
 							Action=Array
 							{
-								Item Count=3
+								Item Count=4
 								Action=CSpawnEffectAction
 								{
 									Explosion Model=Spell Effects/Shots/Spike Hit
@@ -183,6 +183,13 @@ CCannedObject
 									}
 									Return failure if the TryAction failes=0
 								}
+								Action=CPrintCombatTextAction
+								{
+									Text to print=You stepped on some caltrops.
+									Character to show text to=Player1
+									Emphasize=0
+									Suppress Duplicates=0
+								}
 								Action=CDeleteAction
 								{
 									Target Name=$Trigger
@@ -206,7 +213,7 @@ CCannedObject
 		Used In=QuestMode
 		Current Target=
 		Publisher=
-		Model=Environments/Outpost/Generic/Trap Spike 1
+		Model=Environments/Outpost/Generic/Fixt Caltrops
 		Position X=0
 		Position Y=0
 		Rendering Height=0
