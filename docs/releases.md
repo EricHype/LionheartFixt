@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.21 are published** -- 224 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.22 are published** -- 225 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,28 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.22 - the auras say what they are
+
+Reported from play: a `Wand of Greater Healing, Acid Touch` described itself as dealing acid damage "to any enemy within
+melee range of the character", and a wand has no melee attack. The effect was never melee. `Acid Touch`, `Cold Zone` and
+`Lava Burn` are each a `CPlugInBehaviorAddAIWhenSelected` holding a `CAIAreaOvalManager`: while the item is selected, every
+2 seconds it deals 2-7 damage to every enemy with HP inside an oval of radius 110 around the holder, whatever the holder is
+doing. `tools/build_aura_descriptions.py`. `AZ1`-`AZ5`.
+
+- **Confirmed in play, a first.** 0.75.2 changed these numbers without anyone having seen the aura run. A quicksave in the
+  Woodcutter Forest shows acid-only hits of 5, 2, 6 and 6 on wasps, one tick catching two of them, and a kill, with no
+  swing; the holder's mace always hits for acid plus crushing. 2 is outside vanilla's 1-3, so these are Fixt's numbers.
+- **The descriptions say aura, damage and interval**, read from each file's own trigger: *"Creates an aura that deals 2-7
+  acid damage to nearby enemies every 2 seconds."*, and cold and fire for the other two.
+- **Deepest Winter** (`Armor/Cold Touch`), the one armour aura, already said aura but only "periodically". It now says every
+  6 seconds, and keeps its own `%i[min]-%i[max]`, because its damage scales with the item.
+- **Wands can roll the three.** 0.75.2 said nothing could, because no item carries `UNIQUE Item Additions`; vanilla's
+  `Wand Additions` group lists it as a member group. Corrected in that section.
+- **Only new items show it.** An item's description is assembled when it is generated and saved with it, so a wand or amulet
+  already carried keeps the old wording. The aura itself is unchanged.
+
+---
 
 ## 0.99.21 - companions say what they are
 
@@ -5721,6 +5743,13 @@ with the auras rather than with the flat-modifier family.
 appear in exactly one real map and two test maps, and in that real map a single trigger in
 `Wilderness Maps/Bounty Hunter Camp` hands over **all three at once**:
 
+> **Corrected in 0.99.22: wands can roll them.** No item carries `UNIQUE Item Additions` directly, but
+> vanilla's `Items/Specific Item/Wand Additions` group lists it under `Other Group that are part of this
+> group`, so every randomly generated wand can draw one of the three. A playtest found a
+> `Wand of Greater Healing, Acid Touch` dropped at the Lake. The census counted which items carry the
+> group and never asked which groups contain it. The value argument below still holds: the additions
+> are flat either way.
+
     CActionGiveStandardInventoryItem
       Inventory Item To Give=Inventory Items/Amulet
       Additions to add=Array { Addition to add=.../UNIQUE/Cold Zone }      x3, one per element
@@ -5780,6 +5809,13 @@ three siblings is the inconsistency this project keeps finding in other people's
 from that one Bounty Hunter Camp trigger, and this release changes its numbers without ever having
 watched it run. If it turns out to be dead, that is a separate and more interesting bug, and these
 four digits will have been harmless either way.
+
+> **Confirmed in play in 0.99.22.** The Acid Touch aura fires from a wand: acid-only hits of 5, 2, 6
+> and 6 on wasps in the Woodcutter Forest, one tick catching two of them, and a kill, with no swing
+> (the holder's mace hits always read acid plus crushing). 2 is outside vanilla's 1-3, so these are
+> this release's numbers. 0.99.22 also rewrote all three descriptions, which said "any enemy within
+> melee range" and read as a melee rider: they now say *"Creates an aura that deals 2-7 acid damage
+> to nearby enemies every 2 seconds."*
 
 ## 0.75.1 - a curve the jewellery already had
 

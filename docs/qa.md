@@ -6169,6 +6169,19 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.22 - the auras say what they are
+
+`Acid Touch`, `Cold Zone` and `Lava Burn` describe themselves as an aura, and Deepest Winter gains its interval. An item's description is assembled when it is
+generated and saved with it, so **only items made after install** show the new text.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AZ1 | **PASSED** (pre-release, Woodcutter Forest) | Hold a wand with Acid Touch near enemies without attacking | Acid-only hits of 2 to 7 roughly every 2 seconds, on every enemy in reach. Seen: 5, 2, 6, 6 on wasps, one tick catching two, and a kill |
+| AZ2 | Any random wand drop, or the Bounty Hunter Camp reward | Read the description of a wand or amulet with one of the three auras | *"Creates an aura that deals 2-7 acid damage to nearby enemies every 2 seconds."*, or cold, or fire. Nothing about melee range |
+| AZ3 | **Negative.** A wand or amulet picked up **before** this release | Read its description | Still the old "within melee range" text. Expected: the text was fixed into the item when it was made |
+| AZ4 | Hold an aura item near a companion and a neutral townsperson | Wait | Neither is hurt. The aura has `Trigger if Enemy=1` and `Trigger if Player=0` |
+| AZ5 | Armor with **Deepest Winter**, generated after install | Read its description | *"A magical aura of frost emanates from this armor, dealing N-M cold damage to nearby enemies every 6 seconds."*, with real numbers in place of N and M, not `%i[min]` |
+
 ## 0.99.21 - companions say what they are
 
 Both halves reach an existing save. The report is a reply in `Generic Companion Dialog` calling four cans, and the
