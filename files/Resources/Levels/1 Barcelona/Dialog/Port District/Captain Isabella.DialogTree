@@ -1670,10 +1670,10 @@ Text=I will now go to turn myself over to the guards. Tell my crew that I wish t
 Should Have Voiceover=0
 ------------------------------------------------------------
 Node ID=360 grace touched
-Text=<She turns away and busies her hands with a rope that does not need coiling.> Two years I have been Isabella. Two years of being careful in a language that is not mine, and in all that time not one person has asked me why -- they only ever asked me whether. You asked why. And now the rope is down, and I find the captain has gone out of my face. I have sunk ships over smaller kindnesses than that.
+Text=<She smiles for the first time.> Two years I have worn the name of a Spanish captain, and no one ever cared to ask why. You did. Few in this world know my true name. Now you are one of them.
 Should Have Voiceover=0
 
-Requirement=!None
+Requirement=PE 7+
 Custom Requirement=CActionExpression
 {
 Action=CIsQuestStateTheCurrentStateAction
@@ -1682,7 +1682,36 @@ Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
 State=JMBN5402
 }
 }
-Reply Text=Then I will hope to see the ship and not the sinking.
+Reply Text=Your secret is safe with me, Grace.
+Go to node ID=371 grace pleased perceptive
+Custom Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/Graces Regard
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+State=JMBN5402
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/PE 7+
+}
+}
+}
+Reply Text=Your secret is safe with me, Grace.
 Go to node ID=370 grace pleased
 Custom Action=CGiveCharacterPerkAction
 {
@@ -1692,7 +1721,7 @@ Perk to give=Perks/!Event Title Perks/Graces Regard
 Icon=Quest Icon
 
 Requirement=!None
-Reply Text=Your reasons were enough. Keep your secret and your ship.
+Reply Text=I only wanted the truth.
 Go to node ID=380 grace steady
 
 Requirement=!None
@@ -1701,20 +1730,29 @@ Go to node ID=380 grace steady
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=370 grace pleased
-Text=<That is a real laugh, and it is the first thing about her that has not been Spanish.> Grace, then. Not Captain, and not Isabella. Grace -- and I hand it to you the way you hand somebody something breakable. The Armada sails within the month and I sail with it, so this is a poor harbour for hoping in. But if the sea ever gives me back to you somewhere that is not Barcelona, I will remember which of us listened first.
+Text=It has been long since anyone called me Grace. When the Armada sails, I sail with it, and the English will learn what the Irish remember. But if we both live through this war, I would see you again.
 Should Have Voiceover=0
 
 Requirement=!None
-Reply Text=Then mind the sea.
+Reply Text=I would like that.
+Go to node ID=
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=371 grace pleased perceptive
+Text=It has been long since anyone called me Grace. When the Armada sails, I sail with it, and the English will learn what the Irish remember. But if we both live through this war, I would see you again. <You notice a small reddish hue in her cheeks.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I would like that.
 Go to node ID=
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=380 grace steady
-Text=<The captain comes back into her face, and she is the better for it.> As you like. You have my thanks, which is not nothing from me, and you have my silence about your having had it. Fair winds to you.
+Text=As you wish. You have my thanks, and an Irish captain does not give that lightly. Now go, before my crew returns from the tavern.
 Should Have Voiceover=0
 
 Requirement=!None
-Reply Text=Fair winds.
+Reply Text=Fair winds, Captain.
 Go to node ID=
 Is Default Reply=1
 }

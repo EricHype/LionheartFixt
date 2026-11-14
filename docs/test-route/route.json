@@ -2,7 +2,7 @@
  "status": {
   "automated": 43,
   "not-a-test": 38,
-  "keep": 2505,
+  "keep": 2506,
   "duplicate": 79,
   "superseded": 183,
   "probe": 8
@@ -114,7 +114,7 @@
    {
     "id": "LE14",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6528,
+    "line": 6529,
     "where": "Same",
     "steps": "Go back upstairs, then fight the spirits in the crypt if you have not",
     "pass": "Upstairs is the cathedral's own ambience again, so the chant has not followed you. Note what plays in the fight: it should be whatever played before, because Medium and Full were left alone",
@@ -131,7 +131,7 @@
    {
     "id": "DL5",
     "section": "0.97.1 - everything DaVinci recorded",
-    "line": 6483,
+    "line": 6484,
     "where": "New game, wait for Guard Tomas to open the gate, then walk through",
     "steps": "Listen",
     "pass": "*\"Come, let's explore this grand city!\"* over DaVinci as he follows you in, once only, then *\"Now what did I need from the market again?\"* when he arrives. **Judgement:** does it overlap his portcullis line or the market line? Rushing the gate may clip the portcullis line",
@@ -148,7 +148,7 @@
    {
     "id": "N4",
     "section": "Gate 3 - negative testing",
-    "line": 6017,
+    "line": 6018,
     "check": "eye",
     "pass": "Spot-check Barcelona quest givers, the Templar/Inquisition initiations",
     "act": "1 Barcelona",
@@ -656,7 +656,7 @@
    {
     "id": "LE7",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6521,
+    "line": 6522,
     "where": "**Fresh save.** Attack Eduardo",
     "steps": "Get jailed, escape, walk back into the shop",
     "pass": "About two seconds in: *\"Perhaps now you will think twice about attacking me...\"*, voiced, over **his** head. Judge the delay. If he is not standing yet there is no line, and `Delay=2` needs raising",
@@ -673,7 +673,7 @@
    {
     "id": "LE8",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6522,
+    "line": 6523,
     "where": "Same",
     "steps": "Leave and come back",
     "pass": "Silence. It plays once",
@@ -690,7 +690,7 @@
    {
     "id": "LE9",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6523,
+    "line": 6524,
     "where": "**The regression.** Fresh save, never attack him",
     "steps": "Enter the shop, buy something, leave, return",
     "pass": "No line, customers as normal, greeting unchanged. The spawn point is shared with both of his setup relays",
@@ -724,7 +724,7 @@
    {
     "id": "HH49",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6159,
+    "line": 6160,
     "where": "Ran from Torquemada, in the Foyer",
     "steps": "-",
     "pass": "Raphael is **absent**, not an invincible enemy",
@@ -741,7 +741,7 @@
    {
     "id": "HH50",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6160,
+    "line": 6161,
     "where": "Kill Torquemada, reach Raphael as an Inquisitor",
     "steps": "Take the deal",
     "pass": "No gold taken. A short fade, he is gone, and the guards are calm",
@@ -758,7 +758,7 @@
    {
     "id": "HH51",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6161,
+    "line": 6162,
     "where": "Same, as an outsider with gold",
     "steps": "Hand over your purse",
     "pass": "**Your gold is exactly 0.** Try an odd amount, this is the only proof of the ladder",
@@ -775,7 +775,7 @@
    {
     "id": "HH53",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6163,
+    "line": 6164,
     "where": "Refuse him",
     "steps": "-",
     "pass": "*\"To the hellfire with you, heathen!\"* He fights, guards join, and you are not jailed",
@@ -792,7 +792,7 @@
    {
     "id": "HH54",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6164,
+    "line": 6165,
     "where": "Run from that fight and return",
     "steps": "-",
     "pass": "Still hostile, and no deal is offered",
@@ -809,7 +809,7 @@
    {
     "id": "HH55",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6165,
+    "line": 6166,
     "where": "Kill him",
     "steps": "Check perks",
     "pass": "**Sede Vacante**. He stays dead, and the Inquisition stays hostile",
@@ -826,7 +826,7 @@
    {
     "id": "HH46",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6156,
+    "line": 6157,
     "where": "Start the fight with Torquemada and run, new game",
     "steps": "Walk through the Foyer, the Temple, Gate and Port Districts, and the Forest Exterior",
     "pass": "Named Inquisitors and guards attack on sight. **You are never arrested.** This is the row that proves the release",
@@ -1184,7 +1184,7 @@
    {
     "id": "BA26e",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5854,
+    "line": 5855,
     "step": "Attack the **Gate District boy** while `Child Leaving` is switched on",
     "say": "-",
     "expect": "The title is granted",
@@ -1202,7 +1202,7 @@
    {
     "id": "BA26h",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5857,
+    "line": 5858,
     "step": "After any of BA26a-e, walk up to a Gate District guard",
     "say": "-",
     "expect": "*\"There have been reports of a monstrous killer of helpless children...\"* -- and on *\"I am the killer\"* he shouts **\"Have at thee, monster!\"** and the district turns on you. **This chain has never fired in any playthrough**",
@@ -1220,7 +1220,7 @@
    {
     "id": "BA23",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5860,
+    "line": 5861,
     "step": "BA22, then walk up to any gate guard in the Gate District",
     "say": "-",
     "expect": "*\"There have been reports of a monstrous killer of helpless children...you loosely fit the description.\"* Two replies: deny, or admit it and threaten him. **Five authored nodes that had never fired**",
@@ -1238,7 +1238,7 @@
    {
     "id": "BA24",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5861,
+    "line": 5862,
     "step": "BA23, then talk to the same guard again",
     "say": "-",
     "expect": "The `Childkiller Return` variant, not the intro again",
@@ -4452,7 +4452,7 @@
    {
     "id": "CP16",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5932,
+    "line": 5933,
     "step": "Fresh Calle Perdida, as a player who has defeated Relican",
     "say": "Walk the Cedric-gated content",
     "expect": "Ten canned gates in the Calle pointed at a nonexistent expression until this release and were taking the Else; confirm the defeated-Relican branches now open",
@@ -4968,7 +4968,7 @@
     "line": 5769,
     "step": "**In act 1**, after ES37, let her finish -- there is a new beat after *\"I will not forget your kindness\"*",
     "say": "-",
-    "expect": "*\"Two years of being careful in a language that is not mine, and in all that time not one person has asked me why.\"* **Her continue reply had no destination at all in vanilla**",
+    "expect": "*\"Two years I have worn the name of a Spanish captain, and no one ever cared to ask why. You did.\"* **Her continue reply had no destination at all in vanilla**",
     "act": "1 Barcelona",
     "map": "Port District",
     "status": "keep",
@@ -4984,9 +4984,9 @@
     "id": "ES39b",
     "section": "0.22.0 - the Talker and the Thief",
     "line": 5770,
-    "step": "Answer *\"Then I will hope to see the ship and not the sinking.\"*",
+    "step": "Answer *\"Your secret is safe with me, Grace.\"* with Perception **6 or lower**",
     "say": "-",
-    "expect": "She gives you her name -- *\"Grace, then. Not Captain, and not Isabella.\"* -- and **Grace's Regard** appears among your titles",
+    "expect": "*\"...But if we both live through this war, I would see you again.\"* and nothing after it, and **Grace's Regard** appears among your titles. The reply is offered **once**, not twice",
     "act": "1 Barcelona",
     "map": "Port District",
     "status": "keep",
@@ -5001,10 +5001,10 @@
    {
     "id": "ES39c",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5771,
+    "line": 5772,
     "step": "Decline instead, warmly or coldly",
     "say": "-",
-    "expect": "*\"You have my thanks, which is not nothing from me.\"* No title",
+    "expect": "*\"You have my thanks, and an Irish captain does not give that lightly.\"* No title",
     "act": "1 Barcelona",
     "map": "Port District",
     "status": "keep",
@@ -5019,7 +5019,7 @@
    {
     "id": "ES39d",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5772,
+    "line": 5773,
     "step": "Take the `<Lie>` route at *\"You have persuaded me to silence.\"*",
     "say": "-",
     "expect": "The beat still plays -- she opens up to someone deceiving her -- but **the reply that answers her is not offered**",
@@ -5037,7 +5037,7 @@
    {
     "id": "ES48b",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5784,
+    "line": 5785,
     "step": "Kill Captain Isabella in the act-1 Port District",
     "say": "-",
     "expect": "Unchanged -- still HP 36. The act-7 template is separate so act 1's balance is untouched",
@@ -5055,7 +5055,7 @@
    {
     "id": "ES21",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5798,
+    "line": 5799,
     "step": "**In act 1**, take Guy Fawkes' side and reach either good ending -- decline the Duke's murder, or carry it out and collect the Queen's gold",
     "say": "-",
     "expect": "**Servant of the Queen** appears among your titles. Vanilla stored the allegiance nowhere at all",
@@ -5073,7 +5073,7 @@
    {
     "id": "ES22",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5799,
+    "line": 5800,
     "step": "Betray him instead: expose him, or tell the Duke you will deal with him",
     "say": "-",
     "expect": "**No title.** Both grants sit past every betrayal branch, which matters because the engine has no way to take a perk back",
@@ -5091,7 +5091,7 @@
    {
     "id": "ES23",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5800,
+    "line": 5801,
     "step": "In act 1, accept the Duke's murder -- *\"I'll lure the Duke to the trap.\"*",
     "say": "-",
     "expect": "He answers: *\"you will be remembered forever in English history... When the deed is done, return here.\"* **In vanilla that reply ended the conversation silently**",
@@ -5109,7 +5109,7 @@
    {
     "id": "BA26a",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5850,
+    "line": 5851,
     "step": "Attack **Marisol** outside the sewers in the Port District",
     "say": "-",
     "expect": "She screams *\"Ahhh!\"*, will not speak to you again, walks off to her disappear point, *Find the lost boy Tomas in the Sewers* fails -- all vanilla -- **and you are now Slayer of Innocents**",
@@ -5606,7 +5606,7 @@
    {
     "id": "SP4",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6496,
+    "line": 6497,
     "where": "**The regression.** Slave Pits, wound the slavers",
     "steps": "-",
     "pass": "No caltrops from any `Thug`. They are not guild thieves, and 0.97.0 briefly gave them the drop",
@@ -5623,7 +5623,7 @@
    {
     "id": "HH59",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6169,
+    "line": 6170,
     "where": "Finish the slavers, by force and by talk, and be knighted by Javier",
     "steps": "-",
     "pass": "The Templar theme starts under *\"I am proud to bestow upon you the title of Knight\"* on every route, and the game's music returns normally afterwards",
@@ -5640,7 +5640,7 @@
    {
     "id": "SP5",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6498,
+    "line": 6499,
     "where": "Leave the pits, come back through the exterior",
     "steps": "Walk to the yard",
     "pass": "Five captives and the buyer stand there, idle, and none of them fights",
@@ -5657,7 +5657,7 @@
    {
     "id": "SP6",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6499,
+    "line": 6500,
     "where": "Same, goblins",
     "steps": "Look at them",
     "pass": "They animate as goblins, not frozen or in a T-pose",
@@ -5674,7 +5674,7 @@
    {
     "id": "SP7",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6500,
+    "line": 6501,
     "where": "Don Alfonso",
     "steps": "**Free**",
     "pass": "His thanks, 300 gold, +50 karma, he disappears. **Karma must not also fall by 100**: this row proves the `Gone` guard",
@@ -5691,7 +5691,7 @@
    {
     "id": "SP8",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6501,
+    "line": 6502,
     "where": "Reload, Don Alfonso",
     "steps": "**Sell**",
     "pass": "His line, 750 gold, -75 karma, he disappears",
@@ -5708,7 +5708,7 @@
    {
     "id": "SP9",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6502,
+    "line": 6503,
     "where": "Reload, Don Alfonso",
     "steps": "**Kill**",
     "pass": "He dies at once and karma falls by 100, once",
@@ -5725,7 +5725,7 @@
    {
     "id": "SP10",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6503,
+    "line": 6504,
     "where": "Reload, a Sylvant",
     "steps": "Attack with a weapon rather than the reply",
     "pass": "If the game lets you, the kill costs 125 karma. Note if it will not let you target them",
@@ -5742,7 +5742,7 @@
    {
     "id": "SP11",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6504,
+    "line": 6505,
     "where": "After any choice",
     "steps": "Leave and come back twice",
     "pass": "Nobody who was freed, sold or killed returns, and nobody is doubled. This row proves `Placed`",
@@ -6133,7 +6133,7 @@
    {
     "id": "TD1",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5925,
+    "line": 5926,
     "step": "**A save that has never entered the Temple District.** Enter it from the Gate District",
     "say": "-",
     "expect": "A named guard stands a few steps inside the gate; talking to him gives *\"Greetings stranger. I hope your day in the Temple District is a pleasant one.\"* Leave the map and come back: *\"Hello again citizen.\"*",
@@ -6151,7 +6151,7 @@
    {
     "id": "TD2",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5926,
+    "line": 5927,
     "step": "TD1, ask who is allowed inside",
     "say": "*\"Who is allowed inside these walls?\"*",
     "expect": "The restriction speech, then *\"What do you mean by tainted citizens?\"* gives the pointed-teeth-and-cat-eyes explanation",
@@ -6169,7 +6169,7 @@
    {
     "id": "TD3",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5927,
+    "line": 5928,
     "step": "TD1 as a Feralkin, Sylvant or Demokin",
     "say": "*\"You are looking at a tainted citizen standing on holy ground.\"*",
     "expect": "`30 tainted`: he does not challenge or attack; he asks that an Inquisitor not hear of it. A human never sees the reply",
@@ -6187,7 +6187,7 @@
    {
     "id": "TD4",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5928,
+    "line": 5929,
     "step": "TD1, then cast a spell or strike a guard in the district",
     "say": "-",
     "expect": "Pablo reacts exactly as the other Temple Guards do (spellcast detected, the damaged-guard relay); he must not be the only guard who ignores it",
@@ -6205,7 +6205,7 @@
    {
     "id": "TD5",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5929,
+    "line": 5930,
     "step": "TD1, walk past him repeatedly and leave the district and return",
     "say": "-",
     "expect": "He never blocks passage, never demands a donation, and the outer gate guard's scene is unchanged",
@@ -6223,7 +6223,7 @@
    {
     "id": "TD6",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5934,
+    "line": 5935,
     "step": "Temple District, Lord Javier, before beginning the initiate quest",
     "say": "His initiate replies",
     "expect": "The gate that reads \"initiate quest NOT begun\" now resolves; check the pre-quest and post-quest branches differ",
@@ -6649,7 +6649,7 @@
    {
     "id": "HH52",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6162,
+    "line": 6163,
     "where": "After either deal",
     "steps": "Temple District, then Montaillou",
     "pass": "Neutral everywhere",
@@ -6870,7 +6870,7 @@
    {
     "id": "HH1",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6111,
+    "line": 6112,
     "where": "His chambers, **before** Montserrat. Admit to the taint and reply *\"You are the one who will burn\"*",
     "steps": "Listen",
     "pass": "The full 14 seconds, **voiced**, then jail. **You must not see \"Perhaps some time in a cell\"**",
@@ -6887,7 +6887,7 @@
    {
     "id": "HH2",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6112,
+    "line": 6113,
     "where": "Same",
     "steps": "Hit him instead of talking",
     "pass": "As before: the cell line, then jail. This is the regression on vanilla's behaviour",
@@ -6904,7 +6904,7 @@
    {
     "id": "HH3",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6113,
+    "line": 6114,
     "where": "Same",
     "steps": "Cast a spell near him as a magic user",
     "pass": "*\"Magic use has been detected!\"* and jail, unchanged",
@@ -6921,7 +6921,7 @@
    {
     "id": "HH4",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6114,
+    "line": 6115,
     "where": "**Before** Montserrat",
     "steps": "Look at his replies",
     "pass": "*\"I have come to end you\"* is **absent** at every greeting",
@@ -6938,7 +6938,7 @@
    {
     "id": "HH5",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6115,
+    "line": 6116,
     "where": "**After** Montserrat, any faction",
     "steps": "Talk to him at each greeting you can reach",
     "pass": "The reply is present, with a fight icon",
@@ -6955,7 +6955,7 @@
    {
     "id": "HH6",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6116,
+    "line": 6117,
     "where": "Same",
     "steps": "Take it",
     "pass": "The speech, then a fight. **He attacks you**, two guards arrive, and *\"Arrogant fool! Guards! Restrain this heretic!\"* plays. You must **never** be jailed. This is the row that proves the release",
@@ -6972,7 +6972,7 @@
    {
     "id": "HH7",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6117,
+    "line": 6118,
     "where": "Same",
     "steps": "Hit him instead",
     "pass": "The same fight with no speech",
@@ -6989,7 +6989,7 @@
    {
     "id": "HH8",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6118,
+    "line": 6119,
     "where": "Same, as a mage",
     "steps": "Damage him with a spell",
     "pass": "It lands. In vanilla `Spell Immunity` would have blocked it",
@@ -7006,7 +7006,7 @@
    {
     "id": "HH9",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6119,
+    "line": 6120,
     "where": "Hurt the pit guards first, then start the fight",
     "steps": "Let the guards reach you",
     "pass": "Still no jail. The chase poly fires on enemies and the fight has to disarm it",
@@ -7023,7 +7023,7 @@
    {
     "id": "HH10",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6120,
+    "line": 6121,
     "where": "Leave mid-fight and return",
     "steps": "-",
     "pass": "**Reversed in 0.96.0.** He and his guards are still hostile, and so is everyone in `HH46`. There must be no duplicate guards",
@@ -7040,7 +7040,7 @@
    {
     "id": "HH11",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6121,
+    "line": 6122,
     "where": "**Kill him as an Inquisitor**",
     "steps": "Check perks and journal",
     "pass": "**Dark Inquisitor** and **Enemy of the Inquisition**. `Create a Rod` and `Slay the Goblin Khan` fail if open",
@@ -7057,7 +7057,7 @@
    {
     "id": "HH12",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6122,
+    "line": 6123,
     "where": "**Kill him as anyone else**",
     "steps": "Check perks",
     "pass": "**Breaker of the Hammer** and **Enemy of the Inquisition**, and not Dark Inquisitor",
@@ -7074,7 +7074,7 @@
    {
     "id": "HH13",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6123,
+    "line": 6124,
     "where": "Leave and come back",
     "steps": "-",
     "pass": "He stays dead, and the Old Man cutscene does not play over the empty room",
@@ -7091,7 +7091,7 @@
    {
     "id": "HH16",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6126,
+    "line": 6127,
     "where": "**Judgement.** Fight him at the level you reach him",
     "steps": "Is 260 HP / AC 225 right? Does he feel like the head of the Inquisition, or a tall guard?",
     "pass": "The stats are a starting number, and he carries no unique reward. Say what it wants",
@@ -7618,7 +7618,7 @@
    {
     "id": "BA22",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5859,
+    "line": 5860,
     "step": "**A save that has never entered the Gate District.** In peacetime Barcelona, kill one unarmed citizen",
     "say": "-",
     "expect": "**Slayer of Innocents** appears among your titles. Vanilla never granted this perk anywhere",
@@ -7636,7 +7636,7 @@
    {
     "id": "BA25",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5862,
+    "line": 5863,
     "step": "Kill a vendor instead",
     "say": "-",
     "expect": "**Merchant Slayer**, as in vanilla. The two vendor cans are deliberately not wired to the new title",
@@ -7654,7 +7654,7 @@
    {
     "id": "HH48",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6158,
+    "line": 6159,
     "where": "**The regression.** Never fight him",
     "steps": "Play Barcelona normally",
     "pass": "Nobody is hostile, jail still works, and every district's arrival still does what it did. The relay is on all 74 spawn points",
@@ -7671,7 +7671,7 @@
    {
     "id": "BF8",
     "section": "0.99.10 - what the re-score found",
-    "line": 6276,
+    "line": 6277,
     "where": "Slave Pits, then any act 8 map",
     "steps": "Bring an Assassin Master below half health",
     "pass": "No whistle line in the Slave Pits; in act 8, sometimes the line and two dogs",
@@ -8289,7 +8289,7 @@
    {
     "id": "BA26c",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5852,
+    "line": 5853,
     "step": "Attack **Tomas** in the troll pit",
     "say": "-",
     "expect": "He screams and flees; the title is granted",
@@ -8834,7 +8834,7 @@
    {
     "id": "XS13",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6418,
+    "line": 6419,
     "where": "Sewers stash at low Sneak; break an ogre charm with ogres in view",
     "steps": "-",
     "pass": "*\"Oi! Hands off...\"* appears over the stash. The charm line comes from one ogre, which may be off screen, so note whether it reads as silent",
@@ -10625,7 +10625,7 @@
    {
     "id": "RN20",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5995,
+    "line": 5996,
     "step": "Fresh Abandoned Cave, walk west to the camp",
     "say": "Talk to Bernat",
     "expect": "*\"Hold -- hold! Guilhem, down.\"*; who/news/shop all answer; Guilhem and Peire have their own barks; no wolves spawn on top of the camp; a second visit opens `3 return dialogue`",
@@ -10643,7 +10643,7 @@
    {
     "id": "RN21",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5996,
+    "line": 5997,
     "step": "RN20 carrying a healing potion",
     "say": "*\"Your man by the fire is hurt...\"*",
     "expect": "The potion is taken, Peire's bark changes to *\"The arm holds. My thanks.\"*, XP once; the reply gone afterwards",
@@ -10661,7 +10661,7 @@
    {
     "id": "RN22",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5997,
+    "line": 5998,
     "step": "RN20 before beating Aka Manah",
     "say": "-",
     "expect": "The \"road south is open\" reply is absent",
@@ -10679,7 +10679,7 @@
    {
     "id": "RN23",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5998,
+    "line": 5999,
     "step": "RN20 after the charm breaks",
     "say": "*\"The road south is open.\"*",
     "expect": "400 gold, the Tome of Geomancy, 600 XP; Bernat, Guilhem and Peire and the camp props are gone; the cold-camp hover plays where they were",
@@ -10697,7 +10697,7 @@
    {
     "id": "RN24",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5999,
+    "line": 6000,
     "step": "Fresh Abandoned Cave, the camp",
     "say": "Walk to the bodies north-west of the fire; ask Bernat *\"There are bodies in here.\"*",
     "expect": "The hover once; his answer on every greeting; the fire is lit and his opening line matches it",
@@ -12863,7 +12863,7 @@
    {
     "id": "N1",
     "section": "Gate 3 - negative testing",
-    "line": 6014,
+    "line": 6015,
     "check": "eye",
     "pass": "Every vanilla solution still reachable",
     "act": "Wilderness",
@@ -12878,7 +12878,7 @@
    {
     "id": "N3",
     "section": "Gate 3 - negative testing",
-    "line": 6016,
+    "line": 6017,
     "check": "eye",
     "pass": "Confirmed",
     "act": "Wilderness",
@@ -12893,7 +12893,7 @@
    {
     "id": "N6",
     "section": "Gate 3 - negative testing",
-    "line": 6019,
+    "line": 6020,
     "check": "both",
     "pass": "Quest completes and the shipped `Goblin Champion` perk is still granted. The rank guard fails silently; it must not swallow the perk",
     "act": "Wilderness",
@@ -12908,7 +12908,7 @@
    {
     "id": "S1",
     "section": "Gate 4 - regression and stability",
-    "line": 6563,
+    "line": 6564,
     "check": "save",
     "pass": "Rank and bonuses survive",
     "act": "Wilderness",
@@ -12923,7 +12923,7 @@
    {
     "id": "S4",
     "section": "Gate 4 - regression and stability",
-    "line": 6566,
+    "line": 6567,
     "check": "both",
     "pass": "Girl and Guards persist",
     "act": "Wilderness",
@@ -12938,7 +12938,7 @@
    {
     "id": "S5",
     "section": "Gate 4 - regression and stability",
-    "line": 6567,
+    "line": 6568,
     "check": "eye",
     "pass": "No script errors; camp hostility behaves normally",
     "act": "Wilderness",
@@ -13769,7 +13769,7 @@
    {
     "id": "N5",
     "section": "Gate 3 - negative testing",
-    "line": 6018,
+    "line": 6019,
     "check": "both",
     "pass": "Take the contract, kill the Khan, collect from Torquemada -- unchanged from vanilla",
     "act": "Wilderness",
@@ -13784,7 +13784,7 @@
    {
     "id": "N8",
     "section": "Gate 3 - negative testing",
-    "line": 6021,
+    "line": 6022,
     "check": "eye",
     "pass": "No script errors; the camp-hostility relay behaves normally",
     "act": "Wilderness",
@@ -14192,7 +14192,7 @@
    {
     "id": "GL1",
     "section": "0.99.7 - the war leaders",
-    "line": 6301,
+    "line": 6302,
     "where": "Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit",
     "steps": "Find a band with a hat goblin named Goblin War Leader, kill him",
     "pass": "The log says the goblins around him lose heart, and his band attacks visibly slower. Other bands are unchanged",
@@ -14209,7 +14209,7 @@
    {
     "id": "GL2",
     "section": "0.99.7 - the war leaders",
-    "line": 6302,
+    "line": 6303,
     "where": "The same, as the Khan's Champion",
     "steps": "Walk in",
     "pass": "The bands and their war leaders keep their distance",
@@ -14226,7 +14226,7 @@
    {
     "id": "CO2",
     "section": "0.99.3 - what you did follows you",
-    "line": 6331,
+    "line": 6332,
     "where": "Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit, Khan killed",
     "steps": "Fight a band",
     "pass": "The log says they fight with less heart, and they attack visibly slower",
@@ -14243,7 +14243,7 @@
    {
     "id": "CO3",
     "section": "0.99.3 - what you did follows you",
-    "line": 6332,
+    "line": 6333,
     "where": "The same, as Goblin Champion",
     "steps": "Walk in",
     "pass": "The log says they keep their distance, and the bands do not attack. Quest goblins (Grumdjum, the guard at the girl) are unchanged",
@@ -14636,7 +14636,7 @@
    {
     "id": "RN19",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5994,
+    "line": 5995,
     "step": "Fresh Pass, walk the road south to north",
     "say": "-",
     "expect": "The dead ground, the titans' quarry and the cairn, once each; after the charm breaks the cairn reads its quiet version",
@@ -14654,7 +14654,7 @@
    {
     "id": "RN18",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5993,
+    "line": 5994,
     "step": "RN17 by the Speech route instead (`160 tricked aka manah`)",
     "say": "-",
     "expect": "The same stand-down; the XP and Alamut hook as before",
@@ -14690,7 +14690,7 @@
    {
     "id": "RN17",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5992,
+    "line": 5993,
     "step": "Fresh ogre maps, kill Aka Manah",
     "say": "Walk back out through the Cave, the Sprawl and the Pass",
     "expect": "Every ogre stands down, once, with *\"<The ogre stops mid-swing...>\"*; rock titans and wolves still attack; ogres spawning near you afterwards are passive",
@@ -14708,7 +14708,7 @@
    {
     "id": "RN25",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 6000,
+    "line": 6001,
     "step": "Ogre Conjurer Cave, fresh",
     "say": "*\"What do you want with me?\"* -> *\"So, I have you to thank for all the Ogres in this cave?\"*",
     "expect": "`30` then `50 Ogre Spells`; *\"Who is your master?\"* reaches `170 Master`, not the Nueva Barcelona node",
@@ -14726,7 +14726,7 @@
    {
     "id": "RN26",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 6001,
+    "line": 6002,
     "step": "As a tainted character",
     "say": "*\"You have felt what I carry...\"* -> *\"Then let me walk out...\"*",
     "expect": "`80`, then `70`; he does not attack, you can leave the cave; a second visit opens `130`; the ogres are still hostile and Bernat is still stuck",
@@ -14744,7 +14744,7 @@
    {
     "id": "RN27",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 6002,
+    "line": 6003,
     "step": "Speech 40+",
     "say": "*\"Your master has made terms with the Titans of Toulouse.\"*",
     "expect": "`90`; *\"Fair enough, and farewell\"* makes him leave as the Speech route does -- XP, and the ogres stand down",
@@ -14762,7 +14762,7 @@
    {
     "id": "RN28",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 6003,
+    "line": 6004,
     "step": "Speech under 40",
     "say": "The same reply",
     "expect": "`120`, and he attacks",
@@ -14780,7 +14780,7 @@
    {
     "id": "RN29",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 6004,
+    "line": 6005,
     "step": "Flee the fight and come back without either outcome",
     "say": "-",
     "expect": "The first greeting again, not *\"Was my warning not sufficient?\"*",
@@ -14832,7 +14832,7 @@
    {
     "id": "RN1",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5976,
+    "line": 5977,
     "step": "Fresh Plains, any spirit-bearing race, walk to the rogue camp from the south-east",
     "say": "-",
     "expect": "The spirit manifests ahead of you and says *\"Beware, the dark inquisitors wield the power to cancel magic by touch...\"* (voiced), fades; once; a Pureblood sees nothing",
@@ -14850,7 +14850,7 @@
    {
     "id": "RN2",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5977,
+    "line": 5978,
     "step": "Fresh Plains, fight the rogue camp",
     "say": "Kill them",
     "expect": "As the last one or two fall: the summoning flare on the pentagram, *\"<The men stop. The circle does not...>\"*, a Terror rises and attacks; once",
@@ -14868,7 +14868,7 @@
    {
     "id": "RN3",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5978,
+    "line": 5979,
     "step": "Fresh Plains, kill Diego, tell the rogues",
     "say": "`30 join`, close the store",
     "expect": "The flare, *\"<The circle flares and holds what it called...>\"*, a Terror that stands in the circle and does not attack",
@@ -14886,7 +14886,7 @@
    {
     "id": "RN4",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5979,
+    "line": 5980,
     "step": "RN3, then attack a rogue",
     "say": "-",
     "expect": "The Terror joins the fight; no second rising when the rogues die",
@@ -14904,7 +14904,7 @@
    {
     "id": "RN5",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5980,
+    "line": 5981,
     "step": "Plains, no loan, trip the goons",
     "say": "*\"Who sends you?\"*; then Barter 40 / Outwit 7 / guild / Church / ST 10 threat / Speech 30 lie",
     "expect": "Shylocke's name; 100 taken; let pass; stand down; stand down; the intimidation menu then *\"K-keep your gold\"*; *\"A pauper\"* -- each once, the leader silent after",
@@ -14922,7 +14922,7 @@
    {
     "id": "RN6",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5981,
+    "line": 5982,
     "step": "Plains, in debt, trip the goons",
     "say": "Barter 40 *\"Shylocke's rate is six hundred\"*",
     "expect": "600 taken; in Barcelona Shylocke offers no repayment and will lend again",
@@ -14940,7 +14940,7 @@
    {
     "id": "RN7",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5982,
+    "line": 5983,
     "step": "Plains, in debt, a Templar or Inquisitor",
     "say": "*\"You'd put hands on a sworn brother...\"*",
     "expect": "*\"...his ledger doesn't close for a cross\"*; they let you pass; Shylocke still expects payment",
@@ -14958,7 +14958,7 @@
    {
     "id": "RN8",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5983,
+    "line": 5984,
     "step": "Plains, in debt, scare them off (any of the four)",
     "say": "Then Shylocke",
     "expect": "No repayment offer; a new loan possible",
@@ -14976,7 +14976,7 @@
    {
     "id": "RN9",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5984,
+    "line": 5985,
     "step": "Plains, the goons, a character with Salesman / Eloquence / Educated / Thief / Master Thief / Brutish Hulk / Dark Majesty / Blademaster / Summoning",
     "say": "The perk line",
     "expect": "The haggle without Barter 40; let pass; the 600; the purse back (Thief +0, Master Thief +50); the four intimidations into the stammer; each once",
@@ -14994,7 +14994,7 @@
    {
     "id": "RN10",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5985,
+    "line": 5986,
     "step": "Fresh Plains, walk to Mauldo's stall, then to the camp's east stake",
     "say": "-",
     "expect": "*\"<A stake cut into a rough cross...>\"* once at each; at the camp a PE 7+ character reads the re-set ring instead",
@@ -15012,7 +15012,7 @@
    {
     "id": "RN11",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5986,
+    "line": 5987,
     "step": "Fresh Plains, a Wielder of Cedric's (no Necromancer), walk into the camp",
     "say": "-",
     "expect": "*\"...You are off the hidden street in Barcelona\"*; the warning reply -> `21`; study/fight/leave as before",
@@ -15030,7 +15030,7 @@
    {
     "id": "RN12",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5987,
+    "line": 5988,
     "step": "Fresh Plains, a Dark Wielder (Necromancer)",
     "say": "*\"I know what the circle is for...\"*",
     "expect": "`22 dark tribute`; accepting arms the Diego quest as before; *\"Keep your circle. I have my own.\"* lets you walk",
@@ -15048,7 +15048,7 @@
    {
     "id": "RN13",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5988,
+    "line": 5989,
     "step": "Fresh Plains, a non-Wielder, and a Wielder with Diego in tow",
     "say": "-",
     "expect": "The vanilla greeting and `50 Player Has Diego` respectively",
@@ -15066,7 +15066,7 @@
    {
     "id": "RN14",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5989,
+    "line": 5990,
     "step": "Plains, a sworn Inquisitor, talk to Diego",
     "say": "*\"I am of the Order myself, Inquisitor.\"*",
     "expect": "`21 brother`; \"Tell me.\" reaches his own quest offer unchanged; a non-Inquisitor never sees the reply",
@@ -15084,7 +15084,7 @@
    {
     "id": "RN16",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5991,
+    "line": 5992,
     "step": "Plains, after either rising, talk to Mauldo again",
     "say": "-",
     "expect": "*\"Something answered on the north road...\"*; before the rising, the plain return greeting; the low-karma greeting and his shop unchanged",
@@ -15153,7 +15153,7 @@
    {
     "id": "RN15",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5990,
+    "line": 5991,
     "step": "RN14, kill the rogues, return to Torquemada",
     "say": "*\"There was a cult on the northern plains wearing our habit\"*",
     "expect": "`413`; 800 XP and 250 gold; the reply gone afterwards; never offered to a non-Inquisitor or before the quest completes",
@@ -16684,7 +16684,7 @@
    {
     "id": "BA26b",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5851,
+    "line": 5852,
     "step": "Attack the **woodcutter's daughter** in Scar Ravine",
     "say": "-",
     "expect": "The same, plus the goblin turns on you and *Find the Woodcutter's lost son* fails. Then ask the woodcutter about her: he already reads `daughter attacked` in vanilla",
@@ -16719,7 +16719,7 @@
    {
     "id": "BA26g",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5856,
+    "line": 5857,
     "step": "Let the goblin stand over the daughter, or the trolls over Tomas, and do nothing",
     "say": "-",
     "expect": "**No title.** No enemy on those maps can target a neutral, so only the player can trigger a child's hook",
@@ -16856,7 +16856,7 @@
    {
     "id": "N7",
     "section": "Gate 3 - negative testing",
-    "line": 6020,
+    "line": 6021,
     "check": "both",
     "pass": "Quest completes and the reward is paid as vanilla. No rank, no error",
     "act": "Wilderness",
@@ -17587,7 +17587,7 @@
    {
     "id": "SB1",
     "section": "0.99.9 - the brood dies with the caller",
-    "line": 6282,
+    "line": 6283,
     "where": "Grove Exterior or Druid Council Level 1, a save that has not entered it",
     "steps": "Fight a Snakebreed Summoner",
     "pass": "It casts, says a summoning line, and snakebreed appear beside it. They vanish on their own about a minute later",
@@ -17604,7 +17604,7 @@
    {
     "id": "SB2",
     "section": "0.99.9 - the brood dies with the caller",
-    "line": 6283,
+    "line": 6284,
     "where": "The same",
     "steps": "Kill the Summoner while its brood lives",
     "pass": "The log says the brood unravels, and every summoned snakebreed on the map is gone. Ordinary snakebreed are not",
@@ -17621,7 +17621,7 @@
    {
     "id": "SB3",
     "section": "0.99.9 - the brood dies with the caller",
-    "line": 6284,
+    "line": 6285,
     "where": "The same, peaceful route",
     "steps": "Take Sahar's ring or the parley while a brood is out",
     "pass": "The summoned snakebreed stand down with the rest",
@@ -17740,7 +17740,7 @@
    {
     "id": "MS1",
     "section": "0.99.6 - the hall stands down",
-    "line": 6308,
+    "line": 6309,
     "where": "Montserrat peaceful route, a save that has not entered Druid Council Level 1",
     "steps": "Take Sahar's ring, then walk back through Level 1 and the Grove",
     "pass": "No snakebreed or assassin attacks you, including the group in the hall and its runner; the wounded assassin still talks",
@@ -19764,7 +19764,7 @@
    {
     "id": "SP4a",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6497,
+    "line": 6498,
     "where": "Montserrat grove, then an Assassin Master in the Assassins' caves",
     "steps": "Wound one",
     "pass": "One patch, once each, as `SP1`. A spellcaster that never closes to melee should still drop one when hurt",
@@ -20485,7 +20485,7 @@
    {
     "id": "BA26d",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5853,
+    "line": 5854,
     "step": "Attack the **shepherd's son** in Montaillou",
     "say": "-",
     "expect": "He screams, `Player hurt the son` and `Make Maury mad for hurting son` activate as in vanilla, and the title is granted",
@@ -20503,7 +20503,7 @@
    {
     "id": "MO1",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5946,
+    "line": 5947,
     "step": "Fresh Montaillou, walk in from the east",
     "say": "-",
     "expect": "A knight stops you: *\"You there! What business do you have in Montaillou?\"*; once only",
@@ -20521,7 +20521,7 @@
    {
     "id": "MO2",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5947,
+    "line": 5948,
     "step": "MO1 as an Inquisitor / male Templar / female Templar / Knight of Saladin",
     "say": "The matching claim",
     "expect": "*\"Forgive me Inquisitor\"* / *\"Forgive me brother\"* / *\"Forgive me sister\"* / *\"A Knight of Saladin? ... then you are an ally of the Templars\"*; each claim is offered only to that faction",
@@ -20539,7 +20539,7 @@
    {
     "id": "MO3",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5948,
+    "line": 5949,
     "step": "MO1 as anyone",
     "say": "*\"I'm on an urgent mission to protect the relics of this region.\"*",
     "expect": "The relic answer, no dead link",
@@ -20557,7 +20557,7 @@
    {
     "id": "MO4",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5949,
+    "line": 5950,
     "step": "MO1",
     "say": "*\"My business is my own.\"* -> *\"Why is this town under investigation?\"*",
     "expect": "The heresy answer, then the goodbye; the reply never loops back on itself",
@@ -20575,7 +20575,7 @@
    {
     "id": "MO5",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5950,
+    "line": 5951,
     "step": "After MO1, click either knight",
     "say": "-",
     "expect": "*\"What can I help you with, stranger?\"*, not *\"Halt, and state your business\"*",
@@ -20593,7 +20593,7 @@
    {
     "id": "MO8",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5953,
+    "line": 5954,
     "step": "Montaillou, Andre, Lethos quest accepted, Speech 50+ / Outwit 8+",
     "say": "*\"Go back to them and say it to their faces\"* / *\"Walk in under a truce\"*",
     "expect": "The success nodes, with no [REMOVED FROM GAME] in the text; below the skill, the written refusals, which still offer the fight",
@@ -20611,7 +20611,7 @@
    {
     "id": "MO9",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5954,
+    "line": 5955,
     "step": "MO8 success",
     "say": "-",
     "expect": "Andre leaves Montaillou; the mneme quest reads *\"allow Lucius to live\"*; *Kill the Titans of Toulouse* completes; pacifist XP",
@@ -20629,7 +20629,7 @@
    {
     "id": "MO11",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5956,
+    "line": 5957,
     "step": "Montaillou, Andre, first meeting",
     "say": "*\"I want to talk to you.\"*",
     "expect": "`20 Introductory`, with the gatekeeper, the gullible line and his story",
@@ -20647,7 +20647,7 @@
    {
     "id": "MO12",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5957,
+    "line": 5958,
     "step": "Andre, a return visit, having seen the corpse",
     "say": "*\"There is a gruesome corpse...\"*",
     "expect": "`02 corpse` -- the same answer, but the hearts, the accusations and Michel are still offered",
@@ -20665,7 +20665,7 @@
    {
     "id": "MO13",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5958,
+    "line": 5959,
     "step": "MO12 having heard both the mayor's story and Esclarmonde's",
     "say": "*\"I spoke to a woman from Toulouse... and the mayor...\"*",
     "expect": "`800 Both lies`: he admits the lie and asks you to keep his secret",
@@ -20683,7 +20683,7 @@
    {
     "id": "MO21",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5966,
+    "line": 5967,
     "step": "Maury the shepherd, his questions hub",
     "say": "*\"Is there anyone here I should be careful of?\"*",
     "expect": "The warning about Guillaume Belibaste",
@@ -20701,7 +20701,7 @@
    {
     "id": "MO23",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5968,
+    "line": 5969,
     "step": "Montaillou square, the Relaxed Thug, as a friend of Juanita's guild / a Master Thief / a Thief",
     "say": "The matching reply",
     "expect": "`80 guild`; he stands down, keeps his coins-speech, warns you off his patch; afterwards he greets you as a friend. Only one of the three replies is ever offered",
@@ -20719,7 +20719,7 @@
    {
     "id": "MO24",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5969,
+    "line": 5970,
     "step": "Arrive at Montaillou as a member of the Goblin Horde",
     "say": "*\"I ride with the Horde of the Khan...\"*",
     "expect": "`100 horde`; the knight does not draw but says you will be watched; the reply is absent to anyone not of the Horde",
@@ -20737,7 +20737,7 @@
    {
     "id": "MO30",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5975,
+    "line": 5976,
     "step": "Maury at PE 7+, asking about the Inquisition",
     "say": "*\"You look at the church door every time you say the Bishop's name.\"*",
     "expect": "`131 careful`, his voice dropped, then back to his questions hub",
@@ -20789,7 +20789,7 @@
    {
     "id": "HR1",
     "section": "0.99.8 - the raid has a leader",
-    "line": 6290,
+    "line": 6291,
     "where": "Hamlet Burned, first visit",
     "steps": "Walk toward the middle of the village",
     "pass": "A Druid War-Priest speaks to you before the fight. \"Then I will cut them loose myself\" starts it",
@@ -20806,7 +20806,7 @@
    {
     "id": "HR2",
     "section": "0.99.8 - the raid has a leader",
-    "line": 6291,
+    "line": 6292,
     "where": "The same",
     "steps": "Kill the War-Priest",
     "pass": "The log says his hold breaks. Every English soldier on the map stands down, says a dazed line about France, and can be talked to. Hit one: only his band turns",
@@ -20823,7 +20823,7 @@
    {
     "id": "HR3",
     "section": "0.99.8 - the raid has a leader",
-    "line": 6292,
+    "line": 6293,
     "where": "The same, Speech 75",
     "steps": "Take the parley reply",
     "pass": "He vanishes in a flash and the soldiers stand down as in HR2. He does not come back",
@@ -20840,7 +20840,7 @@
    {
     "id": "HR4",
     "section": "0.99.8 - the raid has a leader",
-    "line": 6293,
+    "line": 6294,
     "where": "The same, Tribal 75 and at least 20 mana",
     "steps": "Take the wrest reply, walk away, wait, come back",
     "pass": "Your mana is gone, the band around him stands down. Coming back after 20 seconds, he speaks again (\"Back again\"), and each cast frees one more band, four in all",
@@ -20857,7 +20857,7 @@
    {
     "id": "HR5",
     "section": "0.99.8 - the raid has a leader",
-    "line": 6294,
+    "line": 6295,
     "where": "The same, a Cathar friend of the Weird Woman",
     "steps": "Ask her to call the bears off",
     "pass": "The bears stop hunting you, including those later fights bring. Without the promise the reply is absent",
@@ -20874,7 +20874,7 @@
    {
     "id": "HR6",
     "section": "0.99.8 - the raid has a leader",
-    "line": 6295,
+    "line": 6296,
     "where": "The same",
     "steps": "Reach the fight4 or fight6 squad, kill its priest",
     "pass": "That squad's soldiers stand down. A squad whose priest has not spawned yet does not stand down early",
@@ -21086,7 +21086,7 @@
    {
     "id": "MO26",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5971,
+    "line": 5972,
     "step": "The Cathar toughs' challenge, as an Inquisitor / as a Wielder",
     "say": "*\"I am the Inquisition, and I am standing in your tavern\"* / *\"the Church burns my kind first\"*",
     "expect": "Their own hostile node / their own welcome; neither reply shows to anyone else",
@@ -21104,7 +21104,7 @@
    {
     "id": "MO27",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5972,
+    "line": 5973,
     "step": "The inn's Inquisition agent, as an Inquisitor",
     "say": "*\"Who are you reporting to, brother?\"*",
     "expect": "`36 brother`: he explains the meat test and tells you to stop drawing eyes",
@@ -21230,7 +21230,7 @@
    {
     "id": "MO32",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5924,
+    "line": 5925,
     "step": "Montaillou, accept the Inquisitor's mayor task, speak to the mayor, return to the Bishop",
     "say": "*\"I have spoken to the Mayor - he is a heretic and an adulterer.\"*",
     "expect": "Whether this reply appears answers whether an empty canned requirement fails open or closed -- it is still gated on one, deliberately, as the control case. Report which",
@@ -21248,7 +21248,7 @@
    {
     "id": "MO18",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5963,
+    "line": 5964,
     "step": "Montaillou church, take the witch task or report the mayor",
     "say": "*\"Is there anything else in this district that troubles the Inquisition?\"* -> *\"What is it, your grace?\"*",
     "expect": "The offer, then the barred cave with the aura of magic; both replies return to his hub",
@@ -21266,7 +21266,7 @@
    {
     "id": "MO19",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5964,
+    "line": 5965,
     "step": "Montaillou church as a Sylvant / Feralkin / Demokin, no faction",
     "say": "*\"My blood is what it is. Is there nothing a tainted soul can do for the Church?\"*",
     "expect": "*\"Well then tainted one, have you come to cleanse yourself of sin?\"* and the offer of service",
@@ -21284,7 +21284,7 @@
    {
     "id": "MO25",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5970,
+    "line": 5971,
     "step": "Montaillou church as a Necromancer, ask about the heresy",
     "say": "*\"You have missed one, your grace...\"*",
     "expect": "`61 the ninety-ninth`; leaving ends it, *\"Find them now, then\"* starts the fight; the reply is absent without the title",
@@ -21302,7 +21302,7 @@
    {
     "id": "MO14",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5959,
+    "line": 5960,
     "step": "Witch hut, after she restores Beatrice",
     "say": "Talk to her again",
     "expect": "*\"No chickens this time? Perhaps a weasel or stoat who is really the King of Persia...\"*; the not-promised variant if you never promised",
@@ -21320,7 +21320,7 @@
    {
     "id": "MO15",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5960,
+    "line": 5961,
     "step": "Witch hut as a sworn Inquisitor, having promised",
     "say": "-",
     "expect": "*\"Greetings your holiness...\"* rather than the plain return",
@@ -21338,7 +21338,7 @@
    {
     "id": "MO16",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5961,
+    "line": 5962,
     "step": "Witch hut, ask about the Cathars",
     "say": "*\"And when the Inquisition has finished writing its book...?\"* -> *\"I must know what sort of *aid* you intend to give.\"*",
     "expect": "Her answer about the allies, then the secret stash offer",
@@ -21356,7 +21356,7 @@
    {
     "id": "MO17",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5962,
+    "line": 5963,
     "step": "Witch hut after speaking to Nostradamus about her",
     "say": "*\"The seer told me what you were, and what you did.\"*",
     "expect": "`300 confront the weird woman 1`; the reply is absent before the seer",
@@ -21374,7 +21374,7 @@
    {
     "id": "LE10",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6524,
+    "line": 6525,
     "where": "**Fresh spawn.** Kill Andre, then attack Michel",
     "steps": "-",
     "pass": "*\"By God you are a fiend that doesn't deserve life!\"*",
@@ -21391,7 +21391,7 @@
    {
     "id": "LE11",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6525,
+    "line": 6526,
     "where": "Attack Michel with Andre alive",
     "steps": "-",
     "pass": "*\"Brothers! Help me!\"* as always",
@@ -21408,7 +21408,7 @@
    {
     "id": "DL1",
     "section": "0.97.1 - everything DaVinci recorded",
-    "line": 6479,
+    "line": 6480,
     "where": "Montaillou, first talk to DaVinci",
     "steps": "Take *\"A pity you survived the crash.\"*",
     "pass": "His usual *\"It pains me to see a dark nature...\"*, as vanilla",
@@ -21425,7 +21425,7 @@
    {
     "id": "DL2",
     "section": "0.97.1 - everything DaVinci recorded",
-    "line": 6480,
+    "line": 6481,
     "where": "Talk again, *\"What are you doing here?\"*, then *\"Why are you checking on my progress?\"*, then *\"And what makes you think...\"*",
     "steps": "-",
     "pass": "You **hear** *\"I have suffered quite enough of your insolence...\"*, and afterwards he resumes his muttering at the flying machine. Only one copy of the reply shows",
@@ -21442,7 +21442,7 @@
    {
     "id": "DL4",
     "section": "0.97.1 - everything DaVinci recorded",
-    "line": 6482,
+    "line": 6483,
     "where": "**The regression.** A polite character in Montaillou",
     "steps": "Ask for his help once, never insult him",
     "pass": "*\"Youth today...\"* is the only route to any rebuke, and `320 general surly response 3` cannot appear on the first one",
@@ -21459,7 +21459,7 @@
    {
     "id": "LE1",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6515,
+    "line": 6516,
     "where": "Montaillou, DaVinci, the gem is with the Inquisitor",
     "steps": "Reply *\"I could try to speak with the Inquisition about the gem.\"*",
     "pass": "You **hear** *\"Ah, I would owe you a great debt...\"* and the conversation ends. It must not be his goodbye. Fails with goodbye: the retarget did not ship",
@@ -21476,7 +21476,7 @@
    {
     "id": "LE2",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6516,
+    "line": 6517,
     "where": "Same, via *\"I could not, in good conscience, oppose the Inquisition\"*",
     "steps": "Take the same reply from `320 no to inquisition`",
     "pass": "Same line. The reply appears in two places and both were moved",
@@ -21493,7 +21493,7 @@
    {
     "id": "LE3",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6517,
+    "line": 6518,
     "where": "Same, after LE1",
     "steps": "Talk to him again",
     "pass": "He is still there and still talkable, and the gem quest is unchanged. `10 Goodbye` used to run here, so this is the row that proves it did nothing he needed",
@@ -21510,7 +21510,7 @@
    {
     "id": "LE4",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6518,
+    "line": 6519,
     "where": "DaVinci, holding the Spirit Transfer Gem",
     "steps": "Hand it over, either reply",
     "pass": "You **hear** *\"You've returned with a feisty spirit!\"*, then 3001's silent text follows with no click on a blank reply",
@@ -21527,7 +21527,7 @@
    {
     "id": "LE5",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6519,
+    "line": 6520,
     "where": "Same",
     "steps": "Finish the scene, count your gold",
     "pass": "**1000** gold, once. If you see 1400, 340's payout survived",
@@ -21544,7 +21544,7 @@
    {
     "id": "DL3",
     "section": "0.97.1 - everything DaVinci recorded",
-    "line": 6481,
+    "line": 6482,
     "where": "Workshop, press a coloured button on the steam engine three times, and a fourth",
     "steps": "Watch DaVinci",
     "pass": "First press only hisses. Second: *\"No! Not that button!\"* Third and fourth: fire, 25 damage, and **you hear** *\"Don't touch that button again!\"*",
@@ -21969,7 +21969,7 @@
    {
     "id": "MO20",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5965,
+    "line": 5966,
     "step": "Montaillou grove, approach the warden without watching the bear change",
     "say": "-",
     "expect": "*\"What are you doing here? I do not take kindly to trespassers in my grove.\"*; after watching the change, the *\"What did you see?\"* greeting instead",
@@ -21987,7 +21987,7 @@
    {
     "id": "FP5",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6467,
+    "line": 6468,
     "where": "FP3, go to Montaillou",
     "steps": "-",
     "pass": "Thierry is at the north of the hamlet, once. Esclarmonde thanks you. His reward works",
@@ -22871,7 +22871,7 @@
    {
     "id": "DL6",
     "section": "0.97.1 - everything DaVinci recorded",
-    "line": 6484,
+    "line": 6485,
     "where": "Secret chamber, hand him the rotary gear",
     "steps": "*\"Your rotary gear. Your engine cut it.\"*",
     "pass": "You **hear** *\"Ah! There! It is complete.\"*, then with no click the silent `902` text. The gear leaves your inventory and the quest completes once",
@@ -22906,7 +22906,7 @@
    {
     "id": "TO1",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5900,
+    "line": 5901,
     "step": "Toulouse, Lethos, reach `50 Lucius is the fugitive` by any of the five routes (nodes 20, 22, 22-tainted, 23, 24)",
     "say": "-",
     "expect": "Nothing visible; the flag `PC is told Toulouse was harboring Lucius` is now set on every one of them",
@@ -22924,7 +22924,7 @@
    {
     "id": "TO2",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5901,
+    "line": 5902,
     "step": "TO1, then reach Thierry in the pen and ask about the town harbouring one of their kind",
     "say": "*\"The titans said this town was harboring one of their kind, is that true?\"*",
     "expect": "`30 Lucius` -> `32 Lucius 2` -> `34 Alexander eaten`; offered from both `20 Questions` and `25 The rest of the townspeople`; absent to a player who never heard Lethos say it",
@@ -22942,7 +22942,7 @@
    {
     "id": "TO3",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5902,
+    "line": 5903,
     "step": "Toulouse, Iapetus, walk the caged-humans chain to `35 Humans not informed`",
     "say": "*\"I want to talk to the prisoners.\"*",
     "expect": "He refuses (`37`); afterwards Poimaino offers the bluff. Without asking Iapetus, the bluff reply is absent",
@@ -22960,7 +22960,7 @@
    {
     "id": "TO4",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5903,
+    "line": 5904,
     "step": "TO3, then Poimaino at Speech 95+ / below 95",
     "say": "*\"It's okay, Iapetus said I could speak with the prisoners.\"*",
     "expect": "`30 bluff SUCCESS` -- he stands down and the pen is enterable without him turning hostile / `30 bluff FAILURE`, he refuses; exactly one of the two replies is ever offered",
@@ -22978,7 +22978,7 @@
    {
     "id": "TO5",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5904,
+    "line": 5905,
     "step": "Toulouse, get the flask from the rock (Mathuo's `10 Shapeshifter` -> *\"Where were you when the attack occurred?\"* first), then Poimaino at Speech 50+",
     "say": "*\"...Wouldn't a little mercury be good right about now?\"*",
     "expect": "`40 Mercury SUCCESS`; the mercury leaves inventory; he stops challenging you and answers *\"Leave me alone, runt\"*; the pen is enterable",
@@ -22996,7 +22996,7 @@
    {
     "id": "TO6",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5905,
+    "line": 5906,
     "step": "TO5 with Speech under 50",
     "say": "The same reply",
     "expect": "`40 Mercury FAILURE` -- *\"I won't take a drink from the likes of *you*... You'll have more luck with Mathuo\"*; the flask is **not** taken and the Mathuo route still works",
@@ -23014,7 +23014,7 @@
    {
     "id": "TO7",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5906,
+    "line": 5907,
     "step": "Carrying no mercury, talk to Poimaino",
     "say": "-",
     "expect": "Neither mercury reply is offered (the old Wine-gated version is gone)",
@@ -23032,7 +23032,7 @@
    {
     "id": "TO8",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5907,
+    "line": 5908,
     "step": "TO5, then free the prisoners through Thierry (`100 See you in Montaillou`)",
     "say": "-",
     "expect": "`Prisoners escape` runs as it does on the Mathuo route; the rescue completes and Thierry can be met in Montaillou",
@@ -23050,7 +23050,7 @@
    {
     "id": "TO9",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5908,
+    "line": 5909,
     "step": "Toulouse, Iapetus, reach `60 It feeds off titan magic` as any spirit-bearing character",
     "say": "*\"I carry a bound spirit of my own...\"*",
     "expect": "`61 your spirit`: it would take the spirit and leave you standing empty; the three replies out all work. A Pureblood must not see the reply",
@@ -23068,7 +23068,7 @@
    {
     "id": "TO10",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5909,
+    "line": 5910,
     "step": "Toulouse, Iapetus, `65 Forms`, as a Feralkin or Sylvant",
     "say": "*\"A bear leaves a bear's tracks...\"*",
     "expect": "`66 tracks`: the spoor by the rocks in the southeast cul-de-sac; a human or Demokin never sees the reply",
@@ -23086,7 +23086,7 @@
    {
     "id": "TO11",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5910,
+    "line": 5911,
     "step": "Toulouse, Iapetus, `75 Mercenary help`, at Barter 40+",
     "say": "*\"Put gold beside the gems...\"*",
     "expect": "`77 haggle`, then *\"Agreed\"*; kill the Daeva and return: three Expensive Gems **and** 2,000 gold. Below Barter 40 the reply is absent, and without the bargain the payout is gems only",
@@ -23104,7 +23104,7 @@
    {
     "id": "TO12",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5911,
+    "line": 5912,
     "step": "Toulouse, Rhea, walk the History branch to `30 History 3`, as an Ancestral / Beastial / Demonic spirit-bearer",
     "say": "The matching reply",
     "expect": "Exactly one of the three is offered, matching your spirit, each with its own answer, then back to `30 Utnapishtim`. **This is the first `CHasSpirit` in a dialogue requirement in the game: check it fires at all, and that it fires for the right spirit**",
@@ -23122,7 +23122,7 @@
    {
     "id": "TO13",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5912,
+    "line": 5913,
     "step": "TO12 as a Demokin with a Demonic spirit",
     "say": "*\"The thing bound to me is neither an ancestor nor a beast.\"*",
     "expect": "`30 spirit demonic`. `Spirits/Demonic` is extrapolated from the model name -- if this reply never appears while TO12's other two do, that value is wrong",
@@ -23140,7 +23140,7 @@
    {
     "id": "TO14",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5913,
+    "line": 5914,
     "step": "Toulouse, Rhea, `30 Utnapishtim`, as a sworn Inquisitor",
     "say": "*\"Utnapishtim was the first Inquisitor, then.\"*",
     "expect": "`31 the first inquisitor`; absent to everyone else",
@@ -23158,7 +23158,7 @@
    {
     "id": "TO15",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5914,
+    "line": 5915,
     "step": "Toulouse, Rhea, Memory branch to `53 Sacrifice`, carrying the Necromancer title",
     "say": "*\"You cut a crystal out of a living elder...\"*",
     "expect": "`53 necromancer`; she steps back; the three replies out all land; absent without the title",
@@ -23176,7 +23176,7 @@
    {
     "id": "TO16",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5915,
+    "line": 5916,
     "step": "Toulouse, Mathuo, `10 Shapeshifter`, at PE 7+",
     "say": "*\"Unready. You were deep in the mercury...\"*",
     "expect": "`11 drunk`; afterwards the flask is in the rocks (the reply fires `mercury relay`), so `25 Mercury` and the pickup both work. Below PE 7 the reply is absent",
@@ -23194,7 +23194,7 @@
    {
     "id": "TO17",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5916,
+    "line": 5917,
     "step": "Toulouse, Tereo's first challenge, as a sworn Inquisitor",
     "say": "*\"I am the Inquisition...\"*",
     "expect": "`51 the Inquisition`; he grants the offices are alike; the four replies out all land. Absent to anyone not of the Inquisition",
@@ -23212,7 +23212,7 @@
    {
     "id": "TO18",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5917,
+    "line": 5918,
     "step": "Toulouse, Tereo, reach `24 A titan must earn his name`, carrying the Child Killer title",
     "say": "*\"They call me a killer of children.\"*",
     "expect": "`25 the name you have earned`; he steps back and refuses your birth-name",
@@ -23230,7 +23230,7 @@
    {
     "id": "TO19",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5918,
+    "line": 5919,
     "step": "TO18 carrying Goblin Champion instead",
     "say": "*\"The goblins of the Crossroads named me their champion.\"*",
     "expect": "`25 a name that was earned`; he approves. Carrying both titles, both replies show; carrying neither, neither does",
@@ -23248,7 +23248,7 @@
    {
     "id": "TO20",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5919,
+    "line": 5920,
     "step": "Toulouse, Tereo, `22 Titans aren't named at birth`, as a Feralkin, Sylvant or Demokin",
     "say": "*\"My kind was named twice...\"*",
     "expect": "`23 named twice`; a human never sees the reply",
@@ -23266,7 +23266,7 @@
    {
     "id": "TO21",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5920,
+    "line": 5921,
     "step": "Toulouse, Tereo, `41 Ogres`, at Outwit 7+",
     "say": "*\"One human, or two?\"*",
     "expect": "`43 counting`: two, perhaps three, and the ogres are not watched closely. Below Outwit 7 the reply is absent",
@@ -23284,7 +23284,7 @@
    {
     "id": "TO22",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5921,
+    "line": 5922,
     "step": "Toulouse, Lethos, `101 Lucius must die`, as a tainted or demokin character with Speech under 50",
     "say": "*\"Your tribe decided what he is...\"*",
     "expect": "`120 Nonviolent help` -- the negotiated ending opens without the Speech check; a human under Speech 50 still cannot get there",
@@ -23302,7 +23302,7 @@
    {
     "id": "TO23",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5922,
+    "line": 5923,
     "step": "Toulouse, Lethos, `140 Explanation for the very dim`, as a Wielder",
     "say": "*\"My order binds spirits into stones...\"*",
     "expect": "`141 a Wielder reads the mneme`; he denies the comparison; the three replies out land. Absent to non-Wielders",
@@ -23320,7 +23320,7 @@
    {
     "id": "TO24",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5930,
+    "line": 5931,
     "step": "**Fresh Toulouse.** Walk into the prisoner pen past Poimaino without the bluff or the bribe",
     "say": "-",
     "expect": "*\"Stop, you are entering the human pen. If you insist on proceeding I'll have the pleasure of squashing you.\"* over Poimaino, and then he and Mathuo turn on you as before. After the bluff or the bribe, crossing the line does neither",
@@ -23338,7 +23338,7 @@
    {
     "id": "TO25",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5935,
+    "line": 5936,
     "step": "Toulouse, talk to Ephebos (the young titan beside Rhea)",
     "say": "Each of his four openings in turn",
     "expect": "`10 the chain` / `11 no name yet` / `12 Tereo` / `40 the pen` / `41 like me` all land; the mercury reply is absent without the flask, and the *\"Rhea caught you\"* reply is absent until you have overheard Rhea's lecture",
@@ -23356,7 +23356,7 @@
    {
     "id": "TO26",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5936,
+    "line": 5937,
     "step": "TO25 carrying Titan Mercury, give it to Ephebos",
     "say": "*\"I am carrying a flask of quicksilver...\"*",
     "expect": "`30 mercury`: he takes it, the flask leaves inventory, and he gives up Baktron and Klao. Mathuo and Poimaino can then **not** be given it",
@@ -23374,7 +23374,7 @@
    {
     "id": "TO27",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5937,
+    "line": 5938,
     "step": "Toulouse, the prisoner pen: talk to the man, the woman, and the child",
     "say": "Each reply in turn",
     "expect": "The man on the bait and on running; the woman on her neighbour's voice at the fence and the deer that did not run; the child's count of when nobody is watching. **The child is a new placement -- check he is in the pen and not standing outside it**",
@@ -23392,7 +23392,7 @@
    {
     "id": "TO28",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5938,
+    "line": 5939,
     "step": "TO27 as a Feralkin, Sylvant or Demokin",
     "say": "The woman's and the child's extra replies",
     "expect": "`64 the face` and `66 the child and the devil`; a human sees neither",
@@ -23410,7 +23410,7 @@
    {
     "id": "TO29",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5939,
+    "line": 5940,
     "step": "Toulouse, carrying a skin of wine, talk to an ogre",
     "say": "*\"I have a skin of wine. What is it worth to you?\"*",
     "expect": "The wine leaves inventory, `51 wine` -> `52 what the ogre saw` -> `53 where`: the deer that walked on two legs, and the rocks in the southeast. Without wine the reply is absent",
@@ -23428,7 +23428,7 @@
    {
     "id": "TO30",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5940,
+    "line": 5941,
     "step": "Toulouse, walk into the cul-de-sac in the south-east",
     "say": "-",
     "expect": "One balloon about churned ground; at PE 7+ a second line about deer slots with no stride. Fires once only",
@@ -23446,7 +23446,7 @@
    {
     "id": "TO31",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5941,
+    "line": 5942,
     "step": "Toulouse, Iapetus, `65 Forms`",
     "say": "*\"Is there anything that can pin such a thing into one shape?\"*",
     "expect": "`67 the prophets`: a relic of Zarathustra strips a Daeva's shape. Then fight the Daeva **carrying the Amulet of the Prophet** and confirm its own `31 amulet speech` branch fires",
@@ -23464,7 +23464,7 @@
    {
     "id": "TO33",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5943,
+    "line": 5944,
     "step": "Toulouse, attack any titan",
     "say": "-",
     "expect": "Menoetius turns hostile with the rest of the tribe (the alarm relay could not reach him before)",
@@ -23482,7 +23482,7 @@
    {
     "id": "TO34",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5944,
+    "line": 5945,
     "step": "Toulouse, walk past Baktron and Klao at the north end until their argument plays, then talk to each",
     "say": "Their new replies",
     "expect": "`02 the plot` / `03 patience` from Baktron, `02 patience is not obedience` from Klao. Before overhearing them, neither reply is offered",
@@ -23500,7 +23500,7 @@
    {
     "id": "MO6",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5951,
+    "line": 5952,
     "step": "Titan Village, after Rhea, Speech 50+",
     "say": "Ask if it can end without killing -> *\"Hear a proposal before you spend him.\"*",
     "expect": "`120 Nonviolent help`; the press is absent below Speech 50",
@@ -23518,7 +23518,7 @@
    {
     "id": "MO7",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5952,
+    "line": 5953,
     "step": "MO6, Outwit 8+ / under 8",
     "say": "The proposal",
     "expect": "`121 Nonviolent success` / `122 Nonviolent failure`; both then let you name your price as the killing route does",
@@ -23536,7 +23536,7 @@
    {
     "id": "MO10",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5955,
+    "line": 5956,
     "step": "MO9, back to Lethos",
     "say": "*\"Memnos is coming back to you.\"*",
     "expect": "`502`; the reward paid; the titans pack up and leave Toulouse as they do for the crystal",
@@ -23554,7 +23554,7 @@
    {
     "id": "MO22",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5967,
+    "line": 5968,
     "step": "Toulouse, Lethos, before Rhea",
     "say": "*\"What is it you want of me, then?\"* -> *\"I will speak with Rhea.\"*",
     "expect": "`60 Go speak to Rhea`; a second visit then opens *\"Hello again\"* rather than the first meeting again",
@@ -23589,7 +23589,7 @@
    {
     "id": "FP1",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6463,
+    "line": 6464,
     "where": "Talk Lethos into leaving with Thierry alive",
     "steps": "Watch the fade",
     "pass": "The titans go. **The prisoners and Thierry are still in the pen afterwards**, and nobody attacks",
@@ -23606,7 +23606,7 @@
    {
     "id": "FP2",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6464,
+    "line": 6465,
     "where": "FP1, click a villager man or woman",
     "steps": "-",
     "pass": "*\"The ogres have gone, and nobody will say why...\"*, not the old downcast line. The child says *\"Is it over?...\"*",
@@ -23623,7 +23623,7 @@
    {
     "id": "FP3",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6465,
+    "line": 6466,
     "where": "FP1, click Thierry",
     "steps": "*\"The titans have gone. All of them. You are free to go.\"*, then *\"Then go...\"*",
     "pass": "*\"Follow me, brothers!\"*, then he **and all three villagers walk** out along the path. If they stand still, the AI Done did not land",
@@ -23640,7 +23640,7 @@
    {
     "id": "FP4",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6466,
+    "line": 6467,
     "where": "FP3, follow them",
     "steps": "Wait 30 seconds",
     "pass": "They disappear at the end of the path and do not stand there forever. Clicking one mid-walk does nothing",
@@ -23657,7 +23657,7 @@
    {
     "id": "FP7",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6469,
+    "line": 6470,
     "where": "**Thierry dead.** Kill him or let him die, then FP1",
     "steps": "Click a villager man or woman",
     "pass": "*\"Thierry is dead...\"*, then *\"You are free to go.\"* Everyone walks. No balloon, and Esclarmonde still offers the dead-husband reply. The child never offers this",
@@ -23674,7 +23674,7 @@
    {
     "id": "FP8",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6470,
+    "line": 6471,
     "where": "**The regression.** Any other ending: free them through Thierry, kill the titans, or Memnos",
     "steps": "-",
     "pass": "Exactly as before. `TD3`-`TD4` still pass, and no villager uses the new lines",
@@ -23759,7 +23759,7 @@
    {
     "id": "FP6",
     "section": "0.97.2 - the pen at Toulouse (issue #9)",
-    "line": 6468,
+    "line": 6469,
     "where": "**Walk away.** FP1, leave Toulouse without talking to him, go to Montaillou, come back",
     "steps": "-",
     "pass": "Thierry is in Montaillou, and the pen is empty on your return. **He must not be in both**",
@@ -23793,7 +23793,7 @@
    {
     "id": "HH47",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6157,
+    "line": 6158,
     "where": "Same, then Montaillou",
     "steps": "The inn and the church",
     "pass": "The Inquisitor Agent and Fournier attack. The siege is unchanged later",
@@ -23980,7 +23980,7 @@
    {
     "id": "MO28",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5973,
+    "line": 5974,
     "step": "Fabrisse as a Feralkin, Sylvant or Demokin",
     "say": "*\"...a face like mine on your street\"*",
     "expect": "`25 tainted`; she does not step back; a human never sees the reply",
@@ -23998,7 +23998,7 @@
    {
     "id": "MO29",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5974,
+    "line": 5975,
     "step": "Aidan at Barter 40+",
     "say": "*\"...you are already charging war prices.\"*",
     "expect": "The peace price, then the shop opens 20% cheaper; below Barter 40 the reply is absent",
@@ -24018,7 +24018,7 @@
    {
     "id": "CR6",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5899,
+    "line": 5900,
     "step": "Take the quest, then let Montaillou burn (`02 Hamlet Burned`)",
     "say": "-",
     "expect": "The vanilla failure sweep fails it, as it always tried to -- now against a quest that has states to fail",
@@ -24812,7 +24812,7 @@
    {
     "id": "CR2",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5895,
+    "line": 5896,
     "step": "CR1, then the Spirit Council on `7 Doomed Plateau`, hear the wish out to `40 Pious Child`",
     "say": "*\"I will see what I can do.\"*",
     "expect": "State 2. Also reachable from `30 Efreet`. A player who never talks to a knight should still get the quest here",
@@ -24830,7 +24830,7 @@
    {
     "id": "CR5",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5898,
+    "line": 5899,
     "step": "Kill Jehanne, then talk to the Spirit Council",
     "say": "-",
     "expect": "Its Joan-dead curse plays and the quest **fails** if it was active. If she dies before you ever met a knight, the quest was never active and nothing should appear in the journal",
@@ -25070,7 +25070,7 @@
    {
     "id": "CR3",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5896,
+    "line": 5897,
     "step": "CR2, find the lamp of Jah'roosh in `9 Burial Chamber` and talk to the Efreeti",
     "say": "*\"<Say nothing yet, and look at the lamp.>\"*",
     "expect": "State 3, whose text warns that the garrison is undead too. The reply loops back so the wish menu is still available",
@@ -25088,7 +25088,7 @@
    {
     "id": "CR4",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5897,
+    "line": 5898,
     "step": "CR3, wish the curse undone",
     "say": "*\"I wish to undo the curse laid upon Jehanne's soul...\"*",
     "expect": "`100 save inga`; the quest completes and pays 2,500 XP; the existing relays (`Wished to Save Inga and Knights`, `Efreet goes away`) still fire",
@@ -25106,7 +25106,7 @@
    {
     "id": "TS6",
     "section": "0.93.0 - the Templar shields",
-    "line": 6091,
+    "line": 6092,
     "where": "**Act 4, `9 Burial Chamber`.** Carry the Lion Shield in",
     "steps": "Free the knights: *\"I wish to undo the curse laid upon Jehanne's soul...\"*",
     "pass": "The Lion Shield is **taken** and the Holy Shield given, with a combat-log line. The quest completes and its XP still arrives",
@@ -25123,7 +25123,7 @@
    {
     "id": "TS7",
     "section": "0.93.0 - the Templar shields",
-    "line": 6092,
+    "line": 6093,
     "where": "Same, **without** the Lion Shield",
     "steps": "Make the same wish",
     "pass": "Quest completes, XP arrives, **no shield**. The grant is gated on carrying it and must not fire empty-handed",
@@ -25140,7 +25140,7 @@
    {
     "id": "TS8",
     "section": "0.93.0 - the Templar shields",
-    "line": 6093,
+    "line": 6094,
     "where": "Same",
     "steps": "Reach the wish via the clever route -- *\"I've heard stories of your kind\"* or *&lt;Read the wish itself.&gt;* -- then spend the true wish on the knights",
     "pass": "Identical outcome to TS6. Both routes land on the same node",
@@ -25157,7 +25157,7 @@
    {
     "id": "TS9",
     "section": "0.93.0 - the Templar shields",
-    "line": 6094,
+    "line": 6095,
     "where": "Same",
     "steps": "Wish **selfishly** instead: stronger, richer, smarter, or tell him to get lost",
     "pass": "No shield, and no quest completion. Only the selfless wish frees them",
@@ -25837,7 +25837,7 @@
    {
     "id": "TS13",
     "section": "0.93.0 - the Templar shields",
-    "line": 6101,
+    "line": 6102,
     "where": "**The regression.** Play a non-Templar through the Crypt",
     "steps": "Finish the act normally",
     "pass": "Nothing about the Doomed Knights questline changed: same dialogue, same quest states, same XP. The only addition is one conditional action that does nothing without the Lion Shield",
@@ -25856,7 +25856,7 @@
    {
     "id": "HJ1",
     "section": "0.97.3 - the war in the caves",
-    "line": 6448,
+    "line": 6449,
     "where": "`01 Heart Entrance`, reach Huko without fighting if you can",
     "steps": "*\"I have come to help the Prophet.\"*",
     "pass": "The Hujark **standing around you** stop attacking at once. This row proves the retarget. If they keep swinging, the names or the spawn timing are wrong",
@@ -26383,7 +26383,7 @@
    {
     "id": "HW1",
     "section": "0.99.4 - the acolytes' ward",
-    "line": 6322,
+    "line": 6323,
     "where": "Clan of the Hand or Skull, first visit, fighting the Hujark",
     "steps": "Arrive",
     "pass": "The log says the acolytes are chanting a ward over their warriors. Warriors are harder to hit while acolytes live",
@@ -26400,7 +26400,7 @@
    {
     "id": "HW2",
     "section": "0.99.4 - the acolytes' ward",
-    "line": 6323,
+    "line": 6324,
     "where": "The same",
     "steps": "Kill every acolyte on the map",
     "pass": "The log says the ward breaks, and within seconds the warriors are as easy to hit as before",
@@ -26417,7 +26417,7 @@
    {
     "id": "HJ3",
     "section": "0.97.3 - the war in the caves",
-    "line": 6450,
+    "line": 6451,
     "where": "**The war.** HJ2, stand back on 02 or 03",
     "steps": "Watch",
     "pass": "English and Hujark fight each other without you",
@@ -26434,7 +26434,7 @@
    {
     "id": "HJ2",
     "section": "0.97.3 - the war in the caves",
-    "line": 6449,
+    "line": 6450,
     "where": "HJ1, walk on to `02`, `03` and `04`",
     "steps": "-",
     "pass": "No Hujark attacks you. `03 Tourniquet of Pain` is the map that failed most",
@@ -26655,7 +26655,7 @@
    {
     "id": "HJ5",
     "section": "0.97.3 - the war in the caves",
-    "line": 6452,
+    "line": 6453,
     "where": "**The seer.** Ally, reach `05`, kill the Assassin and the English guard only",
     "steps": "-",
     "pass": "You can talk to Nostradamus **without touching the shaman or the Hujark guard**",
@@ -26672,7 +26672,7 @@
    {
     "id": "EF6",
     "section": "0.97.4 - the ending can finish",
-    "line": 6440,
+    "line": 6441,
     "who": "Ally with Huko and reach the seer",
     "steps": "-",
     "pass": "*\"Thank you! Now quickly come with me.\"* now appears over the shaman",
@@ -27267,7 +27267,7 @@
    {
     "id": "HW3",
     "section": "0.99.4 - the acolytes' ward",
-    "line": 6324,
+    "line": 6325,
     "where": "The same, on the Hujark alliance or safe conduct",
     "steps": "Walk through",
     "pass": "Nothing changes: the warriors are not hostile, and no English invader is warded on any route",
@@ -27658,7 +27658,7 @@
    {
     "id": "HJ4",
     "section": "0.97.3 - the war in the caves",
-    "line": 6451,
+    "line": 6452,
     "where": "Hit an allied Hujark",
     "steps": "-",
     "pass": "He turns on you, as before. Note whether the rest do",
@@ -27675,7 +27675,7 @@
    {
     "id": "HJ6",
     "section": "0.97.3 - the war in the caves",
-    "line": 6453,
+    "line": 6454,
     "where": "**Safe conduct**, Speech 75",
     "steps": "Walk the whole act",
     "pass": "Same as HJ1, HJ2 and HJ5",
@@ -27692,7 +27692,7 @@
    {
     "id": "HJ7",
     "section": "0.97.3 - the war in the caves",
-    "line": 6454,
+    "line": 6455,
     "where": "**The regression.** Ignore Huko, or fight him",
     "steps": "Walk the act",
     "pass": "Hujark attack as always. No English appear",
@@ -27709,7 +27709,7 @@
    {
     "id": "HJ8",
     "section": "0.97.3 - the war in the caves",
-    "line": 6455,
+    "line": 6456,
     "where": "**Judgement.** Compare a full walk on the ally route with the ignore route",
     "steps": "-",
     "pass": "The ally route should now feel like choosing a side. Note if the two armies leave too little to do, or too much",
@@ -27728,7 +27728,7 @@
    {
     "id": "BA7",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5835,
+    "line": 5836,
     "step": "**A save that has never entered act 6.** Find the blacksmith during the siege and ask where Galileo and Leonardo are",
     "say": "*\"Where are Galileo and Leonardo? Their workshops are open to the street.\"*",
     "expect": "He puts the hammer down and says they were taken west with a guard who had a list. **Find Galileo and DaVinci** enters the journal -- a quest that shipped with a blank name and no states",
@@ -27746,7 +27746,7 @@
    {
     "id": "BA8",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5836,
+    "line": 5837,
     "step": "BA7, then check the journal",
     "say": "-",
     "expect": "One entry, one state. Not an empty or unnamed quest line",
@@ -27764,7 +27764,7 @@
    {
     "id": "BA13",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5841,
+    "line": 5842,
     "step": "Ask the blacksmith for supplies as before",
     "say": "-",
     "expect": "His vendor path is unchanged, and his three recorded voice-over lines still play",
@@ -27782,7 +27782,7 @@
    {
     "id": "BA48",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5885,
+    "line": 5886,
     "step": "As a Templar, then as an Inquisitor, talk to the blacksmith",
     "say": "-",
     "expect": "Both get `30 the orders` -- what the two orders lost in the district",
@@ -27800,7 +27800,7 @@
    {
     "id": "BA49",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5886,
+    "line": 5887,
     "step": "As a Feralkin or Sylvant, talk to the blacksmith",
     "say": "-",
     "expect": "`40 no flinching`. He has no attention left for a tainted face today",
@@ -27818,7 +27818,7 @@
    {
     "id": "BA50",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5887,
+    "line": 5888,
     "step": "Holding **Slayer of Innocents** (BA22), talk to the blacksmith",
     "say": "-",
     "expect": "`50 the reports`. He sells to you and tells you not to come back after the city is standing",
@@ -27836,7 +27836,7 @@
    {
     "id": "BA51",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5888,
+    "line": 5889,
     "step": "As a plain human with no order and no title",
     "say": "-",
     "expect": "None of the three appear, and his vanilla replies are unchanged",
@@ -27854,7 +27854,7 @@
    {
     "id": "BA52",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5889,
+    "line": 5890,
     "step": "Enter `Church Crypt Interior Siege` and look around",
     "say": "-",
     "expect": "Hover lines for the room and for one slab in the wall. **This map had thirteen parts and nothing to do**",
@@ -27872,7 +27872,7 @@
    {
     "id": "BA53",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5890,
+    "line": 5891,
     "step": "Walk toward the chest at 560,600 without any Traps skill",
     "say": "-",
     "expect": "Poison gas, 25-40, once",
@@ -27890,7 +27890,7 @@
    {
     "id": "BA54",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5891,
+    "line": 5892,
     "step": "The same with Traps/Perception enough to spot it (`Skill Adjustment=10`)",
     "say": "-",
     "expect": "The trap is revealed and can be disarmed at Lockpick 40",
@@ -27908,7 +27908,7 @@
    {
     "id": "BA55",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5892,
+    "line": 5893,
     "step": "Open the chest behind it",
     "say": "-",
     "expect": "Locked at -40. The sacristan's plate",
@@ -27926,7 +27926,7 @@
    {
     "id": "BA56",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5893,
+    "line": 5894,
     "step": "Use the dead guard on the stair",
     "say": "-",
     "expect": "A line about his sword and which way his feet are pointing",
@@ -28063,7 +28063,7 @@
    {
     "id": "BA14",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5842,
+    "line": 5843,
     "step": "**A save that has never entered act 6.** Cross from `Gate District Siege` into `Crossroads Siege`",
     "say": "-",
     "expect": "About a second after landing: *\"The crossroads is not a crossroads any more...\"* **This map had no balloon, no conversation and no dialogue tree at all**",
@@ -28081,7 +28081,7 @@
    {
     "id": "BA16",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5844,
+    "line": 5845,
     "step": "Reach the road to England at the western end",
     "say": "-",
     "expect": "*\"The road west, and the ruts in it are fresh...\"*",
@@ -28099,7 +28099,7 @@
    {
     "id": "BA17",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5845,
+    "line": 5846,
     "step": "BA16 **without** having asked the blacksmith (BA7)",
     "say": "-",
     "expect": "The plain line, and no XP. The evidence is what the blacksmith's answer turns the ruts into",
@@ -28117,7 +28117,7 @@
    {
     "id": "BA18",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5846,
+    "line": 5847,
     "step": "BA16 **after** BA7, with *Find Galileo and DaVinci* active",
     "say": "-",
     "expect": "The longer line -- the cracked lens and the wax tablet -- and **1500 XP, once**",
@@ -28135,7 +28135,7 @@
    {
     "id": "BA19",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5847,
+    "line": 5848,
     "step": "Walk back over the western end again",
     "say": "-",
     "expect": "No repeat and no second payment",
@@ -28153,7 +28153,7 @@
    {
     "id": "BA20",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5848,
+    "line": 5849,
     "step": "Fight anywhere on the map for a minute",
     "say": "-",
     "expect": "English soldiers shout: *\"Press forward, men!\"*, *\"Attack! For England!\"*, *\"For the Queen!\"* Six of the thirty-four generators are armed",
@@ -28171,7 +28171,7 @@
    {
     "id": "BA21",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5849,
+    "line": 5850,
     "step": "Compare the volume against `Gate District Siege` (BA4)",
     "say": "-",
     "expect": "Similar. This map has no defenders, so only the English are heard",
@@ -28189,7 +28189,7 @@
    {
     "id": "XS22",
     "section": "0.98.1 - where the four roads met",
-    "line": 6394,
+    "line": 6395,
     "where": "Crossroads Siege, on a save that has not entered it",
     "steps": "Walk the road to the junction",
     "pass": "The stand is at the junction just west of the catapult rocks, whole, and nothing is drawn over it. You can walk up to it from the road and click it. The description fires as you approach",
@@ -28206,7 +28206,7 @@
    {
     "id": "XS23",
     "section": "0.98.1 - where the four roads met",
-    "line": 6395,
+    "line": 6396,
     "where": "The same, with Jehanne or the golem, and soldiers still alive around you",
     "steps": "Take that route",
     "pass": "They reach the base of the stand before they die. If frozen men block them, the 12 second timer still ends the scene",
@@ -28223,7 +28223,7 @@
    {
     "id": "XS2",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6405,
+    "line": 6406,
     "where": "Click it, with none of the routes",
     "steps": "-",
     "pass": "The description and only *<Leave it.>*",
@@ -28240,7 +28240,7 @@
    {
     "id": "XS3",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6406,
+    "line": 6407,
     "where": "Thought 150",
     "steps": "*<Obliterate it.>* and click on",
     "pass": "Fire, lightning, ice, shake. **All mana gone, about half your health.** The standard vanishes and a burn mark stands in its place",
@@ -28257,7 +28257,7 @@
    {
     "id": "XS3a",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6407,
+    "line": 6408,
     "where": "The same",
     "steps": "Compare your mana before and after",
     "pass": "It is **zero**. 0.98.0's first draft took nothing, because a take larger than the pool fails",
@@ -28274,7 +28274,7 @@
    {
     "id": "XS4",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6408,
+    "line": 6409,
     "where": "**The row this exists for.** After any route",
     "steps": "Stand among the soldiers",
     "pass": "**Every English soldier stops attacking** and you can walk through. Stay among them for a minute, near bowmen and near melee men: barks keep coming from individual soldiers on screen, *\"This is Spain...\"*, and they keep coming as you walk Druids, golems and wolves still attack. If soldiers keep swinging, the names or the pacify failed",
@@ -28291,7 +28291,7 @@
    {
     "id": "XS5",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6409,
+    "line": 6410,
     "where": "Divine 150, Tribal 150, and ST 10 with EN 8",
     "steps": "Each in turn",
     "pass": "Each with its own text and effects. Brute force takes about two thirds of your health and no mana",
@@ -28308,7 +28308,7 @@
    {
     "id": "XS6",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6410,
+    "line": 6411,
     "where": "Joan with you",
     "steps": "*<Look to Jehanne.>*, *Do it.*",
     "pass": "She **walks to the standard** before the light takes her, her body stays there, the soldiers wake, and the ending shows `900 friend joan standard`. **Refusing keeps her** and the standard stands",
@@ -28325,7 +28325,7 @@
    {
     "id": "XS6a",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6411,
+    "line": 6412,
     "where": "**The cutscene.** XS6 or XS7, in the thick of the fight",
     "steps": "-",
     "pass": "**Nothing moves but the one walking, and you take no damage.** The camera follows them to the standard and holds on the body, then returns to you with your controls back. **If you are left unable to move, that is the bug this row exists for**",
@@ -28342,7 +28342,7 @@
    {
     "id": "XS7",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6412,
+    "line": 6413,
     "where": "War Golem with you",
     "steps": "*<Order the golem to destroy it.>*",
     "pass": "It **walks to the standard**, then explodes, and the ending shows `900 friend golem standard`",
@@ -28359,7 +28359,7 @@
    {
     "id": "XS8",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6413,
+    "line": 6414,
     "where": "**Wounded.** At 60% health, and again below 25%, any route",
     "steps": "-",
     "pass": "You survive it, and **nothing hits you during the scene**. Controls come back afterwards",
@@ -28376,7 +28376,7 @@
    {
     "id": "XS9",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6414,
+    "line": 6415,
     "where": "**Judgement.** A mage at the Siege",
     "steps": "What is your level, and your school total?",
     "pass": "Is 150 a main school rather than a hybrid?",
@@ -28393,7 +28393,7 @@
    {
     "id": "XS11",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6416,
+    "line": 6417,
     "where": "**The price.** After any route",
     "steps": "Attack one woken soldier in melee, then one with a bow or spell",
     "pass": "He alone fights back in **both** cases. The rest stand. **Karma falls by 50 per kill.** XP and the drop still arrive",
@@ -28410,7 +28410,7 @@
    {
     "id": "XS21",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6423,
+    "line": 6424,
     "where": "**Waking.** Stand among soldiers and break the standard",
     "steps": "-",
     "pass": "Within about three seconds of the scene ending, every man in view says a bewildered line once, not all in the same instant, with none of them in the log. After that it settles to the occasional line",
@@ -28427,7 +28427,7 @@
    {
     "id": "XS20",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6424,
+    "line": 6425,
     "where": "**The stand.** Find it at the crossroads before breaking it",
     "steps": "-",
     "pass": "A dark twisted druid lamp-stand, whole and fully visible with nothing drawn over it, and the opening text calls it a lamp-stand. The charm effect pulses at its lamps every four to six seconds, silently, and stops the moment it breaks. After it falls the burn scar sits under where its base was, and sacrifices walk to its base",
@@ -28444,7 +28444,7 @@
    {
     "id": "XS19",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6425,
+    "line": 6426,
     "where": "**Talking to them.** After the standard breaks, hover and click several English soldiers. Then force attack one",
     "steps": "-",
     "pass": "The cursor shows talk, not attack, on a man you have not hit. The player walks up and he says one of the eight waking lines over his own head. Force attack still works. A soldier you have damaged fights back. Your attack stops after that first hit, and one more click on him then attacks continuously as normal, without stopping at each swing",
@@ -28461,7 +28461,7 @@
    {
     "id": "XS14",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6426,
+    "line": 6427,
     "where": "**Save and reload.** Save just after the break, reload, leave the map and return",
     "steps": "-",
     "pass": "Soldiers stay stood down. If barks stop after a reload that is minor; note it. Karma and the slide flag survive",
@@ -28738,7 +28738,7 @@
    {
     "id": "BA9",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5837,
+    "line": 5838,
     "step": "Reach `Crossroads to England map`",
     "say": "-",
     "expect": "**Pursue the Retreating Druid Forces and Recover the True Cross** enters the journal about a second after you land",
@@ -28756,7 +28756,7 @@
    {
     "id": "BA10",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5838,
+    "line": 5839,
     "step": "Leave and re-enter that map",
     "say": "-",
     "expect": "No second copy of the entry. `the pursuit has been called` holds it",
@@ -28774,7 +28774,7 @@
    {
     "id": "BA43",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5880,
+    "line": 5881,
     "step": "**A save that has never entered act 6**, carrying the Clover from the Port District Irish sailor. Talk to Surrey O'Connell",
     "say": "-",
     "expect": "A new reply offering the clover. He stops grovelling and tells you to take what you need off the Regent's pile",
@@ -28792,7 +28792,7 @@
    {
     "id": "BA44",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5881,
+    "line": 5882,
     "step": "BA43, then open the Regent's chest",
     "say": "-",
     "expect": "**No shout, no guards, and Surrey stays friendly.** In vanilla only Sneak 100 avoided the alarm",
@@ -28810,7 +28810,7 @@
    {
     "id": "BA45",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5882,
+    "line": 5883,
     "step": "The same without the clover and without Sneak 100",
     "say": "-",
     "expect": "He shouts *\"That's the Regent's loot!\"*, the `chest guards generator` wakes and he turns on you -- unchanged",
@@ -28828,7 +28828,7 @@
    {
     "id": "BA46",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5883,
+    "line": 5884,
     "step": "As a sworn Inquisitor, talk to Surrey",
     "say": "-",
     "expect": "*\"The Spanish -- no. No, guvna', I never --\"* and the same look-away",
@@ -28846,7 +28846,7 @@
    {
     "id": "CO1",
     "section": "0.99.3 - what you did follows you",
-    "line": 6330,
+    "line": 6331,
     "where": "Crossroads to England, having broken the standard, on a save that has not walked the road",
     "steps": "Walk it",
     "pass": "Two archer groups do not attack. Clicking one gives a deserter line. Without the standard broken they fight as before",
@@ -28863,7 +28863,7 @@
    {
     "id": "SH9",
     "section": "0.99.0 - the English Shrine",
-    "line": 6376,
+    "line": 6377,
     "where": "Crossroads to England",
     "steps": "-",
     "pass": "Three of the archer pairs are druids",
@@ -28897,7 +28897,7 @@
    {
     "id": "BA1",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5829,
+    "line": 5830,
     "step": "**A save that has never entered act 6.** Stand in the fighting on `Gate District Siege` for a minute",
     "say": "-",
     "expect": "Both sides shout. Spaniards: *\"To Hell with these accursed druids!\"*, *\"God save Barcelona!\"*; English: *\"Attack! For England!\"*, *\"For the Queen!\"* **Nineteen lines across three trees, none of which has ever played**",
@@ -28915,7 +28915,7 @@
    {
     "id": "BA3",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5831,
+    "line": 5832,
     "step": "Watch where the balloons appear",
     "say": "-",
     "expect": "Over the soldiers themselves, not over the player. They position on `$Trigger`",
@@ -28933,7 +28933,7 @@
    {
     "id": "BA4",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5832,
+    "line": 5833,
     "step": "Listen for about a minute on either map",
     "say": "-",
     "expect": "Roughly one line per armed soldier every eight seconds, plus a steadier defender line every twenty-four. **If it reads as a wall of text, the count to reduce is the six-per-side cap**",
@@ -28951,7 +28951,7 @@
    {
     "id": "BA5",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5833,
+    "line": 5834,
     "step": "Listen for the steadier defender lines specifically",
     "say": "-",
     "expect": "*\"We must remain vigilant.\"*, *\"The gall of these druids!\"*, *\"Spain is too powerful for the druids!\"* One of the six is *\"I'll secure this area.\"*, which can land mid-fight -- known, and noted in the release",
@@ -28969,7 +28969,7 @@
    {
     "id": "BA6",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5834,
+    "line": 5835,
     "step": "Kill every English soldier near an armed defender",
     "say": "-",
     "expect": "The defender keeps talking. There is no end-of-fight event on these maps, so the lines are timed rather than triggered",
@@ -28987,7 +28987,7 @@
    {
     "id": "BA27",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5864,
+    "line": 5865,
     "step": "**Without** the title, enter `Gate District Siege` and talk to the man calling for Phillipe",
     "say": "-",
     "expect": "He asks you to look for a boy in a red cap. **Vanilla gave every player the accusation instead**",
@@ -29005,7 +29005,7 @@
    {
     "id": "BA28",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5865,
+    "line": 5866,
     "step": "**With** the title, do the same",
     "say": "-",
     "expect": "*\"Leave me alone! Haven't you done enough?!\"* -- the shipped line, now on the shipped condition",
@@ -29023,7 +29023,7 @@
    {
     "id": "BA29",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5866,
+    "line": 5867,
     "step": "Walk past him without talking",
     "say": "-",
     "expect": "The old polygon bark still fires: *\"Phillipe! Where are you?!\"*",
@@ -29041,7 +29041,7 @@
    {
     "id": "BA30",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5867,
+    "line": 5868,
     "step": "Find Phillipe around 2694,1251, behind a barrel, **before** speaking to his father",
     "say": "-",
     "expect": "He talks, but the reply that sends him home is not offered",
@@ -29059,7 +29059,7 @@
    {
     "id": "BA31",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5868,
+    "line": 5869,
     "step": "Speak to the father first, then find Phillipe",
     "say": "-",
     "expect": "The reply is offered; he runs; **1000 XP, once**, and a closing line about the man who stops saying one word",
@@ -29077,7 +29077,7 @@
    {
     "id": "BA32",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5869,
+    "line": 5870,
     "step": "Go back to where Phillipe was",
     "say": "-",
     "expect": "He is gone, and no second payment",
@@ -29095,7 +29095,7 @@
    {
     "id": "BA33",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5870,
+    "line": 5871,
     "step": "**A save that has never entered act 6.** On `Gate District Siege`, find the woman around 2551,1520 and talk to her",
     "say": "-",
     "expect": "An ordinary Barcelona citizen greeting. **She did not exist; the map's relay was positioning a balloon over her name**",
@@ -29113,7 +29113,7 @@
    {
     "id": "BA34",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5871,
+    "line": 5872,
     "step": "Murder her, or murder the man searching for Phillipe, while she is alive to see it",
     "say": "-",
     "expect": "*\"Ayudame! Help me! Guards!\"* and about two seconds later **the whole garrison turns on you**, with a +40% AC buff -- the same consequence vanilla gives for attacking a guard",
@@ -29131,7 +29131,7 @@
    {
     "id": "BA35",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5872,
+    "line": 5873,
     "step": "Murder the man searching for Phillipe **after** killing her",
     "say": "-",
     "expect": "No scream and no turn. The witness has to be alive",
@@ -29149,7 +29149,7 @@
    {
     "id": "BA36",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5873,
+    "line": 5874,
     "step": "Let the English kill defenders all around you without lifting a hand",
     "say": "-",
     "expect": "Nothing happens. The scream is armed on civilians only, so the garrison never blames you for the siege",
@@ -29167,7 +29167,7 @@
    {
     "id": "BA37",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5874,
+    "line": 5875,
     "step": "Attack a defender directly, as in vanilla",
     "say": "-",
     "expect": "The garrison turns, as before. Unchanged",
@@ -29185,7 +29185,7 @@
    {
     "id": "BA38",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5875,
+    "line": 5876,
     "step": "Find the `Generic Gaurd NPC` body at 1618,845 and use it",
     "say": "-",
     "expect": "*\"Stranger...here...take my gold. Don't let those English have it...\"* and **250 gold**, once",
@@ -29203,7 +29203,7 @@
    {
     "id": "BA39",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5876,
+    "line": 5877,
     "step": "Find the `Soldier1` body at 1678,2914",
     "say": "-",
     "expect": "*\"I am sorry Espana...I do not know why we came with swords drawn and bloodlust in our hearts...\"*",
@@ -29221,7 +29221,7 @@
    {
     "id": "SG1",
     "section": "0.99.5 - the sieges are held too",
-    "line": 6314,
+    "line": 6315,
     "where": "Gate District Siege, on a save that has not entered it",
     "steps": "Kill every druid priest on the map",
     "pass": "Within seconds the English soldiers stop fighting, each says a waking line (\"This is Spain. Why am I in Spain?\"), and clicking one talks",
@@ -29238,7 +29238,7 @@
    {
     "id": "SG2",
     "section": "0.99.5 - the sieges are held too",
-    "line": 6315,
+    "line": 6316,
     "where": "The same, after the stand-down",
     "steps": "Force attack one soldier",
     "pass": "Every English soldier on the map turns hostile again",
@@ -29289,7 +29289,7 @@
    {
     "id": "BA2",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5830,
+    "line": 5831,
     "step": "BA1 on `Temple District Siege`",
     "say": "-",
     "expect": "The same, quieter -- that map has one defender generator and three attacker generators still standing",
@@ -29307,7 +29307,7 @@
    {
     "id": "BA40",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5877,
+    "line": 5878,
     "step": "On `Temple District Siege`, walk the length of the map using bodies",
     "say": "-",
     "expect": "Six of them speak, three Spanish and three English, spread west to east. **Vanilla had 62 bodies and zero talkable ones on this map**",
@@ -29325,7 +29325,7 @@
    {
     "id": "BA41",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5878,
+    "line": 5879,
     "step": "The dying Spaniard on the Temple District",
     "say": "-",
     "expect": "Also pays 250, once",
@@ -29343,7 +29343,7 @@
    {
     "id": "SG3",
     "section": "0.99.5 - the sieges are held too",
-    "line": 6316,
+    "line": 6317,
     "where": "Temple District Siege",
     "steps": "Repeat SG1 and SG2, and check the siege still plays to its end",
     "pass": "Same results, and nothing in the siege waits forever on English deaths",
@@ -29785,7 +29785,7 @@
    {
     "id": "ES28",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5805,
+    "line": 5806,
     "step": "Check your titles after act 6 has failed the conspiracy quest",
     "say": "-",
     "expect": "**The title survives.** Act 6's bulk quest-fail is `IfActive`, so a completed conspiracy is untouched",
@@ -29803,7 +29803,7 @@
    {
     "id": "BA42",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5879,
+    "line": 5880,
     "step": "Re-use any body that has already spoken",
     "say": "-",
     "expect": "Nothing. Each specifier is once-only, and no second payment",
@@ -29821,7 +29821,7 @@
    {
     "id": "FB1",
     "section": "0.99.11 - falling back",
-    "line": 6260,
+    "line": 6261,
     "where": "Temple Initiate, Stone Chamber or Antechamber, or a Barcelona siege after its druids appear, first visit",
     "steps": "Wound an English soldier below a third of his health while a druid lives",
     "pass": "He shouts and runs toward the druids, not fighting back while he runs, then returns healed",
@@ -29838,7 +29838,7 @@
    {
     "id": "BF1",
     "section": "0.99.10 - what the re-score found",
-    "line": 6269,
+    "line": 6270,
     "where": "Gate or Temple District Siege, first visit",
     "steps": "Fight until a druid priest appears, kill every one",
     "pass": "The soldiers keep fighting until the last druid falls, then stand down and wake. Arriving alone does NOT stand them down",
@@ -29929,7 +29929,7 @@
    {
     "id": "ES40",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5773,
+    "line": 5774,
     "step": "With **Grace's Regard**, accept her in act 7 with *\"My dear, your companionship is most welcome.\"*",
     "say": "-",
     "expect": "*\"Together we cannot fail. My heart and my sword are yours!\"* and **she joins as a companion**",
@@ -29947,7 +29947,7 @@
    {
     "id": "ES40a",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5774,
+    "line": 5775,
     "step": "**Without** Grace's Regard, check her act-7 replies",
     "say": "-",
     "expect": "The romantic acceptance is **not offered**. She still declares herself -- she is voiced and that line is hers -- but the routes left are the sword without the heart, and refusal",
@@ -29965,7 +29965,7 @@
    {
     "id": "ES41",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5775,
+    "line": 5776,
     "step": "Accept with *\"Your sword is welcome, but I have no use for your heart.\"*",
     "say": "-",
     "expect": "*\"I will honor it, and serve you not for love, but for duty.\"* She joins anyway",
@@ -29983,7 +29983,7 @@
    {
     "id": "ES42",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5776,
+    "line": 5777,
     "step": "Refuse with *\"Sorry, I work alone.\"*",
     "say": "-",
     "expect": "*\"Do not worry - we will not cross paths again.\"* No companion",
@@ -30001,7 +30001,7 @@
    {
     "id": "ES43",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5777,
+    "line": 5778,
     "step": "Instead reach act 7 having **driven her off or turned her in to the Duke**",
     "say": "-",
     "expect": "**She is not on the beach at all.** The shipped `Captain Isabella fled` checker is what act 1 sets in both cases",
@@ -30019,7 +30019,7 @@
    {
     "id": "ES44",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5778,
+    "line": 5779,
     "step": "Instead reach act 7 having **taken her bribe, or lied, or never accused her**",
     "say": "-",
     "expect": "`500`: *\"if I can't kill the English, I will settle the score with you\"* -- and she attacks",
@@ -30037,7 +30037,7 @@
    {
     "id": "ES45",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5779,
+    "line": 5780,
     "step": "With her as a companion, talk to her again",
     "say": "-",
     "expect": "*\"Are you ready to continue our quest?\"*",
@@ -30055,7 +30055,7 @@
    {
     "id": "ES50",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5786,
+    "line": 5787,
     "step": "Talk to Grace while she is a companion",
     "say": "-",
     "expect": "*\"Are you ready to continue our quest?\"* -- **and you should now hear it**, because the node was renamed back to match its recording",
@@ -30073,7 +30073,7 @@
    {
     "id": "ES51",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5787,
+    "line": 5788,
     "step": "Tell her *\"Wait here. I will come back for you.\"*",
     "say": "-",
     "expect": "*\"If that is your desire. I will await your return here.\"* She stops following",
@@ -30091,7 +30091,7 @@
    {
     "id": "ES52",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5788,
+    "line": 5789,
     "step": "Come back and talk to her",
     "say": "-",
     "expect": "*\"Let us continue our quest.\"* -- the second renamed recording -- and she rejoins",
@@ -30109,7 +30109,7 @@
    {
     "id": "ES53",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5789,
+    "line": 5790,
     "step": "Check she is not still following after ES51",
     "say": "-",
     "expect": "She should stay put until ES52",
@@ -30217,7 +30217,7 @@
    {
     "id": "ES24",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5801,
+    "line": 5802,
     "step": "Carrying the title, talk to **Sir Roger** in act 7 -- first meeting or any return",
     "say": "-",
     "expect": "A new reply about the Queen owing you a service. He tells you **the Queen keeps druids**, and that his Order came to the shrine **without her leave**",
@@ -30235,7 +30235,7 @@
    {
     "id": "ES25",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5802,
+    "line": 5803,
     "step": "Press him on it",
     "say": "-",
     "expect": "*\"she will call it hers when it is done, and the men who stopped it will have been brigands.\"* Both nodes lead into `10 accept`, so it is a way into the alliance",
@@ -30253,7 +30253,7 @@
    {
     "id": "ES26",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5803,
+    "line": 5804,
     "step": "Without the title, check Sir Roger's replies",
     "say": "-",
     "expect": "The new reply is not offered, on any of his six entry nodes, and everything else is as vanilla",
@@ -30271,7 +30271,7 @@
    {
     "id": "ES27",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5804,
+    "line": 5805,
     "step": "Carrying the title, ask the Templar camp surgeon for healing as a plain human with no order",
     "say": "-",
     "expect": "Healed free. A servant of the Queen counts as a knight to him",
@@ -30289,7 +30289,7 @@
    {
     "id": "ES9",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5806,
+    "line": 5807,
     "step": "**A save that has never entered act 7.** Accept Sir Roger's offer of help, then look around the entrance of `02 Temple Initiate`",
     "say": "-",
     "expect": "A Templar post: a quartermaster, a field surgeon and a guard, around 2820,1300. **Act 7 had no merchant on any of its eleven maps**",
@@ -30307,7 +30307,7 @@
    {
     "id": "ES10",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5807,
+    "line": 5808,
     "step": "**Refuse** his help instead -- *\"I am not interested in help from any Englishman\"* -- and look in the same place",
     "say": "-",
     "expect": "**Nothing there.** No camp, no shop, no surgeon. That reply cost nothing at all before this",
@@ -30325,7 +30325,7 @@
    {
     "id": "ES12",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5809,
+    "line": 5810,
     "step": "Talk to a camp guard",
     "say": "-",
     "expect": "*\"My sword is yours.\"* **The one dialogue tree in the act that nothing opened**",
@@ -30343,7 +30343,7 @@
    {
     "id": "ES13",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5810,
+    "line": 5811,
     "step": "Buy from the quartermaster with **none** of Quinn's three errands done",
     "say": "-",
     "expect": "One \"Show me what you have\" reply. Potions, 40 bolts, 40 arrows, hard leather, a medium shield",
@@ -30361,7 +30361,7 @@
    {
     "id": "ES14",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5811,
+    "line": 5812,
     "step": "The same having done **one or two** of Quinn's errands",
     "say": "-",
     "expect": "The reply mentions a herbalist who owes you, and the stock adds **Great Healing** potions",
@@ -30379,7 +30379,7 @@
    {
     "id": "ES15",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5812,
+    "line": 5813,
     "step": "The same having done **all three**",
     "say": "-",
     "expect": "The reply says you did the herbalist some favours, and the stock adds **Superior** and **Supreme Healing** -- the potions 0.4.0 unlocked, six acts earlier",
@@ -30397,7 +30397,7 @@
    {
     "id": "ES16",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5813,
+    "line": 5814,
     "step": "Count the \"Show me what you have\" replies in any of ES13-ES15",
     "say": "-",
     "expect": "**Exactly one, ever.** The first draft would have shown three identical replies to a player who had done all three errands",
@@ -30415,7 +30415,7 @@
    {
     "id": "ES17",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5814,
+    "line": 5815,
     "step": "As a **Templar**, then as a **Knight of Saladin**, ask the surgeon for help",
     "say": "-",
     "expect": "Healed to full, free. He treats both orders as brothers",
@@ -30433,7 +30433,7 @@
    {
     "id": "ES18",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5815,
+    "line": 5816,
     "step": "As a sworn **Inquisitor**",
     "say": "-",
     "expect": "He heals you, and **charges the 200** like anyone else. Deliberate: the Inquisition is Spanish and ecclesiastical, not his brotherhood",
@@ -30451,7 +30451,7 @@
    {
     "id": "ES19",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5816,
+    "line": 5817,
     "step": "With fewer than 200 gold and no order",
     "say": "-",
     "expect": "The paid reply is not offered",
@@ -30469,7 +30469,7 @@
    {
     "id": "ES20",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5817,
+    "line": 5818,
     "step": "Ask the surgeon how many he has lost, and the quartermaster whose stock it is",
     "say": "-",
     "expect": "Two answers about the twenty who held the gate. Neither is a shop",
@@ -30487,7 +30487,7 @@
    {
     "id": "TS10",
     "section": "0.93.0 - the Templar shields",
-    "line": 6095,
+    "line": 6096,
     "where": "**Act 7, `02 Temple Initiate`.** Meet **Sir Roger Templeton** carrying the Holy Shield, as a Templar",
     "steps": "Take the reply that shows him the shield",
     "pass": "He speaks the relic line, and *\"Then let it be seen raised.\"* takes the Holy Shield and gives the **Aegis**. He should then recruit normally, exactly as the ordinary Templar greeting does",
@@ -30504,7 +30504,7 @@
    {
     "id": "TS11",
     "section": "0.93.0 - the Templar shields",
-    "line": 6096,
+    "line": 6097,
     "where": "Same, **without** the Holy Shield, or as a non-Templar",
     "steps": "Talk to him",
     "pass": "The shield reply is **absent** and the conversation is unchanged in every other respect. Nothing fires",
@@ -30521,7 +30521,7 @@
    {
     "id": "TS11b",
     "section": "0.93.0 - the Templar shields",
-    "line": 6097,
+    "line": 6098,
     "where": "**The cutscene check.** Finish that conversation through the relic branch",
     "steps": "-",
     "pass": "The scene ends and you regain control. The greeting runs inside a non-interactive sequence, and 0.9.0 soft-locked one for two years with a reply that did not exit properly. **If control is not returned, this release is broken and nothing else matters**",
@@ -30538,7 +30538,7 @@
    {
     "id": "TS11c",
     "section": "0.93.0 - the Templar shields",
-    "line": 6098,
+    "line": 6099,
     "where": "Refuse Sir Roger at the greeting, then talk to him again",
     "steps": "Take the shield reply on the **return** dialogue",
     "pass": "Same result. The branch is on all four greeting nodes, so one refusal must not lose the shield",
@@ -30555,7 +30555,7 @@
    {
     "id": "HN1",
     "section": "0.99.2 - showing, not telling",
-    "line": 6338,
+    "line": 6339,
     "where": "02 Temple Initiate, first visit, on a save that has not entered it",
     "steps": "Open the journal",
     "pass": "Under the druid quest, \"The Spellbound Soldiers\" says they fight as though spellbound. It tells you nothing to do. With Sir Roger along he says something has hold of them",
@@ -30572,7 +30572,7 @@
    {
     "id": "SH3",
     "section": "0.99.0 - the English Shrine",
-    "line": 6370,
+    "line": 6371,
     "where": "02, Sir Roger, Servant of the Queen perk",
     "steps": "Reach \"The Queen keeps druids\" and answer \"That changes nothing. Stand aside.\"",
     "pass": "The scene ends and you can move; he can be spoken to again. Before this you were stuck",
@@ -30589,7 +30589,7 @@
    {
     "id": "SH4",
     "section": "0.99.0 - the English Shrine",
-    "line": 6371,
+    "line": 6372,
     "where": "02 at Sneak 25",
     "steps": "Take the second passage, go on to 05, then come back the vanilla way",
     "pass": "One payment of the passage XP and balloon, on the way in only",
@@ -30606,7 +30606,7 @@
    {
     "id": "SH7",
     "section": "0.99.0 - the English Shrine",
-    "line": 6374,
+    "line": 6375,
     "where": "02, 03 or 04",
     "steps": "Kill every druid on the map, leave the soldiers",
     "pass": "Within a few seconds every soldier on that map stops fighting and says one dazed line; clicking one talks. A map with druids alive keeps fighting",
@@ -30623,7 +30623,7 @@
    {
     "id": "SH8",
     "section": "0.99.0 - the English Shrine",
-    "line": 6375,
+    "line": 6376,
     "where": "The same, after the stand-down",
     "steps": "Force attack one soldier",
     "pass": "Every soldier on that map turns hostile again, not just the one; the first hit stops your attack and one more click carries on. No Karma lost",
@@ -30640,7 +30640,7 @@
    {
     "id": "SH5",
     "section": "0.99.0 - the English Shrine",
-    "line": 6372,
+    "line": 6373,
     "where": "02, 03, 04",
     "steps": "Look at the enemies",
     "pass": "Some are druids in robes casting spells, not soldiers standing still until struck. None stands idle while his friends fight",
@@ -30657,7 +30657,7 @@
    {
     "id": "SH10",
     "section": "0.99.0 - the English Shrine",
-    "line": 6377,
+    "line": 6378,
     "where": "03, 04, 05 with Roger and Grace",
     "steps": "Enter each map the first time",
     "pass": "Each says one line, Roger first. Neither says it twice, and with one of them absent the other still speaks",
@@ -30674,7 +30674,7 @@
    {
     "id": "ES11",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5808,
+    "line": 5809,
     "step": "Reach `04 Antechamber of Lore` after accepting",
     "say": "-",
     "expect": "A second post around 5880,1560. It is opened from `02` by a `COtherMapAction`, so it should already be there when you arrive",
@@ -31178,7 +31178,7 @@
    {
     "id": "SH1",
     "section": "0.99.0 - the English Shrine",
-    "line": 6368,
+    "line": 6369,
     "where": "05 Exalted Chambers",
     "steps": "Talk to the Druid Master",
     "pass": "She is voiced: her lines play aloud. Before this she was silent",
@@ -31213,7 +31213,7 @@
    {
     "id": "ES29",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5790,
+    "line": 5791,
     "step": "**A save that has never entered act 7.** Enter `10 Inner Sanctum` from the Antechamber",
     "say": "-",
     "expect": "About a second in: *\"There is a great deal of wall for a room this size -- and the wall does not ring the same all the way round.\"* **This map had no tree, no balloon and no label printer at all**",
@@ -31231,7 +31231,7 @@
    {
     "id": "ES30",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5791,
+    "line": 5792,
     "step": "Cross to the western corner, around 1500,1400, and look at the wall",
     "say": "-",
     "expect": "*\"Three stones are set into the wall here at shoulder height, worn paler than the rest...\"* The hover covers all three switches",
@@ -31249,7 +31249,7 @@
    {
     "id": "ES31",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5792,
+    "line": 5793,
     "step": "Click the switch at 1482,1379",
     "say": "-",
     "expect": "A panel opens in the **eastern** wall on two strongboxes with the Temple's mark, and you are told so -- the door is 800 units away and vanilla gave no feedback whatsoever",
@@ -31267,7 +31267,7 @@
    {
     "id": "ES32",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5793,
+    "line": 5794,
     "step": "Open those two chests",
     "say": "-",
     "expect": "Good weapons and arrows/bolts, on `Chest Generator Good`. **The best loot in the act outside a boss, behind an unmarked switch in vanilla**",
@@ -31285,7 +31285,7 @@
    {
     "id": "ES33",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5794,
+    "line": 5795,
     "step": "Click the switch at 1620,1364",
     "say": "-",
     "expect": "Grinding to the **north** and *\"a great many boots\"* -- an ambush of soldiers, bowmen and druids",
@@ -31303,7 +31303,7 @@
    {
     "id": "ES34",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5795,
+    "line": 5796,
     "step": "Click the switch at 1508,1471",
     "say": "-",
     "expect": "Grinding to the **south**, hot iron and wet stone -- war golems, a priest, a druid and a priestess",
@@ -31321,7 +31321,7 @@
    {
     "id": "ES36",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5797,
+    "line": 5798,
     "step": "Check that the doors, ambushes and chests behave as before",
     "say": "-",
     "expect": "Unchanged. Only balloons were added to the three relays; every vanilla action on them is intact",
@@ -31339,7 +31339,7 @@
    {
     "id": "SH2",
     "section": "0.99.0 - the English Shrine",
-    "line": 6369,
+    "line": 6370,
     "where": "10 Inner Sanctum",
     "steps": "Pull the three stones in any order",
     "pass": "Each opens what it opens, then a separate line counts down: two left, one left, the last of them. Not \"Two stones left\" three times",
@@ -31409,7 +31409,7 @@
    {
     "id": "SH11",
     "section": "0.99.0 - the English Shrine",
-    "line": 6378,
+    "line": 6379,
     "where": "Finish the shrine four ways: talk her down; spoil the ambush and kill her; kill her; walk on with her alive",
     "steps": "Reach England to Alamut with Roger, then the ending",
     "pass": "Roger says the line for that outcome, and the ending shows the matching Shrine slide with the Druid Master on the stage, before the companions",
@@ -31621,7 +31621,7 @@
    {
     "id": "ES46",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5780,
+    "line": 5781,
     "step": "With Grace as a companion, fight for a minute",
     "say": "-",
     "expect": "She shouts *\"For Ireland.\"*, *\"We cannot fail.\"*, *\"I need healing!\"* **Never played in vanilla**",
@@ -31639,7 +31639,7 @@
    {
     "id": "ES47",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5781,
+    "line": 5782,
     "step": "Let her drop below about 60% health, then below 25%",
     "say": "-",
     "expect": "*\"I require aid!\"* then *\"I will not survive much longer...Help me!\"* -- **both are recorded lines that had no trigger**",
@@ -31657,7 +31657,7 @@
    {
     "id": "ES48",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5782,
+    "line": 5783,
     "step": "With Sir Roger along, fight for a minute",
     "say": "-",
     "expect": "*\"For England!\"*, *\"For The Queen!\"*, *\"For The Templars!\"*, *\"We shall Prevail!\"*, *\"On my honor!\"* Five authored barks, opened by nothing in vanilla",
@@ -31675,7 +31675,7 @@
    {
     "id": "ES49",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5785,
+    "line": 5786,
     "step": "Take a companion through a map transition and keep fighting",
     "say": "-",
     "expect": "Barks still play. They ride on the character's own AI list, not a relay belonging to one map",
@@ -31693,7 +31693,7 @@
    {
     "id": "GT1",
     "section": "0.99.16 - the tank shows its state",
-    "line": 6182,
+    "line": 6183,
     "where": "DaVinci's secret chamber",
     "steps": "Walk up to the tank before fitting the gear",
     "pass": "Vanilla's description",
@@ -31710,7 +31710,7 @@
    {
     "id": "AL1",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6247,
+    "line": 6248,
     "where": "Temple Initiate, first visit (kit: \"Take me to Sir Roger\")",
     "steps": "Walk the route toward the Stone Chamber exit and fight the archers by it",
     "pass": "They stand where they are and shoot, while the swordsmen close; they do not walk into the melee",
@@ -31727,7 +31727,7 @@
    {
     "id": "BF2",
     "section": "0.99.10 - what the re-score found",
-    "line": 6270,
+    "line": 6271,
     "where": "Temple Initiate, Stone Chamber, Antechamber",
     "steps": "Walk the main route",
     "pass": "You meet a druid post on the route in each map; killing both of a room's druids stands its soldiers down",
@@ -31744,7 +31744,7 @@
    {
     "id": "BF4",
     "section": "0.99.10 - what the re-score found",
-    "line": 6272,
+    "line": 6273,
     "where": "Exalted Chambers, Secret Chamber, Inner Sanctum",
     "steps": "Fight the priestesses",
     "pass": "At a low level no Super priestess appears; at a high level no base one",
@@ -31761,7 +31761,7 @@
    {
     "id": "SH6",
     "section": "0.99.0 - the English Shrine",
-    "line": 6373,
+    "line": 6374,
     "where": "Any act 7 map",
     "steps": "Bring a druid under half health",
     "pass": "The log says she calls a wolf, a wolf appears beside her with a summoning flash, and she does it once only",
@@ -32370,7 +32370,7 @@
    {
     "id": "AT11",
     "section": "0.99.0 - Alamut",
-    "line": 6358,
+    "line": 6359,
     "where": "01, 02",
     "steps": "Look at the packs",
     "pass": "Roughly one pack in four is Sand Spirits instead of beasts",
@@ -32711,7 +32711,7 @@
    {
     "id": "AT13",
     "section": "0.99.0 - Alamut",
-    "line": 6360,
+    "line": 6361,
     "where": "Act 8 with the Knight of Saladin from Exalted",
     "steps": "Walk 03 to 07",
     "pass": "Only one Knight of Saladin. If two appear, report it with a save",
@@ -32800,7 +32800,7 @@
    {
     "id": "AT7",
     "section": "0.99.0 - Alamut",
-    "line": 6354,
+    "line": 6355,
     "where": "The Maw's Assassin Master, the Elemental Spirit, DaVinci's evil lines, Galileo's survival line, the Old Man's Inquisition scene",
     "steps": "Hear them",
     "pass": "Each speaks aloud where it was silent",
@@ -32817,7 +32817,7 @@
    {
     "id": "AT10",
     "section": "0.99.0 - Alamut",
-    "line": 6357,
+    "line": 6358,
     "where": "04 to 07",
     "steps": "Bring several Assassin Masters under half health",
     "pass": "About half whistle up two guard dogs, with a log line; none does it twice",
@@ -33014,7 +33014,7 @@
    {
     "id": "HN3",
     "section": "0.99.2 - showing, not telling",
-    "line": 6340,
+    "line": 6341,
     "where": "05 Acid Wash",
     "steps": "Walk the channel without the search skill, then with it",
     "pass": "No valve line without it. With it, the line plays as the valve is revealed",
@@ -33031,7 +33031,7 @@
    {
     "id": "AT8",
     "section": "0.99.0 - Alamut",
-    "line": 6355,
+    "line": 6356,
     "where": "05 Acid Wash",
     "steps": "Lure an assassin into the channel as a sluice fires",
     "pass": "The acid hurts him too. A companion standing in it is hurt as well",
@@ -33048,7 +33048,7 @@
    {
     "id": "AT9",
     "section": "0.99.0 - Alamut",
-    "line": 6356,
+    "line": 6357,
     "where": "05 Acid Wash, near the entrance",
     "steps": "Search for secrets (a good trap and secret skill)",
     "pass": "A hidden valve is revealed; using it shuts both sluices and opens the spiked gates, as the far switch does. Without the skill it stays hidden",
@@ -33083,7 +33083,7 @@
    {
     "id": "AT12",
     "section": "0.99.0 - Alamut",
-    "line": 6359,
+    "line": 6360,
     "where": "05 and 07 with the Knight of Saladin and Grumdjum",
     "steps": "Enter each the first time",
     "pass": "Each says one line, the knight first; neither repeats",
@@ -33384,7 +33384,7 @@
    {
     "id": "AT2",
     "section": "0.99.0 - Alamut",
-    "line": 6349,
+    "line": 6350,
     "where": "A dark ending (Calle Perdida)",
     "steps": "Finish it",
     "pass": "After Nostradamus the game goes to the stage, plays the slides this character earned, then the credits. Before this the dark endings showed no slide",
@@ -33401,7 +33401,7 @@
    {
     "id": "AT6",
     "section": "0.99.0 - Alamut",
-    "line": 6353,
+    "line": 6354,
     "where": "Final Encounter",
     "steps": "Let the Old Man escape",
     "pass": "The escape plays through: camera, spirits, then the ending. Nothing stops at his disappearance",
@@ -33418,7 +33418,7 @@
    {
     "id": "AT3",
     "section": "0.99.0 - Alamut",
-    "line": 6350,
+    "line": 6351,
     "where": "The Demesne, before either ending",
     "steps": "Press Escape on Nostradamus",
     "pass": "The scene continues to the right ending map",
@@ -33435,7 +33435,7 @@
    {
     "id": "AT1",
     "section": "0.99.0 - Alamut",
-    "line": 6348,
+    "line": 6349,
     "where": "Any good ending",
     "steps": "Press Escape on each Nostradamus line after the battle",
     "pass": "The ending carries on exactly as clicking would, and reaches the stage. Nothing stalls",
@@ -33677,7 +33677,7 @@
    {
     "id": "BF5",
     "section": "0.99.10 - what the re-score found",
-    "line": 6273,
+    "line": 6274,
     "where": "Alamut, the Knight of Saladin",
     "steps": "Ask about the tribute and the tent",
     "pass": "No sentence repeats",
@@ -33694,7 +33694,7 @@
    {
     "id": "BF6",
     "section": "0.99.10 - what the re-score found",
-    "line": 6274,
+    "line": 6275,
     "where": "Final Encounter, as a Saladin high-level",
     "steps": "Take the standing-order reply to the Old Man",
     "pass": "It says \"every year since\", not \"eighty\"",
@@ -33711,7 +33711,7 @@
    {
     "id": "BF7",
     "section": "0.99.10 - what the re-score found",
-    "line": 6275,
+    "line": 6276,
     "where": "Desert Sprawl, through the goblin gate",
     "steps": "Click Rumjun Khan, choose \"accompany me\"",
     "pass": "He talks rather than fights; after the reply he attacks the desert's enemies and not you",
@@ -33728,7 +33728,7 @@
    {
     "id": "AT5",
     "section": "0.99.0 - Alamut",
-    "line": 6352,
+    "line": 6353,
     "where": "Dismiss Grumdjum, then click him",
     "steps": "-",
     "pass": "He says \"Are you ready to continue our quest - to put the Old Man to rest?\" aloud before the rejoin conversation",
@@ -33747,7 +33747,7 @@
    {
     "id": "ES20",
     "section": "0.99.0 - the epilogue stage",
-    "line": 6384,
+    "line": 6385,
     "where": "Finish the game, or `Ending tests` then `As I am`",
     "steps": "-",
     "pass": "After Javier the screen goes black and the stage opens with no visible pan. No crash on the teleport",
@@ -33764,7 +33764,7 @@
    {
     "id": "ES21",
     "section": "0.99.0 - the epilogue stage",
-    "line": 6385,
+    "line": 6386,
     "where": "The same",
     "steps": "Read through",
     "pass": "Every slide this character earned plays, in order, with the right figure centre-stage and none left over from the slide before. Slides with no figure (the pits, the Savage Heart, the woodcutter, no allegiance) play on the empty stage",
@@ -33781,7 +33781,7 @@
    {
     "id": "ES22",
     "section": "0.99.0 - the epilogue stage",
-    "line": 6386,
+    "line": 6387,
     "where": "The same, having talked Ahriman into death",
     "steps": "-",
     "pass": "The Templar slide is the one that says the order was never sworn to him: the flag survived the teleport",
@@ -33798,7 +33798,7 @@
    {
     "id": "ES23",
     "section": "0.99.0 - the epilogue stage",
-    "line": 6387,
+    "line": 6388,
     "where": "The same",
     "steps": "Press Escape on a slide",
     "pass": "It advances to the next slide, and the credits still roll at the end",
@@ -33815,7 +33815,7 @@
    {
     "id": "ES24",
     "section": "0.99.0 - the epilogue stage",
-    "line": 6388,
+    "line": 6389,
     "where": "With companions alive",
     "steps": "-",
     "pass": "Nobody you travelled with wanders into frame, and every figure stands still, including the golem and Fang",
@@ -33832,7 +33832,7 @@
    {
     "id": "EF4",
     "section": "0.97.4 - the ending can finish",
-    "line": 6438,
+    "line": 6439,
     "who": "A character with no slide for several steps in a row",
     "steps": "Watch the gaps",
     "pass": "No visible hang: empty steps pass in a blink. If there is a long blank pause, tell me how long",
@@ -33849,7 +33849,7 @@
    {
     "id": "EF5",
     "section": "0.97.4 - the ending can finish",
-    "line": 6439,
+    "line": 6440,
     "who": "**Judgement.** A full character",
     "steps": "Read the whole ending",
     "pass": "Does it drag? Up to about 30 slides can now play",
@@ -34172,7 +34172,7 @@
    {
     "id": "HH14",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6124,
+    "line": 6125,
     "where": "Finish the game, HH11's character",
     "steps": "Watch the slides",
     "pass": "`900 order inquisition dark`, and not the `killer` slide",
@@ -34189,7 +34189,7 @@
    {
     "id": "HH15",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6125,
+    "line": 6126,
     "where": "Finish the game, HH12's character with no faction",
     "steps": "Watch the slides",
     "pass": "`900 order inquisition broken`, and **not** the no-allegiance slide. Then a Templar killer: broken **and** their own order's slide",
@@ -34206,7 +34206,7 @@
    {
     "id": "HH17",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6127,
+    "line": 6128,
     "where": "No cult dealings at all, finish the game",
     "steps": "Watch the slides",
     "pass": "**No** cult slide, and the series carries on. This is the regression: a missing branch here would hang the ending",
@@ -34223,7 +34223,7 @@
    {
     "id": "HH18",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6128,
+    "line": 6129,
     "where": "Kill all five without ever meeting Diego, finish the game",
     "steps": "-",
     "pass": "`900 order cult ended`. If it is absent, the fifth-death write did not run",
@@ -34240,7 +34240,7 @@
    {
     "id": "HH19",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6129,
+    "line": 6130,
     "where": "Finish Diego's quest, report to Torquemada, finish the game",
     "steps": "-",
     "pass": "`900 order cult told`",
@@ -34257,7 +34257,7 @@
    {
     "id": "HH20",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6130,
+    "line": 6131,
     "where": "Destroy them **and** kill Torquemada",
     "steps": "-",
     "pass": "`900 order cult ended dead`, after his own slide",
@@ -34274,7 +34274,7 @@
    {
     "id": "HH21",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6131,
+    "line": 6132,
     "where": "Kill Diego for them, finish the game",
     "steps": "-",
     "pass": "`900 order cult served`, with Diego's `sold` slide in its usual place",
@@ -34291,7 +34291,7 @@
    {
     "id": "HH23",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6133,
+    "line": 6134,
     "where": "Kill Diego for them, collect, then kill all five",
     "steps": "-",
     "pass": "`ended`, **not** `served`. There is no cult left to prosper",
@@ -34308,7 +34308,7 @@
    {
     "id": "HH24",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6134,
+    "line": 6135,
     "where": "Templar, knights freed, no Aegis, finish the game",
     "steps": "-",
     "pass": "`900 order templar relic`, straight after the Templar slide",
@@ -34325,7 +34325,7 @@
    {
     "id": "HH25",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6135,
+    "line": 6136,
     "where": "Templar, take the Aegis from Sir Roger, finish the game",
     "steps": "-",
     "pass": "`900 order templar aegis`. Check the handover scene still exits through `10 accept` and gives you control back",
@@ -34342,7 +34342,7 @@
    {
     "id": "HH26",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6136,
+    "line": 6137,
     "where": "Templar who passed through the Crypt or killed Jehanne, finish the game",
     "steps": "-",
     "pass": "**No** shield slide, and the series carries on",
@@ -34359,7 +34359,7 @@
    {
     "id": "HH27",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6137,
+    "line": 6138,
     "where": "Non-Templar who freed the knights, finish the game",
     "steps": "-",
     "pass": "**No** shield slide. Jehanne's `released` slide is theirs",
@@ -34376,7 +34376,7 @@
    {
     "id": "HH28",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6138,
+    "line": 6139,
     "where": "Knight of Saladin, Shard route, riddles, finish the game",
     "steps": "-",
     "pass": "`900 order saladin shard scholar`, straight after the Saladin slide. Then combat instead: `shard dervish`",
@@ -34393,7 +34393,7 @@
    {
     "id": "HH29",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6139,
+    "line": 6140,
     "where": "Scimitar route, riddles, finish the game",
     "steps": "-",
     "pass": "`900 order saladin scimitar scholar`. Then combat instead: `scimitar dervish`, the burning blade",
@@ -34410,7 +34410,7 @@
    {
     "id": "HH30",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6140,
+    "line": 6141,
     "where": "Scimitar route, hand Amir the Shard unasked, finish the game",
     "steps": "-",
     "pass": "The `unasked` version, with the closing line about the coin. Also check the scene itself still ends normally",
@@ -34427,7 +34427,7 @@
    {
     "id": "HH31",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6141,
+    "line": 6142,
     "where": "Not a Knight of Saladin, finish the game",
     "steps": "-",
     "pass": "**No** slide here, and the series carries on",
@@ -34444,7 +34444,7 @@
    {
     "id": "HH32",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6142,
+    "line": 6143,
     "where": "Finish `Hunt down Relican` for Cedric, finish the game",
     "steps": "-",
     "pass": "`900 order relican hunted`, after the Wielder slide. Then cure Brambles too: `hunted cured`",
@@ -34461,7 +34461,7 @@
    {
     "id": "HH33",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6143,
+    "line": 6144,
     "where": "Refuse the ring, finish the game",
     "steps": "-",
     "pass": "`900 order relican refused`. The scene itself must still end normally, and it needs a save that has not yet refused",
@@ -34478,7 +34478,7 @@
    {
     "id": "HH34",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6144,
+    "line": 6145,
     "where": "Cure Brambles, no Cedric, any faction",
     "steps": "-",
     "pass": "`900 order relican cured`",
@@ -34495,7 +34495,7 @@
    {
     "id": "HH35",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6145,
+    "line": 6146,
     "where": "Use the ring and complete Relican's service, with Quinn joined and Leonardo agreed",
     "steps": "-",
     "pass": "`900 order relican dark joined joined`, straight after `900 order wielder ring`",
@@ -34512,7 +34512,7 @@
    {
     "id": "HH36",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6146,
+    "line": 6147,
     "where": "The same, Quinn killed and Leonardo refused",
     "steps": "-",
     "pass": "`dark killed refused`",
@@ -34529,7 +34529,7 @@
    {
     "id": "HH37",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6147,
+    "line": 6148,
     "where": "Use the ring and take no rank from Relican. Then, separately, do none of this",
     "steps": "-",
     "pass": "**No** Relican slide in either case, and the series carries on",
@@ -34546,7 +34546,7 @@
    {
     "id": "HH38",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6148,
+    "line": 6149,
     "where": "Kill the Khan **without** Torquemada's quest, on a save that has not entered the Warrens",
     "steps": "Finish the game",
     "pass": "`900 order goblins khan`. This is the row that proves the flag is in the right slot",
@@ -34563,7 +34563,7 @@
    {
     "id": "HH40",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6150,
+    "line": 6151,
     "where": "Earn `Goblin Slayer`, Khan alive, then return the poems",
     "steps": "Finish the game",
     "pass": "`900 order goblins count poems`",
@@ -34580,7 +34580,7 @@
    {
     "id": "HH41",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6151,
+    "line": 6152,
     "where": "Bring Rakeb the eyes and kill Esteban for the patrol",
     "steps": "Finish the game",
     "pass": "`900 order goblins eyes esteban`, as one slide",
@@ -34597,7 +34597,7 @@
    {
     "id": "HH42",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6152,
+    "line": 6153,
     "where": "Do none of this, in any faction",
     "steps": "Finish the game",
     "pass": "Neither slide, and the series carries on. Then read the Khan's greeting: *Plumdjum*",
@@ -34614,7 +34614,7 @@
    {
     "id": "HH43",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6153,
+    "line": 6154,
     "where": "Give Fawkes the plans, decline the Duke, finish the game",
     "steps": "-",
     "pass": "`900 order england`, unchanged",
@@ -34631,7 +34631,7 @@
    {
     "id": "HH44",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6154,
+    "line": 6155,
     "where": "Lure the Duke to the gunpowder, finish the game",
     "steps": "-",
     "pass": "`900 order england duke`, with the keg line",
@@ -34648,7 +34648,7 @@
    {
     "id": "HH45",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6155,
+    "line": 6156,
     "where": "Kill Fawkes for the Duke of Medina, finish the game",
     "steps": "-",
     "pass": "`900 order spain`, and the England slide does not fire",
@@ -34665,7 +34665,7 @@
    {
     "id": "HH56",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6166,
+    "line": 6167,
     "where": "Finish the game, HH50's character",
     "steps": "Watch the slides",
     "pass": "`900 order inquisition dark`: Raphael in the chair",
@@ -34682,7 +34682,7 @@
    {
     "id": "HH57",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6167,
+    "line": 6168,
     "where": "Finish the game, HH51's, then an outsider who never reached him",
     "steps": "-",
     "pass": "`donated`, then `broken`",
@@ -34699,7 +34699,7 @@
    {
     "id": "HH58",
     "section": "0.95.0 - the hammer of heretics",
-    "line": 6168,
+    "line": 6169,
     "where": "Finish the game, HH55's, member and outsider. Then one who served the cult",
     "steps": "-",
     "pass": "`dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives",
@@ -34716,7 +34716,7 @@
    {
     "id": "XS10",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6415,
+    "line": 6416,
     "where": "**The regression.** Finish the game without breaking it",
     "steps": "-",
     "pass": "No `900 order standard` slide, and Joan's and the golem's usual slides",
@@ -34733,7 +34733,7 @@
    {
     "id": "XS12",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6417,
+    "line": 6418,
     "where": "XS11, then finish the game",
     "steps": "-",
     "pass": "`900 order standard blood`, not the plain slide",
@@ -34750,7 +34750,7 @@
    {
     "id": "SP12",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6505,
+    "line": 6506,
     "where": "Finish the game after SP7, SP8 and SP9 in turn",
     "steps": "Watch the slides",
     "pass": "Exactly one `900 order pits` slide, matching the choice, none if you never decided. With `Fixt Inquisition Hostile` set, no buyer and no Sell reply",
@@ -34786,7 +34786,7 @@
    {
     "id": "XS16",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6420,
+    "line": 6421,
     "where": "**Draught, undisturbed.** Hit a Royal Guardsman, English Captain, English Lieutenant and English Bowmaster to under 40% health, then stop damaging that man for three seconds",
     "steps": "-",
     "pass": "Each logs *\"reaches for a healing draught\"*, stands fidgeting and does not attack or move, then logs *\"drinks a healing draught\"* with visibly more health and the Divine Strength effect, and goes back to fighting. A bowman's fidget is sped up, not cut off",
@@ -34803,7 +34803,7 @@
    {
     "id": "XS17",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6421,
+    "line": 6422,
     "where": "**Draught, spilled.** Same four, but land any hit inside those three seconds",
     "steps": "-",
     "pass": "About 40% of hits log *\"is struck and spills the draught\"*: health does **not** rise, and he attacks again at once rather than finishing the fidget. The rest log *\"takes the blow and keeps drinking\"* and he still heals at the end unless a later hit spills it. Bring him under 40% again: he never reaches for another",
@@ -34820,7 +34820,7 @@
    {
     "id": "XS18",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6422,
+    "line": 6423,
     "where": "**Killing blow.** Take one from above 40% to dead in a single hit, and kill another mid-fidget",
     "steps": "-",
     "pass": "The first plays his death and stays down with no *\"reaches for\"* line; the second stays dead with no heal or effect afterwards",
@@ -34837,7 +34837,7 @@
    {
     "id": "XS15",
     "section": "0.98.0 - the standard at the crossroads",
-    "line": 6419,
+    "line": 6420,
     "where": "**Fresh spawns.** Fight a Royal Guardsman, a Sergeant, a Bowman and a War Golem down past half",
     "steps": "-",
     "pass": "Each ability prints a line in the log naming the enemy and what it did, once per enemy, and no English bark mentions a shield",
@@ -34922,7 +34922,7 @@
    {
     "id": "TS2",
     "section": "0.93.0 - the Templar shields",
-    "line": 6087,
+    "line": 6088,
     "where": "Same",
     "steps": "Take the **Helm of the Templars**, equip it",
     "pass": "Same: it renders at all. It wears `Helmet1`, which is the icon it already had",
@@ -34939,7 +34939,7 @@
    {
     "id": "TS3",
     "section": "0.93.0 - the Templar shields",
-    "line": 6088,
+    "line": 6089,
     "where": "Same",
     "steps": "Equip the helm **and** either Templar shield, and watch AC",
     "pass": "**+4 AC** over wearing one of them. This is `Number of Templar Items == 2` in the AC attribute's own Expression. If AC does not move, the set counter is not seeing both",
@@ -34956,7 +34956,7 @@
    {
     "id": "TS5",
     "section": "0.93.0 - the Templar shields",
-    "line": 6090,
+    "line": 6091,
     "where": "Same",
     "steps": "Take the **Aegis**, compare against the Holy Shield",
     "pass": "Gold cross where the Holy Shield's is red-outlined, brighter steel, and **two gold lions flanking the stem**. Check the inventory icon and the on-body model agree -- both carry lions",
@@ -35058,7 +35058,7 @@
    {
     "id": "HN2",
     "section": "0.99.2 - showing, not telling",
-    "line": 6339,
+    "line": 6340,
     "where": "Any act with the English draught soldiers",
     "steps": "Bring one under 40% health",
     "pass": "`<Reaches for a potion>` appears over him as he starts his fidget",
@@ -35109,7 +35109,7 @@
    {
     "id": "BK7",
     "section": "The buckler",
-    "line": 6042,
+    "line": 6043,
     "where": "**The regression that matters.** Open chests and take shield drops away from merchants",
     "steps": "Watch what shields appear",
     "pass": "Only **Small, Medium and Large**. The buckler is merchant-only by design, so a buckler out of a chest means the `All Shields` can was modified and every drop site in the game is affected",
@@ -35178,7 +35178,7 @@
    {
     "id": "BK1",
     "section": "The buckler",
-    "line": 6035,
+    "line": 6036,
     "where": "Any shield merchant: the Blacksmith, Alvaro at the Crossroads, Mauldo on the Plains, Pierre, Aidan, the Traveling Merchant",
     "steps": "Look at the stock, revisiting if needed",
     "pass": "A **Buckler** appears, at roughly one shield in four. If several merchants across a few visits never show one, the placement did not take",
@@ -35195,7 +35195,7 @@
    {
     "id": "LE6",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6520,
+    "line": 6521,
     "where": "Demonic spirit, karma 800 or below. The dragon warning, and the druid finale",
     "steps": "Take any of the three exits",
     "pass": "*\"Lead the way, O Dark One.\"* and **you get control back**: the node has to end the spirit's scene. Then repeat above 800: unchanged, and exactly **one** copy of each exit is offered",
@@ -35212,7 +35212,7 @@
    {
     "id": "SP1",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6493,
+    "line": 6494,
     "where": "Any `Theif`, `Sewer Theif` or `Assasin`, melee",
     "steps": "Hit one until it drops a patch",
     "pass": "You **see** spikes on the ground. If you see nothing, the model or `Cur Sequence` is wrong",
@@ -35229,7 +35229,7 @@
    {
     "id": "SP2",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6494,
+    "line": 6495,
     "where": "Same",
     "steps": "Stand on the patch",
     "pass": "A hit about a second later, with the Spike Hit effect, and the patch is gone",
@@ -35246,7 +35246,7 @@
    {
     "id": "SP3",
     "section": "0.97.0 - caltrops, and captives in the yard",
-    "line": 6495,
+    "line": 6496,
     "where": "Same",
     "steps": "Step off before the tick",
     "pass": "No damage, and the patch stays armed",
@@ -40703,9 +40703,26 @@
     "old_save": false
    },
    {
+    "id": "ES39e",
+    "section": "0.22.0 - the Talker and the Thief",
+    "line": 5771,
+    "step": "The same with Perception **7 or higher**",
+    "say": "-",
+    "expect": "The same line, then *\"<You notice a small reddish hue in her cheeks.>\"*, and **Grace's Regard** appears. The reply is offered **once**, not twice",
+    "status": "keep",
+    "act": "Anywhere",
+    "map": "",
+    "by": "",
+    "check": "eye",
+    "savecheck": "",
+    "note": "added after the 1.0 classification",
+    "new": false,
+    "old_save": false
+   },
+   {
     "id": "BA26f",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5855,
+    "line": 5856,
     "step": "Keep hitting the same child, or attack a second one after the first",
     "say": "-",
     "expect": "No duplicate grant. Each hook is `COnlyOnce` and the grant checks the perk first",
@@ -40723,7 +40740,7 @@
    {
     "id": "BA22a",
     "section": "0.22.0 - the Talker and the Thief",
-    "line": 5858,
+    "line": 5859,
     "step": "Let your own character be killed by anything, at any point in the game",
     "say": "-",
     "expect": "**No title is granted by dying.** The first pass armed the player's own death by mistake; the hook belongs on the citizen, not on whoever the balloon was talking to",
@@ -40741,7 +40758,7 @@
    {
     "id": "BK2",
     "section": "The buckler",
-    "line": 6036,
+    "line": 6037,
     "where": "Equip it",
     "steps": "Read the character sheet",
     "pass": "**+1 AC, +4 Unarmed, +2 Critical Chance.** No damage resistances at all -- that absence is deliberate, not a missing modifier",
@@ -40758,7 +40775,7 @@
    {
     "id": "BK4",
     "section": "The buckler",
-    "line": 6038,
+    "line": 6039,
     "where": "With it equipped, look at your character",
     "steps": "Compare against a Small Shield",
     "pass": "A **small round buckler**, visibly not the small shield's kite. Its mesh is 30% smaller than the small shield's. If it looks like a kite shield the `Buckler` mesh name did not resolve; if your arm is **empty**, it resolved to nothing, which is what a missing composite registry name does",
@@ -40775,7 +40792,7 @@
    {
     "id": "BK5",
     "section": "The buckler",
-    "line": 6039,
+    "line": 6040,
     "where": "A magic buckler, **Better** grade",
     "steps": "Equip it, and look at the inventory icon too",
     "pass": "A **steel** buckler, in both places -- `BucklerBetter`, authored for this release because the game shipped two skins for three grades. If it shows the copper base in either place, the new art did not reach the build",
@@ -40792,7 +40809,7 @@
    {
     "id": "BK5b",
     "section": "The buckler",
-    "line": 6040,
+    "line": 6041,
     "where": "A magic buckler, **Special** grade",
     "steps": "Equip it",
     "pass": "The **gilded** buckler (`BucklerSpecial`). All three tiers should now read as a material ladder: copper, steel, gold",
@@ -40809,7 +40826,7 @@
    {
     "id": "BK8",
     "section": "The buckler",
-    "line": 6043,
+    "line": 6044,
     "where": "**Judgement, not pass/fail.** Play an unarmed character with and without it",
     "steps": "Compare how fists feel",
     "pass": "It should be a clear upgrade over an empty hand and still not tempt an armed build. If an armed character wants one, +2 crit is too much and should come down",
@@ -40826,7 +40843,7 @@
    {
     "id": "BD1",
     "section": "The bracers",
-    "line": 6052,
+    "line": 6053,
     "where": "Obtain **Bracers of Defense** -- magic bracers from a drop, a chest or a merchant",
     "steps": "Look at them in the inventory",
     "pass": "Their **own** icon, not the plain bracer picture every other pair wears. A blank square means the path did not resolve",
@@ -40843,7 +40860,7 @@
    {
     "id": "BD2",
     "section": "The bracers",
-    "line": 6053,
+    "line": 6054,
     "where": "Hold them beside any **other** magic bracers -- of Archery, of Fire Resistance",
     "steps": "Compare",
     "pass": "Only the Defense pair changed. The others still wear the plain bracer icon, correctly: no art was ever drawn for them",
@@ -40860,7 +40877,7 @@
    {
     "id": "BD3",
     "section": "The bracers",
-    "line": 6054,
+    "line": 6055,
     "where": "**The regression.** Equip them",
     "steps": "-",
     "pass": "Unchanged. This release touches one `Inventory Window` field and nothing else -- no stat, no pool, no drop",
@@ -40877,7 +40894,7 @@
    {
     "id": "OA2",
     "section": "The art that was already there",
-    "line": 6069,
+    "line": 6070,
     "where": "**Amulet of Dour Tidings**",
     "steps": "Look at it in the inventory",
     "pass": "Its own icon, not the green opal it shared with eight other amulets. A blank square means the `Images for RED file/` path did not resolve",
@@ -40894,7 +40911,7 @@
    {
     "id": "OA3",
     "section": "The art that was already there",
-    "line": 6070,
+    "line": 6071,
     "where": "**Gauntlets of La Mancha**",
     "steps": "Compare against an ordinary pair of Gauntlets",
     "pass": "~~A different, spiked icon.~~ **Replaced in 0.92.0 with art painted for it**: the same leather, gilded accents, and a small windmill on the back of each hand. If they look like the Gauntlets of Hellfire without the fire, the 0.90.0 icon is still in the build and the revert did not reach it; if they look like the plain pair, the painted icon did not",
@@ -40911,7 +40928,7 @@
    {
     "id": "OA5",
     "section": "The art that was already there",
-    "line": 6072,
+    "line": 6073,
     "where": "A **Wielder Rod of Spirits**, either version",
     "steps": "**Drop it on the ground**",
     "pass": "Same, and distinct from the Rod of Bone's. Compare against `Scepter of the INQ Chambers`, which already had its own sprite",
@@ -40928,7 +40945,7 @@
    {
     "id": "OA6",
     "section": "The art that was already there",
-    "line": 6073,
+    "line": 6074,
     "where": "**The regression.** Any of the five",
     "steps": "Use it as you would have before",
     "pass": "Unchanged. These edits touch art fields only -- no stat, script, drop or requirement moved. If a rod stopped casting or the amulet stopped granting its bonus, something went wrong that this release had no business touching",
@@ -40945,7 +40962,7 @@
    {
     "id": "TS11d",
     "section": "0.93.0 - the Templar shields",
-    "line": 6099,
+    "line": 6100,
     "where": "Complete *Search for the Five Ways Crystals* as any faction",
     "steps": "-",
     "pass": "Your promotion fires exactly as in vanilla. **No shield appears there any more** -- that grant was removed, and the two maps it lived in are back to their previous state",
@@ -40962,7 +40979,7 @@
    {
     "id": "TS12",
     "section": "0.93.0 - the Templar shields",
-    "line": 6100,
+    "line": 6101,
     "where": "**Judgement, not pass/fail.** Equip the Aegis and let something hit you in melee",
     "steps": "Watch its health",
     "pass": "It should take a visible share back -- 15% -- without the fight becoming trivial. **This number is calibrated against `Dragon Scales` (10%, permanent) and `Backlash` (20-35%, temporary) and has never been measured in play.** If attackers melt, it is too high; if nothing is observable, the attribute may not be read for permanent item modifiers at all",
@@ -40979,7 +40996,7 @@
    {
     "id": "TV1",
     "section": "0.99.17 - the version on the title screen",
-    "line": 6175,
+    "line": 6176,
     "where": "The title screen",
     "steps": "Watch it cycle through all its paintings",
     "pass": "\"Fixt\" and the installed version in the lower right of every one, readable on each",
@@ -40996,7 +41013,7 @@
    {
     "id": "TV2",
     "section": "0.99.17 - the version on the title screen",
-    "line": 6176,
+    "line": 6177,
     "where": "The same, the painting with the menu on the right and low (Background 05)",
     "steps": "Look at the lower right",
     "pass": "The stamp sits below the last button, not under it",
@@ -41013,7 +41030,7 @@
    {
     "id": "GT2",
     "section": "0.99.16 - the tank shows its state",
-    "line": 6183,
+    "line": 6184,
     "where": "The same",
     "steps": "Fit the gear at the tank, step away, walk back",
     "pass": "The seated-ring description, not vanilla's. Works in a save that had already been in the chamber",
@@ -41030,7 +41047,7 @@
    {
     "id": "GT3",
     "section": "0.99.16 - the tank shows its state",
-    "line": 6184,
+    "line": 6185,
     "where": "The same, after DaVinci has the spirit gem",
     "steps": "Walk up to the tank",
     "pass": "\"Something inside the hull is awake... DaVinci has finished it.\"",
@@ -41047,7 +41064,7 @@
    {
     "id": "WF25",
     "section": "0.99.15 - the oath pays",
-    "line": 6190,
+    "line": 6191,
     "where": "The Plateau, a save that has not entered it",
     "steps": "Kill a knight and read the log; hover several",
     "pass": "187 XP a knight; at Act 4 strength they are the Super tier, noticeably harder than before",
@@ -41064,7 +41081,7 @@
    {
     "id": "WF26",
     "section": "0.99.15 - the oath pays",
-    "line": 6191,
+    "line": 6192,
     "where": "The Plateau, sworn",
     "steps": "Kill Jehanne",
     "pass": "\"The door is open. Your side of the Bonecaller's bargain is kept.\" and 5,000 XP; the pillar door opens",
@@ -41081,7 +41098,7 @@
    {
     "id": "WF27",
     "section": "0.99.15 - the oath pays",
-    "line": 6192,
+    "line": 6193,
     "where": "The Burial Chamber, sworn, Speech 110",
     "steps": "Put off the debt with the lie",
     "pass": "2,500 XP",
@@ -41098,7 +41115,7 @@
    {
     "id": "WF28",
     "section": "0.99.15 - the oath pays",
-    "line": 6193,
+    "line": 6194,
     "where": "The door, a Templar",
     "steps": "Be recruited, then give the order's word; talk to a knight again",
     "pass": "+1 tide, the reserve comes up at once; the reply is gone the second time. The herald offers a Templar refusal; sworn, Jehanne answers \"I wear the same cross\" with \"sold it as well as worn it\"",
@@ -41115,7 +41132,7 @@
    {
     "id": "WF29",
     "section": "0.99.15 - the oath pays",
-    "line": 6194,
+    "line": 6195,
     "where": "The Bonecaller, a Wielder with the Necromancer title, Karma 600 or more",
     "steps": "\"You will follow me\"",
     "pass": "It takes the new hand; the oath's effects follow; in the Burial Chamber, taking the Lance calls no debt",
@@ -41132,7 +41149,7 @@
    {
     "id": "WF30",
     "section": "0.99.15 - the oath pays",
-    "line": 6195,
+    "line": 6196,
     "where": "The Bonecaller, a Wielder without the title",
     "steps": "At the binding, change take to keep",
     "pass": "4,000 XP; the dead and the knights stop fighting; clicks answer with the new order; striking one starts the war again; Jehanne opens with her sword down",
@@ -41149,7 +41166,7 @@
    {
     "id": "WF31",
     "section": "0.99.15 - the oath pays",
-    "line": 6196,
+    "line": 6197,
     "where": "The same, then the Ante Chamber, the Burial Chamber and the Efreeti",
     "steps": "Walk in, click the dead, then free the knights",
     "pass": "\"The word has come down ahead of you\" prints in each chamber and the dead keep; the Efreeti gives the peace line, not the tide's",
@@ -41166,7 +41183,7 @@
    {
     "id": "WF32",
     "section": "0.99.15 - the oath pays",
-    "line": 6197,
+    "line": 6198,
     "where": "The door, an Inquisitor",
     "steps": "Condemn the hill",
     "pass": "The alarm; the Bonecaller offers no bargain and fights; with Jehanne and it both dead, 4,000 XP",
@@ -41183,7 +41200,7 @@
    {
     "id": "WF33",
     "section": "0.99.15 - the oath pays",
-    "line": 6198,
+    "line": 6199,
     "where": "The Efreeti, a Knight of Saladin",
     "steps": "Ask for the wish your elder should have made",
     "pass": "Pick a stat; the knights are freed and the stat rises",
@@ -41200,7 +41217,7 @@
    {
     "id": "WF1",
     "section": "0.99.14 - the war you can see",
-    "line": 6206,
+    "line": 6207,
     "where": "The Doomed Plateau, from Retreat of Souls",
     "steps": "Walk west past the knights fighting at the door",
     "pass": "\"One of the dead steps out of the horde...\" prints, and the Herald of the Bonecaller comes up and its conversation opens by itself, asking whether you will come",
@@ -41217,7 +41234,7 @@
    {
     "id": "WF2",
     "section": "0.99.14 - the war you can see",
-    "line": 6207,
+    "line": 6208,
     "where": "The same",
     "steps": "Accept, and walk among the dead to the Bonecaller",
     "pass": "\"The dead let you pass\" prints; no undead attacks you or your companions, and your companions do not attack them. Note any that do, by hover name",
@@ -41234,7 +41251,7 @@
    {
     "id": "WF3",
     "section": "0.99.14 - the war you can see",
-    "line": 6208,
+    "line": 6209,
     "where": "The same, during the truce",
     "steps": "Strike one of the dead",
     "pass": "\"You struck one of the dead...\" prints and the horde turns on you",
@@ -41251,7 +41268,7 @@
    {
     "id": "WF4",
     "section": "0.99.14 - the war you can see",
-    "line": 6209,
+    "line": 6210,
     "where": "Near the Bonecaller",
     "steps": "Walk up to it",
     "pass": "It calls you over in a balloon, does not attack you, and a click opens its conversation rather than a fight",
@@ -41268,7 +41285,7 @@
    {
     "id": "WF5",
     "section": "0.99.14 - the war you can see",
-    "line": 6210,
+    "line": 6211,
     "where": "Its conversation",
     "steps": "Choose \"You said something that is not a sword. Name it.\"",
     "pass": "It makes its offer; with Karma under 600 you can accept it",
@@ -41285,7 +41302,7 @@
    {
     "id": "WF6",
     "section": "0.99.14 - the war you can see",
-    "line": 6211,
+    "line": 6212,
     "where": "The same, Speech 110 or Divine 80",
     "steps": "Release it",
     "pass": "\"The truce is over\" prints; the horde turns on it and on you, and it fights them",
@@ -41302,7 +41319,7 @@
    {
     "id": "WF7",
     "section": "0.99.14 - the war you can see",
-    "line": 6212,
+    "line": 6213,
     "where": "The same, Karma under 600",
     "steps": "Swear to it, then walk the rest of the map; later talk to the knights in Retreat of Souls or the Garrison Camp",
     "pass": "The dead leave you alone for the rest of the map; no knight offers the \"Are you a Knight?\" recruitment; the Efreeti later says the knights were freed into a ruin",
@@ -41319,7 +41336,7 @@
    {
     "id": "WF8",
     "section": "0.99.14 - the war you can see",
-    "line": 6213,
+    "line": 6214,
     "where": "The herald",
     "steps": "Refuse it",
     "pass": "It turns and fights; the Bonecaller still holds its fire and can be talked to",
@@ -41336,7 +41353,7 @@
    {
     "id": "WF9",
     "section": "0.99.14 - the war you can see",
-    "line": 6214,
+    "line": 6215,
     "where": "Misc Crypt 1 or 2 before the Plateau",
     "steps": "Bar the rear door or bolt the stone door, then walk onto the Plateau",
     "pass": "\"Knights come up from the rear of the keep...\" prints, and three more knights stand forward of the line",
@@ -41353,7 +41370,7 @@
    {
     "id": "WF10",
     "section": "0.99.14 - the war you can see",
-    "line": 6215,
+    "line": 6216,
     "where": "Misc Crypt 3 or 4, entered from the Plateau",
     "steps": "Open the walls or the crypts, so the tide is below zero, and walk back onto the Plateau",
     "pass": "\"The dead from the opened crypts...\" prints; two knights of the line fall at once and new dead come up behind it",
@@ -41370,7 +41387,7 @@
    {
     "id": "WF11",
     "section": "0.99.14 - the war you can see",
-    "line": 6216,
+    "line": 6217,
     "where": "The middle of the Plateau, about x 3000",
     "steps": "Watch the line without fighting for a minute",
     "pass": "Knights and undead fight each other. Note how fast the line wears down",
@@ -41387,7 +41404,7 @@
    {
     "id": "WF12",
     "section": "0.99.14 - the war you can see",
-    "line": 6217,
+    "line": 6218,
     "where": "Jehanne's fight scene",
     "steps": "Play it through",
     "pass": "It completes as before",
@@ -41404,7 +41421,7 @@
    {
     "id": "WF14",
     "section": "0.99.14 - the war you can see",
-    "line": 6218,
+    "line": 6219,
     "where": "During the truce",
     "steps": "Click several of the dead, before and after swearing to the Bonecaller",
     "pass": "Each answers in a balloon and none attacks; before swearing they send you to him, after it they tell you to keep your word. After the truce ends, a click attacks again",
@@ -41421,7 +41438,7 @@
    {
     "id": "WF15",
     "section": "0.99.14 - the war you can see",
-    "line": 6219,
+    "line": 6220,
     "where": "The door, during the truce",
     "steps": "Watch the door as you accept the herald, then click the knight at the door",
     "pass": "He shouts \"The dead are letting it walk!\"; the click opens his challenge, not his usual line",
@@ -41438,7 +41455,7 @@
    {
     "id": "WF16",
     "section": "0.99.14 - the war you can see",
-    "line": 6220,
+    "line": 6221,
     "where": "His challenge",
     "steps": "Try each answer (reload between)",
     "pass": "Speech 100 lie and \"I will go\" leave him wary but peaceful; the other two set the door's knights, Joan and her line on you; the pillar door still opens when Joan falls",
@@ -41455,7 +41472,7 @@
    {
     "id": "WF17",
     "section": "0.99.14 - the war you can see",
-    "line": 6221,
+    "line": 6222,
     "where": "The tide below zero by swearing only, no crypt or wall opened",
     "steps": "Walk through a tide trigger after swearing",
     "pass": "The slip line credits the Bonecaller, not opened galleries; with a gallery opened and no oath, it names the galleries",
@@ -41472,7 +41489,7 @@
    {
     "id": "WF18",
     "section": "0.99.14 - the war you can see",
-    "line": 6222,
+    "line": 6223,
     "where": "During the truce, without having answered the Bonecaller",
     "steps": "Walk up to the knights' line",
     "pass": "\"You walked past him without a word...\" prints and the dead turn on you. Sworn, nothing happens",
@@ -41489,7 +41506,7 @@
    {
     "id": "WF19",
     "section": "0.99.14 - the war you can see",
-    "line": 6223,
+    "line": 6224,
     "where": "The Burial Chamber, sworn, a save that has not entered it",
     "steps": "Take the Lance, with the Bonecaller still alive on the Plateau",
     "pass": "\"Something has followed you down\" prints; the herald comes and asks for the spear. Speech 110 lie: it lets you go. Refuse: it and three groups of dead come for you",
@@ -41506,7 +41523,7 @@
    {
     "id": "WF20",
     "section": "0.99.14 - the war you can see",
-    "line": 6224,
+    "line": 6225,
     "where": "The Bonecaller",
     "steps": "Read its Speech reply",
     "pass": "\"Two hundred years of the same order\"",
@@ -41523,7 +41540,7 @@
    {
     "id": "WF21",
     "section": "0.99.14 - the war you can see",
-    "line": 6225,
+    "line": 6226,
     "where": "The Plateau, sworn",
     "steps": "Go to Jehanne, before and after meeting her",
     "pass": "She opens with \"You smell of him\" and offers only to draw or to let you go; drawing starts her fight, and the pillar door opens when she falls",
@@ -41540,7 +41557,7 @@
    {
     "id": "WF22",
     "section": "0.99.14 - the war you can see",
-    "line": 6226,
+    "line": 6227,
     "where": "The Plateau, Jehanne a companion",
     "steps": "Swear to the Bonecaller",
     "pass": "She leaves the party and turns on you with her vanilla line",
@@ -41557,7 +41574,7 @@
    {
     "id": "WF23",
     "section": "0.99.14 - the war you can see",
-    "line": 6227,
+    "line": 6228,
     "where": "The Ante Chamber and the Burial Chamber, sworn, saves that have not entered them",
     "steps": "Enter, click the dead, then strike one",
     "pass": "\"The dead here know whose word you carry\" prints; they leave you alone and answer a click; striking one turns that map's dead on you. In the Burial Chamber, refusing the debt does the same",
@@ -41574,7 +41591,7 @@
    {
     "id": "WF24",
     "section": "0.99.14 - the war you can see",
-    "line": 6228,
+    "line": 6229,
     "where": "The Plateau, not sworn",
     "steps": "Kill the Bonewright, then walk away from where it stood; repeat for the Sergeant",
     "pass": "\"Knights come up behind you...\" prints and two knights stand on the spot. With the tide at zero before, the line now holds on the same walk",
@@ -41591,7 +41608,7 @@
    {
     "id": "WF13",
     "section": "0.99.14 - the war you can see",
-    "line": 6229,
+    "line": 6230,
     "where": "The Revenant Sergeant, truce not taken",
     "steps": "Watch it, then bring it below two thirds yourself",
     "pass": "It fights the knights and ignores you, then whistles and comes for you; below a third it fights only you",
@@ -41608,7 +41625,7 @@
    {
     "id": "JC1",
     "section": "0.99.13 - what the Plateau playtest found",
-    "line": 6235,
+    "line": 6236,
     "where": "The Doomed Plateau, before meeting the Spirit Council",
     "steps": "Talk to Jehanne through every branch",
     "pass": "No reply says you have spoken to her Council; after meeting the Council, those replies appear",
@@ -41625,7 +41642,7 @@
    {
     "id": "BW1",
     "section": "0.99.13 - what the Plateau playtest found",
-    "line": 6236,
+    "line": 6237,
     "where": "The Doomed Plateau, a save that has not entered it",
     "steps": "Hover the captain that raises the dead, and read the log as you fight it",
     "pass": "It is named Bonewright, on hover and in the log; its opening line names no standard",
@@ -41642,7 +41659,7 @@
    {
     "id": "BW2",
     "section": "0.99.13 - what the Plateau playtest found",
-    "line": 6237,
+    "line": 6238,
     "where": "The same",
     "steps": "Let it raise a few, then kill it",
     "pass": "The risen fall with it at once, and the line says so",
@@ -41659,7 +41676,7 @@
    {
     "id": "BW3",
     "section": "0.99.13 - what the Plateau playtest found",
-    "line": 6238,
+    "line": 6239,
     "where": "Retreat of Souls",
     "steps": "Meet the Lance's guardian",
     "pass": "It is still the Second Guardian, unchanged",
@@ -41676,7 +41693,7 @@
    {
     "id": "RS1",
     "section": "0.99.13 - what the Plateau playtest found",
-    "line": 6239,
+    "line": 6240,
     "where": "The Doomed Plateau, a save that has not entered it",
     "steps": "Find the Revenant Sergeant",
     "pass": "It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant. On 0.99.13 it attacks you from the start: it could not reach a knight. 0.99.14 fixes that (WF13)",
@@ -41693,7 +41710,7 @@
    {
     "id": "RS2",
     "section": "0.99.13 - what the Plateau playtest found",
-    "line": 6240,
+    "line": 6241,
     "where": "The same",
     "steps": "Bring it below two thirds of its health yourself",
     "pass": "The whistle line, and undead that were idle nearby come for you, besides the escort that appears. Note if they go for the knights instead",
@@ -41710,7 +41727,7 @@
    {
     "id": "HW3",
     "section": "0.99.13 - what the Plateau playtest found",
-    "line": 6241,
+    "line": 6242,
     "where": "Caverns of Nostradamus, a map not yet entered",
     "steps": "Read the ward line, then kill the Acolytes but leave a Hujark Shaman alive",
     "pass": "The line names shamans and acolytes; the ward holds until the last caster of either kind falls",
@@ -41727,7 +41744,7 @@
    {
     "id": "AL2",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6248,
+    "line": 6249,
     "where": "The same",
     "steps": "Retreat well out of their bow range",
     "pass": "They follow you, then stop and shoot again once in range",
@@ -41744,7 +41761,7 @@
    {
     "id": "DW1",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6249,
+    "line": 6250,
     "where": "Doomed Plateau, first visit (kit: \"The Doomed Plateau\")",
     "steps": "Walk west along the path until a skeleton named Deathwatch sees you",
     "pass": "The log prints \"The Deathwatch raises the alarm!\", and within a few seconds a few undead arrive from the north that had not been fighting",
@@ -41761,7 +41778,7 @@
    {
     "id": "DW2",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6250,
+    "line": 6251,
     "where": "The same, new attempt",
     "steps": "Kill the Deathwatch before it notices you (from behind, or sneaking)",
     "pass": "No alarm line; the northern undead stay where they are",
@@ -41778,7 +41795,7 @@
    {
     "id": "DW3",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6251,
+    "line": 6252,
     "where": "The same",
     "steps": "Approach it head-on in the open",
     "pass": "It does not see you until you are well on screen",
@@ -41795,7 +41812,7 @@
    {
     "id": "DW4",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6252,
+    "line": 6253,
     "where": "The same, after an alarm",
     "steps": "Find and talk to the Bonecaller",
     "pass": "It still talks; the alarm did not pull it into the fight",
@@ -41812,7 +41829,7 @@
    {
     "id": "HM1",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6253,
+    "line": 6254,
     "where": "Any merchant or loot with magic helmets",
     "steps": "Find a Helmet of the Watch, read it, wear it",
     "pass": "It says it does not reduce sight; with it on, the clear area around you is as large as with no helmet",
@@ -41829,7 +41846,7 @@
    {
     "id": "HM2",
     "section": "0.99.12 - the probe: archers who hold, and a sentry",
-    "line": 6254,
+    "line": 6255,
     "where": "The same",
     "steps": "Wear a Helmet of Farsight",
     "pass": "The clear area is visibly larger than with no helmet at all",
@@ -41846,7 +41863,7 @@
    {
     "id": "FB2",
     "section": "0.99.11 - falling back",
-    "line": 6261,
+    "line": 6262,
     "where": "The same",
     "steps": "Chase and hit him as he runs",
     "pass": "He keeps running; he can be killed on the way",
@@ -41863,7 +41880,7 @@
    {
     "id": "FB3",
     "section": "0.99.11 - falling back",
-    "line": 6262,
+    "line": 6263,
     "where": "The same, with the room's druids dead",
     "steps": "Wound a soldier badly",
     "pass": "He does not run; he fights on",
@@ -41880,7 +41897,7 @@
    {
     "id": "FB4",
     "section": "0.99.11 - falling back",
-    "line": 6263,
+    "line": 6264,
     "where": "The same",
     "steps": "Watch every soldier who ran",
     "pass": "Every one comes back and fights again; none stands idle by a post. Report any that does, with the map",
@@ -41897,7 +41914,7 @@
    {
     "id": "BF3",
     "section": "0.99.10 - what the re-score found",
-    "line": 6271,
+    "line": 6272,
     "where": "The same",
     "steps": "Watch the stood-down men",
     "pass": "None of them is a Priest wearing a soldier's waking line",
@@ -41914,7 +41931,7 @@
    {
     "id": "LE12",
     "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-    "line": 6526,
+    "line": 6527,
     "where": "**Judgement.** Read the Demonic split beside vanilla",
     "steps": "Does *\"Dark One\"* land at 800, or does it want a lower bar?",
     "pass": "Karma 1000 is neutral and 0 is the worst there is, so 800 is a moderately bad character. Each of the three exits carries the number twice, in `tools/build_loose_ends.py`",
@@ -41931,7 +41948,7 @@
    {
     "id": "WM1",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6548,
+    "line": 6549,
     "where": "**The row that matters.** Any magic melee weapon, from a drop or a merchant",
     "steps": "Read its name and tooltip",
     "pass": "It has an **enchantment name and a working effect** -- *Long Sword of Snakebiting*, not a bare *Long Sword*. If magic melee weapons have stopped rolling enchantments, the per-base group tree is broken and nothing else in this release matters",
@@ -41948,7 +41965,7 @@
    {
     "id": "WM2",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6549,
+    "line": 6550,
     "where": "A **Better** magic long sword, equipped",
     "steps": "Compare against a plain one in hand",
     "pass": "The blade is visibly a different, fancier mesh. Both at the same size: the family shares `Render Scaling=0.55`, so the variant reads about 12% longer and no more",
@@ -41965,7 +41982,7 @@
    {
     "id": "WM3",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6550,
+    "line": 6551,
     "where": "A **Special** magic long sword, equipped",
     "steps": "Compare against plain and Better",
     "pass": "A third distinct mesh, not a repeat of either",
@@ -41982,7 +41999,7 @@
    {
     "id": "WM4",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6551,
+    "line": 6552,
     "where": "A **Special** magic scimitar, on a **male** character",
     "steps": "Equip it and look at the blade",
     "pass": "It **appears**, and the blade hangs **down**. Both halves are fixes: the mesh was absent from the male registry so it rendered nothing, and the art itself was rotated. If it appears blade-up the rotation axis is wrong; if it does not appear, the registry patch did not take",
@@ -41999,7 +42016,7 @@
    {
     "id": "WM5",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6552,
+    "line": 6553,
     "where": "A **Better** magic war hammer, on a **male** character",
     "steps": "Equip it",
     "pass": "It appears. This is the second registry entry, and unlike the scimitar its art needed no rotation",
@@ -42016,7 +42033,7 @@
    {
     "id": "WM6",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6553,
+    "line": 6554,
     "where": "A **Great Mace**, magic or not",
     "steps": "Look at it in hand",
     "pass": "It is **the size it has always been**. An early build of this release shrank it 11% on a pattern match and that was reverted, so a Great Mace that looks smaller than you remember means the revert did not reach the build. A magic one still rolls enchantments but shows no mesh change, because no Great variant art exists",
@@ -42033,7 +42050,7 @@
    {
     "id": "WM7",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6554,
+    "line": 6555,
     "where": "A **Better or Special** magic **Composite** Long Bow",
     "steps": "Compare against a plain Composite Long Bow",
     "pass": "Same mesh, `BowSpecial`. The Composite's own base art is the best bow in the game, so its copies name `BowSpecial` at both tiers rather than downgrading it to `BowBetter`. **The grade is the whole row.** A Composite carrying a Basic addition such as `of Dodging` has already been held in play and looked right, but Basic additions name no mesh, so that proves only that the Composite's pool delivers. Confirm the enchantment is Better or Special before reading anything into the model",
@@ -42050,7 +42067,7 @@
    {
     "id": "WM8",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6555,
+    "line": 6556,
     "where": "A **Better** magic **plain** Long Bow",
     "steps": "Compare against a plain Long Bow",
     "pass": "A different mesh at **the same size**. It rendered 1.8x oversize before the scaling fix, so an obviously huge bow means the `MODEL.TXT` edit did not reach the build",
@@ -42067,7 +42084,7 @@
    {
     "id": "WM10",
     "section": "The twenty-one meshes, and the pools that deliver them",
-    "line": 6557,
+    "line": 6558,
     "where": "**Judgement, not pass/fail.** Collect magic weapons over a stretch of play",
     "steps": "Watch the variety of enchantments",
     "pass": "It should feel unchanged. Each base weapon's pool is asserted to keep vanilla's 3/20/6 shape with nothing double-weighted, so any felt change in variety is worth reporting as a surprise",
@@ -42084,7 +42101,7 @@
    {
     "id": "S2",
     "section": "Gate 4 - regression and stability",
-    "line": 6564,
+    "line": 6565,
     "check": "eye",
     "pass": "No conflict on any shared file",
     "act": "Anywhere",
@@ -42099,7 +42116,7 @@
    {
     "id": "S3",
     "section": "Gate 4 - regression and stability",
-    "line": 6565,
+    "line": 6566,
     "check": "eye",
     "pass": "Clean",
     "act": "Anywhere",
@@ -42831,7 +42848,7 @@
   {
    "id": "CR1",
    "section": "0.22.0 - the Talker and the Thief",
-   "line": 5894,
+   "line": 5895,
    "step": "Crypt, reach a talking Templar knight (`7 Doomed Plateau` or `9 Burial Chamber`), answer that you are a Knight or will help",
    "say": "*\"Then I am at your orders. Where is she?\"*",
    "expect": "The journal opens **Release the Doomed Knights from their Torment** at state 1. Before this release the quest had no states at all",
@@ -42849,7 +42866,7 @@
   {
    "id": "MO31",
    "section": "0.22.0 - the Talker and the Thief",
-   "line": 5923,
+   "line": 5924,
    "step": "Montaillou, accept the Inquisitor's witch task, find the weird woman, return to the Bishop",
    "say": "*\"I have found the witch you seek...\"*",
    "expect": "The reply appears, the quest completes and pays XP. **It was gated on an empty canned object belonging to another NPC; if it never appeared before this release, that is the bug this fixed**",
@@ -42867,7 +42884,7 @@
   {
    "id": "GD1",
    "section": "0.22.0 - the Talker and the Thief",
-   "line": 5933,
+   "line": 5934,
    "step": "Gate District, Farshad, as a Knight of Saladin (male and female)",
    "say": "Talk to him after joining",
    "expect": "`3 Return Knight of Saladin Male` / `3 Retun Knight of Saladin Sister` -- the two \"Welcome into the Order of Saladin\" greetings. **Before this release his check pointed at a can that does not exist, so every player got the stranger's opening**",
@@ -42885,7 +42902,7 @@
   {
    "id": "TO32",
    "section": "0.22.0 - the Talker and the Thief",
-   "line": 5942,
+   "line": 5943,
    "step": "Toulouse, kill the titans or hand over the mneme, then watch the camp empty",
    "say": "-",
    "expect": "Menoetius leaves with the rest. **Before this release his generator named him Rhea, so he stayed behind while one of the two Rheas vanished**",
@@ -42903,7 +42920,7 @@
   {
    "id": "MO33",
    "section": "0.22.0 - the Talker and the Thief",
-   "line": 5945,
+   "line": 5946,
    "step": "**End Toulouse any of the three ways, then return to Montaillou**",
    "say": "Tell the mayor, Maury, and a gate knight",
    "expect": "`941 the titans have left`, `270 the road is quiet`, `110 the titans have left`. **Before this release the cross-map flag had no part to land on, so none of the village could be told**",
@@ -42921,7 +42938,7 @@
   {
    "id": "OA1",
    "section": "The art that was already there",
-   "line": 6068,
+   "line": 6069,
    "where": "**Nightshade Root**, from the hangover-cure chain",
    "steps": "Hold it beside **Darkwood** in the inventory",
    "pass": "They are **different icons**. Before this release both wore Darkwood's. If Nightshade Root is blank, `Quest Items/Rare Herb` did not resolve",
@@ -42938,7 +42955,7 @@
   {
    "id": "OA4",
    "section": "The art that was already there",
-   "line": 6071,
+   "line": 6072,
    "where": "A **Wielder Rod of Bone**, either version",
    "steps": "**Drop it on the ground**",
    "pass": "Its own sprite, not the generic wand. The inventory icon was already correct before this release, so the inventory tells you nothing here -- it has to be dropped",
@@ -42955,7 +42972,7 @@
   {
    "id": "TS1",
    "section": "0.93.0 - the Templar shields",
-   "line": 6086,
+   "line": 6087,
    "where": "Playtest kit, *The Templar shields*",
    "steps": "Take the **Spirit Templar Shield**, equip it",
    "pass": "Something appears on your character. Before this release it rendered **nothing**. It should be the wooden crusader-cross shield, matching its own inventory icon -- *not* the gold Lion Shield, which was the first fix and was wrong",
@@ -42972,7 +42989,7 @@
   {
    "id": "HH39",
    "section": "0.95.0 - the hammer of heretics",
-   "line": 6149,
+   "line": 6150,
    "where": "Kill the Khan for Torquemada, on an older save",
    "steps": "Finish the game",
    "pass": "The same slide, through the quest state",
@@ -42989,7 +43006,7 @@
   {
    "id": "AT4",
    "section": "0.99.0 - Alamut",
-   "line": 6351,
+   "line": 6352,
    "where": "Act 8, Goblin Champion, having killed the Khan before Persia",
    "steps": "Enter Desert Sprawl",
    "pass": "The Khan does not appear. Likewise Grumdjum, if he died earlier. A save that killed them before this release still shows them",
@@ -43006,7 +43023,7 @@
   {
    "id": "LE13",
    "section": "0.94.0 - four lines that were one wire away, and monks under the cathedral",
-   "line": 6527,
+   "line": 6528,
    "where": "Barcelona Cathedral, walk down into the crypt",
    "steps": "Stand there a full 2:18",
    "pass": "The monks fade in as the cathedral's ambience fades out, and the loop point is not jarring. **Note whether this save had already entered the crypt.** If an old save keeps the cathedral loop and a fresh one chants, the mix is frozen into the save and the release notes must say so",
@@ -43023,7 +43040,7 @@
   {
    "id": "WM9",
    "section": "The twenty-one meshes, and the pools that deliver them",
-   "line": 6556,
+   "line": 6557,
    "where": "**The regression.** Load a save from 0.88.2 or earlier that holds a magic melee weapon",
    "steps": "Look at it",
    "pass": "It still has its enchantment and its effect. The 29 original additions were deliberately kept and repointed rather than deleted, because saves reference them by path -- if an old magic weapon has lost its enchantment, that decision failed",
