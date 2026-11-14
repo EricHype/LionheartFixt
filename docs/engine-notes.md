@@ -1125,3 +1125,12 @@ sees you before you see it, by 90 to 195 units: an enemy you are meant to spot f
 ## A click reads the first specifier
 
 A click uses the first `CAIInteractionSpecifier` on the entity (`0x46b0f0`, through the entity vtable at `+0x120`). Every monster can already carries `GetCloseThenTriggerAndFight` (all 49 English cans), so a `CAddAIAction` adds a second one that nothing ever reads. Remove first, then add, as vanilla does for its customers, and when he turns hostile again put the fight specifier back, because a creature with none cannot be clicked at all. `GetCloseThenTalk` has `Fight When Attack Is Forced=1`, so force attack still works on him.
+
+## No script can print a number
+
+`CPrintCombatTextAction`'s execute (`0x586c40`) hands a pointer to its own `Text to print` straight to the combat log writer (`0x584c40` -> `0x585a80` -> `0x585eb0` -> `0x586080`), which word-wraps it to the dialog font, splits it on newlines and keeps the last 60 lines. `Emphasize` only picks the log category (`Event`, or 5 when emphasized). The `%s[Name]` strings the combat log uses (`%s[Attacker] hit %s[Defender] for %s[Damage]`, `%s[ItemName] added to inventory`) are formatter objects built at startup (`0x493350` for the item one) whose values the engine's C++ fills in; nothing in a script action's path calls one, so a placeholder in script text prints as typed. To show a value, write every value out as its own line and pick one with comparisons, as `tools/build_companion_report.py` does.
+
+## A canned action keeps its caller's context
+
+`CUseCannedActionAction`'s execute (`0x4f8160`) loads the can once, caches it on the action (`+0xc`), and calls the canned action's own execute (vtable `+0x74`, through `0x41e6b0`) with the same four context arguments it received. So `$Trigger` and `$Instigator` inside a can mean whatever they meant where `CUseCannedActionAction` ran: in a reply of `Generic Companion Dialog`, the companion clicked and the player.
+

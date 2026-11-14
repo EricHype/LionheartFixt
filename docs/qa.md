@@ -1834,7 +1834,7 @@ predates them.
 
 | # | Step | Say | Expect |
 |---|---|---|---|
-| HV1 | Click a companion to open the order menu | How are you holding up? | The conversation closes and the combat log carries **one line from each group**: how hurt, `Experience: level N`, `Health at full strength: X to Y`, a best-weapon line, `Fighting skill: A to B`. Five lines, no duplicates within a group |
+| HV1 | Click a companion to open the order menu | How are you holding up? | The conversation closes and the combat log carries **one line from each group**: how hurt, `Health at full strength: N.`, `Armor class: N.`, a best-weapon line, `Fighting skill: N.` Five lines, no duplicates within a group. **Updated 0.99.21:** the ranges became exact numbers and armor was added (CX1); `Experience: level N` was cut long before |
 | HV2 | HV1 at full health | - | `Not a scratch on me.` and nothing else from the health group |
 | HV3 | **PASSED.** Open the order menu to sync the label, then heal the companion past 75% and open it again | - | `Fang (Injured)` and then plain `Fang`. Confirmed in play: *"the injured status was there and then got removed after healing"*. **`CSetCharacterDisplayNameAction` is repeatable** -- it fired twice on one entity in both directions, which no vanilla use does; all six rename the player once inside a conversation |
 | HV4 | Drive the same companion below 40%, then below 15% | - | `(Badly Injured)` then `(Near Death)`. Healing back up walks the same three states in reverse |
@@ -6168,6 +6168,22 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH57 | Finish the game, HH51's, then an outsider who never reached him | - | `donated`, then `broken` |
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
+
+## 0.99.21 - companions say what they are
+
+Both halves reach an existing save. The report is a reply in `Generic Companion Dialog` calling four cans, and the
+level-up line is the balloon text the already-armed growth watcher names by reference.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CX1 | Any companion | Order menu, *How are you holding up?* | Exact numbers, no ranges: the hurt line, `Health at full strength: N.`, `Armor class: N.`, the best-weapon line, `Fighting skill: N.` Five lines |
+| CX2 | Fernand, before and after one level-up | CX1, level up, CX1 again | Health **+9**, armor **+8**, fighting skill **+3**. Health rises **+14** on the level his one-handed skill reaches 50, because the HP formula itself adds 5 at 50 (and again at 100, 150...). Fernand is at 47 in the current saves, so his next level is that one |
+| CX3 | The same level-up | Watch Fernand when the level arrives | His balloon reads *"A sailor learns or a sailor drowns. I have been learning. <+9 health, +8 armor, +3 fighting skill>"*, and the same line is in the combat log afterwards |
+| CX4 | **A save from before this release**, with a companion along | Level up | CX3's line with the gains on the end. The watcher armed long ago is saved inline in the save, but the balloon it shows loads from data.dat, so the new text must appear anyway |
+| CX5 | Bishop Diego or Darsh | CX1 | A sixth line, `Celestial Smite: N.`, and after a level-up it is 3 higher. Their balloon says `+3 Celestial Smite`, not fighting skill |
+| CX6 | **Negative.** Any companion other than Diego or Darsh | CX1 | No `Celestial Smite` line at all, not `Celestial Smite: 0.` |
+| CX7 | Two different companions in a row | CX1 on each | Each report describes the companion clicked. The lookups run in cans, and `$Trigger` must still be the clicked companion there (the exe forwards the reply's context into a canned action, 0x4f8160) |
+| CX8 | Grace, Joan, Sir Roger, the Knight of Saladin, Grumdjum | Level up with one along | Their balloon ends `<+5 health, +3 armor, +1 fighting skill>`. A companion who fights at range may show no change in `Fighting skill`, because the grant is one-handed skill and the report shows the best of three |
 
 ## 0.99.20 - caltrops at ankle height
 

@@ -1,0 +1,6905 @@
+CCannedObject
+{
+	Object=CIfExpressionAction
+	{
+		If Expression=CIsLessThan
+		{
+			Operand1=CVariableSkill
+			{
+				Skill=Skills/Magic Divine/Offensive/Celestial Smite
+			}
+			Operator=
+			Operand2=CConstant
+			{
+				Constant Value=1
+			}
+		}
+		Character to get attributes from=$Trigger
+		Then=
+		Else=CIfExpressionAction
+		{
+			If Expression=CIsLessThan
+			{
+				Operand1=CVariableSkill
+				{
+					Skill=Skills/Magic Divine/Offensive/Celestial Smite
+				}
+				Operator=
+				Operand2=CConstant
+				{
+					Constant Value=151
+				}
+			}
+			Character to get attributes from=$Trigger
+			Then=CIfExpressionAction
+			{
+				If Expression=CIsLessThan
+				{
+					Operand1=CVariableSkill
+					{
+						Skill=Skills/Magic Divine/Offensive/Celestial Smite
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=76
+					}
+				}
+				Character to get attributes from=$Trigger
+				Then=CIfExpressionAction
+				{
+					If Expression=CIsLessThan
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Divine/Offensive/Celestial Smite
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=38
+						}
+					}
+					Character to get attributes from=$Trigger
+					Then=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=19
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=10
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=5
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=3
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=2
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 1.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 2.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=4
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 3.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 4.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=7
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=6
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 5.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 6.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=8
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 7.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=9
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 8.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 9.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=14
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=12
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=11
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 10.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 11.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=13
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 12.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 13.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=16
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=15
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 14.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 15.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=17
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 16.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=18
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 17.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 18.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=28
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=23
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=21
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=20
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 19.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 20.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=22
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 21.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 22.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=25
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=24
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 23.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 24.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=26
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 25.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=27
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 26.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 27.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=33
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=30
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=29
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 28.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 29.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=31
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 30.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=32
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 31.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 32.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=35
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=34
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 33.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 34.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=36
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 35.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=37
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 36.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 37.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Else=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=57
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=47
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=42
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=40
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=39
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 38.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 39.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=41
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 40.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 41.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=44
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=43
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 42.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 43.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=45
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 44.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=46
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 45.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 46.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=52
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=49
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=48
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 47.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 48.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=50
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 49.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=51
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 50.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 51.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=54
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=53
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 52.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 53.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=55
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 54.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=56
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 55.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 56.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=66
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=61
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=59
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=58
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 57.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 58.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=60
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 59.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 60.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=63
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=62
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 61.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 62.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=64
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 63.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=65
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 64.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 65.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=71
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=68
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=67
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 66.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 67.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=69
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 68.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=70
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 69.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 70.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=73
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=72
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 71.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 72.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=74
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 73.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=75
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 74.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 75.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Else=CIfExpressionAction
+				{
+					If Expression=CIsLessThan
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Divine/Offensive/Celestial Smite
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=113
+						}
+					}
+					Character to get attributes from=$Trigger
+					Then=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=94
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=85
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=80
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=78
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=77
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 76.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 77.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=79
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 78.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 79.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=82
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=81
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 80.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 81.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=83
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 82.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=84
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 83.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 84.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=89
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=87
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=86
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 85.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 86.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=88
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 87.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 88.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=91
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=90
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 89.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 90.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=92
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 91.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=93
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 92.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 93.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=103
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=98
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=96
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=95
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 94.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 95.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=97
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 96.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 97.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=100
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=99
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 98.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 99.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=101
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 100.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=102
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 101.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 102.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=108
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=105
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=104
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 103.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 104.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=106
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 105.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=107
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 106.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 107.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=110
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=109
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 108.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 109.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=111
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 110.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=112
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 111.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 112.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Else=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=132
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=122
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=117
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=115
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=114
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 113.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 114.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=116
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 115.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 116.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=119
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=118
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 117.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 118.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=120
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 119.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=121
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 120.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 121.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=127
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=124
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=123
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 122.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 123.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=125
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 124.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=126
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 125.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 126.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=129
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=128
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 127.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 128.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=130
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 129.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=131
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 130.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 131.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=141
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=136
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=134
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=133
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 132.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 133.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=135
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 134.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 135.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=138
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=137
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 136.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 137.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=139
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 138.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=140
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 139.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 140.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=146
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=143
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=142
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 141.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 142.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=144
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 143.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=145
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 144.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 145.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=148
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=147
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 146.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 147.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=149
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 148.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=150
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 149.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 150.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Else=CIfExpressionAction
+			{
+				If Expression=CIsLessThan
+				{
+					Operand1=CVariableSkill
+					{
+						Skill=Skills/Magic Divine/Offensive/Celestial Smite
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=226
+					}
+				}
+				Character to get attributes from=$Trigger
+				Then=CIfExpressionAction
+				{
+					If Expression=CIsLessThan
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Divine/Offensive/Celestial Smite
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=188
+						}
+					}
+					Character to get attributes from=$Trigger
+					Then=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=169
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=160
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=155
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=153
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=152
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 151.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 152.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=154
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 153.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 154.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=157
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=156
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 155.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 156.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=158
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 157.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=159
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 158.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 159.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=164
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=162
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=161
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 160.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 161.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=163
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 162.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 163.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=166
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=165
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 164.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 165.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=167
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 166.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=168
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 167.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 168.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=178
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=173
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=171
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=170
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 169.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 170.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=172
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 171.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 172.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=175
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=174
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 173.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 174.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=176
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 175.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=177
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 176.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 177.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=183
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=180
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=179
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 178.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 179.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=181
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 180.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=182
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 181.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 182.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=185
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=184
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 183.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 184.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=186
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 185.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=187
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 186.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 187.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Else=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=207
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=197
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=192
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=190
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=189
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 188.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 189.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=191
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 190.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 191.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=194
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=193
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 192.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 193.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=195
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 194.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=196
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 195.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 196.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=202
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=199
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=198
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 197.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 198.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=200
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 199.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=201
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 200.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 201.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=204
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=203
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 202.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 203.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=205
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 204.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=206
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 205.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 206.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=216
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=211
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=209
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=208
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 207.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 208.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=210
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 209.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 210.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=213
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=212
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 211.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 212.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=214
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 213.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=215
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 214.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 215.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=221
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=218
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=217
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 216.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 217.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=219
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 218.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=220
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 219.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 220.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=223
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=222
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 221.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 222.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=224
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 223.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=225
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 224.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 225.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Else=CIfExpressionAction
+				{
+					If Expression=CIsLessThan
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Divine/Offensive/Celestial Smite
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=263
+						}
+					}
+					Character to get attributes from=$Trigger
+					Then=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=244
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=235
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=230
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=228
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=227
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 226.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 227.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=229
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 228.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 229.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=232
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=231
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 230.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 231.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=233
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 232.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=234
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 233.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 234.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=239
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=237
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=236
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 235.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 236.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=238
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 237.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 238.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=241
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=240
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 239.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 240.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=242
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 241.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=243
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 242.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 243.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=253
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=248
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=246
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=245
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 244.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 245.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=247
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 246.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 247.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=250
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=249
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 248.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 249.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=251
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 250.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=252
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 251.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 252.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=258
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=255
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=254
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 253.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 254.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=256
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 255.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=257
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 256.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 257.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=260
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=259
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 258.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 259.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=261
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 260.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=262
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 261.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 262.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Else=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Divine/Offensive/Celestial Smite
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=282
+							}
+						}
+						Character to get attributes from=$Trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=272
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=267
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=265
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=264
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 263.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 264.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=266
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 265.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 266.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=269
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=268
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 267.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 268.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=270
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 269.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=271
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 270.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 271.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=277
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=274
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=273
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 272.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 273.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=275
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 274.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=276
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 275.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 276.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=279
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=278
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 277.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 278.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=280
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 279.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=281
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 280.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 281.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Divine/Offensive/Celestial Smite
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=291
+								}
+							}
+							Character to get attributes from=$Trigger
+							Then=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=286
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=284
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=283
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 282.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 283.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=285
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 284.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 285.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=288
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=287
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 286.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 287.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=289
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 288.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=290
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 289.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 290.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Divine/Offensive/Celestial Smite
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=296
+									}
+								}
+								Character to get attributes from=$Trigger
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=293
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=292
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 291.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 292.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=294
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 293.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=295
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 294.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 295.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Divine/Offensive/Celestial Smite
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=298
+										}
+									}
+									Character to get attributes from=$Trigger
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=297
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 296.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 297.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsLessThan
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Divine/Offensive/Celestial Smite
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=299
+											}
+										}
+										Character to get attributes from=$Trigger
+										Then=CPrintCombatTextAction
+										{
+											Text to print=Celestial Smite: 298.
+											Character to show text to=$Instigator
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsLessThan
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Divine/Offensive/Celestial Smite
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=300
+												}
+											}
+											Character to get attributes from=$Trigger
+											Then=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 299.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+											Else=CPrintCombatTextAction
+											{
+												Text to print=Celestial Smite: 300 or more.
+												Character to show text to=$Instigator
+												Emphasize=0
+												Suppress Duplicates=0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	Use=Shared Global Instance
+}

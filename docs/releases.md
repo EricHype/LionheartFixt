@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.20 are published** -- 223 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.21 are published** -- 224 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -142,7 +142,38 @@ Saladin member rather than an initiated one. The path is now corrected to
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
 
-## 0.99.20 - caltrops at ankle height
+## 0.99.21 - companions say what they are
+
+Reported from play: "I am not sure if Fernand is levelling up, when I ask him his condition, the numbers don't seem to be
+different from base level." He was. Every save from level 6 to level 7 carries +9 HP, +8 AC and +3 one-handed skill on his
+record, exactly the growth grant. The report hid it: health came in bands of 10, skill in bands of 10 (so +3 a level sits in
+one band for three levels), and armor, the stat that grows most, was not reported at all.
+`tools/build_companion_report.py`. `CX1`-`CX8`.
+
+- **Exact numbers.** *How are you holding up?* now prints `Health at full strength: N.`, `Armor class: N.` and
+  `Fighting skill: N.`, plus `Celestial Smite: N.` for Bishop Diego and Darsh, whose growth raises that instead. The hurt and
+  best-weapon lines are unchanged. Every companion's order menu is the one shared `Generic Companion Dialog`, so it is all of
+  them.
+- **No script can print a number, settled in the exe.** `CPrintCombatTextAction` (`0x586c40`) hands its own text straight to
+  the combat log writer, which only word-wraps it and splits it on newlines. The `%s[Name]` formatter the combat log uses is
+  filled in by the engine's C++ and never called from a script action. So every value is written out as its own fixed line,
+  and the script finds the right one by halving the range, nine or ten comparisons per lookup. The builder simulates every
+  value from below each range to above it and asserts each prints exactly its own line.
+- **The lookups live in four cans**, under `Fixt Companion Report/`, so the conversation file shrank by 2,400 lines instead
+  of growing. That is safe for `$Trigger`: `CUseCannedActionAction` (`0x4f8160`) calls the canned action with the same four
+  context arguments it was given, so inside the can it is still the companion you clicked.
+- **Each level-up says what it gave.** The growth balloon now ends with the gains in the game's own narration brackets:
+  *"A sailor learns or a sailor drowns. I have been learning. <+9 health, +8 armor, +3 fighting skill>"*, and it goes to the
+  combat log too. The amounts are read from the growth installer, never typed in.
+- **It reaches existing saves.** The growth watcher on the player is saved inline, so editing the installer would never
+  reach a game where it is already armed. The balloon it shows is named by reference and loads from data.dat, so the new
+  text appears in every save.
+- **A level that shows +14 health is correct.** The HP formula itself adds 5 when one-handed skill reaches 50 (and again at
+  100, 150...). Fernand is at 47 in the reporting saves, so his next level is that one.
+- **A ranged companion's fighting skill may not move.** Growth adds one-handed skill and the report shows the best of three,
+  so their health and armor will rise while that line stays put.
+
+---
 
 Reported from play: thieves' caltrops looked like giant metal spikes, taller than the thief or the player. 0.35.x showed
 the patch as `Environments/Outpost/Generic/Trap Spike 1` held on `Closed`, which is the Crypt and Alamut floor trap at full
