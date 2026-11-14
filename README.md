@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.18](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.18).
+-- currently [0.99.19](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.19).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.19** | Fernand keeps up | Fernand walked noticeably slower than the rest of the party and kept falling behind. He now walks about as fast as Grace, without changing how he fights. |
 | **0.99.18** | Grace in her own voice | Captain Isabella's beat after her confession is rewritten in Grace's own plain, proud register, and a perceptive hero notices how she feels about them. |
 | **0.99.17** | the version on the title screen | The title screen shows "Fixt" and the installed version in white in the lower right of every painting, so you can see at a glance which release you are running. |
 | **0.99.16** | the tank shows its state | DaVinci's siege tank no longer says "once completed" for ever: its description changes when the gear is fitted, and again when DaVinci has given it its spirit gem. |
@@ -99,7 +100,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.18 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.19 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).
