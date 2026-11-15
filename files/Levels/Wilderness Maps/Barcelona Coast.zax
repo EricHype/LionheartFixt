@@ -87,6 +87,270 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt the Horde's heart
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+										}
+									}
+									Character to get attributes from=Player1
+								}
+								Then=CPrintCombatTextAction
+								{
+									Text to print=The goblins here know the Khan's Champion, and keep their distance.
+									Character to show text to=Player1
+									Emphasize=0
+									Suppress Duplicates=1
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CPrintCombatTextAction
+									{
+										Text to print=Without their Khan, the goblins here fight with less heart.
+										Character to show text to=Player1
+										Emphasize=0
+										Suppress Duplicates=1
+									}
+									Else=
+								}
+								Return failure if the If failes=0
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt the Horde's heart
+							}
+						}
+					}
+					Delay Between Actions=600
+					Plus or Minus=0
+					Seconds Till Next Execute=3
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=100
+			Position Y=60
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Coast Band 1 rally
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+										}
+									}
+									Character to get attributes from=Player1
+								}
+								Then=
+								Else=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Coast Band 1
+											Name To Target=
+											Valid Targets=Player,Player Friend
+										}
+										Action=CAddCategoryAction
+										{
+											Target Name=Coast Band 1
+											Categories to add=Enemy
+										}
+									}
+								}
+								Return failure if the If failes=0
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt Coast Band 1 rally
+							}
+						}
+					}
+					Delay Between Actions=600
+					Plus or Minus=0
+					Seconds Till Next Execute=6
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=548.0
+			Position Y=258.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Coast Band 2 rally
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRepeatTimerTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+										}
+									}
+									Character to get attributes from=Player1
+								}
+								Then=
+								Else=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Coast Band 2
+											Name To Target=
+											Valid Targets=Player,Player Friend
+										}
+										Action=CAddCategoryAction
+										{
+											Target Name=Coast Band 2
+											Categories to add=Enemy
+										}
+									}
+								}
+								Return failure if the If failes=0
+							}
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt Coast Band 2 rally
+							}
+						}
+					}
+					Delay Between Actions=600
+					Plus or Minus=0
+					Seconds Till Next Execute=6
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=1191.0
+			Position Y=573.0
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt Coast Band 1 war leader
 			Child List=
 			Visible=0
@@ -578,7 +842,144 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Coast Band 1
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=Coast Band 1
+											Categories To Remove=Enemy
+										}
+										Action=CAddCharacterModifierToCharacterAction
+										{
+											Modifier Description=lost heart
+											Modification is permanent=1
+											Character to modify=Coast Band 1
+											Modifiers=Array
+											{
+												Item Count=1
+												Modifier=CCharacterModifierDerivedAttribute
+												{
+													Modification Amount=CConstant
+													{
+														Constant Value=-0.25
+													}
+													Modification amount is a percent=0
+													Allow Accumulation=0
+													Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+												}
+											}
+											OPTIONAL Duration=
+											Expression Context=Player1
+										}
+										Action=CPrintCombatTextAction
+										{
+											Text to print=Their war leader is dead, and the goblins around him lose heart.
+											Character to show text to=Player1
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Action=CActivateAction
+										{
+											Target Name=Fixt Coast Band 1 rally
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+									}
+								}
+								Target Name=$Instigator
+							}
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+										}
+									}
+									Character to get attributes from=Player1
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=without the Khan
+										Modification is permanent=1
+										Character to modify=$Instigator
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=-0.2
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+									Else=
+								}
+								Return failure if the If failes=0
+							}
+						}
+					}
 					New Facing Angle=0.401321
 					Angle Variation=0
 				}
@@ -591,124 +992,6 @@ CLayerSaveData
 			Model=Editor/Enemy Generator Spot
 			Position X=548
 			Position Y=218
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Fixt Coast Band 1 heart
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CRepeatTimerTriggerAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CIfAction
-					{
-						If=CNotAction
-						{
-							Action=CIsAliveAction
-							{
-								Name To Check For=Coast Band 1 Leader
-								Desired Minimum Count=1
-							}
-						}
-						Then=CMultipleActionsAction
-						{
-							Action=Array
-							{
-								Item Count=3
-								Action=CAddAIAction
-								{
-									Target Name=Coast Band 1
-									AI=CRepeatTimerTriggerAI
-									{
-										Marked For Deletion=0
-										Publisher=
-										Action=CSeriesAction
-										{
-											Action=Array
-											{
-												Item Count=2
-												Action=CAddCharacterModifierToCharacterAction
-												{
-													Modifier Description=lost heart
-													Modification is permanent=1
-													Character to modify=$Trigger
-													Modifiers=Array
-													{
-														Item Count=1
-														Modifier=CCharacterModifierDerivedAttribute
-														{
-															Modification Amount=CConstant
-															{
-																Constant Value=-0.25
-															}
-															Modification amount is a percent=0
-															Allow Accumulation=0
-															Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
-														}
-													}
-													OPTIONAL Duration=
-													Expression Context=$Trigger
-												}
-												Action=CSucceedAction
-												{
-													Action=
-												}
-											}
-											When Done=Repeat Last Action
-											Require Success To Advance=0
-											Next Action Index=0
-										}
-										Delay Between Actions=600
-										Plus or Minus=0
-										Seconds Till Next Execute=0
-									}
-									Delay Between Adds=0
-								}
-								Action=CPrintCombatTextAction
-								{
-									Text to print=Their war leader is dead, and the goblins around him lose heart.
-									Character to show text to=Player1
-									Emphasize=0
-									Suppress Duplicates=0
-								}
-								Action=CDeactivateAction
-								{
-									Target Name=Fixt Coast Band 1 heart
-								}
-							}
-						}
-						Else=
-						Return failure if the If failes=0
-					}
-					Delay Between Actions=2
-					Plus or Minus=0
-					Seconds Till Next Execute=10
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Position Marker
-			Position X=548.0
-			Position Y=258.0
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -814,167 +1097,69 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
-					New Facing Angle=4.38078
-					Angle Variation=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Enemy Generator Spot
-			Position X=1191
-			Position Y=533
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Fixt Coast Band 2 heart
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CRepeatTimerTriggerAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CIfAction
-					{
-						If=CNotAction
-						{
-							Action=CIsAliveAction
-							{
-								Name To Check For=Coast Band 2 Leader
-								Desired Minimum Count=1
-							}
-						}
-						Then=CMultipleActionsAction
-						{
-							Action=Array
-							{
-								Item Count=3
-								Action=CAddAIAction
-								{
-									Target Name=Coast Band 2
-									AI=CRepeatTimerTriggerAI
-									{
-										Marked For Deletion=0
-										Publisher=
-										Action=CSeriesAction
-										{
-											Action=Array
-											{
-												Item Count=2
-												Action=CAddCharacterModifierToCharacterAction
-												{
-													Modifier Description=lost heart
-													Modification is permanent=1
-													Character to modify=$Trigger
-													Modifiers=Array
-													{
-														Item Count=1
-														Modifier=CCharacterModifierDerivedAttribute
-														{
-															Modification Amount=CConstant
-															{
-																Constant Value=-0.25
-															}
-															Modification amount is a percent=0
-															Allow Accumulation=0
-															Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
-														}
-													}
-													OPTIONAL Duration=
-													Expression Context=$Trigger
-												}
-												Action=CSucceedAction
-												{
-													Action=
-												}
-											}
-											When Done=Repeat Last Action
-											Require Success To Advance=0
-											Next Action Index=0
-										}
-										Delay Between Actions=600
-										Plus or Minus=0
-										Seconds Till Next Execute=0
-									}
-									Delay Between Adds=0
-								}
-								Action=CPrintCombatTextAction
-								{
-									Text to print=Their war leader is dead, and the goblins around him lose heart.
-									Character to show text to=Player1
-									Emphasize=0
-									Suppress Duplicates=0
-								}
-								Action=CDeactivateAction
-								{
-									Target Name=Fixt Coast Band 2 heart
-								}
-							}
-						}
-						Else=
-						Return failure if the If failes=0
-					}
-					Delay Between Actions=2
-					Plus or Minus=0
-					Seconds Till Next Execute=10
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Model=Editor/Position Marker
-			Position X=1191.0
-			Position Y=573.0
-			Rendering Height=0
-			Rendering Height Float=0
-			Cur Sequence=Idle
-		}
-		Level Part=CEntityBase
-		{
-			Name=Fixt the Horde's heart
-			Child List=
-			Visible=0
-			Collideable=1
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CRepeatTimerTriggerAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Action=CMultipleActionsAction
+					After Action=CMultipleActionsAction
 					{
 						Action=Array
 						{
 							Item Count=2
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Coast Band 2
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=Coast Band 2
+											Categories To Remove=Enemy
+										}
+										Action=CAddCharacterModifierToCharacterAction
+										{
+											Modifier Description=lost heart
+											Modification is permanent=1
+											Character to modify=Coast Band 2
+											Modifiers=Array
+											{
+												Item Count=1
+												Modifier=CCharacterModifierDerivedAttribute
+												{
+													Modification Amount=CConstant
+													{
+														Constant Value=-0.25
+													}
+													Modification amount is a percent=0
+													Allow Accumulation=0
+													Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+												}
+											}
+											OPTIONAL Duration=
+											Expression Context=Player1
+										}
+										Action=CPrintCombatTextAction
+										{
+											Text to print=Their war leader is dead, and the goblins around him lose heart.
+											Character to show text to=Player1
+											Emphasize=0
+											Suppress Duplicates=0
+										}
+										Action=CActivateAction
+										{
+											Target Name=Fixt Coast Band 2 rally
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+									}
+								}
+								Target Name=$Instigator
+							}
 							Action=CIfAction
 							{
 								If=CExpressionAction
@@ -993,24 +1178,17 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=3
+										Item Count=2
 										Action=CSetTargetTypeAction
 										{
-											Entity Name=Horde Goblin, Coast Band 1, Coast Band 2, Coast Band 1 Leader, Coast Band 2 Leader
+											Entity Name=$Instigator
 											Name To Target=
 											Valid Targets=
 										}
 										Action=CRemoveCategoryAction
 										{
-											Target Name=Horde Goblin, Coast Band 1, Coast Band 2, Coast Band 1 Leader, Coast Band 2 Leader
+											Target Name=$Instigator
 											Categories To Remove=Enemy
-										}
-										Action=CPrintCombatTextAction
-										{
-											Text to print=The goblins here know the Khan's Champion, and keep their distance.
-											Character to show text to=Player1
-											Emphasize=0
-											Suppress Duplicates=1
 										}
 									}
 								}
@@ -1029,82 +1207,36 @@ CLayerSaveData
 										}
 									}
 									Character to get attributes from=Player1
-									Then=CMultipleActionsAction
+									Then=CAddCharacterModifierToCharacterAction
 									{
-										Action=Array
+										Modifier Description=without the Khan
+										Modification is permanent=1
+										Character to modify=$Instigator
+										Modifiers=Array
 										{
-											Item Count=2
-											Action=CAddAIAction
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
 											{
-												Target Name=Horde Goblin, Coast Band 1, Coast Band 2, Coast Band 1 Leader, Coast Band 2 Leader
-												AI=CRepeatTimerTriggerAI
+												Modification Amount=CConstant
 												{
-													Marked For Deletion=0
-													Publisher=
-													Action=CSeriesAction
-													{
-														Action=Array
-														{
-															Item Count=2
-															Action=CAddCharacterModifierToCharacterAction
-															{
-																Modifier Description=
-																Modification is permanent=1
-																Character to modify=$Trigger
-																Modifiers=Array
-																{
-																	Item Count=1
-																	Modifier=CCharacterModifierDerivedAttribute
-																	{
-																		Modification Amount=CConstant
-																		{
-																			Constant Value=-0.2
-																		}
-																		Modification amount is a percent=0
-																		Allow Accumulation=0
-																		Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
-																	}
-																}
-																OPTIONAL Duration=
-																Expression Context=$Trigger
-															}
-															Action=CSucceedAction
-															{
-																Action=
-															}
-														}
-														When Done=Repeat Last Action
-														Require Success To Advance=0
-														Next Action Index=0
-													}
-													Delay Between Actions=600
-													Plus or Minus=0
-													Seconds Till Next Execute=0
+													Constant Value=-0.2
 												}
-												Delay Between Adds=0
-											}
-											Action=CPrintCombatTextAction
-											{
-												Text to print=Without their Khan, the goblins here fight with less heart.
-												Character to show text to=Player1
-												Emphasize=0
-												Suppress Duplicates=1
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
 											}
 										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
 									}
 									Else=
 								}
 								Return failure if the If failes=0
 							}
-							Action=CDeactivateAction
-							{
-								Target Name=Fixt the Horde's heart
-							}
 						}
 					}
-					Delay Between Actions=600
-					Plus or Minus=0
-					Seconds Till Next Execute=3
+					New Facing Angle=4.38078
+					Angle Variation=0
 				}
 			}
 			Category=
@@ -1112,9 +1244,9 @@ CLayerSaveData
 			Used In=QuestMode
 			Current Target=
 			Publisher=
-			Model=Editor/Position Marker
-			Position X=100
-			Position Y=60
+			Model=Editor/Enemy Generator Spot
+			Position X=1191
+			Position Y=533
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -12405,7 +12537,79 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+								}
+							}
+							Character to get attributes from=Player1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=without the Khan
+								Modification is permanent=1
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-0.2
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Else=
+						}
+						Return failure if the If failes=0
+					}
 					New Facing Angle=0.401321
 					Angle Variation=0
 				}
@@ -13251,7 +13455,79 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+								}
+							}
+							Character to get attributes from=Player1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=without the Khan
+								Modification is permanent=1
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-0.2
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Else=
+						}
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.38078
 					Angle Variation=0
 				}
@@ -15448,7 +15724,79 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+								}
+							}
+							Character to get attributes from=Player1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=without the Khan
+								Modification is permanent=1
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-0.2
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Else=
+						}
+						Return failure if the If failes=0
+					}
 					New Facing Angle=5.53269
 					Angle Variation=0
 				}
@@ -18201,7 +18549,79 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+								}
+							}
+							Character to get attributes from=Player1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=without the Khan
+								Modification is permanent=1
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-0.2
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Else=
+						}
+						Return failure if the If failes=0
+					}
 					New Facing Angle=0.401321
 					Angle Variation=0
 				}
@@ -19433,7 +19853,79 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+								}
+							}
+							Character to get attributes from=Player1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=without the Khan
+								Modification is permanent=1
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-0.2
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Else=
+						}
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.38078
 					Angle Variation=0
 				}
@@ -21721,7 +22213,79 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+								}
+							}
+							Character to get attributes from=Player1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=without the Khan
+								Modification is permanent=1
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-0.2
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Else=
+						}
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.38078
 					Angle Variation=0
 				}
@@ -22525,7 +23089,79 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CExpressionAction
+						{
+							Expression=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+								}
+							}
+							Character to get attributes from=Player1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+							}
+						}
+						Else=CIfExpressionAction
+						{
+							If Expression=CIsGreaterThan
+							{
+								Operand1=CVariableDerivedCharacterAttribute
+								{
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Khan Slain
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=0
+								}
+							}
+							Character to get attributes from=Player1
+							Then=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=without the Khan
+								Modification is permanent=1
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=-0.2
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Speed/Base Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Else=
+						}
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.38078
 					Angle Variation=0
 				}

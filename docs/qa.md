@@ -6169,6 +6169,26 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.23 - the war leader has to die first
+
+`tools/build_goblin_leader_death.py`. Only maps a character has **not entered yet** carry the fix; a visited map keeps the
+old watcher in the save. Use a new game, or a character who has not been to the map named.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| WL1 | **The reported bug.** Lake, Plains or Barcelona Coast, first visit | Walk in and wait a minute, far from any goblins | **No** "Their war leader is dead" line. Before, a band out of sight had no leader yet and the timer called him dead |
+| WL2 | The same map | Find a band with a Goblin War Leader and kill him | The line appears **once, when he dies**. His band **breaks off at once**: they stop attacking and your companions stop chasing them. About **6 seconds** later they come back at you, moving and swinging slower |
+| WL3 | Woodcutter Forest, first visit | WL2 there | The same. This map's leader death also fires vanilla's `monster counter` relay, which stays first in his death script |
+| WL4 | **Regression.** Any WL2 leader | Kill him | XP and drops as before. They live in his own death effect, which the generator does not replace |
+| WL5 | A band whose leader is still alive | Kill some of the others first | No line, no slowdown. Only his death triggers it |
+| WL6 | **The Khan's Champion**, any WL map | Kill a war leader anyway (force attack) | The line and the slowdown, but the band **stays** standing aside after 6 seconds. The rally skips the Champion, so it never undoes the stand-aside |
+| WL7 | After WL2, save | `savecheck dump`, find a surviving goblin of that band | `Derived Character Attributes/Speed/Base Animation Speed Multiplier=-0.25` in its permanent modifiers. The modifier names the band, which the exe resolves to every goblin of it (`0x41f150`) |
+| KX1 | **Khan slain**, then a WL map not yet entered | Walk in, wait, then walk to the **farthest** band | *"Without their Khan, the goblins here fight with less heart."* on arrival, and that far band moves and swings slower when you reach it. Before, only goblins spawned in the first three seconds were slowed |
+| KX2 | After KX1, save | `savecheck dump`, find a goblin from that far band | `Base Animation Speed Multiplier=-0.2` in its permanent modifiers |
+| KX3 | **The Khan's Champion**, a WL map not yet entered | Walk to the farthest band | They stand aside as you arrive, like the near ones. Before, a band out of range at arrival fought you |
+| KX4 | **Neither**: the Khan alive, not his Champion | Any WL map | No line on arrival, goblins at normal speed and hostile |
+| KX5 | **Regression**, Woodcutter Forest | Kill a band goblin, then its war leader | Vanilla's `monster counter` death script still runs on both (it now shares the generator's `After Action` with the Khan check), and WL2 still happens |
+
 ## 0.99.22 - the auras say what they are
 
 `Acid Touch`, `Cold Zone` and `Lava Burn` describe themselves as an aura, and Deepest Winter gains its interval. An item's description is assembled when it is

@@ -10,6 +10,9 @@ and get a war leader beside them. When he falls, his band loses heart: every gob
 log says why. It stacks with the Khan's death, and the Khan carryover's lists take the new band names so the Champion's
 stand-aside still covers them.
 
+**Superseded in part:** the marker watcher built here fired before a leader's generator had produced him, so
+`tools/build_goblin_leader_death.py` replaces it with a death script on the leader. Run that one after this one.
+
 A rerun is a no-op.
 
     python tools/build_goblin_leaders.py

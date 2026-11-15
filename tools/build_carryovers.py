@@ -12,6 +12,10 @@ Become his Champion and the bands keep their distance instead. Read when each ma
 death had two records, `Fixt Khan Slain` from the Warrens and `Fixt Goblin Khan Dead` from act 8's gate; this keeps the first
 and points everything at it.
 
+**Superseded in part:** the bands' slowdown and stand-aside here reach only goblins spawned within three seconds of arrival,
+because a generator waits for the player. `tools/build_khan_heart.py` moves both onto each generator's `After Action`. Run
+it after this, `build_goblin_leaders.py` and `build_goblin_leader_death.py`.
+
 A rerun is a no-op.
 
     python tools/build_carryovers.py
