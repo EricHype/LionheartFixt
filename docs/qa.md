@@ -6169,6 +6169,21 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.25 - the guild runner
+
+`tools/build_guild_runner.py`. In `01 Sewer Main Entrance`, so it needs a save that has **not entered the sewers yet**, or a
+new game.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| GX1 | Main sewer, before taking any job from Juanita | Enter from the Port District, then from the Temple District | No runner at either entrance |
+| GX2 | After Juanita gives you *Help the Thieves Destroy the Beggars Guild* | Enter from the Port District | A **Guild Runner** stands just beside where you arrive, on open floor, not in a wall. He talks, he does not fight |
+| GX3 | The same, from the Temple District | - | A second runner beside that arrival point |
+| GX4 | Talk to either, with 5 gold or more | *"Take me to Juanita."* | 5 gold gone, and you arrive in the Thieves' Congregation within sight of Juanita, with your companions. Nothing in the den reacts to how you arrived |
+| GX5 | With under 5 gold | Talk to him | Only *"I do not have five gold."* (*"Then you walk, like everyone else."*) and *"Not now."* |
+| GX6 | Refuse Juanita (*"I'll not kill for you again"*), then enter again | - | The runners are gone |
+| GX7 | **Regression** | Enter from the Port District | It still autosaves on arrival. From the Temple District, the entrance thief and beggar battle still starts as before |
+
 ## 0.99.24 - the trolls talk like trolls
 
 `tools/build_troll_voice.py`. The troll text reaches every save; the chest change reaches a Troll Pit not yet entered, and

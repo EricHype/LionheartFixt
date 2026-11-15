@@ -85,6 +85,102 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=Fixt Guild Runner at Start Here
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/Sewers/Character Templates/Fixt Guild Runner
+					New Name=Fixt Guild Runner
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=5489
+			Position Y=3053
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Guild Runner at From Temple District
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CSimpleGeneratorForCannedEntitiesAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Already Generated=0
+					Entity=Levels/Sewers/Character Templates/Fixt Guild Runner
+					New Name=Fixt Guild Runner
+					Remove Default AIs=0
+					AIs to Add=Array
+					{
+						Item Count=0
+					}
+					Canned AIs to Add=Array
+					{
+						Item Count=0
+					}
+					After Action=
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Character Generator Point
+			Position X=3246
+			Position Y=781
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=
@@ -21260,7 +21356,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=4
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -21305,6 +21401,63 @@ CLayerSaveData
 							Action=CAutoSaveAction
 							{
 								Display Name for Save Game=
+							}
+							Action=CIfAction
+							{
+								If=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CWasQuestEverActivatedAction
+										{
+											Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+										}
+										Action=CNotAction
+										{
+											Action=CIsQuestFailedAction
+											{
+												Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+											}
+										}
+									}
+									Early Exit=0
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Fixt Guild Runner at Start Here
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CActivateAction
+										{
+											Target Name=Fixt Guild Runner at From Temple District
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+									}
+								}
+								Else=CIfAction
+								{
+									If=CIsQuestFailedAction
+									{
+										Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+									}
+									Then=CDeleteAction
+									{
+										Target Name=Fixt Guild Runner
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Return failure if the If failes=0
 							}
 						}
 					}
@@ -52479,9 +52632,73 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=CAutoSaveAction
+					Per Party Spawn Action=CMultipleActionsAction
 					{
-						Display Name for Save Game=
+						Action=Array
+						{
+							Item Count=2
+							Action=CAutoSaveAction
+							{
+								Display Name for Save Game=
+							}
+							Action=CIfAction
+							{
+								If=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CWasQuestEverActivatedAction
+										{
+											Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+										}
+										Action=CNotAction
+										{
+											Action=CIsQuestFailedAction
+											{
+												Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+											}
+										}
+									}
+									Early Exit=0
+								}
+								Then=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=2
+										Action=CActivateAction
+										{
+											Target Name=Fixt Guild Runner at Start Here
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CActivateAction
+										{
+											Target Name=Fixt Guild Runner at From Temple District
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+									}
+								}
+								Else=CIfAction
+								{
+									If=CIsQuestFailedAction
+									{
+										Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+									}
+									Then=CDeleteAction
+									{
+										Target Name=Fixt Guild Runner
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Return failure if the If failes=0
+							}
+						}
 					}
 					Per Character Spawn Action=CTriggerRelayAction
 					{

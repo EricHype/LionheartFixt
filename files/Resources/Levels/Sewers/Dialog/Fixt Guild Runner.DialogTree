@@ -1,0 +1,70 @@
+CDialogTree
+{
+Name=Guild Runner
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 runner
+Text=<A wiry lad in a thief's coat, cleaning his nails with a knife.> Juanita's? Five gold, and I know the quick way. No rats, no beggars.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=5
+}
+}
+Reply Text=Take me to Juanita. <Pay five gold.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=5
+}
+Action=CRelocateAction
+{
+Return to map=unlikely soon
+New Map Name=Sewers/02 Thieves Congregation
+New Location=test only
+Who To Switch=$Instigator
+Relative Position=0
+Ignore Party Ready Rules=0
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=5
+}
+}
+}
+Reply Text=I do not have five gold.
+Go to node ID=2 broke
+
+Requirement=!None
+Reply Text=Not now.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=2 broke
+Text=Then you walk, like everyone else.
+Should Have Voiceover=0
+}
