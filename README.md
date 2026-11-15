@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.23](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.23).
+-- currently [0.99.24](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.24).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.24** | the trolls talk like trolls | The trolls' dialogue is short and in their own voice, the ore chest warns before it is theft and the chief no longer vanishes, and the lost boy Tomas can be sold out, with a double-cross if you free him anyway. |
 | **0.99.23** | the war leader has to die first | Goblin bands no longer lose their war leader before you meet them, and when he falls they break off, slow down and come back. The Khan's death and his Champion's standing reach every band. Enemies that die talking now say a dying line. |
 | **0.99.22** | the auras say what they are | Acid Touch, Cold Zone, Lava Burn and Deepest Winter now describe themselves as an aura that damages nearby enemies every few seconds, instead of claiming melee range. |
 | **0.99.21** | companions say what they are | Asking a companion how they are holding up now gives exact health, armor and fighting skill instead of ranges, and each level-up line says what it gave them. |
@@ -104,7 +105,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.23 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.24 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).
