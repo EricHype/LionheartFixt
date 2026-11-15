@@ -357,7 +357,7 @@ Tomas's own shipped line into a caught thief's account rather than testimony.
 |---|---|---|---|
 | B1 | Troll Pit, **on** the Tomas quest | Talk to the alpha | A new reply: *"There is a child of my kind shut in your rock"* |
 | B2 | " | Not on the quest | That reply is **absent** |
-| B3 | " | Ask his price | Two hundred gold -- *"Not for the boy. For the times before, when we did not catch him"* |
+| B3 | " | Ask his price | Two hundred gold -- *"Not for him. For the times we did not catch him."* (reworded 0.99.24) |
 | B4 | " | Pay it (needs 200) | 200 taken, the pit stands down, XP |
 | B5 | " | **Barter 40+**, with 100 gold | 100 taken instead. The reply is absent below Barter 40 or under 100 gold |
 | B6 | " | **Speech 45+** | He concedes for nothing -- *"A child. Yes. Sent by men who are not"* |
@@ -519,7 +519,7 @@ before and after -- a reference checker cannot see that a sentence is false.
 | AU3 | Troll chief, ore offer | Never took Eduardo's or DaVinci's Red Ore quest | *"Is there anything your people need from the city?"* -- the player claims nothing. The **chief** names the ore and names Eduardo |
 | AU4 | " | Then hear the terms | *"The smith sends one man"* now has an antecedent |
 | AU5 | " | Rite offer | *"There is a dead troll out on the rock bigger than any I have seen standing. Who was he?"* -- an observation. Node 110's *"You have seen it. Good"* now answers something |
-| AU6 | " | Speak-for-us offer, **never having met Enrique** | The player asks who sent the bodies; the chief answers *"Enrique Garcia. The one who keeps the beggars."* That is also how the player learns where to go |
+| AU6 | " | Speak-for-us offer, **never having met Enrique** | The player asks who sent the bodies; the chief answers *"Enrique Garcia. The beggars' man."* (reworded 0.99.24) That is also how the player learns where to go |
 | AU7 | Eduardo, node 792 | Never took Marisol's quest | He does **not** name Tomas |
 | AU8 | " | Tomas rescued | A gated player reply offers him, and node 793 is Eduardo realising who he had been sending down there |
 
@@ -3404,9 +3404,9 @@ that has already been in the pit will show none of this.
 | # | Step | Say | Expect |
 |---|---|---|---|
 | BP1 | Make peace with the trolls by any route, then strike one | - | **The chief comes and speaks.** Nothing happening is the exact failure this release exists to fix |
-| BP2 | `BP1` having also stood the rite over the old chief (`The Chief Before` complete) | - | `160 the peace broken rite` -- *"I told you a chief must be counted by one who was not there."* The deepest of the three, and it should beat the other two |
+| BP2 | `BP1` having also stood the rite over the old chief (`The Chief Before` complete) | - | `160 the peace broken rite` -- *"You counted our chief, and the number was true."* (reworded 0.99.24) The deepest of the three, and it should beat the other two |
 | BP3 | `BP1` having carried the ore terms and taken the first ore, **without** the rite | - | `161 the peace broken ore` -- *"The same man each time. So we know the face."* |
-| BP4 | `BP1` with neither -- only the case argued to Enrique | - | `162 the peace broken word` -- *"Tell the men who sent you that we counted every time... There are none."* |
+| BP4 | `BP1` with neither -- only the case argued to Enrique | - | `162 the peace broken word` -- *"Nobody sends you now. You came for free."* (reworded 0.99.24) |
 | BP5 | In any of `BP2`-`BP4`, look for a way to talk it back | - | There is none. One reply, `<There is nothing you can say to this.>`, and **no Speech check anywhere in the scene** |
 | BP6 | Watch the pit for the few seconds after he finishes | - | The trolls near you come. The far side of the pit does not, until you go to it |
 | BP7 | Count what engages at once | - | A handful, exactly as `LT11` still requires. **If the whole pit converges the restore has been pushed instead of restored** -- that would mean a `CGoToCombatAction` is in the relay, and none should be |
@@ -6168,6 +6168,33 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH57 | Finish the game, HH51's, then an outsider who never reached him | - | `donated`, then `broken` |
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
+
+## 0.99.24 - the trolls talk like trolls
+
+`tools/build_troll_voice.py`. The troll text reaches every save; the chest change reaches a Troll Pit not yet entered, and
+new games.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TT1 | Sewers, the entrance troll | Ask about the lost boy | One short answer in the drones' grammar: *"Small one. Yes. Is in the deep. Not my rock to give. You talk to chief..."* It still says where the chief is and that his people will not touch you |
+| TT2 | The Troll Pit, the chief | Walk every branch: the boy, the ore, the field, Enrique, the bell | Every line short, plain, and his. Every fact still there: the 200 price, iron in daylight from the same man, Enrique's name, the rite. No line runs past two or three sentences |
+| TT3 | The old chief's field | Look, count, and the three looks | Short narration of what you see. *"Thirteen."* and the wererats-and-thieves inference still there |
+| TT4 | **The reported bug.** The ore chest, peace held, not paid, first visit to the pit | Open it | It **does not open**. The chief says *"Not yours. You pay first."* over his head, and stays where he is. Nobody turns hostile |
+| TT5 | The same | Open it again | The chief, still standing where he was, speaks: *"That is ours. I told you."* One reply, a fight icon. Then the trolls attack. He never vanishes and no other troll appears in his place |
+| TT6 | After paying (`102 word carried`) | Open the chest | It opens, as before. No warning |
+| TT7 | **Regression.** Fought in, no peace | Open the chest | A plain chest, as before |
+| TT8 | **Regression.** Peace held, walk onto the old chief's field after desecrating it | - | The desecration scene still plays there, in the new short text |
+| TT9 | Sewers entrance troll, the wererats finished by **any** of the three routes (cured, beggar master killed, guild destroyed with the thieves) | *"The wererats are finished. The beggars' guild is done."* | He makes the connection himself (*"Wererats gone? They take Trolls. In the dark."*), sends you to the chief, and the peace holds. **No hide.** The reply now shows without Quinn's errand too |
+| TT10 | The chief, Quinn's hide errand open, wererats finished, Enrique **not** spoken to | *"...I am asking you for one."* | `134 the hide owed`: he treats it as a heavy thing, then gives one Lava Troll Hide. Only one hide reply shows at a time; with Speak for the Trolls done it is the old `133` |
+| TT11 | The chief, Tomas still held, **no** Slayer of Innocents | *"Keep him. Nobody up there will miss one beggar boy..."* | `135`: contempt, then **150 gold**, karma **-75**. Afterwards the chief's *"I am looking for a human child"* reply is gone |
+| TT12 | After TT11, Marisol | Talk to her | A new answer, *"He is dead. The trolls had him."*: she runs, and **Find the Lost Boy Tomas fails**. *"Yes, I found him"* does not show |
+| TT13 | After TT11, the smith | His ore runner talk | *"Send Tomas"* does not appear: it needs the quest found or done |
+| TT14 | **With Slayer of Innocents** (the title, from harming a child) | The boy, Speech 45+ | The plea gets `137`: *"You say child. You. The rock tells us of your misdeeds."* and the price, never `98`. Naming the price still works |
+| TT15 | The same | The silence deal | `136`: *"The rock tells us of your misdeeds. I wondered if you would ask."* Same coin and karma as TT11 |
+| TT16 | **Negative.** Without the title | The boy | The plea and the deal behave as TT11 and the original `98`; neither `136` nor `137` can appear |
+| TT17 | **The double-cross**, a Troll Pit not yet entered | TT11, then search out and open Tomas's chamber (`secret door1`) | The rescue plays exactly as before: the camera, *"Finally!"*, he walks out. As control returns, the chief says *"Coin, and the small one. Both."* and every troll attacks. The 150 gold stays, and so does the -75 karma |
+| TT18 | After TT17, Marisol | Talk to her | *"Yes, I found him down there."* and the quest completes. *"He is dead"* is **not** offered |
+| TT19 | **Negative.** Pay the 200 or talk him down, then open the chamber | - | The rescue, and no troll reaction. Only a sold silence makes freeing him theft |
 
 ## 0.99.23 - the war leader has to die first, and goblins die saying so
 

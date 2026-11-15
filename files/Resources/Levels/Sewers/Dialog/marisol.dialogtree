@@ -1,0 +1,306 @@
+CDialogTree
+{
+Name=Marisol
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Ayudame! Help me! Please, will you help me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What's the matter?
+Go to node ID=10 brother
+
+Requirement=!None
+Reply Text=Sorry, I don't have time to hear this.
+Go to node ID=31 please help
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return dialogue
+Text=You have returned, will you help me?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What's the matter?
+Go to node ID=10 brother
+
+Requirement=!None
+Reply Text=Sorry, I don't have time to hear this.
+Go to node ID=31 please help
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=4 Return dialogue 2
+Text=Have you found my brother?  I am sick with worry.
+Should Have Voiceover=0
+
+Requirement=Marisol requires you to have found her brother
+Reply Text=Yes, I found him down there.
+Go to node ID=35 really
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Saved Tomas in Sewers
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Tomas Sold
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+State=ZZKX5PFU
+}
+}
+}
+}
+Reply Text=He is dead. The trolls had him.
+Go to node ID=36 dead
+Custom Action=CSetQuestSatusToFailedIfActiveAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+}
+
+Requirement=!None
+Reply Text=No, I was not able to.
+Go to node ID=33 oh dear
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Brother
+Text=My brother, Tomas, he is lost in the sewers! He hasn't come out for hours! Please help him. Por favor!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Don't worry, I'll find your brother.
+Go to node ID=50 quest
+Action work in progress=Assign marisol quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=First child, tell me your name.
+Go to node ID=30 trolls
+
+Requirement=!None
+Reply Text=How do I get to the sewers?
+Go to node ID=40 sewers
+------------------------------------------------------------
+Node ID=30 trolls
+Text=I'm Marisol, but...but, please, my brother might be hurt. Someone must help him!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Don't worry, I'll find your brother.
+Go to node ID=50 quest
+Action work in progress=Assign marisol quest
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=How do I get to the sewers?
+Go to node ID=40 sewers
+
+Requirement=!None
+Reply Text=Sorry, I don't have time to hear this.
+Go to node ID=31 please help
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 please help
+Text=But...but, please, my brother might be hurt. Someone must help him!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=33 oh dear
+Text=Oh dear, where can he be.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=35 really
+Text=Really!  Perhaps he is home how, I must go see!  Thank you!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CRemoveAIAction
+{
+Target Name=Marisol
+AI=CSkeletonAI
+Delay Between Removes=0
+}
+Action=CAddAIAction
+{
+Target Name=marisol
+AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Marisol disappear location
+Offset=0.000000,0.000000
+Starting Action=
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=
+Planed Path For=
+}
+Done action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CDeleteAction
+{
+Target Name=Marisol
+}
+Action=CSendAIDoneMessage
+{
+Target=$Trigger
+}
+}
+}
+Run=0
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=0
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Delay Between Adds=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 sewers
+Text=Right through this grate here. Will you help?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=First child, tell me your name.
+Go to node ID=30 trolls
+
+Requirement=!None
+Reply Text=Don't worry, I'll find your brother.
+Go to node ID=50 quest
+Action work in progress=Assign marisol quest
+Icon=Quest Icon
+------------------------------------------------------------
+Node ID=50 quest
+Text=Gracias! Thank you so much! Please, hurry if you would, I fear that he is hurt.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Find the lost boy Tomas in the Sewers
+State=KLET2WR9
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 you there
+Text=You there, help me!  Ayudame!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=80 somebody
+Text=Somebody help me, please!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=90 Ahhh!
+Text=Ahhh!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=36 dead
+Text=<She goes very still.> No. No, he knows the tunnels, he always comes back... <She turns and runs.>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+}

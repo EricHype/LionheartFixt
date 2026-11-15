@@ -87,6 +87,36 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=ore warned
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=3900
+			Position Y=1100
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Troll peace broken
 			Child List=
 			Visible=0
@@ -18462,25 +18492,44 @@ CLayerSaveData
 								}
 								Early Exit=0
 							}
-							Then=CMultipleActionsAction
+							Then=CIfAction
 							{
-								Action=Array
+								If=CCheckExistenceAction
 								{
-									Item Count=2
-									Action=CDisplayDialogBalloonAction
+									Name To Check For=ore warned
+									Desired Minimum Count=1
+								}
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+									Node ID=93 theft
+									Speaker=Troll Chief
+									Player Being Spoken To=$Instigator
+								}
+								Else=CMultipleActionsAction
+								{
+									Action=Array
 									{
-										Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
-										Node ID=91 that is ours
-										Name of Position=Troll Chief
-										Position Offset=0.000000,-70.000000
-										After Action=
-										Include In Log=1
-									}
-									Action=CTriggerRelayAction
-									{
-										Relay Name=Troll desecration relay
+										Item Count=2
+										Action=CDisplayDialogBalloonAction
+										{
+											Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+											Node ID=92 not yours
+											Name of Position=Troll Chief
+											Position Offset=0.000000,-70.000000
+											After Action=
+											Include In Log=1
+										}
+										Action=CActivateAction
+										{
+											Target Name=ore warned
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
 									}
 								}
+								Return failure if the If failes=0
 							}
 							Else=CTriggerRelayAction
 							{
@@ -21460,13 +21509,95 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
 							Action=CEndNonInteractiveSequenceAction
 							{
 							}
 							Action=CDeactivateAction
 							{
 								Target Name=Tomas Fog pusher
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Tomas Sold
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CIfAction
+								{
+									If=CCheckExistenceAction
+									{
+										Name To Check For=Troll Peace Keeper
+										Desired Minimum Count=1
+									}
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDisplayDialogBalloonAction
+											{
+												Dialog Tree File=Levels/Sewers/Dialog/Warning Troll
+												Node ID=94 both
+												Name of Position=Troll Chief
+												Position Offset=0.000000,-70.000000
+												After Action=
+												Include In Log=1
+											}
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=8
+													Action=CDeactivateAction
+													{
+														Target Name=Troll Peace Keeper
+													}
+													Action=CSendAIDoneMessage
+													{
+														Target=Lava Troll
+													}
+													Action=CGoToCombatAction
+													{
+														Enemy Name=Lava Troll
+													}
+													Action=CSendAIDoneMessage
+													{
+														Target=Troll Chief
+													}
+													Action=CGoToCombatAction
+													{
+														Enemy Name=Troll Chief
+													}
+													Action=CSendAIDoneMessage
+													{
+														Target=warning troll
+													}
+													Action=CGoToCombatAction
+													{
+														Enemy Name=warning troll
+													}
+													Action=CSetQuestSatusToFailedIfActiveAction
+													{
+														Quest=Levels/Sewers/Quests/The Chief Before
+													}
+												}
+											}
+										}
+									}
+									Else=
+									Return failure if the If failes=0
+								}
+								Else=
 							}
 						}
 					}
