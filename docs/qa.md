@@ -6169,7 +6169,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
-## 0.99.23 - the war leader has to die first
+## 0.99.23 - the war leader has to die first, and goblins die saying so
 
 `tools/build_goblin_leader_death.py`. Only maps a character has **not entered yet** carry the fix; a visited map keeps the
 old watcher in the save. Use a new game, or a character who has not been to the map named.
@@ -6188,6 +6188,10 @@ old watcher in the save. Use a new game, or a character who has not been to the 
 | KX3 | **The Khan's Champion**, a WL map not yet entered | Walk to the farthest band | They stand aside as you arrive, like the near ones. Before, a band out of range at arrival fought you |
 | KX4 | **Neither**: the Khan alive, not his Champion | Any WL map | No line on arrival, goblins at normal speed and hostile |
 | KX5 | **Regression**, Woodcutter Forest | Kill a band goblin, then its war leader | Vanilla's `monster counter` death script still runs on both (it now shares the generator's `After Action` with the Khan check), and WL2 still happens |
+| DX1 | Any goblin fight | Kill several goblins, watching each as it falls | When one shouts on the killing blow it is a **death line**: *"Not... the pot..."*, *"Tell Grum he gets my share."* and the like. Never a fighting line like *"Khan! Khan, it is winning!"* as it dies |
+| DX2 | The same | Hit goblins without killing them | The hurt barks as before, at the same rate, about one hit in six |
+| DX3 | The same | Watch where a death line appears | Over the body, a moment after the blow. It waits 0.1 seconds so the check reads the goblin after the hit |
+| DX4 | **Regression**, a war leader | Hit him, then kill him | His hurt barks and the WL2 break-off both still happen. His bark bank sits beside the Goblin Cave Post charge in the same hook, which is untouched |
 
 ## 0.99.22 - the auras say what they are
 
