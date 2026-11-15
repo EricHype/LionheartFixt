@@ -1336,90 +1336,205 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=CIfAction
+		Damaged Script Action=CMultipleActionsAction
 		{
-			If=CWasDamagedByPlayerAction
+			Action=Array
 			{
-				Entity To Check For Damage=$Trigger
-			}
-			Then=CSeriesAction
-			{
-				Action=Array
+				Item Count=2
+				Action=CIfAction
 				{
-					Item Count=2
-					Action=CMultipleActionsAction
+					If=CWasDamagedByPlayerAction
+					{
+						Entity To Check For Damage=$Trigger
+					}
+					Then=CSeriesAction
 					{
 						Action=Array
 						{
-							Item Count=3
-							Action=CAddCharacterModifierToCharacterAction
+							Item Count=2
+							Action=CMultipleActionsAction
 							{
-								Modifier Description=steadies the draw
-								Modification is permanent=0
-								Character to modify=$Trigger
-								Modifiers=Array
+								Action=Array
 								{
-									Item Count=2
-									Modifier=CCharacterModifierAttribute
+									Item Count=3
+									Action=CAddCharacterModifierToCharacterAction
 									{
-										Modification Amount=CConstant
+										Modifier Description=steadies the draw
+										Modification is permanent=0
+										Character to modify=$Trigger
+										Modifiers=Array
 										{
-											Constant Value=2
+											Item Count=2
+											Modifier=CCharacterModifierAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=2
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Character attribute to modify=Character Attributes/(PE) Perception
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=0.20
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Speed/Ranged Attack Animation Speed Multiplier
+											}
 										}
-										Modification amount is a percent=0
-										Allow Accumulation=1
-										Character attribute to modify=Character Attributes/(PE) Perception
+										OPTIONAL Duration=CConstant
+										{
+											Constant Value=20
+										}
+										Expression Context=$Trigger
 									}
-									Modifier=CCharacterModifierDerivedAttribute
+									Action=CPrintCombatTextAction
 									{
-										Modification Amount=CConstant
-										{
-											Constant Value=0.20
-										}
-										Modification amount is a percent=0
-										Allow Accumulation=1
-										Derived character attribute to modify=Derived Character Attributes/Speed/Ranged Attack Animation Speed Multiplier
+										Text to print=English Bowman steadies the draw: +2 Perception and faster shots for 20 seconds.
+										Character to show text to=Player1
+										Emphasize=0
+										Suppress Duplicates=0
+									}
+									Action=CSpawnEffectAction
+									{
+										Explosion Model=Spell Effects/Hits and Effects/Target Affected/Celestial Smite
+										Location Entity=$Trigger
+										Make effect a child of the location entity=0
+										X Offset=0
+										Y Offset=0
+										Height Offset=35
+										Play Default Sound=1
 									}
 								}
-								OPTIONAL Duration=CConstant
-								{
-									Constant Value=20
-								}
-								Expression Context=$Trigger
 							}
-							Action=CPrintCombatTextAction
+							Action=CSucceedAction
 							{
-								Text to print=English Bowman steadies the draw: +2 Perception and faster shots for 20 seconds.
-								Character to show text to=Player1
-								Emphasize=0
-								Suppress Duplicates=0
-							}
-							Action=CSpawnEffectAction
-							{
-								Explosion Model=Spell Effects/Hits and Effects/Target Affected/Celestial Smite
-								Location Entity=$Trigger
-								Make effect a child of the location entity=0
-								X Offset=0
-								Y Offset=0
-								Height Offset=35
-								Play Default Sound=1
+								Action=
 							}
 						}
+						When Done=Repeat Last Action
+						Require Success To Advance=1
+						Next Action Index=0
 					}
-					Action=CSucceedAction
+					Else=CFailAction
 					{
 						Action=
 					}
+					Return failure if the If failes=0
 				}
-				When Done=Repeat Last Action
-				Require Success To Advance=1
-				Next Action Index=0
+				Action=CDelayAction
+				{
+					Next Action=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CExpressionHealthPercent
+							{
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=1
+							}
+						}
+						Character to get attributes from=$trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CRandom
+								{
+									Operator=
+									Minimum=CConstant
+									{
+										Constant Value=0
+									}
+									Maximum=CConstant
+									{
+										Constant Value=100
+									}
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=35
+								}
+							}
+							Character to get attributes from=$trigger
+							Then=CRandomAction
+							{
+								Action=Array
+								{
+									Item Count=6
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=soldier 1
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=soldier 2
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=soldier 3
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=soldier 4
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=soldier 5
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=soldier 6
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+								}
+							}
+							Else=
+						}
+						Else=
+					}
+					Delay=0.1
+					Plus or Minus=0
+					Forget Trigger=0
+				}
 			}
-			Else=CFailAction
-			{
-				Action=
-			}
-			Return failure if the If failes=0
 		}
 		Damaged Effect Action=CRandomAction
 		{

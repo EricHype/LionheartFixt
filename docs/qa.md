@@ -6192,6 +6192,10 @@ old watcher in the save. Use a new game, or a character who has not been to the 
 | DX2 | The same | Hit goblins without killing them | The hurt barks as before, at the same rate, about one hit in six |
 | DX3 | The same | Watch where a death line appears | Over the body, a moment after the blow. It waits 0.1 seconds so the check reads the goblin after the hit |
 | DX4 | **Regression**, a war leader | Hit him, then kill him | His hurt barks and the WL2 break-off both still happen. His bark bank sits beside the Goblin Cave Post charge in the same hook, which is untouched |
+| DX5 | Cortes or Cervantes in the party | Let him fall in a fight | If he speaks as he dies, it is a dying line (*"All that gold... and I never spent it."*, *"Squire... finish the chapter for me."*), never *"I need assistance!"* |
+| DX6 | Sewers thieves, English soldiers, trolls, Snakebreed | Kill a dozen of one family | About a third of them say a dying line as they fall, in their own voice: *"Should have stayed in the alley..."*, *"For... England..."*, *"Rock... takes me back."*, *"Cold... ssso cold..."* |
+| DX7 | The same | Kill one just after it barks on a swing | The swing line may still be fading over the body, and a death line, if one comes, sits **above** it, not on top of it |
+| DX8 | **Regression**: a thief, a soldier captain, the Lava Troll Boss | Hit each | The thief still drops caltrops on the first hit, the captain still reaches for a draught under 40%, and hitting the boss still breaks the troll peace. Each of those hooks now shares its slot with the death check |
 
 ## 0.99.22 - the auras say what they are
 

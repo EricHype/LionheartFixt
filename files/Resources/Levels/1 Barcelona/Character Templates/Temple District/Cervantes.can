@@ -1398,30 +1398,85 @@ CCannedObject
 									Character to select skill=$Trigger
 									Skill to select=Skills/Fighting/OneHandedMelee
 								}
-								Action=CRandomAction
+								Action=CDelayAction
 								{
-									Action=Array
+									Next Action=CIfExpressionAction
 									{
-										Item Count=2
-										Action=CDisplayDialogBalloonAction
+										If Expression=CIsLessThan
 										{
-											Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Cervantes
-											Node ID=1500 cervantes under attack
-											Name of Position=$trigger
-											Position Offset=0.000000,-70.000000
-											After Action=
-											Include In Log=0
+											Operand1=CExpressionHealthPercent
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=1
+											}
 										}
-										Action=CDisplayDialogBalloonAction
+										Character to get attributes from=$trigger
+										Then=CRandomAction
 										{
-											Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Cervantes
-											Node ID=1500 cervantes under attack 2
-											Name of Position=$trigger
-											Position Offset=0.000000,-70.000000
-											After Action=
-											Include In Log=0
+											Action=Array
+											{
+												Item Count=3
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Death Barks
+													Node ID=cervantes 1
+													Name of Position=$trigger
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=0
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Death Barks
+													Node ID=cervantes 2
+													Name of Position=$trigger
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=0
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Death Barks
+													Node ID=cervantes 3
+													Name of Position=$trigger
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=0
+												}
+											}
+										}
+										Else=CRandomAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Cervantes
+													Node ID=1500 cervantes under attack
+													Name of Position=$trigger
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=0
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/Cervantes
+													Node ID=1500 cervantes under attack 2
+													Name of Position=$trigger
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=0
+												}
+											}
 										}
 									}
+									Delay=0.1
+									Plus or Minus=0
+									Forget Trigger=0
 								}
 							}
 						}

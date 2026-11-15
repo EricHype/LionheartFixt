@@ -1425,24 +1425,139 @@ CCannedObject
 			Else=
 			Return failure if the If failes=0
 		}
-		Damaged Script Action=COnlyOnceAction
+		Damaged Script Action=CMultipleActionsAction
 		{
-			Action=CIfAction
+			Action=Array
 			{
-				If=CCheckExistenceAction
+				Item Count=2
+				Action=COnlyOnceAction
 				{
-					Name To Check For=Troll Peace Keeper
-					Desired Minimum Count=1
+					Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Troll Peace Keeper
+							Desired Minimum Count=1
+						}
+						Then=CTriggerRelayAction
+						{
+							Relay Name=Troll peace broken
+						}
+						Else=CGoToCombatAction
+						{
+							Enemy Name=Troll Chief
+						}
+						Return failure if the If failes=0
+					}
 				}
-				Then=CTriggerRelayAction
+				Action=CDelayAction
 				{
-					Relay Name=Troll peace broken
+					Next Action=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CExpressionHealthPercent
+							{
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=1
+							}
+						}
+						Character to get attributes from=$trigger
+						Then=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CRandom
+								{
+									Operator=
+									Minimum=CConstant
+									{
+										Constant Value=0
+									}
+									Maximum=CConstant
+									{
+										Constant Value=100
+									}
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=35
+								}
+							}
+							Character to get attributes from=$trigger
+							Then=CRandomAction
+							{
+								Action=Array
+								{
+									Item Count=6
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=troll 1
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=troll 2
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=troll 3
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=troll 4
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=troll 5
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+									Action=CDisplayDialogBalloonAction
+									{
+										Dialog Tree File=Levels/Fixt Death Barks
+										Node ID=troll 6
+										Name of Position=$trigger
+										Position Offset=0.000000,-110.000000
+										After Action=
+										Include In Log=0
+									}
+								}
+							}
+							Else=
+						}
+						Else=
+					}
+					Delay=0.1
+					Plus or Minus=0
+					Forget Trigger=0
 				}
-				Else=CGoToCombatAction
-				{
-					Enemy Name=Troll Chief
-				}
-				Return failure if the If failes=0
 			}
 		}
 		Damaged Effect Action=CMultipleActionsAction
