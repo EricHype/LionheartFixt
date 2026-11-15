@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.23** | the war leader has to die first | Goblin bands no longer lose their war leader before you meet them, and when he falls they break off, slow down and come back. The Khan's death and his Champion's standing reach every band. Enemies that die talking now say a dying line. |
 | **0.99.22** | the auras say what they are | Acid Touch, Cold Zone, Lava Burn and Deepest Winter now describe themselves as an aura that damages nearby enemies every few seconds, instead of claiming melee range. |
 | **0.99.21** | companions say what they are | Asking a companion how they are holding up now gives exact health, armor and fighting skill instead of ranges, and each level-up line says what it gave them. |
 | **0.99.20** | caltrops at ankle height | Thieves' caltrops were a single spike as tall as a person. They are now a low cluster of iron points, land near the thief rather than under it, and the combat log tells you when you step on them. |

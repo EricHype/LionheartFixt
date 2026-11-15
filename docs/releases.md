@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.22 are published** -- 225 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.23 are published** -- 226 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,43 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.23 - the war leader has to die first
+
+Reported from play: the log said a goblin band had lost its war leader before the player had seen any goblins, killing a
+leader changed nothing visible, and enemies shouted their fighting lines on the blow that killed them. The first two had one
+cause: a `CGeneratorAI` waits for the player before it generates, so every check these features ran when a map loaded looked
+at goblins that did not exist yet. `tools/build_goblin_leader_death.py`, `tools/build_khan_heart.py`,
+`tools/build_death_barks.py`. `WL1`-`WL7`, `KX1`-`KX5`, `DX1`-`DX8`.
+
+- **The war leader has to die first.** 0.99.7 watched each leader with a timer that called him dead if he was not alive ten
+  seconds after the map loaded. A band out of range had no leader yet, so the timer printed the line, slowed a band that did
+  not exist and switched itself off, and the real death later did nothing. A save pair shows it: Woodcutter Band 2's leader
+  alive and fighting while that band's watcher was already off. The watchers are gone, and each leader now carries his own
+  death script, set by his generator.
+- **And the band shows it.** When he dies his band breaks off at once (no targets, not an enemy, so your companions stop
+  chasing them too), is slowed for good, -0.25 `Base Animation Speed Multiplier`, and comes back at you six seconds later.
+  The Khan's Champion keeps his stand-aside: the comeback checks for the perk. The slowdown names the band, because
+  `CAddCharacterModifierToCharacterAction` applies to every entity that matches the name (`0x488980` -> `0x41f150`); 0.99.7's
+  modifier rode a timer on each goblin and never showed on one.
+- **The Khan reaches every band.** His death's slowdown and his Champion's stand-aside ran three seconds after arrival and
+  reached only goblins spawned by then, so a far band was never slowed, and a far band fought his Champion. Both now happen
+  on all 59 band generators as each goblin spawns, on `$Instigator`, the reference vanilla's own `After Action` uses. A
+  death script a generator already had runs first.
+- **A dying goblin says a dying line.** The goblins' hurt barks ride `Damaged Script Action`, which also runs on the killing
+  blow. Each bank now waits 0.1 seconds (vanilla's frame-ordering idiom in its own death hooks), then checks
+  `CExpressionHealthPercent`: dying picks one of six death lines (*"Not... the pot..."*, *"Tell Grum he gets my share."*),
+  living keeps the hurt bark. All 20 goblin types, at the same rate as before.
+- **So do Cortes and Cervantes**, who bark when hurt the same way: three dying lines each.
+- **And every other enemy that barks.** Soldiers, thieves, trolls and Snakebreed bark only on their own swings, so nothing
+  fired as they died. Their damage hook gains the same check and a 35% chance of a dying line in their own voice, placed
+  above any swing line still fading over the body. 85 creature types. Hooks already there (caltrops, the captain's draught,
+  the troll peace) run first. The damage hook is used because generators replace the death slot on 52 spawn sites of these
+  families, and the damage hook on 4.
+- **Reach.** The war leader and Khan changes are in the maps, so they reach maps a character has not entered yet, and new
+  games. The death lines are in the creatures, so they reach every creature spawned after install.
+
+---
 
 ## 0.99.22 - the auras say what they are
 
