@@ -6169,6 +6169,21 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.27 - Felipe fights back
+
+`tools/build_woodcutter_fixes.py` (`build_lie`), `tools/build_gate_greeting.py` (`build_darsh`). Both dialogue, so every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| FK9 | Felipe, after striking or handing over his daughter, Speech 40 or more | *"I searched the forest and found nothing. I am sorry. <Lie>"* | *"<His shoulders drop.> Then she is gone. Thank you for looking. Few strangers would have."* Next visit he greets you as a friend, and the Darkwood is still on offer |
+| FK10 | The same, Speech under 40 | The same lie | *"<He looks at you a long time.> You are lying. It is all over you..."*; next visit is the angry greeting, as FK1 |
+| FK11 | **Regression**: the confession | *"I am the reason she did not come home."* | Still `31 she never came home`, as FK1 |
+| FK12 | Woodcutter Forest **not entered yet**, level 8-10 with companions, on Rakeb's eyes quest | Fight Felipe | A real fight: about 150 HP and armor 140, so it takes several rounds, and his axe lands for 5-12. He can still be beaten without dying |
+| FK13 | The same, a level 5 character alone | Fight Felipe | Hard but survivable with potions; if it is not, his numbers are too high |
+| FK14 | FK9-FK11 | Read his answers | Neither node 31 nor 34 mentions the cave; both end with *"Begone..."* |
+| GG4 | Mongol Camp, welcomed, Darsh quest active | At the gate greeting, *"I have come to find Inquisitor Darsh."* | *"<The guard shrugs.> The priest? He sits in our pens. The shaman Rakeb set his price..."*. The camp does **not** turn hostile, and later crossings are silent |
+| GG5 | **Regression**: a new character, at the first challenge | *"I have come to find Inquisitor Darsh."* from the challenge | Still *"you may join him...In our slave pens!"* and the fight, as vanilla |
+
 ## 0.99.26 - the killing blow is yours
 
 `tools/build_woodcutter_fixes.py`. Felipe's dialogue and Rakeb's turn-in reach every save. The eyes-and-liver grant is in

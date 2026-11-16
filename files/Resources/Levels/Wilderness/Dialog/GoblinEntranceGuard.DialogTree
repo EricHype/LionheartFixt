@@ -266,7 +266,11 @@ Early Exit=0
 }
 }
 Reply Text=I have come to find Inquisitor Darsh.
-Go to node ID=10 darsh
+Go to node ID=11 darsh friend
+Custom Action=CDeactivateAction
+{
+Target Name=welcomed at the gate
+}
 
 Requirement=!None
 Custom Requirement=CUseCannedExpressionExpression
@@ -516,4 +520,8 @@ Forget Trigger=0
 }
 Icon=Fight Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 darsh friend
+Text=<The guard shrugs.> The priest? He sits in our pens. The shaman Rakeb set his price. Take it up with Rakeb, friend, not with me.
+Should Have Voiceover=0
 }

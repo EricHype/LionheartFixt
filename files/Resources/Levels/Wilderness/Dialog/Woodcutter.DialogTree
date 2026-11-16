@@ -885,7 +885,7 @@ Reply Text=I found her, Felipe. I am the reason she did not come home.
 Go to node ID=31 she never came home
 Icon=Quest Icon
 
-Requirement=!None
+Requirement=Speech moreequal 40
 Custom Requirement=COR
 {
 Operand1=CActionExpression
@@ -907,7 +907,32 @@ Desired Minimum Count=1
 }
 }
 Reply Text=I searched the forest and found nothing. I am sorry. <Lie>
-Go to node ID=31 she never came home
+Go to node ID=33 he believes you
+Icon=Speach Skill Icon
+
+Requirement=Speech lessthan 040
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter attacked
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=daughter taken
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=I searched the forest and found nothing. I am sorry. <Lie>
+Go to node ID=34 he sees through it
 Icon=Speach Skill Icon
 
 Requirement=!None
@@ -921,7 +946,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=31 she never came home
-Text=<He does not raise his voice, and that is somehow worse.>  Then there is nothing here for you. The cave stays shut. Whatever you came for, go and want it somewhere else -- and do not use her name to me again.
+Text=<He does not raise his voice, and that is somehow worse.> Then there is nothing here for you. Begone, and do not use her name to me again.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -1543,4 +1568,54 @@ Go to node ID=
 Node ID=32 nothing to say
 Text=<He turns his back on you and goes on with his work.>
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=33 he believes you
+Text=<His shoulders drop.> Then she is gone. Thank you for looking. Few strangers would have.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=34 he sees through it
+Text=<He looks at you a long time.> You are lying. It is all over you. Begone from my house.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActivateAction
+{
+Target Name=Angry Return
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
 }

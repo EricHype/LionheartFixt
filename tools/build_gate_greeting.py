@@ -31,12 +31,37 @@ AUDIENCE = ("Reply Text=I have come to seek an audience with your great leader."
             + "Action work in progress=(speech 40)" + CR)
 
 
+DARSH = "Reply Text=I have come to find Inquisitor Darsh." + CR + "Go to node ID=10 darsh" + CR
+DARSH_NODE = "11 darsh friend"
+DARSH_TEXT = "<The guard shrugs.> The priest? He sits in our pens. The shaman Rakeb set his price. Take it up with Rakeb, friend, not with me."
+
+
+def build_darsh():
+    """Node 3's Darsh reply opened `10 darsh`, the challenge's *"you may join him...In our slave pens!"*, which turns the camp
+    hostile: on a goblin friend. Now it opens its own node, pointing at Rakeb, who holds him against the devil fish."""
+    from build_troll_choices import add_node
+    t = lhbuild.read(TREE)
+    if "Node ID=" + DARSH_NODE + CR in t:
+        return 0
+    i, j = node_span(t, NODE)
+    blk = t[i:j]
+    assert blk.count(DARSH) == 1
+    blk = blk.replace(DARSH, DARSH.replace("10 darsh", DARSH_NODE) + "Custom Action=" + B(*lhbuild.deactivate(WELCOME)), 1)
+    t = t[:i] + blk + t[j:]
+    assert len(DARSH_TEXT) <= 200
+    t = add_node(t, DARSH_NODE, DARSH_TEXT, [])
+    (lhbuild.FX / TREE).write_bytes(t.encode("latin-1"))
+    register([TREE])
+    return 1
+
+
 def main():
+    print("darsh:", build_darsh())
     t = lhbuild.read(TREE)
     i, j = node_span(t, NODE)
     blk = t[i:j]
     off = "Custom Action=" + B(*lhbuild.deactivate(WELCOME))
-    if off in blk:
+    if blk.count(off) >= 2 and (EXIT + off) in blk:
         print("gate greeting: 0")
         return
     for anchor in (EXIT, AUDIENCE):

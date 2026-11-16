@@ -10,6 +10,10 @@ activates `Angry Return`, the map's own "you pissed off the woodcutter" marker, 
 the cave, *"I didn't mean to offend you"*, *"What's wrong?"*, the rude exit, the found daughter) is hidden once he knows, and
 a new exit takes its place. The shaman's kill reply stays. `Angry Return` exists in vanilla's map, so this reaches every save.
 
+**The lie** (0.99.27). *"I searched the forest and found nothing. <Lie>"* carried a Speech icon, had no check, and opened
+the confession's answer. At Speech 40 he believes it (`33 he believes you`, and he stays a friend); below, he sees through
+it (`34 he sees through it`, which ends like 31: he knows, and the angry greeting follows).
+
 **The eyes and liver.** Vanilla's death script gives both to `$Instigator`, and in a death script that is whoever landed the
 blow: in the report it was Ernesto (`Ernesto kills Woodcutter`), and the save has both items in his inventory, which the UI
 cannot open. The script then marks them as handed out, so the ground drop that was meant as the fallback never comes. Each
@@ -119,6 +123,106 @@ def build_felipe():
     return len(SOFT)
 
 
+LIE = "I searched the forest and found nothing. I am sorry. <Lie>"
+LIE_TEXT = {
+    "33 he believes you": "<His shoulders drop.> Then she is gone. Thank you for looking. Few strangers would have.",
+    "34 he sees through it": "<He looks at you a long time.> You are lying. It is all over you. Begone from my house.",
+}
+# he sends you away; the cave is not his to mention to you (asked after 0.99.26)
+BEGONE = {
+    "31 she never came home": "<He does not raise his voice, and that is somehow worse.> Then there is nothing here for you. Begone, and do not use her name to me again.",
+    "34 he sees through it": LIE_TEXT["34 he sees through it"],
+}
+
+
+def build_begone():
+    t = lhbuild.read(FELIPE)
+    n = 0
+    for nid, text in BEGONE.items():
+        m = re.search(r"Node ID=" + re.escape(nid) + r"\r\nText=([^\r\n]*)\r\n", t)
+        assert m, nid
+        if m.group(1) != text:
+            t = t[:m.start(1)] + text + t[m.end(1):]
+            n += 1
+    if n:
+        (lhbuild.FX / FELIPE).write_bytes(t.encode("latin-1"))
+        register([FELIPE])
+    return n
+
+
+def build_lie():
+    """The lie had a Speech icon and no check, and opened the confession's answer. Now Speech 40 is believed (33, he grieves
+    and stays a friend), and below it he sees through it (34, then the same as the confession: he knows, and he is cold)."""
+    t = lhbuild.read(FELIPE)
+    if "Node ID=33 he believes you" + CR in t:
+        return 0
+    node = "30 Pepe's plight"
+    k = reply_start(t, node, LIE)
+    e = t.index(CR + CR, t.index("Reply Text=" + LIE + CR, k)) + len(CR + CR)
+    blk = t[k:e]
+    assert blk.startswith("Requirement=!None" + CR) and "Go to node ID=31 she never came home" + CR in blk, blk[:200]
+    believed = blk.replace("Requirement=!None" + CR, "Requirement=Speech moreequal 40" + CR, 1).replace(
+        "Go to node ID=31 she never came home" + CR, "Go to node ID=33 he believes you" + CR, 1)
+    caught = blk.replace("Requirement=!None" + CR, "Requirement=Speech lessthan 040" + CR, 1).replace(
+        "Go to node ID=31 she never came home" + CR, "Go to node ID=34 he sees through it" + CR, 1)
+    t = t[:k] + believed + caught + t[e:]
+    # 34 ends the way 31 does: the same exit, which records it and turns on the angry greeting
+    i, j = node_span(t, "31 she never came home")
+    exit31 = t[i:j][t[i:j].index("Requirement=!None" + CR):].rstrip(CR) + CR
+    assert "Fixt Felipe Knows" in exit31 and "Angry Return" in exit31
+    for nid, text in LIE_TEXT.items():
+        assert len(text) <= 200, nid
+    t = add_node(t, "33 he believes you", LIE_TEXT["33 he believes you"], [])
+    t = add_node(t, "34 he sees through it", LIE_TEXT["34 he sees through it"], [exit31 + CR])
+    (lhbuild.FX / FELIPE).write_bytes(t.encode("latin-1"))
+    register([FELIPE])
+    return 2
+
+
+RACE = "Resources/Races/NPCs/Woodcutter.Race"
+CAN = "Resources/Levels/Wilderness/Character Templates/Woodcutter.can"
+# (vanilla, ours). Requested after 0.99.26: "He folded pretty easily". Vanilla made the man "with a large axe" the weakest
+# thing in his forest bar the wasps and the deer: 45 HP against a Goblin War Leader's 60, and a 1-6 hit. These make him a
+# real fight for the party that comes for his eyes, short of the Super war leader's 250 / 225, since a player can meet
+# him at level 5. His race is used by no other can.
+FIGHT_RACE = {"(AC) Armor Class": ("90", "140"), "(HP) Hit Points": ("45", "150")}
+FIGHT_SKILL = ("35", "55")          # OneHandedMelee
+FIGHT_DAMAGE = (("1", "6"), ("5", "12"))
+
+
+def build_fight():
+    r = lhbuild.read(RACE)
+    n = 0
+    for attr, (old, new) in FIGHT_RACE.items():
+        pat = re.compile(r"(Derived Character Attribute=Derived Character Attributes/" + re.escape(attr) + r"\r\n\t*Value To Preset=)(\d+)")
+        m = pat.search(r)
+        assert m and m.group(2) in (old, new), (attr, m and m.group(2))
+        if m.group(2) == old:
+            r = r[:m.start(2)] + new + r[m.end(2):]
+            n += 1
+    m = re.search(r"(Skill=Skills/Fighting/OneHandedMelee\r\n\t*Value To Preset=)(\d+)", r)
+    assert m and m.group(2) in FIGHT_SKILL
+    if m.group(2) == FIGHT_SKILL[0]:
+        r = r[:m.start(2)] + FIGHT_SKILL[1] + r[m.end(2):]
+        n += 1
+    if n:
+        (lhbuild.FX / RACE).write_bytes(r.encode("latin-1"))
+        register([RACE])
+    c = lhbuild.read(CAN)
+    pat = re.compile(r"(Damage Type=Damage Types/Crushing\r\n\t*Damage Amount=CRandom\r\n\t*\{\r\n\t*Operator=\r\n\t*Minimum=CConstant\r\n\t*\{\r\n\t*Constant Value=)(\d+)"
+                     r"(\r\n\t*\}\r\n\t*Maximum=CConstant\r\n\t*\{\r\n\t*Constant Value=)(\d+)")
+    hits = list(pat.finditer(c))
+    assert len(hits) == 1, len(hits)
+    m = hits[0]
+    assert (m.group(2), m.group(4)) in FIGHT_DAMAGE
+    if (m.group(2), m.group(4)) == FIGHT_DAMAGE[0]:
+        c = c[:m.start(2)] + FIGHT_DAMAGE[1][0] + m.group(3) + FIGHT_DAMAGE[1][1] + c[m.end(4):]
+        lhbuild.write_map(CAN, c)
+        register([CAN])
+        n += 1
+    return n
+
+
 def build_rakeb():
     t = lhbuild.read(RAKEB)
     if CARRIED in t:
@@ -188,7 +292,8 @@ def build_warrens():
 
 def main():
     build_dca()
-    print("felipe gates:", build_felipe(), "| rakeb replies:", build_rakeb(), "| forest gives wrapped:", build_forest(),
+    print("felipe gates:", build_felipe(), "| lie:", build_lie(), "| begone:", build_begone(), "| fight:", build_fight(),
+          "| rakeb replies:", build_rakeb(), "| forest gives wrapped:", build_forest(),
           "| warrens selector:", build_warrens())
 
 
