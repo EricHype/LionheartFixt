@@ -13856,27 +13856,30 @@ CLayerSaveData
 												}
 											}
 										}
-										Action=CConditionalAction
+										Action=CForEachPlayerAction
 										{
-											Try Action=CExpressionAction
+											Action=CConditionalAction
 											{
-												Expression=CHasPerkExpression
+												Try Action=CExpressionAction
 												{
-													Perks To Check For=Array
+													Expression=CHasPerkExpression
 													{
-														Item Count=1
-														Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/FACTION Inquisitor Killer
+														}
 													}
+													Character to get attributes from=$Instigator
 												}
-												Character to get attributes from=$Instigator
+												Succeed Action=
+												Fail Action=CGiveCharacterPerkAction
+												{
+													Character to give perk to=$Instigator
+													Perk to give=Perks/!Event Title Perks/FACTION Inquisitor Killer
+												}
+												Return failure if the TryAction failes=0
 											}
-											Succeed Action=
-											Fail Action=CGiveCharacterPerkAction
-											{
-												Character to give perk to=$Instigator
-												Perk to give=Perks/!Event Title Perks/FACTION Inquisitor Killer
-											}
-											Return failure if the TryAction failes=0
 										}
 									}
 								}
@@ -21438,100 +21441,106 @@ CLayerSaveData
 							Action=Array
 							{
 								Item Count=2
-								Action=CAddCharacterModifierToCharacterAction
+								Action=CForEachPlayerAction
 								{
-									Modifier Description=
-									Modification is permanent=1
-									Character to modify=$Instigator
-									Modifiers=Array
+									Action=CAddCharacterModifierToCharacterAction
 									{
-										Item Count=1
-										Modifier=CCharacterModifierDerivedAttribute
+										Modifier Description=
+										Modification is permanent=1
+										Character to modify=$Instigator
+										Modifiers=Array
 										{
-											Modification Amount=CConstant
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
 											{
-												Constant Value=1
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Goblin Kill Counter
 											}
-											Modification amount is a percent=0
-											Allow Accumulation=1
-											Derived character attribute to modify=Derived Character Attributes/Goblin Kill Counter
 										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
 									}
-									OPTIONAL Duration=
-									Expression Context=$Instigator
 								}
 								Action=CDelayAction
 								{
-									Next Action=CIfAction
+									Next Action=CForEachPlayerAction
 									{
-										If=CExpressionAction
+										Action=CIfAction
 										{
-											Expression=CIsGreaterThanOrEqual
+											If=CExpressionAction
 											{
-												Operand1=CVariableDerivedCharacterAttribute
+												Expression=CIsGreaterThanOrEqual
 												{
-													Character Attribute=Derived Character Attributes/Goblin Kill Counter
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Goblin Kill Counter
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=12
+													}
 												}
-												Operator=
-												Operand2=CConstant
-												{
-													Constant Value=12
-												}
+												Character to get attributes from=$Instigator
 											}
-											Character to get attributes from=$Instigator
-										}
-										Then=CMultipleActionsAction
-										{
-											Action=Array
+											Then=CMultipleActionsAction
 											{
-												Item Count=2
-												Action=CIfAction
+												Action=Array
 												{
-													If=CIsQuestStateTheCurrentStateAction
+													Item Count=2
+													Action=CIfAction
 													{
-														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-														State=B6FGBMLT
-													}
-													Then=CActivateQuestStateAction
-													{
-														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-														State=R0TTCYDY
-													}
-													Else=CFailAction
-													{
-														Action=
-													}
-													Return failure if the If failes=0
-												}
-												Action=CConditionalAction
-												{
-													Try Action=CExpressionAction
-													{
-														Expression=CHasPerkExpression
+														If=CIsQuestStateTheCurrentStateAction
 														{
-															Perks To Check For=Array
-															{
-																Item Count=1
-																Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
-															}
+															Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+															State=B6FGBMLT
 														}
-														Character to get attributes from=$Instigator
+														Then=CActivateQuestStateAction
+														{
+															Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+															State=R0TTCYDY
+														}
+														Else=CFailAction
+														{
+															Action=
+														}
+														Return failure if the If failes=0
 													}
-													Succeed Action=
-													Fail Action=CGiveCharacterPerkAction
+													Action=CConditionalAction
 													{
-														Character to give perk to=$Instigator
-														Perk to give=Perks/!Event Title Perks/Goblin Slayer
+														Try Action=CExpressionAction
+														{
+															Expression=CHasPerkExpression
+															{
+																Perks To Check For=Array
+																{
+																	Item Count=1
+																	Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+																}
+															}
+															Character to get attributes from=$Instigator
+														}
+														Succeed Action=
+														Fail Action=CGiveCharacterPerkAction
+														{
+															Character to give perk to=$Instigator
+															Perk to give=Perks/!Event Title Perks/Goblin Slayer
+														}
+														Return failure if the TryAction failes=0
 													}
-													Return failure if the TryAction failes=0
 												}
 											}
+											Else=CFailAction
+											{
+												Action=
+											}
+											Return failure if the If failes=0
 										}
-										Else=CFailAction
-										{
-											Action=
-										}
-										Return failure if the If failes=0
 									}
 									Delay=0.1
 									Plus or Minus=0
@@ -23353,100 +23362,106 @@ CLayerSaveData
 									Action=Array
 									{
 										Item Count=2
-										Action=CAddCharacterModifierToCharacterAction
+										Action=CForEachPlayerAction
 										{
-											Modifier Description=
-											Modification is permanent=1
-											Character to modify=$Instigator
-											Modifiers=Array
+											Action=CAddCharacterModifierToCharacterAction
 											{
-												Item Count=1
-												Modifier=CCharacterModifierDerivedAttribute
+												Modifier Description=
+												Modification is permanent=1
+												Character to modify=$Instigator
+												Modifiers=Array
 												{
-													Modification Amount=CConstant
+													Item Count=1
+													Modifier=CCharacterModifierDerivedAttribute
 													{
-														Constant Value=1
+														Modification Amount=CConstant
+														{
+															Constant Value=1
+														}
+														Modification amount is a percent=0
+														Allow Accumulation=1
+														Derived character attribute to modify=Derived Character Attributes/Goblin Kill Counter
 													}
-													Modification amount is a percent=0
-													Allow Accumulation=1
-													Derived character attribute to modify=Derived Character Attributes/Goblin Kill Counter
 												}
+												OPTIONAL Duration=
+												Expression Context=$Instigator
 											}
-											OPTIONAL Duration=
-											Expression Context=$Instigator
 										}
 										Action=CDelayAction
 										{
-											Next Action=CIfAction
+											Next Action=CForEachPlayerAction
 											{
-												If=CExpressionAction
+												Action=CIfAction
 												{
-													Expression=CIsGreaterThanOrEqual
+													If=CExpressionAction
 													{
-														Operand1=CVariableDerivedCharacterAttribute
+														Expression=CIsGreaterThanOrEqual
 														{
-															Character Attribute=Derived Character Attributes/Goblin Kill Counter
+															Operand1=CVariableDerivedCharacterAttribute
+															{
+																Character Attribute=Derived Character Attributes/Goblin Kill Counter
+															}
+															Operator=
+															Operand2=CConstant
+															{
+																Constant Value=12
+															}
 														}
-														Operator=
-														Operand2=CConstant
-														{
-															Constant Value=12
-														}
+														Character to get attributes from=$Instigator
 													}
-													Character to get attributes from=$Instigator
-												}
-												Then=CMultipleActionsAction
-												{
-													Action=Array
+													Then=CMultipleActionsAction
 													{
-														Item Count=2
-														Action=CIfAction
+														Action=Array
 														{
-															If=CIsQuestStateTheCurrentStateAction
+															Item Count=2
+															Action=CIfAction
 															{
-																Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-																State=B6FGBMLT
-															}
-															Then=CActivateQuestStateAction
-															{
-																Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-																State=R0TTCYDY
-															}
-															Else=CFailAction
-															{
-																Action=
-															}
-															Return failure if the If failes=0
-														}
-														Action=CConditionalAction
-														{
-															Try Action=CExpressionAction
-															{
-																Expression=CHasPerkExpression
+																If=CIsQuestStateTheCurrentStateAction
 																{
-																	Perks To Check For=Array
-																	{
-																		Item Count=1
-																		Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
-																	}
+																	Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+																	State=B6FGBMLT
 																}
-																Character to get attributes from=$Instigator
+																Then=CActivateQuestStateAction
+																{
+																	Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+																	State=R0TTCYDY
+																}
+																Else=CFailAction
+																{
+																	Action=
+																}
+																Return failure if the If failes=0
 															}
-															Succeed Action=
-															Fail Action=CGiveCharacterPerkAction
+															Action=CConditionalAction
 															{
-																Character to give perk to=$Instigator
-																Perk to give=Perks/!Event Title Perks/Goblin Slayer
+																Try Action=CExpressionAction
+																{
+																	Expression=CHasPerkExpression
+																	{
+																		Perks To Check For=Array
+																		{
+																			Item Count=1
+																			Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+																		}
+																	}
+																	Character to get attributes from=$Instigator
+																}
+																Succeed Action=
+																Fail Action=CGiveCharacterPerkAction
+																{
+																	Character to give perk to=$Instigator
+																	Perk to give=Perks/!Event Title Perks/Goblin Slayer
+																}
+																Return failure if the TryAction failes=0
 															}
-															Return failure if the TryAction failes=0
 														}
 													}
+													Else=CFailAction
+													{
+														Action=
+													}
+													Return failure if the If failes=0
 												}
-												Else=CFailAction
-												{
-													Action=
-												}
-												Return failure if the If failes=0
 											}
 											Delay=0.1
 											Plus or Minus=0
@@ -23950,100 +23965,106 @@ CLayerSaveData
 							Action=Array
 							{
 								Item Count=2
-								Action=CAddCharacterModifierToCharacterAction
+								Action=CForEachPlayerAction
 								{
-									Modifier Description=
-									Modification is permanent=1
-									Character to modify=$Instigator
-									Modifiers=Array
+									Action=CAddCharacterModifierToCharacterAction
 									{
-										Item Count=1
-										Modifier=CCharacterModifierDerivedAttribute
+										Modifier Description=
+										Modification is permanent=1
+										Character to modify=$Instigator
+										Modifiers=Array
 										{
-											Modification Amount=CConstant
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
 											{
-												Constant Value=1
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=1
+												Derived character attribute to modify=Derived Character Attributes/Goblin Kill Counter
 											}
-											Modification amount is a percent=0
-											Allow Accumulation=1
-											Derived character attribute to modify=Derived Character Attributes/Goblin Kill Counter
 										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
 									}
-									OPTIONAL Duration=
-									Expression Context=$Instigator
 								}
 								Action=CDelayAction
 								{
-									Next Action=CIfAction
+									Next Action=CForEachPlayerAction
 									{
-										If=CExpressionAction
+										Action=CIfAction
 										{
-											Expression=CIsGreaterThanOrEqual
+											If=CExpressionAction
 											{
-												Operand1=CVariableDerivedCharacterAttribute
+												Expression=CIsGreaterThanOrEqual
 												{
-													Character Attribute=Derived Character Attributes/Goblin Kill Counter
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Goblin Kill Counter
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=12
+													}
 												}
-												Operator=
-												Operand2=CConstant
-												{
-													Constant Value=12
-												}
+												Character to get attributes from=$Instigator
 											}
-											Character to get attributes from=$Instigator
-										}
-										Then=CMultipleActionsAction
-										{
-											Action=Array
+											Then=CMultipleActionsAction
 											{
-												Item Count=2
-												Action=CIfAction
+												Action=Array
 												{
-													If=CIsQuestStateTheCurrentStateAction
+													Item Count=2
+													Action=CIfAction
 													{
-														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-														State=B6FGBMLT
-													}
-													Then=CActivateQuestStateAction
-													{
-														Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
-														State=R0TTCYDY
-													}
-													Else=CFailAction
-													{
-														Action=
-													}
-													Return failure if the If failes=0
-												}
-												Action=CConditionalAction
-												{
-													Try Action=CExpressionAction
-													{
-														Expression=CHasPerkExpression
+														If=CIsQuestStateTheCurrentStateAction
 														{
-															Perks To Check For=Array
-															{
-																Item Count=1
-																Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
-															}
+															Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+															State=B6FGBMLT
 														}
-														Character to get attributes from=$Instigator
+														Then=CActivateQuestStateAction
+														{
+															Quest=Levels/Wilderness/Quests/Slay the Goblins for the Savage Heart
+															State=R0TTCYDY
+														}
+														Else=CFailAction
+														{
+															Action=
+														}
+														Return failure if the If failes=0
 													}
-													Succeed Action=
-													Fail Action=CGiveCharacterPerkAction
+													Action=CConditionalAction
 													{
-														Character to give perk to=$Instigator
-														Perk to give=Perks/!Event Title Perks/Goblin Slayer
+														Try Action=CExpressionAction
+														{
+															Expression=CHasPerkExpression
+															{
+																Perks To Check For=Array
+																{
+																	Item Count=1
+																	Perk To Check For=Perks/!Event Title Perks/Goblin Slayer
+																}
+															}
+															Character to get attributes from=$Instigator
+														}
+														Succeed Action=
+														Fail Action=CGiveCharacterPerkAction
+														{
+															Character to give perk to=$Instigator
+															Perk to give=Perks/!Event Title Perks/Goblin Slayer
+														}
+														Return failure if the TryAction failes=0
 													}
-													Return failure if the TryAction failes=0
 												}
 											}
+											Else=CFailAction
+											{
+												Action=
+											}
+											Return failure if the If failes=0
 										}
-										Else=CFailAction
-										{
-											Action=
-										}
-										Return failure if the If failes=0
 									}
 									Delay=0.1
 									Plus or Minus=0

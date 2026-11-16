@@ -1,0 +1,199 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=4
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Trapped Conquistador
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=0
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CAddCharacterModifierToCharacterAction
+				{
+					Modifier Description=
+					Modification is permanent=0
+					Character to modify=Player1
+					Modifiers=Array
+					{
+						Item Count=1
+						Modifier=CCharacterModifierDerivedAttribute
+						{
+							Modification Amount=CConstant
+							{
+								Constant Value=1
+							}
+							Modification amount is a percent=0
+							Allow Accumulation=1
+							Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Trapped Conquistador
+						}
+					}
+					OPTIONAL Duration=
+					Expression Context=$Instigator
+				}
+				Else=
+			}
+			Action=CUseCannedActionAction
+			{
+				Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+			}
+			Action=CUseCannedActionAction
+			{
+				Canned Object=Common Objects and Scripts/Fixt Companion Health Install
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Growth Watch Trapped Conquistador
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=0
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=2
+						Action=CAddAIAction
+						{
+							Target Name=Player1
+							AI=CXRPGAITriggerWhenLevelUp
+							{
+								Marked For Deletion=0
+								Publisher=
+								Action=CIfExpressionAction
+								{
+									If Expression=CIsEqualTo
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Trapped Conquistador
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CIfAction
+									{
+										If=CCheckExistenceAction
+										{
+											Name To Check For=Trapped Conquistador
+											Desired Minimum Count=1
+										}
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=Fixt companion growth
+													Modification is permanent=1
+													Character to modify=Trapped Conquistador
+													Modifiers=Array
+													{
+														Item Count=3
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=9
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+														}
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=8
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+														}
+														Modifier=CCharacterModifierSkill
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=3
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=1
+															Skill to modify=Skills/Fighting/OneHandedMelee
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Fixt Companion Growth
+													Node ID=Trapped Conquistador
+													Name of Position=Trapped Conquistador
+													Position Offset=0.000000,-70.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Else=
+								}
+								Last Level=0
+								Last Level Initialized=0
+							}
+						}
+						Action=CAddCharacterModifierToCharacterAction
+						{
+							Modifier Description=
+							Modification is permanent=0
+							Character to modify=Player1
+							Modifiers=Array
+							{
+								Item Count=1
+								Modifier=CCharacterModifierDerivedAttribute
+								{
+									Modification Amount=CConstant
+									{
+										Constant Value=1
+									}
+									Modification amount is a percent=0
+									Allow Accumulation=0
+									Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Companion Growth Watch Trapped Conquistador
+								}
+							}
+							OPTIONAL Duration=
+							Expression Context=$Instigator
+						}
+					}
+				}
+				Else=
+			}
+		}
+	}
+}

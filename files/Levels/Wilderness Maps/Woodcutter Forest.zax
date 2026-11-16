@@ -22759,26 +22759,32 @@ CLayerSaveData
 												Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
 												State=3EUUJA40
 											}
-											Action=CActionGiveStandardInventoryItem
+											Action=CForEachPlayerAction
 											{
-												Who to give to=$instigator
-												Delete Trigger=0
-												Notify Player=1
-												Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
-												Additions to add=Array
+												Action=CActionGiveStandardInventoryItem
 												{
-													Item Count=0
+													Who to give to=$instigator
+													Delete Trigger=0
+													Notify Player=1
+													Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+													Additions to add=Array
+													{
+														Item Count=0
+													}
 												}
 											}
-											Action=CActionGiveStandardInventoryItem
+											Action=CForEachPlayerAction
 											{
-												Who to give to=$instigator
-												Delete Trigger=0
-												Notify Player=1
-												Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
-												Additions to add=Array
+												Action=CActionGiveStandardInventoryItem
 												{
-													Item Count=0
+													Who to give to=$instigator
+													Delete Trigger=0
+													Notify Player=1
+													Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+													Additions to add=Array
+													{
+														Item Count=0
+													}
 												}
 											}
 											Action=CActivateAction
@@ -22901,37 +22907,40 @@ CLayerSaveData
 									Plus or Minus=0
 									Forget Trigger=0
 								}
-								Action=CIfAction
+								Action=CForEachPlayerAction
 								{
-									If=CCheckCategoryAction
+									Action=CIfAction
 									{
-										Target Name=$Instigator
-										Category to check for=Player,Player Friend
-									}
-									Then=CAddCharacterModifierToCharacterAction
-									{
-										Modifier Description=
-										Modification is permanent=0
-										Character to modify=$Instigator
-										Modifiers=Array
+										If=CCheckCategoryAction
 										{
-											Item Count=1
-											Modifier=CCharacterModifierDerivedAttribute
-											{
-												Modification Amount=CConstant
-												{
-													Constant Value=-50
-												}
-												Modification amount is a percent=0
-												Allow Accumulation=1
-												Derived character attribute to modify=Derived Character Attributes/Karma
-											}
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
 										}
-										OPTIONAL Duration=
-										Expression Context=$Instigator
+										Then=CAddCharacterModifierToCharacterAction
+										{
+											Modifier Description=
+											Modification is permanent=0
+											Character to modify=$Instigator
+											Modifiers=Array
+											{
+												Item Count=1
+												Modifier=CCharacterModifierDerivedAttribute
+												{
+													Modification Amount=CConstant
+													{
+														Constant Value=-50
+													}
+													Modification amount is a percent=0
+													Allow Accumulation=1
+													Derived character attribute to modify=Derived Character Attributes/Karma
+												}
+											}
+											OPTIONAL Duration=
+											Expression Context=$Instigator
+										}
+										Else=
+										Return failure if the If failes=0
 									}
-									Else=
-									Return failure if the If failes=0
 								}
 								Action=CSetQuestSatusToFailedIfActiveAction
 								{

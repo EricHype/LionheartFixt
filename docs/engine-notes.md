@@ -192,9 +192,13 @@ Write one with `CAddCharacterModifierToCharacterAction` holding a
 `CIsGreaterThan` over a `CVariableDerivedCharacterAttribute`.
 
 **The trap is `$Instigator`.** In a dialogue reply it is the player, so a plain write works. In a
-**death script it is not**, and the flag lands on the corpse. Vanilla's second write of
-`Relican Dead`, in `Slave Pit Exterior.zax`, wraps it in `CForEachPlayerAction` for exactly that
-reason. Copy that whenever the write happens anywhere but a conversation.
+**death script it is the killer**, so a companion's kill puts the write, item or title on the companion.
+Measured in a 0.99.25 save: Ernesto killed the woodcutter, the eyes and liver given to bare
+`$instigator` were in Ernesto's inventory, and `Woodcutter Dead`, written in the same script inside
+`CForEachPlayerAction`, was on the player. Vanilla's second write of `Relican Dead`, in
+`Slave Pit Exterior.zax`, wraps it the same way. Copy that whenever the write happens anywhere but a
+conversation. lhcheck's `killer-grants` (A0.20) fails a death script that gives, records or reads on
+`$Instigator` outside one; 0.99.26 wrapped the 72 sites it found (`tools/build_killer_grants.py`, `tools/build_woodcutter_fixes.py`).
 
 ## Shapes that crash
 

@@ -21617,15 +21617,18 @@ CLayerSaveData
 							}
 							Action=CSetDestroyedScriptActionAction
 							{
-								New Destroyed Action=CActionGiveStandardInventoryItem
+								New Destroyed Action=CForEachPlayerAction
 								{
-									Who to give to=$instigator
-									Delete Trigger=0
-									Notify Player=1
-									Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
-									Additions to add=Array
+									Action=CActionGiveStandardInventoryItem
 									{
-										Item Count=0
+										Who to give to=$instigator
+										Delete Trigger=0
+										Notify Player=1
+										Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/ThestoneheartofRhea
+										Additions to add=Array
+										{
+											Item Count=0
+										}
 									}
 								}
 								Target Name=$Instigator
@@ -25995,15 +25998,18 @@ CLayerSaveData
 							}
 							Action=CSetDestroyedScriptActionAction
 							{
-								New Destroyed Action=CActionGiveStandardInventoryItem
+								New Destroyed Action=CForEachPlayerAction
 								{
-									Who to give to=$instigator
-									Delete Trigger=0
-									Notify Player=1
-									Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
-									Additions to add=Array
+									Action=CActionGiveStandardInventoryItem
 									{
-										Item Count=0
+										Who to give to=$instigator
+										Delete Trigger=0
+										Notify Player=1
+										Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Thestoneheart ofLethos
+										Additions to add=Array
+										{
+											Item Count=0
+										}
 									}
 								}
 								Target Name=$Instigator
@@ -39812,15 +39818,18 @@ CLayerSaveData
 									Item Count=2
 									Action=CSetDestroyedScriptActionAction
 									{
-										New Destroyed Action=CActionGiveStandardInventoryItem
+										New Destroyed Action=CForEachPlayerAction
 										{
-											Who to give to=$instigator
-											Delete Trigger=0
-											Notify Player=1
-											Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
-											Additions to add=Array
+											Action=CActionGiveStandardInventoryItem
 											{
-												Item Count=0
+												Who to give to=$instigator
+												Delete Trigger=0
+												Notify Player=1
+												Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/ThestoneheartofMenoetius
+												Additions to add=Array
+												{
+													Item Count=0
+												}
 											}
 										}
 										Target Name=$Instigator
@@ -42442,15 +42451,18 @@ CLayerSaveData
 							}
 							Action=CSetDestroyedScriptActionAction
 							{
-								New Destroyed Action=CActionGiveStandardInventoryItem
+								New Destroyed Action=CForEachPlayerAction
 								{
-									Who to give to=$instigator
-									Delete Trigger=0
-									Notify Player=1
-									Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
-									Additions to add=Array
+									Action=CActionGiveStandardInventoryItem
 									{
-										Item Count=0
+										Who to give to=$instigator
+										Delete Trigger=0
+										Notify Player=1
+										Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/ThestoneheartofIapetus
+										Additions to add=Array
+										{
+											Item Count=0
+										}
 									}
 								}
 								Target Name=$Instigator

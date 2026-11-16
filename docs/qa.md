@@ -6169,6 +6169,54 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.26 - the killing blow is yours
+
+`tools/build_woodcutter_fixes.py`. Felipe's dialogue and Rakeb's turn-in reach every save. The eyes-and-liver grant is in
+`Woodcutter Forest`, so FK5 needs a save that has **not entered Woodcutter Forest yet**; FK8 needs one that has not entered
+the Goblin Warrens.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| FK1 | Felipe, after striking or handing over his daughter at Scar Ravine | *"I am the reason she did not come home."*, leave, talk again | *"What do you want? What do you think I have to say to *you*?"*, and the only replies are *"<Leave him alone.>"* and, if Rakeb's quest is on, the eyes-and-liver one. No *"Hello again, friend"* |
+| FK2 | The same, with the lie | *"I searched the forest and found nothing."*, leave, talk again | As FK1 |
+| FK3 | FK1 | *"<Leave him alone.>"* | *"<He turns his back on you and goes on with his work.>"*, and the conversation ends |
+| FK4 | **Regression**: Felipe, daughter never harmed | Be rude (*"Nothing. I'll be going now."*), talk again | The angry greeting still offers *"I didn't mean to offend you, who are you?"* and *"What's wrong?"*, and both still work |
+| FK5 | Woodcutter Forest not yet entered, on Rakeb's eyes quest | Let a companion land the killing blow on Felipe | The log shows the eyes and the liver added to **your** inventory, and Darkwood drops as before |
+| FK6 | A save where a companion already took them (the 0.99.25 report save) | Talk to Rakeb | *"One of my companions carries his eyes and liver."* is offered; it leads to *"We sensed that you have that which we desire."*, the reward, and the quest completes in the log |
+| FK7 | Holding the eyes and liver yourself, devil fish done | Talk to Rakeb | *"I have the woodsman's eyes and liver."* is the first reply, not three nodes into the job pitch. The companion reply is **not** offered |
+| FK8 | Goblin Warrens not yet entered, devil fish done, holding the eyes | Talk to Rakeb | He opens with his return greeting and the turn-in, not *"I knew you would return. I have a job for you."* |
+
+**Kill rewards go to you.** `tools/build_killer_grants.py`. Maps only, so each row needs that map **not entered yet**,
+or a new game.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| KG1 | Titan Village | Let a companion land the killing blow on a Titan | The log shows his stone heart added to **your** inventory |
+| KG2 | Troll Pit, with the peace broken | Let a companion kill the troll chief | The Lava Troll Hide is in your inventory, and Quinn takes it |
+| KG3 | Mongol Camp, on *Slay the Goblins for the Savage Heart* | Let companions take most of the kills | Their kills count: the quest advances after 12 goblins whoever killed them, and Goblin Slayer lands on you |
+| KG4 | Goblin Warrens, on the same quest | As KG3 | As KG3 |
+| KG5 | A merchant, in a map not entered (e.g. Weng Choi's shop) | Let a companion kill him | **You** get Merchant Slayer |
+| KG6 | Woodcutter Forest | Let a companion kill Felipe | -50 karma lands on you |
+| KG7 | **Regression**: any of the above | Land the killing blow yourself | Exactly as before: one item, one title, one count |
+
+**Ernesto joins the companion system.** `tools/build_ernesto_companion.py`. Every save, from his next join or rejoin.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| EC1 | Free Ernesto on the Lake and take him along | Level up | A balloon over him: *"<Ernesto salutes the sky with his blade.> Another bout, another lesson! Spain will hear of this! <+9 health, +8 armor, +3 fighting skill>"*, and his health and armor go up |
+| EC2 | EC1 | Level up again | One balloon and one set of gains per level, not two |
+| EC3 | An existing save with Ernesto already in the party | Dismiss him, ask him back (*"Sure, come with me."*), level up | As EC1 |
+| EC4 | Ernesto in a fight | Let him take damage | His name reads *Ernesto (Injured)*, then *(Badly Injured)*, then *(Near Death)*, and goes back to *Ernesto* as he heals |
+| EC5 | **Regression** | Level up with Fang or Cervantes along | Their balloons and gains are unchanged |
+
+**The camp gate greets you once.** `tools/build_gate_greeting.py`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| GG1 | Mongol Camp, already let through the gate | Walk to the Warrens and back | *"Greetings goblin friend. What do you want?"* at most once; choose *"Nothing today."* and every later crossing, both ways, is silent |
+| GG2 | The same, Speech 40 | Choose *"I have come to seek an audience with your great leader."* | The Khan line plays, and later crossings are silent |
+| GG3 | **Regression**: a new character at the gate | Walk up to the camp | The vanilla challenge (*"Conversation Start Gob 1"*) still plays the first time, and its replies still let you through or start the fight |
+
 ## 0.99.25 - the guild runner
 
 `tools/build_guild_runner.py`. In `01 Sewer Main Entrance`, so it needs a save that has **not entered the sewers yet**, or a

@@ -55,6 +55,21 @@ Text=What do you want? What do you think I have to say to *you*?
 Should Have Voiceover=0
 
 Requirement=Woodcutter requires son to be found
+Custom Requirement=CExpressionNot
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=I have found your daughter.
 Go to node ID=131 anything else
 Custom Action=CMultipleActionsAction
@@ -97,7 +112,9 @@ Enemy Name=$Trigger
 Icon=Quest Icon
 
 Requirement=woodcutter req Darkwood Qst assigned
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CNotAction
 {
@@ -105,6 +122,23 @@ Action=CCheckExistenceAction
 {
 Name To Check For=Darkwood cave cleared of undead
 Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
 }
 }
 }
@@ -118,12 +152,31 @@ Target Name=Angry Return
 Icon=Quest Icon
 
 Requirement=!None
-Custom Requirement=CActionExpression
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
 {
 Action=CCheckExistenceAction
 {
 Name To Check For=Darkwood cave cleared of undead
 Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
 }
 }
 Reply Text=I have cleared the cave below your house of creatures.
@@ -146,6 +199,21 @@ Target Name=Darkwood cave cleared of undead
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=I didn't mean to offend you, who are you?
 Go to node ID=11 Felipe
 Custom Action=CDeactivateAction
@@ -154,7 +222,9 @@ Target Name=Angry Return
 }
 
 Requirement=!None
-Custom Requirement=COR
+Custom Requirement=CAND
+{
+Operand1=COR
 {
 Operand1=CActionExpression
 {
@@ -187,6 +257,23 @@ Quest=Levels/Wilderness/Quests/Find the Woodcutter's lost son
 }
 }
 }
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+}
 Reply Text=What's wrong?
 Go to node ID=5 Woodcutters problems
 Custom Action=CDeactivateAction
@@ -195,6 +282,39 @@ Target Name=Angry Return
 }
 
 Requirement=!None
+Custom Requirement=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Reply Text=<Leave him alone.>
+Go to node ID=32 nothing to say
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Nothing. I'll be going now.
 Go to node ID=41 rude
 Icon=Exit Icon
@@ -807,6 +927,42 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=
 Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Felipe Knows
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CActivateAction
+{
+Target Name=Angry Return
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
@@ -1383,4 +1539,8 @@ Icon=Quest Icon
 Requirement=!None
 Reply Text=No
 Go to node ID=
+------------------------------------------------------------
+Node ID=32 nothing to say
+Text=<He turns his back on you and goes on with his work.>
+Should Have Voiceover=0
 }

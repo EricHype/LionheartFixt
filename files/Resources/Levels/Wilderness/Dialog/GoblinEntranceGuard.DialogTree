@@ -276,11 +276,19 @@ Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 40
 Reply Text=I have come to seek an audience with your great leader.
 Go to node ID=30 khan
 Action work in progress=(speech 40)
+Custom Action=CDeactivateAction
+{
+Target Name=welcomed at the gate
+}
 Icon=Speach Skill Icon
 
 Requirement=!None
 Reply Text=Nothing today. I will be on my way.
 Go to node ID=
+Custom Action=CDeactivateAction
+{
+Target Name=welcomed at the gate
+}
 Icon=Exit Icon
 Is Default Reply=1
 

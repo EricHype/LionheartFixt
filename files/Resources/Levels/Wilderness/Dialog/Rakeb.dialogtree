@@ -259,6 +259,46 @@ Reply Text=I have the woodsman's eyes and liver.
 Go to node ID=120 Returning with the eyes
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=3EUUJA40
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+}
+}
+Reply Text=One of my companions carries his eyes and liver.
+Go to node ID=121 Returning with the eyes carried
+Icon=Quest Icon
+
 Requirement=Rakeb requires player to be sent by darsch
 Custom Requirement=CExpressionNot
 {
@@ -682,6 +722,83 @@ Warp Behavior=
 Node ID=63 Returning after the node 60 without accepting the other task
 Text=I knew you would return. I have a job for you.
 Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=3EUUJA40
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+}
+Reply Text=I have the woodsman's eyes and liver.
+Go to node ID=120 Returning with the eyes
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+State=3EUUJA40
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Eyes
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Woodsman Liver
+}
+}
+}
+}
+}
+Reply Text=One of my companions carries his eyes and liver.
+Go to node ID=121 Returning with the eyes carried
+Icon=Quest Icon
 
 Requirement=!None
 Reply Text=Tell me more.
@@ -1128,4 +1245,59 @@ Requirement=!None
 Reply Text=No, we're done.  Goodbye.
 Go to node ID=90 goodbye
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=121 Returning with the eyes carried
+Text=We sensed that you have that which we desire.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 35
+Reply Text=Yes, but 'liberating' your prizes without damaging them was tricky. I expect a handsome reward. 
+Go to node ID=135 other reward
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return Woodsman's eyes and liver
+Experience Points To Add=1
+}
+}
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Here they are. Now about my reward...
+Go to node ID=130 reward
+Action work in progress=remove eyes from inventory
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Wilderness/Quests/Bring the Woodcutter's Eyes to the Goblin Shaman
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Return Woodsman's eyes and liver
+Experience Points To Add=1
+}
+}
+}
+Is Default Reply=1
 }
