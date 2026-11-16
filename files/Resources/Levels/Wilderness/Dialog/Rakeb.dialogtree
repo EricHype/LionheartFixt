@@ -76,10 +76,204 @@ Desired Minimum Count=1
 }
 Reply Text=I would like to buy some items.
 Go to node ID=
-Custom Action=CDisplayMerchantWindowAction
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Rakeb Stock
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CDisplayMerchantWindowAction
 {
 Merchant=Inventory for Shaman
 After Closed Action=
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CRemoveAIAction
+{
+Target Name=Inventory for Shaman
+AI=CMerchantAI
+Delay Between Removes=0
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Rakeb Stock
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDelayAction
+{
+Next Action=CAddAIAction
+{
+Target Name=Inventory for Shaman
+AI=CMerchantAI
+{
+Marked For Deletion=0
+Publisher=
+Display Name=Goblin Shaman
+Price Multiplier=1
+Time Between Restock=900
+Time Of Last Restocking=0
+Items=Array
+{
+Array Count=9
+Array Item=CMerchantListItem
+{
+Quantity=6
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=4
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Misc Items except Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Misc Items except Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=3
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+}
+}
+Delay Between Adds=0
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Shaman
+After Closed Action=
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
 }
 
 Requirement=!None
@@ -1202,10 +1396,204 @@ Play Activate Sound=0
 Delay Between Activations=0
 Warp Behavior=
 }
-Action=CDisplayMerchantWindowAction
+Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Rakeb Stock
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CDisplayMerchantWindowAction
 {
 Merchant=Inventory for Shaman
 After Closed Action=
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CRemoveAIAction
+{
+Target Name=Inventory for Shaman
+AI=CMerchantAI
+Delay Between Removes=0
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Rakeb Stock
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDelayAction
+{
+Next Action=CAddAIAction
+{
+Target Name=Inventory for Shaman
+AI=CMerchantAI
+{
+Marked For Deletion=0
+Publisher=
+Display Name=Goblin Shaman
+Price Multiplier=1
+Time Between Restock=900
+Time Of Last Restocking=0
+Items=Array
+{
+Array Count=9
+Array Item=CMerchantListItem
+{
+Quantity=6
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=4
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Misc Items except Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Misc Items except Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=3
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+}
+}
+Delay Between Adds=0
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Shaman
+After Closed Action=
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
 }
 }
 }
@@ -1214,6 +1602,217 @@ Is Default Reply=1
 Node ID=136 Vision
 Text=We hope the items have served you well. We thank you for your efforts on our behalf and would be pleased to offer our small services to you if you have need of them.
 Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=store open
+Desired Minimum Count=1
+}
+}
+Reply Text=I would like to buy some items.
+Go to node ID=
+Custom Action=CIfExpressionAction
+{
+If Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Rakeb Stock
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+Then=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Shaman
+After Closed Action=
+}
+Else=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CRemoveAIAction
+{
+Target Name=Inventory for Shaman
+AI=CMerchantAI
+Delay Between Removes=0
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Rakeb Stock
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDelayAction
+{
+Next Action=CAddAIAction
+{
+Target Name=Inventory for Shaman
+AI=CMerchantAI
+{
+Marked For Deletion=0
+Publisher=
+Display Name=Goblin Shaman
+Price Multiplier=1
+Time Between Restock=900
+Time Of Last Restocking=0
+Items=Array
+{
+Array Count=9
+Array Item=CMerchantListItem
+{
+Quantity=6
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Scrolls
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=4
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Misc Items except Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/Implementation Folder DO NOT PICK FROM/All Misc Items except Potions
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=3
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Weapons
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=2
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation 1 to Mojo
+}
+}
+Array Item=CMerchantListItem
+{
+Quantity=1
+Item=CInventoryItemGeneratorCannedList
+{
+Canned Item List=Inventory/Creating Random Magic Items/All Armor and Shields
+}
+Level=CUseCannedExpressionExpression
+{
+Canned Expression=Common Objects and Scripts/Generate Magic Item Level Cans/Shopkeeper Generation Very High Mojo
+}
+}
+}
+}
+Delay Between Adds=0
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CDisplayMerchantWindowAction
+{
+Merchant=Inventory for Shaman
+After Closed Action=
+}
+Delay=1
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+}
 
 Requirement=!None
 Reply Text=Thank you, and good day, goblin.

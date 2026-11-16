@@ -6171,13 +6171,18 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 
 ## 0.99.29 - unreleased
 
-`tools/build_faust_cam.py`. Reaches an Inquisition Pit3 not yet entered.
+`tools/build_faust_cam.py` (DC, an Inquisition Pit3 not yet entered), `tools/build_rakeb_shop.py` (RK, every save).
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | DC1 | Inquisition Pit3, Faust freed from his cell and sent to the Daeva of Pain | Watch the scene | The view settles above where it used to. The Daeva's *"What a fool! Power corrupts..."* is readable from its **first line**, top edge on screen |
 | DC2 | Same scene | Watch Faust's line before it | *"I have done as you requested..."* and Faust himself are still on screen |
 | DC3 | **Regression** | Let the scene finish | The Daeva teleports away and the camera returns to the party as before |
+| RK1 | Goblin Warrens, eyes quest done with the Barter reply | Talk to Rakeb again, any later visit | *"We hope the items have served you well..."* now offers *"I would like to buy some items."*, and it opens the shop |
+| RK2 | The first time the shop opens after install | Look at the stock | About a second's pause, then **magic** stock: potions, scrolls, rings or amulets or wands, a few weapons and armour. No plain Battle Axe |
+| RK3 | Close and reopen at once | Compare | The same items, not a fresh roll |
+| RK4 | Eyes turned in **without** Barter (125 gold) | Talk to him again | No buy reply, as vanilla: the shop is the Barter reward |
+| RK5 | An existing save that already bought from him | Reopen | The new stock replaces the old on first open |
 
 ## 0.99.28 - the champion goes home
 
