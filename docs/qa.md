@@ -6169,6 +6169,16 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.29 - unreleased
+
+`tools/build_faust_cam.py`. Reaches an Inquisition Pit3 not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| DC1 | Inquisition Pit3, Faust freed from his cell and sent to the Daeva of Pain | Watch the scene | The view settles above where it used to. The Daeva's *"What a fool! Power corrupts..."* is readable from its **first line**, top edge on screen |
+| DC2 | Same scene | Watch Faust's line before it | *"I have done as you requested..."* and Faust himself are still on screen |
+| DC3 | **Regression** | Let the scene finish | The Daeva teleports away and the camera returns to the party as before |
+
 ## 0.99.28 - the champion goes home
 
 `tools/build_ernesto_slide.py`, then `tools/build_epilogue_stage.py`. The slides and the stage reach any save that has not
