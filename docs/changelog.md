@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.27** | Felipe fights back | Felipe is a real fight, a lie to him is a Speech check and he tells you to begone, and a goblin friend asking the camp gate about Darsh is no longer attacked. |
 | **0.99.26** | the killing blow is yours | Items, titles and kill counts from a death now go to you even when a companion lands the blow; Felipe remembers what you told him; Ernesto grows on level-up; and the Mongol Camp gate greets you once. |
 | **0.99.25** | the guild runner | Once you side with the thieves, a Guild Runner at both sewer entrances will take you straight to Juanita for 5 gold. |
 | **0.99.24** | the trolls talk like trolls | The trolls' dialogue is short and in their own voice, the ore chest warns before it is theft and the chief no longer vanishes, and the lost boy Tomas can be sold out, with a double-cross if you free him anyway. |
