@@ -67,7 +67,8 @@ FIGURES = [
     ("900 friend diego", C % "Wilderness" + "Diego"), ("900 friend darsh", C % "Wilderness" + "Inquisitor Darsch"),
     ("900 friend goblin girl", "Monster Cans/Mongol Vendor Village"), ("900 friend saladin knight", SALADIN),
     ("900 friend fernand", C % "1 Barcelona" + "Port District/Distressed Sailor"), ("900 friend grace", GRACE),
-    ("900 friend fang", "Monster Cans/Animals/Cub Companion"), ("900 friend golem", "Monster Cans/English Enemies/Wargolem Deactivated"),
+    ("900 friend fang", "Monster Cans/Animals/Cub Companion"),
+    ("900 friend ernesto", C % "Wilderness" + "Crazy Goblin-Trapped Conquistador"),("900 friend golem", "Monster Cans/English Enemies/Wargolem Deactivated"),
     ("900 friend lost knight", KNIGHT),
 ]
 CAST = {}

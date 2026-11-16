@@ -6169,6 +6169,19 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.28 - the champion goes home
+
+`tools/build_ernesto_slide.py`, then `tools/build_epilogue_stage.py`. The slides and the stage reach any save that has not
+reached the end; Ernesto's death is recorded from his next join or rejoin, or in a Lake not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| ER1 | Finish the game with Ernesto alive, having travelled with him | Watch the end slides | After Fang's slot, Ernesto stands on the stage and *"Ernesto went home to Barcelona, as he had always meant to..."* plays |
+| ER2 | Ernesto died in your party | Finish the game | *"Ernesto died in a bout he had never been told was real..."* instead |
+| ER3 | Never freed him, or freed him and sent him home | Finish the game | No Ernesto slide, and the series runs straight on to the next one |
+| ER4 | An existing save with Ernesto in the party | Dismiss and re-invite him, let him die, finish | ER2's slide, not ER1's |
+| ER5 | **Regression** | Finish with Fang and the Golem | Their slides and figures are unchanged, and the series reaches the credits |
+
 ## 0.99.27 - Felipe fights back
 
 `tools/build_woodcutter_fixes.py` (`build_lie`), `tools/build_gate_greeting.py` (`build_darsh`). Both dialogue, so every save.

@@ -4,7 +4,7 @@ CCannedObject
 	{
 		Action=Array
 		{
-			Item Count=4
+			Item Count=5
 			Action=CIfExpressionAction
 			{
 				If Expression=CIsEqualTo
@@ -193,6 +193,14 @@ CCannedObject
 					}
 				}
 				Else=
+			}
+			Action=CSetDestroyedScriptActionAction
+			{
+				New Destroyed Action=CUseCannedActionAction
+				{
+					Canned Object=Common Objects and Scripts/Fixt Companion Died/Trapped Conquistador
+				}
+				Target Name=Trapped Conquistador
 			}
 		}
 	}

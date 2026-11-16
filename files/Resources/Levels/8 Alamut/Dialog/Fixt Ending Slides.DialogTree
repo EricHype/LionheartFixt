@@ -1581,6 +1581,32 @@ Relay Name=Fixt order epilogue relay
 }
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=900 friend ernesto
+Text=Ernesto went home to Barcelona, as he had always meant to, and told the people his exploits. He told them nightly for twenty years. In his telling the goblin pen by the lake was the Tourney of Champions, the arena masters were silver-tongued, and every bout was fair. The stranger who walked out at his side was a fellow champion. He never asked your name and never needed it. He fought every battle after that for Spain and for the fair maiden Dulcena, whom nobody in Barcelona ever met. The Chalice of Victory was never found. He kept a space on it for you regardless.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 friend ernesto dead
+Text=Ernesto died in a bout he had never been told was real. He went down shouting for Spain, which was the one part of it he had always had right. Nobody in Barcelona heard his exploits, there being nobody left who could tell them the way he did. The fair maiden Dulcena, if she was anywhere, did not hear either. If there was ever a Chalice of Victory, his name is not on it. The goblins by the lake told the story for a while, badly, and always as a comedy.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=900 friend golem
 Text=The golem stopped. It had been built in England to break a line. Its last campaign was spent walking behind you. You said follow or stay, and it answered in the same few noises. It stopped in a cave in the giants' country, upright, facing the way you had gone. Two centuries later a shepherd found it and took the arm for scrap. His family kept a shoulder plate as a doorstep for sixty years.
 Should Have Voiceover=1
