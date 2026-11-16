@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.30** | the questions stay | Renaldo, the prisoner in the stocks, keeps his whole conversation when you come back to him. |
 | **0.99.29** | the shaman's boon | Rakeb's shop reopens and sells magic; the camera shows the Daeva of Pain's whole speech when Faust frees it. |
 | **0.99.28** | the champion goes home | Ernesto has an ending slide, for travelling with you and for dying with you. |
 | **0.99.27** | Felipe fights back | Felipe is a real fight, a lie to him is a Speech check and he tells you to begone, and a goblin friend asking the camp gate about Darsh is no longer attacked. |

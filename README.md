@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.29](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.29).
+-- currently [0.99.30](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.30).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.30** | the questions stay | Renaldo, the prisoner in the stocks, keeps his whole conversation when you come back to him. |
 | **0.99.29** | the shaman's boon | Rakeb's shop reopens and sells magic; the camera shows the Daeva of Pain's whole speech when Faust frees it. |
 | **0.99.28** | the champion goes home | Ernesto has an ending slide, for travelling with you and for dying with you. |
 | **0.99.27** | Felipe fights back | Felipe is a real fight, a lie to him is a Speech check and he tells you to begone, and a goblin friend asking the camp gate about Darsh is no longer attacked. |
@@ -110,7 +111,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.29 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.30 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).
