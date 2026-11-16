@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.25 are published** -- 228 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.26 are published** -- 229 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,40 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.26 - the killing blow is yours
+
+Reported from play: Felipe greeted the player as a friend after hearing they were the reason his daughter never came home;
+killing him for Rakeb gave Darkwood but not his eyes and liver; Ernesto had no balloon on level-up; and the Mongol Camp
+gate challenged the party every time it went to and from the Warrens. `tools/build_woodcutter_fixes.py`,
+`tools/build_killer_grants.py`, `tools/build_ernesto_companion.py`, `tools/build_gate_greeting.py`. `FK1`-`FK8`,
+`KG1`-`KG7`, `EC1`-`EC5`, `GG1`-`GG3`.
+
+- **Felipe remembers.** `31 she never came home` (9407b4a) set nothing. Its exit now sets `Fixt Felipe Knows` and turns on
+  the map's own `Angry Return`, so he opens with *"What do you want? What do you think I have to say to *you*?"*, every
+  reply that would talk him round is hidden, and *"<Leave him alone.>"* takes their place. Every save.
+- **A death script rewards the killer, not the player.** The report save proves it: Ernesto landed the blow, the eyes
+  and liver given to bare `$instigator` were in his inventory, which the UI cannot open, and `Woodcutter Dead`, written in
+  the same script inside `CForEachPlayerAction`, was on the player. `docs/engine-notes.md` said the corpse; corrected.
+  72 sites are now wrapped in `CForEachPlayerAction`: the eyes and liver, the four Titan stone hearts, both Lava Troll
+  Hide drops, the goblin kill counter in the Mongol Camp and the Warrens (companions' kills now count toward the Savage
+  Heart and Goblin Slayer), Felipe's -50 karma, and the kill titles: Child Killer, Merchant Slayer, and the Inquisitor,
+  Saladin and Templar Killer titles. Maps, so a map not yet entered, and new games.
+- **A gate for it.** lhcheck `killer-grants` (A0.20) fails a death script that gives, records or reads on `$Instigator`
+  outside `CForEachPlayerAction`.
+- **Rakeb takes the eyes anyway.** For a save where a companion already holds them: *"One of my companions carries his
+  eyes and liver."* opens `121`, a copy of `120` without the item removals. c1bc303's greeting selector also sent a
+  player holding the eyes to *"I have a job for you"*, which buried the turn-in three nodes deep; node 63 now offers it
+  first (every save), and the selector asks *never activated* (a Warrens not yet entered).
+- **Ernesto joins the companion system.** He was the only companion with no `Fixt Companion Joined` script, so he never
+  grew and never said so. He gets one, called from both join replies: +9 health, +8 armor, +3 one-handed per level with a
+  balloon, from his own level-up watch, since the shared one is armed once with its list written in, and the injury names
+  *Ernesto (Injured)* to *(Near Death)*. Every save, from his next join or rejoin.
+- **The camp gate greets you once.** 0.9.1 (1f2f9f9) made the retriggering gate polygon open *"Greetings goblin friend"*
+  for a welcomed player, and it lies across the path to the Warrens. Node 3's peaceful replies now switch the welcome off,
+  so the gate falls through to its existing silence. Every save.
+
+---
 
 ## 0.99.25 - the guild runner
 

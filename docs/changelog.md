@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.26** | the killing blow is yours | Items, titles and kill counts from a death now go to you even when a companion lands the blow; Felipe remembers what you told him; Ernesto grows on level-up; and the Mongol Camp gate greets you once. |
 | **0.99.25** | the guild runner | Once you side with the thieves, a Guild Runner at both sewer entrances will take you straight to Juanita for 5 gold. |
 | **0.99.24** | the trolls talk like trolls | The trolls' dialogue is short and in their own voice, the ore chest warns before it is theft and the chief no longer vanishes, and the lost boy Tomas can be sold out, with a double-cross if you free him anyway. |
 | **0.99.23** | the war leader has to die first | Goblin bands no longer lose their war leader before you meet them, and when he falls they break off, slow down and come back. The Khan's death and his Champion's standing reach every band. Enemies that die talking now say a dying line. |
