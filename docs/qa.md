@@ -6169,6 +6169,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.30 - unreleased
+
+`tools/build_renaldo_return.py`. A tree, so every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SY1 | Inquisition Pit3, Renaldo in the stocks, his brother's quest active | Talk, leave at once, talk again | The return line *"I beg you...Help me leave this place!"* offers the quest reply **and** Eastern Knights, Who are you, Why are you locked up, the ribs, and Goodbye |
+| SY2 | Same, holding the potion | Return conversation | *"Your brother sent me to free you."* is there and still frees him |
+| SY3 | Same, before meeting the brother | Return conversation | *"I'm still looking for your brother..."* is there, as before |
+| SY4 | **Regression** | Press Escape in the return conversation | The same reply it picked before this change |
+
 ## 0.99.29 - the shaman's boon
 
 `tools/build_faust_cam.py` (DC, an Inquisition Pit3 not yet entered), `tools/build_rakeb_shop.py` (RK, every save).

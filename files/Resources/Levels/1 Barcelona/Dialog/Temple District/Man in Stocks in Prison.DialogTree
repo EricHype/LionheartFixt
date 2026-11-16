@@ -1,0 +1,616 @@
+CDialogTree
+{
+Name=Sylvant Prisoner
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Please, have mercy! I tell you, I didn't do it! It was those damnable Eastern Knights! 
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+Reply Text=Your brother sent me to free you.
+Go to node ID=50 Rescue
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Eastern Knights?
+Go to node ID=20 Eastern Knights
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=100 name
+
+Requirement=!None
+Reply Text=Why are you locked up like this?
+Go to node ID=10 Locked Up
+
+Requirement=!None
+Reply Text=How much would you pay me to not kick you in the ribs?
+Go to node ID=30 Dont Hurt me
+
+Requirement=!None
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Normal
+Text=Let me out! Please...
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+Reply Text=Your brother sent me to free you.
+Go to node ID=50 Rescue
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=100 name
+
+Requirement=!None
+Reply Text=Tell me about the Eastern Knights again.
+Go to node ID=20 Eastern Knights
+
+Requirement=!None
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Torture
+Text=Not again! Please...spare me the torture!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+Reply Text=Your brother sent me to free you.
+Go to node ID=50 Rescue
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=100 name
+
+Requirement=!None
+Reply Text=Are you ready to talk?
+Go to node ID=37 Loosened Up
+
+Requirement=!None
+Reply Text=You're not worth the effort. I'm leaving.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 Goodbye
+Text=Don't leave me down here!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Tainted Prisoner Sayings over his head timer
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Locked Up
+Text=I was framed! There I was, minding my own business, when I was jumped on by a bunch of Templars and almost beaten to death! I have since been told that I stole some gold that was tithed to the Church! I was just a tainted person in the wrong place at the wrong time. You have to believe me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=So what do you want me to do about it?
+Go to node ID=40 Get Help
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Potion Prisoner Inquisition Free
+}
+}
+Reply Text=This story sounds familiar. Your brother in the Port District sends his regards.
+Go to node ID=50 Rescue
+Action work in progress=Have potion from guy in Port District to free him
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=That's too bad. Did you say something about the Eastern Knights?
+Go to node ID=20 Eastern Knights
+
+Requirement=!None
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Eastern Knights
+Text=Yes, those Saladin weasels waiting to pounce on us right outside the city gates! *They* are the ones that stole the tithe money, not me! I'm innocent! They should be driven back to the endless deserts that spawned them!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+Reply Text=Your brother sent me to free you.
+Go to node ID=50 Rescue
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=So what do you want me to do about it?
+Go to node ID=40 Get Help
+
+Requirement=!None
+Reply Text=Is that why you are locked up...for stealing from the Inquisition?
+Go to node ID=10 Locked Up
+
+Requirement=!None
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Dont Hurt me
+Text=Please! I beg you! My heart can't take it! I'm frail! My broken legs have not healed from the last time! Please, spare me!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Calm yourself. I merely wanted to test the mettle of your words and situation.
+Go to node ID=10 Locked Up
+
+Requirement=!None
+Reply Text=Hmmm...I *do* see where your leg did not heal properly. Perhaps if I gave that malformed bone a strong twist, you would be more...forthcoming with the whereabouts of where I could get some gold?
+Go to node ID=35 No Torture
+Custom Action=CActivateAction
+{
+Target Name=Whipped Tainted Prisoner
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=You're not worth the effort. I'm leaving.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=35 No Torture
+Text=NO! You have no idea...the pain...<sob>...the sores...<sob>...I had to bite off what wouldn't heal...I have nothing! The Inquisition takes everything!...<sob>...please don't hurt me...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Maybe a few good smacks will loosen you up!
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Tainted Prisoner Sayings over his head timer
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=You're not worth the effort. I'm leaving.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Tainted Prisoner Sayings over his head timer
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=37 Loosened Up
+Text=There is nothing to say!...<sob>...all of my worldly posessions were forfeit to the Church when I was thrown in here...<sob>...don't you think I know that I'll never get out of here! All I have left is my life...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're not worth the effort. I'm leaving.
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Tainted Prisoner Sayings over his head timer
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Get Help
+Text=Bust me out! I can't die in here!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And how do you propose that I do that?
+Go to node ID=45 Brother
+
+Requirement=!None
+Reply Text=I'm not going to bust you out of here. Period.
+Go to node ID=5 Goodbye
+
+Requirement=!None
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 Brother
+Text=I have a brother in the Port District that may be able to help. That's all I can say, in case you are not quite what you seem...
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+}
+}
+}
+Reply Text=I will seek out your brother and discuss your release.
+Go to node ID=
+Custom Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=6DTEH1P9
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+Reply Text=Your brother sent me to free you.
+Go to node ID=50 Rescue
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+}
+Reply Text=Fine. It's your funeral.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Tainted Prisoner Sayings over his head timer
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already spoke with brother in inquisition
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Port District
+}
+}
+}
+Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+}
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=already spoke with brother in inquisition
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Port District
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Rescue
+Text=So you have seen him? Did...did he give you something, perhaps? Please...<sob>...do not toy with me...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I have it. Here it is.
+Go to node ID=55 Leaving Prison
+Action work in progress=Take device from inventory, update quest
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=1
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Potion Prisoner Inquisition Free
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=No. I don't have anything for you. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=55 Leaving Prison
+Text=I feel my brother's magic coursing within this potion! Did he tell you *how* to use it? Doubtful...which is just as well...you or someone else might have sold it for something other than my freedom...My apologies, imprisonment has instilled mistrust in me - I am grateful for your help. Now stand back...and hope...
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=Spawn teleport effect and switch out stock with empty one.
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CTriggerRelayAction
+{
+Relay Name=Tainted Prisoner Teleport Out
+}
+Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=brother is saved
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=1 Barcelona/Port District
+}
+Action=CIfAction
+{
+If=CIsQuestStillCompleatableAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=CF0W6UDN
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Random Whine
+Text=Dios Mio! I didn't do it!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=201 Random Whine
+Text=Have Mercy!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=202 Random Whine
+Text=Keep the rats away from my face!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=203 Random Whine
+Text=Not the branding iron again!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=204 Random Whine
+Text=Have pity on a poor Sylvant!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=205 Random Whine
+Text=Please...<sob>...please...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=206 Random Whine
+Text=A touch of water...please...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=207 Random Whine
+Text=I'll tell you whatever you want...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=208 Random Whine
+Text=Ayudame! <Help me!>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 Random Pain
+Text=Aiieee! Not the face! Not the face!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=301 Random Pain
+Text=<aaahhh...>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=302 Random Pain
+Text=<crackle...pop> My leg!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=303 Random Pain
+Text=Por Favor! Please stop...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=304 Random Pain
+Text=I beg you...no more...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 name
+Text=My name is Renaldo...They took me from my family and sentenced me...to death...
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+Reply Text=Your brother sent me to free you.
+Go to node ID=50 Rescue
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Eastern Knights?
+Go to node ID=20 Eastern Knights
+
+Requirement=!None
+Reply Text=Why are you locked up like this?
+Go to node ID=10 Locked Up
+
+Requirement=!None
+Reply Text=How much would you pay me to not kick you in the ribs?
+Go to node ID=30 Dont Hurt me
+
+Requirement=!None
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue With Quest
+Text=I beg you...Help me leave this place!
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=6DTEH1P9
+}
+}
+Reply Text=I'm still looking for your brother. I will help you leave.
+Go to node ID=100 sob
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Port District/Rescue the sylvant's brother from the chambers of the Inquisition
+State=QBS67BGK
+}
+}
+Reply Text=Your brother sent me to free you.
+Go to node ID=50 Rescue
+Icon=Quest Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Eastern Knights?
+Go to node ID=20 Eastern Knights
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=100 name
+
+Requirement=!None
+Reply Text=Why are you locked up like this?
+Go to node ID=10 Locked Up
+
+Requirement=!None
+Reply Text=How much would you pay me to not kick you in the ribs?
+Go to node ID=30 Dont Hurt me
+
+Requirement=!None
+Reply Text=I think I'll be going. Goodbye.
+Go to node ID=5 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 sob
+Text=Hurry...I...I cannot survive this place much longer!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CActivateAction
+{
+Target Name=Tainted Prisoner Sayings over his head timer
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+}
