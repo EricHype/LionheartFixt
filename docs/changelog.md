@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.28** | the champion goes home | Ernesto has an ending slide, for travelling with you and for dying with you. |
 | **0.99.27** | Felipe fights back | Felipe is a real fight, a lie to him is a Speech check and he tells you to begone, and a goblin friend asking the camp gate about Darsh is no longer attacked. |
 | **0.99.26** | the killing blow is yours | Items, titles and kill counts from a death now go to you even when a companion lands the blow; Felipe remembers what you told him; Ernesto grows on level-up; and the Mongol Camp gate greets you once. |
 | **0.99.25** | the guild runner | Once you side with the thieves, a Guild Runner at both sewer entrances will take you straight to Juanita for 5 gold. |
