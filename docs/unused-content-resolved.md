@@ -2156,3 +2156,9 @@ convention.
 Steps 1 to 4 are five files and a changelog row. A `WM`-style QA row for each is just "look at it in
 the inventory", because a wrong icon path renders blank rather than wrong -- which is also the
 failure mode to watch for, and the reason to check all four in the built archive before shipping.
+
+## The Unholy Oubliette: no cut content (2026-11-17)
+
+Checked after a play report. The map's altar is a working vanilla healing shrine, opened by the Large Ghoul's death, and
+`warp` is a disabled tester shortcut that opens it. Nothing else in the map or the files around it is unfinished. Details
+and 2.0 options are in [`2.0.md`](2.0.md#the-unholy-oubliette).
