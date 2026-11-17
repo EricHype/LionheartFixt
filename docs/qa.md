@@ -6169,6 +6169,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.31 - unreleased
+
+`tools/build_mach_snakebreed.py`. Reaches a House of Ilk not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MK1 | House of Ilk, Machiavelli's quest accepted, the ambush sprung | Kill the leader (the tough one nearest the door) **first**, then the other three | When the last one falls, Machiavelli's click opens *"Thank you for saving me, you have certainly earned your payment."* (`200`), not *"Help me! Stop these assassins!"*, and the reward and quest completion follow |
+| MK2 | Same, a fresh try | Kill the leader **last** | The same: `200`, reward, quest complete |
+| MK3 | Same | Click Machiavelli while one snakebreed still lives | *"Help me! Stop these assassins!"* as before. The quest does not complete early |
+| MK4 | **Regression** | Let Machiavelli die in the fight | The quest fails as before, and no reward is paid |
+
 ## 0.99.30 - the questions stay
 
 `tools/build_renaldo_return.py`. A tree, so every save.

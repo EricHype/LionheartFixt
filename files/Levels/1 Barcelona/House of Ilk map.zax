@@ -810,7 +810,14 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CSetDestroyedScriptActionAction
+					{
+						New Destroyed Action=CTriggerRelayAction
+						{
+							Relay Name=Swap Mach Dialogue
+						}
+						Target Name=$Instigator
+					}
 					New Facing Angle=5.5675
 					Angle Variation=0
 				}
@@ -1634,7 +1641,14 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CSetDestroyedScriptActionAction
+					{
+						New Destroyed Action=CTriggerRelayAction
+						{
+							Relay Name=Swap Mach Dialogue
+						}
+						Target Name=$Instigator
+					}
 					New Facing Angle=0
 					Angle Variation=0
 				}
@@ -2541,7 +2555,14 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CSetDestroyedScriptActionAction
+					{
+						New Destroyed Action=CTriggerRelayAction
+						{
+							Relay Name=Swap Mach Dialogue
+						}
+						Target Name=$Instigator
+					}
 					New Facing Angle=1.5708
 					Angle Variation=0
 				}
