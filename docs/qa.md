@@ -6169,6 +6169,20 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.32 - unreleased
+
+`tools/build_goblin_girl_pie.py`. A tree, so every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| PI1 | Goblin Warrens, the woodcutter dead, his liver carried, the Goblin Girl met | Talk to her, give her the liver | After *"Don't leave town, I'll be right back!"* the conversation closes and the screen fades to black for about two seconds. It fades back up and she opens *"Here, I baked you a pie..."* on her own, with no click |
+| PI2 | Same | Take the pie, by either the plain reply or the PE/Outwit one | The pie is in your inventory, once |
+| PI3 | Same, after PI2, turning down her follow offer | Click her again, and once more after leaving the map and coming back | Both times *"You came back! Did you eat the pie yet?..."*, never *"How many innocents did you kill?..."* |
+| PI4 | Same | Pick *"Right behind me, then."* in that greeting | She joins the party |
+| PI5 | A save that already had the pie before this release, the Goblin Girl not following | Click her | *"How many innocents..."* once more. Its first reply is *"I have your pie already, remember?"*, and *"I pulverized him..."* is gone. That reply leads to the after-pie greeting, and the next click opens that greeting directly |
+| PI6 | **Regression**, the woodcutter dead and no liver given | Click her | *"How many innocents..."* with the liver reply, the pulverized excuse and the rejection, as before. No *"I have your pie already"* |
+| PI7 | **Regression**, after PI3 | Provoke the goblins into a fight | She can still be attacked with force attack |
+
 ## 0.99.31 - the last snake counts
 
 `tools/build_mach_snakebreed.py`. Reaches a House of Ilk not yet entered.

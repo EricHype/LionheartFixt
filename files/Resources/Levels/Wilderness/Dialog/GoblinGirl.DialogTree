@@ -317,6 +317,26 @@ Text=How many innocents did you kill? Did you bring Rakeb the eyes? What did you
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Gave the Goblin Girl the Liver
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=I have your pie already, remember?
+Go to node ID=205 after the pie
+Custom Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Goblin Girl after the pie
+}
+
+Requirement=!None
 Custom Requirement=CIsLessThan
 {
 Operand1=CVariableDerivedCharacterAttribute
@@ -334,6 +354,18 @@ Go to node ID=220 Liver
 Action work in progress=remove woodsman's liver from inventory
 
 Requirement=!None
+Custom Requirement=CIsLessThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Gave the Goblin Girl the Liver
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
 Reply Text=I'm sorry, I pulverized him so thoroughly that there just wasn't anything left.
 Go to node ID=230 Another present
 
@@ -347,7 +379,47 @@ Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=
-Go to node ID=225 Liver pie
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CDelayAction
+{
+Next Action=CEndNonInteractiveSequenceAction
+{
+}
+Delay=2.01
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CDelayAction
+{
+Next Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Goblin Girl brings the pie
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Is Default Reply=1
 Action work in progress=(girl runs away, then will come back a few minutes later if the PC is still in the town) 
 ------------------------------------------------------------
 Node ID=225 Liver pie
@@ -368,9 +440,20 @@ Requirement=!None
 Reply Text=
 Go to node ID=290 follow 3
 Action work in progress=(girl give PC a poison pie)
-Custom Action=CUseCannedActionAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CUseCannedActionAction
 {
 Canned Object=Levels/Wilderness/Quests/Give the Liver Pie
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Goblin Girl after the pie
+}
+}
 }
 ------------------------------------------------------------
 Node ID=230 Another present
@@ -399,9 +482,20 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=I will carry it everywhere. Thank your mother for me.
 Go to node ID=290 follow 3
-Custom Action=CUseCannedActionAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CUseCannedActionAction
 {
 Canned Object=Levels/Wilderness/Quests/Give the Liver Pie
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Dialog Indirection/Goblin Girl after the pie
+}
+}
 }
 Is Default Reply=1
 ------------------------------------------------------------
@@ -567,6 +661,63 @@ Ignore Party Ready Rules=0
 Delay=0.5
 Plus or Minus=0
 Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=205 after the pie
+Text=You came back! Did you eat the pie yet? Momma keeps asking if you ate the pie. She asks it very nicely, which is not like momma at all.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Stay with your momma.
+Go to node ID=
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=Right behind me, then.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDelayAction
+{
+Next Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSetCompanionAction
+{
+Companion=$Trigger
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Joined/Goblin Girl
+}
+}
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CActivateAction
+{
+Target Name=Goblin Girl is a companion
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CSetDestroyedScriptActionAction
+{
+New Destroyed Action=CDeactivateAction
+{
+Target Name=Goblin Girl is a companion
+}
+Target Name=$Trigger
 }
 }
 }

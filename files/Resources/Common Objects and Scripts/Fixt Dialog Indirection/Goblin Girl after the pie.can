@@ -1,0 +1,210 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=2
+			Action=CRemoveAIAction
+			{
+				Target Name=Goblin Girl
+				AI=CAIInteractionSpecifier
+				Delay Between Removes=0
+			}
+			Action=CAddAIAction
+			{
+				Target Name=Goblin Girl
+				AI=CAIInteractionSpecifier
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=0
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Interaction Description=
+					Interaction Type=Interaction Specifiers/GetCloseThenTalk
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Gave the Goblin Girl the Liver
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
+										}
+									}
+									Character to get attributes from=$Instigator
+								}
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+									Node ID=205 after the pie
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
+								}
+								Else=CIfAction
+								{
+									If=CExpressionAction
+									{
+										Expression=CIsLessThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Met the Goblin Girl
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=1
+											}
+										}
+										Character to get attributes from=$Instigator
+									}
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+										Node ID=1 First time PC enters village
+										Speaker=$trigger
+										Player Being Spoken To=$Instigator
+									}
+									Else=CIfAction
+									{
+										If=CExpressionAction
+										{
+											Expression=CIsGreaterThanOrEqual
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Woodcutter Dead
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=1
+												}
+											}
+											Character to get attributes from=$Instigator
+										}
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+											Node ID=200 Returning after killing the woodsman 
+											Speaker=$trigger
+											Player Being Spoken To=$Instigator
+										}
+										Else=CIfAction
+										{
+											If=CExpressionAction
+											{
+												Expression=CIsGreaterThanOrEqual
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/River Dryad Dead
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=1
+													}
+												}
+												Character to get attributes from=$Instigator
+											}
+											Then=CSeriesAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+														Node ID=110 New Hero in town
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+													Action=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+														Node ID=120 Player returns again after killing dryad, but no other quests completed
+														Speaker=$trigger
+														Player Being Spoken To=$Instigator
+													}
+												}
+												When Done=Repeat Last Action
+												Require Success To Advance=1
+												Next Action Index=0
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/Wilderness/Dialog/GoblinGirl
+												Node ID=2 PC Enters the village again, before completing any quest
+												Speaker=$trigger
+												Player Being Spoken To=$Instigator
+											}
+											Return failure if the If failes=0
+										}
+										Return failure if the If failes=0
+									}
+									Return failure if the If failes=0
+								}
+								Return failure if the If failes=0
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Met the Goblin Girl
+								Modification is permanent=0
+								Character to modify=$Instigator
+								Modifiers=Array
+								{
+									Item Count=1
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=1
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Met the Goblin Girl
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+						}
+					}
+					X Radius=75
+					Attacker Range Modifier=0
+					YX Ratio=0.712766
+					Highlight Self Time=0
+					Highlight Until Clicked=0
+					Is Locked=0
+					Allow Interact If Has Target=1
+					Lock Pick Adjustment=0
+					Inventory item to use as key=Inventory Items/!None
+					Is Bussy Talking=0
+				}
+				Delay Between Adds=0
+			}
+		}
+	}
+}
