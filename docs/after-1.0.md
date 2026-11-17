@@ -17,6 +17,16 @@ complete action plan for it. Can we do anything about the text size at larger re
   `data.dat` like Fixt and the playtest kit.
 - **The engine work is ours.** It is written from our own analysis, and KoriTama is credited for the findings. None of
   his code or generated art is copied.
+- **GOG and Steam both** (Steam app 595060). The 2026-11-17 analysis covered only the GOG exe, so nothing may depend on
+  a GOG-only fact:
+  - **Exe build.** Identify it by hash. Locate every patch site by a byte pattern with expected bytes, not by a fixed
+    VA, and keep one table per build.
+  - **DRM.** If the Steam exe is wrapped (SteamStub or similar), the code is only unpacked once the game starts, so the
+    patch must be applied after that, not when our DLL first loads.
+  - **The `ddraw.dll` wrapper.** GOG ships its own D3D9 wrapper (`ddraw.dll`, set up by `dxcfg.exe`), which already
+    scales the picture to the desktop. Steam may ship nothing, or players may have added dgVoodoo or cnc-ddraw.
+    Presentation and scaling must work in all four cases.
+  - **QA on both builds.** Every Phase 5 row runs on GOG and on Steam.
 
 ### What KoriTama's patch does (analysed 2026-11-17, Ghidra on `LionheartWidescreenPatch.exe` and the GOG `Lionheart.exe`)
 
@@ -112,9 +122,11 @@ A and B can combine: scale 1600×900 to 4K and raise fonts 1.25×.
 
 ### Phase 1 - inventory (analysis, no code shipped)
 
-1. **Move the tooling into `LionheartModTools/tools/widescreen/`:**
+1. **The tooling is in `LionheartModTools/tools/widescreen/`** (done 2026-11-17, 9e23c20):
    - the PE/capstone extractor for KoriTama's writes (for reference);
    - `ws_rem.py`, which lists every 800/600 immediate in `Lionheart.exe`.
+
+   Run it on the Steam exe too.
 2. **Sort every immediate** into: screen-dependent and patched by KoriTama; screen-dependent and missed; or not screen
    related (music volume, library code). Record the owner function and what it lays out.
 3. **Trace what KoriTama did not:**
@@ -127,22 +139,43 @@ A and B can combine: scale 1600×900 to 4K and raise fonts 1.25×.
 
 ### Phase 2 - the runtime engine patch
 
-1. **Prototype the delivery first.** A `ddraw.dll` proxy loaded from the game folder forwards to the system DirectDraw
-   and applies patches in memory before the game's first frame. Prove three things:
-   - it loads on Windows 10 and 11;
-   - it coexists with dgVoodoo and DxWnd, which players already use;
-   - GOG Galaxy and overlays don't block it.
+1. **Prototype the delivery first.** The patch runs in memory from a proxy DLL, decided 2026-11-17. It is not a
+   `ddraw.dll`, because that slot belongs to GOG's wrapper, dgVoodoo or cnc-ddraw. The game also imports
+   `MSACM32.dll` and `WINMM.dll`.
+   - Proxy `msacm32.dll`, with `winmm.dll` as the fallback. It forwards every export to the system DLL.
+   - It applies the table once the code is unpacked: on the first `DirectDrawCreate`, or when the expected bytes appear.
+   - It does nothing, and logs why, on an unknown build.
+
+   Prove four things on both GOG and Steam:
+   - it loads on Windows 10 and 11, and under Wine or Proton with a DLL override;
+   - it coexists with GOG's wrapper, dgVoodoo, cnc-ddraw and DxWnd;
+   - Galaxy, the Steam overlay and Steam DRM don't block it;
+   - antivirus doesn't quarantine it. Publish the source and hashes, and sign it if we can.
 
    If any of those fails, fall back to an on-disk patcher with the same table, an exact-build check, backup and unpatch.
-2. **Patch table as data** (`widescreen-sites.json`). Each entry has the VA, the expected original bytes, the
+   On-disk patching cannot work at all on an exe with encrypted code, so check that first on the Steam build.
+2. **Get a Steam copy** and repeat the 2026-11-17 analysis on it:
+   - hash it, and look for DRM;
+   - list its DLLs and its folder (does it ship a wrapper?);
+   - diff its code against GOG's at the patch sites.
+
+   Locating sites by byte pattern is required only if the builds differ.
+3. **Patch table as data** (`widescreen-sites.json`). Each entry has the VA, the expected original bytes, the
    replacement and its formula in W, H and the HUD height. The loader refuses to apply anything if one expected-bytes
    check fails, which makes it safe against other builds and other patches. A gate checks every detour lands on an
    instruction boundary.
-3. **Configuration** in `Lionheart.CFG`: the existing `Screen Width/Height`, plus new keys `Render Width/Height` (the
+4. **Configuration** in `Lionheart.CFG`: the existing `Screen Width/Height`, plus new keys `Render Width/Height` (the
    logical resolution), `Scale Filter`, `Integer Scale`, `Layout=Centred|Spread`, `Fullscreen` and `Windowed Borderless`.
-4. **Presenting the frame:** hook the present at 0x61b500 so the back buffer is stretched to the window or display size
-   (text option A). Borderless windowed comes almost free from the same hook.
-5. **Display modes:** ignore the driver's mode list for the logical size. Render to an off-screen surface of the chosen
+5. **Presenting the frame (text option A).** On GOG, test whether its wrapper (`dxcfg.ini`: `scaling=fit`) already
+   stretches a 1280×720 render to the desktop. If it does, our DLL needs no scaling code there. Where no wrapper scales
+   (likely a bare Steam install), there are two choices:
+   - hook the present at 0x61b500 (a GOG address, to be located on Steam) so the back buffer is stretched to the window
+     or display size;
+   - bundle a licence-compatible wrapper such as cnc-ddraw (MIT; first confirm Lionheart's renderer is plain
+     DirectDraw, which the `pixomatic.dll` software renderer suggests).
+
+   Borderless windowed then comes from the same hook or the wrapper.
+6. **Display modes:** ignore the driver's mode list for the logical size. Render to an off-screen surface of the chosen
    size and present at native size, so any aspect works.
 
 ### Phase 3 - layout (the better version)
@@ -206,7 +239,9 @@ A and B can combine: scale 1600×900 to 4K and raise fonts 1.25×.
 
 ### Open decisions
 
-1. **Proxy DLL or on-disk patcher.** Recommended: the proxy, pending the Phase 2 prototype.
+1. ~~Proxy DLL or on-disk patcher.~~ **Decided 2026-11-17:** an in-memory patch from an `msacm32.dll` proxy (fallback
+   `winmm.dll`), never `ddraw.dll`, supporting GOG and Steam. The on-disk patcher is kept only as the fallback if the
+   Phase 2 prototype fails.
 2. **The default render resolution** for 1080p and 1440p players (proposed: 1280×720 at 1440p, which is integer ×2, and
    1600×900 or native at 1080p with larger text).
 3. **The art treatment** behind 800×600 full-screen windows: a plain dark frame or a blurred extension.
