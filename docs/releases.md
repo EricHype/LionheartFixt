@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.31 are published** -- 234 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.32 are published** -- 235 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,30 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.32 - momma's pie
+
+Reported from play after 0.99.31: "goblin girl asks about the woodcutter again after I've given her the liver and gotten the
+pie", and then "when the goblin girl goes to make the pie, it should fade to black before coming back to give you the pie".
+`tools/build_goblin_girl_pie.py`, `PI1`-`PI7`.
+
+- **She stops asking about the woodcutter.** Her click in `Goblin Warrens`, wired by Fixt in 0.1.0, opens
+  `200 Returning after killing the woodsman` on every visit once `Woodcutter Dead` is set. After the pie its liver reply is
+  gated off, leaving *"I pulverized him so thoroughly..."*, a lie about a liver she has just cooked, and the rejection. A
+  Fixt bug. Both replies that hand over the pie now replace her `CAIInteractionSpecifier` with a copy of the map's own
+  that opens a new `205 after the pie` once `Gave the Goblin Girl the Liver` is set: *"You came back! Did you eat the pie
+  yet? Momma keeps asking if you ate the pie..."*. 205 carries `290 follow 3`'s two replies, so she can still join.
+- **A save that already has the pie** opens 200 once more, now led by *"I have your pie already, remember?"*, gated on the
+  liver flag, which goes to 205 and makes the same swap. The pulverized excuse is gated off once the liver is given.
+- **She goes away to bake it.** `220 Liver` says *"Don't leave town, I'll be right back!"* and its blank reply went
+  straight to `225 Liver pie`, against its own design note. The reply now ends the conversation, holds the scene, fades
+  the screen down for two seconds and reopens her tree at 225, vanilla's way to pass the time a job takes (the
+  blacksmith's Lionshield reply).
+- **Two cans.** The swap and the reopen both name her own tree, and a tree that names its own file hangs the loader, so
+  each goes through `Fixt Dialog Indirection`.
+- **Reach.** A tree, so every save.
+
+---
 
 ## 0.99.31 - the last snake counts
 
