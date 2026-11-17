@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.31** | the last snake counts | Machiavelli's quest completes no matter which of his attackers dies last. |
 | **0.99.30** | the questions stay | Renaldo, the prisoner in the stocks, keeps his whole conversation when you come back to him. |
 | **0.99.29** | the shaman's boon | Rakeb's shop reopens and sells magic; the camera shows the Daeva of Pain's whole speech when Faust frees it. |
 | **0.99.28** | the champion goes home | Ernesto has an ending slide, for travelling with you and for dying with you. |
