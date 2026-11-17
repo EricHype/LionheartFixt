@@ -1096,6 +1096,14 @@ one up leaves a gap. Use the can on one side and an inline comparison on the oth
 
 `CAIAttractCamera` is on a fixed marker in all 125 vanilla uses, but it reads its owner's position every tick (`0x4ab080`), so added to a character with `CAddAIAction` it is a follow camera. Keep `Disable Self When Camera Arrives=0`: on arrival it deactivates the owner, which is harmless on a marker and not on a person. Remove it with `CRemoveAIAction` when the scene ends. `CCameraTrakerAI` is the player's own tracker, which the attractor switches off each tick, and no data file names it. With `Pause Characters=1` only a `NonInteractiveSequence Actor` moves.
 
+**Arrival needs a reachable centre.** The attract camera (`FUN_0061bdb0`) steers the view's top-left toward the
+target minus half the screen. It counts as arrived within 10 px, and only then fires `Camera Arrived Action`, which
+60 of the 125 vanilla attractors use to chain their scene. The view never scrolls past a map edge, so a marker closer
+to an edge than half the screen never arrives. At 800×600 only one marker is that close, and no scene waits on it. At
+wider resolutions there are many more (47 at 1920×1080), which is the leading theory for widescreen breaking cutscenes
+(`after-1.0.md`, Widescreen). For Fixt at 800×600, keep a new camera marker at least 400 px from the map's sides and
+300 px from its top and bottom.
+
 ## Three actions that fail in silence
 
 `Name of Position` on a balloon takes exactly one match and draws nothing on two (`0x41ef10`), while `Target Name` broadcasts. `CTakeManaFromCharacterAction` takes nothing when the amount exceeds the pool (`0x48be00`): use `CExpressionManaRemaining`. A relay fires inline and a series advances only after its step returns, so a step firing its own relay recurses (`0x56ffc0`, `0x422c00`), and an If returns false from Else (`0x58fe40`). `check_series_flow.py` catches the last.
