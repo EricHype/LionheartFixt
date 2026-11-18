@@ -2439,29 +2439,29 @@ CLayerSaveData
 														{
 															If=CCheckExistenceAction
 															{
-																Name To Check For=if inquisition
+																Name To Check For=if saladin
 																Desired Minimum Count=1
 															}
 															Then=CTriggerRelayAction
 															{
-																Relay Name=Start Inquisition NIS Conversation
+																Relay Name=Start Saladin NIS Conversation
 															}
 															Else=CIfAction
 															{
 																If=CCheckExistenceAction
 																{
-																	Name To Check For=if wielder
+																	Name To Check For=if inquisition
 																	Desired Minimum Count=1
 																}
 																Then=CTriggerRelayAction
 																{
-																	Relay Name=Start Wiedler NIS Conversation
+																	Relay Name=Start Inquisition NIS Conversation
 																}
 																Else=CIfAction
 																{
 																	If=CCheckExistenceAction
 																	{
-																		Name To Check For=if dark wielder
+																		Name To Check For=if wielder
 																		Desired Minimum Count=1
 																	}
 																	Then=CTriggerRelayAction
@@ -2472,16 +2472,29 @@ CLayerSaveData
 																	{
 																		If=CCheckExistenceAction
 																		{
-																			Name To Check For=if templar
+																			Name To Check For=if dark wielder
 																			Desired Minimum Count=1
 																		}
 																		Then=CTriggerRelayAction
 																		{
-																			Relay Name=Start Templar NIS Conversation
+																			Relay Name=Start Wiedler NIS Conversation
 																		}
-																		Else=CTriggerRelayAction
+																		Else=CIfAction
 																		{
-																			Relay Name=Start Saladin NIS Conversation
+																			If=CCheckExistenceAction
+																			{
+																				Name To Check For=if templar
+																				Desired Minimum Count=1
+																			}
+																			Then=CTriggerRelayAction
+																			{
+																				Relay Name=Start Templar NIS Conversation
+																			}
+																			Else=CTriggerRelayAction
+																			{
+																				Relay Name=Start Saladin NIS Conversation
+																			}
+																			Return failure if the If failes=0
 																		}
 																		Return failure if the If failes=0
 																	}
@@ -10882,49 +10895,62 @@ CLayerSaveData
 							{
 								If=CCheckExistenceAction
 								{
-									Name To Check For=if dark wielder
+									Name To Check For=if saladin
 									Desired Minimum Count=1
 								}
 								Then=CTriggerRelayAction
 								{
-									Relay Name=start dark wiedler spy scene
+									Relay Name=End Saladin NIS Relay
 								}
 								Else=CIfAction
 								{
 									If=CCheckExistenceAction
 									{
-										Name To Check For=if wielder
+										Name To Check For=if dark wielder
 										Desired Minimum Count=1
 									}
 									Then=CTriggerRelayAction
 									{
-										Relay Name=start wiedler spy scene
+										Relay Name=start dark wiedler spy scene
 									}
 									Else=CIfAction
 									{
 										If=CCheckExistenceAction
 										{
-											Name To Check For=if inquisition
+											Name To Check For=if wielder
 											Desired Minimum Count=1
 										}
 										Then=CTriggerRelayAction
 										{
-											Relay Name=End Inquisition NIS Relay
+											Relay Name=start wiedler spy scene
 										}
 										Else=CIfAction
 										{
 											If=CCheckExistenceAction
 											{
-												Name To Check For=if templar
+												Name To Check For=if inquisition
 												Desired Minimum Count=1
 											}
 											Then=CTriggerRelayAction
 											{
-												Relay Name=End Templar NIS Relay
+												Relay Name=End Inquisition NIS Relay
 											}
-											Else=CTriggerRelayAction
+											Else=CIfAction
 											{
-												Relay Name=End Saladin NIS Relay
+												If=CCheckExistenceAction
+												{
+													Name To Check For=if templar
+													Desired Minimum Count=1
+												}
+												Then=CTriggerRelayAction
+												{
+													Relay Name=End Templar NIS Relay
+												}
+												Else=CTriggerRelayAction
+												{
+													Relay Name=End Saladin NIS Relay
+												}
+												Return failure if the If failes=0
 											}
 											Return failure if the If failes=0
 										}

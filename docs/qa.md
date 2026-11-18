@@ -6169,6 +6169,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_summit_saladin_first.py`. A character who has not yet been to the Cathedral.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SS1 | Temple District, then Gate District | Be knighted by Lord Javier. Then pass the Dream Djinni's trial, either test, and accept Amir's invitation (*"Of course, I will accompany you."*) | The Cathedral scene runs Javier's welcome to **Amir and the Knights of Saladin** (*"Amir, we are honored..."*), continues to Amir's lines and ends, and control returns. It does not stop after Javier's first line |
+| SS2 | Same | After SS1, check the journal and talk to Amir | The Saladin route continues (Travel to Montserrat) |
+| SS3 | Cathedral, Templar only | A Templar who never did the Djinni's trial: take Javier's route to the Cathedral | The Templar summit plays as before |
+| SS4 | Cathedral, Saladin only | A Saladin initiate with no other faction: accept Amir's invitation | The Saladin summit plays as before (0.80.1's `SA` rows) |
+
 ## 0.99.35 - the Bonecaller's swing
 
 `tools/build_attack_clips.py`. Creatures spawned after install: a map already entered keeps its Bonecaller.
