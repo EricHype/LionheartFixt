@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.32 are published** -- 235 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.33 are published** -- 236 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,58 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.33 - the playtester's list
+
+Issue #15, a list from a playtest of 0.98.1. Every report was traced in the current files and decided one at a time.
+Eleven fixes, each with its own builder and QA rows; one left alone on purpose; one waiting on the tester.
+
+- **The Priestess has a body.** Her model was never finished: `Models3D/Enemies/English Priestess/` is the base Terror,
+  copied byte for byte, with the Terror's original animation set and no `Spellcast`. The cans only cast, so every cast
+  drew the "GRANNY MODEL" placeholder, and plausibly the reported crash. Vanilla never placed her; Fixt has since 0.19.0.
+  She is now the Barcelona townswoman mesh (all four share one mesh and UV layout) repainted in the English Priest's
+  sampled colours: navy robe, gold yoke, gold front panel, copper belts, and her hair painted as a navy hood edged in
+  gold. `Priestess.mdl16` becomes Woman Generic3's manifest, which brings the townswomen's eight clips, `SpellCast`
+  among them. The copy is named `Priestess` in the manifest's `Body` slot, which names a mesh by its file leaf.
+  `build_priestess_model.py`, art from `paint_priestess_skins.py`. `PZ1`-`PZ5`.
+- **Isabella stays away once arrested.** Getting her to confess set the Morales quest to `QF4BLH9V` but never told the
+  Shrine, so she waited at the entrance and attacked. The Shrine's three spawn calls now also skip her when that state
+  was ever reached, which covers the Duke route too. Fixt, 0.19.0. `build_isabella_confessed.py`. `IC1`-`IC5`.
+- **A peaceful Enchanter lets you leave.** The ether plane's crystal was armed only by his death or Marco's portal; the
+  contest, the barter and Fixt's pact all left you trapped. `Pacify Enchanter in Dialog` now arms it, as his own line
+  promises. Vanilla. `build_ether_exit.py`. `EP1`-`EP5`.
+- **Relican, three ways.** The Leonardo task is offered until taken and its reports pay once (Fixt, 0.40.0;
+  `build_relican_davinci_gates.py`, `RV1`-`RV4`). His click after Montserrat ballooned over `Lord Relican`, a name
+  nothing has, so he went silent; it now opens his return dialogue, and the Church reply that would have repeated its XP
+  is gated (vanilla; `build_relican_after_montserrat.py`, `RM1`-`RM5`, new games for the click). The Slave Pit copy is
+  removed when he takes La Calle Perdida, by the ring for new games and by talking to him there for saves already past
+  it (vanilla; `build_relican_one_place.py`, `RO1`-`RO5`).
+- **Montserrat's assassins pay XP.** The three tiers were clones of a vanilla can with no `Experience Points`, so a kill
+  paid 0. Now 152, Snakebreed Venom's figure, one number across the tiers as vanilla does. The wounded assassin, who
+  pleads for his life, stays at 0. Fixt, 0.10.0. `build_montserrat_assassin_xp.py`. `AX1`-`AX4`.
+- **Allied Hujark are allies.** The stand-down only retargeted them: they kept `Enemy`, and their click type has
+  `Fight When Close=1`, so a click attacked and area spells hit them. Every stand-down now also drops `Enemy` and swaps
+  the click to `GetCloseThenTalk`, a random battle cry from vanilla's `HujarkWarriorCanned`; force attack still fights
+  and revokes passage, and a revoke puts `Enemy` and the fight click back. The ogres' pattern. Fixt, 0.17.0 and 0.97.3.
+  `build_hujark_allies.py`. `HA1`-`HA7`.
+- **The Hujark war is half as crowded.** 0.17.0 twinned every Hujark generator with an English one, so each fight on the
+  allied route was two full packs, and since 0.97.3 both fight. Most twins spawn one soldier at act 5's mojo, so every
+  other `English Generator` twin now stays off: 144 English to about 76 at mojo 30. `build_hujark_war_thinning.py`.
+  `HT1`-`HT5`.
+- **Calmed snakebreed can be force-attacked, and then all turn.** Their pacified click type refused force attack. All
+  47 sites now click to talk, and a hit from the player fires a per-map relay that turns every snakebreed back. It docks
+  no karma; Sahar's broken word keeps its own penalty. Fixt, 0.11.0. Two hand-written `Categories To Add` are respelled
+  to vanilla's `Categories to add`. `build_snakebreed_truce.py`. `SX1`-`SX7`.
+- **An imported goblin title climbs no further.** Export keeps perks and permanent modifiers but not the faction the
+  ladder relies on withdrawing, so ranks stacked. Both ladder cans now need no goblin title perk, or this game's own
+  flag, a new scripting variable that is not exported. Fixt. `build_goblin_rank_guard.py`. `GZ1`-`GZ5`.
+- **Left alone: duplicate jewelry enchantments.** The roll is vanilla's (80% one addition, 15% two, 5% three, repeats
+  allowed); Fixt's 0.38.0 magic drops exposed jewelry to it.
+- **Waiting: the "Bonewalker" flicker** on the Doomed Plateau. Nothing in the data explains it; the tester has been asked
+  which creature and when.
+- **Reach.** Trees and cans reach every save; the map edits reach maps not yet entered.
+
+---
 
 ## 0.99.32 - momma's pie
 
