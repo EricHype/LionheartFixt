@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.36** | the summit's question | A Templar sent to the Cathedral by Amir no longer stalls when the scene starts. |
 | **0.99.35** | the Bonecaller's swing | The Bonecaller no longer flickers into GRANNY MODEL when it attacks. |
 | **0.99.34** | with thanks | The credits roll thanks everyone who reported bugs. |
 | **0.99.33** | the playtester's list | The Priestess gets a real body, allied Hujark and snakebreed behave as allies, and nine more fixes from a playtest. |
