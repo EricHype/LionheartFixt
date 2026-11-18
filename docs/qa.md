@@ -6169,6 +6169,16 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.34 - with thanks
+
+`tools/build_credits.py`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CZ1 | Main menu | Open the credits, or finish the game | After Interplay's team, a **Lionheart Fixt** section: *Restoration, Implementation and Design*, Eric Heitmuller (EricHype); then *Bug Reports and Playtesting* with ten names; then a thanks to Litmanen |
+| CZ2 | Same | Watch to the end | The third-party logos (Bink, Pixomatic, Granny, zlib, Alienware) and the closing Lionheart logo and copyright still follow. Nothing of the original credits is missing |
+| CZ3 | Same | Read the headers | Formatted like the original roles: header and role lines underlined, names centred |
+
 ## 0.99.33 - the playtester's list
 
 ### The Priestess has a body (issue #15)
