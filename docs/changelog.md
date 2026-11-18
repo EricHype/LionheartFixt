@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.34** | with thanks | The credits roll thanks everyone who reported bugs. |
 | **0.99.33** | the playtester's list | The Priestess gets a real body, allied Hujark and snakebreed behave as allies, and nine more fixes from a playtest. |
 | **0.99.32** | momma's pie | The Goblin Girl stops asking about the woodcutter after the pie, and goes away to bake it. |
 | **0.99.31** | the last snake counts | Machiavelli's quest completes no matter which of his attackers dies last. |
