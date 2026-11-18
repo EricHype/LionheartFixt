@@ -87,6 +87,105 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt calmed snakebreed turn
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=5
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+								Categories to add=Enemy
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+									Action=
+									X Radius=50
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CGoToCombatAction
+							{
+								Enemy Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=60
+			Position Y=140
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Dynamic Properties=1
 			{
 				Comment=Snakebreed Summoner Clone Generator
@@ -7647,7 +7746,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -7684,7 +7801,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -19900,7 +20017,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -19937,7 +20072,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -20530,7 +20665,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -20567,7 +20720,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -22933,7 +23086,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -22970,7 +23141,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -25654,7 +25825,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -25691,7 +25880,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -27413,7 +27602,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -27450,7 +27657,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -28236,7 +28443,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -28273,7 +28498,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -30853,7 +31078,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -30890,7 +31133,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -31064,7 +31307,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -31101,7 +31362,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -31365,7 +31626,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -31402,7 +31681,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -32192,7 +32471,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -32229,7 +32526,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -33416,7 +33713,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -33453,7 +33768,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -35870,7 +36185,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -35907,7 +36240,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -38003,7 +38336,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -38040,7 +38391,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -38919,7 +39270,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -38956,7 +39325,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -40227,7 +40596,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -40264,7 +40651,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -44071,7 +44458,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -44108,7 +44513,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -44282,7 +44687,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -44319,7 +44742,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -44657,7 +45080,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -44694,7 +45135,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -44975,7 +45416,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -45012,7 +45471,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks
@@ -45186,7 +45645,25 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=4
+								Item Count=5
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CIfAction
+									{
+										If=CCheckCategoryAction
+										{
+											Target Name=$Instigator
+											Category to check for=Player,Player Friend
+										}
+										Then=CTriggerRelayAction
+										{
+											Relay Name=Fixt calmed snakebreed turn
+										}
+										Else=
+										Return failure if the If failes=0
+									}
+									Target Name=$Instigator
+								}
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -45223,7 +45700,7 @@ CLayerSaveData
 										Triggered By Companions=0
 										Triggered By Name=
 										Interaction Description=
-										Interaction Type=Interaction Specifiers/GetCloseThenTrigger
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
 										Action=CDisplayDialogBalloonAction
 										{
 											Dialog Tree File=Levels/2 Montserrat/Dialog/Montserrat Barks

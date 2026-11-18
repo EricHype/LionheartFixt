@@ -15879,7 +15879,11 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=3
+							Action=CTriggerRelayAction
+							{
+								Relay Name=Power the crystal to leave
+							}
 							Action=CRemoveAIAction
 							{
 								Target Name=Enchanter

@@ -350,7 +350,52 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=2
+							Item Count=5
+							Action=CAddCategoryAction
+							{
+								Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+								Categories to add=Enemy
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Companions=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+									Action=
+									X Radius=80
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
+							}
 							Action=CDeactivateAction
 							{
 								Target Name=the Hujark let you live
@@ -530,11 +575,114 @@ CLayerSaveData
 								Delay Between Activations=0
 								Warp Behavior=
 							}
-							Action=CSetTargetTypeAction
+							Action=CMultipleActionsAction
 							{
-								Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
-								Name To Target=
-								Valid Targets=Scripted Custom 2
+								Action=Array
+								{
+									Item Count=4
+									Action=CSetTargetTypeAction
+									{
+										Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										Name To Target=
+										Valid Targets=Scripted Custom 2
+									}
+									Action=CRemoveCategoryAction
+									{
+										Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										Categories To Remove=Enemy
+									}
+									Action=CRemoveAIAction
+									{
+										Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										AI=CAIInteractionSpecifier
+										{
+											Marked For Deletion=0
+											Publisher=
+											Trigger Only Once=0
+											Was Triggered=0
+											Auto-Flip Switch=1
+											Trigge Must Have HP=0
+											Triggered By Anything=0
+											Triggered By Players=1
+											Triggered By Player Friends=0
+											Triggered By Enemies=0
+											Triggered By Projectiles=0
+											Triggered By Companions=0
+											Triggered By Name=
+											Interaction Description=
+											Interaction Type=Interaction Specifiers/GetCloseThenTalk
+											Action=CRandomAction
+											{
+												Action=Array
+												{
+													Item Count=5
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=10 Never
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=20
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=30
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=50
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=70
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+												}
+											}
+											X Radius=80
+											Attacker Range Modifier=0
+											YX Ratio=0.712766
+											Highlight Self Time=0
+											Highlight Until Clicked=0
+											Is Locked=0
+											Allow Interact If Has Target=1
+											Lock Pick Adjustment=0
+											Inventory item to use as key=Inventory Items/!None
+											Is Bussy Talking=0
+										}
+										Delay Between Adds=0
+									}
+								}
 							}
 						}
 					}
@@ -691,11 +839,114 @@ CLayerSaveData
 									Name To Check For=the Hujark let you live
 									Desired Minimum Count=1
 								}
-								Succeed Action=CSetTargetTypeAction
+								Succeed Action=CMultipleActionsAction
 								{
-									Entity Name=$Instigator
-									Name To Target=
-									Valid Targets=Scripted Custom 2
+									Action=Array
+									{
+										Item Count=4
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=$Instigator
+											Name To Target=
+											Valid Targets=Scripted Custom 2
+										}
+										Action=CRemoveCategoryAction
+										{
+											Target Name=$Instigator
+											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Companions=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=5
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+															Node ID=10 Never
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+															Node ID=20
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+															Node ID=30
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+															Node ID=50
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+															Node ID=70
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=80
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
+										}
+									}
 								}
 								Fail Action=
 								Return failure if the TryAction failes=0
@@ -2567,7 +2818,7 @@ CLayerSaveData
 			{
 				Comment=Shield Helmet Swordsman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -2875,7 +3126,7 @@ CLayerSaveData
 			{
 				Comment=Swordsman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -3173,7 +3424,7 @@ CLayerSaveData
 			{
 				Comment=Shield Swordsman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -3481,7 +3732,7 @@ CLayerSaveData
 			{
 				Comment=Lesser Shaman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -3759,7 +4010,7 @@ CLayerSaveData
 			{
 				Comment=Swordsman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -4437,7 +4688,7 @@ CLayerSaveData
 			{
 				Comment=Dual Swordsman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -5105,7 +5356,7 @@ CLayerSaveData
 			{
 				Comment=Swordsman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -5423,7 +5674,7 @@ CLayerSaveData
 			{
 				Comment=Dual Swordsman Generator
 			}
-			Name=English Generator
+			Name=Fixt English Generator held back
 			Child List=
 			Visible=0
 			Collideable=1
@@ -5629,11 +5880,114 @@ CLayerSaveData
 								Delay Between Activations=0
 								Warp Behavior=
 							}
-							Action=CSetTargetTypeAction
+							Action=CMultipleActionsAction
 							{
-								Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
-								Name To Target=
-								Valid Targets=Scripted Custom 2
+								Action=Array
+								{
+									Item Count=4
+									Action=CSetTargetTypeAction
+									{
+										Entity Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										Name To Target=
+										Valid Targets=Scripted Custom 2
+									}
+									Action=CRemoveCategoryAction
+									{
+										Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										Categories To Remove=Enemy
+									}
+									Action=CRemoveAIAction
+									{
+										Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										AI=CAIInteractionSpecifier
+										Delay Between Removes=0
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Hujark Warrior, Hujark Blademaster, Hujark Shieldsman, Hujark Acolyte, Hujark Shaman
+										AI=CAIInteractionSpecifier
+										{
+											Marked For Deletion=0
+											Publisher=
+											Trigger Only Once=0
+											Was Triggered=0
+											Auto-Flip Switch=1
+											Trigge Must Have HP=0
+											Triggered By Anything=0
+											Triggered By Players=1
+											Triggered By Player Friends=0
+											Triggered By Enemies=0
+											Triggered By Projectiles=0
+											Triggered By Companions=0
+											Triggered By Name=
+											Interaction Description=
+											Interaction Type=Interaction Specifiers/GetCloseThenTalk
+											Action=CRandomAction
+											{
+												Action=Array
+												{
+													Item Count=5
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=10 Never
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=20
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=30
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=50
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+													Action=CDisplayDialogBalloonAction
+													{
+														Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+														Node ID=70
+														Name of Position=$trigger
+														Position Offset=0.000000,-80.000000
+														After Action=
+														Include In Log=1
+													}
+												}
+											}
+											X Radius=80
+											Attacker Range Modifier=0
+											YX Ratio=0.712766
+											Highlight Self Time=0
+											Highlight Until Clicked=0
+											Is Locked=0
+											Allow Interact If Has Target=1
+											Lock Pick Adjustment=0
+											Inventory item to use as key=Inventory Items/!None
+											Is Bussy Talking=0
+										}
+										Delay Between Adds=0
+									}
+								}
 							}
 						}
 					}
@@ -8641,11 +8995,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -9946,11 +10403,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -10940,11 +11500,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -14702,11 +15365,114 @@ CLayerSaveData
 																			Name To Check For=the Hujark let you live
 																			Desired Minimum Count=1
 																		}
-																		Succeed Action=CSetTargetTypeAction
+																		Succeed Action=CMultipleActionsAction
 																		{
-																			Entity Name=$Instigator
-																			Name To Target=
-																			Valid Targets=Scripted Custom 2
+																			Action=Array
+																			{
+																				Item Count=4
+																				Action=CSetTargetTypeAction
+																				{
+																					Entity Name=$Instigator
+																					Name To Target=
+																					Valid Targets=Scripted Custom 2
+																				}
+																				Action=CRemoveCategoryAction
+																				{
+																					Target Name=$Instigator
+																					Categories To Remove=Enemy
+																				}
+																				Action=CRemoveAIAction
+																				{
+																					Target Name=$Instigator
+																					AI=CAIInteractionSpecifier
+																					Delay Between Removes=0
+																				}
+																				Action=CAddAIAction
+																				{
+																					Target Name=$Instigator
+																					AI=CAIInteractionSpecifier
+																					{
+																						Marked For Deletion=0
+																						Publisher=
+																						Trigger Only Once=0
+																						Was Triggered=0
+																						Auto-Flip Switch=1
+																						Trigge Must Have HP=0
+																						Triggered By Anything=0
+																						Triggered By Players=1
+																						Triggered By Player Friends=0
+																						Triggered By Enemies=0
+																						Triggered By Projectiles=0
+																						Triggered By Companions=0
+																						Triggered By Name=
+																						Interaction Description=
+																						Interaction Type=Interaction Specifiers/GetCloseThenTalk
+																						Action=CRandomAction
+																						{
+																							Action=Array
+																							{
+																								Item Count=5
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=10 Never
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=20
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=30
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=50
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=70
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																							}
+																						}
+																						X Radius=80
+																						Attacker Range Modifier=0
+																						YX Ratio=0.712766
+																						Highlight Self Time=0
+																						Highlight Until Clicked=0
+																						Is Locked=0
+																						Allow Interact If Has Target=1
+																						Lock Pick Adjustment=0
+																						Inventory item to use as key=Inventory Items/!None
+																						Is Bussy Talking=0
+																					}
+																					Delay Between Adds=0
+																				}
+																			}
 																		}
 																		Fail Action=
 																		Return failure if the TryAction failes=0
@@ -14834,11 +15600,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -15535,11 +16404,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -16505,11 +17477,114 @@ CLayerSaveData
 																			Name To Check For=the Hujark let you live
 																			Desired Minimum Count=1
 																		}
-																		Succeed Action=CSetTargetTypeAction
+																		Succeed Action=CMultipleActionsAction
 																		{
-																			Entity Name=$Instigator
-																			Name To Target=
-																			Valid Targets=Scripted Custom 2
+																			Action=Array
+																			{
+																				Item Count=4
+																				Action=CSetTargetTypeAction
+																				{
+																					Entity Name=$Instigator
+																					Name To Target=
+																					Valid Targets=Scripted Custom 2
+																				}
+																				Action=CRemoveCategoryAction
+																				{
+																					Target Name=$Instigator
+																					Categories To Remove=Enemy
+																				}
+																				Action=CRemoveAIAction
+																				{
+																					Target Name=$Instigator
+																					AI=CAIInteractionSpecifier
+																					Delay Between Removes=0
+																				}
+																				Action=CAddAIAction
+																				{
+																					Target Name=$Instigator
+																					AI=CAIInteractionSpecifier
+																					{
+																						Marked For Deletion=0
+																						Publisher=
+																						Trigger Only Once=0
+																						Was Triggered=0
+																						Auto-Flip Switch=1
+																						Trigge Must Have HP=0
+																						Triggered By Anything=0
+																						Triggered By Players=1
+																						Triggered By Player Friends=0
+																						Triggered By Enemies=0
+																						Triggered By Projectiles=0
+																						Triggered By Companions=0
+																						Triggered By Name=
+																						Interaction Description=
+																						Interaction Type=Interaction Specifiers/GetCloseThenTalk
+																						Action=CRandomAction
+																						{
+																							Action=Array
+																							{
+																								Item Count=5
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=10 Never
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=20
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=30
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=50
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=70
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																							}
+																						}
+																						X Radius=80
+																						Attacker Range Modifier=0
+																						YX Ratio=0.712766
+																						Highlight Self Time=0
+																						Highlight Until Clicked=0
+																						Is Locked=0
+																						Allow Interact If Has Target=1
+																						Lock Pick Adjustment=0
+																						Inventory item to use as key=Inventory Items/!None
+																						Is Bussy Talking=0
+																					}
+																					Delay Between Adds=0
+																				}
+																			}
 																		}
 																		Fail Action=
 																		Return failure if the TryAction failes=0
@@ -16637,11 +17712,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -20046,11 +21224,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -21433,11 +22714,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -21634,11 +23018,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -22074,11 +23561,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -22285,11 +23875,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -23198,11 +24891,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -28646,11 +30442,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -30419,11 +32318,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -30658,11 +32660,114 @@ CLayerSaveData
 																			Name To Check For=the Hujark let you live
 																			Desired Minimum Count=1
 																		}
-																		Succeed Action=CSetTargetTypeAction
+																		Succeed Action=CMultipleActionsAction
 																		{
-																			Entity Name=$Instigator
-																			Name To Target=
-																			Valid Targets=Scripted Custom 2
+																			Action=Array
+																			{
+																				Item Count=4
+																				Action=CSetTargetTypeAction
+																				{
+																					Entity Name=$Instigator
+																					Name To Target=
+																					Valid Targets=Scripted Custom 2
+																				}
+																				Action=CRemoveCategoryAction
+																				{
+																					Target Name=$Instigator
+																					Categories To Remove=Enemy
+																				}
+																				Action=CRemoveAIAction
+																				{
+																					Target Name=$Instigator
+																					AI=CAIInteractionSpecifier
+																					Delay Between Removes=0
+																				}
+																				Action=CAddAIAction
+																				{
+																					Target Name=$Instigator
+																					AI=CAIInteractionSpecifier
+																					{
+																						Marked For Deletion=0
+																						Publisher=
+																						Trigger Only Once=0
+																						Was Triggered=0
+																						Auto-Flip Switch=1
+																						Trigge Must Have HP=0
+																						Triggered By Anything=0
+																						Triggered By Players=1
+																						Triggered By Player Friends=0
+																						Triggered By Enemies=0
+																						Triggered By Projectiles=0
+																						Triggered By Companions=0
+																						Triggered By Name=
+																						Interaction Description=
+																						Interaction Type=Interaction Specifiers/GetCloseThenTalk
+																						Action=CRandomAction
+																						{
+																							Action=Array
+																							{
+																								Item Count=5
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=10 Never
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=20
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=30
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=50
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																								Action=CDisplayDialogBalloonAction
+																								{
+																									Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																									Node ID=70
+																									Name of Position=$trigger
+																									Position Offset=0.000000,-80.000000
+																									After Action=
+																									Include In Log=1
+																								}
+																							}
+																						}
+																						X Radius=80
+																						Attacker Range Modifier=0
+																						YX Ratio=0.712766
+																						Highlight Self Time=0
+																						Highlight Until Clicked=0
+																						Is Locked=0
+																						Allow Interact If Has Target=1
+																						Lock Pick Adjustment=0
+																						Inventory item to use as key=Inventory Items/!None
+																						Is Bussy Talking=0
+																					}
+																					Delay Between Adds=0
+																				}
+																			}
 																		}
 																		Fail Action=
 																		Return failure if the TryAction failes=0
@@ -30790,11 +32895,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -33131,11 +35339,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -33349,11 +35660,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -34404,11 +36818,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -34781,11 +37298,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -40839,11 +43459,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -41714,11 +44437,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -42310,11 +45136,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0
@@ -44983,11 +47912,114 @@ CLayerSaveData
 											Name To Check For=the Hujark let you live
 											Desired Minimum Count=1
 										}
-										Succeed Action=CSetTargetTypeAction
+										Succeed Action=CMultipleActionsAction
 										{
-											Entity Name=$Instigator
-											Name To Target=
-											Valid Targets=Scripted Custom 2
+											Action=Array
+											{
+												Item Count=4
+												Action=CSetTargetTypeAction
+												{
+													Entity Name=$Instigator
+													Name To Target=
+													Valid Targets=Scripted Custom 2
+												}
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Instigator
+													Categories To Remove=Enemy
+												}
+												Action=CRemoveAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													Delay Between Removes=0
+												}
+												Action=CAddAIAction
+												{
+													Target Name=$Instigator
+													AI=CAIInteractionSpecifier
+													{
+														Marked For Deletion=0
+														Publisher=
+														Trigger Only Once=0
+														Was Triggered=0
+														Auto-Flip Switch=1
+														Trigge Must Have HP=0
+														Triggered By Anything=0
+														Triggered By Players=1
+														Triggered By Player Friends=0
+														Triggered By Enemies=0
+														Triggered By Projectiles=0
+														Triggered By Companions=0
+														Triggered By Name=
+														Interaction Description=
+														Interaction Type=Interaction Specifiers/GetCloseThenTalk
+														Action=CRandomAction
+														{
+															Action=Array
+															{
+																Item Count=5
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=10 Never
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=20
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=30
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=50
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+																Action=CDisplayDialogBalloonAction
+																{
+																	Dialog Tree File=Levels/5 Nostrodomus/Dialog/HujarkWarriorCanned
+																	Node ID=70
+																	Name of Position=$trigger
+																	Position Offset=0.000000,-80.000000
+																	After Action=
+																	Include In Log=1
+																}
+															}
+														}
+														X Radius=80
+														Attacker Range Modifier=0
+														YX Ratio=0.712766
+														Highlight Self Time=0
+														Highlight Until Clicked=0
+														Is Locked=0
+														Allow Interact If Has Target=1
+														Lock Pick Adjustment=0
+														Inventory item to use as key=Inventory Items/!None
+														Is Bussy Talking=0
+													}
+													Delay Between Adds=0
+												}
+											}
 										}
 										Fail Action=
 										Return failure if the TryAction failes=0

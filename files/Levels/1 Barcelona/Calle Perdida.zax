@@ -18426,7 +18426,15 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=18
+								Item Count=19
+								Action=COtherMapAction
+								{
+									Action=CDeleteAction
+									{
+										Target Name=Relican
+									}
+									Other Map Name=Wilderness Maps/Slave Pit Exterior
+								}
 								Action=CBeginNonInteractiveSequenceAction
 								{
 									Options=CNonInteractiveSequence
@@ -31467,14 +31475,12 @@ CLayerSaveData
 								{
 									Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
 								}
-								Then=CDisplayDialogBalloonAction
+								Then=CDisplayDialogTreeAction
 								{
 									Dialog Tree File=Levels/1 Barcelona/Dialog/La Calle Perdida/Lord Relican
-									Node ID=40 dark wielder task 4
-									Name of Position=Lord Relican
-									Position Offset=0.000000,-80.000000
-									After Action=
-									Include In Log=1
+									Node ID=5 Return Dialogue
+									Speaker=$trigger
+									Player Being Spoken To=$Instigator
 								}
 								Else=CIfAction
 								{

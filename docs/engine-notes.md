@@ -968,6 +968,18 @@ too.
 `CHueRemapHolder` on the can does nothing for a monster, confirmed with the model's own fork
 proven live by a render-scale probe. All 54 models that set the flag are player characters.
 
+**A copied creature model must be renamed in two places.** A character manifest
+(`Cache/Models/Characters/...mdl16`) names its mesh twice: the mesh path, and a
+`Character Slot Types/Body` slot giving the mesh by its **file leaf**. All 190 character manifests
+agree on that, case aside; `Short Name` in the `MODEL.TXT` is `undefined` in most of them. So a mesh
+copied under a new file name needs the Body slot changed to the new leaf; left alone, the slot
+names a file that is not there, and by analogy with the composites' "absent name renders nothing"
+the creature would draw no body (inferred, never run in game, because the rename went in first). The enemy editor's preview reads only the mesh
+path, so it looks right either way. Give the copy its own `Short Name` too. Both strings are
+`u32`-length-prefixed, as the composite registry's are. `tools/build_priestess_model.py` does all
+three, and **when a payload shares its sector with other textures** (all six of a townswoman's
+do), it appends the payload to that sector and repoints the fixup, as the retexturing notes allow.
+
 ## Critical hits apply to unarmed attacks
 
 `CriticalChance` is `Luck` plus, **only when a bow or crossbow is equipped**, a component scaled from

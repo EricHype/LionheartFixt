@@ -1836,12 +1836,22 @@ CLayerSaveData
 										Desired Minimum Count=1
 									}
 									Succeed Action=
-									Fail Action=CActivateAction
+									Fail Action=CConditionalAction
 									{
-										Target Name=Grace generator
-										Play Activate Sound=0
-										Delay Between Activations=0
-										Warp Behavior=
+										Try Action=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+											State=QF4BLH9V
+										}
+										Succeed Action=
+										Fail Action=CActivateAction
+										{
+											Target Name=Grace generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Return failure if the TryAction failes=0
 									}
 									Return failure if the TryAction failes=0
 								}
@@ -2281,12 +2291,22 @@ CLayerSaveData
 										Desired Minimum Count=1
 									}
 									Succeed Action=
-									Fail Action=CActivateAction
+									Fail Action=CConditionalAction
 									{
-										Target Name=Grace generator
-										Play Activate Sound=0
-										Delay Between Activations=0
-										Warp Behavior=
+										Try Action=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+											State=QF4BLH9V
+										}
+										Succeed Action=
+										Fail Action=CActivateAction
+										{
+											Target Name=Grace generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Return failure if the TryAction failes=0
 									}
 									Return failure if the TryAction failes=0
 								}
@@ -3551,12 +3571,22 @@ CLayerSaveData
 										Desired Minimum Count=1
 									}
 									Succeed Action=
-									Fail Action=CActivateAction
+									Fail Action=CConditionalAction
 									{
-										Target Name=Grace generator
-										Play Activate Sound=0
-										Delay Between Activations=0
-										Warp Behavior=
+										Try Action=CWasQuestStateActivatedAction
+										{
+											Quest=Levels/Wilderness/Quests/Solve the Murder of Captain Morales
+											State=QF4BLH9V
+										}
+										Succeed Action=
+										Fail Action=CActivateAction
+										{
+											Target Name=Grace generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Return failure if the TryAction failes=0
 									}
 									Return failure if the TryAction failes=0
 								}

@@ -6169,6 +6169,146 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+### The Priestess has a body (issue #15)
+
+`tools/build_priestess_model.py`, art from `tools/paint_priestess_skins.py`. A model, so it reaches every save, but only
+creatures spawned after install use it. The Priestess model was the base Terror, copied, with no spell-casting clip.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| PZ1 | English Shrine, `05 Exalted Chambers` (or `06`-`10`), any Priestess tier | Look at her | A woman in a navy robe with a gold yoke, a gold front panel and copper belts, under a navy hood edged in gold. **Not a Terror** |
+| PZ2 | Same | Let her cast, several times | She plays a casting animation every time. **No "GRANNY MODEL" placeholder, no crash.** This is the row the fix exists for |
+| PZ3 | Same | Fight her to death, and let her be hit along the way | Hit and death animations play. She does not freeze in a T-pose |
+| PZ4 | **Regression**, Barcelona, any street with townswomen, after PZ1 in the same session | Look at the townswomen | They still wear their own clothes. The copy is named `Priestess` in its manifest's `Body` slot and its `Short Name`, so nothing should tie the two; if a townswoman shows the navy robe, report it |
+| PZ5 | `05 Exalted Chambers`, the Druid Master | Look at her | **Unchanged**: she has always used the male Priest model, and this does not touch her |
+
+### Isabella stays away once she has confessed (issue #15)
+
+`tools/build_isabella_confessed.py`. Reaches a save that has not yet entered `01 Outside Shrine`.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| IC1 | Port District, the Morales murder solved | Get Isabella to confess (Speech 40, *"against England"*), then reach `01 Outside Shrine` | **She is not there.** No ambush at the entrance before Sir Roger Templeton |
+| IC2 | Same character | Tell the ghost of Morales, then reach the Shrine | Still absent. The quest completing does not bring her back |
+| IC3 | **Regression**, report her to the Duke instead | Reach the Shrine | Absent, as before |
+| IC4 | **Regression**, keep her secret | Reach the Shrine | She is there and friendly (*"First you spared me in Barcelona..."*), and can join |
+| IC5 | **Regression**, take her bribe, or never solve the murder | Reach the Shrine | She is there and hostile (*"I will settle the score with you"*), as before. Only the arrest routes changed |
+
+### A peaceful Enchanter lets you leave (issue #15)
+
+`tools/build_ether_exit.py`. Reaches a save that has not yet entered `TrappedEtherPlane`.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| EP1 | The trapped ether plane, the Enchanter met | Win the contest (*"Very well. I shall see if I can open the portal..."*) | The crystal's sound plays as he calms. Click the `Teleporter Crystal`: it takes you out |
+| EP2 | Same | Barter with him instead (`45 Barter 3`) | Same: the crystal works |
+| EP3 | Same | Make the Fixt pact for Relican | Same: the crystal works, and the pact still holds (he is not hostile) |
+| EP4 | **Regression**, same | Kill him instead | The crystal works, as before. No doubled sound or second teleporter |
+| EP5 | **Regression**, Marco's route | Take Marco's portal out before meeting the Enchanter | Works as before |
+
+### Relican asks about Leonardo once (issue #15)
+
+`tools/build_relican_davinci_gates.py`. A tree, so every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| RV1 | La Calle Perdida, a Dark Wielder who has started Relican's tasks | Ask *"What of Leonardo...?"*, then *"I will go to him."* | The quest starts. Talk to Relican again: **the Leonardo question is gone** |
+| RV2 | Same, after turning Leonardo (he gives his word) | Report *"Leonardo will not stand against you..."* | The quest completes and pays XP, once. Talk again: the report reply is gone, and the Leonardo question has not come back |
+| RV3 | Same, Leonardo refuses instead | Report *"Leonardo refused you..."* | The quest completes, once. Talk again: neither reply is offered |
+| RV4 | **Regression**, never asked about Leonardo | Talk to Relican | The Leonardo question is offered |
+
+### Relican still talks after Montserrat (issue #15)
+
+`tools/build_relican_after_montserrat.py`. The click reaches only a game that has not yet reached La Calle Perdida
+(Relican is a spawned creature); the Church gate reaches every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| RM1 | La Calle Perdida, a **new game**, the Dark Wielder tasks done up to Montserrat | Click Relican | *"Greetings, dark brother. What do you seek?"* opens. Before this release the click did nothing |
+| RM2 | Same | Pick *"Tell me more about the tasks."* | The tasks recap still works |
+| RM3 | Same, with Leonardo turned or refused but not yet reported | Click Relican | The Leonardo report is offered and pays once (`RV2`/`RV3`) |
+| RM4 | Same | Look for *"Let us talk about the events that transpired in the Church."* | **Not offered**, once its quest is complete. If it appears and pays XP again, report it |
+| RM5 | **Regression**, before Montserrat | Click Relican, and again after talking once | First click: his opening; later clicks: the return dialogue, as before |
+
+### Relican is in one place after the takeover (issue #15)
+
+`tools/build_relican_one_place.py`. The ring route reaches a game that has not yet entered La Calle Perdida; the tree
+route reaches every save, the next time the player says Goodbye to Relican or asks about his tasks.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| RO1 | A **new game**, the ring used in La Calle Perdida | Travel to Slave Pit Exterior | **No Relican there.** He is only in La Calle Perdida |
+| RO2 | A save **already past** the ring, Relican still at the Slave Pit | Talk to Relican in La Calle Perdida, end with *"Goodbye."*, then travel to Slave Pit Exterior | He is gone from the Slave Pit |
+| RO3 | Same as RO2, a fresh copy | Ask *"Tell me more about the tasks."* instead, then go | Gone as well |
+| RO4 | **Regression**, double-cross Relican (refuse the ring) | Return to Slave Pit Exterior | He is there and attacks (*"You have betrayed the wrong person!"*), as before |
+| RO5 | **Regression**, after RO1 or RO2 | Carry on the Dark Wielder tasks in La Calle Perdida | Relican there still talks and gives tasks |
+
+### Montserrat's assassins pay XP (issue #15)
+
+`tools/build_montserrat_assassin_xp.py`. A can edit: reaches assassins spawned after install.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AX1 | Montserrat, any assassin of the invasion | Kill one, and read the combat log | **152 XP.** Before this release, nothing |
+| AX2 | Same | Kill a Tough and a Super | 152 each, the same as the base tier, as vanilla families do |
+| AX3 | **Regression**, the Wounded Assassin in the hall | Kill him instead of sparing him | **No XP**, deliberately |
+| AX4 | **Regression**, the snakebreed in the same fights | Kill some | 111 or 152, unchanged |
+
+### Allied Hujark are talked to, not fought (issue #15)
+
+`tools/build_hujark_allies.py`. Reaches act 5 maps not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HA1 | Act 5, sided with the Hujark | Hover over and click a Hujark warrior | A **talk** cursor, and he shouts a battle cry (*"Death to the Druid invaders!"*, *"Nostradamus, we shall save you!"*...). He is not attacked |
+| HA2 | Same, a fight with the English nearby | Cast an area spell (Fire Circle, Ice Ring) over Hujark and English together | **The row that decides this release.** The English are hit; the Hujark are not. If the Hujark still take damage, report it: area spells are not filtering on `Enemy` |
+| HA3 | Same, with companions | Watch a fight | Your companions fight the English and leave the Hujark alone |
+| HA4 | Same | Force attack (K) one Hujark | He fights back, and passage is revoked: on later maps the Hujark spawn hostile, and the ones already standing can be clicked to attack again |
+| HA5 | Huko's safe conduct (bought), not allied | Click a Hujark | The same talk cursor and battle cry: safe conduct stands them down too |
+| HA6 | **Regression**, no deal with the Hujark | Click one | He fights, as before |
+| HA7 | Allied, a map with Hujark acolytes | Watch the log | The ward message may still show. It only matters while they are hostile |
+
+### Calmed snakebreed can be force-attacked, and then all turn (issue #15)
+
+`tools/build_snakebreed_truce.py`. Reaches Montserrat maps not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SX1 | Montserrat, a route that calms the snakebreed (Grove, Druid Council 1 or 2) | Hover over and click a calmed one | A **talk** cursor and the same *"sentry passive"* line as before. He is not attacked |
+| SX2 | Same | Force attack (K) one | **Every snakebreed on that map turns hostile** and comes for you, not only the one hit. Before this, K did nothing |
+| SX3 | Same, after SX2 | Click any of them | An ordinary attack, as with any enemy |
+| SX4 | Druid Council 2, Sahar's word given | Force attack one | `truce broken` as before, **with** its karma penalty: you broke your word |
+| SX5 | Druid Council 2 or 1, calmed **without** a word given | Force attack one | All turn, and **no** karma change (`KM5`) |
+| SX6 | **Regression**, the Grove gate parley | Attack a snakebreed during the sentry's parley | `sentry draws` as before: the garrison comes back and the gate packs spawn (`TR1`) |
+| SX7 | **Regression**, `4 Undercroft` | Play through the cellar | Unchanged. One field was respelled to vanilla's `Categories to add`, and the creature it touches now really gains its category, if it did not before |
+
+### The Hujark war is half as crowded (issue #15)
+
+`tools/build_hujark_war_thinning.py`. Reaches act 5 maps not yet entered. 38 of the 99 English twins stay off.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HT1 | Act 5, sided with the Hujark, `02 Clan of the Hand A` | Walk the map | Some Hujark camps are fighting English soldiers; others have **no English at all** and the Hujark simply stand guard. Roughly every other camp |
+| HT2 | Same, the caves (`07`-`09`) | Listen | Noticeably quieter than before. **Judge it**: if it is still a wall of screaming, say so |
+| HT3 | Same | Fight through to the seer | The act still plays as a war: there are English to fight on every map but the seer's room |
+| HT4 | **Regression**, `05 Nostrodomus Demesne` | Reach the seer on the Hujark route | His scene plays as before; the room's English twin is untouched |
+| HT5 | **Regression**, side with the English, or with nobody | Play act 5 | Unchanged: the twins never spawn on those routes |
+
+### An imported goblin title climbs no further (issue #15)
+
+`tools/build_goblin_rank_guard.py`. A can edit, so every save, the next time a goblin service completes. Adds a 131st
+derived attribute, `Fixt Goblin Ladder This Game`, not exported.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| GZ1 | A **new** character | Serve the goblins through all three ranks | Chum, then Blooded, then Champion, each once, as before |
+| GZ2 | Export GZ1's character as a **Chum** (or higher) and start a new game with it | Note the perk sheet and stats, then complete a goblin service | **No new rank, no second Goblin Chum perk**, and the stats do not rise. The title and bonuses carried in are kept |
+| GZ3 | Same imported character | Join Butus's line (the traitor route) | No Goblin Traitor perk is granted in this game |
+| GZ4 | **Regression**, a new character on the traitor route | Join Butus's line at each rank | The traitor perk and faction as before |
+| GZ5 | **The export facts.** Export a Chum and re-import, before any service | Read the character sheet | Note whether poison resistance and carry weight came across, and whether a goblin faction is shown. Record it in `engine-notes.md`: it settles what export keeps |
+
 ## 0.99.32 - momma's pie
 
 `tools/build_goblin_girl_pie.py`. A tree, so every save.

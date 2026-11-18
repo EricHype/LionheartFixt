@@ -28,11 +28,31 @@ Text=Greetings, dark brother. What do you seek?
 Should Have Voiceover=0
 
 Requirement=Relican Player has gotten started getting quests
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+}
+}
+}
 Reply Text=You spoke of wizards who refuse you. What of Leonardo, in the Gate District?
 Go to node ID=90 Fixt DaVinci task
 Icon=Quest Icon
 
 Requirement=Fixt DaVinci Joined
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+}
+}
+}
 Reply Text=Leonardo will not stand against you. He gave me his word on it.
 Go to node ID=91 Fixt DaVinci joined
 Custom Action=CMultipleActionsAction
@@ -54,6 +74,16 @@ Experience Points To Add=1
 Icon=Quest Icon
 
 Requirement=Fixt DaVinci Refused
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Convince DaVinci to Join the Dark Wielders
+}
+}
+}
 Reply Text=Leonardo refused you. He will not be moved, and he asked me to turn back.
 Go to node ID=92 Fixt DaVinci refused
 Custom Action=CMultipleActionsAction
@@ -240,6 +270,16 @@ Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Enter In
 State=4XUQR7B3
 }
 }
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Enter Inquisitor's House and Learn about Relics
+}
+}
+}
 Reply Text=Let us talk about the events that transpired in the Church.
 Go to node ID=40 dark wielder task 4
 Custom Action=CMultipleActionsAction
@@ -263,11 +303,27 @@ Icon=Quest Icon
 Requirement=!None
 Reply Text=Tell me more about the tasks.
 Go to node ID=40 tasks
+Custom Action=COtherMapAction
+{
+Action=CDeleteAction
+{
+Target Name=Relican
+}
+Other Map Name=Wilderness Maps/Slave Pit Exterior
+}
 Icon=Quest Icon
 
 Requirement=!None
 Reply Text=Goodbye.
 Go to node ID=10 Goodbye
+Custom Action=COtherMapAction
+{
+Action=CDeleteAction
+{
+Target Name=Relican
+}
+Other Map Name=Wilderness Maps/Slave Pit Exterior
+}
 Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
