@@ -980,6 +980,14 @@ path, so it looks right either way. Give the copy its own `Short Name` too. Both
 three, and **when a payload shares its sector with other textures** (all six of a townswoman's
 do), it appends the payload to that sector and repoints the fixup, as the retexturing notes allow.
 
+**A weapon's sequence is a prefix of a clip name, and a model's clip names are its own.** A
+`CPlugInBehaviorPlaySequence{Sequence Name=X}` plays the clips whose `Short Name` starts with X (`Attack` plays
+`Attack01`/`Attack02`; `AttackOneHanded` plays `AttackOneHanded01`/`02`). A name that matches no clip draws the
+"GRANNY MODEL" placeholder for every swing, and since the strike is a `Strike Current Target` trigger inside the clip,
+the swing probably lands nothing. Clip names are not standard: the `Boss Lich` model, unused in vanilla, names its
+swings `OneHandedSwing_01`/`_02`, and `ShamanGreater` has no melee clip at all. Before putting a creature on a model,
+read the model's clip list. `tools/build_attack_clips.py` fixed the four cans that got this wrong.
+
 ## Critical hits apply to unarmed attacks
 
 `CriticalChance` is `Luck` plus, **only when a bow or crossbow is equipped**, a component scaled from

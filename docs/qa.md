@@ -6169,6 +6169,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_attack_clips.py`. Creatures spawned after install: a map already entered keeps its Bonecaller.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| AC1 | Doomed Plateau, a map not yet entered | Fight the Bonecaller in melee range | It swings (two different swings over a few attacks). No **GRANNY MODEL** image at any point |
+| AC2 | Same | Let it hit you | Its swings deal damage; the combat log shows its hits |
+| AC3 | Same, Tough and Super tiers (higher party mojo) | As AC1 | As AC1 |
+| AC4 | Nostradamus, the Hujark General | Turn him hostile and stand next to him | He plays a casting gesture when he attacks, never the **GRANNY MODEL** image. Note whether his blows deal damage (unknown before testing) |
+
 ## 0.99.34 - with thanks
 
 `tools/build_credits.py`. Every save.
