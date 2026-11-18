@@ -186,6 +186,29 @@ the resource-format parser, `modmanager.py`, the map editor and the `lionheart-m
 skill. You need that repo checked out to build or install this one. Fixt is content; the
 tools are tools.
 
+<!-- thanks:begin -->
+## Thanks
+
+Every bug report makes Fixt better. Thank you to everyone who took the time to write one up.
+
+| Reporter | Where | What they found |
+|---|---|---|
+| 0gpa | Steam | the missing Lava Troll Hide |
+| Laz Sundays | RPG Codex | a long playtest: wands, enchantment balance, the Scimitar questline, Weng Choi, cloaks and more |
+| LucianCumpata | GitHub | the Lord Javier cutscene in the Cathedral |
+| Mixxer5 | GitHub | the peaceful Montserrat path and a Lord Javier cutscene |
+| pgavryushov | GitHub | Quinn's quests, wasp stingers, capes and scrolls |
+| Phevrlezz | Steam | installing on a non-English copy |
+| Przemyslaw92pl | GitHub | magic bonus balance |
+| sacellem | Steam | the Inquisition chambers crash and installing on a Mac |
+| Stricken145 | GitHub and Steam | seven reports, from the Inquisition chambers crash to the trolls and the Titans |
+| uroshpet | GitHub | a twelve-item list that became 0.99.33 |
+
+Thanks also to Litmanen, for carrying reports between the forums.
+
+The same names are in the game's credits, after the original team. Found a bug? Open an issue.
+<!-- thanks:end -->
+
 ## Compatibility
 
 Fixt is one mod and expects to be the only one editing these files. It installs over any
