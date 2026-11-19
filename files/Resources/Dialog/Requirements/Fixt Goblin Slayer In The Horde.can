@@ -11,16 +11,51 @@ CCannedObject
 			}
 		}
 		Operator=
-		Operand2=CIsGreaterThan
+		Operand2=CAND
 		{
-			Operand1=CVariableDerivedCharacterAttribute
+			Operand1=COR
 			{
-				Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+				Operand1=COR
+				{
+					Operand1=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/!Event Title Perks/Goblin Chum
+						}
+					}
+					Operator=
+					Operand2=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/!Event Title Perks/Goblin Blooded
+						}
+					}
+				}
+				Operator=
+				Operand2=CHasPerkExpression
+				{
+					Perks To Check For=Array
+					{
+						Item Count=1
+						Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+					}
+				}
 			}
 			Operator=
-			Operand2=CConstant
+			Operand2=CExpressionNot
 			{
-				Constant Value=0
+				Operand1=CHasPerkExpression
+				{
+					Perks To Check For=Array
+					{
+						Item Count=1
+						Perk To Check For=Perks/!Event Title Perks/Goblin Traitor
+					}
+				}
 			}
 		}
 	}

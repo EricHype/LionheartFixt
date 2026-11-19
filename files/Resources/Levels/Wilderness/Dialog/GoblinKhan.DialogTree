@@ -963,7 +963,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=6
+Item Count=5
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -975,7 +975,7 @@ Value to give=700
 }
 Action=CUseCannedActionAction
 {
-Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
+Canned Object=Levels/Wilderness/Quests/Name Goblin Champion
 }
 Action=CSetQuestSatusToCompletedAction
 {
@@ -985,11 +985,6 @@ Action=CGiveExperiencePointsToAllPlayersAction
 {
 Get XP Frome=XP for giving Everlasting to Kahn
 Experience Points To Add=1
-}
-Action=CGiveCharacterPerkAction
-{
-Character to give perk to=$Instigator
-Perk to give=Perks/!Event Title Perks/Goblin Champion
 }
 }
 }
@@ -1043,19 +1038,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=2
 Action=CGiveMoneyToAllPlayersAction
 {
 Value to give=50
 }
-Action=CGiveCharacterPerkAction
-{
-Character to give perk to=$Instigator
-Perk to give=Perks/!Event Title Perks/Goblin Champion
-}
 Action=CUseCannedActionAction
 {
-Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
+Canned Object=Levels/Wilderness/Quests/Name Goblin Champion
 }
 }
 }
@@ -1082,19 +1072,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=3
+Item Count=2
 Action=CGiveMoneyToAllPlayersAction
 {
 Value to give=300
 }
-Action=CGiveCharacterPerkAction
-{
-Character to give perk to=$Instigator
-Perk to give=Perks/!Event Title Perks/Goblin Champion
-}
 Action=CUseCannedActionAction
 {
-Canned Object=Levels/Wilderness/Quests/Advance Goblin Rank
+Canned Object=Levels/Wilderness/Quests/Name Goblin Champion
 }
 }
 }

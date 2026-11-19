@@ -15951,17 +15951,9 @@ CLayerSaveData
 												Item Count=2
 												Action=CExpressionAction
 												{
-													Expression=CIsGreaterThan
+													Expression=CUseCannedExpressionExpression
 													{
-														Operand1=CVariableDerivedCharacterAttribute
-														{
-															Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
-														}
-														Operator=
-														Operand2=CConstant
-														{
-															Constant Value=2
-														}
+														Canned Expression=Dialog/Requirements/Faction/Goblin Horde Highlevel
 													}
 													Character to get attributes from=$Instigator
 												}

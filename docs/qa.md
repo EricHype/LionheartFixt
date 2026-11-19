@@ -6180,6 +6180,18 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | PV3 | Same | Try the switch, ask Pedro for the lever (*"Have you found a small lever around here?"*) and take it. Then kill him | He drops no second lever |
 | PV4 | Same | Attack Pedro before ever talking to him, and kill him | He drops the lever |
 
+`tools/build_goblin_standing_by_title.py`. Goblin standing follows the title perks. Cans and the Khan's tree: every save. The Warrens greeting (GW2): a Warrens not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| GW1 | Goblin Warrens, the reported quicksave | Load it (Goblin Champion title, a Wielder). Talk to the Khan | *"Great Khan, I would serve the Horde again. What does the war need?"* is offered and leads to the Esteban task (*"...beginning with that fool Guard Esteban"*) |
+| GW2 | Goblin Warrens, new game | Bring the Khan the Everlasting as your first goblin service, then talk to him again | The journal shows Goblin Champion and the combat log the Champion bonuses (Sneak +30, Poison Resistance +35). His greeting is *"...The Everlasting is mine because you brought it to me..."*, and the Horde-again reply is offered |
+| GW3 | Any goblin service | Swear to the Wielders (or Templars, Inquisition, Saladin) first, then do a goblin service | You keep your order (the journal and Cedric/Javier/Raphael/Amir treat you as before) and gain the goblin title. No goblin stat package is applied |
+| GW4 | Same, unaffiliated | Do two goblin services without joining any order | Chum, then Blooded, each with its bonuses; the log withdraws Chum's package as Blooded's lands |
+| GW5 | Goblin camp, a Champion | Side with Butu's heir | You become a Goblin Traitor (Fallen Champion if unaffiliated, title only if sworn). The goblin camp no longer greets you as a friend, and the Khan does not appear at Alamut |
+| GW6 | Alamut, Desert Sprawl | A Goblin Champion sworn to an order, the Khan alive, not Butu's side | Rumjun Khan is there and offers to come with you (*"Hello, Goblin morsel..."*). Without the Champion title he is not |
+| GW7 | Ending | GW6's character finishes the game | The order's own epilogue slide plays, not the Horde's |
+
 ## 0.99.36 - the summit's question
 
 `tools/build_summit_saladin_first.py`. A character who has not yet been to the Cathedral.

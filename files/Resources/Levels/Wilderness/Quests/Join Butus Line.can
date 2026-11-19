@@ -114,16 +114,12 @@ CCannedObject
 				{
 					If=CExpressionAction
 					{
-						Expression=CIsGreaterThan
+						Expression=CHasPerkExpression
 						{
-							Operand1=CVariableDerivedCharacterAttribute
+							Perks To Check For=Array
 							{
-								Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
-							}
-							Operator=
-							Operand2=CConstant
-							{
-								Constant Value=2
+								Item Count=1
+								Perk To Check For=Perks/!Event Title Perks/Goblin Champion
 							}
 						}
 						Character to get attributes from=$Instigator
@@ -133,10 +129,55 @@ CCannedObject
 						Action=Array
 						{
 							Item Count=2
-							Action=CAssignFactionToCharacterAction
+							Action=CIfAction
 							{
-								Faction To Assign=Factions/Goblin Traitor - Fallen Champion
-								Character To assign=$Instigator
+								If=CAndAction
+								{
+									Action=Array
+									{
+										Item Count=4
+										Action=CExpressionAction
+										{
+											Expression=CUseCannedExpressionExpression
+											{
+												Canned Expression=Dialog/Requirements/Faction/Templar NOT
+											}
+											Character to get attributes from=$Instigator
+										}
+										Action=CExpressionAction
+										{
+											Expression=CUseCannedExpressionExpression
+											{
+												Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+											}
+											Character to get attributes from=$Instigator
+										}
+										Action=CExpressionAction
+										{
+											Expression=CUseCannedExpressionExpression
+											{
+												Canned Expression=Dialog/Requirements/Faction/Saladin NOT
+											}
+											Character to get attributes from=$Instigator
+										}
+										Action=CExpressionAction
+										{
+											Expression=CUseCannedExpressionExpression
+											{
+												Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+											}
+											Character to get attributes from=$Instigator
+										}
+									}
+									Early Exit=0
+								}
+								Then=CAssignFactionToCharacterAction
+								{
+									Faction To Assign=Factions/Goblin Traitor - Fallen Champion
+									Character To assign=$Instigator
+								}
+								Else=
+								Return failure if the If failes=0
 							}
 							Action=CGiveCharacterPerkAction
 							{
@@ -147,31 +188,91 @@ CCannedObject
 					}
 					Else=CIfAction
 					{
-						If=CExpressionAction
+						If=COrAction
 						{
-							Expression=CIsGreaterThan
+							Action=Array
 							{
-								Operand1=CVariableDerivedCharacterAttribute
+								Item Count=2
+								Action=CExpressionAction
 								{
-									Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
+									Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Chum
+										}
+									}
+									Character to get attributes from=$Instigator
 								}
-								Operator=
-								Operand2=CConstant
+								Action=CExpressionAction
 								{
-									Constant Value=0
+									Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Goblin Blooded
+										}
+									}
+									Character to get attributes from=$Instigator
 								}
 							}
-							Character to get attributes from=$Instigator
 						}
 						Then=CMultipleActionsAction
 						{
 							Action=Array
 							{
 								Item Count=2
-								Action=CAssignFactionToCharacterAction
+								Action=CIfAction
 								{
-									Faction To Assign=Factions/Goblin Traitor - Bad Blood
-									Character To assign=$Instigator
+									If=CAndAction
+									{
+										Action=Array
+										{
+											Item Count=4
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Templar NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Saladin NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+										}
+										Early Exit=0
+									}
+									Then=CAssignFactionToCharacterAction
+									{
+										Faction To Assign=Factions/Goblin Traitor - Bad Blood
+										Character To assign=$Instigator
+									}
+									Else=
+									Return failure if the If failes=0
 								}
 								Action=CGiveCharacterPerkAction
 								{
@@ -185,10 +286,55 @@ CCannedObject
 							Action=Array
 							{
 								Item Count=2
-								Action=CAssignFactionToCharacterAction
+								Action=CIfAction
 								{
-									Faction To Assign=Factions/Goblin Traitor - Foe
-									Character To assign=$Instigator
+									If=CAndAction
+									{
+										Action=Array
+										{
+											Item Count=4
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Templar NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Inquisitor NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Saladin NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+											Action=CExpressionAction
+											{
+												Expression=CUseCannedExpressionExpression
+												{
+													Canned Expression=Dialog/Requirements/Faction/Wielder NOT
+												}
+												Character to get attributes from=$Instigator
+											}
+										}
+										Early Exit=0
+									}
+									Then=CAssignFactionToCharacterAction
+									{
+										Faction To Assign=Factions/Goblin Traitor - Foe
+										Character To assign=$Instigator
+									}
+									Else=
+									Return failure if the If failes=0
 								}
 								Action=CGiveCharacterPerkAction
 								{

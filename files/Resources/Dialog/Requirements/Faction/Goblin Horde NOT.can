@@ -1,15 +1,53 @@
 CCannedObject
 {
-	Object=CIsEqualTo
+	Object=CExpressionNot
 	{
-		Operand1=CVariableDerivedCharacterAttribute
+		Operand1=CAND
 		{
-			Character Attribute=Derived Character Attributes/Uber Perks/Goblin Rank
-		}
-		Operator=
-		Operand2=CConstant
-		{
-			Constant Value=0
+			Operand1=COR
+			{
+				Operand1=COR
+				{
+					Operand1=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/!Event Title Perks/Goblin Chum
+						}
+					}
+					Operator=
+					Operand2=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/!Event Title Perks/Goblin Blooded
+						}
+					}
+				}
+				Operator=
+				Operand2=CHasPerkExpression
+				{
+					Perks To Check For=Array
+					{
+						Item Count=1
+						Perk To Check For=Perks/!Event Title Perks/Goblin Champion
+					}
+				}
+			}
+			Operator=
+			Operand2=CExpressionNot
+			{
+				Operand1=CHasPerkExpression
+				{
+					Perks To Check For=Array
+					{
+						Item Count=1
+						Perk To Check For=Perks/!Event Title Perks/Goblin Traitor
+					}
+				}
+			}
 		}
 	}
 	Use=Shared Global Instance
