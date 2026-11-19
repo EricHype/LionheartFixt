@@ -6169,6 +6169,17 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_pedro_drops_lever.py`. A character who has not yet entered La Calle Perdida.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| PV1 | La Calle Perdida | Do not ask Pedro for the lever. Activate Relican's ring, then kill Pedro | A small lever (`Rod Switch working Calle Top Island`) lies by his body. Use it on the northern island's switch: the rock moves into a bridge and the Lost Soul's island can be reached |
+| PV2 | Same, Inquisition route | Bring the Inquisition in instead, without the lever, then kill Pedro | As PV1 |
+| PV3 | Same | Try the switch, ask Pedro for the lever (*"Have you found a small lever around here?"*) and take it. Then kill him | He drops no second lever |
+| PV4 | Same | Attack Pedro before ever talking to him, and kill him | He drops the lever |
+
 ## 0.99.36 - the summit's question
 
 `tools/build_summit_saladin_first.py`. A character who has not yet been to the Cathedral.

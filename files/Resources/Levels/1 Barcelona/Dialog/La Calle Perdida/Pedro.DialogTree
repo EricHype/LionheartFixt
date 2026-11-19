@@ -1,0 +1,353 @@
+CDialogTree
+{
+Name=Pedro Guitterez
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Hola, stranger. My name is Pedro Guitterez, I am the keeper of ways for the wizards of La Calle Perdida. It is a pleasure to meet you.
+Should Have Voiceover=0
+
+Requirement=Pedro Switch Top Island Know about
+Reply Text=Have you found a small lever around here?
+Go to node ID=50 Small lever found
+
+Requirement=!None
+Reply Text=What do you mean by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=Tell me about La Calle Perdida.
+Go to node ID=30 Calle Intro
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Again you have come. How may the keeper of ways help you?
+Should Have Voiceover=0
+
+Requirement=Pedro Switch Top Island Know about
+Reply Text=Have you found a small lever around here?
+Go to node ID=50 Small lever found
+
+Requirement=!None
+Reply Text="Keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=Tell me about La Calle Perdida.
+Go to node ID=30 Calle Intro
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 portals
+Text=I maintain the magical ways, these gate structures you see around me. The ways will transport you to various locations in and around Barcelona.
+Should Have Voiceover=0
+
+Requirement=Pedro Human or Persecution dialog happened
+Reply Text=Tell me about La Calle Perdida.
+Go to node ID=30 Calle Intro
+Action work in progress=(Human)
+
+Requirement=Pedro Sylvant AND Persecution dialog NOT happen
+Reply Text=Tell me about La Calle Perdida.
+Go to node ID=31 Calle Sylvant
+Custom Action=CActivateAction
+{
+Target Name=Pedro Non Human Persecution Dialog One time checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Pedro Feralkin AND Persecution dialog NOT happen
+Reply Text=Tell me about La Calle Perdida.
+Go to node ID=32 Calle Feralkin
+Action work in progress=(Feralkin)
+Custom Action=CActivateAction
+{
+Target Name=Pedro Non Human Persecution Dialog One time checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Pedro Demokin AND Persecution dialog NOT happen
+Reply Text=Tell me about La Calle Perdida.
+Go to node ID=33 Calle Demokin
+Action work in progress=(Demokin)
+Custom Action=CActivateAction
+{
+Target Name=Pedro Non Human Persecution Dialog One time checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 Calle Intro
+Text=The Wielders formed La Calle Perdida from the ether of the spirit world. It is a magical place, a haven from the hate and fear of the outside world. Here, we are safe from the persecution of the Inquisition.
+Should Have Voiceover=0
+
+Requirement=Pedro Human or Persecution dialog happened
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+Action work in progress=(Human)
+
+Requirement=Pedro Sylvant AND Persecution dialog NOT happen
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=31 Calle Sylvant
+Custom Action=CActivateAction
+{
+Target Name=Pedro Non Human Persecution Dialog One time checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Pedro Feralkin AND Persecution dialog NOT happen
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=32 Calle Feralkin
+Action work in progress=(Feralkin)
+Custom Action=CActivateAction
+{
+Target Name=Pedro Non Human Persecution Dialog One time checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Pedro Demokin AND Persecution dialog NOT happen
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=33 Calle Demokin
+Action work in progress=(Demokin)
+Custom Action=CActivateAction
+{
+Target Name=Pedro Non Human Persecution Dialog One time checker
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=31 Calle Sylvant
+Text=I am sure that as a sylvant, you are no stranger to such persecution. The world is seldom kind to those with the taint of magic in their veins.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Despite such prejudice, it is my hope the world may some day learn to accept those of my kind.
+Go to node ID=40 Tolerant
+Action work in progress=(Positive Karma Bonus, once only)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Positive Karma Pedro
+}
+
+Requirement=!None
+Reply Text=I cannot change the prejudices of the outside world, so I mind my own affairs and let the world do as it will.
+Go to node ID=41 Dismissive
+Action work in progress=(No Karma Bonus)
+
+Requirement=!None
+Reply Text=They may hate and fear my kind, but they will get a taste of their own persecution should I ever rise to power.
+Go to node ID=42 Vengeful
+Action work in progress=(Negative Karma Bonus, once only)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Negative Karma Pedro
+}
+
+Requirement=!None
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=32 Calle Feralkin
+Text=I am sure that as feralkin, you are no stranger to such persecution. The world is seldom kind to those with the taint of magic in their veins.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Despite such prejudice, it is my hope the world may some day learn to accept those of my kind.
+Go to node ID=40 Tolerant
+Action work in progress=(Positive Karma Bonus, once only)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Positive Karma Pedro
+}
+
+Requirement=!None
+Reply Text=I cannot change the prejudices of the outside world, so I mind my own affairs and let the world do as it will.
+Go to node ID=41 Dismissive
+Action work in progress=(No Karma Bonus)
+
+Requirement=!None
+Reply Text=They may hate and fear my kind, but they will get a taste of their own persecution should I ever rise to power.
+Go to node ID=42 Vengeful
+Action work in progress=(Negative Karma Bonus, once only)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Negative Karma Pedro
+}
+
+Requirement=!None
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=33 Calle Demokin
+Text=I am sure that as demokin, you are no stranger to such persecution. The world is seldom kind to those with the taint of magic in their veins.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Despite such prejudice, it is my hope the world may some day learn to accept those of my kind.
+Go to node ID=40 Tolerant
+Action work in progress=(Positive Karma Bonus, once only)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Positive Karma Pedro
+}
+
+Requirement=!None
+Reply Text=I cannot change the prejudices of the outside world, so I mind my own affairs and let the world do as it will.
+Go to node ID=41 Dismissive
+Action work in progress=(No Karma Bonus)
+
+Requirement=!None
+Reply Text=They may hate and fear my kind, but they will get a taste of their own persecution should I ever rise to power.
+Go to node ID=42 Vengeful
+Action work in progress=(Negative Karma Bonus, once only)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Negative Karma Pedro
+}
+
+Requirement=!None
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=40 Tolerant
+Text=That is a tolerant view of the world you have, my friend, and I respect it. It is rare to see such an individual respond to hate and fear with understanding.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=Hopefully, it will not always be such a rare thing. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=41 Dismissive
+Text=Sometimes that is the only way to deal with the stones of the world, my friend, and it is much of the reason we have sought to isolate ourselves here. Perhaps it is your feeling on the matter that has helped draw you to us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=Perhaps so. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=42 Vengeful
+Text=I would keep that feeling far from your heart, my friend, for it is much of the reason we were forced to isolate ourselves here to survive. Others of our kind sought to dominate the world around them...and now we are paying the price.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=Perhaps if you had been stronger, you would have had to pay no price at all - nor would you be hiding in the back alley of a Barcelona street.
+Go to node ID=43 Rebuttal
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=43 Rebuttal
+Text=Perhaps so. But I do not wish to argue with you, my friend - I merely wished to show you what had come of such desires within our community.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What did you mean before by "keeper of ways"?
+Go to node ID=20 portals
+
+Requirement=!None
+Reply Text=Your refusal to argue suggests that you have no stomach for fighting. And if you do not fight for your beliefs, then you might as well surrender them. Goodbye.
+Go to node ID=
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 Small lever found
+Text=Hmmm...yes, I found one wedged in one of the bridge beams a few days ago.  You can have it.  I believe it is very old, so be careful with it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Thank you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=pedro gave you the lever
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Rod Switch working Calle Top Island
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CDeactivateAction
+{
+Target Name=Pedro switch island top checker
+}
+}
+}
+Is Default Reply=1
+}
