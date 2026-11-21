@@ -6202,6 +6202,19 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | VG4 | Same | Talk past him, then let a companion hit him before you reach the vault; take the box to Skulker | Skulker pays 400, not 500 |
 | VG5 | Same | Pick the fight reply instead | He and the den fight as before; Skulker pays 400 |
 
+`tools/build_relican_sceptre_at_ask.py`. Relican's lines, the journal and the Crude Sceptre: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| RX1 | La Calle Perdida, a Dark Wielder initiate | Carry the lifeless Sceptre (from DaVinci's secret chamber) when Relican first asks for it | *"I have the Sceptre, but it is a dead thing..."* is offered right there. He answers *"Empty. Amontep's darkwood..."* and names the enchanter under the well |
+| RX2 | Same | Choose *"Do it yourself, then."* | His crude bind (*"Empty? Then it is fortunate you brought it to a necromancer..."*), your Sceptre becomes the **Crude Sceptre of Bone** (+1, not +2, to each Thought and Tribal discipline on the sheet when equipped), Karma drops by 25, Create a Rod of Bone completes, and he moves on to the Herbalist. The scepter XP is paid once, when you answer him |
+| RX3 | Same | Choose *"I will take it to the enchanter."* instead | The conversation ends with the Sceptre still lifeless. The journal entry now says a mad enchanter beneath the well could bind it, or Relican will. The ether plane's binding (MR rows, EB rows) and Relican's return-dialogue bind both still work |
+| RX4 | Same | Ask *"Tell me more about this Sceptre."* first, carrying the lifeless one | The same *"dead thing"* reply is offered on the lore node, with the same two choices |
+| RX5 | Same | Carry the spirited Sceptre when he asks | *"I already have the Sceptre"* completes Create a Rod of Bone in the journal; the XP is paid once, at the Herbalist task |
+| RX6 | Same | Carry no Sceptre | *"I will find the Sceptre."* as before |
+| RX7 | Same | Take the quest with the lifeless Sceptre, leave, and choose Relican's return-dialogue *"dead thing"* reply | As RX2: the Crude Sceptre, -25 Karma, the quest completes |
+| RX8 | Ether plane | Have the Enchanter bind it instead (the pact, MR rows) and hand it to Relican | The full **Sceptre of Bone** (+2 to each discipline), no Karma from the bind itself; *"I have recovered the Sceptre of Bone."* completes the quest |
+
 `tools/build_ether_plane_reckoning.py`. The ether plane under La Calle Perdida: a plane not yet entered (Marco's greeting, Jameson's whisper). The Enchanter's, Marco's and the boots' lines reach every save.
 
 | # | Where | Steps | Pass |

@@ -173,7 +173,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CActionRemoveInventoryItem
 {
 Who to remove from=$instigator
@@ -184,11 +184,33 @@ Action=CActionGiveStandardInventoryItem
 Who to give to=$instigator
 Delete Trigger=0
 Notify Player=1
-Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone WITH Spirit
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Fixt Crude Sceptre of Bone
 Additions to add=Array
 {
 Item Count=0
 }
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Karma
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
 }
 Action=CSetQuestSatusToCompletedAction
 {
@@ -395,6 +417,100 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DAR
 }
 Reply Text=I already have the Sceptre
 Go to node ID=45 Rod Bone Returned
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CDeactivateAction
+{
+Target Name=Relican started giving quests already to player
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=K7MQ3XRB
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=UFG3W5T9
+}
+Return failure if the If failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CSucceedAction
+{
+Action=
+}
+Fail Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Return failure if the TryAction failes=0
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+}
+Reply Text=I have the Sceptre, but it is a dead thing - fashioned darkwood with no spirit set in it at all.
+Go to node ID=48 Fixt Relican Names the Madman
+Action work in progress=(Fixt: lifeless Sceptre at the ask)
 Icon=Quest Icon
 
 Requirement=!None
@@ -508,6 +624,20 @@ Is Default Reply=1
 Node ID=40 sceptre
 Text=Amontep, Vizier to Ramses II and the last Necromancer Lord of the Fourth Crusade, forged the Sceptre of Bone from the remains of the risen pharaohs Ramses had defeated. Within the scepter lies the great power to raise the dead upon command.
 Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+}
+Reply Text=I have the Sceptre, but it is a dead thing - fashioned darkwood with no spirit set in it at all.
+Go to node ID=48 Fixt Relican Names the Madman
+Action work in progress=(Fixt: lifeless Sceptre at the ask)
+Icon=Quest Icon
 
 Requirement=!None
 Reply Text=I will find the Sceptre.
@@ -1117,4 +1247,214 @@ Reply Text=
 Go to node ID=
 Is Default Reply=1
 
+
+------------------------------------------------------------
+Node ID=48 Fixt Relican Names the Madman
+Text=Empty. Amontep's darkwood, and nothing in it. There is a madman in a prison under the well in this very city, an enchanter who has spent an age hoarding the spirits of everyone who fell in. He could fill it properly, if you can stand his company. Or hold it out now and I will do it myself. It will be crude, and the thing I put in it will hate you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Do it yourself, then.
+Go to node ID=47 Fixt Relican Binds Shell
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=7
+Action=CDeactivateAction
+{
+Target Name=Relican started giving quests already to player
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=K7MQ3XRB
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=UFG3W5T9
+}
+Return failure if the If failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CSucceedAction
+{
+Action=
+}
+Fail Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Return failure if the TryAction failes=0
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Quest Items/Fixt Crude Sceptre of Bone
+Additions to add=Array
+{
+Item Count=0
+}
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Karma
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=I will take it to the enchanter.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeactivateAction
+{
+Target Name=Relican started giving quests already to player
+}
+Action=CIfAction
+{
+If=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Wielder DARK Quest Rod Bone NO Spirit
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=K7MQ3XRB
+}
+Else=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Create a Rod Of Bone
+State=UFG3W5T9
+}
+Return failure if the If failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CIsGreaterThanOrEqual
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=CSucceedAction
+{
+Action=
+}
+Fail Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=0
+Character to modify=$Instigator
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Uber Perks/Wielder Rank
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Return failure if the TryAction failes=0
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
 }
