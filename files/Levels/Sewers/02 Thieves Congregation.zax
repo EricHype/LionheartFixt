@@ -12936,7 +12936,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=6
+							Item Count=7
+							Action=CAddCategoryAction
+							{
+								Target Name=Vault Guard
+								Categories to add=Enemy
+							}
 							Action=CDeactivateAction
 							{
 								Target Name=Thief enemy trigger
@@ -41547,7 +41552,12 @@ CLayerSaveData
 							{
 								Action=Array
 								{
-									Item Count=2
+									Item Count=3
+									Action=CAddCategoryAction
+									{
+										Target Name=$trigger
+										Categories to add=Enemy
+									}
 									Action=CDisplayDialogBalloonAction
 									{
 										Dialog Tree File=Levels/Sewers/Dialog/SecretQuestGuard
@@ -41580,7 +41590,34 @@ CLayerSaveData
 							{
 								Action=Array
 								{
-									Item Count=2
+									Item Count=4
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=1
+										Character to modify=Player1
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Vault Guard Fought
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=Player1
+									}
+									Action=CAddCategoryAction
+									{
+										Target Name=Vault Guard
+										Categories to add=Enemy
+									}
 									Action=CActivateAction
 									{
 										Target Name=Thief enemy trigger
@@ -41604,7 +41641,12 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=4
+							Action=CRemoveCategoryAction
+							{
+								Target Name=$Instigator
+								Categories To Remove=Enemy
+							}
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=$Instigator

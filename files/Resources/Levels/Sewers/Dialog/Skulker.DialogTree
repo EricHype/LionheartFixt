@@ -47,7 +47,9 @@ State=VLT2TAKE
 }
 }
 Operator=
-Operand2=CActionExpression
+Operand2=COR
+{
+Operand1=CActionExpression
 {
 Action=CExpressionAction
 {
@@ -64,6 +66,27 @@ Constant Value=0
 }
 }
 Character to get attributes from=Player1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Guard Fought
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+}
 }
 }
 }
@@ -102,7 +125,9 @@ State=VLT2TAKE
 }
 }
 Operator=
-Operand2=CActionExpression
+Operand2=CAND
+{
+Operand1=CActionExpression
 {
 Action=CExpressionAction
 {
@@ -119,6 +144,27 @@ Constant Value=1
 }
 }
 Character to get attributes from=Player1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Guard Fought
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+}
 }
 }
 }
@@ -190,7 +236,9 @@ State=VLT2TAKE
 }
 }
 Operator=
-Operand2=CActionExpression
+Operand2=COR
+{
+Operand1=CActionExpression
 {
 Action=CExpressionAction
 {
@@ -207,6 +255,27 @@ Constant Value=0
 }
 }
 Character to get attributes from=Player1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Guard Fought
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+}
 }
 }
 }
@@ -245,7 +314,9 @@ State=VLT2TAKE
 }
 }
 Operator=
-Operand2=CActionExpression
+Operand2=CAND
+{
+Operand1=CActionExpression
 {
 Action=CExpressionAction
 {
@@ -262,6 +333,27 @@ Constant Value=1
 }
 }
 Character to get attributes from=Player1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Vault Guard Fought
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=Player1
+}
 }
 }
 }
