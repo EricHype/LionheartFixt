@@ -6192,6 +6192,29 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | GW6 | Alamut, Desert Sprawl | A Goblin Champion sworn to an order, the Khan alive, not Butu's side | Rumjun Khan is there and offers to come with you (*"Hello, Goblin morsel..."*). Without the Champion title he is not |
 | GW7 | Ending | GW6's character finishes the game | The order's own epilogue slide plays, not the Horde's |
 
+`tools/build_vault_guard_fought.py`. The door man's spawn: a thieves' den not yet entered. Skulker and the door man's lines: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| VG1 | Thieves' den, with companions, not a Thief Friend | Walk up to the vault door man | Your companions do not attack him. He talks (*"Halt! This area is off limits to outsiders."*) |
+| VG2 | Same | Slip past him (Sneak 35), take the strongbox, bring it to Skulker | Skulker pays 500 (the quiet offer) |
+| VG3 | Same | Hit him once (force attack), then talk to him | Only *"Then I am no outsider..."* and *"My mistake..."* are offered. Your companions now fight him |
+| VG4 | Same | Talk past him, then let a companion hit him before you reach the vault; take the box to Skulker | Skulker pays 400, not 500 |
+| VG5 | Same | Pick the fight reply instead | He and the den fight as before; Skulker pays 400 |
+
+`tools/build_ether_plane_reckoning.py`. The ether plane under La Calle Perdida: a plane not yet entered (Marco's greeting, Jameson's whisper). The Enchanter's, Marco's and the boots' lines reach every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MR1 | Ether plane | Get Jameson and Marco to build the bridge, refuse Marco's boots, then spare the Enchanter (the crystal argument: *"I have come to tell you how you can escape this place."*). Go back to Marco | He opens with *"I felt you cross my bridge, traveler..."*. Answer *"He has suffered enough here..."* and his usual conversation follows, boots offer included. Talk again: his normal greeting |
+| MR2 | Same, wearing his boots | Take the boots first, then spare the Enchanter | As the conversation closes the boots say *"He lives, then. Well..."*. Nothing else changes |
+| MR3 | Same, a Dark Wielder initiate, boots in the pack (not worn) | Spare him, talk to him again and make the pact (*"He will have your service..."*) | The boots say *"No. I will walk a thousand leagues with you..."*. Marco Polo's Boots are gone and a pair of **Walking Boots** is in your pack (no bonuses, *"Ordinary walking boots, well travelled and empty..."*). Karma down 50 |
+| MR4 | Same as MR3, **boots worn** | Make the pact | **The row the swap is about.** Either the worn boots are replaced by Walking Boots, or they stay on and **no** Walking Boots appear. Never both pairs. Report which: if they stay, the swap needs the perk fallback |
+| MR5 | Same, no boots taken | Make the pact, then go to Marco | He opens with *"You gave him a master..."*; the only answer is *"Then stay here with him."*, and every later click gives the same. No favour, no boots |
+| MR6 | Same, a Templar | Make the pact, then walk to the exit crystal | A whisper: *"<A voice, barely there.> So. I gave up my voice for that bridge..."*, once |
+| MR7 | Same, not a Templar | As MR6 | No whisper |
+| MR8 | Same, after MR3 | Walk to a map where Marco would comment (the Mountain Pass, Alamut, Montaillou) | Silence: the Walking Boots are not his |
+
 ## 0.99.36 - the summit's question
 
 `tools/build_summit_saladin_first.py`. A character who has not yet been to the Cathedral.

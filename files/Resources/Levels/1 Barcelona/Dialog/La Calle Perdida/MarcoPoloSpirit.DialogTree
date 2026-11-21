@@ -1,0 +1,523 @@
+CDialogTree
+{
+Name=Disembodied Spirit
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=I see a fellow explorer has arrived. While I'm happy to see a new face, I'm truly sorry that you have been lured here, traveler.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=07 marco polo
+
+Requirement=!None
+Reply Text=Tell me what you know about this place.
+Go to node ID=30 plane
+
+Requirement=!None
+Reply Text=Tell me about the other spirits here.
+Go to node ID=50 spirits
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Ciao, traveler. How can I assist you?
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Marco Jameson agreed to help
+Desired Minimum Count=1
+}
+}
+Reply Text=I convinced Jameson to help us reach the enchanter.
+Go to node ID=300 move the bridge
+Action work in progress=(quest state has two spirits helping you)
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=07 marco polo
+
+Requirement=!None
+Reply Text=Tell me what you know about this place.
+Go to node ID=30 plane
+
+Requirement=!None
+Reply Text=Tell me about the other spirits here.
+Go to node ID=50 spirits
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=05 Goodbye
+Text=Guard yourself well in this dreadful place, traveler.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=06 Goodbye forever leaving
+Text=Then live your life to the fullest, young one. I took it for granted until it was too late. I will look on for as long as I am able until I slip into the darkness beyond...
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CRemoveAIAction
+{
+Target Name=Marco Polo
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Marco casting spell moving bridge
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Marco casting spell triggering portal
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=07 marco polo
+Text=My name is Marco Polo, a Venetian explorer trapped here for more than three centuries. While it is too late for me, perhaps I can still help you.
+Should Have Voiceover=1
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Sent back to spirit by Marco
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=How can you help me?
+Go to node ID=80 aid
+
+Requirement=!None
+Reply Text=How were you trapped here?
+Go to node ID=45 exploring
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 pursue
+Text=I would be willing to help, but I feel I must warn you. While the enchanter is utterly mad, he is still adept at casting powerful spells.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=11 pursue 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=11 pursue 2
+Text= It would be easier for you to escape here rather than attack him. Now, would you like to reconsider?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I want to end the madness here. The enchanter must die.
+Go to node ID=15 slay enchanter
+
+Requirement=!None
+Reply Text=On second thought, I want to leave this forsaken place quickly.
+Go to node ID=90 leave
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 slay enchanter
+Text=I had hoped you would choose this path, as I have more than three hundred reasons to hate that evil fiend. But, the enchanter will be difficult to reach, with your feet of flesh. If we could find assistance, perhaps we could overcome his power.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=What kind of assistance do you mean?
+Go to node ID=16 assistance
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=16 assistance
+Text=While the enchanter controls most of this plane, the spirits have also gathered some power over their small regions. If another spirit decided to help us, perhaps we could shift some of the islands to form a bridge so we could reach the enchanter.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=I'll go speak with a spirit I met and convince him to help us.
+Go to node ID=18 convince spirits
+Custom Action=CActivateAction
+{
+Target Name=Sent back to spirit by Marco
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=This doesn't sound like it will work. I want to leave this place now.
+Go to node ID=90 leave
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Nevermind. I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=18 convince spirits
+Text=With my limited power here, we will need to convince at *least* one other spirit to help us overcome the enchanter's influence over this plane. Once you have gained assistance, return here and I will attempt to form the bridge.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=30 plane
+Text=I have been here three centuries, and still I lack the words to describe this place. I have heard it referred to as a magical plane by some, and a prison by others. The enchanter formed this place as a haven for his study, but trapped himself here somehow.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=07 marco polo
+
+Requirement=!None
+Reply Text=Tell me about the other spirits here.
+Go to node ID=50 spirits
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=45 exploring
+Text=After many years in China, I finally decided to return to Italy, laden with wondrous treasures and inventions. On the way home, I happened upon a small island with a strange outcropping of crystals. I gave in to my curiosity and examined the crystals...then appeared here.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=07 marco polo
+
+Requirement=!None
+Reply Text=Tell me what you know about this place.
+Go to node ID=30 plane
+
+Requirement=!None
+Reply Text=Tell me about the other spirits here.
+Go to node ID=50 spirits
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 spirits
+Text=Those unfortunate travelers that come here are devoured by the foul undead that haunt this place. But their spirits linger here, unable to pass on. This place is filled with restless spirits, angry to be trapped in the enchanter's prison.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=07 marco polo
+
+Requirement=!None
+Reply Text=Tell me what you know about this place.
+Go to node ID=30 plane
+
+Requirement=!None
+Reply Text=I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 Leaving
+Text=Then go with my blessings, friend. But before you go, perhaps I could ask a favor of you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Name your favor.
+Go to node ID=200 boots
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Marco casting spell triggering portal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Marco casting spell moving bridge
+}
+}
+}
+
+Requirement=!None
+Reply Text=Sorry, I don't have the time.
+Go to node ID=06 Goodbye forever leaving
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Marco casting spell triggering portal
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Marco casting spell moving bridge
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 aid
+Text=While I would value your company in the spirit world, your time has not yet come, and there are so many more places you need to explore! So, I can help you defy the enchanter and escape this prison here.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Before I leave, I would like to punish the enchanter.
+Go to node ID=10 pursue
+
+Requirement=!None
+Reply Text=I want to leave this forsaken place quickly.
+Go to node ID=90 leave
+
+Requirement=!None
+Reply Text=Nevermind. I'll just be moving along.
+Go to node ID=05 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 leave
+Text=Good, I will do everything in my power to help you escape. Before losing his sanity, the enchanter nearly managed to repair a crystal to get out of this plane, but he could not generate enough energy to power it.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=91 dyno-mite 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=91 dyno-mite 2
+Text=Over the years, I have manifested the energy necessary to power the crystal, but I will not share it with that madman! I can use this power to complete a bridge for you to fight the enchanter *or* power the crystal so you can leave. Are you sure you wish to go?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Maybe I *will* stay and fight this enchanter.
+Go to node ID=15 slay enchanter
+
+Requirement=!None
+Reply Text=Get me out of here.
+Go to node ID=60 Leaving
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 boots
+Text=If you would not mind, I would like to accompany you. I could transfer my spirit into an article of clothing, perhaps my old pair of walking boots? My knowledge of the world could prove useful, eh? What do you say?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Agreed, you can accompany me.
+Go to node ID=205 sentient boots
+
+Requirement=!None
+Reply Text=No thanks.
+Go to node ID=06 Goodbye forever leaving
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=205 sentient boots
+Text=Fantastico! Though I will not be able to talk much, I will be the most helpful and comfortable pair of boots your feet have ever trusted! Oh, to travel again! Let's go exploring!
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(create boots of Marco Polo)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CTriggerRelayAction
+{
+Relay Name=Marco casting spell moving bridge
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Marco casting spell triggering portal
+}
+Action=CRemoveAIAction
+{
+Target Name=Marco Polo
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CGenerateInventoryItemAction
+{
+Number of items to generate=1
+Level of item to generate=
+Location=$Trigger
+Location Offset=0,-25
+Generate Within Radius=20
+Aspect Ratio=0.712766
+Item List=CInventoryItemGeneratorMixedList
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorMixedListItem
+{
+Weighting=10
+Item=CInventoryItemGeneratorBasic
+{
+Items=Array
+{
+Array Count=1
+Array Item=CInventoryItemGeneratorBasicItem
+{
+Weighting=10
+Item=Inventory/Specific Item Cans/Quest Items/Marco Polo Boots
+}
+}
+}
+}
+}
+}
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 move the bridge
+Text=Yes, well done. I can feel that he is opposing the enchanter and caused a rock to move. Once you approach his rock, my bridge should connect you to the enchanter. Before you go, perhaps I could ask a favor of you?
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=Name your favor.
+Go to node ID=200 boots
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Marco casting spell moving bridge
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Marco casting spell triggering portal
+}
+}
+}
+
+Requirement=!None
+Reply Text=Sorry, I don't have the time.
+Go to node ID=06 Goodbye forever
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=Marco casting spell moving bridge
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Marco casting spell triggering portal
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 quips when marco turns into smart boots
+Text=Fresh air! At last, to feel the sun and the wind. What a wonderful gift you have bestowed upon me, traveler.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=502 quips 2
+Text=Such a strange journey I have had. I've wandered from Italy to China, and now my soul continues to explore...in your sole.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=504 quips 3 pyrenees
+Text=Ah, the Pyrenees! Never did I think I would gaze upon these marvelous peaks again! I do hope the Knights have had the time to oust those troublesome Rock Titans.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=506 persia
+Text=By the taste of the sweet wind and intensity of the sun, I would gather that we've arrived in Persia. Perhaps if there is time, we could trade some of your weapons for saffron, eh?
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=508 general
+Text=While I do appreciate that you have allowed me to explore with you, it is a true pity that even as a spirit I still retain a sense of smell...
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=510 barcelona general
+Text=Nueva Barcelona! Bellisimo! I had always hoped to see this great city. Thank you again, Lionheart, for helping an old man explore once more.
+Should Have Voiceover=1
+------------------------------------------------------------
+Node ID=511 Boots picked up
+Text=Bellisimo! I cannot wait to smell the earth and feel the grass beneath my...*your* feet.
+Should Have Voiceover=1
+
+------------------------------------------------------------
+Node ID=700 Fixt spared
+Text=I felt you cross my bridge, traveler, and I felt you come back with him still breathing. Three hundred years I have wanted that man dead. But I offered you the crystal myself, so I cannot curse you for taking the gentler road. Only do not ask me to forgive him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=He has suffered enough here. So have you.
+Go to node ID=03 Return Dialogue
+Custom Action=CActivateAction
+{
+Target Name=Fixt Marco Heard Spared
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=710 Fixt betrayed
+Text=You gave him a master. I spent the last of my strength on that bridge so you could end him, and you have sold him to a necromancer, and every spirit on this plane with him. I asked a favor of you once. I withdraw it. Go, traveler, and do not come back to me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Then stay here with him.
+Go to node ID=
+Is Default Reply=1
+}

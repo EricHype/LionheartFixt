@@ -1,0 +1,46 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorPutDownAction
+		{
+			Put Down Action=CPlaySoundAction
+			{
+				Sound=Pickups/put_down_boots_hide.ogg
+				Position=$Trigger
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=20
+	}
+	Is Magic=0
+	Encumbrance=2
+	On the ground=Items/PickUps/Special Items/PolosBoots_PU
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=Walking Boots
+	Description=Ordinary walking boots, well travelled and empty. Whoever lived in the leather has gone.
+	Inventory Window Images=Array
+	{
+		Basic=Items/Inventory Images/Misc Items/Boots Marco Polo
+		Better=Items/Inventory Images/Misc Items/Boots Marco Polo
+		Special=Items/Inventory Images/Misc Items/Boots Marco Polo
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/Foot
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/Miscellaneous
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Inventory/Specific Item Cans/Quest Items/Fixt Empty Walking Boots
+}

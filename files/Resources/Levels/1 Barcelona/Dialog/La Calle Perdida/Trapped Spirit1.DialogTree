@@ -1,0 +1,530 @@
+CDialogTree
+{
+Name=Spirit
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=Oh, another hapless wanderer. Might as well find a nice place to curl up and die, you'll be here awhile.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 Who are you
+
+Requirement=!None
+Reply Text=What do you mean, "I'll be here awhile"?
+Go to node ID=20 awhile
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=30 trap
+
+Requirement=!None
+Reply Text=Save your warnings for yourself, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=03 Return Dialogue
+Text=Back again so soon? What do you want?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Sent back to spirit by Marco
+Desired Minimum Count=1
+}
+}
+Reply Text=I need you to help me build a bridge to the enchanter.
+Go to node ID=07 build bridge
+Action work in progress=(if spoke with marco)
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 Who are you
+
+Requirement=!None
+Reply Text=Before, what did you mean by, "I'll be here awhile"?
+Go to node ID=20 awhile
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=30 trap
+
+Requirement=!None
+Reply Text=Keep your distance, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=07 build bridge
+Text=Hmmm. Want to see the enchanter, eh? A score to settle perhaps? I would love to see that enchanter suffer myself, though I wish it were by my hand.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=08 build bridge continued
+Action work in progress=(move enchanter bridge piece)
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=08 build bridge continued
+Text=This will cost me dearly. I won't be able to speak for years...very well, I'll move a piece of the bridge over. I can't have Marco upstage *me*.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(move enchanter bridge piece)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateAction
+{
+Target Name=Marco Jameson agreed to help
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CRemoveAIAction
+{
+Target Name=Trapped Spirit 1
+AI=CAIInteractionSpecifier
+Delay Between Removes=0
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Make Piece1 Last bridge move
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Spawn magic effect for Jameson
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Who are you
+Text=The name is Jameson, Sir Earl Thomas Jameson II. Once Knight Templar, now full time disembodied haunt, as it were.
+Should Have Voiceover=0
+
+Requirement=Templar IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Female IS
+}
+Reply Text=Well met, Brother Jameson. I, too, am a Knight Templar.
+Go to node ID=200 Templar Female
+Action work in progress=(Set Know James, Knight Templar Female)
+Custom Action=CActivateAction
+{
+Target Name=know he's a templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=Templar IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Male IS
+}
+Reply Text=Well met, Brother Jameson. I, too, am a Knight Templar.
+Go to node ID=210 Templar Male
+Action work in progress=(Set Know James, Knight Templar Male)
+Custom Action=CActivateAction
+{
+Target Name=know he's a templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Before, what did you mean by, "I'll be here awhile"?
+Go to node ID=20 awhile
+Action work in progress=(Set Know James)
+Custom Action=CActivateAction
+{
+Target Name=know he's a templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=30 Trap
+Action work in progress=(Set Know James)
+Custom Action=CActivateAction
+{
+Target Name=know he's a templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+
+Requirement=!None
+Reply Text=Keep your distance, ghost.
+Go to node ID=
+Action work in progress=(Set Know James)
+Custom Action=CActivateAction
+{
+Target Name=know he's a templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Action work in progress=(Set Know James)
+Custom Action=CActivateAction
+{
+Target Name=know he's a templar
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 corpse
+Text=Watch your tongue, friend - in time, you'll soon be one of us.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Karma negative talk meanly to Dead Knight
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 awhile
+Text=I said that because no one has ever left this place. That fool enchanter sees to that.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Jameson already activated bridge
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=There must be a way out of here.
+Go to node ID=150 path
+
+Requirement=!None
+Reply Text=Who are you again?
+Go to node ID=10 Who are you
+
+Requirement=!None
+Reply Text=Where am I?
+Go to node ID=30 trap
+
+Requirement=!None
+Reply Text=I have heard enough from you, ghost.
+Go to node ID=15 corpse
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Trap
+Text=This is a pocket plane of magic. Most places like this have an entrance and an exit. This place just has a one way entrance. It's what is commonly referred to as a 'trap'. I call it a joke with no punchline.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Hmm. Tell me more about this pocket plane of magic.
+Go to node ID=100 plane
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Jameson already activated bridge
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=There must be a way out of here.
+Go to node ID=150 path
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 Who are you
+
+Requirement=!None
+Reply Text=I have heard enough from you, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 plane
+Text=I'm no wizard, but there are a few things I've learned these three hundred years. From what I know, the enchanter carved out this place from a plane of pure magic, but got stuck somehow. He's been linking crystals to allow people to come here, but not leave, for centuries. He's quite mad, but I suppose so am I.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me more about this enchanter.
+Go to node ID=110 enchanter
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Jameson already activated bridge
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=There must be a way out of here.
+Go to node ID=150 path
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 Who are you
+
+Requirement=!None
+Reply Text=I have heard enough from you, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 enchanter
+Text=Well, for the first one hundred years, he called himself Kolij the enchanter. After another fifty years, he started calling himself curse words for locking himself in this hellhole. Now, the poor sod froths and moans like a lunatic, which I suppose he is.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Jameson already activated bridge
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=There must be a way out of here.
+Go to node ID=150 path
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=10 Who are you
+
+Requirement=!None
+Reply Text=I have heard enough from you, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 path
+Text=If there is a way out of here, I don't know it. But there are other trapped spirits like me. They might be able to help. But, you have to find a way to get to their islands.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How do I get to the next island?
+Go to node ID=160 island
+
+Requirement=!None
+Reply Text=I have heard enough from you, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=160 island
+Text=I might have just enough influence and power over my little area to make a bridge for you. *If* I was properly motivated, I suppose.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=know he's a templar
+Desired Minimum Count=1
+}
+}
+Reply Text="Properly motivated"? Are you not a Knight Templar? Do you wish to shame the order even in death?
+Go to node ID=220 Speech
+
+Requirement=!None
+Reply Text=Please, spirit, I beg you - help me get across to the next island.
+Go to node ID=170 begging
+
+Requirement=!None
+Reply Text=I have heard enough from you, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=170 begging
+Text=Oh, be silent! Do you think begging will do you any good here? By God, you might set a record for fastest death yet. Better screw your courage to the sticking place my friend, there are many frights here. And I'm not inclined to help you at the moment.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=know he's a templar
+Desired Minimum Count=1
+}
+}
+Reply Text="Inclined to help"? Are you not a Knight Templar? Do you wish to shame the order even in death?
+Go to node ID=220 Speech
+
+Requirement=!None
+Reply Text=I have heard enough from you, ghost.
+Go to node ID=15 corpse
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I see. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=220 Speech
+Text=Hmmmph! Of all the- Well, I mean- That is- Hmmph. Oh, very well - you're right, of course. Who knows? Perhaps it is that...minor...moral flaw that has kept my spirit anchored here. I'll make that bridge for you, and who knows? You seem bright enough. Perhaps you can find some way to deal with that enchanter.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Just make the bridge, ghost.
+Go to node ID=
+Action work in progress=(Make Bridge, Ghost Vanishes)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Move Second Rock for Path
+}
+
+Requirement=!None
+Reply Text=Very well. Thank you, Knight Templar - and I hope your altruism is rewarded. Goodbye.
+Go to node ID=
+Action work in progress=(Make Bridge, Ghost Vanishes)
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Move Second Rock for Path
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Karma bonus talk nicely to Dead Knight
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Templar Female
+Text=Eh? Why, miss - *you're* one of the Templars? Well, things must have changed a great deal since my day...eh, whenever that was. A pleasure to meet you, Sister...er, Knight, I mean, Sister Knight. Hmm. Well, are they sending others? If so, I fear they are too late to save me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am the only one. I came across this place by accident - tell me, what is this place?
+Go to node ID=30 Trap
+
+Requirement=!None
+Reply Text=Before, what did you mean by, "I'll be here awhile"?
+Go to node ID=20 awhile
+
+Requirement=!None
+Reply Text=Templar or not, keep your distance, ghost.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Still, there may be something I can do. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=210 Templar Male
+Text=Eh? Why so you are, curse these dead eyes for not noticing sooner! A pleasure to meet you, Brother - tell me, are more knights on their way? If so, I fear they are too late to save me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am the only one. I came across this place by accident - tell me, what is this place?
+Go to node ID=30 Trap
+
+Requirement=!None
+Reply Text=Before, what did you mean by, "I'll be here awhile"?
+Go to node ID=20 awhile
+
+Requirement=!None
+Reply Text=Templar or not, keep your distance, ghost.
+Go to node ID=
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Still, there may be something I can do. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+
+------------------------------------------------------------
+Node ID=700 Fixt Jameson judges
+Text=<A voice, barely there.> So. I gave up my voice for that bridge, and you used it to strike a bargain with the man who keeps us here. A Knight Templar. The order deserved better of you. So did I.
+Should Have Voiceover=0
+}

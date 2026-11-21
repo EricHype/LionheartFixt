@@ -1,10 +1,10 @@
 # The 1.0 test route
 
-Built by `tools/test_route.py` from all 3062 cases in `docs/qa.md`. 2711 still need checking;
+Built by `tools/test_route.py` from all 3079 cases in `docs/qa.md`. 2728 still need checking;
 183 were replaced by later releases, 79 are duplicates, 43 are automated,
 8 were deploy-only probes and 38 are not tests.
 
-Of the 2649 that a new game can reach, 2071 need your eyes, 443 need your eyes plus a save, and
+Of the 2666 that a new game can reach, 2088 need your eyes, 443 need your eyes plus a save, and
 135 are read from a save alone. **NEW** marks 0.99.x work, which has never been played. 62 cases can only
 pass on a save from before their release, so they are listed at the end and are not part of a new-game run.
 
@@ -22,11 +22,11 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Barcelona Cathedral crypt**
 
-- [ ] `LE14` (qa.md:6968) where: Same | steps: Go back upstairs, then fight the spirits in the crypt if you have not | pass: Upstairs is the cathedral's own ambience again, so the chant has not followed you. Note what plays in the fight: it should be whatever played before, because Medium and Full were left alone
+- [ ] `LE14` (qa.md:6999) where: Same | steps: Go back upstairs, then fight the spirits in the crypt if you have not | pass: Upstairs is the cathedral's own ambience again, so the chant has not followed you. Note what plays in the fight: it should be whatever played before, because Medium and Full were left alone
 
 **Barcelona gate (Guard Tomas)**
 
-- [ ] `DL5` (qa.md:6923) where: New game, wait for Guard Tomas to open the gate, then walk through | steps: Listen | pass: *"Come, let's explore this grand city!"* over DaVinci as he follows you in, once only, then *"Now what did I need from the market again?"* when he arrives. **Judgement:** does it overlap his portcullis line or the market line? Rushing the gate may clip the portcullis line -- *Needs a new game; judgement on overlap.*
+- [ ] `DL5` (qa.md:6954) where: New game, wait for Guard Tomas to open the gate, then walk through | steps: Listen | pass: *"Come, let's explore this grand city!"* over DaVinci as he follows you in, once only, then *"Now what did I need from the market again?"* when he arrives. **Judgement:** does it overlap his portcullis line or the market line? Rushing the gate may clip the portcullis line -- *Needs a new game; judgement on overlap.*
 
 **Barcelona quest givers; Templar and Inquisition initiations**
 
@@ -84,9 +84,9 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Eduardo's shop**
 
-- [ ] `LE7` (qa.md:6961) where: **Fresh save.** Attack Eduardo | steps: Get jailed, escape, walk back into the shop | pass: About two seconds in: *"Perhaps now you will think twice about attacking me..."*, voiced, over **his** head. Judge the delay. If he is not standing yet there is no line, and `Delay=2` needs raising -- *Fresh save.*
-- [ ] `LE8` (qa.md:6962) where: Same | steps: Leave and come back | pass: Silence. It plays once
-- [ ] `LE9` (qa.md:6963) where: **The regression.** Fresh save, never attack him | steps: Enter the shop, buy something, leave, return | pass: No line, customers as normal, greeting unchanged. The spawn point is shared with both of his setup relays
+- [ ] `LE7` (qa.md:6992) where: **Fresh save.** Attack Eduardo | steps: Get jailed, escape, walk back into the shop | pass: About two seconds in: *"Perhaps now you will think twice about attacking me..."*, voiced, over **his** head. Judge the delay. If he is not standing yet there is no line, and `Delay=2` needs raising -- *Fresh save.*
+- [ ] `LE8` (qa.md:6993) where: Same | steps: Leave and come back | pass: Silence. It plays once
+- [ ] `LE9` (qa.md:6994) where: **The regression.** Fresh save, never attack him | steps: Enter the shop, buy something, leave, return | pass: No line, customers as normal, greeting unchanged. The spawn point is shared with both of his setup relays
 
 **Ether plane under La Calle Perdida**
 
@@ -539,7 +539,7 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `TG3` (qa.md:5341) step: Compare Super against base | say: - | expect: Same shape, bigger extra hit: 12-22 against 6-12
 - [ ] `TG4` (qa.md:5342) step: Judge whether it makes the fight more readable or just longer | say: - | expect: The row that decides whether this stays
 - [ ] `BS10` (qa.md:5474) step: `1 Barcelona/Slave Pits` at low level | say: - | expect: Survivable. If a level-2 character is being killed by 25 percent backstabs here, drop the base tier to 0.15 before anything else
-- [ ] `SP4` (qa.md:6936) where: **The regression.** Slave Pits, wound the slavers | steps: - | pass: No caltrops from any `Thug`. They are not guild thieves, and 0.97.0 briefly gave them the drop
+- [ ] `SP4` (qa.md:6967) where: **The regression.** Slave Pits, wound the slavers | steps: - | pass: No caltrops from any `Thug`. They are not guild thieves, and 0.97.0 briefly gave them the drop
 
 **Slave Pits / Javier**
 
@@ -547,13 +547,13 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Slave Pits exterior yard**
 
-- [ ] `SP5` (qa.md:6938) [eyes + save] where: Leave the pits, come back through the exterior | steps: Walk to the yard | pass: Five captives and the buyer stand there, idle, and none of them fights
-- [ ] `SP6` (qa.md:6939) where: Same, goblins | steps: Look at them | pass: They animate as goblins, not frozen or in a T-pose
-- [ ] `SP7` (qa.md:6940) [save] where: Don Alfonso | steps: **Free** | pass: His thanks, 300 gold, +50 karma, he disappears. **Karma must not also fall by 100**: this row proves the `Gone` guard
-- [ ] `SP8` (qa.md:6941) [save] where: Reload, Don Alfonso | steps: **Sell** | pass: His line, 750 gold, -75 karma, he disappears
-- [ ] `SP9` (qa.md:6942) [save] where: Reload, Don Alfonso | steps: **Kill** | pass: He dies at once and karma falls by 100, once
-- [ ] `SP10` (qa.md:6943) [eyes + save] where: Reload, a Sylvant | steps: Attack with a weapon rather than the reply | pass: If the game lets you, the kill costs 125 karma. Note if it will not let you target them
-- [ ] `SP11` (qa.md:6944) [eyes + save] where: After any choice | steps: Leave and come back twice | pass: Nobody who was freed, sold or killed returns, and nobody is doubled. This row proves `Placed`
+- [ ] `SP5` (qa.md:6969) [eyes + save] where: Leave the pits, come back through the exterior | steps: Walk to the yard | pass: Five captives and the buyer stand there, idle, and none of them fights
+- [ ] `SP6` (qa.md:6970) where: Same, goblins | steps: Look at them | pass: They animate as goblins, not frozen or in a T-pose
+- [ ] `SP7` (qa.md:6971) [save] where: Don Alfonso | steps: **Free** | pass: His thanks, 300 gold, +50 karma, he disappears. **Karma must not also fall by 100**: this row proves the `Gone` guard
+- [ ] `SP8` (qa.md:6972) [save] where: Reload, Don Alfonso | steps: **Sell** | pass: His line, 750 gold, -75 karma, he disappears
+- [ ] `SP9` (qa.md:6973) [save] where: Reload, Don Alfonso | steps: **Kill** | pass: He dies at once and karma falls by 100, once
+- [ ] `SP10` (qa.md:6974) [eyes + save] where: Reload, a Sylvant | steps: Attack with a weapon rather than the reply | pass: If the game lets you, the kill costs 125 karma. Note if it will not let you target them
+- [ ] `SP11` (qa.md:6975) [eyes + save] where: After any choice | steps: Leave and come back twice | pass: Nobody who was freed, sold or killed returns, and nobody is doubled. This row proves `Placed`
 
 **Temple District**
 
@@ -735,7 +735,7 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `BA22` (qa.md:5860) [eyes + save] step: **A save that has never entered the Gate District.** In peacetime Barcelona, kill one unarmed citizen | say: - | expect: **Slayer of Innocents** appears among your titles. Vanilla never granted this perk anywhere
 - [ ] `BA25` (qa.md:5863) [eyes + save] step: Kill a vendor instead | say: - | expect: **Merchant Slayer**, as in vanilla. The two vendor cans are deliberately not wired to the new title
 - [ ] `HH48` (qa.md:6159) [eyes + save] where: **The regression.** Never fight him | steps: Play Barcelona normally | pass: Nobody is hostile, jail still works, and every district's arrival still does what it did. The relay is on all 74 spawn points
-- [ ] `BF8` (qa.md:6716) **NEW** where: Slave Pits, then any act 8 map | steps: Bring an Assassin Master below half health | pass: No whistle line in the Slave Pits; in act 8, sometimes the line and two dogs | new: True -- *added after the 1.0 classification*
+- [ ] `BF8` (qa.md:6747) **NEW** where: Slave Pits, then any act 8 map | steps: Bring an Assassin Master below half health | pass: No whistle line in the Slave Pits; in act 8, sometimes the line and two dogs | new: True -- *added after the 1.0 classification*
 
 ## Sewers (171)
 
@@ -836,7 +836,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Sewers stash; an ogre map with the charm**
 
-- [ ] `XS13` (qa.md:6858) where: Sewers stash at low Sneak; break an ogre charm with ogres in view | steps: - | pass: *"Oi! Hands off..."* appears over the stash. The charm line comes from one ogre, which may be off screen, so note whether it reads as silent -- *Two unrelated balloons, in different acts.*
+- [ ] `XS13` (qa.md:6889) where: Sewers stash at low Sneak; break an ogre charm with ogres in view | steps: - | pass: *"Oi! Hands off..."* appears over the stash. The charm line comes from one ogre, which may be off screen, so note whether it reads as silent -- *Two unrelated balloons, in different acts.*
 
 **Skulker**
 
@@ -1141,9 +1141,9 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `N1` (qa.md:6015) pass: Every vanilla solution still reachable -- *Summary row: met by playing the goblin-thread scenes with a second, different character.*
 - [ ] `N3` (qa.md:6017) pass: Confirmed -- *Summary row: met by a low-stat character finishing the goblin scenes.*
 - [ ] `N6` (qa.md:6020) [eyes + save] pass: Quest completes and the shipped `Goblin Champion` perk is still granted. The rank guard fails silently; it must not swallow the perk
-- [ ] `S1` (qa.md:7003) [save] pass: Rank and bonuses survive
-- [ ] `S4` (qa.md:7006) [eyes + save] pass: Girl and Guards persist
-- [ ] `S5` (qa.md:7007) pass: No script errors; camp hostility behaves normally
+- [ ] `S1` (qa.md:7034) [save] pass: Rank and bonuses survive
+- [ ] `S4` (qa.md:7037) [eyes + save] pass: Girl and Guards persist
+- [ ] `S5` (qa.md:7038) pass: No script errors; camp hostility behaves normally
 
 **Goblin Warrens (Goblin Girl)**
 
@@ -1271,10 +1271,10 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Lake, Plains, Woodcutter Forest or Barcelona Coast**
 
-- [ ] `GL1` (qa.md:6741) **NEW** [eyes + save] where: Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit | steps: Find a band with a hat goblin named Goblin War Leader, kill him | pass: The log says the goblins around him lose heart, and his band attacks visibly slower. Other bands are unchanged | new: True
-- [ ] `GL2` (qa.md:6742) **NEW** [eyes + save] where: The same, as the Khan's Champion | steps: Walk in | pass: The bands and their war leaders keep their distance | new: True
-- [ ] `CO2` (qa.md:6771) **NEW** [eyes + save] where: Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit, Khan killed | steps: Fight a band | pass: The log says they fight with less heart, and they attack visibly slower | new: True
-- [ ] `CO3` (qa.md:6772) **NEW** [eyes + save] where: The same, as Goblin Champion | steps: Walk in | pass: The log says they keep their distance, and the bands do not attack. Quest goblins (Grumdjum, the guard at the girl) are unchanged | new: True
+- [ ] `GL1` (qa.md:6772) **NEW** [eyes + save] where: Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit | steps: Find a band with a hat goblin named Goblin War Leader, kill him | pass: The log says the goblins around him lose heart, and his band attacks visibly slower. Other bands are unchanged | new: True
+- [ ] `GL2` (qa.md:6773) **NEW** [eyes + save] where: The same, as the Khan's Champion | steps: Walk in | pass: The bands and their war leaders keep their distance | new: True
+- [ ] `CO2` (qa.md:6802) **NEW** [eyes + save] where: Lake, Plains, Woodcutter Forest or Barcelona Coast, first visit, Khan killed | steps: Fight a band | pass: The log says they fight with less heart, and they attack visibly slower | new: True
+- [ ] `CO3` (qa.md:6803) **NEW** [eyes + save] where: The same, as Goblin Champion | steps: Walk in | pass: The log says they keep their distance, and the bands do not attack. Quest goblins (Grumdjum, the guard at the girl) are unchanged | new: True
 
 **Mongol Camp**
 
@@ -1565,9 +1565,9 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **01 Grove Exterior or 02 Druid Council Level1**
 
-- [ ] `SB1` (qa.md:6722) **NEW** [eyes + save] where: Grove Exterior or Druid Council Level 1, a save that has not entered it | steps: Fight a Snakebreed Summoner | pass: It casts, says a summoning line, and snakebreed appear beside it. They vanish on their own about a minute later | new: True
-- [ ] `SB2` (qa.md:6723) **NEW** [eyes + save] where: The same | steps: Kill the Summoner while its brood lives | pass: The log says the brood unravels, and every summoned snakebreed on the map is gone. Ordinary snakebreed are not | new: True
-- [ ] `SB3` (qa.md:6724) **NEW** [eyes + save] where: The same, peaceful route | steps: Take Sahar's ring or the parley while a brood is out | pass: The summoned snakebreed stand down with the rest | new: True
+- [ ] `SB1` (qa.md:6753) **NEW** [eyes + save] where: Grove Exterior or Druid Council Level 1, a save that has not entered it | steps: Fight a Snakebreed Summoner | pass: It casts, says a summoning line, and snakebreed appear beside it. They vanish on their own about a minute later | new: True
+- [ ] `SB2` (qa.md:6754) **NEW** [eyes + save] where: The same | steps: Kill the Summoner while its brood lives | pass: The log says the brood unravels, and every summoned snakebreed on the map is gone. Ordinary snakebreed are not | new: True
+- [ ] `SB3` (qa.md:6755) **NEW** [eyes + save] where: The same, peaceful route | steps: Take Sahar's ring or the parley while a brood is out | pass: The summoned snakebreed stand down with the rest | new: True
 
 **02 Druid Council Level1**
 
@@ -1580,7 +1580,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **02 Druid Council Level1; 01 Grove Exterior**
 
-- [ ] `MS1` (qa.md:6748) **NEW** [eyes + save] where: Montserrat peaceful route, a save that has not entered Druid Council Level 1 | steps: Take Sahar's ring, then walk back through Level 1 and the Grove | pass: No snakebreed or assassin attacks you, including the group in the hall and its runner; the wounded assassin still talks | new: True
+- [ ] `MS1` (qa.md:6779) **NEW** [eyes + save] where: Montserrat peaceful route, a save that has not entered Druid Council Level 1 | steps: Take Sahar's ring, then walk back through Level 1 and the Grove | pass: No snakebreed or assassin attacks you, including the group in the hall and its runner; the wounded assassin still talks | new: True
 
 **02 Druid Council Level2**
 
@@ -1762,7 +1762,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Montserrat grove; 04 Maw of the Assasin (act 8)**
 
-- [ ] `SP4a` (qa.md:6937) where: Montserrat grove, then an Assassin Master in the Assassins' caves | steps: Wound one | pass: One patch, once each, as `SP1`. A spellcaster that never closes to melee should still drop one when hurt -- *Two halves in two acts.*
+- [ ] `SP4a` (qa.md:6968) where: Montserrat grove, then an Assassin Master in the Assassins' caves | steps: Wound one | pass: One patch, once each, as `SP1`. A spellcaster that never closes to melee should still drop one when hurt -- *Two halves in two acts.*
 
 **Montserrat, then Raphael**
 
@@ -1795,9 +1795,9 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `SM4` (qa.md:3361) step: Fight ordinary Snakebreed, Venom and Boss variants | say: - | expect: Their barks are exactly as before. Only the three summoner cans changed
 - [ ] `BK5` (qa.md:5281) step: Fight Snakebreed, including a Venom and a Boss | say: - | expect: Sibilant throughout; Venom talks poison -- *"Feel it ssspreading?"*; stage directions like *&lt;It rears to its full height&gt;*
 - [ ] `BK8` (qa.md:5284) step: Fight `Snakebreed Summoner`, and both PROBE archers | say: - | expect: No bark. All three have an attack slot already in use and were deliberately skipped
-- [ ] `RM5` (qa.md:6289) **NEW** where: **Regression**, before Montserrat | steps: Click Relican, and again after talking once | pass: First click: his opening; later clicks: the return dialogue, as before | new: True -- *added after the 1.0 classification*
-- [ ] `SX1` (qa.md:6335) **NEW** where: Montserrat, a route that calms the snakebreed (Grove, Druid Council 1 or 2) | steps: Hover over and click a calmed one | pass: A **talk** cursor and the same *"sentry passive"* line as before. He is not attacked | new: True -- *added after the 1.0 classification*
-- [ ] `SX6` (qa.md:6340) **NEW** where: **Regression**, the Grove gate parley | steps: Attack a snakebreed during the sentry's parley | pass: `sentry draws` as before: the garrison comes back and the gate packs spawn (`TR1`) | new: True -- *added after the 1.0 classification*
+- [ ] `RM5` (qa.md:6320) **NEW** where: **Regression**, before Montserrat | steps: Click Relican, and again after talking once | pass: First click: his opening; later clicks: the return dialogue, as before | new: True -- *added after the 1.0 classification*
+- [ ] `SX1` (qa.md:6366) **NEW** where: Montserrat, a route that calms the snakebreed (Grove, Druid Council 1 or 2) | steps: Hover over and click a calmed one | pass: A **talk** cursor and the same *"sentry passive"* line as before. He is not attacked | new: True -- *added after the 1.0 classification*
+- [ ] `SX6` (qa.md:6371) **NEW** where: **Regression**, the Grove gate parley | steps: Attack a snakebreed during the sentry's parley | pass: `sentry draws` as before: the garrison comes back and the gate packs spawn (`TR1`) | new: True -- *added after the 1.0 classification*
 
 ## 3 Montaillou (226)
 
@@ -1847,12 +1847,12 @@ pass on a save from before their release, so they are listed at the end and are 
 
 - [ ] `TS1` (qa.md:4210) [eyes + save] step: **The row this exists for.** Act 3, `02 Hamlet Burned`, on a save that has **not** been in that map. Find the dead Knight Templars and search them | say: - | expect: **Two** of them carry a **Helm of the Templars** and a **Spirit Templar Shield** alongside the amulet they always had. Neither item has ever appeared in this game
 - [ ] `TS10` (qa.md:4229) step: Judge whether the placement reads | say: - | expect: A battle-weary helm on a fallen Templar in a burned hamlet. If it feels like loot scattered at random rather than something left on a body, say so -- the alternative was a scripted scene rather than a corpse
-- [ ] `HR1` (qa.md:6730) **NEW** where: Hamlet Burned, first visit | steps: Walk toward the middle of the village | pass: A Druid War-Priest speaks to you before the fight. "Then I will cut them loose myself" starts it | new: True
-- [ ] `HR2` (qa.md:6731) **NEW** [eyes + save] where: The same | steps: Kill the War-Priest | pass: The log says his hold breaks. Every English soldier on the map stands down, says a dazed line about France, and can be talked to. Hit one: only his band turns | new: True
-- [ ] `HR3` (qa.md:6732) **NEW** [eyes + save] where: The same, Speech 75 | steps: Take the parley reply | pass: He vanishes in a flash and the soldiers stand down as in HR2. He does not come back | new: True
-- [ ] `HR4` (qa.md:6733) **NEW** [eyes + save] where: The same, Tribal 75 and at least 20 mana | steps: Take the wrest reply, walk away, wait, come back | pass: Your mana is gone, the band around him stands down. Coming back after 20 seconds, he speaks again ("Back again"), and each cast frees one more band, four in all | new: True
-- [ ] `HR5` (qa.md:6734) **NEW** [eyes + save] where: The same, a Cathar friend of the Weird Woman | steps: Ask her to call the bears off | pass: The bears stop hunting you, including those later fights bring. Without the promise the reply is absent | new: True
-- [ ] `HR6` (qa.md:6735) **NEW** [eyes + save] where: The same | steps: Reach the fight4 or fight6 squad, kill its priest | pass: That squad's soldiers stand down. A squad whose priest has not spawned yet does not stand down early | new: True
+- [ ] `HR1` (qa.md:6761) **NEW** where: Hamlet Burned, first visit | steps: Walk toward the middle of the village | pass: A Druid War-Priest speaks to you before the fight. "Then I will cut them loose myself" starts it | new: True
+- [ ] `HR2` (qa.md:6762) **NEW** [eyes + save] where: The same | steps: Kill the War-Priest | pass: The log says his hold breaks. Every English soldier on the map stands down, says a dazed line about France, and can be talked to. Hit one: only his band turns | new: True
+- [ ] `HR3` (qa.md:6763) **NEW** [eyes + save] where: The same, Speech 75 | steps: Take the parley reply | pass: He vanishes in a flash and the soldiers stand down as in HR2. He does not come back | new: True
+- [ ] `HR4` (qa.md:6764) **NEW** [eyes + save] where: The same, Tribal 75 and at least 20 mana | steps: Take the wrest reply, walk away, wait, come back | pass: Your mana is gone, the band around him stands down. Coming back after 20 seconds, he speaks again ("Back again"), and each cast frees one more band, four in all | new: True
+- [ ] `HR5` (qa.md:6765) **NEW** [eyes + save] where: The same, a Cathar friend of the Weird Woman | steps: Ask her to call the bears off | pass: The bears stop hunting you, including those later fights bring. Without the promise the reply is absent | new: True
+- [ ] `HR6` (qa.md:6766) **NEW** [eyes + save] where: The same | steps: Reach the fight4 or fight6 squad, kill its priest | pass: That squad's soldiers stand down. A squad whose priest has not spawned yet does not stand down early | new: True
 
 **02 Hamlet Burned / Montserrat**
 
@@ -1901,23 +1901,23 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Brother Michel and Andre**
 
-- [ ] `LE10` (qa.md:6964) where: **Fresh spawn.** Kill Andre, then attack Michel | steps: - | pass: *"By God you are a fiend that doesn't deserve life!"*
-- [ ] `LE11` (qa.md:6965) where: Attack Michel with Andre alive | steps: - | pass: *"Brothers! Help me!"* as always
+- [ ] `LE10` (qa.md:6995) where: **Fresh spawn.** Kill Andre, then attack Michel | steps: - | pass: *"By God you are a fiend that doesn't deserve life!"*
+- [ ] `LE11` (qa.md:6996) where: Attack Michel with Andre alive | steps: - | pass: *"Brothers! Help me!"* as always
 
 **DaVinci**
 
-- [ ] `DL1` (qa.md:6919) where: Montaillou, first talk to DaVinci | steps: Take *"A pity you survived the crash."* | pass: His usual *"It pains me to see a dark nature..."*, as vanilla
-- [ ] `DL2` (qa.md:6920) where: Talk again, *"What are you doing here?"*, then *"Why are you checking on my progress?"*, then *"And what makes you think..."* | steps: - | pass: You **hear** *"I have suffered quite enough of your insolence..."*, and afterwards he resumes his muttering at the flying machine. Only one copy of the reply shows
-- [ ] `DL4` (qa.md:6922) where: **The regression.** A polite character in Montaillou | steps: Ask for his help once, never insult him | pass: *"Youth today..."* is the only route to any rebuke, and `320 general surly response 3` cannot appear on the first one
-- [ ] `LE1` (qa.md:6955) where: Montaillou, DaVinci, the gem is with the Inquisitor | steps: Reply *"I could try to speak with the Inquisition about the gem."* | pass: You **hear** *"Ah, I would owe you a great debt..."* and the conversation ends. It must not be his goodbye. Fails with goodbye: the retarget did not ship
-- [ ] `LE2` (qa.md:6956) where: Same, via *"I could not, in good conscience, oppose the Inquisition"* | steps: Take the same reply from `320 no to inquisition` | pass: Same line. The reply appears in two places and both were moved
-- [ ] `LE3` (qa.md:6957) where: Same, after LE1 | steps: Talk to him again | pass: He is still there and still talkable, and the gem quest is unchanged. `10 Goodbye` used to run here, so this is the row that proves it did nothing he needed
-- [ ] `LE4` (qa.md:6958) where: DaVinci, holding the Spirit Transfer Gem | steps: Hand it over, either reply | pass: You **hear** *"You've returned with a feisty spirit!"*, then 3001's silent text follows with no click on a blank reply
-- [ ] `LE5` (qa.md:6959) [eyes + save] where: Same | steps: Finish the scene, count your gold | pass: **1000** gold, once. If you see 1400, 340's payout survived
+- [ ] `DL1` (qa.md:6950) where: Montaillou, first talk to DaVinci | steps: Take *"A pity you survived the crash."* | pass: His usual *"It pains me to see a dark nature..."*, as vanilla
+- [ ] `DL2` (qa.md:6951) where: Talk again, *"What are you doing here?"*, then *"Why are you checking on my progress?"*, then *"And what makes you think..."* | steps: - | pass: You **hear** *"I have suffered quite enough of your insolence..."*, and afterwards he resumes his muttering at the flying machine. Only one copy of the reply shows
+- [ ] `DL4` (qa.md:6953) where: **The regression.** A polite character in Montaillou | steps: Ask for his help once, never insult him | pass: *"Youth today..."* is the only route to any rebuke, and `320 general surly response 3` cannot appear on the first one
+- [ ] `LE1` (qa.md:6986) where: Montaillou, DaVinci, the gem is with the Inquisitor | steps: Reply *"I could try to speak with the Inquisition about the gem."* | pass: You **hear** *"Ah, I would owe you a great debt..."* and the conversation ends. It must not be his goodbye. Fails with goodbye: the retarget did not ship
+- [ ] `LE2` (qa.md:6987) where: Same, via *"I could not, in good conscience, oppose the Inquisition"* | steps: Take the same reply from `320 no to inquisition` | pass: Same line. The reply appears in two places and both were moved
+- [ ] `LE3` (qa.md:6988) where: Same, after LE1 | steps: Talk to him again | pass: He is still there and still talkable, and the gem quest is unchanged. `10 Goodbye` used to run here, so this is the row that proves it did nothing he needed
+- [ ] `LE4` (qa.md:6989) where: DaVinci, holding the Spirit Transfer Gem | steps: Hand it over, either reply | pass: You **hear** *"You've returned with a feisty spirit!"*, then 3001's silent text follows with no click on a blank reply
+- [ ] `LE5` (qa.md:6990) [eyes + save] where: Same | steps: Finish the scene, count your gold | pass: **1000** gold, once. If you see 1400, 340's payout survived
 
 **DaVinci's workshop**
 
-- [ ] `DL3` (qa.md:6921) where: Workshop, press a coloured button on the steam engine three times, and a fourth | steps: Watch DaVinci | pass: First press only hisses. Second: *"No! Not that button!"* Third and fourth: fire, 25 damage, and **you hear** *"Don't touch that button again!"*
+- [ ] `DL3` (qa.md:6952) where: Workshop, press a coloured button on the steam engine three times, and a fourth | steps: Watch DaVinci | pass: First press only hisses. Second: *"No! Not that button!"* Third and fourth: fire, 25 damage, and **you hear** *"Don't touch that button again!"*
 
 **Gate District, Quinn (return trip)**
 
@@ -1973,7 +1973,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Montaillou hamlet**
 
-- [ ] `FP5` (qa.md:6907) [eyes + save] where: FP3, go to Montaillou | steps: - | pass: Thierry is at the north of the hamlet, once. Esclarmonde thanks you. His reward works
+- [ ] `FP5` (qa.md:6938) [eyes + save] where: FP3, go to Montaillou | steps: - | pass: Thierry is at the north of the hamlet, once. Esclarmonde thanks you. His reward works
 
 **Montaillou inn**
 
@@ -2058,7 +2058,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Secret chamber**
 
-- [ ] `DL6` (qa.md:6924) [eyes + save] where: Secret chamber, hand him the rotary gear | steps: *"Your rotary gear. Your engine cut it."* | pass: You **hear** *"Ah! There! It is complete."*, then with no click the silent `902` text. The gear leaves your inventory and the quest completes once
+- [ ] `DL6` (qa.md:6955) [eyes + save] where: Secret chamber, hand him the rotary gear | steps: *"Your rotary gear. Your engine cut it."* | pass: You **hear** *"Ah! There! It is complete."*, then with no click the silent `902` text. The gear leaves your inventory and the quest completes once
 
 **Titan Village**
 
@@ -2104,12 +2104,12 @@ pass on a save from before their release, so they are listed at the end and are 
 **Toulouse**
 
 - [ ] `TD6` (qa.md:2701) step: Walk past the prisoner pen with Thierry alive | say: - | expect: His prompt still works. The prompter also tests whether he is alive and was deliberately left alone
-- [ ] `FP1` (qa.md:6903) [eyes + save] where: Talk Lethos into leaving with Thierry alive | steps: Watch the fade | pass: The titans go. **The prisoners and Thierry are still in the pen afterwards**, and nobody attacks -- *Needs a save that has not entered Toulouse.*
-- [ ] `FP2` (qa.md:6904) where: FP1, click a villager man or woman | steps: - | pass: *"The ogres have gone, and nobody will say why..."*, not the old downcast line. The child says *"Is it over?..."*
-- [ ] `FP3` (qa.md:6905) where: FP1, click Thierry | steps: *"The titans have gone. All of them. You are free to go."*, then *"Then go..."* | pass: *"Follow me, brothers!"*, then he **and all three villagers walk** out along the path. If they stand still, the AI Done did not land
-- [ ] `FP4` (qa.md:6906) [eyes + save] where: FP3, follow them | steps: Wait 30 seconds | pass: They disappear at the end of the path and do not stand there forever. Clicking one mid-walk does nothing
-- [ ] `FP7` (qa.md:6909) where: **Thierry dead.** Kill him or let him die, then FP1 | steps: Click a villager man or woman | pass: *"Thierry is dead..."*, then *"You are free to go."* Everyone walks. No balloon, and Esclarmonde still offers the dead-husband reply. The child never offers this
-- [ ] `FP8` (qa.md:6910) where: **The regression.** Any other ending: free them through Thierry, kill the titans, or Memnos | steps: - | pass: Exactly as before. `TD3`-`TD4` still pass, and no villager uses the new lines
+- [ ] `FP1` (qa.md:6934) [eyes + save] where: Talk Lethos into leaving with Thierry alive | steps: Watch the fade | pass: The titans go. **The prisoners and Thierry are still in the pen afterwards**, and nobody attacks -- *Needs a save that has not entered Toulouse.*
+- [ ] `FP2` (qa.md:6935) where: FP1, click a villager man or woman | steps: - | pass: *"The ogres have gone, and nobody will say why..."*, not the old downcast line. The child says *"Is it over?..."*
+- [ ] `FP3` (qa.md:6936) where: FP1, click Thierry | steps: *"The titans have gone. All of them. You are free to go."*, then *"Then go..."* | pass: *"Follow me, brothers!"*, then he **and all three villagers walk** out along the path. If they stand still, the AI Done did not land
+- [ ] `FP4` (qa.md:6937) [eyes + save] where: FP3, follow them | steps: Wait 30 seconds | pass: They disappear at the end of the path and do not stand there forever. Clicking one mid-walk does nothing
+- [ ] `FP7` (qa.md:6940) where: **Thierry dead.** Kill him or let him die, then FP1 | steps: Click a villager man or woman | pass: *"Thierry is dead..."*, then *"You are free to go."* Everyone walks. No balloon, and Esclarmonde still offers the dead-husband reply. The child never offers this
+- [ ] `FP8` (qa.md:6941) where: **The regression.** Any other ending: free them through Thierry, kill the titans, or Memnos | steps: - | pass: Exactly as before. `TD3`-`TD4` still pass, and no villager uses the new lines
 
 **Toulouse (Andre)**
 
@@ -2129,7 +2129,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Toulouse; Montaillou**
 
-- [ ] `FP6` (qa.md:6908) [eyes + save] where: **Walk away.** FP1, leave Toulouse without talking to him, go to Montaillou, come back | steps: - | pass: Thierry is in Montaillou, and the pen is empty on your return. **He must not be in both**
+- [ ] `FP6` (qa.md:6939) [eyes + save] where: **Walk away.** FP1, leave Toulouse without talking to him, go to Montaillou, come back | steps: - | pass: Thierry is in Montaillou, and the pen is empty on your return. **He must not be in both**
 
 **Witch cave**
 
@@ -2337,7 +2337,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **01 Heart Entrance**
 
-- [ ] `HJ1` (qa.md:6888) [eyes + save] where: `01 Heart Entrance`, reach Huko without fighting if you can | steps: *"I have come to help the Prophet."* | pass: The Hujark **standing around you** stop attacking at once. This row proves the retarget. If they keep swinging, the names or the spawn timing are wrong
+- [ ] `HJ1` (qa.md:6919) [eyes + save] where: `01 Heart Entrance`, reach Huko without fighting if you can | steps: *"I have come to help the Prophet."* | pass: The Hujark **standing around you** stop attacking at once. This row proves the retarget. If they keep swinging, the names or the spawn timing are wrong
 
 **01 Heart Entrance (English ogres)**
 
@@ -2380,16 +2380,16 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **02 Clan of the Hand A or 04 Clan of the Skull B**
 
-- [ ] `HW1` (qa.md:6762) **NEW** [eyes + save] where: Clan of the Hand or Skull, first visit, fighting the Hujark | steps: Arrive | pass: The log says the acolytes are chanting a ward over their warriors. Warriors are harder to hit while acolytes live | new: True
-- [ ] `HW2` (qa.md:6763) **NEW** [eyes + save] where: The same | steps: Kill every acolyte on the map | pass: The log says the ward breaks, and within seconds the warriors are as easy to hit as before | new: True
+- [ ] `HW1` (qa.md:6793) **NEW** [eyes + save] where: Clan of the Hand or Skull, first visit, fighting the Hujark | steps: Arrive | pass: The log says the acolytes are chanting a ward over their warriors. Warriors are harder to hit while acolytes live | new: True
+- [ ] `HW2` (qa.md:6794) **NEW** [eyes + save] where: The same | steps: Kill every acolyte on the map | pass: The log says the ward breaks, and within seconds the warriors are as easy to hit as before | new: True
 
 **02 or 03**
 
-- [ ] `HJ3` (qa.md:6890) where: **The war.** HJ2, stand back on 02 or 03 | steps: Watch | pass: English and Hujark fight each other without you
+- [ ] `HJ3` (qa.md:6921) where: **The war.** HJ2, stand back on 02 or 03 | steps: Watch | pass: English and Hujark fight each other without you
 
 **02, 03 Tourniquet of Pain, 04**
 
-- [ ] `HJ2` (qa.md:6889) [eyes + save] where: HJ1, walk on to `02`, `03` and `04` | steps: - | pass: No Hujark attacks you. `03 Tourniquet of Pain` is the map that failed most
+- [ ] `HJ2` (qa.md:6920) [eyes + save] where: HJ1, walk on to `02`, `03` and `04` | steps: - | pass: No Hujark attacks you. `03 Tourniquet of Pain` is the map that failed most
 
 **02, 03, 04, 08, 09, 10 (escort)**
 
@@ -2414,11 +2414,11 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **05**
 
-- [ ] `HJ5` (qa.md:6892) where: **The seer.** Ally, reach `05`, kill the Assassin and the English guard only | steps: - | pass: You can talk to Nostradamus **without touching the shaman or the Hujark guard**
+- [ ] `HJ5` (qa.md:6923) where: **The seer.** Ally, reach `05`, kill the Assassin and the English guard only | steps: - | pass: You can talk to Nostradamus **without touching the shaman or the Hujark guard**
 
 **05 (the seer)**
 
-- [ ] `EF6` (qa.md:6880) who: Ally with Huko and reach the seer | steps: - | pass: *"Thank you! Now quickly come with me."* now appears over the shaman
+- [ ] `EF6` (qa.md:6911) who: Ally with Huko and reach the seer | steps: - | pass: *"Thank you! Now quickly come with me."* now appears over the shaman
 
 **05 Nostrodomus Demesne**
 
@@ -2480,7 +2480,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Clan of the Hand / Skull maps**
 
-- [ ] `HW3` (qa.md:6764) **NEW** [eyes + save] where: The same, on the Hujark alliance or safe conduct | steps: Walk through | pass: Nothing changes: the warriors are not hostile, and no English invader is warded on any route | new: True
+- [ ] `HW3` (qa.md:6795) **NEW** [eyes + save] where: The same, on the Hujark alliance or safe conduct | steps: Walk through | pass: Nothing changes: the warriors are not hostile, and no English invader is warded on any route | new: True
 
 **English in Caverns of Nostrodomus**
 
@@ -2521,10 +2521,10 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **anywhere in the act**
 
-- [ ] `HJ4` (qa.md:6891) where: Hit an allied Hujark | steps: - | pass: He turns on you, as before. Note whether the rest do
-- [ ] `HJ6` (qa.md:6893) [eyes + save] where: **Safe conduct**, Speech 75 | steps: Walk the whole act | pass: Same as HJ1, HJ2 and HJ5
-- [ ] `HJ7` (qa.md:6894) where: **The regression.** Ignore Huko, or fight him | steps: Walk the act | pass: Hujark attack as always. No English appear
-- [ ] `HJ8` (qa.md:6895) where: **Judgement.** Compare a full walk on the ally route with the ignore route | steps: - | pass: The ally route should now feel like choosing a side. Note if the two armies leave too little to do, or too much -- *Judgement row.*
+- [ ] `HJ4` (qa.md:6922) where: Hit an allied Hujark | steps: - | pass: He turns on you, as before. Note whether the rest do
+- [ ] `HJ6` (qa.md:6924) [eyes + save] where: **Safe conduct**, Speech 75 | steps: Walk the whole act | pass: Same as HJ1, HJ2 and HJ5
+- [ ] `HJ7` (qa.md:6925) where: **The regression.** Ignore Huko, or fight him | steps: Walk the act | pass: Hujark attack as always. No English appear
+- [ ] `HJ8` (qa.md:6926) where: **Judgement.** Compare a full walk on the ally route with the ignore route | steps: - | pass: The ally route should now feel like choosing a side. Note if the two armies leave too little to do, or too much -- *Judgement row.*
 
 ## 6 Barcelona Attack (122)
 
@@ -2563,23 +2563,23 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `BA19` (qa.md:5848) [eyes + save] step: Walk back over the western end again | say: - | expect: No repeat and no second payment
 - [ ] `BA20` (qa.md:5849) step: Fight anywhere on the map for a minute | say: - | expect: English soldiers shout: *"Press forward, men!"*, *"Attack! For England!"*, *"For the Queen!"* Six of the thirty-four generators are armed
 - [ ] `BA21` (qa.md:5850) step: Compare the volume against `Gate District Siege` (BA4) | say: - | expect: Similar. This map has no defenders, so only the English are heard
-- [ ] `XS22` (qa.md:6834) where: Crossroads Siege, on a save that has not entered it | steps: Walk the road to the junction | pass: The stand is at the junction just west of the catapult rocks, whole, and nothing is drawn over it. You can walk up to it from the road and click it. The description fires as you approach -- *Needs a save that has not entered Crossroads Siege.*
-- [ ] `XS23` (qa.md:6835) where: The same, with Jehanne or the golem, and soldiers still alive around you | steps: Take that route | pass: They reach the base of the stand before they die. If frozen men block them, the 12 second timer still ends the scene
-- [ ] `XS2` (qa.md:6845) where: Click it, with none of the routes | steps: - | pass: The description and only *<Leave it.>*
-- [ ] `XS3` (qa.md:6846) [eyes + save] where: Thought 150 | steps: *<Obliterate it.>* and click on | pass: Fire, lightning, ice, shake. **All mana gone, about half your health.** The standard vanishes and a burn mark stands in its place
-- [ ] `XS3a` (qa.md:6847) [eyes + save] where: The same | steps: Compare your mana before and after | pass: It is **zero**. 0.98.0's first draft took nothing, because a take larger than the pool fails
-- [ ] `XS4` (qa.md:6848) [eyes + save] where: **The row this exists for.** After any route | steps: Stand among the soldiers | pass: **Every English soldier stops attacking** and you can walk through. Stay among them for a minute, near bowmen and near melee men: barks keep coming from individual soldiers on screen, *"This is Spain..."*, and they keep coming as you walk Druids, golems and wolves still attack. If soldiers keep swinging, the names or the pacify failed
-- [ ] `XS5` (qa.md:6849) [eyes + save] where: Divine 150, Tribal 150, and ST 10 with EN 8 | steps: Each in turn | pass: Each with its own text and effects. Brute force takes about two thirds of your health and no mana
-- [ ] `XS6` (qa.md:6850) [eyes + save] where: Joan with you | steps: *<Look to Jehanne.>*, *Do it.* | pass: She **walks to the standard** before the light takes her, her body stays there, the soldiers wake, and the ending shows `900 friend joan standard`. **Refusing keeps her** and the standard stands
-- [ ] `XS6a` (qa.md:6851) where: **The cutscene.** XS6 or XS7, in the thick of the fight | steps: - | pass: **Nothing moves but the one walking, and you take no damage.** The camera follows them to the standard and holds on the body, then returns to you with your controls back. **If you are left unable to move, that is the bug this row exists for**
-- [ ] `XS7` (qa.md:6852) [eyes + save] where: War Golem with you | steps: *<Order the golem to destroy it.>* | pass: It **walks to the standard**, then explodes, and the ending shows `900 friend golem standard`
-- [ ] `XS8` (qa.md:6853) where: **Wounded.** At 60% health, and again below 25%, any route | steps: - | pass: You survive it, and **nothing hits you during the scene**. Controls come back afterwards
-- [ ] `XS9` (qa.md:6854) where: **Judgement.** A mage at the Siege | steps: What is your level, and your school total? | pass: Is 150 a main school rather than a hybrid? -- *Judgement row.*
-- [ ] `XS11` (qa.md:6856) [eyes + save] where: **The price.** After any route | steps: Attack one woken soldier in melee, then one with a bow or spell | pass: He alone fights back in **both** cases. The rest stand. **Karma falls by 50 per kill.** XP and the drop still arrive
-- [ ] `XS21` (qa.md:6863) where: **Waking.** Stand among soldiers and break the standard | steps: - | pass: Within about three seconds of the scene ending, every man in view says a bewildered line once, not all in the same instant, with none of them in the log. After that it settles to the occasional line
-- [ ] `XS20` (qa.md:6864) where: **The stand.** Find it at the crossroads before breaking it | steps: - | pass: A dark twisted druid lamp-stand, whole and fully visible with nothing drawn over it, and the opening text calls it a lamp-stand. The charm effect pulses at its lamps every four to six seconds, silently, and stops the moment it breaks. After it falls the burn scar sits under where its base was, and sacrifices walk to its base -- *Find it at the junction per 0.98.1, not the 0.98.0 spot.*
-- [ ] `XS19` (qa.md:6865) where: **Talking to them.** After the standard breaks, hover and click several English soldiers. Then force attack one | steps: - | pass: The cursor shows talk, not attack, on a man you have not hit. The player walks up and he says one of the eight waking lines over his own head. Force attack still works. A soldier you have damaged fights back. Your attack stops after that first hit, and one more click on him then attacks continuously as normal, without stopping at each swing
-- [ ] `XS14` (qa.md:6866) [eyes + save] where: **Save and reload.** Save just after the break, reload, leave the map and return | steps: - | pass: Soldiers stay stood down. If barks stop after a reload that is minor; note it. Karma and the slide flag survive
+- [ ] `XS22` (qa.md:6865) where: Crossroads Siege, on a save that has not entered it | steps: Walk the road to the junction | pass: The stand is at the junction just west of the catapult rocks, whole, and nothing is drawn over it. You can walk up to it from the road and click it. The description fires as you approach -- *Needs a save that has not entered Crossroads Siege.*
+- [ ] `XS23` (qa.md:6866) where: The same, with Jehanne or the golem, and soldiers still alive around you | steps: Take that route | pass: They reach the base of the stand before they die. If frozen men block them, the 12 second timer still ends the scene
+- [ ] `XS2` (qa.md:6876) where: Click it, with none of the routes | steps: - | pass: The description and only *<Leave it.>*
+- [ ] `XS3` (qa.md:6877) [eyes + save] where: Thought 150 | steps: *<Obliterate it.>* and click on | pass: Fire, lightning, ice, shake. **All mana gone, about half your health.** The standard vanishes and a burn mark stands in its place
+- [ ] `XS3a` (qa.md:6878) [eyes + save] where: The same | steps: Compare your mana before and after | pass: It is **zero**. 0.98.0's first draft took nothing, because a take larger than the pool fails
+- [ ] `XS4` (qa.md:6879) [eyes + save] where: **The row this exists for.** After any route | steps: Stand among the soldiers | pass: **Every English soldier stops attacking** and you can walk through. Stay among them for a minute, near bowmen and near melee men: barks keep coming from individual soldiers on screen, *"This is Spain..."*, and they keep coming as you walk Druids, golems and wolves still attack. If soldiers keep swinging, the names or the pacify failed
+- [ ] `XS5` (qa.md:6880) [eyes + save] where: Divine 150, Tribal 150, and ST 10 with EN 8 | steps: Each in turn | pass: Each with its own text and effects. Brute force takes about two thirds of your health and no mana
+- [ ] `XS6` (qa.md:6881) [eyes + save] where: Joan with you | steps: *<Look to Jehanne.>*, *Do it.* | pass: She **walks to the standard** before the light takes her, her body stays there, the soldiers wake, and the ending shows `900 friend joan standard`. **Refusing keeps her** and the standard stands
+- [ ] `XS6a` (qa.md:6882) where: **The cutscene.** XS6 or XS7, in the thick of the fight | steps: - | pass: **Nothing moves but the one walking, and you take no damage.** The camera follows them to the standard and holds on the body, then returns to you with your controls back. **If you are left unable to move, that is the bug this row exists for**
+- [ ] `XS7` (qa.md:6883) [eyes + save] where: War Golem with you | steps: *<Order the golem to destroy it.>* | pass: It **walks to the standard**, then explodes, and the ending shows `900 friend golem standard`
+- [ ] `XS8` (qa.md:6884) where: **Wounded.** At 60% health, and again below 25%, any route | steps: - | pass: You survive it, and **nothing hits you during the scene**. Controls come back afterwards
+- [ ] `XS9` (qa.md:6885) where: **Judgement.** A mage at the Siege | steps: What is your level, and your school total? | pass: Is 150 a main school rather than a hybrid? -- *Judgement row.*
+- [ ] `XS11` (qa.md:6887) [eyes + save] where: **The price.** After any route | steps: Attack one woken soldier in melee, then one with a bow or spell | pass: He alone fights back in **both** cases. The rest stand. **Karma falls by 50 per kill.** XP and the drop still arrive
+- [ ] `XS21` (qa.md:6894) where: **Waking.** Stand among soldiers and break the standard | steps: - | pass: Within about three seconds of the scene ending, every man in view says a bewildered line once, not all in the same instant, with none of them in the log. After that it settles to the occasional line
+- [ ] `XS20` (qa.md:6895) where: **The stand.** Find it at the crossroads before breaking it | steps: - | pass: A dark twisted druid lamp-stand, whole and fully visible with nothing drawn over it, and the opening text calls it a lamp-stand. The charm effect pulses at its lamps every four to six seconds, silently, and stops the moment it breaks. After it falls the burn scar sits under where its base was, and sacrifices walk to its base -- *Find it at the junction per 0.98.1, not the 0.98.0 spot.*
+- [ ] `XS19` (qa.md:6896) where: **Talking to them.** After the standard breaks, hover and click several English soldiers. Then force attack one | steps: - | pass: The cursor shows talk, not attack, on a man you have not hit. The player walks up and he says one of the eight waking lines over his own head. Force attack still works. A soldier you have damaged fights back. Your attack stops after that first hit, and one more click on him then attacks continuously as normal, without stopping at each swing
+- [ ] `XS14` (qa.md:6897) [eyes + save] where: **Save and reload.** Save just after the break, reload, leave the map and return | steps: - | pass: Soldiers stay stood down. If barks stop after a reload that is minor; note it. Karma and the slide flag survive
 
 **Crossroads to England**
 
@@ -2607,8 +2607,8 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `BA44` (qa.md:5882) step: BA43, then open the Regent's chest | say: - | expect: **No shout, no guards, and Surrey stays friendly.** In vanilla only Sneak 100 avoided the alarm
 - [ ] `BA45` (qa.md:5883) step: The same without the clover and without Sneak 100 | say: - | expect: He shouts *"That's the Regent's loot!"*, the `chest guards generator` wakes and he turns on you -- unchanged
 - [ ] `BA46` (qa.md:5884) step: As a sworn Inquisitor, talk to Surrey | say: - | expect: *"The Spanish -- no. No, guvna', I never --"* and the same look-away
-- [ ] `CO1` (qa.md:6770) **NEW** [eyes + save] where: Crossroads to England, having broken the standard, on a save that has not walked the road | steps: Walk it | pass: Two archer groups do not attack. Clicking one gives a deserter line. Without the standard broken they fight as before | new: True
-- [ ] `SH9` (qa.md:6816) **NEW** [eyes + save] where: Crossroads to England | steps: - | pass: Three of the archer pairs are druids | new: True
+- [ ] `CO1` (qa.md:6801) **NEW** [eyes + save] where: Crossroads to England, having broken the standard, on a save that has not walked the road | steps: Walk it | pass: Two archer groups do not attack. Clicking one gives a deserter line. Without the standard broken they fight as before | new: True
+- [ ] `SH9` (qa.md:6847) **NEW** [eyes + save] where: Crossroads to England | steps: - | pass: Three of the archer pairs are druids | new: True
 
 **Gate District Siege**
 
@@ -2631,8 +2631,8 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `BA37` (qa.md:5875) step: Attack a defender directly, as in vanilla | say: - | expect: The garrison turns, as before. Unchanged
 - [ ] `BA38` (qa.md:5876) [eyes + save] step: Find the `Generic Gaurd NPC` body at 1618,845 and use it | say: - | expect: *"Stranger...here...take my gold. Don't let those English have it..."* and **250 gold**, once
 - [ ] `BA39` (qa.md:5877) step: Find the `Soldier1` body at 1678,2914 | say: - | expect: *"I am sorry Espana...I do not know why we came with swords drawn and bloodlust in our hearts..."*
-- [ ] `SG1` (qa.md:6754) **NEW** [eyes + save] where: Gate District Siege, on a save that has not entered it | steps: Kill every druid priest on the map | pass: Within seconds the English soldiers stop fighting, each says a waking line ("This is Spain. Why am I in Spain?"), and clicking one talks | new: True
-- [ ] `SG2` (qa.md:6755) **NEW** [eyes + save] where: The same, after the stand-down | steps: Force attack one soldier | pass: Every English soldier on the map turns hostile again | new: True
+- [ ] `SG1` (qa.md:6785) **NEW** [eyes + save] where: Gate District Siege, on a save that has not entered it | steps: Kill every druid priest on the map | pass: Within seconds the English soldiers stop fighting, each says a waking line ("This is Spain. Why am I in Spain?"), and clicking one talks | new: True
+- [ ] `SG2` (qa.md:6786) **NEW** [eyes + save] where: The same, after the stand-down | steps: Force attack one soldier | pass: Every English soldier on the map turns hostile again | new: True
 
 **Gate District Siege / Temple District Siege**
 
@@ -2644,7 +2644,7 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `BA2` (qa.md:5831) step: BA1 on `Temple District Siege` | say: - | expect: The same, quieter -- that map has one defender generator and three attacker generators still standing
 - [ ] `BA40` (qa.md:5878) step: On `Temple District Siege`, walk the length of the map using bodies | say: - | expect: Six of them speak, three Spanish and three English, spread west to east. **Vanilla had 62 bodies and zero talkable ones on this map**
 - [ ] `BA41` (qa.md:5879) [eyes + save] step: The dying Spaniard on the Temple District | say: - | expect: Also pays 250, once
-- [ ] `SG3` (qa.md:6756) **NEW** [eyes + save] where: Temple District Siege | steps: Repeat SG1 and SG2, and check the siege still plays to its end | pass: Same results, and nothing in the siege waits forever on English deaths | new: True
+- [ ] `SG3` (qa.md:6787) **NEW** [eyes + save] where: Temple District Siege | steps: Repeat SG1 and SG2, and check the siege still plays to its end | pass: Same results, and nothing in the siege waits forever on English deaths | new: True
 
 **anywhere in the act**
 
@@ -2675,8 +2675,8 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `EH14` (qa.md:4492) step: Fight **`Priest Near Death`** | say: - | expect: **No healing.** It selects no skill at all in vanilla and is a scripted one-off, so it was left alone
 - [ ] `ES28` (qa.md:5806) [save] step: Check your titles after act 6 has failed the conspiracy quest | say: - | expect: **The title survives.** Act 6's bulk quest-fail is `IfActive`, so a completed conspiracy is untouched
 - [ ] `BA42` (qa.md:5880) step: Re-use any body that has already spoken | say: - | expect: Nothing. Each specifier is once-only, and no second payment
-- [ ] `FB1` (qa.md:6700) **NEW** where: Temple Initiate, Stone Chamber or Antechamber, or a Barcelona siege after its druids appear, first visit | steps: Wound an English soldier below a third of his health while a druid lives | pass: He shouts and runs toward the druids, not fighting back while he runs, then returns healed | new: True -- *added after the 1.0 classification*
-- [ ] `BF1` (qa.md:6709) **NEW** where: Gate or Temple District Siege, first visit | steps: Fight until a druid priest appears, kill every one | pass: The soldiers keep fighting until the last druid falls, then stand down and wake. Arriving alone does NOT stand them down | new: True -- *added after the 1.0 classification*
+- [ ] `FB1` (qa.md:6731) **NEW** where: Temple Initiate, Stone Chamber or Antechamber, or a Barcelona siege after its druids appear, first visit | steps: Wound an English soldier below a third of his health while a druid lives | pass: He shouts and runs toward the druids, not fighting back while he runs, then returns healed | new: True -- *added after the 1.0 classification*
+- [ ] `BF1` (qa.md:6740) **NEW** where: Gate or Temple District Siege, first visit | steps: Fight until a druid priest appears, kill every one | pass: The soldiers keep fighting until the last druid falls, then stand down and wake. Arriving alone does NOT stand them down | new: True -- *added after the 1.0 classification*
 
 ## 7 English Shrine (110)
 
@@ -2725,22 +2725,22 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `TS11` (qa.md:6097) where: Same, **without** the Holy Shield, or as a non-Templar | steps: Talk to him | pass: The shield reply is **absent** and the conversation is unchanged in every other respect. Nothing fires -- *Since 0.93.2 'without' means not wearing it.*
 - [ ] `TS11b` (qa.md:6098) where: **The cutscene check.** Finish that conversation through the relic branch | steps: - | pass: The scene ends and you regain control. The greeting runs inside a non-interactive sequence, and 0.9.0 soft-locked one for two years with a reply that did not exit properly. **If control is not returned, this release is broken and nothing else matters**
 - [ ] `TS11c` (qa.md:6099) [eyes + save] where: Refuse Sir Roger at the greeting, then talk to him again | steps: Take the shield reply on the **return** dialogue | pass: Same result. The branch is on all four greeting nodes, so one refusal must not lose the shield
-- [ ] `HN1` (qa.md:6778) **NEW** [eyes + save] where: 02 Temple Initiate, first visit, on a save that has not entered it | steps: Open the journal | pass: Under the druid quest, "The Spellbound Soldiers" says they fight as though spellbound. It tells you nothing to do. With Sir Roger along he says something has hold of them | new: True
-- [ ] `SH3` (qa.md:6810) **NEW** where: 02, Sir Roger, Servant of the Queen perk | steps: Reach "The Queen keeps druids" and answer "That changes nothing. Stand aside." | pass: The scene ends and you can move; he can be spoken to again. Before this you were stuck | new: True
-- [ ] `SH4` (qa.md:6811) **NEW** [eyes + save] where: 02 at Sneak 25 | steps: Take the second passage, go on to 05, then come back the vanilla way | pass: One payment of the passage XP and balloon, on the way in only | new: True
+- [ ] `HN1` (qa.md:6809) **NEW** [eyes + save] where: 02 Temple Initiate, first visit, on a save that has not entered it | steps: Open the journal | pass: Under the druid quest, "The Spellbound Soldiers" says they fight as though spellbound. It tells you nothing to do. With Sir Roger along he says something has hold of them | new: True
+- [ ] `SH3` (qa.md:6841) **NEW** where: 02, Sir Roger, Servant of the Queen perk | steps: Reach "The Queen keeps druids" and answer "That changes nothing. Stand aside." | pass: The scene ends and you can move; he can be spoken to again. Before this you were stuck | new: True
+- [ ] `SH4` (qa.md:6842) **NEW** [eyes + save] where: 02 at Sneak 25 | steps: Take the second passage, go on to 05, then come back the vanilla way | pass: One payment of the passage XP and balloon, on the way in only | new: True
 
 **02, 03 or 04**
 
-- [ ] `SH7` (qa.md:6814) **NEW** [eyes + save] where: 02, 03 or 04 | steps: Kill every druid on the map, leave the soldiers | pass: Within a few seconds every soldier on that map stops fighting and says one dazed line; clicking one talks. A map with druids alive keeps fighting | new: True
-- [ ] `SH8` (qa.md:6815) **NEW** [eyes + save] where: The same, after the stand-down | steps: Force attack one soldier | pass: Every soldier on that map turns hostile again, not just the one; the first hit stops your attack and one more click carries on. No Karma lost | new: True
+- [ ] `SH7` (qa.md:6845) **NEW** [eyes + save] where: 02, 03 or 04 | steps: Kill every druid on the map, leave the soldiers | pass: Within a few seconds every soldier on that map stops fighting and says one dazed line; clicking one talks. A map with druids alive keeps fighting | new: True
+- [ ] `SH8` (qa.md:6846) **NEW** [eyes + save] where: The same, after the stand-down | steps: Force attack one soldier | pass: Every soldier on that map turns hostile again, not just the one; the first hit stops your attack and one more click carries on. No Karma lost | new: True
 
 **02, 03, 04**
 
-- [ ] `SH5` (qa.md:6812) **NEW** [eyes + save] where: 02, 03, 04 | steps: Look at the enemies | pass: Some are druids in robes casting spells, not soldiers standing still until struck. None stands idle while his friends fight | new: True
+- [ ] `SH5` (qa.md:6843) **NEW** [eyes + save] where: 02, 03, 04 | steps: Look at the enemies | pass: Some are druids in robes casting spells, not soldiers standing still until struck. None stands idle while his friends fight | new: True
 
 **03, 04, 05**
 
-- [ ] `SH10` (qa.md:6817) **NEW** where: 03, 04, 05 with Roger and Grace | steps: Enter each map the first time | pass: Each says one line, Roger first. Neither says it twice, and with one of them absent the other still speaks | new: True
+- [ ] `SH10` (qa.md:6848) **NEW** where: 03, 04, 05 with Roger and Grace | steps: Enter each map the first time | pass: Each says one line, Roger first. Neither says it twice, and with one of them absent the other still speaks | new: True
 
 **04 Antechamber of Lore**
 
@@ -2775,7 +2775,7 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `ES7` (qa.md:5763) step: Fight the Druid Master | say: - | expect: **A real boss fight now.** She shipped on the rank-and-file `Priestess Super` race at HP 95 / AC 150 / no resistance -- weaker than her own guards, and against an `Assasin Master` on the same map at HP 400 / AC 305. She is now HP 350 / AC 300 / 65% resist, four spells at 130 and Evasion 60
 - [ ] `ES7a` (qa.md:5764) [eyes + save] step: Check the XP for killing her | say: - | expect: **2,500**, up from 1,100. She shipped paying less than the 1,949 her own attendant priestesses pay
 - [ ] `ES7b` (qa.md:5765) step: Fight a rank-and-file `Priestess Super` in the same room | say: - | expect: Distinctly weaker than the Master: HP 135 / AC 310. They no longer share a race
-- [ ] `SH1` (qa.md:6808) **NEW** where: 05 Exalted Chambers | steps: Talk to the Druid Master | pass: She is voiced: her lines play aloud. Before this she was silent | new: True
+- [ ] `SH1` (qa.md:6839) **NEW** where: 05 Exalted Chambers | steps: Talk to the Druid Master | pass: She is voiced: her lines play aloud. Before this she was silent | new: True
 
 **06-08 Meditation Chambers**
 
@@ -2790,7 +2790,7 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `ES33` (qa.md:5795) step: Click the switch at 1620,1364 | say: - | expect: Grinding to the **north** and *"a great many boots"* -- an ambush of soldiers, bowmen and druids
 - [ ] `ES34` (qa.md:5796) step: Click the switch at 1508,1471 | say: - | expect: Grinding to the **south**, hot iron and wet stone -- war golems, a priest, a druid and a priestess
 - [ ] `ES36` (qa.md:5798) step: Check that the doors, ambushes and chests behave as before | say: - | expect: Unchanged. Only balloons were added to the three relays; every vanilla action on them is intact
-- [ ] `SH2` (qa.md:6809) **NEW** [eyes + save] where: 10 Inner Sanctum | steps: Pull the three stones in any order | pass: Each opens what it opens, then a separate line counts down: two left, one left, the last of them. Not "Two stones left" three times | new: True
+- [ ] `SH2` (qa.md:6840) **NEW** [eyes + save] where: 10 Inner Sanctum | steps: Pull the three stones in any order | pass: Each opens what it opens, then a separate line counts down: two left, one left, the last of them. Not "Two stones left" three times | new: True
 
 **10 Inner Sanctum, 09 Secret Chamber**
 
@@ -2806,7 +2806,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **Shrine, then England to Alamut and the ending**
 
-- [ ] `SH11` (qa.md:6818) **NEW** [eyes + save] where: Finish the shrine four ways: talk her down; spoil the ambush and kill her; kill her; walk on with her alive | steps: Reach England to Alamut with Roger, then the ending | pass: Roger says the line for that outcome, and the ending shows the matching Shrine slide with the Druid Master on the stage, before the companions | new: True -- *Four playthrough branches; the slide is read at the ending.*
+- [ ] `SH11` (qa.md:6849) **NEW** [eyes + save] where: Finish the shrine four ways: talk her down; spoil the ambush and kill her; kill her; walk on with her alive | steps: Reach England to Alamut with Roger, then the ending | pass: Roger says the line for that outcome, and the ending shows the matching Shrine slide with the Druid Master on the stage, before the companions | new: True -- *Four playthrough branches; the slide is read at the ending.*
 
 **anywhere in the act**
 
@@ -2825,13 +2825,13 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `ES47` (qa.md:5782) step: Let her drop below about 60% health, then below 25% | say: - | expect: *"I require aid!"* then *"I will not survive much longer...Help me!"* -- **both are recorded lines that had no trigger**
 - [ ] `ES48` (qa.md:5783) step: With Sir Roger along, fight for a minute | say: - | expect: *"For England!"*, *"For The Queen!"*, *"For The Templars!"*, *"We shall Prevail!"*, *"On my honor!"* Five authored barks, opened by nothing in vanilla
 - [ ] `ES49` (qa.md:5786) step: Take a companion through a map transition and keep fighting | say: - | expect: Barks still play. They ride on the character's own AI list, not a relay belonging to one map
-- [ ] `PZ1` (qa.md:6237) **NEW** where: English Shrine, `05 Exalted Chambers` (or `06`-`10`), any Priestess tier | steps: Look at her | pass: A woman in a navy robe with a gold yoke, a gold front panel and copper belts, under a navy hood edged in gold. **Not a Terror** | new: True -- *added after the 1.0 classification*
-- [ ] `PZ5` (qa.md:6241) **NEW** where: `05 Exalted Chambers`, the Druid Master | steps: Look at her | pass: **Unchanged**: she has always used the male Priest model, and this does not touch her | new: True -- *added after the 1.0 classification*
-- [ ] `GT1` (qa.md:6622) **NEW** where: DaVinci's secret chamber | steps: Walk up to the tank before fitting the gear | pass: Vanilla's description | new: True -- *added after the 1.0 classification*
-- [ ] `AL1` (qa.md:6687) **NEW** where: Temple Initiate, first visit (kit: "Take me to Sir Roger") | steps: Walk the route toward the Stone Chamber exit and fight the archers by it | pass: They stand where they are and shoot, while the swordsmen close; they do not walk into the melee | new: True -- *added after the 1.0 classification*
-- [ ] `BF2` (qa.md:6710) **NEW** where: Temple Initiate, Stone Chamber, Antechamber | steps: Walk the main route | pass: You meet a druid post on the route in each map; killing both of a room's druids stands its soldiers down | new: True -- *added after the 1.0 classification*
-- [ ] `BF4` (qa.md:6712) **NEW** where: Exalted Chambers, Secret Chamber, Inner Sanctum | steps: Fight the priestesses | pass: At a low level no Super priestess appears; at a high level no base one | new: True -- *added after the 1.0 classification*
-- [ ] `SH6` (qa.md:6813) **NEW** [eyes + save] where: Any act 7 map | steps: Bring a druid under half health | pass: The log says she calls a wolf, a wolf appears beside her with a summoning flash, and she does it once only | new: True
+- [ ] `PZ1` (qa.md:6268) **NEW** where: English Shrine, `05 Exalted Chambers` (or `06`-`10`), any Priestess tier | steps: Look at her | pass: A woman in a navy robe with a gold yoke, a gold front panel and copper belts, under a navy hood edged in gold. **Not a Terror** | new: True -- *added after the 1.0 classification*
+- [ ] `PZ5` (qa.md:6272) **NEW** where: `05 Exalted Chambers`, the Druid Master | steps: Look at her | pass: **Unchanged**: she has always used the male Priest model, and this does not touch her | new: True -- *added after the 1.0 classification*
+- [ ] `GT1` (qa.md:6653) **NEW** where: DaVinci's secret chamber | steps: Walk up to the tank before fitting the gear | pass: Vanilla's description | new: True -- *added after the 1.0 classification*
+- [ ] `AL1` (qa.md:6718) **NEW** where: Temple Initiate, first visit (kit: "Take me to Sir Roger") | steps: Walk the route toward the Stone Chamber exit and fight the archers by it | pass: They stand where they are and shoot, while the swordsmen close; they do not walk into the melee | new: True -- *added after the 1.0 classification*
+- [ ] `BF2` (qa.md:6741) **NEW** where: Temple Initiate, Stone Chamber, Antechamber | steps: Walk the main route | pass: You meet a druid post on the route in each map; killing both of a room's druids stands its soldiers down | new: True -- *added after the 1.0 classification*
+- [ ] `BF4` (qa.md:6743) **NEW** where: Exalted Chambers, Secret Chamber, Inner Sanctum | steps: Fight the priestesses | pass: At a low level no Super priestess appears; at a high level no base one | new: True -- *added after the 1.0 classification*
+- [ ] `SH6` (qa.md:6844) **NEW** [eyes + save] where: Any act 7 map | steps: Bring a druid under half health | pass: The log says she calls a wolf, a wolf appears beside her with a summoning flash, and she does it once only | new: True
 
 ## 8 Alamut (113)
 
@@ -2874,7 +2874,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **01, 02**
 
-- [ ] `AT11` (qa.md:6798) **NEW** [eyes + save] where: 01, 02 | steps: Look at the packs | pass: Roughly one pack in four is Sand Spirits instead of beasts | new: True
+- [ ] `AT11` (qa.md:6829) **NEW** [eyes + save] where: 01, 02 | steps: Look at the packs | pass: Roughly one pack in four is Sand Spirits instead of beasts | new: True
 
 **02 Shifting Dunes**
 
@@ -2902,7 +2902,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **03 to 07**
 
-- [ ] `AT13` (qa.md:6800) **NEW** [eyes + save] where: Act 8 with the Knight of Saladin from Exalted | steps: Walk 03 to 07 | pass: Only one Knight of Saladin. If two appear, report it with a save | new: True
+- [ ] `AT13` (qa.md:6831) **NEW** [eyes + save] where: Act 8 with the Knight of Saladin from Exalted | steps: Walk 03 to 07 | pass: Only one Knight of Saladin. If two appear, report it with a save | new: True
 
 **04 Maw of the Assasin**
 
@@ -2913,11 +2913,11 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **04 Maw of the Assasin and others**
 
-- [ ] `AT7` (qa.md:6794) **NEW** where: The Maw's Assassin Master, the Elemental Spirit, DaVinci's evil lines, Galileo's survival line, the Old Man's Inquisition scene | steps: Hear them | pass: Each speaks aloud where it was silent | new: True
+- [ ] `AT7` (qa.md:6825) **NEW** where: The Maw's Assassin Master, the Elemental Spirit, DaVinci's evil lines, Galileo's survival line, the Old Man's Inquisition scene | steps: Hear them | pass: Each speaks aloud where it was silent | new: True
 
 **04 to 07**
 
-- [ ] `AT10` (qa.md:6797) **NEW** [eyes + save] where: 04 to 07 | steps: Bring several Assassin Masters under half health | pass: About half whistle up two guard dogs, with a log line; none does it twice | new: True
+- [ ] `AT10` (qa.md:6828) **NEW** [eyes + save] where: 04 to 07 | steps: Bring several Assassin Masters under half health | pass: About half whistle up two guard dogs, with a log line; none does it twice | new: True
 
 **05 Acid Wash**
 
@@ -2931,9 +2931,9 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `AL8` (qa.md:5697) step: Press the switch again | say: - | expect: Nothing happens. The relay is `Trigger Only Once=1`, as it shipped
 - [ ] `AL9` (qa.md:5698) step: On a fresh character, enter instead from `06 Chamber of Torment` and walk east | say: - | expect: All four triggers still fire when crossed from that side, but the ordering is only guaranteed on the forward path: approaching from the west, `2 the first sluice` can arrive before `1 the channel`. Worth knowing whether that reads badly -- *Needs a fresh character entering from 06.*
 - [ ] `AL10` (qa.md:5699) [save] step: Check the combat log after AL1-AL6 | say: - | expect: All five balloon texts are in the log. Every node carries `Include In Log=1`
-- [ ] `HN3` (qa.md:6780) **NEW** where: 05 Acid Wash | steps: Walk the channel without the search skill, then with it | pass: No valve line without it. With it, the line plays as the valve is revealed | new: True
-- [ ] `AT8` (qa.md:6795) **NEW** where: 05 Acid Wash | steps: Lure an assassin into the channel as a sluice fires | pass: The acid hurts him too. A companion standing in it is hurt as well | new: True
-- [ ] `AT9` (qa.md:6796) **NEW** where: 05 Acid Wash, near the entrance | steps: Search for secrets (a good trap and secret skill) | pass: A hidden valve is revealed; using it shuts both sluices and opens the spiked gates, as the far switch does. Without the skill it stays hidden | new: True
+- [ ] `HN3` (qa.md:6811) **NEW** where: 05 Acid Wash | steps: Walk the channel without the search skill, then with it | pass: No valve line without it. With it, the line plays as the valve is revealed | new: True
+- [ ] `AT8` (qa.md:6826) **NEW** where: 05 Acid Wash | steps: Lure an assassin into the channel as a sluice fires | pass: The acid hurts him too. A companion standing in it is hurt as well | new: True
+- [ ] `AT9` (qa.md:6827) **NEW** where: 05 Acid Wash, near the entrance | steps: Search for secrets (a good trap and secret skill) | pass: A hidden valve is revealed; using it shuts both sluices and opens the spiked gates, as the far switch does. Without the skill it stays hidden | new: True
 
 **05 Acid Wash, 06 Chamber of Torment, 07 Dark Temple**
 
@@ -2941,7 +2941,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **05 Acid Wash, 07 Dark Temple**
 
-- [ ] `AT12` (qa.md:6799) **NEW** where: 05 and 07 with the Knight of Saladin and Grumdjum | steps: Enter each the first time | pass: Each says one line, the knight first; neither repeats | new: True
+- [ ] `AT12` (qa.md:6830) **NEW** where: 05 and 07 with the Knight of Saladin and Grumdjum | steps: Enter each the first time | pass: Each says one line, the knight first; neither repeats | new: True
 
 **06 Chamber of Torment**
 
@@ -2970,19 +2970,19 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **END GAME Calle Perdida**
 
-- [ ] `AT2` (qa.md:6789) **NEW** where: A dark ending (Calle Perdida) | steps: Finish it | pass: After Nostradamus the game goes to the stage, plays the slides this character earned, then the credits. Before this the dark endings showed no slide | new: True
+- [ ] `AT2` (qa.md:6820) **NEW** where: A dark ending (Calle Perdida) | steps: Finish it | pass: After Nostradamus the game goes to the stage, plays the slides this character earned, then the credits. Before this the dark endings showed no slide | new: True
 
 **Final Encounter**
 
-- [ ] `AT6` (qa.md:6793) **NEW** where: Final Encounter | steps: Let the Old Man escape | pass: The escape plays through: camera, spirits, then the ending. Nothing stops at his disappearance | new: True
+- [ ] `AT6` (qa.md:6824) **NEW** where: Final Encounter | steps: Let the Old Man escape | pass: The escape plays through: camera, spirits, then the ending. Nothing stops at his disappearance | new: True
 
 **the Demesne**
 
-- [ ] `AT3` (qa.md:6790) **NEW** where: The Demesne, before either ending | steps: Press Escape on Nostradamus | pass: The scene continues to the right ending map | new: True
+- [ ] `AT3` (qa.md:6821) **NEW** where: The Demesne, before either ending | steps: Press Escape on Nostradamus | pass: The scene continues to the right ending map | new: True
 
 **the three ending maps**
 
-- [ ] `AT1` (qa.md:6788) **NEW** where: Any good ending | steps: Press Escape on each Nostradamus line after the battle | pass: The ending carries on exactly as clicking would, and reaches the stage. Nothing stalls | new: True
+- [ ] `AT1` (qa.md:6819) **NEW** where: Any good ending | steps: Press Escape on each Nostradamus line after the battle | pass: The ending carries on exactly as clicking would, and reaches the stage. Nothing stalls | new: True
 
 **anywhere in the act**
 
@@ -3000,24 +3000,24 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `AL14` (qa.md:5703) step: Reach act 8 with Grace O'Malley recruited in act 7 | say: - | expect: She follows and has nothing to say, exactly as Sir Roger does. This is parity with vanilla, not a gap
 - [ ] `AL50` (qa.md:5739) step: Recruit the Knight of Saladin, walk him off `02 Shifting Dunes`, dismiss him there | say: - | expect: Same: released, and his interaction switches to `666 Rejoin` on whatever map he is standing on
 - [ ] `GW6` (qa.md:6192) where: Alamut, Desert Sprawl | steps: A Goblin Champion sworn to an order, the Khan alive, not Butu's side | pass: Rumjun Khan is there and offers to come with you (*"Hello, Goblin morsel..."*). Without the Champion title he is not -- *added after the 1.0 classification*
-- [ ] `CL4` (qa.md:6602) **NEW** where: Any Crypt or Alamut floor trap | steps: Spring one | pass: The real spike trap is unchanged: the tall needle still shoots up | new: True -- *added after the 1.0 classification*
-- [ ] `BF5` (qa.md:6713) **NEW** where: Alamut, the Knight of Saladin | steps: Ask about the tribute and the tent | pass: No sentence repeats | new: True -- *added after the 1.0 classification*
-- [ ] `BF6` (qa.md:6714) **NEW** where: Final Encounter, as a Saladin high-level | steps: Take the standing-order reply to the Old Man | pass: It says "every year since", not "eighty" | new: True -- *added after the 1.0 classification*
-- [ ] `BF7` (qa.md:6715) **NEW** where: Desert Sprawl, through the goblin gate | steps: Click Rumjun Khan, choose "accompany me" | pass: He talks rather than fights; after the reply he attacks the desert's enemies and not you | new: True -- *added after the 1.0 classification*
-- [ ] `AT5` (qa.md:6792) **NEW** where: Dismiss Grumdjum, then click him | steps: - | pass: He says "Are you ready to continue our quest - to put the Old Man to rest?" aloud before the rejoin conversation | new: True
+- [ ] `CL4` (qa.md:6633) **NEW** where: Any Crypt or Alamut floor trap | steps: Spring one | pass: The real spike trap is unchanged: the tall needle still shoots up | new: True -- *added after the 1.0 classification*
+- [ ] `BF5` (qa.md:6744) **NEW** where: Alamut, the Knight of Saladin | steps: Ask about the tribute and the tent | pass: No sentence repeats | new: True -- *added after the 1.0 classification*
+- [ ] `BF6` (qa.md:6745) **NEW** where: Final Encounter, as a Saladin high-level | steps: Take the standing-order reply to the Old Man | pass: It says "every year since", not "eighty" | new: True -- *added after the 1.0 classification*
+- [ ] `BF7` (qa.md:6746) **NEW** where: Desert Sprawl, through the goblin gate | steps: Click Rumjun Khan, choose "accompany me" | pass: He talks rather than fights; after the reply he attacks the desert's enemies and not you | new: True -- *added after the 1.0 classification*
+- [ ] `AT5` (qa.md:6823) **NEW** where: Dismiss Grumdjum, then click him | steps: - | pass: He says "Are you ready to continue our quest - to put the Old Man to rest?" aloud before the rejoin conversation | new: True
 
 ## Ending (60)
 
 
 **epilogue stage**
 
-- [ ] `ES20` (qa.md:6824) **NEW** where: Finish the game, or `Ending tests` then `As I am` | steps: - | pass: After Javier the screen goes black and the stage opens with no visible pan. No crash on the teleport | new: True
-- [ ] `ES21` (qa.md:6825) **NEW** where: The same | steps: Read through | pass: Every slide this character earned plays, in order, with the right figure centre-stage and none left over from the slide before. Slides with no figure (the pits, the Savage Heart, the woodcutter, no allegiance) play on the empty stage | new: True
-- [ ] `ES22` (qa.md:6826) **NEW** [eyes + save] where: The same, having talked Ahriman into death | steps: - | pass: The Templar slide is the one that says the order was never sworn to him: the flag survived the teleport | new: True
-- [ ] `ES23` (qa.md:6827) **NEW** where: The same | steps: Press Escape on a slide | pass: It advances to the next slide, and the credits still roll at the end | new: True
-- [ ] `ES24` (qa.md:6828) **NEW** where: With companions alive | steps: - | pass: Nobody you travelled with wanders into frame, and every figure stands still, including the golem and Fang | new: True
-- [ ] `EF4` (qa.md:6878) who: A character with no slide for several steps in a row | steps: Watch the gaps | pass: No visible hang: empty steps pass in a blink. If there is a long blank pause, tell me how long
-- [ ] `EF5` (qa.md:6879) who: **Judgement.** A full character | steps: Read the whole ending | pass: Does it drag? Up to about 30 slides can now play -- *Judgement row.*
+- [ ] `ES20` (qa.md:6855) **NEW** where: Finish the game, or `Ending tests` then `As I am` | steps: - | pass: After Javier the screen goes black and the stage opens with no visible pan. No crash on the teleport | new: True
+- [ ] `ES21` (qa.md:6856) **NEW** where: The same | steps: Read through | pass: Every slide this character earned plays, in order, with the right figure centre-stage and none left over from the slide before. Slides with no figure (the pits, the Savage Heart, the woodcutter, no allegiance) play on the empty stage | new: True
+- [ ] `ES22` (qa.md:6857) **NEW** [eyes + save] where: The same, having talked Ahriman into death | steps: - | pass: The Templar slide is the one that says the order was never sworn to him: the flag survived the teleport | new: True
+- [ ] `ES23` (qa.md:6858) **NEW** where: The same | steps: Press Escape on a slide | pass: It advances to the next slide, and the credits still roll at the end | new: True
+- [ ] `ES24` (qa.md:6859) **NEW** where: With companions alive | steps: - | pass: Nobody you travelled with wanders into frame, and every figure stands still, including the golem and Fang | new: True
+- [ ] `EF4` (qa.md:6909) who: A character with no slide for several steps in a row | steps: Watch the gaps | pass: No visible hang: empty steps pass in a blink. If there is a long blank pause, tell me how long
+- [ ] `EF5` (qa.md:6910) who: **Judgement.** A full character | steps: Read the whole ending | pass: Does it drag? Up to about 30 slides can now play -- *Judgement row.*
 
 **anywhere in the act**
 
@@ -3071,11 +3071,11 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `HH56` (qa.md:6167) where: Finish the game, HH50's character | steps: Watch the slides | pass: `900 order inquisition dark`: Raphael in the chair
 - [ ] `HH57` (qa.md:6168) where: Finish the game, HH51's, then an outsider who never reached him | steps: - | pass: `donated`, then `broken`
 - [ ] `HH58` (qa.md:6169) where: Finish the game, HH55's, member and outsider. Then one who served the cult | steps: - | pass: `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives
-- [ ] `XS10` (qa.md:6855) [eyes + save] where: **The regression.** Finish the game without breaking it | steps: - | pass: No `900 order standard` slide, and Joan's and the golem's usual slides
-- [ ] `XS12` (qa.md:6857) [eyes + save] where: XS11, then finish the game | steps: - | pass: `900 order standard blood`, not the plain slide
-- [ ] `SP12` (qa.md:6945) where: Finish the game after SP7, SP8 and SP9 in turn | steps: Watch the slides | pass: Exactly one `900 order pits` slide, matching the choice, none if you never decided. With `Fixt Inquisition Hostile` set, no buyer and no Sell reply -- *Three runs or reloads; with Fixt Inquisition Hostile set, check the buyer is absent in the yard.*
+- [ ] `XS10` (qa.md:6886) [eyes + save] where: **The regression.** Finish the game without breaking it | steps: - | pass: No `900 order standard` slide, and Joan's and the golem's usual slides
+- [ ] `XS12` (qa.md:6888) [eyes + save] where: XS11, then finish the game | steps: - | pass: `900 order standard blood`, not the plain slide
+- [ ] `SP12` (qa.md:6976) where: Finish the game after SP7, SP8 and SP9 in turn | steps: Watch the slides | pass: Exactly one `900 order pits` slide, matching the choice, none if you never decided. With `Fixt Inquisition Hostile` set, no buyer and no Sell reply -- *Three runs or reloads; with Fixt Inquisition Hostile set, check the buyer is absent in the yard.*
 
-## Anywhere (623)
+## Anywhere (640)
 
 
 **Cervantes, Cortes as enemies**
@@ -3084,13 +3084,13 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **English soldiers**
 
-- [ ] `XS16` (qa.md:6860) [eyes + save] where: **Draught, undisturbed.** Hit a Royal Guardsman, English Captain, English Lieutenant and English Bowmaster to under 40% health, then stop damaging that man for three seconds | steps: - | pass: Each logs *"reaches for a healing draught"*, stands fidgeting and does not attack or move, then logs *"drinks a healing draught"* with visibly more health and the Divine Strength effect, and goes back to fighting. A bowman's fidget is sped up, not cut off
-- [ ] `XS17` (qa.md:6861) [eyes + save] where: **Draught, spilled.** Same four, but land any hit inside those three seconds | steps: - | pass: About 40% of hits log *"is struck and spills the draught"*: health does **not** rise, and he attacks again at once rather than finishing the fidget. The rest log *"takes the blow and keeps drinking"* and he still heals at the end unless a later hit spills it. Bring him under 40% again: he never reaches for another
-- [ ] `XS18` (qa.md:6862) [eyes + save] where: **Killing blow.** Take one from above 40% to dead in a single hit, and kill another mid-fidget | steps: - | pass: The first plays his death and stays down with no *"reaches for"* line; the second stays dead with no heal or effect afterwards
+- [ ] `XS16` (qa.md:6891) [eyes + save] where: **Draught, undisturbed.** Hit a Royal Guardsman, English Captain, English Lieutenant and English Bowmaster to under 40% health, then stop damaging that man for three seconds | steps: - | pass: Each logs *"reaches for a healing draught"*, stands fidgeting and does not attack or move, then logs *"drinks a healing draught"* with visibly more health and the Divine Strength effect, and goes back to fighting. A bowman's fidget is sped up, not cut off
+- [ ] `XS17` (qa.md:6892) [eyes + save] where: **Draught, spilled.** Same four, but land any hit inside those three seconds | steps: - | pass: About 40% of hits log *"is struck and spills the draught"*: health does **not** rise, and he attacks again at once rather than finishing the fidget. The rest log *"takes the blow and keeps drinking"* and he still heals at the end unless a later hit spills it. Bring him under 40% again: he never reaches for another
+- [ ] `XS18` (qa.md:6893) [eyes + save] where: **Killing blow.** Take one from above 40% to dead in a single hit, and kill another mid-fidget | steps: - | pass: The first plays his death and stays down with no *"reaches for"* line; the second stays dead with no heal or effect afterwards
 
 **English soldiers and War Golems**
 
-- [ ] `XS15` (qa.md:6859) [eyes + save] where: **Fresh spawns.** Fight a Royal Guardsman, a Sergeant, a Bowman and a War Golem down past half | steps: - | pass: Each ability prints a line in the log naming the enemy and what it did, once per enemy, and no English bark mentions a shield
+- [ ] `XS15` (qa.md:6890) [eyes + save] where: **Fresh spawns.** Fight a Royal Guardsman, a Sergeant, a Bowman and a War Golem down past half | steps: - | pass: Each ability prints a line in the log naming the enemy and what it did, once per enemy, and no English bark mentions a shield
 
 **Fernand**
 
@@ -3136,7 +3136,7 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **any map with English draught soldiers**
 
-- [ ] `HN2` (qa.md:6779) **NEW** where: Any act with the English draught soldiers | steps: Bring one under 40% health | pass: `<Reaches for a potion>` appears over him as he starts his fidget | new: True
+- [ ] `HN2` (qa.md:6810) **NEW** where: Any act with the English draught soldiers | steps: Bring one under 40% health | pass: `<Reaches for a potion>` appears over him as he starts his fidget | new: True
 
 **bonus level**
 
@@ -3165,13 +3165,13 @@ pass on a save from before their release, so they are listed at the end and are 
 
 **spirit companion: dragon warning, druid finale**
 
-- [ ] `LE6` (qa.md:6960) where: Demonic spirit, karma 800 or below. The dragon warning, and the druid finale | steps: Take any of the three exits | pass: *"Lead the way, O Dark One."* and **you get control back**: the node has to end the spirit's scene. Then repeat above 800: unchanged, and exactly **one** copy of each exit is offered
+- [ ] `LE6` (qa.md:6991) where: Demonic spirit, karma 800 or below. The dragon warning, and the druid finale | steps: Take any of the three exits | pass: *"Lead the way, O Dark One."* and **you get control back**: the node has to end the spirit's scene. Then repeat above 800: unchanged, and exactly **one** copy of each exit is offered
 
 **thieves, sewer thieves, assassins**
 
-- [ ] `SP1` (qa.md:6933) where: Any `Theif`, `Sewer Theif` or `Assasin`, melee | steps: Hit one until it drops a patch | pass: You **see** spikes on the ground. If you see nothing, the model or `Cur Sequence` is wrong
-- [ ] `SP2` (qa.md:6934) where: Same | steps: Stand on the patch | pass: A hit about a second later, with the Spike Hit effect, and the patch is gone
-- [ ] `SP3` (qa.md:6935) where: Same | steps: Step off before the tick | pass: No damage, and the patch stays armed
+- [ ] `SP1` (qa.md:6964) where: Any `Theif`, `Sewer Theif` or `Assasin`, melee | steps: Hit one until it drops a patch | pass: You **see** spikes on the ground. If you see nothing, the model or `Cur Sequence` is wrong
+- [ ] `SP2` (qa.md:6965) where: Same | steps: Stand on the patch | pass: A hit about a second later, with the Spike Hit effect, and the patch is gone
+- [ ] `SP3` (qa.md:6966) where: Same | steps: Step off before the tick | pass: No damage, and the patch stays armed
 
 **anywhere in the act**
 
@@ -3522,253 +3522,270 @@ pass on a save from before their release, so they are listed at the end and are 
 - [ ] `GW4` (qa.md:6190) where: Same, unaffiliated | steps: Do two goblin services without joining any order | pass: Chum, then Blooded, each with its bonuses; the log withdraws Chum's package as Blooded's lands -- *added after the 1.0 classification*
 - [ ] `GW5` (qa.md:6191) where: Goblin camp, a Champion | steps: Side with Butu's heir | pass: You become a Goblin Traitor (Fallen Champion if unaffiliated, title only if sworn). The goblin camp no longer greets you as a friend, and the Khan does not appear at Alamut -- *added after the 1.0 classification*
 - [ ] `GW7` (qa.md:6193) where: Ending | steps: GW6's character finishes the game | pass: The order's own epilogue slide plays, not the Horde's -- *added after the 1.0 classification*
-- [ ] `SS1` (qa.md:6202) **NEW** where: Temple District, then Gate District | steps: Be knighted by Lord Javier. Then pass the Dream Djinni's trial, either test, and accept Amir's invitation (*"Of course, I will accompany you."*) | pass: The Cathedral scene runs Javier's welcome to **Amir and the Knights of Saladin** (*"Amir, we are honored..."*), continues to Amir's lines and ends, and control returns. It does not stop after Javier's first line | new: True -- *added after the 1.0 classification*
-- [ ] `SS2` (qa.md:6203) **NEW** where: Same | steps: After SS1, check the journal and talk to Amir | pass: The Saladin route continues (Travel to Montserrat) | new: True -- *added after the 1.0 classification*
-- [ ] `SS3` (qa.md:6204) **NEW** where: Cathedral, Templar only | steps: A Templar who never did the Djinni's trial: take Javier's route to the Cathedral | pass: The Templar summit plays as before | new: True -- *added after the 1.0 classification*
-- [ ] `SS4` (qa.md:6205) **NEW** where: Cathedral, Saladin only | steps: A Saladin initiate with no other faction: accept Amir's invitation | pass: The Saladin summit plays as before (0.80.1's `SA` rows) | new: True -- *added after the 1.0 classification*
-- [ ] `AC1` (qa.md:6213) **NEW** where: Doomed Plateau, a map not yet entered | steps: Fight the Bonecaller in melee range | pass: It swings (two different swings over a few attacks). No **GRANNY MODEL** image at any point | new: True -- *added after the 1.0 classification*
-- [ ] `AC2` (qa.md:6214) **NEW** where: Same | steps: Let it hit you | pass: Its swings deal damage; the combat log shows its hits | new: True -- *added after the 1.0 classification*
-- [ ] `AC3` (qa.md:6215) **NEW** where: Same, Tough and Super tiers (higher party mojo) | steps: As AC1 | pass: As AC1 | new: True -- *added after the 1.0 classification*
-- [ ] `AC4` (qa.md:6216) **NEW** where: Nostradamus, the Hujark General | steps: Turn him hostile and stand next to him | pass: He plays a casting gesture when he attacks, never the **GRANNY MODEL** image. Note whether his blows deal damage (unknown before testing) | new: True -- *added after the 1.0 classification*
-- [ ] `CZ1` (qa.md:6224) **NEW** where: Main menu | steps: Open the credits, or finish the game | pass: After Interplay's team, a **Lionheart Fixt** section: *Restoration, Implementation and Design*, Eric Heitmuller (EricHype); then *Bug Reports and Playtesting* with ten names; then a thanks to Litmanen | new: True -- *added after the 1.0 classification*
-- [ ] `CZ2` (qa.md:6225) **NEW** where: Same | steps: Watch to the end | pass: The third-party logos (Bink, Pixomatic, Granny, zlib, Alienware) and the closing Lionheart logo and copyright still follow. Nothing of the original credits is missing | new: True -- *added after the 1.0 classification*
-- [ ] `CZ3` (qa.md:6226) **NEW** where: Same | steps: Read the headers | pass: Formatted like the original roles: header and role lines underlined, names centred | new: True -- *added after the 1.0 classification*
-- [ ] `PZ2` (qa.md:6238) **NEW** where: Same | steps: Let her cast, several times | pass: She plays a casting animation every time. **No "GRANNY MODEL" placeholder, no crash.** This is the row the fix exists for | new: True -- *added after the 1.0 classification*
-- [ ] `PZ3` (qa.md:6239) **NEW** where: Same | steps: Fight her to death, and let her be hit along the way | pass: Hit and death animations play. She does not freeze in a T-pose | new: True -- *added after the 1.0 classification*
-- [ ] `PZ4` (qa.md:6240) **NEW** where: **Regression**, Barcelona, any street with townswomen, after PZ1 in the same session | steps: Look at the townswomen | pass: They still wear their own clothes. The copy is named `Priestess` in its manifest's `Body` slot and its `Short Name`, so nothing should tie the two; if a townswoman shows the navy robe, report it | new: True -- *added after the 1.0 classification*
-- [ ] `IC1` (qa.md:6249) **NEW** where: Port District, the Morales murder solved | steps: Get Isabella to confess (Speech 40, *"against England"*), then reach `01 Outside Shrine` | pass: **She is not there.** No ambush at the entrance before Sir Roger Templeton | new: True -- *added after the 1.0 classification*
-- [ ] `IC2` (qa.md:6250) **NEW** where: Same character | steps: Tell the ghost of Morales, then reach the Shrine | pass: Still absent. The quest completing does not bring her back | new: True -- *added after the 1.0 classification*
-- [ ] `IC3` (qa.md:6251) **NEW** where: **Regression**, report her to the Duke instead | steps: Reach the Shrine | pass: Absent, as before | new: True -- *added after the 1.0 classification*
-- [ ] `IC4` (qa.md:6252) **NEW** where: **Regression**, keep her secret | steps: Reach the Shrine | pass: She is there and friendly (*"First you spared me in Barcelona..."*), and can join | new: True -- *added after the 1.0 classification*
-- [ ] `IC5` (qa.md:6253) **NEW** where: **Regression**, take her bribe, or never solve the murder | steps: Reach the Shrine | pass: She is there and hostile (*"I will settle the score with you"*), as before. Only the arrest routes changed | new: True -- *added after the 1.0 classification*
-- [ ] `EP1` (qa.md:6261) **NEW** where: The trapped ether plane, the Enchanter met | steps: Win the contest (*"Very well. I shall see if I can open the portal..."*) | pass: The crystal's sound plays as he calms. Click the `Teleporter Crystal`: it takes you out | new: True -- *added after the 1.0 classification*
-- [ ] `EP2` (qa.md:6262) **NEW** where: Same | steps: Barter with him instead (`45 Barter 3`) | pass: Same: the crystal works | new: True -- *added after the 1.0 classification*
-- [ ] `EP3` (qa.md:6263) **NEW** where: Same | steps: Make the Fixt pact for Relican | pass: Same: the crystal works, and the pact still holds (he is not hostile) | new: True -- *added after the 1.0 classification*
-- [ ] `EP4` (qa.md:6264) **NEW** where: **Regression**, same | steps: Kill him instead | pass: The crystal works, as before. No doubled sound or second teleporter | new: True -- *added after the 1.0 classification*
-- [ ] `EP5` (qa.md:6265) **NEW** where: **Regression**, Marco's route | steps: Take Marco's portal out before meeting the Enchanter | pass: Works as before | new: True -- *added after the 1.0 classification*
-- [ ] `RV1` (qa.md:6273) **NEW** where: La Calle Perdida, a Dark Wielder who has started Relican's tasks | steps: Ask *"What of Leonardo...?"*, then *"I will go to him."* | pass: The quest starts. Talk to Relican again: **the Leonardo question is gone** | new: True -- *added after the 1.0 classification*
-- [ ] `RV2` (qa.md:6274) **NEW** where: Same, after turning Leonardo (he gives his word) | steps: Report *"Leonardo will not stand against you..."* | pass: The quest completes and pays XP, once. Talk again: the report reply is gone, and the Leonardo question has not come back | new: True -- *added after the 1.0 classification*
-- [ ] `RV3` (qa.md:6275) **NEW** where: Same, Leonardo refuses instead | steps: Report *"Leonardo refused you..."* | pass: The quest completes, once. Talk again: neither reply is offered | new: True -- *added after the 1.0 classification*
-- [ ] `RV4` (qa.md:6276) **NEW** where: **Regression**, never asked about Leonardo | steps: Talk to Relican | pass: The Leonardo question is offered | new: True -- *added after the 1.0 classification*
-- [ ] `RM2` (qa.md:6286) **NEW** where: Same | steps: Pick *"Tell me more about the tasks."* | pass: The tasks recap still works | new: True -- *added after the 1.0 classification*
-- [ ] `RM3` (qa.md:6287) **NEW** where: Same, with Leonardo turned or refused but not yet reported | steps: Click Relican | pass: The Leonardo report is offered and pays once (`RV2`/`RV3`) | new: True -- *added after the 1.0 classification*
-- [ ] `RM4` (qa.md:6288) **NEW** where: Same | steps: Look for *"Let us talk about the events that transpired in the Church."* | pass: **Not offered**, once its quest is complete. If it appears and pays XP again, report it | new: True -- *added after the 1.0 classification*
-- [ ] `RO1` (qa.md:6298) **NEW** where: A **new game**, the ring used in La Calle Perdida | steps: Travel to Slave Pit Exterior | pass: **No Relican there.** He is only in La Calle Perdida | new: True -- *added after the 1.0 classification*
-- [ ] `RO2` (qa.md:6299) **NEW** where: A save **already past** the ring, Relican still at the Slave Pit | steps: Talk to Relican in La Calle Perdida, end with *"Goodbye."*, then travel to Slave Pit Exterior | pass: He is gone from the Slave Pit | new: True -- *added after the 1.0 classification*
-- [ ] `RO3` (qa.md:6300) **NEW** where: Same as RO2, a fresh copy | steps: Ask *"Tell me more about the tasks."* instead, then go | pass: Gone as well | new: True -- *added after the 1.0 classification*
-- [ ] `RO4` (qa.md:6301) **NEW** where: **Regression**, double-cross Relican (refuse the ring) | steps: Return to Slave Pit Exterior | pass: He is there and attacks (*"You have betrayed the wrong person!"*), as before | new: True -- *added after the 1.0 classification*
-- [ ] `RO5` (qa.md:6302) **NEW** where: **Regression**, after RO1 or RO2 | steps: Carry on the Dark Wielder tasks in La Calle Perdida | pass: Relican there still talks and gives tasks | new: True -- *added after the 1.0 classification*
-- [ ] `AX2` (qa.md:6311) **NEW** where: Same | steps: Kill a Tough and a Super | pass: 152 each, the same as the base tier, as vanilla families do | new: True -- *added after the 1.0 classification*
-- [ ] `AX3` (qa.md:6312) **NEW** where: **Regression**, the Wounded Assassin in the hall | steps: Kill him instead of sparing him | pass: **No XP**, deliberately | new: True -- *added after the 1.0 classification*
-- [ ] `AX4` (qa.md:6313) **NEW** where: **Regression**, the snakebreed in the same fights | steps: Kill some | pass: 111 or 152, unchanged | new: True -- *added after the 1.0 classification*
-- [ ] `HA1` (qa.md:6321) **NEW** where: Act 5, sided with the Hujark | steps: Hover over and click a Hujark warrior | pass: A **talk** cursor, and he shouts a battle cry (*"Death to the Druid invaders!"*, *"Nostradamus, we shall save you!"*...). He is not attacked | new: True -- *added after the 1.0 classification*
-- [ ] `HA2` (qa.md:6322) **NEW** where: Same, a fight with the English nearby | steps: Cast an area spell (Fire Circle, Ice Ring) over Hujark and English together | pass: **The row that decides this release.** The English are hit; the Hujark are not. If the Hujark still take damage, report it: area spells are not filtering on `Enemy` | new: True -- *added after the 1.0 classification*
-- [ ] `HA3` (qa.md:6323) **NEW** where: Same, with companions | steps: Watch a fight | pass: Your companions fight the English and leave the Hujark alone | new: True -- *added after the 1.0 classification*
-- [ ] `HA4` (qa.md:6324) **NEW** where: Same | steps: Force attack (K) one Hujark | pass: He fights back, and passage is revoked: on later maps the Hujark spawn hostile, and the ones already standing can be clicked to attack again | new: True -- *added after the 1.0 classification*
-- [ ] `HA5` (qa.md:6325) **NEW** where: Huko's safe conduct (bought), not allied | steps: Click a Hujark | pass: The same talk cursor and battle cry: safe conduct stands them down too | new: True -- *added after the 1.0 classification*
-- [ ] `HA6` (qa.md:6326) **NEW** where: **Regression**, no deal with the Hujark | steps: Click one | pass: He fights, as before | new: True -- *added after the 1.0 classification*
-- [ ] `HA7` (qa.md:6327) **NEW** where: Allied, a map with Hujark acolytes | steps: Watch the log | pass: The ward message may still show. It only matters while they are hostile | new: True -- *added after the 1.0 classification*
-- [ ] `SX2` (qa.md:6336) **NEW** where: Same | steps: Force attack (K) one | pass: **Every snakebreed on that map turns hostile** and comes for you, not only the one hit. Before this, K did nothing | new: True -- *added after the 1.0 classification*
-- [ ] `SX3` (qa.md:6337) **NEW** where: Same, after SX2 | steps: Click any of them | pass: An ordinary attack, as with any enemy | new: True -- *added after the 1.0 classification*
-- [ ] `SX4` (qa.md:6338) **NEW** where: Druid Council 2, Sahar's word given | steps: Force attack one | pass: `truce broken` as before, **with** its karma penalty: you broke your word | new: True -- *added after the 1.0 classification*
-- [ ] `SX5` (qa.md:6339) **NEW** where: Druid Council 2 or 1, calmed **without** a word given | steps: Force attack one | pass: All turn, and **no** karma change (`KM5`) | new: True -- *added after the 1.0 classification*
-- [ ] `SX7` (qa.md:6341) **NEW** where: **Regression**, `4 Undercroft` | steps: Play through the cellar | pass: Unchanged. One field was respelled to vanilla's `Categories to add`, and the creature it touches now really gains its category, if it did not before | new: True -- *added after the 1.0 classification*
-- [ ] `HT1` (qa.md:6349) **NEW** where: Act 5, sided with the Hujark, `02 Clan of the Hand A` | steps: Walk the map | pass: Some Hujark camps are fighting English soldiers; others have **no English at all** and the Hujark simply stand guard. Roughly every other camp | new: True -- *added after the 1.0 classification*
-- [ ] `HT2` (qa.md:6350) **NEW** where: Same, the caves (`07`-`09`) | steps: Listen | pass: Noticeably quieter than before. **Judge it**: if it is still a wall of screaming, say so | new: True -- *added after the 1.0 classification*
-- [ ] `HT3` (qa.md:6351) **NEW** where: Same | steps: Fight through to the seer | pass: The act still plays as a war: there are English to fight on every map but the seer's room | new: True -- *added after the 1.0 classification*
-- [ ] `HT4` (qa.md:6352) **NEW** where: **Regression**, `05 Nostrodomus Demesne` | steps: Reach the seer on the Hujark route | pass: His scene plays as before; the room's English twin is untouched | new: True -- *added after the 1.0 classification*
-- [ ] `HT5` (qa.md:6353) **NEW** where: **Regression**, side with the English, or with nobody | steps: Play act 5 | pass: Unchanged: the twins never spawn on those routes | new: True -- *added after the 1.0 classification*
-- [ ] `GZ1` (qa.md:6362) **NEW** where: A **new** character | steps: Serve the goblins through all three ranks | pass: Chum, then Blooded, then Champion, each once, as before | new: True -- *added after the 1.0 classification*
-- [ ] `GZ2` (qa.md:6363) **NEW** where: Export GZ1's character as a **Chum** (or higher) and start a new game with it | steps: Note the perk sheet and stats, then complete a goblin service | pass: **No new rank, no second Goblin Chum perk**, and the stats do not rise. The title and bonuses carried in are kept | new: True -- *added after the 1.0 classification*
-- [ ] `GZ3` (qa.md:6364) **NEW** where: Same imported character | steps: Join Butus's line (the traitor route) | pass: No Goblin Traitor perk is granted in this game | new: True -- *added after the 1.0 classification*
-- [ ] `GZ4` (qa.md:6365) **NEW** where: **Regression**, a new character on the traitor route | steps: Join Butus's line at each rank | pass: The traitor perk and faction as before | new: True -- *added after the 1.0 classification*
-- [ ] `GZ5` (qa.md:6366) **NEW** where: **The export facts.** Export a Chum and re-import, before any service | steps: Read the character sheet | pass: Note whether poison resistance and carry weight came across, and whether a goblin faction is shown. Record it in `engine-notes.md`: it settles what export keeps | new: True -- *added after the 1.0 classification*
-- [ ] `PI1` (qa.md:6374) **NEW** where: Goblin Warrens, the woodcutter dead, his liver carried, the Goblin Girl met | steps: Talk to her, give her the liver | pass: After *"Don't leave town, I'll be right back!"* the conversation closes and the screen fades to black for about two seconds. It fades back up and she opens *"Here, I baked you a pie..."* on her own, with no click | new: True -- *added after the 1.0 classification*
-- [ ] `PI2` (qa.md:6375) **NEW** where: Same | steps: Take the pie, by either the plain reply or the PE/Outwit one | pass: The pie is in your inventory, once | new: True -- *added after the 1.0 classification*
-- [ ] `PI3` (qa.md:6376) **NEW** where: Same, after PI2, turning down her follow offer | steps: Click her again, and once more after leaving the map and coming back | pass: Both times *"You came back! Did you eat the pie yet?..."*, never *"How many innocents did you kill?..."* | new: True -- *added after the 1.0 classification*
-- [ ] `PI4` (qa.md:6377) **NEW** where: Same | steps: Pick *"Right behind me, then."* in that greeting | pass: She joins the party | new: True -- *added after the 1.0 classification*
-- [ ] `PI6` (qa.md:6379) **NEW** where: **Regression**, the woodcutter dead and no liver given | steps: Click her | pass: *"How many innocents..."* with the liver reply, the pulverized excuse and the rejection, as before. No *"I have your pie already"* | new: True -- *added after the 1.0 classification*
-- [ ] `PI7` (qa.md:6380) **NEW** where: **Regression**, after PI3 | steps: Provoke the goblins into a fight | pass: She can still be attacked with force attack | new: True -- *added after the 1.0 classification*
-- [ ] `MK1` (qa.md:6388) **NEW** where: House of Ilk, Machiavelli's quest accepted, the ambush sprung | steps: Kill the leader (the tough one nearest the door) **first**, then the other three | pass: When the last one falls, Machiavelli's click opens *"Thank you for saving me, you have certainly earned your payment."* (`200`), not *"Help me! Stop these assassins!"*, and the reward and quest completion follow | new: True -- *added after the 1.0 classification*
-- [ ] `MK2` (qa.md:6389) **NEW** where: Same, a fresh try | steps: Kill the leader **last** | pass: The same: `200`, reward, quest complete | new: True -- *added after the 1.0 classification*
-- [ ] `MK3` (qa.md:6390) **NEW** where: Same | steps: Click Machiavelli while one snakebreed still lives | pass: *"Help me! Stop these assassins!"* as before. The quest does not complete early | new: True -- *added after the 1.0 classification*
-- [ ] `MK4` (qa.md:6391) **NEW** where: **Regression** | steps: Let Machiavelli die in the fight | pass: The quest fails as before, and no reward is paid | new: True -- *added after the 1.0 classification*
-- [ ] `SY1` (qa.md:6399) **NEW** where: Inquisition Pit3, Renaldo in the stocks, his brother's quest active | steps: Talk, leave at once, talk again | pass: The return line *"I beg you...Help me leave this place!"* offers the quest reply **and** Eastern Knights, Who are you, Why are you locked up, the ribs, and Goodbye | new: True -- *added after the 1.0 classification*
-- [ ] `SY2` (qa.md:6400) **NEW** where: Same, holding the potion | steps: Return conversation | pass: *"Your brother sent me to free you."* is there and still frees him | new: True -- *added after the 1.0 classification*
-- [ ] `SY3` (qa.md:6401) **NEW** where: Same, before meeting the brother | steps: Return conversation | pass: *"I'm still looking for your brother..."* is there, as before | new: True -- *added after the 1.0 classification*
-- [ ] `SY4` (qa.md:6402) **NEW** where: **Regression** | steps: Press Escape in the return conversation | pass: The same reply it picked before this change | new: True -- *added after the 1.0 classification*
-- [ ] `DC1` (qa.md:6410) **NEW** where: Inquisition Pit3, Faust freed from his cell and sent to the Daeva of Pain | steps: Watch the scene | pass: The view settles above where it used to. The Daeva's *"What a fool! Power corrupts..."* is readable from its **first line**, top edge on screen | new: True -- *added after the 1.0 classification*
-- [ ] `DC2` (qa.md:6411) **NEW** where: Same scene | steps: Watch Faust's line before it | pass: *"I have done as you requested..."* and Faust himself are still on screen | new: True -- *added after the 1.0 classification*
-- [ ] `DC3` (qa.md:6412) **NEW** where: **Regression** | steps: Let the scene finish | pass: The Daeva teleports away and the camera returns to the party as before | new: True -- *added after the 1.0 classification*
-- [ ] `RK1` (qa.md:6413) **NEW** where: Goblin Warrens, eyes quest done with the Barter reply | steps: Talk to Rakeb again, any later visit | pass: *"We hope the items have served you well..."* now offers *"I would like to buy some items."*, and it opens the shop | new: True -- *added after the 1.0 classification*
-- [ ] `RK2` (qa.md:6414) **NEW** where: The first time the shop opens after install | steps: Look at the stock | pass: About a second's pause, then **magic** stock: potions, scrolls, rings or amulets or wands, a few weapons and armour. No plain Battle Axe | new: True -- *added after the 1.0 classification*
-- [ ] `RK3` (qa.md:6415) **NEW** where: Close and reopen at once | steps: Compare | pass: The same items, not a fresh roll | new: True -- *added after the 1.0 classification*
-- [ ] `RK4` (qa.md:6416) **NEW** where: Eyes turned in **without** Barter (125 gold) | steps: Talk to him again | pass: No buy reply, as vanilla: the shop is the Barter reward | new: True -- *added after the 1.0 classification*
-- [ ] `ER1` (qa.md:6426) **NEW** where: Finish the game with Ernesto alive, having travelled with him | steps: Watch the end slides | pass: After Fang's slot, Ernesto stands on the stage and *"Ernesto went home to Barcelona, as he had always meant to..."* plays | new: True -- *added after the 1.0 classification*
-- [ ] `ER2` (qa.md:6427) **NEW** where: Ernesto died in your party | steps: Finish the game | pass: *"Ernesto died in a bout he had never been told was real..."* instead | new: True -- *added after the 1.0 classification*
-- [ ] `ER3` (qa.md:6428) **NEW** where: Never freed him, or freed him and sent him home | steps: Finish the game | pass: No Ernesto slide, and the series runs straight on to the next one | new: True -- *added after the 1.0 classification*
-- [ ] `ER5` (qa.md:6430) **NEW** where: **Regression** | steps: Finish with Fang and the Golem | pass: Their slides and figures are unchanged, and the series reaches the credits | new: True -- *added after the 1.0 classification*
-- [ ] `FK9` (qa.md:6438) **NEW** where: Felipe, after striking or handing over his daughter, Speech 40 or more | steps: *"I searched the forest and found nothing. I am sorry. <Lie>"* | pass: *"<His shoulders drop.> Then she is gone. Thank you for looking. Few strangers would have."* Next visit he greets you as a friend, and the Darkwood is still on offer | new: True -- *added after the 1.0 classification*
-- [ ] `FK10` (qa.md:6439) **NEW** where: The same, Speech under 40 | steps: The same lie | pass: *"<He looks at you a long time.> You are lying. It is all over you..."*; next visit is the angry greeting, as FK1 | new: True -- *added after the 1.0 classification*
-- [ ] `FK11` (qa.md:6440) **NEW** where: **Regression**: the confession | steps: *"I am the reason she did not come home."* | pass: Still `31 she never came home`, as FK1 | new: True -- *added after the 1.0 classification*
-- [ ] `FK12` (qa.md:6441) **NEW** where: Woodcutter Forest **not entered yet**, level 8-10 with companions, on Rakeb's eyes quest | steps: Fight Felipe | pass: A real fight: about 150 HP and armor 140, so it takes several rounds, and his axe lands for 5-12. He can still be beaten without dying | new: True -- *added after the 1.0 classification*
-- [ ] `FK13` (qa.md:6442) **NEW** where: The same, a level 5 character alone | steps: Fight Felipe | pass: Hard but survivable with potions; if it is not, his numbers are too high | new: True -- *added after the 1.0 classification*
-- [ ] `FK14` (qa.md:6443) **NEW** where: FK9-FK11 | steps: Read his answers | pass: Neither node 31 nor 34 mentions the cave; both end with *"Begone..."* | new: True -- *added after the 1.0 classification*
-- [ ] `GG4` (qa.md:6444) **NEW** where: Mongol Camp, welcomed, Darsh quest active | steps: At the gate greeting, *"I have come to find Inquisitor Darsh."* | pass: *"<The guard shrugs.> The priest? He sits in our pens. The shaman Rakeb set his price..."*. The camp does **not** turn hostile, and later crossings are silent | new: True -- *added after the 1.0 classification*
-- [ ] `GG5` (qa.md:6445) **NEW** where: **Regression**: a new character, at the first challenge | steps: *"I have come to find Inquisitor Darsh."* from the challenge | pass: Still *"you may join him...In our slave pens!"* and the fight, as vanilla | new: True -- *added after the 1.0 classification*
-- [ ] `FK1` (qa.md:6455) **NEW** where: Felipe, after striking or handing over his daughter at Scar Ravine | steps: *"I am the reason she did not come home."*, leave, talk again | pass: *"What do you want? What do you think I have to say to *you*?"*, and the only replies are *"<Leave him alone.>"* and, if Rakeb's quest is on, the eyes-and-liver one. No *"Hello again, friend"* | new: True -- *added after the 1.0 classification*
-- [ ] `FK2` (qa.md:6456) **NEW** where: The same, with the lie | steps: *"I searched the forest and found nothing."*, leave, talk again | pass: As FK1 | new: True -- *added after the 1.0 classification*
-- [ ] `FK3` (qa.md:6457) **NEW** where: FK1 | steps: *"<Leave him alone.>"* | pass: *"<He turns his back on you and goes on with his work.>"*, and the conversation ends | new: True -- *added after the 1.0 classification*
-- [ ] `FK4` (qa.md:6458) **NEW** where: **Regression**: Felipe, daughter never harmed | steps: Be rude (*"Nothing. I'll be going now."*), talk again | pass: The angry greeting still offers *"I didn't mean to offend you, who are you?"* and *"What's wrong?"*, and both still work | new: True -- *added after the 1.0 classification*
-- [ ] `FK5` (qa.md:6459) **NEW** where: Woodcutter Forest not yet entered, on Rakeb's eyes quest | steps: Let a companion land the killing blow on Felipe | pass: The log shows the eyes and the liver added to **your** inventory, and Darkwood drops as before | new: True -- *added after the 1.0 classification*
-- [ ] `FK6` (qa.md:6460) **NEW** where: A save where a companion already took them (the 0.99.25 report save) | steps: Talk to Rakeb | pass: *"One of my companions carries his eyes and liver."* is offered; it leads to *"We sensed that you have that which we desire."*, the reward, and the quest completes in the log | new: True -- *added after the 1.0 classification*
-- [ ] `FK7` (qa.md:6461) **NEW** where: Holding the eyes and liver yourself, devil fish done | steps: Talk to Rakeb | pass: *"I have the woodsman's eyes and liver."* is the first reply, not three nodes into the job pitch. The companion reply is **not** offered | new: True -- *added after the 1.0 classification*
-- [ ] `FK8` (qa.md:6462) **NEW** where: Goblin Warrens not yet entered, devil fish done, holding the eyes | steps: Talk to Rakeb | pass: He opens with his return greeting and the turn-in, not *"I knew you would return. I have a job for you."* | new: True -- *added after the 1.0 classification*
-- [ ] `KG1` (qa.md:6469) **NEW** where: Titan Village | steps: Let a companion land the killing blow on a Titan | pass: The log shows his stone heart added to **your** inventory | new: True -- *added after the 1.0 classification*
-- [ ] `KG2` (qa.md:6470) **NEW** where: Troll Pit, with the peace broken | steps: Let a companion kill the troll chief | pass: The Lava Troll Hide is in your inventory, and Quinn takes it | new: True -- *added after the 1.0 classification*
-- [ ] `KG3` (qa.md:6471) **NEW** where: Mongol Camp, on *Slay the Goblins for the Savage Heart* | steps: Let companions take most of the kills | pass: Their kills count: the quest advances after 12 goblins whoever killed them, and Goblin Slayer lands on you | new: True -- *added after the 1.0 classification*
-- [ ] `KG4` (qa.md:6472) **NEW** where: Goblin Warrens, on the same quest | steps: As KG3 | pass: As KG3 | new: True -- *added after the 1.0 classification*
-- [ ] `KG5` (qa.md:6473) **NEW** where: A merchant, in a map not entered (e.g. Weng Choi's shop) | steps: Let a companion kill him | pass: **You** get Merchant Slayer | new: True -- *added after the 1.0 classification*
-- [ ] `KG6` (qa.md:6474) **NEW** where: Woodcutter Forest | steps: Let a companion kill Felipe | pass: -50 karma lands on you | new: True -- *added after the 1.0 classification*
-- [ ] `KG7` (qa.md:6475) **NEW** where: **Regression**: any of the above | steps: Land the killing blow yourself | pass: Exactly as before: one item, one title, one count | new: True -- *added after the 1.0 classification*
-- [ ] `EC1` (qa.md:6481) **NEW** where: Free Ernesto on the Lake and take him along | steps: Level up | pass: A balloon over him: *"<Ernesto salutes the sky with his blade.> Another bout, another lesson! Spain will hear of this! <+9 health, +8 armor, +3 fighting skill>"*, and his health and armor go up | new: True -- *added after the 1.0 classification*
-- [ ] `EC2` (qa.md:6482) **NEW** where: EC1 | steps: Level up again | pass: One balloon and one set of gains per level, not two | new: True -- *added after the 1.0 classification*
-- [ ] `EC4` (qa.md:6484) **NEW** where: Ernesto in a fight | steps: Let him take damage | pass: His name reads *Ernesto (Injured)*, then *(Badly Injured)*, then *(Near Death)*, and goes back to *Ernesto* as he heals | new: True -- *added after the 1.0 classification*
-- [ ] `EC5` (qa.md:6485) **NEW** where: **Regression** | steps: Level up with Fang or Cervantes along | pass: Their balloons and gains are unchanged | new: True -- *added after the 1.0 classification*
-- [ ] `GG1` (qa.md:6491) **NEW** where: Mongol Camp, already let through the gate | steps: Walk to the Warrens and back | pass: *"Greetings goblin friend. What do you want?"* at most once; choose *"Nothing today."* and every later crossing, both ways, is silent | new: True -- *added after the 1.0 classification*
-- [ ] `GG2` (qa.md:6492) **NEW** where: The same, Speech 40 | steps: Choose *"I have come to seek an audience with your great leader."* | pass: The Khan line plays, and later crossings are silent | new: True -- *added after the 1.0 classification*
-- [ ] `GG3` (qa.md:6493) **NEW** where: **Regression**: a new character at the gate | steps: Walk up to the camp | pass: The vanilla challenge (*"Conversation Start Gob 1"*) still plays the first time, and its replies still let you through or start the fight | new: True -- *added after the 1.0 classification*
-- [ ] `GX1` (qa.md:6502) **NEW** where: Main sewer, before taking any job from Juanita | steps: Enter from the Port District, then from the Temple District | pass: No runner at either entrance | new: True -- *added after the 1.0 classification*
-- [ ] `GX2` (qa.md:6503) **NEW** where: After Juanita gives you *Help the Thieves Destroy the Beggars Guild* | steps: Enter from the Port District | pass: A **Guild Runner** stands just beside where you arrive, on open floor, not in a wall. He talks, he does not fight | new: True -- *added after the 1.0 classification*
-- [ ] `GX3` (qa.md:6504) **NEW** where: The same, from the Temple District | steps: - | pass: A second runner beside that arrival point | new: True -- *added after the 1.0 classification*
-- [ ] `GX4` (qa.md:6505) **NEW** where: Talk to either, with 5 gold or more | steps: *"Take me to Juanita."* | pass: 5 gold gone, and you arrive in the Thieves' Congregation within sight of Juanita, with your companions. Nothing in the den reacts to how you arrived | new: True -- *added after the 1.0 classification*
-- [ ] `GX5` (qa.md:6506) **NEW** where: With under 5 gold | steps: Talk to him | pass: Only *"I do not have five gold."* (*"Then you walk, like everyone else."*) and *"Not now."* | new: True -- *added after the 1.0 classification*
-- [ ] `GX6` (qa.md:6507) **NEW** where: Refuse Juanita (*"I'll not kill for you again"*), then enter again | steps: - | pass: The runners are gone | new: True -- *added after the 1.0 classification*
-- [ ] `GX7` (qa.md:6508) **NEW** where: **Regression** | steps: Enter from the Port District | pass: It still autosaves on arrival. From the Temple District, the entrance thief and beggar battle still starts as before | new: True -- *added after the 1.0 classification*
-- [ ] `TT1` (qa.md:6517) **NEW** where: Sewers, the entrance troll | steps: Ask about the lost boy | pass: One short answer in the drones' grammar: *"Small one. Yes. Is in the deep. Not my rock to give. You talk to chief..."* It still says where the chief is and that his people will not touch you | new: True -- *added after the 1.0 classification*
-- [ ] `TT2` (qa.md:6518) **NEW** where: The Troll Pit, the chief | steps: Walk every branch: the boy, the ore, the field, Enrique, the bell | pass: Every line short, plain, and his. Every fact still there: the 200 price, iron in daylight from the same man, Enrique's name, the rite. No line runs past two or three sentences | new: True -- *added after the 1.0 classification*
-- [ ] `TT3` (qa.md:6519) **NEW** where: The old chief's field | steps: Look, count, and the three looks | pass: Short narration of what you see. *"Thirteen."* and the wererats-and-thieves inference still there | new: True -- *added after the 1.0 classification*
-- [ ] `TT4` (qa.md:6520) **NEW** where: **The reported bug.** The ore chest, peace held, not paid, first visit to the pit | steps: Open it | pass: It **does not open**. The chief says *"Not yours. You pay first."* over his head, and stays where he is. Nobody turns hostile | new: True -- *added after the 1.0 classification*
-- [ ] `TT5` (qa.md:6521) **NEW** where: The same | steps: Open it again | pass: The chief, still standing where he was, speaks: *"That is ours. I told you."* One reply, a fight icon. Then the trolls attack. He never vanishes and no other troll appears in his place | new: True -- *added after the 1.0 classification*
-- [ ] `TT6` (qa.md:6522) **NEW** where: After paying (`102 word carried`) | steps: Open the chest | pass: It opens, as before. No warning | new: True -- *added after the 1.0 classification*
-- [ ] `TT7` (qa.md:6523) **NEW** where: **Regression.** Fought in, no peace | steps: Open the chest | pass: A plain chest, as before | new: True -- *added after the 1.0 classification*
-- [ ] `TT8` (qa.md:6524) **NEW** where: **Regression.** Peace held, walk onto the old chief's field after desecrating it | steps: - | pass: The desecration scene still plays there, in the new short text | new: True -- *added after the 1.0 classification*
-- [ ] `TT9` (qa.md:6525) **NEW** where: Sewers entrance troll, the wererats finished by **any** of the three routes (cured, beggar master killed, guild destroyed with the thieves) | steps: *"The wererats are finished. The beggars' guild is done."* | pass: He makes the connection himself (*"Wererats gone? They take Trolls. In the dark."*), sends you to the chief, and the peace holds. **No hide.** The reply now shows without Quinn's errand too | new: True -- *added after the 1.0 classification*
-- [ ] `TT10` (qa.md:6526) **NEW** where: The chief, Quinn's hide errand open, wererats finished, Enrique **not** spoken to | steps: *"...I am asking you for one."* | pass: `134 the hide owed`: he treats it as a heavy thing, then gives one Lava Troll Hide. Only one hide reply shows at a time; with Speak for the Trolls done it is the old `133` | new: True -- *added after the 1.0 classification*
-- [ ] `TT11` (qa.md:6527) **NEW** where: The chief, Tomas still held, **no** Slayer of Innocents | steps: *"Keep him. Nobody up there will miss one beggar boy..."* | pass: `135`: contempt, then **150 gold**, karma **-75**. Afterwards the chief's *"I am looking for a human child"* reply is gone | new: True -- *added after the 1.0 classification*
-- [ ] `TT12` (qa.md:6528) **NEW** where: After TT11, Marisol | steps: Talk to her | pass: A new answer, *"He is dead. The trolls had him."*: she runs, and **Find the Lost Boy Tomas fails**. *"Yes, I found him"* does not show | new: True -- *added after the 1.0 classification*
-- [ ] `TT13` (qa.md:6529) **NEW** where: After TT11, the smith | steps: His ore runner talk | pass: *"Send Tomas"* does not appear: it needs the quest found or done | new: True -- *added after the 1.0 classification*
-- [ ] `TT14` (qa.md:6530) **NEW** where: **With Slayer of Innocents** (the title, from harming a child) | steps: The boy, Speech 45+ | pass: The plea gets `137`: *"You say child. You. The rock tells us of your misdeeds."* and the price, never `98`. Naming the price still works | new: True -- *added after the 1.0 classification*
-- [ ] `TT15` (qa.md:6531) **NEW** where: The same | steps: The silence deal | pass: `136`: *"The rock tells us of your misdeeds. I wondered if you would ask."* Same coin and karma as TT11 | new: True -- *added after the 1.0 classification*
-- [ ] `TT16` (qa.md:6532) **NEW** where: **Negative.** Without the title | steps: The boy | pass: The plea and the deal behave as TT11 and the original `98`; neither `136` nor `137` can appear | new: True -- *added after the 1.0 classification*
-- [ ] `TT17` (qa.md:6533) **NEW** where: **The double-cross**, a Troll Pit not yet entered | steps: TT11, then search out and open Tomas's chamber (`secret door1`) | pass: The rescue plays exactly as before: the camera, *"Finally!"*, he walks out. As control returns, the chief says *"Coin, and the small one. Both."* and every troll attacks. The 150 gold stays, and so does the -75 karma | new: True -- *added after the 1.0 classification*
-- [ ] `TT18` (qa.md:6534) **NEW** where: After TT17, Marisol | steps: Talk to her | pass: *"Yes, I found him down there."* and the quest completes. *"He is dead"* is **not** offered | new: True -- *added after the 1.0 classification*
-- [ ] `TT19` (qa.md:6535) **NEW** where: **Negative.** Pay the 200 or talk him down, then open the chamber | steps: - | pass: The rescue, and no troll reaction. Only a sold silence makes freeing him theft | new: True -- *added after the 1.0 classification*
-- [ ] `WL1` (qa.md:6544) **NEW** where: **The reported bug.** Lake, Plains or Barcelona Coast, first visit | steps: Walk in and wait a minute, far from any goblins | pass: **No** "Their war leader is dead" line. Before, a band out of sight had no leader yet and the timer called him dead | new: True -- *added after the 1.0 classification*
-- [ ] `WL2` (qa.md:6545) **NEW** where: The same map | steps: Find a band with a Goblin War Leader and kill him | pass: The line appears **once, when he dies**. His band **breaks off at once**: they stop attacking and your companions stop chasing them. About **6 seconds** later they come back at you, moving and swinging slower | new: True -- *added after the 1.0 classification*
-- [ ] `WL3` (qa.md:6546) **NEW** where: Woodcutter Forest, first visit | steps: WL2 there | pass: The same. This map's leader death also fires vanilla's `monster counter` relay, which stays first in his death script | new: True -- *added after the 1.0 classification*
-- [ ] `WL4` (qa.md:6547) **NEW** where: **Regression.** Any WL2 leader | steps: Kill him | pass: XP and drops as before. They live in his own death effect, which the generator does not replace | new: True -- *added after the 1.0 classification*
-- [ ] `WL5` (qa.md:6548) **NEW** where: A band whose leader is still alive | steps: Kill some of the others first | pass: No line, no slowdown. Only his death triggers it | new: True -- *added after the 1.0 classification*
-- [ ] `WL6` (qa.md:6549) **NEW** where: **The Khan's Champion**, any WL map | steps: Kill a war leader anyway (force attack) | pass: The line and the slowdown, but the band **stays** standing aside after 6 seconds. The rally skips the Champion, so it never undoes the stand-aside | new: True -- *added after the 1.0 classification*
-- [ ] `WL7` (qa.md:6550) **NEW** where: After WL2, save | steps: `savecheck dump`, find a surviving goblin of that band | pass: `Derived Character Attributes/Speed/Base Animation Speed Multiplier=-0.25` in its permanent modifiers. The modifier names the band, which the exe resolves to every goblin of it (`0x41f150`) | new: True -- *added after the 1.0 classification*
-- [ ] `KX1` (qa.md:6551) **NEW** where: **Khan slain**, then a WL map not yet entered | steps: Walk in, wait, then walk to the **farthest** band | pass: *"Without their Khan, the goblins here fight with less heart."* on arrival, and that far band moves and swings slower when you reach it. Before, only goblins spawned in the first three seconds were slowed | new: True -- *added after the 1.0 classification*
-- [ ] `KX2` (qa.md:6552) **NEW** where: After KX1, save | steps: `savecheck dump`, find a goblin from that far band | pass: `Base Animation Speed Multiplier=-0.2` in its permanent modifiers | new: True -- *added after the 1.0 classification*
-- [ ] `KX3` (qa.md:6553) **NEW** where: **The Khan's Champion**, a WL map not yet entered | steps: Walk to the farthest band | pass: They stand aside as you arrive, like the near ones. Before, a band out of range at arrival fought you | new: True -- *added after the 1.0 classification*
-- [ ] `KX4` (qa.md:6554) **NEW** where: **Neither**: the Khan alive, not his Champion | steps: Any WL map | pass: No line on arrival, goblins at normal speed and hostile | new: True -- *added after the 1.0 classification*
-- [ ] `KX5` (qa.md:6555) **NEW** where: **Regression**, Woodcutter Forest | steps: Kill a band goblin, then its war leader | pass: Vanilla's `monster counter` death script still runs on both (it now shares the generator's `After Action` with the Khan check), and WL2 still happens | new: True -- *added after the 1.0 classification*
-- [ ] `DX1` (qa.md:6556) **NEW** where: Any goblin fight | steps: Kill several goblins, watching each as it falls | pass: When one shouts on the killing blow it is a **death line**: *"Not... the pot..."*, *"Tell Grum he gets my share."* and the like. Never a fighting line like *"Khan! Khan, it is winning!"* as it dies | new: True -- *added after the 1.0 classification*
-- [ ] `DX2` (qa.md:6557) **NEW** where: The same | steps: Hit goblins without killing them | pass: The hurt barks as before, at the same rate, about one hit in six | new: True -- *added after the 1.0 classification*
-- [ ] `DX3` (qa.md:6558) **NEW** where: The same | steps: Watch where a death line appears | pass: Over the body, a moment after the blow. It waits 0.1 seconds so the check reads the goblin after the hit | new: True -- *added after the 1.0 classification*
-- [ ] `DX4` (qa.md:6559) **NEW** where: **Regression**, a war leader | steps: Hit him, then kill him | pass: His hurt barks and the WL2 break-off both still happen. His bark bank sits beside the Goblin Cave Post charge in the same hook, which is untouched | new: True -- *added after the 1.0 classification*
-- [ ] `DX5` (qa.md:6560) **NEW** where: Cortes or Cervantes in the party | steps: Let him fall in a fight | pass: If he speaks as he dies, it is a dying line (*"All that gold... and I never spent it."*, *"Squire... finish the chapter for me."*), never *"I need assistance!"* | new: True -- *added after the 1.0 classification*
-- [ ] `DX6` (qa.md:6561) **NEW** where: Sewers thieves, English soldiers, trolls, Snakebreed | steps: Kill a dozen of one family | pass: About a third of them say a dying line as they fall, in their own voice: *"Should have stayed in the alley..."*, *"For... England..."*, *"Rock... takes me back."*, *"Cold... ssso cold..."* | new: True -- *added after the 1.0 classification*
-- [ ] `DX7` (qa.md:6562) **NEW** where: The same | steps: Kill one just after it barks on a swing | pass: The swing line may still be fading over the body, and a death line, if one comes, sits **above** it, not on top of it | new: True -- *added after the 1.0 classification*
-- [ ] `DX8` (qa.md:6563) **NEW** where: **Regression**: a thief, a soldier captain, the Lava Troll Boss | steps: Hit each | pass: The thief still drops caltrops on the first hit, the captain still reaches for a draught under 40%, and hitting the boss still breaks the troll peace. Each of those hooks now shares its slot with the death check | new: True -- *added after the 1.0 classification*
-- [ ] `AZ1` (qa.md:6572) **NEW** where: **PASSED** (pre-release, Woodcutter Forest) | steps: Hold a wand with Acid Touch near enemies without attacking | pass: Acid-only hits of 2 to 7 roughly every 2 seconds, on every enemy in reach. Seen: 5, 2, 6, 6 on wasps, one tick catching two, and a kill | new: True -- *added after the 1.0 classification*
-- [ ] `AZ2` (qa.md:6573) **NEW** where: Any random wand drop, or the Bounty Hunter Camp reward | steps: Read the description of a wand or amulet with one of the three auras | pass: *"Creates an aura that deals 2-7 acid damage to nearby enemies every 2 seconds."*, or cold, or fire. Nothing about melee range | new: True -- *added after the 1.0 classification*
-- [ ] `AZ3` (qa.md:6574) **NEW** where: **Negative.** A wand or amulet picked up **before** this release | steps: Read its description | pass: Still the old "within melee range" text. Expected: the text was fixed into the item when it was made | new: True -- *added after the 1.0 classification*
-- [ ] `AZ4` (qa.md:6575) **NEW** where: Hold an aura item near a companion and a neutral townsperson | steps: Wait | pass: Neither is hurt. The aura has `Trigger if Enemy=1` and `Trigger if Player=0` | new: True -- *added after the 1.0 classification*
-- [ ] `AZ5` (qa.md:6576) **NEW** where: Armor with **Deepest Winter**, generated after install | steps: Read its description | pass: *"A magical aura of frost emanates from this armor, dealing N-M cold damage to nearby enemies every 6 seconds."*, with real numbers in place of N and M, not `%i[min]` | new: True -- *added after the 1.0 classification*
-- [ ] `CX1` (qa.md:6585) **NEW** where: Any companion | steps: Order menu, *How are you holding up?* | pass: Exact numbers, no ranges: the hurt line, `Health at full strength: N.`, `Armor class: N.`, the best-weapon line, `Fighting skill: N.` Five lines | new: True -- *added after the 1.0 classification*
-- [ ] `CX2` (qa.md:6586) **NEW** where: Fernand, before and after one level-up | steps: CX1, level up, CX1 again | pass: Health **+9**, armor **+8**, fighting skill **+3**. Health rises **+14** on the level his one-handed skill reaches 50, because the HP formula itself adds 5 at 50 (and again at 100, 150...). Fernand is at 47 in the current saves, so his next level is that one | new: True -- *added after the 1.0 classification*
-- [ ] `CX3` (qa.md:6587) **NEW** where: The same level-up | steps: Watch Fernand when the level arrives | pass: His balloon reads *"A sailor learns or a sailor drowns. I have been learning. <+9 health, +8 armor, +3 fighting skill>"*, and the same line is in the combat log afterwards | new: True -- *added after the 1.0 classification*
-- [ ] `CX5` (qa.md:6589) **NEW** where: Bishop Diego or Darsh | steps: CX1 | pass: A sixth line, `Celestial Smite: N.`, and after a level-up it is 3 higher. Their balloon says `+3 Celestial Smite`, not fighting skill | new: True -- *added after the 1.0 classification*
-- [ ] `CX6` (qa.md:6590) **NEW** where: **Negative.** Any companion other than Diego or Darsh | steps: CX1 | pass: No `Celestial Smite` line at all, not `Celestial Smite: 0.` | new: True -- *added after the 1.0 classification*
-- [ ] `CX7` (qa.md:6591) **NEW** where: Two different companions in a row | steps: CX1 on each | pass: Each report describes the companion clicked. The lookups run in cans, and `$Trigger` must still be the clicked companion there (the exe forwards the reply's context into a canned action, 0x4f8160) | new: True -- *added after the 1.0 classification*
-- [ ] `CX8` (qa.md:6592) **NEW** where: Grace, Joan, Sir Roger, the Knight of Saladin, Grumdjum | steps: Level up with one along | pass: Their balloon ends `<+5 health, +3 armor, +1 fighting skill>`. A companion who fights at range may show no change in `Fighting skill`, because the grant is one-handed skill and the report shows the best of three | new: True -- *added after the 1.0 classification*
-- [ ] `CL1` (qa.md:6598) **NEW** where: Any thief or assassin fight (the Sewers thieves are the earliest) | steps: Hit one so it drops caltrops | pass: A low cluster of four short iron points nearby, well below knee height. **Not** a needle as tall as a person | new: True -- *added after the 1.0 classification*
-- [ ] `CL2` (qa.md:6599) **NEW** where: The same | steps: Look at where the cluster sits | pass: On the ground, not floating or sunk into the floor | new: True -- *added after the 1.0 classification*
-- [ ] `CL5` (qa.md:6600) **NEW** where: Hit several thieves in turn, in melee | steps: Watch where each patch lands | pass: Somewhere around the thief, within a couple of paces, and **not** every time exactly under it. Never inside a wall or off the walkable floor | new: True -- *added after the 1.0 classification*
-- [ ] `CL3` (qa.md:6601) **NEW** where: The same | steps: Stand on it | pass: It still hurts on the 1.25 second tick and disappears after it lands a hit, as before, and the combat log says *"You stepped on some caltrops."* once for that hit | new: True -- *added after the 1.0 classification*
-- [ ] `FS1` (qa.md:6607) **NEW** where: Port District, a new game | steps: Recruit Fernand and walk (do not run) around the district with him | pass: He keeps pace at a walk, about as well as Grace does, and only falls back on sharp turns or crowds | new: True -- *added after the 1.0 classification*
-- [ ] `FS3` (qa.md:6609) **NEW** where: The same save | steps: Dismiss and rejoin him three or four more times, then walk | pass: His pace is the same as after the first rejoin, **not faster each time** -- the bonus is granted once | new: True -- *added after the 1.0 classification*
-- [ ] `TV1` (qa.md:6615) **NEW** where: The title screen | steps: Watch it cycle through all its paintings | pass: "Fixt" and the installed version in the lower right of every one, readable on each | new: True -- *added after the 1.0 classification*
-- [ ] `TV2` (qa.md:6616) **NEW** where: The same, the painting with the menu on the right and low (Background 05) | steps: Look at the lower right | pass: The stamp sits below the last button, not under it | new: True -- *added after the 1.0 classification*
-- [ ] `GT2` (qa.md:6623) **NEW** where: The same | steps: Fit the gear at the tank, step away, walk back | pass: The seated-ring description, not vanilla's. Works in a save that had already been in the chamber | new: True -- *added after the 1.0 classification*
-- [ ] `GT3` (qa.md:6624) **NEW** where: The same, after DaVinci has the spirit gem | steps: Walk up to the tank | pass: "Something inside the hull is awake... DaVinci has finished it." | new: True -- *added after the 1.0 classification*
-- [ ] `WF25` (qa.md:6630) **NEW** where: The Plateau, a save that has not entered it | steps: Kill a knight and read the log; hover several | pass: 187 XP a knight; at Act 4 strength they are the Super tier, noticeably harder than before | new: True -- *added after the 1.0 classification*
-- [ ] `WF26` (qa.md:6631) **NEW** where: The Plateau, sworn | steps: Kill Jehanne | pass: "The door is open. Your side of the Bonecaller's bargain is kept." and 5,000 XP; the pillar door opens | new: True -- *added after the 1.0 classification*
-- [ ] `WF27` (qa.md:6632) **NEW** where: The Burial Chamber, sworn, Speech 110 | steps: Put off the debt with the lie | pass: 2,500 XP | new: True -- *added after the 1.0 classification*
-- [ ] `WF28` (qa.md:6633) **NEW** where: The door, a Templar | steps: Be recruited, then give the order's word; talk to a knight again | pass: +1 tide, the reserve comes up at once; the reply is gone the second time. The herald offers a Templar refusal; sworn, Jehanne answers "I wear the same cross" with "sold it as well as worn it" | new: True -- *added after the 1.0 classification*
-- [ ] `WF29` (qa.md:6634) **NEW** where: The Bonecaller, a Wielder with the Necromancer title, Karma 600 or more | steps: "You will follow me" | pass: It takes the new hand; the oath's effects follow; in the Burial Chamber, taking the Lance calls no debt | new: True -- *added after the 1.0 classification*
-- [ ] `WF30` (qa.md:6635) **NEW** where: The Bonecaller, a Wielder without the title | steps: At the binding, change take to keep | pass: 4,000 XP; the dead and the knights stop fighting; clicks answer with the new order; striking one starts the war again; Jehanne opens with her sword down | new: True -- *added after the 1.0 classification*
-- [ ] `WF31` (qa.md:6636) **NEW** where: The same, then the Ante Chamber, the Burial Chamber and the Efreeti | steps: Walk in, click the dead, then free the knights | pass: "The word has come down ahead of you" prints in each chamber and the dead keep; the Efreeti gives the peace line, not the tide's | new: True -- *added after the 1.0 classification*
-- [ ] `WF32` (qa.md:6637) **NEW** where: The door, an Inquisitor | steps: Condemn the hill | pass: The alarm; the Bonecaller offers no bargain and fights; with Jehanne and it both dead, 4,000 XP | new: True -- *added after the 1.0 classification*
-- [ ] `WF33` (qa.md:6638) **NEW** where: The Efreeti, a Knight of Saladin | steps: Ask for the wish your elder should have made | pass: Pick a stat; the knights are freed and the stat rises | new: True -- *added after the 1.0 classification*
-- [ ] `WF1` (qa.md:6646) **NEW** where: The Doomed Plateau, from Retreat of Souls | steps: Walk west past the knights fighting at the door | pass: "One of the dead steps out of the horde..." prints, and the Herald of the Bonecaller comes up and its conversation opens by itself, asking whether you will come | new: True -- *added after the 1.0 classification*
-- [ ] `WF2` (qa.md:6647) **NEW** where: The same | steps: Accept, and walk among the dead to the Bonecaller | pass: "The dead let you pass" prints; no undead attacks you or your companions, and your companions do not attack them. Note any that do, by hover name | new: True -- *added after the 1.0 classification*
-- [ ] `WF3` (qa.md:6648) **NEW** where: The same, during the truce | steps: Strike one of the dead | pass: "You struck one of the dead..." prints and the horde turns on you | new: True -- *added after the 1.0 classification*
-- [ ] `WF4` (qa.md:6649) **NEW** where: Near the Bonecaller | steps: Walk up to it | pass: It calls you over in a balloon, does not attack you, and a click opens its conversation rather than a fight | new: True -- *added after the 1.0 classification*
-- [ ] `WF5` (qa.md:6650) **NEW** where: Its conversation | steps: Choose "You said something that is not a sword. Name it." | pass: It makes its offer; with Karma under 600 you can accept it | new: True -- *added after the 1.0 classification*
-- [ ] `WF6` (qa.md:6651) **NEW** where: The same, Speech 110 or Divine 80 | steps: Release it | pass: "The truce is over" prints; the horde turns on it and on you, and it fights them | new: True -- *added after the 1.0 classification*
-- [ ] `WF7` (qa.md:6652) **NEW** where: The same, Karma under 600 | steps: Swear to it, then walk the rest of the map; later talk to the knights in Retreat of Souls or the Garrison Camp | pass: The dead leave you alone for the rest of the map; no knight offers the "Are you a Knight?" recruitment; the Efreeti later says the knights were freed into a ruin | new: True -- *added after the 1.0 classification*
-- [ ] `WF8` (qa.md:6653) **NEW** where: The herald | steps: Refuse it | pass: It turns and fights; the Bonecaller still holds its fire and can be talked to | new: True -- *added after the 1.0 classification*
-- [ ] `WF9` (qa.md:6654) **NEW** where: Misc Crypt 1 or 2 before the Plateau | steps: Bar the rear door or bolt the stone door, then walk onto the Plateau | pass: "Knights come up from the rear of the keep..." prints, and three more knights stand forward of the line | new: True -- *added after the 1.0 classification*
-- [ ] `WF10` (qa.md:6655) **NEW** where: Misc Crypt 3 or 4, entered from the Plateau | steps: Open the walls or the crypts, so the tide is below zero, and walk back onto the Plateau | pass: "The dead from the opened crypts..." prints; two knights of the line fall at once and new dead come up behind it | new: True -- *added after the 1.0 classification*
-- [ ] `WF11` (qa.md:6656) **NEW** where: The middle of the Plateau, about x 3000 | steps: Watch the line without fighting for a minute | pass: Knights and undead fight each other. Note how fast the line wears down | new: True -- *added after the 1.0 classification*
-- [ ] `WF12` (qa.md:6657) **NEW** where: Jehanne's fight scene | steps: Play it through | pass: It completes as before | new: True -- *added after the 1.0 classification*
-- [ ] `WF14` (qa.md:6658) **NEW** where: During the truce | steps: Click several of the dead, before and after swearing to the Bonecaller | pass: Each answers in a balloon and none attacks; before swearing they send you to him, after it they tell you to keep your word. After the truce ends, a click attacks again | new: True -- *added after the 1.0 classification*
-- [ ] `WF15` (qa.md:6659) **NEW** where: The door, during the truce | steps: Watch the door as you accept the herald, then click the knight at the door | pass: He shouts "The dead are letting it walk!"; the click opens his challenge, not his usual line | new: True -- *added after the 1.0 classification*
-- [ ] `WF16` (qa.md:6660) **NEW** where: His challenge | steps: Try each answer (reload between) | pass: Speech 100 lie and "I will go" leave him wary but peaceful; the other two set the door's knights, Joan and her line on you; the pillar door still opens when Joan falls | new: True -- *added after the 1.0 classification*
-- [ ] `WF17` (qa.md:6661) **NEW** where: The tide below zero by swearing only, no crypt or wall opened | steps: Walk through a tide trigger after swearing | pass: The slip line credits the Bonecaller, not opened galleries; with a gallery opened and no oath, it names the galleries | new: True -- *added after the 1.0 classification*
-- [ ] `WF18` (qa.md:6662) **NEW** where: During the truce, without having answered the Bonecaller | steps: Walk up to the knights' line | pass: "You walked past him without a word..." prints and the dead turn on you. Sworn, nothing happens | new: True -- *added after the 1.0 classification*
-- [ ] `WF19` (qa.md:6663) **NEW** where: The Burial Chamber, sworn, a save that has not entered it | steps: Take the Lance, with the Bonecaller still alive on the Plateau | pass: "Something has followed you down" prints; the herald comes and asks for the spear. Speech 110 lie: it lets you go. Refuse: it and three groups of dead come for you | new: True -- *added after the 1.0 classification*
-- [ ] `WF20` (qa.md:6664) **NEW** where: The Bonecaller | steps: Read its Speech reply | pass: "Two hundred years of the same order" | new: True -- *added after the 1.0 classification*
-- [ ] `WF21` (qa.md:6665) **NEW** where: The Plateau, sworn | steps: Go to Jehanne, before and after meeting her | pass: She opens with "You smell of him" and offers only to draw or to let you go; drawing starts her fight, and the pillar door opens when she falls | new: True -- *added after the 1.0 classification*
-- [ ] `WF22` (qa.md:6666) **NEW** where: The Plateau, Jehanne a companion | steps: Swear to the Bonecaller | pass: She leaves the party and turns on you with her vanilla line | new: True -- *added after the 1.0 classification*
-- [ ] `WF23` (qa.md:6667) **NEW** where: The Ante Chamber and the Burial Chamber, sworn, saves that have not entered them | steps: Enter, click the dead, then strike one | pass: "The dead here know whose word you carry" prints; they leave you alone and answer a click; striking one turns that map's dead on you. In the Burial Chamber, refusing the debt does the same | new: True -- *added after the 1.0 classification*
-- [ ] `WF24` (qa.md:6668) **NEW** where: The Plateau, not sworn | steps: Kill the Bonewright, then walk away from where it stood; repeat for the Sergeant | pass: "Knights come up behind you..." prints and two knights stand on the spot. With the tide at zero before, the line now holds on the same walk | new: True -- *added after the 1.0 classification*
-- [ ] `WF13` (qa.md:6669) **NEW** where: The Revenant Sergeant, truce not taken | steps: Watch it, then bring it below two thirds yourself | pass: It fights the knights and ignores you, then whistles and comes for you; below a third it fights only you | new: True -- *added after the 1.0 classification*
-- [ ] `JC1` (qa.md:6675) **NEW** where: The Doomed Plateau, before meeting the Spirit Council | steps: Talk to Jehanne through every branch | pass: No reply says you have spoken to her Council; after meeting the Council, those replies appear | new: True -- *added after the 1.0 classification*
-- [ ] `BW1` (qa.md:6676) **NEW** where: The Doomed Plateau, a save that has not entered it | steps: Hover the captain that raises the dead, and read the log as you fight it | pass: It is named Bonewright, on hover and in the log; its opening line names no standard | new: True -- *added after the 1.0 classification*
-- [ ] `BW2` (qa.md:6677) **NEW** where: The same | steps: Let it raise a few, then kill it | pass: The risen fall with it at once, and the line says so | new: True -- *added after the 1.0 classification*
-- [ ] `BW3` (qa.md:6678) **NEW** where: Retreat of Souls | steps: Meet the Lance's guardian | pass: It is still the Second Guardian, unchanged | new: True -- *added after the 1.0 classification*
-- [ ] `RS1` (qa.md:6679) **NEW** where: The Doomed Plateau, a save that has not entered it | steps: Find the Revenant Sergeant | pass: It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant. On 0.99.13 it attacks you from the start: it could not reach a knight. 0.99.14 fixes that (WF13) | new: True -- *added after the 1.0 classification*
-- [ ] `RS2` (qa.md:6680) **NEW** where: The same | steps: Bring it below two thirds of its health yourself | pass: The whistle line, and undead that were idle nearby come for you, besides the escort that appears. Note if they go for the knights instead | new: True -- *added after the 1.0 classification*
-- [ ] `HW3` (qa.md:6681) **NEW** where: Caverns of Nostradamus, a map not yet entered | steps: Read the ward line, then kill the Acolytes but leave a Hujark Shaman alive | pass: The line names shamans and acolytes; the ward holds until the last caster of either kind falls | new: True -- *added after the 1.0 classification*
-- [ ] `AL2` (qa.md:6688) **NEW** where: The same | steps: Retreat well out of their bow range | pass: They follow you, then stop and shoot again once in range | new: True -- *added after the 1.0 classification*
-- [ ] `DW1` (qa.md:6689) **NEW** where: Doomed Plateau, first visit (kit: "The Doomed Plateau") | steps: Walk west along the path until a skeleton named Deathwatch sees you | pass: The log prints "The Deathwatch raises the alarm!", and within a few seconds a few undead arrive from the north that had not been fighting | new: True -- *added after the 1.0 classification*
-- [ ] `DW2` (qa.md:6690) **NEW** where: The same, new attempt | steps: Kill the Deathwatch before it notices you (from behind, or sneaking) | pass: No alarm line; the northern undead stay where they are | new: True -- *added after the 1.0 classification*
-- [ ] `DW3` (qa.md:6691) **NEW** where: The same | steps: Approach it head-on in the open | pass: It does not see you until you are well on screen | new: True -- *added after the 1.0 classification*
-- [ ] `DW4` (qa.md:6692) **NEW** where: The same, after an alarm | steps: Find and talk to the Bonecaller | pass: It still talks; the alarm did not pull it into the fight | new: True -- *added after the 1.0 classification*
-- [ ] `HM1` (qa.md:6693) **NEW** where: Any merchant or loot with magic helmets | steps: Find a Helmet of the Watch, read it, wear it | pass: It says it does not reduce sight; with it on, the clear area around you is as large as with no helmet | new: True -- *added after the 1.0 classification*
-- [ ] `HM2` (qa.md:6694) **NEW** where: The same | steps: Wear a Helmet of Farsight | pass: The clear area is visibly larger than with no helmet at all | new: True -- *added after the 1.0 classification*
-- [ ] `FB2` (qa.md:6701) **NEW** where: The same | steps: Chase and hit him as he runs | pass: He keeps running; he can be killed on the way | new: True -- *added after the 1.0 classification*
-- [ ] `FB3` (qa.md:6702) **NEW** where: The same, with the room's druids dead | steps: Wound a soldier badly | pass: He does not run; he fights on | new: True -- *added after the 1.0 classification*
-- [ ] `FB4` (qa.md:6703) **NEW** where: The same | steps: Watch every soldier who ran | pass: Every one comes back and fights again; none stands idle by a post. Report any that does, with the map | new: True -- *added after the 1.0 classification*
-- [ ] `BF3` (qa.md:6711) **NEW** where: The same | steps: Watch the stood-down men | pass: None of them is a Priest wearing a soldier's waking line | new: True -- *added after the 1.0 classification*
-- [ ] `LE12` (qa.md:6966) where: **Judgement.** Read the Demonic split beside vanilla | steps: Does *"Dark One"* land at 800, or does it want a lower bar? | pass: Karma 1000 is neutral and 0 is the worst there is, so 800 is a moderately bad character. Each of the three exits carries the number twice, in `tools/build_loose_ends.py` -- *Judgement row.*
-- [ ] `WM1` (qa.md:6988) [eyes + save] where: **The row that matters.** Any magic melee weapon, from a drop or a merchant | steps: Read its name and tooltip | pass: It has an **enchantment name and a working effect** -- *Long Sword of Snakebiting*, not a bare *Long Sword*. If magic melee weapons have stopped rolling enchantments, the per-base group tree is broken and nothing else in this release matters
-- [ ] `WM2` (qa.md:6989) where: A **Better** magic long sword, equipped | steps: Compare against a plain one in hand | pass: The blade is visibly a different, fancier mesh. Both at the same size: the family shares `Render Scaling=0.55`, so the variant reads about 12% longer and no more
-- [ ] `WM3` (qa.md:6990) where: A **Special** magic long sword, equipped | steps: Compare against plain and Better | pass: A third distinct mesh, not a repeat of either
-- [ ] `WM4` (qa.md:6991) where: A **Special** magic scimitar, on a **male** character | steps: Equip it and look at the blade | pass: It **appears**, and the blade hangs **down**. Both halves are fixes: the mesh was absent from the male registry so it rendered nothing, and the art itself was rotated. If it appears blade-up the rotation axis is wrong; if it does not appear, the registry patch did not take
-- [ ] `WM5` (qa.md:6992) where: A **Better** magic war hammer, on a **male** character | steps: Equip it | pass: It appears. This is the second registry entry, and unlike the scimitar its art needed no rotation
-- [ ] `WM6` (qa.md:6993) where: A **Great Mace**, magic or not | steps: Look at it in hand | pass: It is **the size it has always been**. An early build of this release shrank it 11% on a pattern match and that was reverted, so a Great Mace that looks smaller than you remember means the revert did not reach the build. A magic one still rolls enchantments but shows no mesh change, because no Great variant art exists
-- [ ] `WM7` (qa.md:6994) where: A **Better or Special** magic **Composite** Long Bow | steps: Compare against a plain Composite Long Bow | pass: Same mesh, `BowSpecial`. The Composite's own base art is the best bow in the game, so its copies name `BowSpecial` at both tiers rather than downgrading it to `BowBetter`. **The grade is the whole row.** A Composite carrying a Basic addition such as `of Dodging` has already been held in play and looked right, but Basic additions name no mesh, so that proves only that the Composite's pool delivers. Confirm the enchantment is Better or Special before reading anything into the model
-- [ ] `WM8` (qa.md:6995) where: A **Better** magic **plain** Long Bow | steps: Compare against a plain Long Bow | pass: A different mesh at **the same size**. It rendered 1.8x oversize before the scaling fix, so an obviously huge bow means the `MODEL.TXT` edit did not reach the build
-- [ ] `WM10` (qa.md:6997) where: **Judgement, not pass/fail.** Collect magic weapons over a stretch of play | steps: Watch the variety of enchantments | pass: It should feel unchanged. Each base weapon's pool is asserted to keep vanilla's 3/20/6 shape with nothing double-weighted, so any felt change in variety is worth reporting as a surprise -- *Judgement row.*
-- [ ] `S2` (qa.md:7004) pass: No conflict on any shared file -- *Needs the other tools-repo mods enabled.*
-- [ ] `S3` (qa.md:7005) pass: Clean
+- [ ] `VG1` (qa.md:6199) where: Thieves' den, with companions, not a Thief Friend | steps: Walk up to the vault door man | pass: Your companions do not attack him. He talks (*"Halt! This area is off limits to outsiders."*) -- *added after the 1.0 classification*
+- [ ] `VG2` (qa.md:6200) where: Same | steps: Slip past him (Sneak 35), take the strongbox, bring it to Skulker | pass: Skulker pays 500 (the quiet offer) -- *added after the 1.0 classification*
+- [ ] `VG3` (qa.md:6201) where: Same | steps: Hit him once (force attack), then talk to him | pass: Only *"Then I am no outsider..."* and *"My mistake..."* are offered. Your companions now fight him -- *added after the 1.0 classification*
+- [ ] `VG4` (qa.md:6202) where: Same | steps: Talk past him, then let a companion hit him before you reach the vault; take the box to Skulker | pass: Skulker pays 400, not 500 -- *added after the 1.0 classification*
+- [ ] `VG5` (qa.md:6203) where: Same | steps: Pick the fight reply instead | pass: He and the den fight as before; Skulker pays 400 -- *added after the 1.0 classification*
+- [ ] `RX1` (qa.md:6209) where: La Calle Perdida, a Dark Wielder initiate | steps: Carry the lifeless Sceptre (from DaVinci's secret chamber) when Relican first asks for it | pass: *"I have the Sceptre, but it is a dead thing..."* is offered right there. It binds the wraith (*"Empty? Then it is fortunate you brought it to a necromancer..."*), swaps your Sceptre for the spirited one, the journal shows Create a Rod of Bone completed, and he moves on to the Herbalist -- *added after the 1.0 classification*
+- [ ] `RX2` (qa.md:6210) where: Same | steps: Ask *"Tell me more about this Sceptre."* first, carrying the lifeless one | pass: The same reply is offered on the lore node -- *added after the 1.0 classification*
+- [ ] `RX3` (qa.md:6211) where: Same | steps: Carry the spirited Sceptre when he asks | pass: *"I already have the Sceptre"* completes Create a Rod of Bone in the journal, and the scepter XP is paid once, when you answer the Herbalist task -- *added after the 1.0 classification*
+- [ ] `RX4` (qa.md:6212) where: Same | steps: Carry no Sceptre | pass: *"I will find the Sceptre."* as before; the turn-in replies appear on the next conversation -- *added after the 1.0 classification*
+- [ ] `MR1` (qa.md:6218) where: Ether plane | steps: Get Jameson and Marco to build the bridge, refuse Marco's boots, then spare the Enchanter (the crystal argument: *"I have come to tell you how you can escape this place."*). Go back to Marco | pass: He opens with *"I felt you cross my bridge, traveler..."*. Answer *"He has suffered enough here..."* and his usual conversation follows, boots offer included. Talk again: his normal greeting -- *added after the 1.0 classification*
+- [ ] `MR2` (qa.md:6219) where: Same, wearing his boots | steps: Take the boots first, then spare the Enchanter | pass: As the conversation closes the boots say *"He lives, then. Well..."*. Nothing else changes -- *added after the 1.0 classification*
+- [ ] `MR3` (qa.md:6220) where: Same, a Dark Wielder initiate, boots in the pack (not worn) | steps: Spare him, talk to him again and make the pact (*"He will have your service..."*) | pass: The boots say *"No. I will walk a thousand leagues with you..."*. Marco Polo's Boots are gone and a pair of **Walking Boots** is in your pack (no bonuses, *"Ordinary walking boots, well travelled and empty..."*). Karma down 50 -- *added after the 1.0 classification*
+- [ ] `MR4` (qa.md:6221) where: Same as MR3, **boots worn** | steps: Make the pact | pass: **The row the swap is about.** Either the worn boots are replaced by Walking Boots, or they stay on and **no** Walking Boots appear. Never both pairs. Report which: if they stay, the swap needs the perk fallback -- *added after the 1.0 classification*
+- [ ] `MR5` (qa.md:6222) where: Same, no boots taken | steps: Make the pact, then go to Marco | pass: He opens with *"You gave him a master..."*; the only answer is *"Then stay here with him."*, and every later click gives the same. No favour, no boots -- *added after the 1.0 classification*
+- [ ] `MR6` (qa.md:6223) where: Same, a Templar | steps: Make the pact, then walk to the exit crystal | pass: A whisper: *"<A voice, barely there.> So. I gave up my voice for that bridge..."*, once -- *added after the 1.0 classification*
+- [ ] `MR7` (qa.md:6224) where: Same, not a Templar | steps: As MR6 | pass: No whisper -- *added after the 1.0 classification*
+- [ ] `MR8` (qa.md:6225) where: Same, after MR3 | steps: Walk to a map where Marco would comment (the Mountain Pass, Alamut, Montaillou) | pass: Silence: the Walking Boots are not his -- *added after the 1.0 classification*
+- [ ] `SS1` (qa.md:6233) **NEW** where: Temple District, then Gate District | steps: Be knighted by Lord Javier. Then pass the Dream Djinni's trial, either test, and accept Amir's invitation (*"Of course, I will accompany you."*) | pass: The Cathedral scene runs Javier's welcome to **Amir and the Knights of Saladin** (*"Amir, we are honored..."*), continues to Amir's lines and ends, and control returns. It does not stop after Javier's first line | new: True -- *added after the 1.0 classification*
+- [ ] `SS2` (qa.md:6234) **NEW** where: Same | steps: After SS1, check the journal and talk to Amir | pass: The Saladin route continues (Travel to Montserrat) | new: True -- *added after the 1.0 classification*
+- [ ] `SS3` (qa.md:6235) **NEW** where: Cathedral, Templar only | steps: A Templar who never did the Djinni's trial: take Javier's route to the Cathedral | pass: The Templar summit plays as before | new: True -- *added after the 1.0 classification*
+- [ ] `SS4` (qa.md:6236) **NEW** where: Cathedral, Saladin only | steps: A Saladin initiate with no other faction: accept Amir's invitation | pass: The Saladin summit plays as before (0.80.1's `SA` rows) | new: True -- *added after the 1.0 classification*
+- [ ] `AC1` (qa.md:6244) **NEW** where: Doomed Plateau, a map not yet entered | steps: Fight the Bonecaller in melee range | pass: It swings (two different swings over a few attacks). No **GRANNY MODEL** image at any point | new: True -- *added after the 1.0 classification*
+- [ ] `AC2` (qa.md:6245) **NEW** where: Same | steps: Let it hit you | pass: Its swings deal damage; the combat log shows its hits | new: True -- *added after the 1.0 classification*
+- [ ] `AC3` (qa.md:6246) **NEW** where: Same, Tough and Super tiers (higher party mojo) | steps: As AC1 | pass: As AC1 | new: True -- *added after the 1.0 classification*
+- [ ] `AC4` (qa.md:6247) **NEW** where: Nostradamus, the Hujark General | steps: Turn him hostile and stand next to him | pass: He plays a casting gesture when he attacks, never the **GRANNY MODEL** image. Note whether his blows deal damage (unknown before testing) | new: True -- *added after the 1.0 classification*
+- [ ] `CZ1` (qa.md:6255) **NEW** where: Main menu | steps: Open the credits, or finish the game | pass: After Interplay's team, a **Lionheart Fixt** section: *Restoration, Implementation and Design*, Eric Heitmuller (EricHype); then *Bug Reports and Playtesting* with ten names; then a thanks to Litmanen | new: True -- *added after the 1.0 classification*
+- [ ] `CZ2` (qa.md:6256) **NEW** where: Same | steps: Watch to the end | pass: The third-party logos (Bink, Pixomatic, Granny, zlib, Alienware) and the closing Lionheart logo and copyright still follow. Nothing of the original credits is missing | new: True -- *added after the 1.0 classification*
+- [ ] `CZ3` (qa.md:6257) **NEW** where: Same | steps: Read the headers | pass: Formatted like the original roles: header and role lines underlined, names centred | new: True -- *added after the 1.0 classification*
+- [ ] `PZ2` (qa.md:6269) **NEW** where: Same | steps: Let her cast, several times | pass: She plays a casting animation every time. **No "GRANNY MODEL" placeholder, no crash.** This is the row the fix exists for | new: True -- *added after the 1.0 classification*
+- [ ] `PZ3` (qa.md:6270) **NEW** where: Same | steps: Fight her to death, and let her be hit along the way | pass: Hit and death animations play. She does not freeze in a T-pose | new: True -- *added after the 1.0 classification*
+- [ ] `PZ4` (qa.md:6271) **NEW** where: **Regression**, Barcelona, any street with townswomen, after PZ1 in the same session | steps: Look at the townswomen | pass: They still wear their own clothes. The copy is named `Priestess` in its manifest's `Body` slot and its `Short Name`, so nothing should tie the two; if a townswoman shows the navy robe, report it | new: True -- *added after the 1.0 classification*
+- [ ] `IC1` (qa.md:6280) **NEW** where: Port District, the Morales murder solved | steps: Get Isabella to confess (Speech 40, *"against England"*), then reach `01 Outside Shrine` | pass: **She is not there.** No ambush at the entrance before Sir Roger Templeton | new: True -- *added after the 1.0 classification*
+- [ ] `IC2` (qa.md:6281) **NEW** where: Same character | steps: Tell the ghost of Morales, then reach the Shrine | pass: Still absent. The quest completing does not bring her back | new: True -- *added after the 1.0 classification*
+- [ ] `IC3` (qa.md:6282) **NEW** where: **Regression**, report her to the Duke instead | steps: Reach the Shrine | pass: Absent, as before | new: True -- *added after the 1.0 classification*
+- [ ] `IC4` (qa.md:6283) **NEW** where: **Regression**, keep her secret | steps: Reach the Shrine | pass: She is there and friendly (*"First you spared me in Barcelona..."*), and can join | new: True -- *added after the 1.0 classification*
+- [ ] `IC5` (qa.md:6284) **NEW** where: **Regression**, take her bribe, or never solve the murder | steps: Reach the Shrine | pass: She is there and hostile (*"I will settle the score with you"*), as before. Only the arrest routes changed | new: True -- *added after the 1.0 classification*
+- [ ] `EP1` (qa.md:6292) **NEW** where: The trapped ether plane, the Enchanter met | steps: Win the contest (*"Very well. I shall see if I can open the portal..."*) | pass: The crystal's sound plays as he calms. Click the `Teleporter Crystal`: it takes you out | new: True -- *added after the 1.0 classification*
+- [ ] `EP2` (qa.md:6293) **NEW** where: Same | steps: Barter with him instead (`45 Barter 3`) | pass: Same: the crystal works | new: True -- *added after the 1.0 classification*
+- [ ] `EP3` (qa.md:6294) **NEW** where: Same | steps: Make the Fixt pact for Relican | pass: Same: the crystal works, and the pact still holds (he is not hostile) | new: True -- *added after the 1.0 classification*
+- [ ] `EP4` (qa.md:6295) **NEW** where: **Regression**, same | steps: Kill him instead | pass: The crystal works, as before. No doubled sound or second teleporter | new: True -- *added after the 1.0 classification*
+- [ ] `EP5` (qa.md:6296) **NEW** where: **Regression**, Marco's route | steps: Take Marco's portal out before meeting the Enchanter | pass: Works as before | new: True -- *added after the 1.0 classification*
+- [ ] `RV1` (qa.md:6304) **NEW** where: La Calle Perdida, a Dark Wielder who has started Relican's tasks | steps: Ask *"What of Leonardo...?"*, then *"I will go to him."* | pass: The quest starts. Talk to Relican again: **the Leonardo question is gone** | new: True -- *added after the 1.0 classification*
+- [ ] `RV2` (qa.md:6305) **NEW** where: Same, after turning Leonardo (he gives his word) | steps: Report *"Leonardo will not stand against you..."* | pass: The quest completes and pays XP, once. Talk again: the report reply is gone, and the Leonardo question has not come back | new: True -- *added after the 1.0 classification*
+- [ ] `RV3` (qa.md:6306) **NEW** where: Same, Leonardo refuses instead | steps: Report *"Leonardo refused you..."* | pass: The quest completes, once. Talk again: neither reply is offered | new: True -- *added after the 1.0 classification*
+- [ ] `RV4` (qa.md:6307) **NEW** where: **Regression**, never asked about Leonardo | steps: Talk to Relican | pass: The Leonardo question is offered | new: True -- *added after the 1.0 classification*
+- [ ] `RM2` (qa.md:6317) **NEW** where: Same | steps: Pick *"Tell me more about the tasks."* | pass: The tasks recap still works | new: True -- *added after the 1.0 classification*
+- [ ] `RM3` (qa.md:6318) **NEW** where: Same, with Leonardo turned or refused but not yet reported | steps: Click Relican | pass: The Leonardo report is offered and pays once (`RV2`/`RV3`) | new: True -- *added after the 1.0 classification*
+- [ ] `RM4` (qa.md:6319) **NEW** where: Same | steps: Look for *"Let us talk about the events that transpired in the Church."* | pass: **Not offered**, once its quest is complete. If it appears and pays XP again, report it | new: True -- *added after the 1.0 classification*
+- [ ] `RO1` (qa.md:6329) **NEW** where: A **new game**, the ring used in La Calle Perdida | steps: Travel to Slave Pit Exterior | pass: **No Relican there.** He is only in La Calle Perdida | new: True -- *added after the 1.0 classification*
+- [ ] `RO2` (qa.md:6330) **NEW** where: A save **already past** the ring, Relican still at the Slave Pit | steps: Talk to Relican in La Calle Perdida, end with *"Goodbye."*, then travel to Slave Pit Exterior | pass: He is gone from the Slave Pit | new: True -- *added after the 1.0 classification*
+- [ ] `RO3` (qa.md:6331) **NEW** where: Same as RO2, a fresh copy | steps: Ask *"Tell me more about the tasks."* instead, then go | pass: Gone as well | new: True -- *added after the 1.0 classification*
+- [ ] `RO4` (qa.md:6332) **NEW** where: **Regression**, double-cross Relican (refuse the ring) | steps: Return to Slave Pit Exterior | pass: He is there and attacks (*"You have betrayed the wrong person!"*), as before | new: True -- *added after the 1.0 classification*
+- [ ] `RO5` (qa.md:6333) **NEW** where: **Regression**, after RO1 or RO2 | steps: Carry on the Dark Wielder tasks in La Calle Perdida | pass: Relican there still talks and gives tasks | new: True -- *added after the 1.0 classification*
+- [ ] `AX2` (qa.md:6342) **NEW** where: Same | steps: Kill a Tough and a Super | pass: 152 each, the same as the base tier, as vanilla families do | new: True -- *added after the 1.0 classification*
+- [ ] `AX3` (qa.md:6343) **NEW** where: **Regression**, the Wounded Assassin in the hall | steps: Kill him instead of sparing him | pass: **No XP**, deliberately | new: True -- *added after the 1.0 classification*
+- [ ] `AX4` (qa.md:6344) **NEW** where: **Regression**, the snakebreed in the same fights | steps: Kill some | pass: 111 or 152, unchanged | new: True -- *added after the 1.0 classification*
+- [ ] `HA1` (qa.md:6352) **NEW** where: Act 5, sided with the Hujark | steps: Hover over and click a Hujark warrior | pass: A **talk** cursor, and he shouts a battle cry (*"Death to the Druid invaders!"*, *"Nostradamus, we shall save you!"*...). He is not attacked | new: True -- *added after the 1.0 classification*
+- [ ] `HA2` (qa.md:6353) **NEW** where: Same, a fight with the English nearby | steps: Cast an area spell (Fire Circle, Ice Ring) over Hujark and English together | pass: **The row that decides this release.** The English are hit; the Hujark are not. If the Hujark still take damage, report it: area spells are not filtering on `Enemy` | new: True -- *added after the 1.0 classification*
+- [ ] `HA3` (qa.md:6354) **NEW** where: Same, with companions | steps: Watch a fight | pass: Your companions fight the English and leave the Hujark alone | new: True -- *added after the 1.0 classification*
+- [ ] `HA4` (qa.md:6355) **NEW** where: Same | steps: Force attack (K) one Hujark | pass: He fights back, and passage is revoked: on later maps the Hujark spawn hostile, and the ones already standing can be clicked to attack again | new: True -- *added after the 1.0 classification*
+- [ ] `HA5` (qa.md:6356) **NEW** where: Huko's safe conduct (bought), not allied | steps: Click a Hujark | pass: The same talk cursor and battle cry: safe conduct stands them down too | new: True -- *added after the 1.0 classification*
+- [ ] `HA6` (qa.md:6357) **NEW** where: **Regression**, no deal with the Hujark | steps: Click one | pass: He fights, as before | new: True -- *added after the 1.0 classification*
+- [ ] `HA7` (qa.md:6358) **NEW** where: Allied, a map with Hujark acolytes | steps: Watch the log | pass: The ward message may still show. It only matters while they are hostile | new: True -- *added after the 1.0 classification*
+- [ ] `SX2` (qa.md:6367) **NEW** where: Same | steps: Force attack (K) one | pass: **Every snakebreed on that map turns hostile** and comes for you, not only the one hit. Before this, K did nothing | new: True -- *added after the 1.0 classification*
+- [ ] `SX3` (qa.md:6368) **NEW** where: Same, after SX2 | steps: Click any of them | pass: An ordinary attack, as with any enemy | new: True -- *added after the 1.0 classification*
+- [ ] `SX4` (qa.md:6369) **NEW** where: Druid Council 2, Sahar's word given | steps: Force attack one | pass: `truce broken` as before, **with** its karma penalty: you broke your word | new: True -- *added after the 1.0 classification*
+- [ ] `SX5` (qa.md:6370) **NEW** where: Druid Council 2 or 1, calmed **without** a word given | steps: Force attack one | pass: All turn, and **no** karma change (`KM5`) | new: True -- *added after the 1.0 classification*
+- [ ] `SX7` (qa.md:6372) **NEW** where: **Regression**, `4 Undercroft` | steps: Play through the cellar | pass: Unchanged. One field was respelled to vanilla's `Categories to add`, and the creature it touches now really gains its category, if it did not before | new: True -- *added after the 1.0 classification*
+- [ ] `HT1` (qa.md:6380) **NEW** where: Act 5, sided with the Hujark, `02 Clan of the Hand A` | steps: Walk the map | pass: Some Hujark camps are fighting English soldiers; others have **no English at all** and the Hujark simply stand guard. Roughly every other camp | new: True -- *added after the 1.0 classification*
+- [ ] `HT2` (qa.md:6381) **NEW** where: Same, the caves (`07`-`09`) | steps: Listen | pass: Noticeably quieter than before. **Judge it**: if it is still a wall of screaming, say so | new: True -- *added after the 1.0 classification*
+- [ ] `HT3` (qa.md:6382) **NEW** where: Same | steps: Fight through to the seer | pass: The act still plays as a war: there are English to fight on every map but the seer's room | new: True -- *added after the 1.0 classification*
+- [ ] `HT4` (qa.md:6383) **NEW** where: **Regression**, `05 Nostrodomus Demesne` | steps: Reach the seer on the Hujark route | pass: His scene plays as before; the room's English twin is untouched | new: True -- *added after the 1.0 classification*
+- [ ] `HT5` (qa.md:6384) **NEW** where: **Regression**, side with the English, or with nobody | steps: Play act 5 | pass: Unchanged: the twins never spawn on those routes | new: True -- *added after the 1.0 classification*
+- [ ] `GZ1` (qa.md:6393) **NEW** where: A **new** character | steps: Serve the goblins through all three ranks | pass: Chum, then Blooded, then Champion, each once, as before | new: True -- *added after the 1.0 classification*
+- [ ] `GZ2` (qa.md:6394) **NEW** where: Export GZ1's character as a **Chum** (or higher) and start a new game with it | steps: Note the perk sheet and stats, then complete a goblin service | pass: **No new rank, no second Goblin Chum perk**, and the stats do not rise. The title and bonuses carried in are kept | new: True -- *added after the 1.0 classification*
+- [ ] `GZ3` (qa.md:6395) **NEW** where: Same imported character | steps: Join Butus's line (the traitor route) | pass: No Goblin Traitor perk is granted in this game | new: True -- *added after the 1.0 classification*
+- [ ] `GZ4` (qa.md:6396) **NEW** where: **Regression**, a new character on the traitor route | steps: Join Butus's line at each rank | pass: The traitor perk and faction as before | new: True -- *added after the 1.0 classification*
+- [ ] `GZ5` (qa.md:6397) **NEW** where: **The export facts.** Export a Chum and re-import, before any service | steps: Read the character sheet | pass: Note whether poison resistance and carry weight came across, and whether a goblin faction is shown. Record it in `engine-notes.md`: it settles what export keeps | new: True -- *added after the 1.0 classification*
+- [ ] `PI1` (qa.md:6405) **NEW** where: Goblin Warrens, the woodcutter dead, his liver carried, the Goblin Girl met | steps: Talk to her, give her the liver | pass: After *"Don't leave town, I'll be right back!"* the conversation closes and the screen fades to black for about two seconds. It fades back up and she opens *"Here, I baked you a pie..."* on her own, with no click | new: True -- *added after the 1.0 classification*
+- [ ] `PI2` (qa.md:6406) **NEW** where: Same | steps: Take the pie, by either the plain reply or the PE/Outwit one | pass: The pie is in your inventory, once | new: True -- *added after the 1.0 classification*
+- [ ] `PI3` (qa.md:6407) **NEW** where: Same, after PI2, turning down her follow offer | steps: Click her again, and once more after leaving the map and coming back | pass: Both times *"You came back! Did you eat the pie yet?..."*, never *"How many innocents did you kill?..."* | new: True -- *added after the 1.0 classification*
+- [ ] `PI4` (qa.md:6408) **NEW** where: Same | steps: Pick *"Right behind me, then."* in that greeting | pass: She joins the party | new: True -- *added after the 1.0 classification*
+- [ ] `PI6` (qa.md:6410) **NEW** where: **Regression**, the woodcutter dead and no liver given | steps: Click her | pass: *"How many innocents..."* with the liver reply, the pulverized excuse and the rejection, as before. No *"I have your pie already"* | new: True -- *added after the 1.0 classification*
+- [ ] `PI7` (qa.md:6411) **NEW** where: **Regression**, after PI3 | steps: Provoke the goblins into a fight | pass: She can still be attacked with force attack | new: True -- *added after the 1.0 classification*
+- [ ] `MK1` (qa.md:6419) **NEW** where: House of Ilk, Machiavelli's quest accepted, the ambush sprung | steps: Kill the leader (the tough one nearest the door) **first**, then the other three | pass: When the last one falls, Machiavelli's click opens *"Thank you for saving me, you have certainly earned your payment."* (`200`), not *"Help me! Stop these assassins!"*, and the reward and quest completion follow | new: True -- *added after the 1.0 classification*
+- [ ] `MK2` (qa.md:6420) **NEW** where: Same, a fresh try | steps: Kill the leader **last** | pass: The same: `200`, reward, quest complete | new: True -- *added after the 1.0 classification*
+- [ ] `MK3` (qa.md:6421) **NEW** where: Same | steps: Click Machiavelli while one snakebreed still lives | pass: *"Help me! Stop these assassins!"* as before. The quest does not complete early | new: True -- *added after the 1.0 classification*
+- [ ] `MK4` (qa.md:6422) **NEW** where: **Regression** | steps: Let Machiavelli die in the fight | pass: The quest fails as before, and no reward is paid | new: True -- *added after the 1.0 classification*
+- [ ] `SY1` (qa.md:6430) **NEW** where: Inquisition Pit3, Renaldo in the stocks, his brother's quest active | steps: Talk, leave at once, talk again | pass: The return line *"I beg you...Help me leave this place!"* offers the quest reply **and** Eastern Knights, Who are you, Why are you locked up, the ribs, and Goodbye | new: True -- *added after the 1.0 classification*
+- [ ] `SY2` (qa.md:6431) **NEW** where: Same, holding the potion | steps: Return conversation | pass: *"Your brother sent me to free you."* is there and still frees him | new: True -- *added after the 1.0 classification*
+- [ ] `SY3` (qa.md:6432) **NEW** where: Same, before meeting the brother | steps: Return conversation | pass: *"I'm still looking for your brother..."* is there, as before | new: True -- *added after the 1.0 classification*
+- [ ] `SY4` (qa.md:6433) **NEW** where: **Regression** | steps: Press Escape in the return conversation | pass: The same reply it picked before this change | new: True -- *added after the 1.0 classification*
+- [ ] `DC1` (qa.md:6441) **NEW** where: Inquisition Pit3, Faust freed from his cell and sent to the Daeva of Pain | steps: Watch the scene | pass: The view settles above where it used to. The Daeva's *"What a fool! Power corrupts..."* is readable from its **first line**, top edge on screen | new: True -- *added after the 1.0 classification*
+- [ ] `DC2` (qa.md:6442) **NEW** where: Same scene | steps: Watch Faust's line before it | pass: *"I have done as you requested..."* and Faust himself are still on screen | new: True -- *added after the 1.0 classification*
+- [ ] `DC3` (qa.md:6443) **NEW** where: **Regression** | steps: Let the scene finish | pass: The Daeva teleports away and the camera returns to the party as before | new: True -- *added after the 1.0 classification*
+- [ ] `RK1` (qa.md:6444) **NEW** where: Goblin Warrens, eyes quest done with the Barter reply | steps: Talk to Rakeb again, any later visit | pass: *"We hope the items have served you well..."* now offers *"I would like to buy some items."*, and it opens the shop | new: True -- *added after the 1.0 classification*
+- [ ] `RK2` (qa.md:6445) **NEW** where: The first time the shop opens after install | steps: Look at the stock | pass: About a second's pause, then **magic** stock: potions, scrolls, rings or amulets or wands, a few weapons and armour. No plain Battle Axe | new: True -- *added after the 1.0 classification*
+- [ ] `RK3` (qa.md:6446) **NEW** where: Close and reopen at once | steps: Compare | pass: The same items, not a fresh roll | new: True -- *added after the 1.0 classification*
+- [ ] `RK4` (qa.md:6447) **NEW** where: Eyes turned in **without** Barter (125 gold) | steps: Talk to him again | pass: No buy reply, as vanilla: the shop is the Barter reward | new: True -- *added after the 1.0 classification*
+- [ ] `ER1` (qa.md:6457) **NEW** where: Finish the game with Ernesto alive, having travelled with him | steps: Watch the end slides | pass: After Fang's slot, Ernesto stands on the stage and *"Ernesto went home to Barcelona, as he had always meant to..."* plays | new: True -- *added after the 1.0 classification*
+- [ ] `ER2` (qa.md:6458) **NEW** where: Ernesto died in your party | steps: Finish the game | pass: *"Ernesto died in a bout he had never been told was real..."* instead | new: True -- *added after the 1.0 classification*
+- [ ] `ER3` (qa.md:6459) **NEW** where: Never freed him, or freed him and sent him home | steps: Finish the game | pass: No Ernesto slide, and the series runs straight on to the next one | new: True -- *added after the 1.0 classification*
+- [ ] `ER5` (qa.md:6461) **NEW** where: **Regression** | steps: Finish with Fang and the Golem | pass: Their slides and figures are unchanged, and the series reaches the credits | new: True -- *added after the 1.0 classification*
+- [ ] `FK9` (qa.md:6469) **NEW** where: Felipe, after striking or handing over his daughter, Speech 40 or more | steps: *"I searched the forest and found nothing. I am sorry. <Lie>"* | pass: *"<His shoulders drop.> Then she is gone. Thank you for looking. Few strangers would have."* Next visit he greets you as a friend, and the Darkwood is still on offer | new: True -- *added after the 1.0 classification*
+- [ ] `FK10` (qa.md:6470) **NEW** where: The same, Speech under 40 | steps: The same lie | pass: *"<He looks at you a long time.> You are lying. It is all over you..."*; next visit is the angry greeting, as FK1 | new: True -- *added after the 1.0 classification*
+- [ ] `FK11` (qa.md:6471) **NEW** where: **Regression**: the confession | steps: *"I am the reason she did not come home."* | pass: Still `31 she never came home`, as FK1 | new: True -- *added after the 1.0 classification*
+- [ ] `FK12` (qa.md:6472) **NEW** where: Woodcutter Forest **not entered yet**, level 8-10 with companions, on Rakeb's eyes quest | steps: Fight Felipe | pass: A real fight: about 150 HP and armor 140, so it takes several rounds, and his axe lands for 5-12. He can still be beaten without dying | new: True -- *added after the 1.0 classification*
+- [ ] `FK13` (qa.md:6473) **NEW** where: The same, a level 5 character alone | steps: Fight Felipe | pass: Hard but survivable with potions; if it is not, his numbers are too high | new: True -- *added after the 1.0 classification*
+- [ ] `FK14` (qa.md:6474) **NEW** where: FK9-FK11 | steps: Read his answers | pass: Neither node 31 nor 34 mentions the cave; both end with *"Begone..."* | new: True -- *added after the 1.0 classification*
+- [ ] `GG4` (qa.md:6475) **NEW** where: Mongol Camp, welcomed, Darsh quest active | steps: At the gate greeting, *"I have come to find Inquisitor Darsh."* | pass: *"<The guard shrugs.> The priest? He sits in our pens. The shaman Rakeb set his price..."*. The camp does **not** turn hostile, and later crossings are silent | new: True -- *added after the 1.0 classification*
+- [ ] `GG5` (qa.md:6476) **NEW** where: **Regression**: a new character, at the first challenge | steps: *"I have come to find Inquisitor Darsh."* from the challenge | pass: Still *"you may join him...In our slave pens!"* and the fight, as vanilla | new: True -- *added after the 1.0 classification*
+- [ ] `FK1` (qa.md:6486) **NEW** where: Felipe, after striking or handing over his daughter at Scar Ravine | steps: *"I am the reason she did not come home."*, leave, talk again | pass: *"What do you want? What do you think I have to say to *you*?"*, and the only replies are *"<Leave him alone.>"* and, if Rakeb's quest is on, the eyes-and-liver one. No *"Hello again, friend"* | new: True -- *added after the 1.0 classification*
+- [ ] `FK2` (qa.md:6487) **NEW** where: The same, with the lie | steps: *"I searched the forest and found nothing."*, leave, talk again | pass: As FK1 | new: True -- *added after the 1.0 classification*
+- [ ] `FK3` (qa.md:6488) **NEW** where: FK1 | steps: *"<Leave him alone.>"* | pass: *"<He turns his back on you and goes on with his work.>"*, and the conversation ends | new: True -- *added after the 1.0 classification*
+- [ ] `FK4` (qa.md:6489) **NEW** where: **Regression**: Felipe, daughter never harmed | steps: Be rude (*"Nothing. I'll be going now."*), talk again | pass: The angry greeting still offers *"I didn't mean to offend you, who are you?"* and *"What's wrong?"*, and both still work | new: True -- *added after the 1.0 classification*
+- [ ] `FK5` (qa.md:6490) **NEW** where: Woodcutter Forest not yet entered, on Rakeb's eyes quest | steps: Let a companion land the killing blow on Felipe | pass: The log shows the eyes and the liver added to **your** inventory, and Darkwood drops as before | new: True -- *added after the 1.0 classification*
+- [ ] `FK6` (qa.md:6491) **NEW** where: A save where a companion already took them (the 0.99.25 report save) | steps: Talk to Rakeb | pass: *"One of my companions carries his eyes and liver."* is offered; it leads to *"We sensed that you have that which we desire."*, the reward, and the quest completes in the log | new: True -- *added after the 1.0 classification*
+- [ ] `FK7` (qa.md:6492) **NEW** where: Holding the eyes and liver yourself, devil fish done | steps: Talk to Rakeb | pass: *"I have the woodsman's eyes and liver."* is the first reply, not three nodes into the job pitch. The companion reply is **not** offered | new: True -- *added after the 1.0 classification*
+- [ ] `FK8` (qa.md:6493) **NEW** where: Goblin Warrens not yet entered, devil fish done, holding the eyes | steps: Talk to Rakeb | pass: He opens with his return greeting and the turn-in, not *"I knew you would return. I have a job for you."* | new: True -- *added after the 1.0 classification*
+- [ ] `KG1` (qa.md:6500) **NEW** where: Titan Village | steps: Let a companion land the killing blow on a Titan | pass: The log shows his stone heart added to **your** inventory | new: True -- *added after the 1.0 classification*
+- [ ] `KG2` (qa.md:6501) **NEW** where: Troll Pit, with the peace broken | steps: Let a companion kill the troll chief | pass: The Lava Troll Hide is in your inventory, and Quinn takes it | new: True -- *added after the 1.0 classification*
+- [ ] `KG3` (qa.md:6502) **NEW** where: Mongol Camp, on *Slay the Goblins for the Savage Heart* | steps: Let companions take most of the kills | pass: Their kills count: the quest advances after 12 goblins whoever killed them, and Goblin Slayer lands on you | new: True -- *added after the 1.0 classification*
+- [ ] `KG4` (qa.md:6503) **NEW** where: Goblin Warrens, on the same quest | steps: As KG3 | pass: As KG3 | new: True -- *added after the 1.0 classification*
+- [ ] `KG5` (qa.md:6504) **NEW** where: A merchant, in a map not entered (e.g. Weng Choi's shop) | steps: Let a companion kill him | pass: **You** get Merchant Slayer | new: True -- *added after the 1.0 classification*
+- [ ] `KG6` (qa.md:6505) **NEW** where: Woodcutter Forest | steps: Let a companion kill Felipe | pass: -50 karma lands on you | new: True -- *added after the 1.0 classification*
+- [ ] `KG7` (qa.md:6506) **NEW** where: **Regression**: any of the above | steps: Land the killing blow yourself | pass: Exactly as before: one item, one title, one count | new: True -- *added after the 1.0 classification*
+- [ ] `EC1` (qa.md:6512) **NEW** where: Free Ernesto on the Lake and take him along | steps: Level up | pass: A balloon over him: *"<Ernesto salutes the sky with his blade.> Another bout, another lesson! Spain will hear of this! <+9 health, +8 armor, +3 fighting skill>"*, and his health and armor go up | new: True -- *added after the 1.0 classification*
+- [ ] `EC2` (qa.md:6513) **NEW** where: EC1 | steps: Level up again | pass: One balloon and one set of gains per level, not two | new: True -- *added after the 1.0 classification*
+- [ ] `EC4` (qa.md:6515) **NEW** where: Ernesto in a fight | steps: Let him take damage | pass: His name reads *Ernesto (Injured)*, then *(Badly Injured)*, then *(Near Death)*, and goes back to *Ernesto* as he heals | new: True -- *added after the 1.0 classification*
+- [ ] `EC5` (qa.md:6516) **NEW** where: **Regression** | steps: Level up with Fang or Cervantes along | pass: Their balloons and gains are unchanged | new: True -- *added after the 1.0 classification*
+- [ ] `GG1` (qa.md:6522) **NEW** where: Mongol Camp, already let through the gate | steps: Walk to the Warrens and back | pass: *"Greetings goblin friend. What do you want?"* at most once; choose *"Nothing today."* and every later crossing, both ways, is silent | new: True -- *added after the 1.0 classification*
+- [ ] `GG2` (qa.md:6523) **NEW** where: The same, Speech 40 | steps: Choose *"I have come to seek an audience with your great leader."* | pass: The Khan line plays, and later crossings are silent | new: True -- *added after the 1.0 classification*
+- [ ] `GG3` (qa.md:6524) **NEW** where: **Regression**: a new character at the gate | steps: Walk up to the camp | pass: The vanilla challenge (*"Conversation Start Gob 1"*) still plays the first time, and its replies still let you through or start the fight | new: True -- *added after the 1.0 classification*
+- [ ] `GX1` (qa.md:6533) **NEW** where: Main sewer, before taking any job from Juanita | steps: Enter from the Port District, then from the Temple District | pass: No runner at either entrance | new: True -- *added after the 1.0 classification*
+- [ ] `GX2` (qa.md:6534) **NEW** where: After Juanita gives you *Help the Thieves Destroy the Beggars Guild* | steps: Enter from the Port District | pass: A **Guild Runner** stands just beside where you arrive, on open floor, not in a wall. He talks, he does not fight | new: True -- *added after the 1.0 classification*
+- [ ] `GX3` (qa.md:6535) **NEW** where: The same, from the Temple District | steps: - | pass: A second runner beside that arrival point | new: True -- *added after the 1.0 classification*
+- [ ] `GX4` (qa.md:6536) **NEW** where: Talk to either, with 5 gold or more | steps: *"Take me to Juanita."* | pass: 5 gold gone, and you arrive in the Thieves' Congregation within sight of Juanita, with your companions. Nothing in the den reacts to how you arrived | new: True -- *added after the 1.0 classification*
+- [ ] `GX5` (qa.md:6537) **NEW** where: With under 5 gold | steps: Talk to him | pass: Only *"I do not have five gold."* (*"Then you walk, like everyone else."*) and *"Not now."* | new: True -- *added after the 1.0 classification*
+- [ ] `GX6` (qa.md:6538) **NEW** where: Refuse Juanita (*"I'll not kill for you again"*), then enter again | steps: - | pass: The runners are gone | new: True -- *added after the 1.0 classification*
+- [ ] `GX7` (qa.md:6539) **NEW** where: **Regression** | steps: Enter from the Port District | pass: It still autosaves on arrival. From the Temple District, the entrance thief and beggar battle still starts as before | new: True -- *added after the 1.0 classification*
+- [ ] `TT1` (qa.md:6548) **NEW** where: Sewers, the entrance troll | steps: Ask about the lost boy | pass: One short answer in the drones' grammar: *"Small one. Yes. Is in the deep. Not my rock to give. You talk to chief..."* It still says where the chief is and that his people will not touch you | new: True -- *added after the 1.0 classification*
+- [ ] `TT2` (qa.md:6549) **NEW** where: The Troll Pit, the chief | steps: Walk every branch: the boy, the ore, the field, Enrique, the bell | pass: Every line short, plain, and his. Every fact still there: the 200 price, iron in daylight from the same man, Enrique's name, the rite. No line runs past two or three sentences | new: True -- *added after the 1.0 classification*
+- [ ] `TT3` (qa.md:6550) **NEW** where: The old chief's field | steps: Look, count, and the three looks | pass: Short narration of what you see. *"Thirteen."* and the wererats-and-thieves inference still there | new: True -- *added after the 1.0 classification*
+- [ ] `TT4` (qa.md:6551) **NEW** where: **The reported bug.** The ore chest, peace held, not paid, first visit to the pit | steps: Open it | pass: It **does not open**. The chief says *"Not yours. You pay first."* over his head, and stays where he is. Nobody turns hostile | new: True -- *added after the 1.0 classification*
+- [ ] `TT5` (qa.md:6552) **NEW** where: The same | steps: Open it again | pass: The chief, still standing where he was, speaks: *"That is ours. I told you."* One reply, a fight icon. Then the trolls attack. He never vanishes and no other troll appears in his place | new: True -- *added after the 1.0 classification*
+- [ ] `TT6` (qa.md:6553) **NEW** where: After paying (`102 word carried`) | steps: Open the chest | pass: It opens, as before. No warning | new: True -- *added after the 1.0 classification*
+- [ ] `TT7` (qa.md:6554) **NEW** where: **Regression.** Fought in, no peace | steps: Open the chest | pass: A plain chest, as before | new: True -- *added after the 1.0 classification*
+- [ ] `TT8` (qa.md:6555) **NEW** where: **Regression.** Peace held, walk onto the old chief's field after desecrating it | steps: - | pass: The desecration scene still plays there, in the new short text | new: True -- *added after the 1.0 classification*
+- [ ] `TT9` (qa.md:6556) **NEW** where: Sewers entrance troll, the wererats finished by **any** of the three routes (cured, beggar master killed, guild destroyed with the thieves) | steps: *"The wererats are finished. The beggars' guild is done."* | pass: He makes the connection himself (*"Wererats gone? They take Trolls. In the dark."*), sends you to the chief, and the peace holds. **No hide.** The reply now shows without Quinn's errand too | new: True -- *added after the 1.0 classification*
+- [ ] `TT10` (qa.md:6557) **NEW** where: The chief, Quinn's hide errand open, wererats finished, Enrique **not** spoken to | steps: *"...I am asking you for one."* | pass: `134 the hide owed`: he treats it as a heavy thing, then gives one Lava Troll Hide. Only one hide reply shows at a time; with Speak for the Trolls done it is the old `133` | new: True -- *added after the 1.0 classification*
+- [ ] `TT11` (qa.md:6558) **NEW** where: The chief, Tomas still held, **no** Slayer of Innocents | steps: *"Keep him. Nobody up there will miss one beggar boy..."* | pass: `135`: contempt, then **150 gold**, karma **-75**. Afterwards the chief's *"I am looking for a human child"* reply is gone | new: True -- *added after the 1.0 classification*
+- [ ] `TT12` (qa.md:6559) **NEW** where: After TT11, Marisol | steps: Talk to her | pass: A new answer, *"He is dead. The trolls had him."*: she runs, and **Find the Lost Boy Tomas fails**. *"Yes, I found him"* does not show | new: True -- *added after the 1.0 classification*
+- [ ] `TT13` (qa.md:6560) **NEW** where: After TT11, the smith | steps: His ore runner talk | pass: *"Send Tomas"* does not appear: it needs the quest found or done | new: True -- *added after the 1.0 classification*
+- [ ] `TT14` (qa.md:6561) **NEW** where: **With Slayer of Innocents** (the title, from harming a child) | steps: The boy, Speech 45+ | pass: The plea gets `137`: *"You say child. You. The rock tells us of your misdeeds."* and the price, never `98`. Naming the price still works | new: True -- *added after the 1.0 classification*
+- [ ] `TT15` (qa.md:6562) **NEW** where: The same | steps: The silence deal | pass: `136`: *"The rock tells us of your misdeeds. I wondered if you would ask."* Same coin and karma as TT11 | new: True -- *added after the 1.0 classification*
+- [ ] `TT16` (qa.md:6563) **NEW** where: **Negative.** Without the title | steps: The boy | pass: The plea and the deal behave as TT11 and the original `98`; neither `136` nor `137` can appear | new: True -- *added after the 1.0 classification*
+- [ ] `TT17` (qa.md:6564) **NEW** where: **The double-cross**, a Troll Pit not yet entered | steps: TT11, then search out and open Tomas's chamber (`secret door1`) | pass: The rescue plays exactly as before: the camera, *"Finally!"*, he walks out. As control returns, the chief says *"Coin, and the small one. Both."* and every troll attacks. The 150 gold stays, and so does the -75 karma | new: True -- *added after the 1.0 classification*
+- [ ] `TT18` (qa.md:6565) **NEW** where: After TT17, Marisol | steps: Talk to her | pass: *"Yes, I found him down there."* and the quest completes. *"He is dead"* is **not** offered | new: True -- *added after the 1.0 classification*
+- [ ] `TT19` (qa.md:6566) **NEW** where: **Negative.** Pay the 200 or talk him down, then open the chamber | steps: - | pass: The rescue, and no troll reaction. Only a sold silence makes freeing him theft | new: True -- *added after the 1.0 classification*
+- [ ] `WL1` (qa.md:6575) **NEW** where: **The reported bug.** Lake, Plains or Barcelona Coast, first visit | steps: Walk in and wait a minute, far from any goblins | pass: **No** "Their war leader is dead" line. Before, a band out of sight had no leader yet and the timer called him dead | new: True -- *added after the 1.0 classification*
+- [ ] `WL2` (qa.md:6576) **NEW** where: The same map | steps: Find a band with a Goblin War Leader and kill him | pass: The line appears **once, when he dies**. His band **breaks off at once**: they stop attacking and your companions stop chasing them. About **6 seconds** later they come back at you, moving and swinging slower | new: True -- *added after the 1.0 classification*
+- [ ] `WL3` (qa.md:6577) **NEW** where: Woodcutter Forest, first visit | steps: WL2 there | pass: The same. This map's leader death also fires vanilla's `monster counter` relay, which stays first in his death script | new: True -- *added after the 1.0 classification*
+- [ ] `WL4` (qa.md:6578) **NEW** where: **Regression.** Any WL2 leader | steps: Kill him | pass: XP and drops as before. They live in his own death effect, which the generator does not replace | new: True -- *added after the 1.0 classification*
+- [ ] `WL5` (qa.md:6579) **NEW** where: A band whose leader is still alive | steps: Kill some of the others first | pass: No line, no slowdown. Only his death triggers it | new: True -- *added after the 1.0 classification*
+- [ ] `WL6` (qa.md:6580) **NEW** where: **The Khan's Champion**, any WL map | steps: Kill a war leader anyway (force attack) | pass: The line and the slowdown, but the band **stays** standing aside after 6 seconds. The rally skips the Champion, so it never undoes the stand-aside | new: True -- *added after the 1.0 classification*
+- [ ] `WL7` (qa.md:6581) **NEW** where: After WL2, save | steps: `savecheck dump`, find a surviving goblin of that band | pass: `Derived Character Attributes/Speed/Base Animation Speed Multiplier=-0.25` in its permanent modifiers. The modifier names the band, which the exe resolves to every goblin of it (`0x41f150`) | new: True -- *added after the 1.0 classification*
+- [ ] `KX1` (qa.md:6582) **NEW** where: **Khan slain**, then a WL map not yet entered | steps: Walk in, wait, then walk to the **farthest** band | pass: *"Without their Khan, the goblins here fight with less heart."* on arrival, and that far band moves and swings slower when you reach it. Before, only goblins spawned in the first three seconds were slowed | new: True -- *added after the 1.0 classification*
+- [ ] `KX2` (qa.md:6583) **NEW** where: After KX1, save | steps: `savecheck dump`, find a goblin from that far band | pass: `Base Animation Speed Multiplier=-0.2` in its permanent modifiers | new: True -- *added after the 1.0 classification*
+- [ ] `KX3` (qa.md:6584) **NEW** where: **The Khan's Champion**, a WL map not yet entered | steps: Walk to the farthest band | pass: They stand aside as you arrive, like the near ones. Before, a band out of range at arrival fought you | new: True -- *added after the 1.0 classification*
+- [ ] `KX4` (qa.md:6585) **NEW** where: **Neither**: the Khan alive, not his Champion | steps: Any WL map | pass: No line on arrival, goblins at normal speed and hostile | new: True -- *added after the 1.0 classification*
+- [ ] `KX5` (qa.md:6586) **NEW** where: **Regression**, Woodcutter Forest | steps: Kill a band goblin, then its war leader | pass: Vanilla's `monster counter` death script still runs on both (it now shares the generator's `After Action` with the Khan check), and WL2 still happens | new: True -- *added after the 1.0 classification*
+- [ ] `DX1` (qa.md:6587) **NEW** where: Any goblin fight | steps: Kill several goblins, watching each as it falls | pass: When one shouts on the killing blow it is a **death line**: *"Not... the pot..."*, *"Tell Grum he gets my share."* and the like. Never a fighting line like *"Khan! Khan, it is winning!"* as it dies | new: True -- *added after the 1.0 classification*
+- [ ] `DX2` (qa.md:6588) **NEW** where: The same | steps: Hit goblins without killing them | pass: The hurt barks as before, at the same rate, about one hit in six | new: True -- *added after the 1.0 classification*
+- [ ] `DX3` (qa.md:6589) **NEW** where: The same | steps: Watch where a death line appears | pass: Over the body, a moment after the blow. It waits 0.1 seconds so the check reads the goblin after the hit | new: True -- *added after the 1.0 classification*
+- [ ] `DX4` (qa.md:6590) **NEW** where: **Regression**, a war leader | steps: Hit him, then kill him | pass: His hurt barks and the WL2 break-off both still happen. His bark bank sits beside the Goblin Cave Post charge in the same hook, which is untouched | new: True -- *added after the 1.0 classification*
+- [ ] `DX5` (qa.md:6591) **NEW** where: Cortes or Cervantes in the party | steps: Let him fall in a fight | pass: If he speaks as he dies, it is a dying line (*"All that gold... and I never spent it."*, *"Squire... finish the chapter for me."*), never *"I need assistance!"* | new: True -- *added after the 1.0 classification*
+- [ ] `DX6` (qa.md:6592) **NEW** where: Sewers thieves, English soldiers, trolls, Snakebreed | steps: Kill a dozen of one family | pass: About a third of them say a dying line as they fall, in their own voice: *"Should have stayed in the alley..."*, *"For... England..."*, *"Rock... takes me back."*, *"Cold... ssso cold..."* | new: True -- *added after the 1.0 classification*
+- [ ] `DX7` (qa.md:6593) **NEW** where: The same | steps: Kill one just after it barks on a swing | pass: The swing line may still be fading over the body, and a death line, if one comes, sits **above** it, not on top of it | new: True -- *added after the 1.0 classification*
+- [ ] `DX8` (qa.md:6594) **NEW** where: **Regression**: a thief, a soldier captain, the Lava Troll Boss | steps: Hit each | pass: The thief still drops caltrops on the first hit, the captain still reaches for a draught under 40%, and hitting the boss still breaks the troll peace. Each of those hooks now shares its slot with the death check | new: True -- *added after the 1.0 classification*
+- [ ] `AZ1` (qa.md:6603) **NEW** where: **PASSED** (pre-release, Woodcutter Forest) | steps: Hold a wand with Acid Touch near enemies without attacking | pass: Acid-only hits of 2 to 7 roughly every 2 seconds, on every enemy in reach. Seen: 5, 2, 6, 6 on wasps, one tick catching two, and a kill | new: True -- *added after the 1.0 classification*
+- [ ] `AZ2` (qa.md:6604) **NEW** where: Any random wand drop, or the Bounty Hunter Camp reward | steps: Read the description of a wand or amulet with one of the three auras | pass: *"Creates an aura that deals 2-7 acid damage to nearby enemies every 2 seconds."*, or cold, or fire. Nothing about melee range | new: True -- *added after the 1.0 classification*
+- [ ] `AZ3` (qa.md:6605) **NEW** where: **Negative.** A wand or amulet picked up **before** this release | steps: Read its description | pass: Still the old "within melee range" text. Expected: the text was fixed into the item when it was made | new: True -- *added after the 1.0 classification*
+- [ ] `AZ4` (qa.md:6606) **NEW** where: Hold an aura item near a companion and a neutral townsperson | steps: Wait | pass: Neither is hurt. The aura has `Trigger if Enemy=1` and `Trigger if Player=0` | new: True -- *added after the 1.0 classification*
+- [ ] `AZ5` (qa.md:6607) **NEW** where: Armor with **Deepest Winter**, generated after install | steps: Read its description | pass: *"A magical aura of frost emanates from this armor, dealing N-M cold damage to nearby enemies every 6 seconds."*, with real numbers in place of N and M, not `%i[min]` | new: True -- *added after the 1.0 classification*
+- [ ] `CX1` (qa.md:6616) **NEW** where: Any companion | steps: Order menu, *How are you holding up?* | pass: Exact numbers, no ranges: the hurt line, `Health at full strength: N.`, `Armor class: N.`, the best-weapon line, `Fighting skill: N.` Five lines | new: True -- *added after the 1.0 classification*
+- [ ] `CX2` (qa.md:6617) **NEW** where: Fernand, before and after one level-up | steps: CX1, level up, CX1 again | pass: Health **+9**, armor **+8**, fighting skill **+3**. Health rises **+14** on the level his one-handed skill reaches 50, because the HP formula itself adds 5 at 50 (and again at 100, 150...). Fernand is at 47 in the current saves, so his next level is that one | new: True -- *added after the 1.0 classification*
+- [ ] `CX3` (qa.md:6618) **NEW** where: The same level-up | steps: Watch Fernand when the level arrives | pass: His balloon reads *"A sailor learns or a sailor drowns. I have been learning. <+9 health, +8 armor, +3 fighting skill>"*, and the same line is in the combat log afterwards | new: True -- *added after the 1.0 classification*
+- [ ] `CX5` (qa.md:6620) **NEW** where: Bishop Diego or Darsh | steps: CX1 | pass: A sixth line, `Celestial Smite: N.`, and after a level-up it is 3 higher. Their balloon says `+3 Celestial Smite`, not fighting skill | new: True -- *added after the 1.0 classification*
+- [ ] `CX6` (qa.md:6621) **NEW** where: **Negative.** Any companion other than Diego or Darsh | steps: CX1 | pass: No `Celestial Smite` line at all, not `Celestial Smite: 0.` | new: True -- *added after the 1.0 classification*
+- [ ] `CX7` (qa.md:6622) **NEW** where: Two different companions in a row | steps: CX1 on each | pass: Each report describes the companion clicked. The lookups run in cans, and `$Trigger` must still be the clicked companion there (the exe forwards the reply's context into a canned action, 0x4f8160) | new: True -- *added after the 1.0 classification*
+- [ ] `CX8` (qa.md:6623) **NEW** where: Grace, Joan, Sir Roger, the Knight of Saladin, Grumdjum | steps: Level up with one along | pass: Their balloon ends `<+5 health, +3 armor, +1 fighting skill>`. A companion who fights at range may show no change in `Fighting skill`, because the grant is one-handed skill and the report shows the best of three | new: True -- *added after the 1.0 classification*
+- [ ] `CL1` (qa.md:6629) **NEW** where: Any thief or assassin fight (the Sewers thieves are the earliest) | steps: Hit one so it drops caltrops | pass: A low cluster of four short iron points nearby, well below knee height. **Not** a needle as tall as a person | new: True -- *added after the 1.0 classification*
+- [ ] `CL2` (qa.md:6630) **NEW** where: The same | steps: Look at where the cluster sits | pass: On the ground, not floating or sunk into the floor | new: True -- *added after the 1.0 classification*
+- [ ] `CL5` (qa.md:6631) **NEW** where: Hit several thieves in turn, in melee | steps: Watch where each patch lands | pass: Somewhere around the thief, within a couple of paces, and **not** every time exactly under it. Never inside a wall or off the walkable floor | new: True -- *added after the 1.0 classification*
+- [ ] `CL3` (qa.md:6632) **NEW** where: The same | steps: Stand on it | pass: It still hurts on the 1.25 second tick and disappears after it lands a hit, as before, and the combat log says *"You stepped on some caltrops."* once for that hit | new: True -- *added after the 1.0 classification*
+- [ ] `FS1` (qa.md:6638) **NEW** where: Port District, a new game | steps: Recruit Fernand and walk (do not run) around the district with him | pass: He keeps pace at a walk, about as well as Grace does, and only falls back on sharp turns or crowds | new: True -- *added after the 1.0 classification*
+- [ ] `FS3` (qa.md:6640) **NEW** where: The same save | steps: Dismiss and rejoin him three or four more times, then walk | pass: His pace is the same as after the first rejoin, **not faster each time** -- the bonus is granted once | new: True -- *added after the 1.0 classification*
+- [ ] `TV1` (qa.md:6646) **NEW** where: The title screen | steps: Watch it cycle through all its paintings | pass: "Fixt" and the installed version in the lower right of every one, readable on each | new: True -- *added after the 1.0 classification*
+- [ ] `TV2` (qa.md:6647) **NEW** where: The same, the painting with the menu on the right and low (Background 05) | steps: Look at the lower right | pass: The stamp sits below the last button, not under it | new: True -- *added after the 1.0 classification*
+- [ ] `GT2` (qa.md:6654) **NEW** where: The same | steps: Fit the gear at the tank, step away, walk back | pass: The seated-ring description, not vanilla's. Works in a save that had already been in the chamber | new: True -- *added after the 1.0 classification*
+- [ ] `GT3` (qa.md:6655) **NEW** where: The same, after DaVinci has the spirit gem | steps: Walk up to the tank | pass: "Something inside the hull is awake... DaVinci has finished it." | new: True -- *added after the 1.0 classification*
+- [ ] `WF25` (qa.md:6661) **NEW** where: The Plateau, a save that has not entered it | steps: Kill a knight and read the log; hover several | pass: 187 XP a knight; at Act 4 strength they are the Super tier, noticeably harder than before | new: True -- *added after the 1.0 classification*
+- [ ] `WF26` (qa.md:6662) **NEW** where: The Plateau, sworn | steps: Kill Jehanne | pass: "The door is open. Your side of the Bonecaller's bargain is kept." and 5,000 XP; the pillar door opens | new: True -- *added after the 1.0 classification*
+- [ ] `WF27` (qa.md:6663) **NEW** where: The Burial Chamber, sworn, Speech 110 | steps: Put off the debt with the lie | pass: 2,500 XP | new: True -- *added after the 1.0 classification*
+- [ ] `WF28` (qa.md:6664) **NEW** where: The door, a Templar | steps: Be recruited, then give the order's word; talk to a knight again | pass: +1 tide, the reserve comes up at once; the reply is gone the second time. The herald offers a Templar refusal; sworn, Jehanne answers "I wear the same cross" with "sold it as well as worn it" | new: True -- *added after the 1.0 classification*
+- [ ] `WF29` (qa.md:6665) **NEW** where: The Bonecaller, a Wielder with the Necromancer title, Karma 600 or more | steps: "You will follow me" | pass: It takes the new hand; the oath's effects follow; in the Burial Chamber, taking the Lance calls no debt | new: True -- *added after the 1.0 classification*
+- [ ] `WF30` (qa.md:6666) **NEW** where: The Bonecaller, a Wielder without the title | steps: At the binding, change take to keep | pass: 4,000 XP; the dead and the knights stop fighting; clicks answer with the new order; striking one starts the war again; Jehanne opens with her sword down | new: True -- *added after the 1.0 classification*
+- [ ] `WF31` (qa.md:6667) **NEW** where: The same, then the Ante Chamber, the Burial Chamber and the Efreeti | steps: Walk in, click the dead, then free the knights | pass: "The word has come down ahead of you" prints in each chamber and the dead keep; the Efreeti gives the peace line, not the tide's | new: True -- *added after the 1.0 classification*
+- [ ] `WF32` (qa.md:6668) **NEW** where: The door, an Inquisitor | steps: Condemn the hill | pass: The alarm; the Bonecaller offers no bargain and fights; with Jehanne and it both dead, 4,000 XP | new: True -- *added after the 1.0 classification*
+- [ ] `WF33` (qa.md:6669) **NEW** where: The Efreeti, a Knight of Saladin | steps: Ask for the wish your elder should have made | pass: Pick a stat; the knights are freed and the stat rises | new: True -- *added after the 1.0 classification*
+- [ ] `WF1` (qa.md:6677) **NEW** where: The Doomed Plateau, from Retreat of Souls | steps: Walk west past the knights fighting at the door | pass: "One of the dead steps out of the horde..." prints, and the Herald of the Bonecaller comes up and its conversation opens by itself, asking whether you will come | new: True -- *added after the 1.0 classification*
+- [ ] `WF2` (qa.md:6678) **NEW** where: The same | steps: Accept, and walk among the dead to the Bonecaller | pass: "The dead let you pass" prints; no undead attacks you or your companions, and your companions do not attack them. Note any that do, by hover name | new: True -- *added after the 1.0 classification*
+- [ ] `WF3` (qa.md:6679) **NEW** where: The same, during the truce | steps: Strike one of the dead | pass: "You struck one of the dead..." prints and the horde turns on you | new: True -- *added after the 1.0 classification*
+- [ ] `WF4` (qa.md:6680) **NEW** where: Near the Bonecaller | steps: Walk up to it | pass: It calls you over in a balloon, does not attack you, and a click opens its conversation rather than a fight | new: True -- *added after the 1.0 classification*
+- [ ] `WF5` (qa.md:6681) **NEW** where: Its conversation | steps: Choose "You said something that is not a sword. Name it." | pass: It makes its offer; with Karma under 600 you can accept it | new: True -- *added after the 1.0 classification*
+- [ ] `WF6` (qa.md:6682) **NEW** where: The same, Speech 110 or Divine 80 | steps: Release it | pass: "The truce is over" prints; the horde turns on it and on you, and it fights them | new: True -- *added after the 1.0 classification*
+- [ ] `WF7` (qa.md:6683) **NEW** where: The same, Karma under 600 | steps: Swear to it, then walk the rest of the map; later talk to the knights in Retreat of Souls or the Garrison Camp | pass: The dead leave you alone for the rest of the map; no knight offers the "Are you a Knight?" recruitment; the Efreeti later says the knights were freed into a ruin | new: True -- *added after the 1.0 classification*
+- [ ] `WF8` (qa.md:6684) **NEW** where: The herald | steps: Refuse it | pass: It turns and fights; the Bonecaller still holds its fire and can be talked to | new: True -- *added after the 1.0 classification*
+- [ ] `WF9` (qa.md:6685) **NEW** where: Misc Crypt 1 or 2 before the Plateau | steps: Bar the rear door or bolt the stone door, then walk onto the Plateau | pass: "Knights come up from the rear of the keep..." prints, and three more knights stand forward of the line | new: True -- *added after the 1.0 classification*
+- [ ] `WF10` (qa.md:6686) **NEW** where: Misc Crypt 3 or 4, entered from the Plateau | steps: Open the walls or the crypts, so the tide is below zero, and walk back onto the Plateau | pass: "The dead from the opened crypts..." prints; two knights of the line fall at once and new dead come up behind it | new: True -- *added after the 1.0 classification*
+- [ ] `WF11` (qa.md:6687) **NEW** where: The middle of the Plateau, about x 3000 | steps: Watch the line without fighting for a minute | pass: Knights and undead fight each other. Note how fast the line wears down | new: True -- *added after the 1.0 classification*
+- [ ] `WF12` (qa.md:6688) **NEW** where: Jehanne's fight scene | steps: Play it through | pass: It completes as before | new: True -- *added after the 1.0 classification*
+- [ ] `WF14` (qa.md:6689) **NEW** where: During the truce | steps: Click several of the dead, before and after swearing to the Bonecaller | pass: Each answers in a balloon and none attacks; before swearing they send you to him, after it they tell you to keep your word. After the truce ends, a click attacks again | new: True -- *added after the 1.0 classification*
+- [ ] `WF15` (qa.md:6690) **NEW** where: The door, during the truce | steps: Watch the door as you accept the herald, then click the knight at the door | pass: He shouts "The dead are letting it walk!"; the click opens his challenge, not his usual line | new: True -- *added after the 1.0 classification*
+- [ ] `WF16` (qa.md:6691) **NEW** where: His challenge | steps: Try each answer (reload between) | pass: Speech 100 lie and "I will go" leave him wary but peaceful; the other two set the door's knights, Joan and her line on you; the pillar door still opens when Joan falls | new: True -- *added after the 1.0 classification*
+- [ ] `WF17` (qa.md:6692) **NEW** where: The tide below zero by swearing only, no crypt or wall opened | steps: Walk through a tide trigger after swearing | pass: The slip line credits the Bonecaller, not opened galleries; with a gallery opened and no oath, it names the galleries | new: True -- *added after the 1.0 classification*
+- [ ] `WF18` (qa.md:6693) **NEW** where: During the truce, without having answered the Bonecaller | steps: Walk up to the knights' line | pass: "You walked past him without a word..." prints and the dead turn on you. Sworn, nothing happens | new: True -- *added after the 1.0 classification*
+- [ ] `WF19` (qa.md:6694) **NEW** where: The Burial Chamber, sworn, a save that has not entered it | steps: Take the Lance, with the Bonecaller still alive on the Plateau | pass: "Something has followed you down" prints; the herald comes and asks for the spear. Speech 110 lie: it lets you go. Refuse: it and three groups of dead come for you | new: True -- *added after the 1.0 classification*
+- [ ] `WF20` (qa.md:6695) **NEW** where: The Bonecaller | steps: Read its Speech reply | pass: "Two hundred years of the same order" | new: True -- *added after the 1.0 classification*
+- [ ] `WF21` (qa.md:6696) **NEW** where: The Plateau, sworn | steps: Go to Jehanne, before and after meeting her | pass: She opens with "You smell of him" and offers only to draw or to let you go; drawing starts her fight, and the pillar door opens when she falls | new: True -- *added after the 1.0 classification*
+- [ ] `WF22` (qa.md:6697) **NEW** where: The Plateau, Jehanne a companion | steps: Swear to the Bonecaller | pass: She leaves the party and turns on you with her vanilla line | new: True -- *added after the 1.0 classification*
+- [ ] `WF23` (qa.md:6698) **NEW** where: The Ante Chamber and the Burial Chamber, sworn, saves that have not entered them | steps: Enter, click the dead, then strike one | pass: "The dead here know whose word you carry" prints; they leave you alone and answer a click; striking one turns that map's dead on you. In the Burial Chamber, refusing the debt does the same | new: True -- *added after the 1.0 classification*
+- [ ] `WF24` (qa.md:6699) **NEW** where: The Plateau, not sworn | steps: Kill the Bonewright, then walk away from where it stood; repeat for the Sergeant | pass: "Knights come up behind you..." prints and two knights stand on the spot. With the tide at zero before, the line now holds on the same walk | new: True -- *added after the 1.0 classification*
+- [ ] `WF13` (qa.md:6700) **NEW** where: The Revenant Sergeant, truce not taken | steps: Watch it, then bring it below two thirds yourself | pass: It fights the knights and ignores you, then whistles and comes for you; below a third it fights only you | new: True -- *added after the 1.0 classification*
+- [ ] `JC1` (qa.md:6706) **NEW** where: The Doomed Plateau, before meeting the Spirit Council | steps: Talk to Jehanne through every branch | pass: No reply says you have spoken to her Council; after meeting the Council, those replies appear | new: True -- *added after the 1.0 classification*
+- [ ] `BW1` (qa.md:6707) **NEW** where: The Doomed Plateau, a save that has not entered it | steps: Hover the captain that raises the dead, and read the log as you fight it | pass: It is named Bonewright, on hover and in the log; its opening line names no standard | new: True -- *added after the 1.0 classification*
+- [ ] `BW2` (qa.md:6708) **NEW** where: The same | steps: Let it raise a few, then kill it | pass: The risen fall with it at once, and the line says so | new: True -- *added after the 1.0 classification*
+- [ ] `BW3` (qa.md:6709) **NEW** where: Retreat of Souls | steps: Meet the Lance's guardian | pass: It is still the Second Guardian, unchanged | new: True -- *added after the 1.0 classification*
+- [ ] `RS1` (qa.md:6710) **NEW** where: The Doomed Plateau, a save that has not entered it | steps: Find the Revenant Sergeant | pass: It reads Revenant Sergeant on hover and in the log; other Revenants still read Revenant. On 0.99.13 it attacks you from the start: it could not reach a knight. 0.99.14 fixes that (WF13) | new: True -- *added after the 1.0 classification*
+- [ ] `RS2` (qa.md:6711) **NEW** where: The same | steps: Bring it below two thirds of its health yourself | pass: The whistle line, and undead that were idle nearby come for you, besides the escort that appears. Note if they go for the knights instead | new: True -- *added after the 1.0 classification*
+- [ ] `HW3` (qa.md:6712) **NEW** where: Caverns of Nostradamus, a map not yet entered | steps: Read the ward line, then kill the Acolytes but leave a Hujark Shaman alive | pass: The line names shamans and acolytes; the ward holds until the last caster of either kind falls | new: True -- *added after the 1.0 classification*
+- [ ] `AL2` (qa.md:6719) **NEW** where: The same | steps: Retreat well out of their bow range | pass: They follow you, then stop and shoot again once in range | new: True -- *added after the 1.0 classification*
+- [ ] `DW1` (qa.md:6720) **NEW** where: Doomed Plateau, first visit (kit: "The Doomed Plateau") | steps: Walk west along the path until a skeleton named Deathwatch sees you | pass: The log prints "The Deathwatch raises the alarm!", and within a few seconds a few undead arrive from the north that had not been fighting | new: True -- *added after the 1.0 classification*
+- [ ] `DW2` (qa.md:6721) **NEW** where: The same, new attempt | steps: Kill the Deathwatch before it notices you (from behind, or sneaking) | pass: No alarm line; the northern undead stay where they are | new: True -- *added after the 1.0 classification*
+- [ ] `DW3` (qa.md:6722) **NEW** where: The same | steps: Approach it head-on in the open | pass: It does not see you until you are well on screen | new: True -- *added after the 1.0 classification*
+- [ ] `DW4` (qa.md:6723) **NEW** where: The same, after an alarm | steps: Find and talk to the Bonecaller | pass: It still talks; the alarm did not pull it into the fight | new: True -- *added after the 1.0 classification*
+- [ ] `HM1` (qa.md:6724) **NEW** where: Any merchant or loot with magic helmets | steps: Find a Helmet of the Watch, read it, wear it | pass: It says it does not reduce sight; with it on, the clear area around you is as large as with no helmet | new: True -- *added after the 1.0 classification*
+- [ ] `HM2` (qa.md:6725) **NEW** where: The same | steps: Wear a Helmet of Farsight | pass: The clear area is visibly larger than with no helmet at all | new: True -- *added after the 1.0 classification*
+- [ ] `FB2` (qa.md:6732) **NEW** where: The same | steps: Chase and hit him as he runs | pass: He keeps running; he can be killed on the way | new: True -- *added after the 1.0 classification*
+- [ ] `FB3` (qa.md:6733) **NEW** where: The same, with the room's druids dead | steps: Wound a soldier badly | pass: He does not run; he fights on | new: True -- *added after the 1.0 classification*
+- [ ] `FB4` (qa.md:6734) **NEW** where: The same | steps: Watch every soldier who ran | pass: Every one comes back and fights again; none stands idle by a post. Report any that does, with the map | new: True -- *added after the 1.0 classification*
+- [ ] `BF3` (qa.md:6742) **NEW** where: The same | steps: Watch the stood-down men | pass: None of them is a Priest wearing a soldier's waking line | new: True -- *added after the 1.0 classification*
+- [ ] `LE12` (qa.md:6997) where: **Judgement.** Read the Demonic split beside vanilla | steps: Does *"Dark One"* land at 800, or does it want a lower bar? | pass: Karma 1000 is neutral and 0 is the worst there is, so 800 is a moderately bad character. Each of the three exits carries the number twice, in `tools/build_loose_ends.py` -- *Judgement row.*
+- [ ] `WM1` (qa.md:7019) [eyes + save] where: **The row that matters.** Any magic melee weapon, from a drop or a merchant | steps: Read its name and tooltip | pass: It has an **enchantment name and a working effect** -- *Long Sword of Snakebiting*, not a bare *Long Sword*. If magic melee weapons have stopped rolling enchantments, the per-base group tree is broken and nothing else in this release matters
+- [ ] `WM2` (qa.md:7020) where: A **Better** magic long sword, equipped | steps: Compare against a plain one in hand | pass: The blade is visibly a different, fancier mesh. Both at the same size: the family shares `Render Scaling=0.55`, so the variant reads about 12% longer and no more
+- [ ] `WM3` (qa.md:7021) where: A **Special** magic long sword, equipped | steps: Compare against plain and Better | pass: A third distinct mesh, not a repeat of either
+- [ ] `WM4` (qa.md:7022) where: A **Special** magic scimitar, on a **male** character | steps: Equip it and look at the blade | pass: It **appears**, and the blade hangs **down**. Both halves are fixes: the mesh was absent from the male registry so it rendered nothing, and the art itself was rotated. If it appears blade-up the rotation axis is wrong; if it does not appear, the registry patch did not take
+- [ ] `WM5` (qa.md:7023) where: A **Better** magic war hammer, on a **male** character | steps: Equip it | pass: It appears. This is the second registry entry, and unlike the scimitar its art needed no rotation
+- [ ] `WM6` (qa.md:7024) where: A **Great Mace**, magic or not | steps: Look at it in hand | pass: It is **the size it has always been**. An early build of this release shrank it 11% on a pattern match and that was reverted, so a Great Mace that looks smaller than you remember means the revert did not reach the build. A magic one still rolls enchantments but shows no mesh change, because no Great variant art exists
+- [ ] `WM7` (qa.md:7025) where: A **Better or Special** magic **Composite** Long Bow | steps: Compare against a plain Composite Long Bow | pass: Same mesh, `BowSpecial`. The Composite's own base art is the best bow in the game, so its copies name `BowSpecial` at both tiers rather than downgrading it to `BowBetter`. **The grade is the whole row.** A Composite carrying a Basic addition such as `of Dodging` has already been held in play and looked right, but Basic additions name no mesh, so that proves only that the Composite's pool delivers. Confirm the enchantment is Better or Special before reading anything into the model
+- [ ] `WM8` (qa.md:7026) where: A **Better** magic **plain** Long Bow | steps: Compare against a plain Long Bow | pass: A different mesh at **the same size**. It rendered 1.8x oversize before the scaling fix, so an obviously huge bow means the `MODEL.TXT` edit did not reach the build
+- [ ] `WM10` (qa.md:7028) where: **Judgement, not pass/fail.** Collect magic weapons over a stretch of play | steps: Watch the variety of enchantments | pass: It should feel unchanged. Each base weapon's pool is asserted to keep vanilla's 3/20/6 shape with nothing double-weighted, so any felt change in variety is worth reporting as a surprise -- *Judgement row.*
+- [ ] `S2` (qa.md:7035) pass: No conflict on any shared file -- *Needs the other tools-repo mods enabled.*
+- [ ] `S3` (qa.md:7036) pass: Clean
 
 ## Old saves only, not part of the new-game run
 
@@ -3823,14 +3840,14 @@ pass on a save from before their release, so they are listed at the end and are 
 - `OA4` (qa.md:6072) where: A **Wielder Rod of Bone**, either version | steps: **Drop it on the ground** | pass: Its own sprite, not the generic wand. The inventory icon was already correct before this release, so the inventory tells you nothing here -- it has to be dropped | old_save: True
 - `TS1` (qa.md:6087) where: Playtest kit, *The Templar shields* | steps: Take the **Spirit Templar Shield**, equip it | pass: Something appears on your character. Before this release it rendered **nothing**. It should be the wooden crusader-cross shield, matching its own inventory icon -- *not* the gold Lion Shield, which was the first fix and was wrong | old_save: True
 - `HH39` (qa.md:6150) where: Kill the Khan for Torquemada, on an older save | steps: Finish the game | pass: The same slide, through the quest state | old_save: True
-- `AT4` (qa.md:6791) where: Act 8, Goblin Champion, having killed the Khan before Persia | steps: Enter Desert Sprawl | pass: The Khan does not appear. Likewise Grumdjum, if he died earlier. A save that killed them before this release still shows them | new: True | old_save: True
-- `LE13` (qa.md:6967) where: Barcelona Cathedral, walk down into the crypt | steps: Stand there a full 2:18 | pass: The monks fade in as the cathedral's ambience fades out, and the loop point is not jarring. **Note whether this save had already entered the crypt.** If an old save keeps the cathedral loop and a fresh one chants, the mix is frozen into the save and the release notes must say so | old_save: True
-- `WM9` (qa.md:6996) where: **The regression.** Load a save from 0.88.2 or earlier that holds a magic melee weapon | steps: Look at it | pass: It still has its enchantment and its effect. The 29 original additions were deliberately kept and repointed rather than deleted, because saves reference them by path -- if an old magic weapon has lost its enchantment, that decision failed | old_save: True
-- `RM1` (qa.md:6285) where: La Calle Perdida, a **new game**, the Dark Wielder tasks done up to Montserrat | steps: Click Relican | pass: *"Greetings, dark brother. What do you seek?"* opens. Before this release the click did nothing | new: True | old_save: True
-- `AX1` (qa.md:6310) where: Montserrat, any assassin of the invasion | steps: Kill one, and read the combat log | pass: **152 XP.** Before this release, nothing | new: True | old_save: True
-- `PI5` (qa.md:6378) where: A save that already had the pie before this release, the Goblin Girl not following | steps: Click her | pass: *"How many innocents..."* once more. Its first reply is *"I have your pie already, remember?"*, and *"I pulverized him..."* is gone. That reply leads to the after-pie greeting, and the next click opens that greeting directly | new: True | old_save: True
-- `RK5` (qa.md:6417) where: An existing save that already bought from him | steps: Reopen | pass: The new stock replaces the old on first open | new: True | old_save: True
-- `ER4` (qa.md:6429) where: An existing save with Ernesto in the party | steps: Dismiss and re-invite him, let him die, finish | pass: ER2's slide, not ER1's | new: True | old_save: True
-- `EC3` (qa.md:6483) where: An existing save with Ernesto already in the party | steps: Dismiss him, ask him back (*"Sure, come with me."*), level up | pass: As EC1 | new: True | old_save: True
-- `CX4` (qa.md:6588) where: **A save from before this release**, with a companion along | steps: Level up | pass: CX3's line with the gains on the end. The watcher armed long ago is saved inline in the save, but the balloon it shows loads from data.dat, so the new text must appear anyway | new: True | old_save: True
-- `FS2` (qa.md:6608) where: A save where Fernand is already following, from before this release | steps: Tell him to hold a spot, then *"Walk with me again, Fernand."* | pass: From then on he keeps pace as in FS1. Before rejoining he still lags, which is expected | new: True | old_save: True
+- `AT4` (qa.md:6822) where: Act 8, Goblin Champion, having killed the Khan before Persia | steps: Enter Desert Sprawl | pass: The Khan does not appear. Likewise Grumdjum, if he died earlier. A save that killed them before this release still shows them | new: True | old_save: True
+- `LE13` (qa.md:6998) where: Barcelona Cathedral, walk down into the crypt | steps: Stand there a full 2:18 | pass: The monks fade in as the cathedral's ambience fades out, and the loop point is not jarring. **Note whether this save had already entered the crypt.** If an old save keeps the cathedral loop and a fresh one chants, the mix is frozen into the save and the release notes must say so | old_save: True
+- `WM9` (qa.md:7027) where: **The regression.** Load a save from 0.88.2 or earlier that holds a magic melee weapon | steps: Look at it | pass: It still has its enchantment and its effect. The 29 original additions were deliberately kept and repointed rather than deleted, because saves reference them by path -- if an old magic weapon has lost its enchantment, that decision failed | old_save: True
+- `RM1` (qa.md:6316) where: La Calle Perdida, a **new game**, the Dark Wielder tasks done up to Montserrat | steps: Click Relican | pass: *"Greetings, dark brother. What do you seek?"* opens. Before this release the click did nothing | new: True | old_save: True
+- `AX1` (qa.md:6341) where: Montserrat, any assassin of the invasion | steps: Kill one, and read the combat log | pass: **152 XP.** Before this release, nothing | new: True | old_save: True
+- `PI5` (qa.md:6409) where: A save that already had the pie before this release, the Goblin Girl not following | steps: Click her | pass: *"How many innocents..."* once more. Its first reply is *"I have your pie already, remember?"*, and *"I pulverized him..."* is gone. That reply leads to the after-pie greeting, and the next click opens that greeting directly | new: True | old_save: True
+- `RK5` (qa.md:6448) where: An existing save that already bought from him | steps: Reopen | pass: The new stock replaces the old on first open | new: True | old_save: True
+- `ER4` (qa.md:6460) where: An existing save with Ernesto in the party | steps: Dismiss and re-invite him, let him die, finish | pass: ER2's slide, not ER1's | new: True | old_save: True
+- `EC3` (qa.md:6514) where: An existing save with Ernesto already in the party | steps: Dismiss him, ask him back (*"Sure, come with me."*), level up | pass: As EC1 | new: True | old_save: True
+- `CX4` (qa.md:6619) where: **A save from before this release**, with a companion along | steps: Level up | pass: CX3's line with the gains on the end. The watcher armed long ago is saved inline in the save, but the balloon it shows loads from data.dat, so the new text must appear anyway | new: True | old_save: True
+- `FS2` (qa.md:6639) where: A save where Fernand is already following, from before this release | steps: Tell him to hold a spot, then *"Walk with me again, Fernand."* | pass: From then on he keeps pace as in FS1. Before rejoining he still lags, which is expected | new: True | old_save: True
