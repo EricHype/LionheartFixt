@@ -6187,6 +6187,14 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 |---|---|---|---|
 | WQ1 | Grove, the wasp nest's deep west chamber | Hover and click the Queen; hit her | Quick status and the combat log say **Wasp Queen**, not Cursed Wasp |
 
+`tools/build_display_name_leftovers.py`. NL1-NL2: a `Ravine Cave East` not yet entered. NL3: any sac dropped after install.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| NL1 | Ravine Cave East, Butu's warbands | Hover a band's leader; hit him | **Butu War Leader**, not Goblin Striker |
+| NL2 | Same, Hrargrub | Hover and talk to him | **Hrargrub** in quick status and the conversation |
+| NL3 | Anywhere Snakebreed Vipers are | Kill vipers until one drops a Venom Sac | It lies on the ground as the Woodsman Liver, not the Lava Troll Hide; picked up, its inventory picture is unchanged |
+
 ## 0.99.37 - promises the spirits were made
 
 `tools/build_pedro_drops_lever.py`. A character who has not yet entered La Calle Perdida.
