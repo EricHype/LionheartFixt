@@ -6215,6 +6215,23 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | RX7 | Same | Take the quest with the lifeless Sceptre, leave, and choose Relican's return-dialogue *"dead thing"* reply | As RX2: the Crude Sceptre, -25 Karma, the quest completes |
 | RX8 | Ether plane | Have the Enchanter bind it instead (the pact, MR rows) and hand it to Relican | The full **Sceptre of Bone** (+2 to each discipline), no Karma from the bind itself; *"I have recovered the Sceptre of Bone."* completes the quest |
 
+`tools/build_machiavelli_pays_once.py`. The payment: every save. The return greeting (MV3): a Montaillou inn not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MV1 | Montaillou inn, Machiavelli saved in Barcelona | Talk to him | *"I am a man of my word..."*, 500 gold, then his warning about the Old Man |
+| MV2 | Same | Talk to him again, several times | No more gold |
+| MV3 | Same, new game | Talk to him after MV1 | *"You again. I pay my debts once..."*. The ring and Montserrat replies are still offered when they apply |
+
+`tools/build_djinn_crystal_after_pass.py`. The Dream Djinni's plane: a dream not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| KC1 | Dream plane | Pass the physical trial (all four waves), then leave through the yellow crystal | You wake in the Gate District. Amir treats you as a Favored One (*"Favored one"* greeting and his Montserrat replies), not as someone to retake the trial |
+| KC2 | Same | Pass the riddle trial, then leave through the crystal | As KC1 |
+| KC3 | Same | Use the crystal mid-fight, before winning | A failure, as before: Amir offers the retake |
+| KC4 | Same | Fail once (KC3), retake, win the fight, leave by the crystal | As KC1: the earlier failure is cleared |
+
 `tools/build_ether_plane_reckoning.py`. The ether plane under La Calle Perdida: a plane not yet entered (Marco's greeting, Jameson's whisper). The Enchanter's, Marco's and the boots' lines reach every save.
 
 | # | Where | Steps | Pass |

@@ -3303,7 +3303,15 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=4
+							Action=COtherMapAction
+							{
+								Action=CDeactivateAction
+								{
+									Target Name=failed dream djinn
+								}
+								Other Map Name=1 Barcelona/Gate District
+							}
 							Action=CIfAction
 							{
 								If=CIsAliveAction
@@ -5015,7 +5023,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=4
+							Item Count=3
 							Action=CRelocateAction
 							{
 								Return to map=unlikely soon
@@ -5025,31 +5033,51 @@ CLayerSaveData
 								Relative Position=0
 								Ignore Party Ready Rules=0
 							}
-							Action=COtherMapAction
-							{
-								Action=CActivateAction
-								{
-									Target Name=failed dream djinn
-									Play Activate Sound=0
-									Delay Between Activations=0
-									Warp Behavior=
-								}
-								Other Map Name=1 Barcelona/Gate District
-							}
 							Action=CIfAction
 							{
 								If=CNotAction
 								{
-									Action=CIsQuestStateTheCurrentStateAction
+									Action=CWasQuestStateActivatedAction
 									{
 										Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
-										State=XFEDCK28
+										State=RHAGYW4H
 									}
 								}
-								Then=CActivateQuestStateAction
+								Then=CMultipleActionsAction
 								{
-									Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
-									State=XFEDCK28
+									Action=Array
+									{
+										Item Count=2
+										Action=COtherMapAction
+										{
+											Action=CActivateAction
+											{
+												Target Name=failed dream djinn
+												Play Activate Sound=0
+												Delay Between Activations=0
+												Warp Behavior=
+											}
+											Other Map Name=1 Barcelona/Gate District
+										}
+										Action=CIfAction
+										{
+											If=CNotAction
+											{
+												Action=CIsQuestStateTheCurrentStateAction
+												{
+													Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+													State=XFEDCK28
+												}
+											}
+											Then=CActivateQuestStateAction
+											{
+												Quest=Levels/1 Barcelona/Quests/Gate District/Knights Saladin Initiation/Pass the Trial of Dreams
+												State=XFEDCK28
+											}
+											Else=
+											Return failure if the If failes=0
+										}
+									}
 								}
 								Else=
 								Return failure if the If failes=0
