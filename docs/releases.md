@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.36 are published** -- 239 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.37 are published** -- 240 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,36 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.37 - promises the spirits were made
+
+Issue #16's last three items, and the playtest reports since. Eight builders, each with its QA rows.
+
+- **The Djinn's trial counts.** The yellow crystal, the dream's only exit, always recorded a failure, so a winner who left
+  through it was sent back to redo the trial. It now fails only a trial never passed, and the combat win clears an
+  earlier failure as the riddle win does. `tools/build_djinn_crystal_after_pass.py`, `KC1`-`KC4`. Map-side.
+- **Machiavelli pays once** in Montaillou; every click used to pay 500 gold. `tools/build_machiavelli_pays_once.py`,
+  `MV1`-`MV3`.
+- **Goblin standing follows the titles.** A character holds one faction, so joining an order dropped the Goblin Rank to 0
+  and a sworn Champion could not get the Esteban task; and the ladder assigned the goblin faction over a sworn order.
+  The Horde reads the Chum, Blooded and Champion perks now, the ladder gives the faction only to the unsworn, and the
+  Khan's Everlasting reward names you Champion. `tools/build_goblin_standing_by_title.py`, `GW1`-`GW7`.
+- **The vault job.** Companions attacked the door man because he kept the Enemy category, and Skulker paid for quiet after
+  a fight. `tools/build_vault_guard_fought.py`, `VG1`-`VG5`.
+- **Pedro drops the switch lever** when he dies, so Relican's or the Inquisition's takeover no longer strands the Lost
+  Soul's island. `tools/build_pedro_drops_lever.py`, `PV1`-`PV4`.
+- **The Sceptre of Bone at Relican's ask.** The lifeless Sceptre is answered when he first asks: he names the enchanter
+  under the well, or binds it himself into the new, weaker Crude Sceptre of Bone for 25 Karma.
+  `tools/build_relican_sceptre_at_ask.py`, `RX1`-`RX8`.
+- **The Enchanter's pact is offered where it can happen**: when he spares you, and on the lie route as an answer
+  besides suicide. `tools/build_enchanter_pact_offers.py`, `EO1`-`EO5`.
+- **The spirits answer for their bridge.** Marco Polo and Jameson helped you reach the Enchanter to end him. Sparing him
+  draws a line from Marco; the pact costs 50 Karma, turns Marco away, takes his spirit out of the boots, and a Templar
+  hears Jameson. `tools/build_ether_plane_reckoning.py`, `MR1`-`MR8`.
+- **Reach.** Dialogue and items reach every save; the Djinn's crystal, the vault guard, Pedro's drop, Marco's greeting
+  and Jameson's whisper need their map not yet entered.
+
+---
 
 ## 0.99.36 - the summit's question
 

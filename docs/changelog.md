@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.37** | promises the spirits were made | The Djinn's trial counts after you win, Machiavelli pays once, goblin standing survives joining an order, and the ether plane's spirits answer for the bridge. |
 | **0.99.36** | the summit's question | A Templar sent to the Cathedral by Amir no longer stalls when the scene starts. |
 | **0.99.35** | the Bonecaller's swing | The Bonecaller no longer flickers into GRANNY MODEL when it attacks. |
 | **0.99.34** | with thanks | The credits roll thanks everyone who reported bugs. |
