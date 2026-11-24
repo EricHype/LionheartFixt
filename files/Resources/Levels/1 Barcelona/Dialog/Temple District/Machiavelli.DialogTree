@@ -1344,7 +1344,30 @@ Should Have Voiceover=1
 Requirement=!None
 Reply Text=
 Go to node ID=300 machiavelli helps you in montaillou 2
-Custom Action=CMultipleActionsAction
+Custom Action=CIfAction
+{
+If=CExpressionAction
+{
+Expression=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Machiavelli Paid in Montaillou
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Character to get attributes from=$Instigator
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CMultipleActionsAction
 {
 Action=Array
 {
@@ -1354,6 +1377,33 @@ Action=CGiveMoneyToAllPlayersAction
 Value to give=500
 }
 }
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=
+Modification is permanent=1
+Character to modify=Player1
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Machiavelli Paid in Montaillou
+}
+}
+OPTIONAL Duration=
+Expression Context=Player1
+}
+}
+}
+Else=
+Return failure if the If failes=0
 }
 Is Default Reply=1
 ------------------------------------------------------------
@@ -1541,4 +1591,105 @@ Reply Text=
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=305 Fixt Machiavelli again
+Text=You again. I pay my debts once, and that one is paid. Advice costs me nothing, so take some: the Old Man's assassins have not stopped looking for either of us. Sit with your back to a wall.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Parley
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=You have seen this before. <Show him the ring.>
+Go to node ID=303 the betrayal
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Sahar Ring
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=You have seen this before. <Show him the ring.>
+Go to node ID=301 the ring
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Sahar Parley
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=The snake captain at Montserrat is dead. That was me.
+Go to node ID=304 the lion
+
+Requirement=!None
+Reply Text=
+Go to node ID=
 }
