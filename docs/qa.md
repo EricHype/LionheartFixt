@@ -6215,6 +6215,16 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | RX7 | Same | Take the quest with the lifeless Sceptre, leave, and choose Relican's return-dialogue *"dead thing"* reply | As RX2: the Crude Sceptre, -25 Karma, the quest completes |
 | RX8 | Ether plane | Have the Enchanter bind it instead (the pact, MR rows) and hand it to Relican | The full **Sceptre of Bone** (+2 to each discipline), no Karma from the bind itself; *"I have recovered the Sceptre of Bone."* completes the quest |
 
+`tools/build_enchanter_pact_offers.py`. The Enchanter's lines: every save. All rows need the Dark Wielder initiation started.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| EO1 | Ether plane, the Enchanter | The bargain (Barter 35): reach *"I shall let you live..."* | *"My word was true, and I can do better than words..."* is offered beside *"Very well. Goodbye."*. It leads to the pact; he stays peaceful whichever you answer at *"Name this necromancer..."* |
+| EO2 | Same | The crystal argument (no skill): reach *"I shall grant you your life to test your theory..."* | The same pact reply is offered. Take it and refuse at *"Name this necromancer"*: you still have the Amulet of the Trapped Spirit |
+| EO3 | Same | The lie (Speech 35, then 45): reach *"What can be done?!"* | A third answer, *"There is one who could put you out of their reach..."*, leads straight to *"Relican. The name is younger than this prison..."* and the pact. He does not kill himself, and is peaceful afterwards |
+| EO4 | Same, after EO1-EO3 | Finish the pact | The MR rows' consequences (Karma, Marco, the boots, Jameson for a Templar) and the Ring, as from his second conversation |
+| EO5 | Same, not a Dark Wielder initiate | EO1-EO3's moments | No pact reply anywhere; the vanilla answers only |
+
 `tools/build_machiavelli_pays_once.py`. The payment: every save. The return greeting (MV3): a Montaillou inn not yet entered.
 
 | # | Where | Steps | Pass |
