@@ -6169,6 +6169,18 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_jameson_compelled.py`. Jameson's lines: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| JP1 | Ether plane, Jameson, with Relican's Necromancer title | Reach *"*If* I was properly motivated"* | *"I did not come to ask, ghost. The dead answer to me now. Raise the bridge."* is offered above the insult |
+| JP2 | Same | Beg first, then look at the answers | The same reply is offered after *"Oh, be silent!"* |
+| JP3 | Same | Take it, then *"Good. Now be silent."* | *"<The spirit jerks, as if on a chain.>..."*; the bridge piece moves as on the shame route; Karma drops by 50 (`savecheck.py save latest` before and after) |
+| JP4 | Same, after JP3 | Talk to him again and reach `160` | The compel reply is gone, so it cannot be paid twice |
+| JP5 | Ether plane, without the title | JP1 and JP2 | No compel reply; the vanilla answers only |
+
 ## 0.99.37 - promises the spirits were made
 
 `tools/build_pedro_drops_lever.py`. A character who has not yet entered La Calle Perdida.

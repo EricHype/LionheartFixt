@@ -407,6 +407,33 @@ Reply Text=Please, spirit, I beg you - help me get across to the next island.
 Go to node ID=170 begging
 
 Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Jameson already activated bridge
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I did not come to ask, ghost. The dead answer to me now. Raise the bridge.
+Go to node ID=720 Fixt Jameson compelled
+
+Requirement=!None
 Reply Text=I have heard enough from you, ghost.
 Go to node ID=15 corpse
 Icon=Fight Icon
@@ -432,6 +459,33 @@ Desired Minimum Count=1
 }
 Reply Text="Inclined to help"? Are you not a Knight Templar? Do you wish to shame the order even in death?
 Go to node ID=220 Speech
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Necromancer
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Jameson already activated bridge
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I did not come to ask, ghost. The dead answer to me now. Raise the bridge.
+Go to node ID=720 Fixt Jameson compelled
 
 Requirement=!None
 Reply Text=I have heard enough from you, ghost.
@@ -527,4 +581,48 @@ Icon=Exit Icon
 Node ID=700 Fixt Jameson judges
 Text=<A voice, barely there.> So. I gave up my voice for that bridge, and you used it to strike a bargain with the man who keeps us here. A Knight Templar. The order deserved better of you. So did I.
 Should Have Voiceover=0
+
+------------------------------------------------------------
+Node ID=720 Fixt Jameson compelled
+Text=<The spirit jerks, as if on a chain.> What... what is that? Three hundred years I have kept my own will in this place, and you take it in a breath. Stop! Very well, you shall have your bridge. I pray the enchanter keeps you here forever.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Good. Now be silent.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
+{
+Relay Name=Move Second Rock for Path
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Karma
+Modification is permanent=0
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=-50
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
 }
