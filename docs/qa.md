@@ -6181,6 +6181,12 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | JP4 | Same, after JP3 | Talk to him again and reach `160` | The compel reply is gone, so it cannot be paid twice |
 | JP5 | Ether plane, without the title | JP1 and JP2 | No compel reply; the vanilla answers only |
 
+`tools/build_wasp_queen_name.py`. A `2 Montserrat/4 Animal Cave` not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| WQ1 | Grove, the wasp nest's deep west chamber | Hover and click the Queen; hit her | Quick status and the combat log say **Wasp Queen**, not Cursed Wasp |
+
 ## 0.99.37 - promises the spirits were made
 
 `tools/build_pedro_drops_lever.py`. A character who has not yet entered La Calle Perdida.
