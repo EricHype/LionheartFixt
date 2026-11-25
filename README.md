@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.39](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.39).
+-- currently [0.99.40](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.40).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.40** | whose cave it is | Ravine Cave East decides its owner on arrival, Butu's warriors watch and Hrargrub talks, the Khan's goblins spare his friends, and taking off his mark costs what it says. |
 | **0.99.39** | the order remembers | Killing Guard Esteban or any Templar closes the Knights Templar to you: Javier refuses you, and Esteban's death now earns the Enemy of the Knights Templar title. |
 | **0.99.38** | each in their own way | Companions' damage grows with them through a signature of their own, a Necromancer can compel Jameson, and three creatures and an item look like themselves. |
 | **0.99.37** | promises the spirits were made | The Djinn's trial counts after you win, Machiavelli pays once, goblin standing survives joining an order, and the ether plane's spirits answer for the bridge. |
@@ -120,7 +121,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.39 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.40 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

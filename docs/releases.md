@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.39 are published** -- 242 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.40 are published** -- 243 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,33 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.40 - whose cave it is
+
+A playthrough of Ravine Cave East after Montserrat, reported in four parts. Four builders, each with its QA rows.
+
+- **Hrargrub talks.** He was pacified at spawn and given a talk specifier, but a click reads only an entity's first
+  specifier and his can already carried a fight one, so the cursor showed attack on a goblin who would not fight back,
+  and `BU5` could never have passed. The spawn now forgets the can's specifier first, and his fight gives it back with
+  his hostility. `tools/build_butu_heir_talks.py`, `BH1`-`BH3`.
+- **The cave decides when you arrive.** The Khan's generators were active, so his goblins spawned on load and the
+  takeover fired only once the player walked into a trigger at one entrance: the report fought them, then watched them
+  vanish and red goblins appear. All 16 now start inactive, and both spawn points decide on arrival, Butu's after
+  Montserrat and the Khan's before. And the Khan's goblins never read goblin standing, so a Champion was attacked by
+  his own Khan's raiders: a Chum, Blooded or Champion arriving before Montserrat finds them at peace, until one is
+  struck and the cave turns, as vanilla's Mongol Camp does. `tools/build_ravine_cave_arrival.py`, `CA1`-`CA6`.
+- **Butu's warriors watch.** Every post stood between the door and the heir, so the talk route meant killing his tribe
+  first. They now spawn watchful, with four lines pointing at the heir, and turn with Hrargrub if one is struck or the
+  fight is chosen. `tools/build_butu_warriors_watch.py`, `RW1`-`RW5`.
+- **Taking off the Khan's mark means it, and Hrargrub sounds like a claimant.** *"I will take it off."* did nothing;
+  the standing changed only when the book was settled. It now names the price (the traitor title, the Khan, Grumdjum)
+  and confirming makes you a Goblin Traitor there and then. Every line is rewritten shorter and nearer vanilla's
+  goblins, and the opening is a rival Khan's: *"I am Hrargrub, son of Butu Khan, and Khan after him by right."*
+  `tools/build_butu_heir_rewrite.py`, `HB1`-`HB5`.
+- **Reach.** The dialogue reaches every save; the spawn, arrival and warrior changes need a Ravine Cave East not yet
+  entered.
+
+---
 
 ## 0.99.39 - the order remembers
 
