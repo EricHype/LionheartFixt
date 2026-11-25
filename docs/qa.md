@@ -6200,6 +6200,16 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | RW4 | Same, a fresh visit | Talk to Hrargrub and choose the fight | As RW3: the tribe joins him |
 | RW5 | Same, a fresh visit | Hand him the book (`BU15`) and walk the cave | The red goblins stay peaceful (`BU17`) |
 
+`tools/build_butu_heir_rewrite.py`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HB1 | Ravine Cave East, Hrargrub, as the Khan's Champion | *"I am the Khan's Champion."*, then *"I will take it off."* | *"Know what that costs before you say it twice..."* names the traitor title, the Khan and Grumdjum; nothing has changed yet (`savecheck.py save latest`: Goblin Champion still held) |
+| HB2 | Same | *"I take off his mark. (You lose the Champion title and become a Goblin Traitor.)"* | *"Good. <Red bows lower around you.>..."* then the book; the save now holds Goblin Traitor, and the Khan's Champion replies in the Warrens are gone |
+| HB3 | Same, a fresh visit | *"Then I keep it."* / *"Let me think on it."* | The fight, or he lets you walk out; no perk change |
+| HB4 | Same, after HB2 | Settle the book | Completes as `BU15`; no second Traitor message or error |
+| HB5 | Any route | Read every line | Plain goblin voice, one stage direction at most, the Khan always *Plumdjum*; the opening is a claimant's, not a complaint |
+
 ## 0.99.39 - the order remembers
 
 `tools/build_templar_killer_refused.py`. Trees and the new variable: every save. OR1: Esteban spawned after install (a Crossroads not yet entered).

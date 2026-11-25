@@ -6,7 +6,7 @@ Should Have Voiceovers=0
 Default Canceled Node Action=
 ------------------------------------------------------------
 Node ID=1 the heir challenges you
-Text=Far enough. <The bows around him are not the Khan's bows -- too red, too many, and not one of them pointed at the floor.> I am Hrargrub. My Khan was Butu. You have heard of Plumdjum. Nobody has heard of Butu. That is the whole of my complaint and you are standing in the middle of it.
+Text=Stop there, morsel. <Red bows rise all around you.> I am Hrargrub, son of Butu Khan, and Khan after him by right. This cave is mine. The east rock is mine. Soon the Warrens will be mine, and Plumdjum will learn whose chair he has been warming. Speak carefully. I am deciding whether you are useful or dinner.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -49,7 +49,7 @@ Go to node ID=60 who was butu
 Icon=Speach Skill Icon
 
 Requirement=!None
-Reply Text=Then your people can decide.
+Reply Text=Then we fight.
 Go to node ID=70 combat
 Icon=Fight Icon
 
@@ -60,7 +60,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=20 you emptied the chair
-Text=<Something goes out of him, and what comes back is worse: a goblin with nothing left to be angry about.> You emptied the chair. I am standing in it. I had six winters of reasons and you did it in an afternoon, which I will think about later and not in front of you.
+Text=Dead? <He sags, then straightens.> Six winters I planned to kill him, and you did it in an afternoon. Fine. The chair is empty, and I am standing next to it.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -75,12 +75,12 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=30 take off his mark
-Text=His Champion. <He does not reach for anything, which is the most frightening thing he does.> Then you are the thing he sends. Take the mark off and we will talk about his cave. Leave it on and I will take it off the usual way.
+Text=His Champion. Then Plumdjum sent you. Take off his mark and we talk. Keep it, and my people take it off you the hard way.
 Should Have Voiceover=0
 
 Requirement=!None
 Reply Text=I will take it off.
-Go to node ID=40 he gives everyone ranks
+Go to node ID=35 Fixt the cost of the mark
 Icon=Speach Skill Icon
 
 Requirement=!None
@@ -95,7 +95,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=40 he gives everyone ranks
-Text=A rank. He gives ranks the way he gives speeches, and both cost him nothing. Butu gave his goblins poems. You may think that is worse. At least he kept them.
+Text=A rank. Plumdjum hands out ranks the way he hands out speeches, and both cost him nothing. Butu gave his goblins poems, and he kept his word.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -110,7 +110,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=50 a qualification
-Text=You have killed more of his than I have. <He says it the way a human would say a man has good references.> That is a qualification. I am not fond of you. I am extremely interested in you.
+Text=You have killed more of Plumdjum's goblins than I have. I do not like you. I am very interested in you.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -125,7 +125,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=60 who was butu
-Text=Nobody. That is the answer and that is the grievance. He was Khan before Plumdjum was anything, and he gathered poems, and Plumdjum has the book of them shut away in his cave with the rest of his shiny. He has drawn plans for a long time. Have you seen the plans? They are very good plans.
+Text=Khan of this horde, before Plumdjum. Plumdjum took the Warrens from him, and took his book of poems as a trophy, to show the clan who rules now. My father's goblins followed me to this cave. We have waited six winters. We are done waiting.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -140,7 +140,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=90 the book
-Text=My Khan's book. Plumdjum keeps the book in the Warrens with his gold, and he does not know what it is, and the humans in the city buy such things by weight. Bring it to me and this cave is yours to walk through.
+Text=Butu's book of poems. Plumdjum keeps it in the Warrens with his gold and does not know what it is. Humans in the city buy such things by weight. Bring it to me, and this cave is yours to walk.
 Should Have Voiceover=0
 
 Requirement=Has Butu Khan Poetry Book
@@ -232,7 +232,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=95 agreed
-Text=Then go and find it, and come back by the way you came in. My people have been told about you. They have not been told anything kind, but they have been told.
+Text=Then go and find it. My people know your face now. They will let you pass, for now.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -242,7 +242,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=100 the book returned
-Text=<He takes it in both hands, and does not open it.> Butu's. Then this cave is Butu's again, and you walk through it. Tell the fat one in the Warrens who holds his east rock now, if you are still speaking to him.
+Text=<He takes the book in both hands and does not open it.> Butu's. This cave is Butu's again, and you may walk it. Go tell Plumdjum who holds his east rock now, if he still speaks to you.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -252,7 +252,7 @@ Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=70 combat
-Text=Good. <He steps back into the line without hurrying.> Butu's goblins have never needed a plan.
+Text=Good. Butu's goblins never needed a plan.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -331,7 +331,7 @@ Icon=Fight Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=80 go then
-Text=Walk out. The red ones will watch you to the door, and if you come back in through it with a blade out, they will not.
+Text=Then walk out. My people will watch you to the door. Come back with your blade out and they will not just watch.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -341,7 +341,7 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=101 the collector
-Text=A collector. <He turns the word over as if checking it for teeth.> A human who keeps words he cannot eat, and paid you for the keeping. Then Butu is read in a city that never heard of him, which is further than Plumdjum has ever carried anything. Walk where you like, smooth thing. That is the better answer and I did not expect it from you.
+Text=A collector. A human who keeps words he cannot eat. Then Butu is read in a city that never heard of him, which is further than Plumdjum ever carried anything. Walk where you like, morsel. I did not expect that answer from you.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -391,7 +391,7 @@ Icon=Quest Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=102 the price of poems
-Text=Sold. <He puts his hand out, flat, and waits.> Then give me what they went for and we will both know what my Khan was worth to you. Two hundred and fifty. I did not pick the number. A human did, and you took it.
+Text=Sold. <He holds out a flat hand.> Then pay me what they paid you, and we will both know what my Khan was worth to you. Two hundred and fifty gold. A human picked the number. You took it.
 Should Have Voiceover=0
 
 Requirement=!None
@@ -453,5 +453,39 @@ Relay Name=Butu alliance
 }
 }
 Icon=Barter Skill Icon
+Is Default Reply=1
+
+------------------------------------------------------------
+Node ID=35 Fixt the cost of the mark
+Text=Know what that costs before you say it twice. Plumdjum's goblins will call you traitor from now on. Plumdjum himself will never stand with you again, and his clever Grumdjum will not follow you anywhere.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I take off his mark. (You lose the Champion title and become a Goblin Traitor.)
+Go to node ID=36 Fixt the mark is off
+Custom Action=CUseCannedActionAction
+{
+Canned Object=Levels/Wilderness/Quests/Join Butus Line
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=Then I keep it.
+Go to node ID=70 combat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Let me think on it.
+Go to node ID=80 go then
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=36 Fixt the mark is off
+Text=Good. <Red bows lower around you.> Then you are nobody's Champion, morsel, which makes two of us. Now we can talk.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=90 the book
 Is Default Reply=1
 }
