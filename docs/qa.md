@@ -6190,6 +6190,16 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | CA5 | Same, after CA4 | Hit one goblin | The whole cave turns hostile, including goblins that spawn later |
 | CA6 | CA3 or CA4, then reach Montserrat and come back | Enter | The cave is Butu's at arrival (`BU2`), the Khan's goblins gone |
 
+`tools/build_butu_warriors_watch.py`. RW1-RW4: a `Ravine Cave East` not yet entered after Montserrat. RW5: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| RW1 | Ravine Cave East after Montserrat | Walk from the entrance to Hrargrub without attacking | No red goblin attacks; you reach him and he talks (`BH1`) |
+| RW2 | Same | Hover and click a red goblin | Talk cursor; one of four lines over him, e.g. *"The heir is at the back. Walk slowly, smooth thing."* |
+| RW3 | Same | Hit one red goblin | The whole tribe and Hrargrub turn hostile; hovering any of them shows attack |
+| RW4 | Same, a fresh visit | Talk to Hrargrub and choose the fight | As RW3: the tribe joins him |
+| RW5 | Same, a fresh visit | Hand him the book (`BU15`) and walk the cave | The red goblins stay peaceful (`BU17`) |
+
 ## 0.99.39 - the order remembers
 
 `tools/build_templar_killer_refused.py`. Trees and the new variable: every save. OR1: Esteban spawned after install (a Crossroads not yet entered).

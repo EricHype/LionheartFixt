@@ -262,7 +262,11 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=6
+Item Count=7
+Action=CTriggerRelayAction
+{
+Relay Name=Fixt Butu warriors turn
+}
 Action=CSetTargetTypeAction
 {
 Entity Name=Hrargrub
