@@ -85,6 +85,245 @@ CLayerSaveData
 	Allowed To Roam Anywhere=0
 	Tree List=CSortList2D
 	{
+		Level Part=CEntityBase
+		{
+			Name=Fixt Khan goblins at peace
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=1400
+			Position Y=1700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Khan goblins arrive
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=7
+							Action=CIfAction
+							{
+								If=CExpressionAction
+								{
+									Expression=CUseCannedExpressionExpression
+									{
+										Canned Expression=Dialog/Requirements/Faction/Goblin Horde IS
+									}
+									Character to get attributes from=Player1
+								}
+								Then=CActivateAction
+								{
+									Target Name=Fixt Khan goblins at peace
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Else=
+								Return failure if the If failes=0
+							}
+							Action=CActivateAction
+							{
+								Target Name=Goblin Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CActivateAction
+							{
+								Target Name=Goblin archer Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CActivateAction
+							{
+								Target Name=Goblin archer
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CActivateAction
+							{
+								Target Name=Drubjub Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CActivateAction
+							{
+								Target Name=Wumjup Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+							Action=CActivateAction
+							{
+								Target Name=Lumgrub Generator
+								Play Activate Sound=0
+								Delay Between Activations=0
+								Warp Behavior=
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1420
+			Position Y=1700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt Khan goblins turn
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CRelayAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Action=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=11
+							Action=CDeactivateAction
+							{
+								Target Name=Fixt Khan goblins at peace
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Khan Goblins
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Goblin Cave Post
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Drubjub
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Wumjup
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CSetTargetTypeAction
+							{
+								Entity Name=Lumgrub
+								Name To Target=
+								Valid Targets=Player,Player Friend
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Khan Goblins
+								Categories to add=Enemy
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Goblin Cave Post
+								Categories to add=Enemy
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Drubjub
+								Categories to add=Enemy
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Wumjup
+								Categories to add=Enemy
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Lumgrub
+								Categories to add=Enemy
+							}
+						}
+					}
+					Trigger Only Once=1
+					Was Triggered=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Relay
+			Position X=1440
+			Position Y=1700
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
 		Level Part=CFreeRangePoly
 		{
 			Name=
@@ -1802,7 +2041,38 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CConditionalAction
+					{
+						Try Action=COrAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CWasQuestEverActivatedAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+								}
+								Action=CWasQuestEverActivatedAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+								}
+								Action=CWasQuestEverActivatedAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+								}
+							}
+							Early Exit=1
+						}
+						Succeed Action=CTriggerRelayAction
+						{
+							Relay Name=Butu takeover
+						}
+						Fail Action=CTriggerRelayAction
+						{
+							Relay Name=Fixt Khan goblins arrive
+						}
+						Return failure if the TryAction failes=0
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=140
@@ -1831,7 +2101,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -1916,7 +2186,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -2725,7 +3030,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -2805,7 +3110,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -2863,7 +3203,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -2948,7 +3288,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -3756,7 +4131,38 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Per Party Spawn Action=
+					Per Party Spawn Action=CConditionalAction
+					{
+						Try Action=COrAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CWasQuestEverActivatedAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+								}
+								Action=CWasQuestEverActivatedAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+								}
+								Action=CWasQuestEverActivatedAction
+								{
+									Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+								}
+							}
+							Early Exit=1
+						}
+						Succeed Action=CTriggerRelayAction
+						{
+							Relay Name=Butu takeover
+						}
+						Fail Action=CTriggerRelayAction
+						{
+							Relay Name=Fixt Khan goblins arrive
+						}
+						Return failure if the TryAction failes=0
+					}
 					Per Character Spawn Action=
 					Set Facing Angle=1
 					Facing Angle=305
@@ -4730,7 +5136,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -4815,7 +5221,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -6113,7 +6554,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -6198,7 +6639,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -7644,7 +8120,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -7724,7 +8200,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -8315,7 +8826,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -8400,7 +8911,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -8518,7 +9064,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -8603,7 +9149,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -9108,7 +9689,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -9193,7 +9774,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -9221,7 +9837,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -9266,7 +9882,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -9368,7 +10019,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -9413,7 +10064,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -9441,7 +10127,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -9486,7 +10172,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -9783,7 +10504,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -9863,7 +10584,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -9891,7 +10647,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -9971,7 +10727,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -10089,7 +10880,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -10554,7 +11345,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=5.53269
 					Angle Variation=0
 				}
@@ -12428,7 +13254,7 @@ CLayerSaveData
 			Tries To Collide=0
 			Has Hit Points=0
 			Stationary=1
-			Active=1
+			Active=0
 			Is Temporarily Excluded=0
 			Is Marked For Deletion=0
 			Activity=Array
@@ -12513,7 +13339,42 @@ CLayerSaveData
 					{
 						Item Count=0
 					}
-					After Action=
+					After Action=CIfAction
+					{
+						If=CCheckExistenceAction
+						{
+							Name To Check For=Fixt Khan goblins at peace
+							Desired Minimum Count=1
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=$Instigator
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=$Instigator
+									Categories To Remove=Enemy
+								}
+								Action=CSetDamagedScriptActionAction
+								{
+									New Damaged Action=CTriggerRelayAction
+									{
+										Relay Name=Fixt Khan goblins turn
+									}
+									Target Name=$Instigator
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
 					New Facing Angle=4.15388
 					Angle Variation=0
 				}
@@ -14770,7 +15631,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=3
+							Item Count=4
 							Action=CSetTargetTypeAction
 							{
 								Entity Name=$Instigator
@@ -14781,6 +15642,12 @@ CLayerSaveData
 							{
 								Target Name=$Instigator
 								Categories To Remove=Enemy
+							}
+							Action=CRemoveAIAction
+							{
+								Target Name=$Instigator
+								AI=CAIInteractionSpecifier
+								Delay Between Removes=0
 							}
 							Action=CAddAIAction
 							{

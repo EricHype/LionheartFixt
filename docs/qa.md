@@ -6169,6 +6169,27 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_butu_heir_talks.py`. BH1-BH2: a `Ravine Cave East` not yet entered after Montserrat (the playtester's Autosave). BH3: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| BH1 | Ravine Cave East after Montserrat, Hrargrub at the far end | Hover him | The cursor is talk, not attack; clicking opens *"1 the heir challenges you"* (`BU5`) |
+| BH2 | Same | Take any route to `90 the book` and choose the book | The conversation runs as `BU13`-`BU15` describe |
+| BH3 | Same | Pick the fight (`70 combat`) | He and the red goblins attack; hovering him now shows attack, and he can be hit and killed |
+
+`tools/build_ravine_cave_arrival.py`. A `Ravine Cave East` not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CA1 | Ravine Cave East, first entry **after** Montserrat, from Scar Ravine | Walk in and look around the entrance | Only red Butu goblins; **no Khan's goblin ever appears**, so nothing swaps out in view. Note if any red ones pop in after the screen is up |
+| CA2 | Same, entering from the goblin hut side | As CA1 | As CA1: the hut entrance decides too |
+| CA3 | First entry **before** Montserrat, no goblin standing | Walk in | The Khan's goblins, posts and the three arguers are there and attack, as `BU1` |
+| CA4 | First entry before Montserrat as a Chum, Blooded or Champion | Walk the cave | The Khan's goblins do **not** attack; the argument still plays |
+| CA5 | Same, after CA4 | Hit one goblin | The whole cave turns hostile, including goblins that spawn later |
+| CA6 | CA3 or CA4, then reach Montserrat and come back | Enter | The cave is Butu's at arrival (`BU2`), the Khan's goblins gone |
+
 ## 0.99.39 - the order remembers
 
 `tools/build_templar_killer_refused.py`. Trees and the new variable: every save. OR1: Esteban spawned after install (a Crossroads not yet entered).
