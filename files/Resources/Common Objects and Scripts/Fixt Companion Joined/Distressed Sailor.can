@@ -4,7 +4,7 @@ CCannedObject
 	{
 		Action=Array
 		{
-			Item Count=4
+			Item Count=5
 			Action=CIfExpressionAction
 			{
 				If Expression=CIsEqualTo
@@ -47,6 +47,10 @@ CCannedObject
 			Action=CUseCannedActionAction
 			{
 				Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+			}
+			Action=CUseCannedActionAction
+			{
+				Canned Object=Common Objects and Scripts/Fixt Companion Power Install
 			}
 			Action=CUseCannedActionAction
 			{

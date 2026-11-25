@@ -1,0 +1,1548 @@
+CCannedObject
+{
+	Object=CMultipleActionsAction
+	{
+		Action=Array
+		{
+			Item Count=16
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Fang
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Fang
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Fang
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=0.035
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Speed/Attack Animation Speed Multiplier
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Bishop Diego
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Bishop Diego
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Bishop Diego
+								Modifiers=Array
+								{
+									Item Count=3
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=12
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Goblin Girl
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Goblin Girl
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Goblin Girl
+								Modifiers=Array
+								{
+									Item Count=5
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=0.5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Additional Poison Damage Minimum
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=1
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Additional Poison Damage Maximum
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Distressed Sailor
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Distressed Sailor
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Distressed Sailor
+								Modifiers=Array
+								{
+									Item Count=5
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=12
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/CriticalChance
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/PhysicalCriticalResult
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Darsh
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Darsh
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Darsh
+								Modifiers=Array
+								{
+									Item Count=3
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=12
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Lost Knight
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Lost Knight
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Lost Knight
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=10
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=10
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=10
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=0.02
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Melee Damage Percentage Gives Health To Attacker Zero To One
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Cervantes
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Cervantes
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Cervantes
+								Modifiers=Array
+								{
+									Item Count=5
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=12
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/CriticalChance
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/PhysicalCriticalResult
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Cortes
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Cortes
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Cortes
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=7
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Cortes
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Cortes with arm
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Cortes with arm
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=7
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Golem
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Golem
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Golem
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=12
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Grace
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Grace
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Grace
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=0.02
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Physical Damage Percentage Given To Attacker Zero To One
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Joan of Arc
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Joan of Arc
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Joan of Arc
+								Modifiers=Array
+								{
+									Item Count=5
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=10
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=10
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=10
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Should Give Backlash Fire Damage To Attacker Percentage
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=1
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Backlash Fire Damage To Give Attacker
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Sir Roger Templeton
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Sir Roger Templeton
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Sir Roger Templeton
+								Modifiers=Array
+								{
+									Item Count=4
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=7
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Knight of Saladin
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Knight of Saladin
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Knight of Saladin
+								Modifiers=Array
+								{
+									Item Count=5
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=12
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/CriticalChance
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/PhysicalCriticalResult
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Goblin Grumdjum
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Goblin Grumdjum
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Goblin Grumdjum
+								Modifiers=Array
+								{
+									Item Count=5
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=0.5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Additional Poison Damage Minimum
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=1
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Additional Poison Damage Maximum
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+			Action=CIfExpressionAction
+			{
+				If Expression=CIsEqualTo
+				{
+					Operand1=CVariableDerivedCharacterAttribute
+					{
+						Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Companion Trapped Conquistador
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=1
+					}
+				}
+				Character to get attributes from=Player1
+				Then=CIfAction
+				{
+					If=CCheckExistenceAction
+					{
+						Name To Check For=Trapped Conquistador
+						Desired Minimum Count=1
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=Fixt companion power
+								Modification is permanent=1
+								Character to modify=Trapped Conquistador
+								Modifiers=Array
+								{
+									Item Count=5
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=5
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=0.035
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Derived character attribute to modify=Derived Character Attributes/Speed/Attack Animation Speed Multiplier
+									}
+									Modifier=CCharacterModifierSkill
+									{
+										Modification Amount=CConstant
+										{
+											Constant Value=3
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=1
+										Skill to modify=Skills/Fighting/TwoHandedMelee
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$Instigator
+							}
+							Action=CPrintCombatTextAction
+							{
+								Text to print=<Your companions grow more dangerous, each in their own way.>
+								Character to show text to=Player1
+								Emphasize=0
+								Suppress Duplicates=1
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Else=
+			}
+		}
+	}
+}

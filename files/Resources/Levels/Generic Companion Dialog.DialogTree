@@ -20,10 +20,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=14
+Item Count=16
 Action=CUseCannedActionAction
 {
 Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Power Install
 }
 Action=CUseCannedActionAction
 {
@@ -325,6 +329,10 @@ Action=CUseCannedActionAction
 {
 Canned Object=Common Objects and Scripts/Fixt Companion Report/Celestial Smite
 }
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Report/Signature
+}
 }
 }
 
@@ -335,7 +343,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=5
+Item Count=6
 Action=CReleaseCompanionAction
 {
 Companion To Release=$Trigger
@@ -358,6 +366,10 @@ Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
 }
 Action=CUseCannedActionAction
 {
+Canned Object=Common Objects and Scripts/Fixt Companion Power Install
+}
+Action=CUseCannedActionAction
+{
 Canned Object=Common Objects and Scripts/Fixt Companion Health Install
 }
 }
@@ -370,10 +382,14 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
 Action=CUseCannedActionAction
 {
 Canned Object=Common Objects and Scripts/Fixt Companion Growth Install
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Common Objects and Scripts/Fixt Companion Power Install
 }
 Action=CUseCannedActionAction
 {

@@ -6195,6 +6195,24 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | NL2 | Same, Hrargrub | Hover and talk to him | **Hrargrub** in quick status and the conversation |
 | NL3 | Anywhere Snakebreed Vipers are | Kill vipers until one drops a Venom Sac | It lies on the ground as the Woodsman Liver, not the Lava Troll Hide; picked up, its inventory picture is unchanged |
 
+`tools/build_companion_power_growth.py`. Every save: a new game arms it when a companion joins, an existing one when you open any companion's orders.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| CW1 | Existing save, a companion in the party | Open the companion's orders once, then save | `savecheck.py save latest` shows `Fixt Companion Power Watch=1` |
+| CW2 | Same, after CW1 | Gain a level | The usual growth balloon, and the combat log adds *"<Your companions grow more dangerous, each in their own way.>"* once, not once per companion |
+| CW3 | Same, any melee companion | Note their hits on one enemy type in the combat log, gain several levels, note again | Hits are about 5% larger per level (10% for Lost Knight and Joan). **The floor every signature sits on**: if hits do not grow, damage percent does not reach companions |
+| CW4 | Fang or Ernesto | Watch a fight before and after several levels | Visibly faster swings |
+| CW5 | Goblin Girl or Grumdjum | Hit a non-undead, non-snake enemy after a few levels | Poison damage appears in their hits in the combat log |
+| CW6 | Fernand, Cervantes or the Knight of Saladin | Several levels in, a long fight | More critical hits than before, with bigger numbers. The weakest lever per point: if crits stay rare, raise `CriticalChance` in the can |
+| CW7 | Lost Knight | Hurt him, then let him fight | His health climbs as he lands blows |
+| CW8 | Grace | Let enemies hit her | Her attackers take damage back |
+| CW9 | Joan of Arc | Let enemies hit her several levels in | Her attackers sometimes burn (fire damage in the log); more often as levels pass |
+| CW10 | The War Golem, Diego, Darsh | Several levels | The Golem's shock and Smite's shock (Diego) or fire (Darsh) part grows faster than the rest |
+| CW11 | Ernesto | Several levels, same enemy | He misses less. His hit roll is two-handed, which his old growth never raised |
+| CW12 | New game | Recruit any companion and gain a level, without opening the orders | CW2's log line appears: the join script armed it |
+| CW13 | Any companion, a few levels after CW1 | *"How are you holding up?"* | After the usual lines, theirs only: *"Weapon damage: N%."* and their signature (*"Attack speed"*, *"Poison on each blow"*, *"Critical strikes"*, *"Life drain"*, *"Returns N% of physical damage"*, *"Burns attackers"* / *"Burn damage"*, or *"Fire power"* / *"Shock power"*). The numbers climb with each level. Before any growth: none of these lines (`build_companion_report_signature.py`) |
+
 ## 0.99.37 - promises the spirits were made
 
 `tools/build_pedro_drops_lever.py`. A character who has not yet entered La Calle Perdida.
