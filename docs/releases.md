@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.38 are published** -- 241 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.39 are published** -- 242 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,28 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.39 - the order remembers
+
+A playtest report since 0.99.38: *"i killed estenban on the crossroads - shouldn't that make me an enemy of the
+templars"*. One builder, with its QA rows.
+
+- **The Knights Templar will not take the man who killed their own.** 0.47.0 gave the Enemy of the Knights Templar title
+  for killing any of the 13 order cans, but Guard Esteban has his own can and was never one of them, and nothing in the
+  initiation read the title, so Javier would knight a man who had cut down a Port District patrol. 0.10.3 had also let a
+  character who lost Esteban go on to Auric, because his death runs the same script whoever killed him. Now Esteban's
+  death grants the title when the player or a companion damaged him, and so does the goblin patrol's payment. Javier
+  hides every initiation reply from a character with the title, or with Esteban dead and the goblin contract taken (the
+  only motive the game gives, and the fallback for a save past the payment), and refuses them once: *"Sir Esteban is
+  dead."* opens *"Spare me your words. The goblins at the crossroads boast of the coin they paid for Sir Esteban's
+  life..."*, and the title alone opens *"You? The names of the brothers you cut down were read aloud in this
+  cathedral..."*. The exit sets `Fixt Templar Order Refused` and fails every open initiation quest except Darsh's rescue,
+  which the goblin camp reads. Auric stops sponsoring and handing out initiation tasks. A knight keeps his rank.
+  `tools/build_templar_killer_refused.py`, `OR1`-`OR9`.
+- **Reach.** Javier, Auric, the patrol leader and the new variable reach every save; Esteban's own death grant needs a
+  Crossroads not yet entered.
+
+---
 
 ## 0.99.38 - each in their own way
 
