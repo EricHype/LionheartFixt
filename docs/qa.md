@@ -6169,6 +6169,22 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_templar_killer_refused.py`. Trees and the new variable: every save. OR1: Esteban spawned after install (a Crossroads not yet entered).
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| OR1 | Crossroads, a new character | Kill Guard Esteban yourself, no contract | Character sheet shows the **Enemy of the Knights Templar** title |
+| OR2 | Crossroads, goblin patrol leader | Take the contract, kill Esteban, *"He does not breathe..."* | Paid 450 as before; the title is granted |
+| OR3 | Cathedral, Javier, after OR2 (or a save like the playtester's: contract taken, Esteban dead) | Talk to him, with or without the initiation started | *"Sir Esteban is dead."* is offered; no joining, donating or *"I have completed..."* reply appears |
+| OR4 | Same | Take it | *"Spare me your words. The goblins at the crossroads boast..."*, then *"Then I will go."* ends it; every open Knights Templar Initiation quest shows failed (`savecheck.py save latest`: `Fixt Templar Order Refused` = 1) |
+| OR5 | Same, after OR4 | Talk to him again | Neither refusal reply returns; no initiation reply; the cathedral and Templar questions still work |
+| OR6 | Cathedral, Javier, a character who killed a Port District Templar and never took the contract | Talk to him | *"I would like to become an initiate."* opens *"You? The names of the brothers you cut down..."*; same exit as OR4 |
+| OR7 | Armory, Sir Auric, a character from OR3 or OR6 | Ask about the order; return with Benito dealt with | No *"How can I become a knight?"*, no initiation task, no sewer or Benito turn-in |
+| OR8 | Cathedral, Javier, a character with neither the title nor the contract | Walk the initiation from Auric's sponsorship to the knighting | Unchanged: every vanilla reply, and 0.10.3's *"Sir Esteban is dead."* if he died some other way |
+| OR9 | A knighted character who then kills a Templar | Talk to Javier | No refusal reply; the Montserrat relic replies still show |
+
 ## 0.99.38 - each in their own way
 
 `tools/build_jameson_compelled.py`. Jameson's lines: every save.

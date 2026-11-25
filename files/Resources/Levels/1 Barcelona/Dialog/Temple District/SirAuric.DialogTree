@@ -32,12 +32,88 @@ Text=Welcome back young one. How can this knight serve you?
 Should Have Voiceover=1
 
 Requirement=Auric req knight initiate quest
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
 Reply Text=Lord Javier sent me here to get my next initiation quest.
 Go to node ID=50 initiation
 Action work in progress=(have knight initiate quest)
 Icon=Quest Icon
 
 Requirement=Auric req first knight dead
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
 Reply Text=The knight died in the sewers.
 Go to node ID=200 knight 1 dead
 Action work in progress=(first knight dead)
@@ -76,6 +152,44 @@ Experience Points To Add=1
 Icon=Quest Icon
 
 Requirement=Auric req first knight rescued
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
 Reply Text=I rescued the knight in the Sewers.
 Go to node ID=205 knight 1 alive
 Action work in progress=(first knight rescued)
@@ -140,6 +254,44 @@ Text=Ask your question then.
 Should Have Voiceover=1
 
 Requirement=Auric req knight initiate quest
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
 Reply Text=I am ready for an initiation quest.
 Go to node ID=50 initiation
 Action work in progress=(have knight initiate quest)
@@ -191,27 +343,44 @@ Custom Requirement=CAND
 {
 Operand1=CExpressionNot
 {
-Operand1=CUseCannedExpressionExpression
+Operand1=COR
 {
-Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
 }
 }
 Operator=
-Operand2=CExpressionNot
+Operand2=CAND
 {
-Operand1=CUseCannedExpressionExpression
+Operand1=CIsGreaterThan
 {
-Canned Expression=Dialog/Requirements/Faction/Wielder IS
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
 }
 }
 }
-Reply Text=How can I become a knight?
-Go to node ID=100 convince auric
-Action work in progress=(if not tainted looking race)
-Icon=Quest Icon
-
-Requirement=Auric requires Feralkin and no quest assigned
-Custom Requirement=CAND
+}
+}
+Operator=
+Operand2=CAND
 {
 Operand1=CExpressionNot
 {
@@ -226,6 +395,73 @@ Operand2=CExpressionNot
 Operand1=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
+}
+}
+}
+Reply Text=How can I become a knight?
+Go to node ID=100 convince auric
+Action work in progress=(if not tainted looking race)
+Icon=Quest Icon
+
+Requirement=Auric requires Feralkin and no quest assigned
+Custom Requirement=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Wielder IS
+}
 }
 }
 }
@@ -679,6 +915,44 @@ Text=The first rude interruption I forgive as ignorance, but to barge into this 
 Should Have Voiceover=1
 
 Requirement=Auric req knight initiate quest
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
 Reply Text=I am ready for an initiation quest.
 Go to node ID=50 initiation
 Action work in progress=(have knight initiate quest)
@@ -777,6 +1051,44 @@ Text=Fine, but talk quickly. It would not be proper for one of my standing in th
 Should Have Voiceover=1
 
 Requirement=Auric req knight initiate quest
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
 Reply Text=I am ready for an initiation quest.
 Go to node ID=50 initiation
 Action work in progress=(have knight initiate quest)
@@ -829,6 +1141,44 @@ Text=This is the armory for the Knights Templar. Though it is mostly barren now,
 Should Have Voiceover=1
 
 Requirement=Auric req knight initiate quest
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
 Reply Text=I am ready for an initiation quest.
 Go to node ID=50 initiation
 Action work in progress=(have knight initiate quest)
@@ -1175,6 +1525,47 @@ Should Have Voiceover=1
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
 Operand1=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Races/Human IS
@@ -1186,6 +1577,7 @@ Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
 State=5UGOEYPD
+}
 }
 }
 }
@@ -1213,6 +1605,47 @@ Is Default Reply=1
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Operator=
+Operand2=CAND
+{
+Operand1=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Esteban Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+}
+}
+}
+}
+Operator=
+Operand2=CAND
+{
 Operand1=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Races/Human NOT
@@ -1224,6 +1657,7 @@ Action=CIsQuestStateTheCurrentStateAction
 {
 Quest=Levels/1 Barcelona/Quests/Temple District/Knights Templar Initiation/Aid Sir Auric
 State=5UGOEYPD
+}
 }
 }
 }

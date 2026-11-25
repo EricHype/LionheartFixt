@@ -279,10 +279,32 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=2
+Item Count=3
 Action=CSetQuestSatusToCompletedAction
 {
 Quest=Levels/Wilderness/Quests/Kill Guard Esteban for the Goblin Patrol
+}
+Action=CConditionalAction
+{
+Try Action=CExpressionAction
+{
+Expression=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/FACTION Templar Killer
+}
+}
+Character to get attributes from=$Instigator
+}
+Succeed Action=
+Fail Action=CGiveCharacterPerkAction
+{
+Character to give perk to=$Instigator
+Perk to give=Perks/!Event Title Perks/FACTION Templar Killer
+}
+Return failure if the TryAction failes=0
 }
 Action=CGiveMoneyToAllPlayersAction
 {
