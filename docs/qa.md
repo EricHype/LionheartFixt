@@ -6169,6 +6169,20 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_ravine_mine_turns.py`. MT1-MT6: a `Ravine Cave West` not yet entered. MT7: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MT1 | Ravine Cave West from Scar Ravine, no goblin standing | Walk to Nurg at the mouth | The mouth archers hold fire; hovering Nurg shows **talk**, and clicking opens *"Far enough..."* |
+| MT2 | Same | Take the fight (`70 combat`) | Nurg and every mine goblin attack, the deep posts included |
+| MT3 | Same, a fresh visit | Hit one mouth archer instead | As MT2: the whole mine turns; hovering Nurg shows attack |
+| MT4 | Arrive by the crystal teleport from the east cave, no standing | Fight the deep posts, then walk to the mouth | The mouth pack and Nurg are **already hostile** (the report's case). Hit a deep guard far from the mouth first, so this also tests whether the turn reaches goblins away from you |
+| MT5 | First visit as a Chum, Blooded or Champion | Walk the whole mine, both ends | No goblin attacks; Nurg talks, and *"I wear the Khan's mark..."* still opens the mine |
+| MT6 | Same, after MT5 | Hit any mine goblin | The whole mine turns |
+| MT7 | Any save, Nurg's challenge | *"Then your people can decide."* | The fight reply now fires the shared turn before its combat orders |
+
 ## 0.99.40 - whose cave it is
 
 `tools/build_butu_heir_talks.py`. BH1-BH2: a `Ravine Cave East` not yet entered after Montserrat (the playtester's Autosave). BH3: every save.
