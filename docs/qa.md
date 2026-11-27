@@ -6169,6 +6169,20 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_shylocke_dead_debt.py`. SK1-SK2: every save. SK3-SK6: Shylocke killed after this, in a shop not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| SK1 | The Plains, a save that borrowed from Shylocke and killed him (`QuickSave`) | Reach the goons' ambush | The shakedown offers *"Shylocke is dead. I killed him myself."* |
+| SK2 | Same | Take it | *"<The leader looks at the others...>"*; no fight, no gold taken, and after it the goons only grunt when clicked |
+| SK7 | `QuickSave`, the ambush already sprung | Click the goon leader | *"You are back..."* also offers the claim, with SK2's result |
+| SK3 | A new game: borrow, then kill Shylocke | Reach the Plains ambush | **No shakedown**: the plain robbery (*"Quickly! Give me 250 gold, or die!"*) |
+| SK4 | Same | *"Who sends you?"*, *"Two hundred and fifty..."*, the guild reply, the eloquence reply | His death in every answer: *"Nobody, now..."*, *"There's nobody left to count it"*, *"tell her we were civil about it"*, and *"...that you work the road like common thieves"* |
+| SK5 | Shylocke alive, never met or debt repaid | The robbery | The old lines, naming him alive. No dead-Shylocke reply anywhere |
+| SK6 | Shylocke alive, owing him | The shakedown | No claim reply unless you hold Merchant Slayer from another merchant |
+
 ## 0.99.42 - the master comes
 
 `tools/build_relican_summoned.py`. Every save.

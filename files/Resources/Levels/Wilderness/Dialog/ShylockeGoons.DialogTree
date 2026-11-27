@@ -34,6 +34,35 @@ Requirement=!None
 Reply Text=I think I'll just be moving along.
 Go to node ID=20 wrong person
 Icon=Exit Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Merchant Slayer
+}
+}
+}
+Reply Text=Shylocke is dead. I killed him myself.
+Go to node ID=250 Fixt ledger closed
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=3 Robbery
 Text=Quickly!  Give me 250 gold, or die!
@@ -179,6 +208,8 @@ Go to node ID=230 lie or die
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=COR
 {
 Operand1=CUseCannedExpressionExpression
@@ -205,8 +236,76 @@ Value to check for=100
 }
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
 Go to node ID=240 haggled
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=234 Fixt haggled dead
 Custom Action=CTakeMoneyAction
 {
 Take From=$instigator
@@ -229,12 +328,52 @@ Go to node ID=243 called
 Icon=Attribute Icon
 
 Requirement=!None
-Custom Requirement=CUseCannedExpressionExpression
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
 Go to node ID=241 guild
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Juanita's people don't rob each other.
+Go to node ID=235 Fixt guild dead
 
 Requirement=!None
 Custom Requirement=COR
@@ -253,7 +392,9 @@ Reply Text=You'd rob a sworn brother on the Church's own road?
 Go to node ID=242 church
 
 Requirement=!None
-Custom Requirement=CHasPerkExpression
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
 {
 Perks To Check For=Array
 {
@@ -261,13 +402,84 @@ Item Count=1
 Perk To Check For=Perks/Eloquence
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Rob me, and every trader between here and Montaillou hears that Shylocke's men work the road like common thieves. Let me pass, and they hear you were civil.
 Go to node ID=244 eloquence
 Icon=Speach Skill Icon
 
 Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that you work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
 Reply Text=Who sends you?
 Go to node ID=232 who sends you
+
+Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Reply Text=Who sends you?
+Go to node ID=233 Fixt who sends you dead
 
 Requirement=!None
 Reply Text=I will not be robbed today.
@@ -409,6 +621,35 @@ Requirement=ST 10+
 Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
 Go to node ID=200 bold threat
 Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Merchant Slayer
+}
+}
+}
+Reply Text=Shylocke is dead. I killed him myself.
+Go to node ID=250 Fixt ledger closed
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=20 wrong person
 Text=No, I don't think so. You're definitely the person we've been looking for, the same person who owes Shylocke a large sum of gold. You can say that we're Shylocke's business associates and we've come to collect.
@@ -541,6 +782,35 @@ Requirement=ST 10+
 Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
 Go to node ID=200 bold threat
 Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Merchant Slayer
+}
+}
+}
+Reply Text=Shylocke is dead. I killed him myself.
+Go to node ID=250 Fixt ledger closed
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=40 loan amount
 Text=Shylocke tells me that you borrowed 500 gold.  So including interest, you owe Shylocke ... well, math is not my strong suit, but including my collectors fee, I think 750 gold should cover it.
@@ -674,6 +944,35 @@ Requirement=ST 10+
 Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
 Go to node ID=200 bold threat
 Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Merchant Slayer
+}
+}
+}
+Reply Text=Shylocke is dead. I killed him myself.
+Go to node ID=250 Fixt ledger closed
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=50 test patience
 Text=You're testing our patience. No more stalling. Pay us the money you owe.
@@ -791,6 +1090,35 @@ Requirement=ST 10+
 Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
 Go to node ID=200 bold threat
 Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Merchant Slayer
+}
+}
+}
+Reply Text=Shylocke is dead. I killed him myself.
+Go to node ID=250 Fixt ledger closed
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=80 combat
 Text=I was hoping you would choose the hard way. I must admit, the hard way is what we do best. We're going to enjoy beating you debtless.
@@ -1051,6 +1379,8 @@ Icon=Attribute Icon
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=COR
 {
 Operand1=CUseCannedExpressionExpression
@@ -1077,8 +1407,76 @@ Value to check for=100
 }
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
 Go to node ID=240 haggled
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=234 Fixt haggled dead
 Custom Action=CTakeMoneyAction
 {
 Take From=$instigator
@@ -1101,12 +1499,52 @@ Go to node ID=243 called
 Icon=Attribute Icon
 
 Requirement=!None
-Custom Requirement=CUseCannedExpressionExpression
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
 Go to node ID=241 guild
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Juanita's people don't rob each other.
+Go to node ID=235 Fixt guild dead
 
 Requirement=!None
 Custom Requirement=COR
@@ -1125,7 +1563,9 @@ Reply Text=You'd rob a sworn brother on the Church's own road?
 Go to node ID=242 church
 
 Requirement=!None
-Custom Requirement=CHasPerkExpression
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
 {
 Perks To Check For=Array
 {
@@ -1133,7 +1573,50 @@ Item Count=1
 Perk To Check For=Perks/Eloquence
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Rob me, and every trader between here and Montaillou hears that Shylocke's men work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that you work the road like common thieves. Let me pass, and they hear you were civil.
 Go to node ID=244 eloquence
 Icon=Speach Skill Icon
 
@@ -1370,6 +1853,8 @@ Icon=Attribute Icon
 Requirement=!None
 Custom Requirement=CAND
 {
+Operand1=CAND
+{
 Operand1=COR
 {
 Operand1=CUseCannedExpressionExpression
@@ -1396,8 +1881,76 @@ Value to check for=100
 }
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
 Go to node ID=240 haggled
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=234 Fixt haggled dead
 Custom Action=CTakeMoneyAction
 {
 Take From=$instigator
@@ -1420,12 +1973,52 @@ Go to node ID=243 called
 Icon=Attribute Icon
 
 Requirement=!None
-Custom Requirement=CUseCannedExpressionExpression
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
 {
 Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
 Go to node ID=241 guild
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Juanita's people don't rob each other.
+Go to node ID=235 Fixt guild dead
 
 Requirement=!None
 Custom Requirement=COR
@@ -1444,7 +2037,9 @@ Reply Text=You'd rob a sworn brother on the Church's own road?
 Go to node ID=242 church
 
 Requirement=!None
-Custom Requirement=CHasPerkExpression
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
 {
 Perks To Check For=Array
 {
@@ -1452,7 +2047,50 @@ Item Count=1
 Perk To Check For=Perks/Eloquence
 }
 }
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
 Reply Text=Rob me, and every trader between here and Montaillou hears that Shylocke's men work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that you work the road like common thieves. Let me pass, and they hear you were civil.
 Go to node ID=244 eloquence
 Icon=Speach Skill Icon
 
@@ -1698,8 +2336,453 @@ Reply Text=I think I'll just be moving along.
 Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/!Event Title Perks/Merchant Slayer
+}
+}
+}
+Reply Text=Shylocke is dead. I killed him myself.
+Go to node ID=250 Fixt ledger closed
+Icon=Quest Icon
 ------------------------------------------------------------
 Node ID=5 Balloon return
 Text=<He has nothing to say to you>
 Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=233 Fixt who sends you dead
+Text=Nobody, now. Shylocke paid us to sit on this road for the ones who owed him, and somebody did for him in his own shop. A man still has to eat.
+Should Have Voiceover=0
+
+Requirement=Shylock goon checks for 250 gold
+Reply Text=Please do not hurt me, here is the gold.
+Go to node ID=220 coward
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=250
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Thief
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Thief: and while he laughs, it comes back>
+Go to node ID=249 light fingers
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Master Thief
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=250
+}
+}
+}
+Reply Text=Please do not hurt me, here is the gold. <Master Thief: and while he laughs, it comes back with his own>
+Go to node ID=249 light fingers
+Custom Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=240 haggled
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Barter/Barter moreequal 40
+}
+Operator=
+Operand2=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Salesman
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CHasMoneyAction
+{
+Character to Check=$instigator
+Value to check for=100
+}
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Two hundred and fifty is a king's toll for a goat track. A hundred, and we both walk.
+Go to node ID=234 Fixt haggled dead
+Custom Action=CTakeMoneyAction
+{
+Take From=$instigator
+Value to take=100
+}
+Icon=Barter Skill Icon
+
+Requirement=ST 10+
+Reply Text=You've angered me. Give me all *your* gold or I'll kill you all.
+Go to node ID=201 bold threat robbery
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Attributes/Outwit 7+
+}
+Reply Text=Your hand has been on that hilt since you started talking, and it hasn't cleared leather. You're not going to do it.
+Go to node ID=243 called
+Icon=Attribute Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=Juanita's people don't rob each other, and Shylocke knows it.
+Go to node ID=241 guild
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Thief Friend IS
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Juanita's people don't rob each other.
+Go to node ID=235 Fixt guild dead
+
+Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Templar IS
+}
+Operator=
+Operand2=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+}
+}
+Reply Text=You'd rob a sworn brother on the Church's own road?
+Go to node ID=242 church
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that Shylocke's men work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CHasPerkExpression
+{
+Perks To Check For=Array
+{
+Item Count=1
+Perk To Check For=Perks/Eloquence
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+}
+Reply Text=Rob me, and every trader between here and Montaillou hears that you work the road like common thieves. Let me pass, and they hear you were civil.
+Go to node ID=244 eloquence
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Then eat somewhere else.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Robbery combat relay
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=234 Fixt haggled dead
+Text=...A hundred. There's nobody left to count it. Go on, before I remember what I said.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=235 Fixt guild dead
+Text=Juanita's. Bah. We don't cross the guild for a purse. Go on, and tell her we were civil about it.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=250 Fixt ledger closed
+Text=<The leader looks at the others, and they look at their boots.> Dead. Then there's no ledger, and nobody paying us to sit on this road. Go on. We were never here.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt Shylocke Dead
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Shylocke Dead
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=COtherMapAction
+{
+Action=CDeactivateAction
+{
+Target Name=Normal Borrowed Money Relay, Tainted Borrowed Money Relay
+}
+Other Map Name=1 Barcelona/Shylocke Shop
+}
+Action=CDeactivateAction
+{
+Target Name=Player owes debt to Shylocke
+}
+Action=CTriggerRelayAction
+{
+Relay Name=Give Shylocke Goon Balloon Dialog
+}
+}
+}
+Is Default Reply=1
 }
