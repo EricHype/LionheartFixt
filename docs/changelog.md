@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.43** | a dead man's ledger | Killing Shylocke now clears his debt, his collectors on the Plains can be told he is dead, and the robbers speak of him as dead. |
 | **0.99.42** | the master comes | Relican's undead summon him for saves past Montserrat, Bishop Diego fights like a veteran, and the Horde's goblins and shamans greet the Khan's Champion. |
 | **0.99.41** | the road north | The silver mine turns as one, Sahar's word opens the road to Montaillou, Relican takes Sir Tomas's journal, Javier sees the ring, and the Grove sentry and Sahar walk out to meet you. |
 | **0.99.40** | whose cave it is | Ravine Cave East decides its owner on arrival, Butu's warriors watch and Hrargrub talks, the Khan's goblins spare his friends, and taking off his mark costs what it says. |
