@@ -2,7 +2,7 @@ CSkillDescription
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=4
+		Item Count=5
 		PlugIn Behavior=CPlugInBehaviorSpell
 		{
 			ManaUse=
@@ -40,6 +40,31 @@ CSkillDescription
 					Action=Array
 					{
 						Item Count=7
+						Action=CAddCharacterModifierToCharacterAction
+						{
+							Modifier Description=Fixt Wand Armed
+							Modification is permanent=0
+							Character to modify=$Instigator
+							Modifiers=Array
+							{
+								Item Count=1
+								Modifier=CCharacterModifierDerivedAttribute
+								{
+									Modification Amount=CConstant
+									{
+										Constant Value=1
+									}
+									Modification amount is a percent=0
+									Allow Accumulation=0
+									Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Wand Armed
+								}
+							}
+							OPTIONAL Duration=CConstant
+							{
+								Constant Value=2.4
+							}
+							Expression Context=$Instigator
+						}
 						Action=CAddCharacterModifierToCharacterAction
 						{
 							Modifier Description=
@@ -275,35 +300,6 @@ CSkillDescription
 						{
 							Canned Object=Common Objects and Scripts/Damage Spell Recast Timer
 						}
-						Action=CActionDoDamage
-						{
-							Character Doing Damage=$Instigator
-							Character To Damage=$Trigger
-							Defend Against=1
-							No Friendly Fire Check=0
-							Damages=Array
-							{
-								Item Count=1
-								Damage=CXRPGDamage
-								{
-									Damage Type=Damage Types/Electrical
-									Damage Amount=CRandom
-									{
-										Operator=
-										Minimum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Lightning Bolt
-											Expression Name=MinDamage
-										}
-										Maximum=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Lightning Bolt
-											Expression Name=MaxDamage
-										}
-									}
-								}
-							}
-						}
 						Action=CPrintCombatTextAction
 						{
 							Text to print=The wand discharges.
@@ -336,6 +332,29 @@ CSkillDescription
 			Can Use Sniper Mode=0
 			Action On Hit=
 			Action On Miss=
+		}
+		PlugIn Behavior=CXRPGPlugInBehaviorLauncher
+		{
+			After Launch Action=
+			Num To Launch=1
+			Dispersion Angle=180
+			Aim At Parents Target=1
+			Launch Offset=0.000000,0.000000
+			Parents Bone Launch Location=Bip01 R Hand
+			Direction From Bone X=0
+			Direction From Bone Y=0
+			Direction From Bone Z=0
+			Requires Line Of Sight=1
+			Primary Launchable Slot=Character Slot Types/!None
+			Secondary Launchable Types=Array
+			{
+				Item Count=1
+				Secondary Launchable Type=Spell Projectiles/Fixt Wand Lightning Bolt
+			}
+			Damages=Array
+			{
+				Item Count=0
+			}
 		}
 	}
 	Display Name=Lightning Bolt

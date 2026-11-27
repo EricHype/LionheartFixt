@@ -2,7 +2,7 @@ CSkillDescription
 {
 	PlugIn Behaviors=Array
 	{
-		Item Count=4
+		Item Count=5
 		PlugIn Behavior=CPlugInBehaviorSpell
 		{
 			ManaUse=
@@ -27,7 +27,7 @@ CSkillDescription
 		PlugIn Behavior=CPlugInBehaviorAttack
 		{
 			Max Attack Range=800
-			Is Location Based=1
+			Is Location Based=0
 			Can Use Slayer Mode=0
 			Can Use Sniper Mode=0
 			Action On Hit=
@@ -46,50 +46,31 @@ CSkillDescription
 				{
 					Action=Array
 					{
-						Item Count=4
-						Action=CActionDoDamage
+						Item Count=3
+						Action=CAddCharacterModifierToCharacterAction
 						{
-							Character Doing Damage=$Caster
-							Character To Damage=$Trigger
-							Defend Against=1
-							No Friendly Fire Check=0
-							Damages=Array
+							Modifier Description=Fixt Wand Armed
+							Modification is permanent=0
+							Character to modify=$Instigator
+							Modifiers=Array
 							{
 								Item Count=1
-								Damage=CXRPGDamageOverTime
+								Modifier=CCharacterModifierDerivedAttribute
 								{
-									Damage Type=Damage Types/Poison
-									Damage Amount=CMultiply
+									Modification Amount=CConstant
 									{
-										Operand1=CSkillsNamedExpressionExpression
-										{
-											Skill=Skills/Fake Wand Spells/Poison Touch
-											Expression Name=damagebonus
-										}
-										Operator=
-										Operand2=CConstant
-										{
-											Constant Value=4
-										}
+										Constant Value=1
 									}
-									Duration=CSkillsNamedExpressionExpression
-									{
-										Skill=Skills/Fake Wand Spells/Poison Touch
-										Expression Name=duration
-									}
+									Modification amount is a percent=0
+									Allow Accumulation=0
+									Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Wand Armed
 								}
 							}
-						}
-						Action=CSpawnEffectAction
-						{
-							Explosion Model=Spell Effects/Hits and Effects/Target Affected/Wand of Poison Touch
-							Location Entity=$Trigger
-							Make effect a child of the location entity=1
-							X Offset=0
-							Y Offset=0
-							Height Offset=0
-							Play Default Sound=1
-							Action to execute After Effect=
+							OPTIONAL Duration=CConstant
+							{
+								Constant Value=2.4
+							}
+							Expression Context=$Instigator
 						}
 						Action=CPrintCombatTextAction
 						{
@@ -113,6 +94,29 @@ CSkillDescription
 					Suppress Duplicates=1
 				}
 				Return failure if the If failes=0
+			}
+		}
+		PlugIn Behavior=CXRPGPlugInBehaviorLauncher
+		{
+			After Launch Action=
+			Num To Launch=1
+			Dispersion Angle=180
+			Aim At Parents Target=1
+			Launch Offset=0.000000,0.000000
+			Parents Bone Launch Location=Bip01 R Hand
+			Direction From Bone X=0
+			Direction From Bone Y=0
+			Direction From Bone Z=0
+			Requires Line Of Sight=1
+			Primary Launchable Slot=Character Slot Types/!None
+			Secondary Launchable Types=Array
+			{
+				Item Count=1
+				Secondary Launchable Type=Spell Projectiles/Fixt Wand Poison Touch
+			}
+			Damages=Array
+			{
+				Item Count=0
 			}
 		}
 	}

@@ -1,0 +1,273 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=1
+		PlugIn Behavior=CPlugInBehaviorProjectileInstantHit
+		{
+			Hit Action=CIfAction
+			{
+				If=CActionCheckForInventoryItem
+				{
+					Who to give check=$Instigator
+					Inventory Item To Check For=Inventory Items/Wand Charge
+				}
+				Then=CMultipleActionsAction
+				{
+					Action=Array
+					{
+						Item Count=2
+						Action=CIfExpressionAction
+						{
+							If Expression=CIsLessThan
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Fake Wand Spells/Lightning Bolt
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=20
+								}
+							}
+							Character to get attributes from=$Instigator
+							Then=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt
+								Location Entity=$trigger
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Fake Wand Spells/Lightning Bolt
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=50
+									}
+								}
+								Character to get attributes from=$Instigator
+								Then=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt2
+									Location Entity=$trigger
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Else=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt3
+									Location Entity=$trigger
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+							}
+						}
+						Action=CActionDoDamage
+						{
+							Character Doing Damage=$Instigator
+							Character To Damage=$Trigger
+							Defend Against=1
+							No Friendly Fire Check=0
+							Damages=Array
+							{
+								Item Count=1
+								Damage=CXRPGDamage
+								{
+									Damage Type=Damage Types/Electrical
+									Damage Amount=CRandom
+									{
+										Operator=
+										Minimum=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Fake Wand Spells/Lightning Bolt
+											Expression Name=MinDamage
+										}
+										Maximum=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Fake Wand Spells/Lightning Bolt
+											Expression Name=MaxDamage
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Else=CIfAction
+				{
+					If=CExpressionAction
+					{
+						Expression=CIsEqualTo
+						{
+							Operand1=CVariableDerivedCharacterAttribute
+							{
+								Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Wand Armed
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=1
+							}
+						}
+						Character to get attributes from=$Instigator
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsLessThan
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Fake Wand Spells/Lightning Bolt
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=20
+									}
+								}
+								Character to get attributes from=$Instigator
+								Then=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt
+									Location Entity=$trigger
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsLessThan
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Fake Wand Spells/Lightning Bolt
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=50
+										}
+									}
+									Character to get attributes from=$Instigator
+									Then=CSpawnEffectAction
+									{
+										Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt2
+										Location Entity=$trigger
+										Make effect a child of the location entity=1
+										X Offset=0
+										Y Offset=0
+										Height Offset=0
+										Play Default Sound=1
+										Action to execute After Effect=
+									}
+									Else=CSpawnEffectAction
+									{
+										Explosion Model=Spell Effects/Hits and Effects/Electrical Attacks/Lightning Bolt3
+										Location Entity=$trigger
+										Make effect a child of the location entity=1
+										X Offset=0
+										Y Offset=0
+										Height Offset=0
+										Play Default Sound=1
+										Action to execute After Effect=
+									}
+								}
+							}
+							Action=CActionDoDamage
+							{
+								Character Doing Damage=$Instigator
+								Character To Damage=$Trigger
+								Defend Against=1
+								No Friendly Fire Check=0
+								Damages=Array
+								{
+									Item Count=1
+									Damage=CXRPGDamage
+									{
+										Damage Type=Damage Types/Electrical
+										Damage Amount=CRandom
+										{
+											Operator=
+											Minimum=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Fake Wand Spells/Lightning Bolt
+												Expression Name=MinDamage
+											}
+											Maximum=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Fake Wand Spells/Lightning Bolt
+												Expression Name=MaxDamage
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Else=
+					Return failure if the If failes=0
+				}
+				Return failure if the If failes=0
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=0
+	Encumbrance=2
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=unnamed
+	Description=undefined
+	Inventory Window Images=Array
+	{
+		Basic=!Unknown Model
+		Better=!Unknown Model
+		Special=!Unknown Model
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/!None
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/!none
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Spell Projectiles/Lighting Bolt Instant Projectile
+}

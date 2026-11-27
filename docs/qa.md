@@ -6169,6 +6169,28 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_wand_projectiles.py`. Every save, wands already carried included.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| WJ1 | A Lightning wand, Wand Charges in the pack | Cast at an enemy | **A bolt is drawn** and strikes the enemy; the enemy takes the electrical damage, you take none; one charge gone, *"The wand discharges."* |
+| WJ2 | A Spikes wand | Cast at an enemy | The spike flies and hits it: cold damage and the slow on the enemy, not you |
+| WJ3 | A Poison Touch wand | Cast at an enemy | A poison spike flies to it; the enemy is poisoned over time, **you are not** |
+| WJ4 | Fireball, Ice Storm, Insect Plague and Fire Circle wands | Cast at a group some distance away | The effect lands **where you aimed**, not round you, and hurts the enemies there |
+| WJ5 | Any of WJ1-WJ4 with **no** charges | Cast | *"The wand has no charges left"*; the projectile may still be drawn, but it does no damage |
+| WJ6 | One charge left | Cast twice as fast as the game allows | The first hits; the second does nothing |
+| WJ7 | A Poison Ring wand | Cast | Unchanged: the ring round you |
+| WJ8 | The real spells (Lightning Bolt, Fireball and so on) cast from your own skill | Cast | Unchanged |
+
+`tools/build_venom_sac_ground.py`. Sacs dropped from now on.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| VS1 | Kill a Snakebreed Venom until a sac drops | Look at it on the ground | **Green**, the Woodsman's Liver's shape |
+| VS2 | Drop a Woodsman's Liver | Look at it on the ground | Still red |
+
 ## 0.99.43 - a dead man's ledger
 
 `tools/build_shylocke_dead_debt.py`. SK1-SK2: every save. SK3-SK6: Shylocke killed after this, in a shop not yet entered.

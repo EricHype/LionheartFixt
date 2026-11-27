@@ -511,8 +511,19 @@ payload.
 item, addition, skill, perk or creature grants them, and the fire, cold and electrical equivalents
 are granted by nothing either. Whether the engine reads any of them is therefore untested, so an
 effect built on one is an effect built on a guess. Poison that must land on a target belongs in a
-`CActionDoDamage` carrying `CXRPGDamageOverTime`, which nine vanilla spells do from a launch action
-against `$Trigger`.
+`CActionDoDamage` carrying `CXRPGDamageOverTime` on `$Trigger` in a **projectile's hit action**.
+
+**In a spell's launch action `$Trigger` is the caster.** This paragraph used to say nine vanilla
+spells damage `$Trigger` from a launch action. They do, but only inside an oval trigger AI that the
+launch action attaches to `$Trigger`, and each of them describes that oval as centred on the caster:
+`Lightning Chain`, `Electrical Burst` and `Exorcise` all say "within a radius of ... the caster". No
+vanilla spell reaches a chosen target or spot without a projectile: of the 58 vanilla skills with a
+launch action, every targeted one carries `CXRPGPlugInBehaviorLauncher`, and in the projectile's
+`Hit Action` `$Trigger` is whatever it hit and `$Instigator` the shooter. 0.88.0 took that note at
+its word, dropped the launchers from the wand spells and damaged `$Trigger` from the launch action,
+so Lightning Bolt, Spike and Poison Touch struck their wielder, with no bolt drawn, and the four
+area wands burst round the wielder instead of the targeted area (0.99.44, `build_wand_projectiles.py`).
+A wand that must spend a charge gates the projectile's hit actions instead of dropping the launcher.
 
 **A damage-over-time's `Damage Amount` is the total, and it ticks every five seconds.** Snakebite
 states the convention in its own description -- "%i[poisonbonus] points of damage every 5 seconds for
