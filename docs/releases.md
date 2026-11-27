@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.40 are published** -- 243 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.41 are published** -- 244 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,35 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.41 - the road north
+
+Three play reports, from the silver mine to Montserrat. Three builders, each with its QA rows.
+
+- **The silver mine turns as one.** In Ravine Cave West the pack at the mouth and the deep posts were not linked, so a
+  player who came in by the teleport fought the deep goblins while the mouth pack stood peaceful until struck. One flag
+  now turns the whole mine, fired by any goblin's damaged script or by Nurg's fight. A Chum, Blooded or Champion finds
+  the whole mine at peace, and Nurg talks instead of showing an attack cursor. `tools/build_ravine_mine_turns.py`,
+  `MT1`-`MT7`.
+- **Sahar's word sends you north.** 0.10.x left Brother Montgomerie unfired on the peaceful route, believing nothing
+  depended on him, but his dying reply was the only thing that enabled the Plains on the world map (the road to the
+  Mountain Pass, and so Montaillou) and the only close of every patron's Montserrat quest, with its 2,500 XP. A
+  character who took Sahar's ring had no road north. The ring now does his work; a save already past it can ask her
+  *"Which road north?"*, once; and every patron's Montaillou reply enables the Plains too.
+- **Relican takes the journal.** The Dark Wielders' master was the one patron 0.10.0's journal pass missed. He now
+  hears the Montserrat report, marks the road on your map, and reads Sir Tomas's journal himself, as none of the
+  others would.
+- **Javier sees the ring.** On Sahar's route the Templars' quest still stands, since the Crown was gone before you
+  came, but Javier names the bargain and disapproves, in his own register. `tools/build_sahar_road_north.py`,
+  `NW1`-`NW8`.
+- **The sentry and Sahar walk out to meet you.** Both spoke from the middle of a wide trigger, at the edge of the
+  screen. Each trigger is now four quarters, and the speaker walks halfway toward the one you entered before speaking,
+  to a spot clear of scenery, with a five second fallback if the walk is blocked. Sahar's opening follows her; a click
+  keeps vanilla's line. `tools/build_montserrat_speakers_approach.py`, `MW1`-`MW7`.
+- **Reach.** The dialogue reaches every save: Relican, Javier, the patrons, and Sahar's road question. The mine and the
+  walk-outs need a map not yet entered.
+
+---
 
 ## 0.99.40 - whose cave it is
 

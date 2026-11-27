@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.41** | the road north | The silver mine turns as one, Sahar's word opens the road to Montaillou, Relican takes Sir Tomas's journal, Javier sees the ring, and the Grove sentry and Sahar walk out to meet you. |
 | **0.99.40** | whose cave it is | Ravine Cave East decides its owner on arrival, Butu's warriors watch and Hrargrub talks, the Khan's goblins spare his friends, and taking off his mark costs what it says. |
 | **0.99.39** | the order remembers | Killing Guard Esteban or any Templar closes the Knights Templar to you: Javier refuses you, and Esteban's death now earns the Enemy of the Knights Templar title. |
 | **0.99.38** | each in their own way | Companions' damage grows with them through a signature of their own, a Necromancer can compel Jameson, and three creatures and an item look like themselves. |
