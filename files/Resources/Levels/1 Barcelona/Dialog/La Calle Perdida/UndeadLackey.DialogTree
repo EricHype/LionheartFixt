@@ -1,0 +1,450 @@
+CDialogTree
+{
+Name=Undead Lackey
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=How may I serve you, master?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me, creature - what are you?
+Go to node ID=10 What are you
+
+Requirement=!None
+Reply Text=What is the reason for your existence?
+Go to node ID=100 duty
+
+Requirement=!None
+Reply Text=Look at you - a shambling wreck of bones, barely held together by my magic. How do you think one such as you could be of any use to me?
+Go to node ID=70 look bad
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Relican
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Has talked to Lord Relican already
+Desired Minimum Count=1
+}
+}
+}
+Reply Text=Summon your master. I would speak with Lord Relican.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt Relican Summoned
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Relican Summoned
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CAssignTemporaryTaskAction
+{
+Target=Relican
+Temporary Task AI=CGoToAI
+{
+Marked For Deletion=0
+Publisher=
+Destination=Player1
+Offset=0.000000,-90.000000
+Starting Action=
+Finished=0
+Move Finished=0
+Failed Path=0
+Target Was Set By Goto AI=0
+Move Behavior=CEntityBehaviorMoveToPos
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+Idle Behavior=CEntityBehaviorIdle
+{
+Num Seconds=1
+Seconds Have Transitioned=0
+Override Fidget Options=
+Current Fidget Data=
+Time Until Next Fidget=0
+Fidgeting=0
+}
+Play Ratio=1
+Smooth Turning=0
+Do Path Finding=1
+Finished=1
+Failed Last Path=0
+Idle Begin Called=0
+Move To Rate=0
+CurTargetNormalX=0
+CurTargetNormalY=0
+Path Finding Params=CWayPointPath
+{
+Start Point=0,0
+End Point=0,0
+Length=0
+Max Dist To Travel=0
+Num Failed Paths=0
+Max Failed Paths=0
+Pos To Move Index=0
+Dist So Far=0
+Path=
+}
+Pos Moving From=0.000000,0.000000
+Final Dest=0.000000,0.000000
+Dest Radius=0
+Cur Dest Move To=0.000000,0.000000
+Last Neg Dist=0
+NumTimesLostGound=0
+Sequence=Walk
+Planed Path For=
+}
+Done action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CSendAIDoneMessage
+{
+Target=$Trigger
+}
+Action=CIfAction
+{
+If=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Relican Summoned
+}
+Operator=
+Operand2=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Relican Came
+}
+}
+Character to get attributes from=Player1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt Relican Came
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Relican Came
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CDisplayDialogTreeAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/La Calle Perdida/Lord Relican
+Node ID=5 Return Dialogue
+Speaker=Relican
+Player Being Spoken To=Player1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+}
+}
+Run=0
+Make New Home=0
+Play Ratio=0
+Time To Try To Move=0
+Set Facing Angle=0
+Turn Sequence Name=Idle
+Facing Angle=CEntityBehaviorTurnToAngle
+{
+Old Stationary Flag=0
+Angle To Turn To=0
+Facing Backwards=0
+}
+Need to Call Start=1
+}
+Original AI Type=CSkeletonAI
+Completion Message to wait for=AI Done
+Suppress can't assign error=1
+}
+Action=CDelayAction
+{
+Next Action=CIfAction
+{
+If=CExpressionAction
+{
+Expression=CIsGreaterThan
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Relican Summoned
+}
+Operator=
+Operand2=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Relican Came
+}
+}
+Character to get attributes from=Player1
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt Relican Came
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Relican Came
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+Action=CSendAIDoneMessage
+{
+Target=Relican
+}
+Action=CDisplayDialogTreeAction
+{
+Dialog Tree File=Levels/1 Barcelona/Dialog/La Calle Perdida/Lord Relican
+Node ID=5 Return Dialogue
+Speaker=Relican
+Player Being Spoken To=Player1
+}
+}
+}
+Else=
+Return failure if the If failes=0
+}
+Delay=15
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+
+Requirement=!None
+Reply Text=I need nothing from you. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=10 What are you
+Text=I am your servant, bound to you by bone and death. I have forsaken all life so that I might perform your will.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And what is the reason for your existence?
+Go to node ID=100 duty
+
+Requirement=!None
+Reply Text=Look at you - a shambling wreck of bones, barely held together by my magic. How do you think one such as you could be of any use to me?
+Go to node ID=70 look bad
+
+Requirement=!None
+Reply Text=And what of my achievements? My deeds? Are these not worthy of praise?
+Go to node ID=110 evil deeds
+
+Requirement=!None
+Reply Text=I find the reaffirmation of your devotion gratifying. As you were.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=20 Feeling Good
+Text=I am certain that the poison of goodness and elation shall pass, master. Such things are transitory compared to the cold chill of death and misery that consumes all things.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Indeed. As you were.
+Go to node ID=
+------------------------------------------------------------
+Node ID=30 Feeling Bad
+Text=Excellent, master. It is only when one is surrounded by oppression and harm can one truly be strong. Your inner darkness is a beacon to all of us that dwell in the realms of undeath. As you say...badness is good.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Indeed. As you were.
+Go to node ID=
+------------------------------------------------------------
+Node ID=70 look bad
+Text=Death has not been kind, master, and I hope this broken shell you see before you in some small way inspires you to reduce all living things to my wretched state. Does this please you?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am pleased. I even feel...good.
+Go to node ID=20 Feeling Good
+
+Requirement=!None
+Reply Text=Your pathetic words have done nothing to ease the oppression on my mind.
+Go to node ID=30 Feeling Bad
+
+Requirement=!None
+Reply Text=Return to your duty and ask me no more questions. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 duty
+Text=I guard your magical realm of death, master. All of your servants of death await the day of the Final Crusade, where you will lead us against the living world.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And tell me again, creature - who do you serve?
+Go to node ID=10 What are you
+
+Requirement=!None
+Reply Text=Look at you - a shambling wreck of bones, barely held together by my magic. How do you think one such as you could be of any use to me?
+Go to node ID=70 look bad
+
+Requirement=!None
+Reply Text=And what of the achievements and deeds I have already performed? Are these not worthy of praise?
+Go to node ID=110 evil deeds
+
+Requirement=!None
+Reply Text=I find the reaffirmation of our destiny inspiring. As you were.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Do not forget it. Goodbye.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=110 evil deeds
+Text=Master, your deeds have already been burned on the face of the world for you are wizard of terrible power and fury. One does not cross you unless they wish to be bled of life and raised to serve you. Your name is synonymous with the dark places of the world, and you will soon be feared by kings and peasants alike.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text="Will be feared"?
+Go to node ID=115 Will be?
+
+Requirement=!None
+Reply Text=I find the reaffirmation of your devotion gratifying. As you were.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Very well. That will be enough for now.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=115 Will be?
+Text=No, Master, you *are* feared. If these kings and peasants were to hear of your evil, their spirits would flee their bodies rather than be struck dead by your hand.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text="*If* they were to hear of me"? Am I not evil? Is my evil not known?!
+Go to node ID=120 sucking up
+
+Requirement=!None
+Reply Text=I find the reaffirmation of your devotion gratifying. As you were.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Very well. That will be enough for now.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=120 sucking up
+Text=Few evil-doers can match the evil that you do, master. Your heart is fouler than the darkest pits of the world, so foul that even shadows fear to linger in your heart. You are a blight upon all of history, and evil is but a word compared to what you represent, master.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=And what *do* I represent?
+Go to node ID=130 more sucking up
+
+Requirement=!None
+Reply Text=I find the reaffirmation of your devotion gratifying. As you were.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Very well. That will be enough for now.
+Go to node ID=
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=130 more sucking up
+Text=Evil historians will gather to debate your evilness and conclude that you are the epitome of villainy. It makes me feel terrible to serve you, which is good, that is to say, bad, master.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I find the reaffirmation of your devotion gratifying. As you were.
+Go to node ID=
+
+Requirement=!None
+Reply Text=Very well. That will be enough for now.
+Go to node ID=
+Icon=Exit Icon
+}

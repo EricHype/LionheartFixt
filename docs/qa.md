@@ -6169,6 +6169,37 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_relican_summoned.py`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| RB1 | La Calle Perdida, past the Montserrat task (`QuickSave`, whose Relican click is silent) | Click an undead guard, *"Summon your master. I would speak with Lord Relican."* | The guard's talk closes; Relican **walks** to you and stops in front of you; `5 Return Dialogue` opens when he arrives |
+| RB2 | Same | Take the Montserrat report and the journal (NW4, NW5) | Both work from the summoned dialogue |
+| RB3 | Same, a lackey (`How may I serve you, master?`) | The same reply | The same |
+| RB4 | Same | Summon him from far across the street, or from behind a wall | If he has not arrived in 15 s the dialogue opens anyway, **once**, and he goes back to his own business |
+| RB5 | After RB1 | Summon him again | He comes again and the dialogue opens again, once |
+| RB6 | Before the Montserrat task | A guard's greeting | No summon reply; click Relican as usual |
+| RB7 | An endgame map with these guards (`END GAME Calle Perdida`, the siege) | A guard's greeting | No summon reply |
+
+`tools/build_diego_veteran.py`. Every save that has not had the fight.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| DG1 | The Plains, *Eliminate Bishop Diego* taken from the Dark Inquisitors | *"The Dark Inquisitors have asked me to kill you..."* | He fights, and takes several times the hits he used to (100 HP, 150 AC); his Smite hits harder |
+| DG2 | Helped instead, then recruited | Check his stats in the party | Unchanged: 35 HP base and his usual growth |
+
+`tools/build_horde_champion_greets.py`. Wilderness maps not yet entered.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| HG1 | The Plains as the Khan's Champion | Walk past the goblins, **shamans included** | None attacks |
+| HG2 | Same | Hover a goblin, then click it | The cursor is **talk**; one of the three Champion lines shows over it |
+| HG3 | Same | Click a shaman | *"The frogs croaked that you would come this way, Champion."* |
+| HG4 | The Lake as the Champion | The shaman by the lake, left side | As HG1 and HG3 |
+| HG5 | Not the Champion | Any band goblin or shaman | They fight, with the attack cursor, as before. With the Khan slain, the shamans attack slower too |
+
 ## 0.99.41 - the road north
 
 `tools/build_ravine_mine_turns.py`. MT1-MT6: a `Ravine Cave West` not yet entered. MT7: every save.

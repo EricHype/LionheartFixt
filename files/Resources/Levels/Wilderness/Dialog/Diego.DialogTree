@@ -34,9 +34,58 @@ State=OVCZ9ZVT
 }
 Reply Text=The Dark Inquisitors have asked me to kill you and I am here to do just that!
 Go to node ID=
-Custom Action=CGoToCombatAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt veteran inquisitor
+Modification is permanent=1
+Character to modify=$Trigger
+Modifiers=Array
+{
+Item Count=3
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=65
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+}
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=105
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/(AC) Armor Class
+}
+Modifier=CCharacterModifierSkill
+{
+Modification Amount=CConstant
+{
+Constant Value=40
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Skill to modify=Skills/Magic Divine/Offensive/Celestial Smite
+}
+}
+OPTIONAL Duration=
+Expression Context=$Trigger
+}
+Action=CGoToCombatAction
 {
 Enemy Name=$Trigger
+}
+}
 }
 Icon=Quest Icon
 

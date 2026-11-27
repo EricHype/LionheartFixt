@@ -927,7 +927,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -938,6 +938,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -1578,7 +1650,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -1589,6 +1661,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -9333,7 +9477,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -9344,6 +9488,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -11128,7 +11344,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -11139,6 +11355,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -12934,7 +13222,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -12945,6 +13233,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -13347,7 +13707,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -13358,6 +13718,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -15761,7 +16193,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -15772,6 +16204,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -20693,7 +21197,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -20704,6 +21208,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -27092,7 +27668,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -27103,6 +27679,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -27661,7 +28309,7 @@ CLayerSaveData
 						{
 							Action=Array
 							{
-								Item Count=2
+								Item Count=4
 								Action=CSetTargetTypeAction
 								{
 									Entity Name=$Instigator
@@ -27672,6 +28320,78 @@ CLayerSaveData
 								{
 									Target Name=$Instigator
 									Categories To Remove=Enemy
+								}
+								Action=CRemoveAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									Delay Between Removes=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=$Instigator
+									AI=CAIInteractionSpecifier
+									{
+										Marked For Deletion=0
+										Publisher=
+										Trigger Only Once=0
+										Was Triggered=0
+										Auto-Flip Switch=1
+										Trigge Must Have HP=0
+										Triggered By Anything=0
+										Triggered By Players=1
+										Triggered By Player Friends=0
+										Triggered By Enemies=0
+										Triggered By Projectiles=0
+										Triggered By Name=
+										Interaction Description=
+										Interaction Type=Interaction Specifiers/GetCloseThenTalk
+										Action=CRandomAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+													Node ID=1 walk
+													Name of Position=$trigger
+													Position Offset=0.000000,-80.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+													Node ID=2 hungry
+													Name of Position=$trigger
+													Position Offset=0.000000,-80.000000
+													After Action=
+													Include In Log=1
+												}
+												Action=CDisplayDialogBalloonAction
+												{
+													Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+													Node ID=3 hunting
+													Name of Position=$trigger
+													Position Offset=0.000000,-80.000000
+													After Action=
+													Include In Log=1
+												}
+											}
+										}
+										X Radius=50
+										Attacker Range Modifier=0
+										YX Ratio=0.712766
+										Highlight Self Time=0
+										Highlight Until Clicked=0
+										Is Locked=0
+										Allow Interact If Has Target=1
+										Lock Pick Adjustment=0
+										Inventory item to use as key=Inventory Items/!None
+										Is Bussy Talking=0
+									}
+									Delay Between Adds=0
 								}
 							}
 						}
@@ -28710,7 +29430,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -28721,6 +29441,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
@@ -31430,7 +32222,7 @@ CLayerSaveData
 								{
 									Action=Array
 									{
-										Item Count=2
+										Item Count=4
 										Action=CSetTargetTypeAction
 										{
 											Entity Name=$Instigator
@@ -31441,6 +32233,78 @@ CLayerSaveData
 										{
 											Target Name=$Instigator
 											Categories To Remove=Enemy
+										}
+										Action=CRemoveAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											Delay Between Removes=0
+										}
+										Action=CAddAIAction
+										{
+											Target Name=$Instigator
+											AI=CAIInteractionSpecifier
+											{
+												Marked For Deletion=0
+												Publisher=
+												Trigger Only Once=0
+												Was Triggered=0
+												Auto-Flip Switch=1
+												Trigge Must Have HP=0
+												Triggered By Anything=0
+												Triggered By Players=1
+												Triggered By Player Friends=0
+												Triggered By Enemies=0
+												Triggered By Projectiles=0
+												Triggered By Name=
+												Interaction Description=
+												Interaction Type=Interaction Specifiers/GetCloseThenTalk
+												Action=CRandomAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=1 walk
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=2 hungry
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+														Action=CDisplayDialogBalloonAction
+														{
+															Dialog Tree File=Levels/Wilderness/Dialog/Fixt Horde Champion
+															Node ID=3 hunting
+															Name of Position=$trigger
+															Position Offset=0.000000,-80.000000
+															After Action=
+															Include In Log=1
+														}
+													}
+												}
+												X Radius=50
+												Attacker Range Modifier=0
+												YX Ratio=0.712766
+												Highlight Self Time=0
+												Highlight Until Clicked=0
+												Is Locked=0
+												Allow Interact If Has Target=1
+												Lock Pick Adjustment=0
+												Inventory item to use as key=Inventory Items/!None
+												Is Bussy Talking=0
+											}
+											Delay Between Adds=0
 										}
 									}
 								}
