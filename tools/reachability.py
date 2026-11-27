@@ -251,8 +251,18 @@ entries = entry_points(corpus_texts(overlay))
 VANILLA = {basename(n): n for n in zf.namelist()
            if n.lower().endswith(TREE_EXT)}
 
+# Nodes Fixt stopped opening on purpose but must keep: a map already frozen into an older save
+# still opens them, and a map naming a node that is gone crashes (engine-notes, "A node
+# reference is byte-exact"). Each says which build moved its caller and where it went.
+KEPT = {
+    # 0.99.24, build_troll_voice.py: the red ore chest warns with `92 not yours` and then opens
+    # `93 theft`; a Sewers map saved before that still shows this one
+    ("Warning Troll.DialogTree", "91 that is ours"),
+}
+
 fails = []
 tolerated = 0
+kept = 0
 for p in mod_trees:
     key = basename(p.name)
     tree = dt.parse(p.read_bytes().decode("latin-1"))
@@ -275,13 +285,17 @@ for p in mod_trees:
         if dt.normalise_id(n.node_id) in inherited:
             tolerated += 1
             continue
+        if (p.name, n.node_id.strip()) in KEPT:
+            kept += 1
+            continue
         fails.append("%s: node %r is unreachable -- nothing links to it and no map "
                      "opens it" % (p.name, n.node_id.strip()))
 
 print("checked %d dialogue tree(s)%s"
       % (len(mod_trees),
          "; tolerated %d node(s) already orphaned in vanilla" % tolerated
-         if tolerated else ""))
+         if tolerated else "")
+      + ("; kept %d node(s) older saves' maps still open" % kept if kept else ""))
 if fails:
     print("\n%d PROBLEM(S):" % len(fails))
     for f in fails:
