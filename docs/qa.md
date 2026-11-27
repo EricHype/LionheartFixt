@@ -6187,15 +6187,16 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
-| NW1 | Montserrat Level 2, Sahar's offer, any patron | *"<Take the ring.>"* | The world map shows the **Plains**; the patron's Montserrat quest completes and 2,500 XP is paid once |
-| NW2 | A save past the ring (`buggednomontaillou`), back at Sahar with the ring | *"Which road north?"* | *"<She points with her chin...>"*; Plains enabled; the open Montserrat quest (here *seek out the Crown of Thorns*) completes with 2,500 XP. Ask again: no second payment |
+| NW1 | Montserrat Level 2, Sahar's offer, any patron | *"<Take the ring.>"* | The world map shows the **Plains**; the patron's Montserrat quest completes and 2,500 XP is paid once. Talk to her again: no *"Which road north?"* |
+| NW2 | A save past the ring (`buggednomontaillou`), back at Sahar with the ring | *"Which road north?"* | *"<She points with her chin...>"*; Plains enabled; the open Montserrat quest (here *seek out the Crown of Thorns*) completes with 2,500 XP. Talk to her again: the reply is gone |
 | NW3 | After NW1 or NW2 | Travel to the Plains, walk through the Mountain Pass | Montaillou appears on the world map |
 | NW4 | `buggednomontaillou`, Relican in Calle Perdida | *"Montserrat is lost..."* | His reply, then back to his greeting; the Plains is enabled. The reply does not show again |
 | NW5 | Same, the journal carried | *"I took Sir Tomas de Vilanova's journal..."* | *"<He opens it...>"*; *Sir Tomas's Journal* completes, the book is gone, 500 XP |
 | NW6 | Kill route, a Dark Wielder | Relican's greeting | No Montserrat report (Montgomerie gave it); the journal reply still shows while it is carried |
 | NW7 | Peaceful route, Cedric, Raphael, Amir or Javier | Take the Montaillou reply | The Plains is enabled if it was not already |
+| NW8 | Peaceful route, a Templar, Javier | Report Montserrat | *"...I see you wear the assassin's ring. I cannot say I approve..."*; the quest still completes as before, and the journal scene is unchanged |
 
-`tools/build_montserrat_speakers_approach.py`. MW1-MW5: a Grove Exterior or Level 2 not yet entered. MW6: every save.
+`tools/build_montserrat_speakers_approach.py`. A Grove Exterior or Level 2 not yet entered.
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
@@ -6203,8 +6204,8 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | MW2 | Same, a fresh visit | Come at the gate from the other side (the abbey door) | He walks toward that side instead |
 | MW3 | Montserrat Level 2, the sanctum, from Level 1 | Walk in | Sahar spawns, walks toward you, and *"1 too late"* opens when she stops |
 | MW4 | Same, a fresh visit | Come in from the Grove's back door (east) | She walks toward the east side |
-| MW5 | Either scene | Walk along the line between two quarters | The scene runs once, not twice; if the speaker never arrives, clicking them still talks |
-| MW6 | Any save, Sahar's first words | Read the opening | *"<She comes down off the reliquary's step to meet you...>"* |
+| MW5 | Either scene | Walk along the line between two quarters; and once, stand still the moment the speaker appears | The scene runs once, not twice. If the speaker is blocked, the dialogue still opens within about 5 seconds, once |
+| MW6 | Sahar's first words | Walk in (MW3), then on a fresh visit click her instead of walking into the sanctum | Walking in: *"<She comes down off the reliquary's step to meet you...>"*. Clicked: vanilla's *"<She does not rise from the reliquary's step...>"* |
 | MW7 | Delivered as a prisoner (the escort route) | Arrive at Sahar | The escort's own arrival plays; the quarters stay off and nothing fires a second time |
 
 ## 0.99.40 - whose cave it is

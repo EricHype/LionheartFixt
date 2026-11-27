@@ -6,6 +6,44 @@ Should Have Voiceovers=0
 Default Canceled Node Action=
 ------------------------------------------------------------
 Node ID=1 too late
+Text=<She does not rise from the reliquary's step. Two of the creatures coil at her feet; a third, older, stands behind her with its hands folded.> You are late, Lionheart. The Master has what he came for, and I have what I was left to do. I had wagons for this once, and sisters I could spare. You have spent both on your way in.
+Should Have Voiceover=0
+
+Requirement=Outwit 7 greater or equal
+Custom Requirement=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Task for Machiavelli
+}
+}
+Reply Text=I carry Machiavelli's word. The contract stands; you and I are on the same side of it, and your creatures are wasted on me.
+Go to node ID=40 courier
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Who is your master?
+Go to node ID=10 master
+
+Requirement=!None
+Reply Text=Where is the Crown?
+Go to node ID=20 crown
+
+Requirement=!None
+Reply Text=The monks. Where are they?
+Go to node ID=30 monks
+
+Requirement=!None
+Reply Text=Enough talk.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=sahar fights
+}
+Icon=Fight Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 too late met
 Text=<She comes down off the reliquary's step to meet you. Behind her two of the creatures coil on the stair; a third, older, stands with its hands folded.> You are late, Lionheart. The Master has what he came for, and I have what I was left to do. I had wagons for this once, and sisters I could spare. You have spent both on your way in.
 Should Have Voiceover=0
 
@@ -240,7 +278,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=14
+Item Count=15
 Action=CTriggerRelayAction
 {
 Relay Name=sahar word given
@@ -436,6 +474,28 @@ Action=CEnablePointOfInterestOnWorldMapAction
 {
 Point Of Interest to Enable=Interface/World Map/Plains
 }
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt Sahar Road Asked
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Sahar Road Asked
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
 }
 }
 Icon=Quest Icon
@@ -463,13 +523,25 @@ Text=<She does not look up from the reliquary step.> Still here. The ring says w
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Sahar Road Asked
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
 Reply Text=Which road north?
 Go to node ID=61 Fixt the road north
 Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=4
+Item Count=5
 Action=CConditionalAction
 {
 Try Action=CIsQuestStateTheCurrentStateAction
@@ -584,6 +656,28 @@ Return failure if the TryAction failes=0
 Action=CEnablePointOfInterestOnWorldMapAction
 {
 Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt Sahar Road Asked
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Sahar Road Asked
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
 }
 }
 }

@@ -12,10 +12,13 @@ current (`seek out` / `protect the Crown of Thorns`, `Ensure safety of Monserrat
     enable, copied from his reply. Both play in `02 Druid Council Level2`, where `Montserrat XP` stands.
   * **For a save past the ring:** `60 the ring is on your hand`, what she says to a ring-bearer, gains *"Which road
     north?"*, which runs the same and answers in `61 Fixt the road north`. Each close is guarded on its quest's current
-    state, so nothing pays twice.
+    state, so nothing pays twice, and both the ring and the reply set `Fixt Sahar Road Asked`, which hides the reply:
+    it exists only for a save that took the ring before this build.
   * **Every patron's Montaillou reply enables the Plains** too: each reply in Javier, Cedric, Raphael and Amir whose
     action activates *Travel to Montaillou*. So a report-back alone opens the road. The 2500 XP stays Sahar's, because
     an award must name a marker on the map it plays in.
+  * **Javier knows.** His Sahar-route report (`530 sahar sent you`) names the ring and disapproves, in his register,
+    and still sends you on: the Crown was gone before you came, so the quest stands.
   * **Relican**, the one patron 0.10.0's journal pass missed. His greeting gains, once and on the peaceful route, a
     Montserrat report (`95 Fixt Relican hears of Montserrat`) that marks the Plains, and, while the journal is carried,
     a hand-in (`96 Fixt Relican reads Sir Tomas`) that closes *Sir Tomas's Journal* as Cedric's does, paying from
@@ -49,6 +52,9 @@ PATRONS = {
 VARS = "Resources/Derived Character Attributes/Game Scripting Variables/"
 HEARD = "Fixt Relican Heard Montserrat"
 HEARD_REL = VARS + HEARD + ".DerivedCharacterAttribute"
+ASKED = "Fixt Sahar Road Asked"  # the ring or "Which road north?" has done Montgomerie's work
+NEW_VARS = {HEARD: "Lord Relican has heard the player's Montserrat report on Sahar's route.",
+            ASKED: "Sahar's word has enabled the Plains and closed the patron's Montserrat quest."}
 PLAINS = "Interface/World Map/Plains"
 POI = ("CEnablePointOfInterestOnWorldMapAction", [("Point Of Interest to Enable", PLAINS)])
 CROWN = "Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns"
@@ -136,6 +142,7 @@ def write(rel, t):
 
 def build_sahar(work):
     t = lhbuild.read(SAHAR)
+    work = work + ["Action=" + B(*set_var(ASKED))]
     if "Node ID=" + NODE_ROAD + CR in t:
         return []
     # the ring
@@ -148,7 +155,7 @@ def build_sahar(work):
     # a ring-bearer asks the road
     s, e = node_span(t, "60 the ring is on your hand")
     k = t.index("Requirement=!None" + CR + "Reply Text=<Draw.>" + CR, s, e)
-    reply = ("Requirement=!None" + CR + "Reply Text=" + LINES["road"] + CR + "Go to node ID=" + NODE_ROAD + CR +
+    reply = ("Requirement=!None" + CR + "Custom Requirement=" + var_is(ASKED, "0") + "Reply Text=" + LINES["road"] + CR + "Go to node ID=" + NODE_ROAD + CR +
              "Custom Action=" + multi_raw(work) + "Icon=Quest Icon" + CR + CR)
     t = t[:k] + reply + t[k:]
     t = append_nodes(t, ["Node ID=" + NODE_ROAD + CR + "Text=" + LINES[NODE_ROAD] + CR + "Should Have Voiceover=0" + CR + exit_reply()])
@@ -204,13 +211,17 @@ def cand(a, b):
     return "CAND" + CR + "{" + CR + "Operand1=" + a + "Operator=" + CR + "Operand2=" + b + "}" + CR
 
 
-SET_HEARD = ("CAddCharacterModifierToCharacterAction", [
-    ("Modifier Description", HEARD), ("Modification is permanent", "1"), ("Character to modify", "Player#1-9#"),
+def set_var(name):
+    return ("CAddCharacterModifierToCharacterAction", [
+    ("Modifier Description", name), ("Modification is permanent", "1"), ("Character to modify", "Player#1-9#"),
     ("Modifiers", ("Array", [("Item Count", "1"), ("Modifier", ("CCharacterModifierDerivedAttribute", [
         ("Modification Amount", ("CConstant", [("Constant Value", "1")])), ("Modification amount is a percent", "0"),
         ("Allow Accumulation", "0"),
-        ("Derived character attribute to modify", "Derived Character Attributes/Game Scripting Variables/" + HEARD)]))])),
+        ("Derived character attribute to modify", "Derived Character Attributes/Game Scripting Variables/" + name)]))])),
     ("OPTIONAL Duration", ""), ("Expression Context", "$Instigator")])
+
+
+SET_HEARD = set_var(HEARD)
 
 
 def cedric_journal_action():
@@ -245,16 +256,42 @@ def build_relican():
 
 
 def build_var():
-    if (lhbuild.FX / HEARD_REL).exists():
+    done = []
+    for name, what in NEW_VARS.items():
+        rel = VARS + name + ".DerivedCharacterAttribute"
+        if (lhbuild.FX / rel).exists():
+            continue
+        v = lhbuild.read(VARS + "Esteban Dead.DerivedCharacterAttribute").replace("Esteban Dead", name)
+        v = v.replace("Description=" + CR, "Description=1 means " + what + CR)
+        (lhbuild.FX / rel).write_bytes(v.encode("latin-1"))
+        done.append(rel)
+    return done
+
+
+JAVIER = DLG + "1 Barcelona/Dialog/Temple District/LordJavier.DialogTree"
+JAVIER_OLD = ("Text=It is grim news that Montserrat has fallen. We must double our efforts to safeguard the relics. Go north "
+              "to Montaillou, since the assassin sends you that way regardless, and from there to the Crypt outside it. You "
+              "must ensure that the seal still protects the entrance. Go with speed, young one." + CR)
+JAVIER_NEW = ("Text=It is grim news that Montserrat has fallen. I see you wear the assassin's ring. I cannot say I approve of "
+              "a bargain struck with those who slew our brothers, but I would sooner have you stand before me, with all you "
+              "have seen, than mourn one more knight. We must double our efforts to safeguard the relics. Travel to the "
+              "Crypt outside of Montaillou and ensure that the seal still protects the entrance. Go with speed, young one." + CR)
+assert "—" not in JAVIER_NEW and "--" not in JAVIER_NEW
+
+
+def build_javier_report():
+    """`530 sahar sent you`: the quest stands, since the Crown was gone before you came and the bargain only decided
+    whether Javier heard of it. He names the ring and the price in his own register, and sends you on."""
+    t = lhbuild.read(JAVIER)
+    if JAVIER_NEW in t:
         return []
-    v = lhbuild.read(VARS + "Esteban Dead.DerivedCharacterAttribute").replace("Esteban Dead", HEARD)
-    v = v.replace("Description=" + CR, "Description=1 means Lord Relican has heard the player's Montserrat report on Sahar's route." + CR)
-    (lhbuild.FX / HEARD_REL).write_bytes(v.encode("latin-1"))
-    return [HEARD_REL]
+    s, e = node_span(t, "530 sahar sent you")
+    assert t.count(JAVIER_OLD) == 1 and s < t.index(JAVIER_OLD) < e
+    return write(JAVIER, t.replace(JAVIER_OLD, JAVIER_NEW))
 
 
 def main():
-    done = build_var() + build_sahar(montgomerie_work()) + build_patrons() + build_relican()
+    done = build_var() + build_sahar(montgomerie_work()) + build_patrons() + build_relican() + build_javier_report()
     if done:
         register(done)
     print("sahar road north:", done)

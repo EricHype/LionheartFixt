@@ -117,6 +117,36 @@ CLayerSaveData
 		}
 		Level Part=CEntityBase
 		{
+			Name=Fixt sahar spoke
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=3780
+			Position Y=2340
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt sahar meets you NW
 			Child List=
 			Visible=0
@@ -139,7 +169,7 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Position Marker
-			Position X=3645
+			Position X=3630
 			Position Y=2290
 			Rendering Height=0
 			Rendering Height Float=0
@@ -227,115 +257,209 @@ CLayerSaveData
 										}
 										Action=CDelayAction
 										{
-											Next Action=CAssignTemporaryTaskAction
+											Next Action=CMultipleActionsAction
 											{
-												Target=Sahar
-												Temporary Task AI=CGoToAI
+												Action=Array
 												{
-													Marked For Deletion=0
-													Publisher=
-													Destination=Fixt sahar meets you NW
-													Offset=0.000000,0.000000
-													Starting Action=
-													Finished=0
-													Move Finished=0
-													Failed Path=0
-													Target Was Set By Goto AI=0
-													Move Behavior=CEntityBehaviorMoveToPos
+													Item Count=2
+													Action=CAssignTemporaryTaskAction
 													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-														Idle Behavior=CEntityBehaviorIdle
+														Target=Sahar
+														Temporary Task AI=CGoToAI
 														{
-															Num Seconds=1
-															Seconds Have Transitioned=0
-															Override Fidget Options=
-															Current Fidget Data=
-															Time Until Next Fidget=0
-															Fidgeting=0
-														}
-														Play Ratio=1
-														Smooth Turning=0
-														Do Path Finding=1
-														Finished=1
-														Failed Last Path=0
-														Idle Begin Called=0
-														Move To Rate=0
-														CurTargetNormalX=0
-														CurTargetNormalY=0
-														Path Finding Params=CWayPointPath
-														{
-															Start Point=0,0
-															End Point=0,0
-															Length=0
-															Max Dist To Travel=0
-															Num Failed Paths=0
-															Max Failed Paths=0
-															Pos To Move Index=0
-															Dist So Far=0
-															Path=
-														}
-														Pos Moving From=0.000000,0.000000
-														Final Dest=0.000000,0.000000
-														Dest Radius=0
-														Cur Dest Move To=0.000000,0.000000
-														Last Neg Dist=0
-														NumTimesLostGound=0
-														Sequence=Walk
-														Planed Path For=
-													}
-													Done action=CMultipleActionsAction
-													{
-														Action=Array
-														{
-															Item Count=2
-															Action=CSendAIDoneMessage
+															Marked For Deletion=0
+															Publisher=
+															Destination=Fixt sahar meets you NW
+															Offset=0.000000,0.000000
+															Starting Action=
+															Finished=0
+															Move Finished=0
+															Failed Path=0
+															Target Was Set By Goto AI=0
+															Move Behavior=CEntityBehaviorMoveToPos
 															{
-																Target=$Trigger
-															}
-															Action=CIfAction
-															{
-																If=CCheckExistenceAction
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+																Idle Behavior=CEntityBehaviorIdle
 																{
-																	Name To Check For=delivered
+																	Num Seconds=1
+																	Seconds Have Transitioned=0
+																	Override Fidget Options=
+																	Current Fidget Data=
+																	Time Until Next Fidget=0
+																	Fidgeting=0
+																}
+																Play Ratio=1
+																Smooth Turning=0
+																Do Path Finding=1
+																Finished=1
+																Failed Last Path=0
+																Idle Begin Called=0
+																Move To Rate=0
+																CurTargetNormalX=0
+																CurTargetNormalY=0
+																Path Finding Params=CWayPointPath
+																{
+																	Start Point=0,0
+																	End Point=0,0
+																	Length=0
+																	Max Dist To Travel=0
+																	Num Failed Paths=0
+																	Max Failed Paths=0
+																	Pos To Move Index=0
+																	Dist So Far=0
+																	Path=
+																}
+																Pos Moving From=0.000000,0.000000
+																Final Dest=0.000000,0.000000
+																Dest Radius=0
+																Cur Dest Move To=0.000000,0.000000
+																Last Neg Dist=0
+																NumTimesLostGound=0
+																Sequence=Walk
+																Planed Path For=
+															}
+															Done action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=$Trigger
+																	}
+																	Action=CIfAction
+																	{
+																		If=CNotAction
+																		{
+																			Action=CCheckExistenceAction
+																			{
+																				Name To Check For=Fixt sahar spoke
+																				Desired Minimum Count=1
+																			}
+																		}
+																		Then=CMultipleActionsAction
+																		{
+																			Action=Array
+																			{
+																				Item Count=2
+																				Action=CActivateAction
+																				{
+																					Target Name=Fixt sahar spoke
+																					Play Activate Sound=0
+																					Delay Between Activations=0
+																					Warp Behavior=
+																				}
+																				Action=CIfAction
+																				{
+																					If=CCheckExistenceAction
+																					{
+																						Name To Check For=delivered
+																						Desired Minimum Count=1
+																					}
+																					Then=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 delivered
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Else=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 too late met
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Return failure if the If failes=0
+																				}
+																			}
+																		}
+																		Else=
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Run=0
+															Make New Home=0
+															Play Ratio=0
+															Time To Try To Move=0
+															Set Facing Angle=0
+															Turn Sequence Name=Idle
+															Facing Angle=CEntityBehaviorTurnToAngle
+															{
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+															}
+															Need to Call Start=1
+														}
+														Original AI Type=CSkeletonAI
+														Completion Message to wait for=AI Done
+														Suppress can't assign error=1
+													}
+													Action=CDelayAction
+													{
+														Next Action=CIfAction
+														{
+															If=CNotAction
+															{
+																Action=CCheckExistenceAction
+																{
+																	Name To Check For=Fixt sahar spoke
 																	Desired Minimum Count=1
 																}
-																Then=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 delivered
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Else=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 too late
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Return failure if the If failes=0
 															}
+															Then=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CActivateAction
+																	{
+																		Target Name=Fixt sahar spoke
+																		Play Activate Sound=0
+																		Delay Between Activations=0
+																		Warp Behavior=
+																	}
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=Sahar
+																	}
+																	Action=CIfAction
+																	{
+																		If=CCheckExistenceAction
+																		{
+																			Name To Check For=delivered
+																			Desired Minimum Count=1
+																		}
+																		Then=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 delivered
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Else=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 too late met
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Else=
+															Return failure if the If failes=0
 														}
+														Delay=5
+														Plus or Minus=0
+														Forget Trigger=0
 													}
-													Run=0
-													Make New Home=0
-													Play Ratio=0
-													Time To Try To Move=0
-													Set Facing Angle=0
-													Turn Sequence Name=Idle
-													Facing Angle=CEntityBehaviorTurnToAngle
-													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-													}
-													Need to Call Start=1
 												}
-												Original AI Type=CSkeletonAI
-												Completion Message to wait for=AI Done
-												Suppress can't assign error=1
 											}
 											Delay=0.8
 											Plus or Minus=0
@@ -387,7 +511,7 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Position Marker
-			Position X=3875
+			Position X=3870
 			Position Y=2290
 			Rendering Height=0
 			Rendering Height Float=0
@@ -475,115 +599,209 @@ CLayerSaveData
 										}
 										Action=CDelayAction
 										{
-											Next Action=CAssignTemporaryTaskAction
+											Next Action=CMultipleActionsAction
 											{
-												Target=Sahar
-												Temporary Task AI=CGoToAI
+												Action=Array
 												{
-													Marked For Deletion=0
-													Publisher=
-													Destination=Fixt sahar meets you NE
-													Offset=0.000000,0.000000
-													Starting Action=
-													Finished=0
-													Move Finished=0
-													Failed Path=0
-													Target Was Set By Goto AI=0
-													Move Behavior=CEntityBehaviorMoveToPos
+													Item Count=2
+													Action=CAssignTemporaryTaskAction
 													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-														Idle Behavior=CEntityBehaviorIdle
+														Target=Sahar
+														Temporary Task AI=CGoToAI
 														{
-															Num Seconds=1
-															Seconds Have Transitioned=0
-															Override Fidget Options=
-															Current Fidget Data=
-															Time Until Next Fidget=0
-															Fidgeting=0
-														}
-														Play Ratio=1
-														Smooth Turning=0
-														Do Path Finding=1
-														Finished=1
-														Failed Last Path=0
-														Idle Begin Called=0
-														Move To Rate=0
-														CurTargetNormalX=0
-														CurTargetNormalY=0
-														Path Finding Params=CWayPointPath
-														{
-															Start Point=0,0
-															End Point=0,0
-															Length=0
-															Max Dist To Travel=0
-															Num Failed Paths=0
-															Max Failed Paths=0
-															Pos To Move Index=0
-															Dist So Far=0
-															Path=
-														}
-														Pos Moving From=0.000000,0.000000
-														Final Dest=0.000000,0.000000
-														Dest Radius=0
-														Cur Dest Move To=0.000000,0.000000
-														Last Neg Dist=0
-														NumTimesLostGound=0
-														Sequence=Walk
-														Planed Path For=
-													}
-													Done action=CMultipleActionsAction
-													{
-														Action=Array
-														{
-															Item Count=2
-															Action=CSendAIDoneMessage
+															Marked For Deletion=0
+															Publisher=
+															Destination=Fixt sahar meets you NE
+															Offset=0.000000,0.000000
+															Starting Action=
+															Finished=0
+															Move Finished=0
+															Failed Path=0
+															Target Was Set By Goto AI=0
+															Move Behavior=CEntityBehaviorMoveToPos
 															{
-																Target=$Trigger
-															}
-															Action=CIfAction
-															{
-																If=CCheckExistenceAction
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+																Idle Behavior=CEntityBehaviorIdle
 																{
-																	Name To Check For=delivered
+																	Num Seconds=1
+																	Seconds Have Transitioned=0
+																	Override Fidget Options=
+																	Current Fidget Data=
+																	Time Until Next Fidget=0
+																	Fidgeting=0
+																}
+																Play Ratio=1
+																Smooth Turning=0
+																Do Path Finding=1
+																Finished=1
+																Failed Last Path=0
+																Idle Begin Called=0
+																Move To Rate=0
+																CurTargetNormalX=0
+																CurTargetNormalY=0
+																Path Finding Params=CWayPointPath
+																{
+																	Start Point=0,0
+																	End Point=0,0
+																	Length=0
+																	Max Dist To Travel=0
+																	Num Failed Paths=0
+																	Max Failed Paths=0
+																	Pos To Move Index=0
+																	Dist So Far=0
+																	Path=
+																}
+																Pos Moving From=0.000000,0.000000
+																Final Dest=0.000000,0.000000
+																Dest Radius=0
+																Cur Dest Move To=0.000000,0.000000
+																Last Neg Dist=0
+																NumTimesLostGound=0
+																Sequence=Walk
+																Planed Path For=
+															}
+															Done action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=$Trigger
+																	}
+																	Action=CIfAction
+																	{
+																		If=CNotAction
+																		{
+																			Action=CCheckExistenceAction
+																			{
+																				Name To Check For=Fixt sahar spoke
+																				Desired Minimum Count=1
+																			}
+																		}
+																		Then=CMultipleActionsAction
+																		{
+																			Action=Array
+																			{
+																				Item Count=2
+																				Action=CActivateAction
+																				{
+																					Target Name=Fixt sahar spoke
+																					Play Activate Sound=0
+																					Delay Between Activations=0
+																					Warp Behavior=
+																				}
+																				Action=CIfAction
+																				{
+																					If=CCheckExistenceAction
+																					{
+																						Name To Check For=delivered
+																						Desired Minimum Count=1
+																					}
+																					Then=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 delivered
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Else=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 too late met
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Return failure if the If failes=0
+																				}
+																			}
+																		}
+																		Else=
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Run=0
+															Make New Home=0
+															Play Ratio=0
+															Time To Try To Move=0
+															Set Facing Angle=0
+															Turn Sequence Name=Idle
+															Facing Angle=CEntityBehaviorTurnToAngle
+															{
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+															}
+															Need to Call Start=1
+														}
+														Original AI Type=CSkeletonAI
+														Completion Message to wait for=AI Done
+														Suppress can't assign error=1
+													}
+													Action=CDelayAction
+													{
+														Next Action=CIfAction
+														{
+															If=CNotAction
+															{
+																Action=CCheckExistenceAction
+																{
+																	Name To Check For=Fixt sahar spoke
 																	Desired Minimum Count=1
 																}
-																Then=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 delivered
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Else=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 too late
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Return failure if the If failes=0
 															}
+															Then=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CActivateAction
+																	{
+																		Target Name=Fixt sahar spoke
+																		Play Activate Sound=0
+																		Delay Between Activations=0
+																		Warp Behavior=
+																	}
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=Sahar
+																	}
+																	Action=CIfAction
+																	{
+																		If=CCheckExistenceAction
+																		{
+																			Name To Check For=delivered
+																			Desired Minimum Count=1
+																		}
+																		Then=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 delivered
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Else=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 too late met
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Else=
+															Return failure if the If failes=0
 														}
+														Delay=5
+														Plus or Minus=0
+														Forget Trigger=0
 													}
-													Run=0
-													Make New Home=0
-													Play Ratio=0
-													Time To Try To Move=0
-													Set Facing Angle=0
-													Turn Sequence Name=Idle
-													Facing Angle=CEntityBehaviorTurnToAngle
-													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-													}
-													Need to Call Start=1
 												}
-												Original AI Type=CSkeletonAI
-												Completion Message to wait for=AI Done
-												Suppress can't assign error=1
 											}
 											Delay=0.8
 											Plus or Minus=0
@@ -635,8 +853,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Position Marker
-			Position X=3875
-			Position Y=2510
+			Position X=3850
+			Position Y=2550
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -723,115 +941,209 @@ CLayerSaveData
 										}
 										Action=CDelayAction
 										{
-											Next Action=CAssignTemporaryTaskAction
+											Next Action=CMultipleActionsAction
 											{
-												Target=Sahar
-												Temporary Task AI=CGoToAI
+												Action=Array
 												{
-													Marked For Deletion=0
-													Publisher=
-													Destination=Fixt sahar meets you SE
-													Offset=0.000000,0.000000
-													Starting Action=
-													Finished=0
-													Move Finished=0
-													Failed Path=0
-													Target Was Set By Goto AI=0
-													Move Behavior=CEntityBehaviorMoveToPos
+													Item Count=2
+													Action=CAssignTemporaryTaskAction
 													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-														Idle Behavior=CEntityBehaviorIdle
+														Target=Sahar
+														Temporary Task AI=CGoToAI
 														{
-															Num Seconds=1
-															Seconds Have Transitioned=0
-															Override Fidget Options=
-															Current Fidget Data=
-															Time Until Next Fidget=0
-															Fidgeting=0
-														}
-														Play Ratio=1
-														Smooth Turning=0
-														Do Path Finding=1
-														Finished=1
-														Failed Last Path=0
-														Idle Begin Called=0
-														Move To Rate=0
-														CurTargetNormalX=0
-														CurTargetNormalY=0
-														Path Finding Params=CWayPointPath
-														{
-															Start Point=0,0
-															End Point=0,0
-															Length=0
-															Max Dist To Travel=0
-															Num Failed Paths=0
-															Max Failed Paths=0
-															Pos To Move Index=0
-															Dist So Far=0
-															Path=
-														}
-														Pos Moving From=0.000000,0.000000
-														Final Dest=0.000000,0.000000
-														Dest Radius=0
-														Cur Dest Move To=0.000000,0.000000
-														Last Neg Dist=0
-														NumTimesLostGound=0
-														Sequence=Walk
-														Planed Path For=
-													}
-													Done action=CMultipleActionsAction
-													{
-														Action=Array
-														{
-															Item Count=2
-															Action=CSendAIDoneMessage
+															Marked For Deletion=0
+															Publisher=
+															Destination=Fixt sahar meets you SE
+															Offset=0.000000,0.000000
+															Starting Action=
+															Finished=0
+															Move Finished=0
+															Failed Path=0
+															Target Was Set By Goto AI=0
+															Move Behavior=CEntityBehaviorMoveToPos
 															{
-																Target=$Trigger
-															}
-															Action=CIfAction
-															{
-																If=CCheckExistenceAction
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+																Idle Behavior=CEntityBehaviorIdle
 																{
-																	Name To Check For=delivered
+																	Num Seconds=1
+																	Seconds Have Transitioned=0
+																	Override Fidget Options=
+																	Current Fidget Data=
+																	Time Until Next Fidget=0
+																	Fidgeting=0
+																}
+																Play Ratio=1
+																Smooth Turning=0
+																Do Path Finding=1
+																Finished=1
+																Failed Last Path=0
+																Idle Begin Called=0
+																Move To Rate=0
+																CurTargetNormalX=0
+																CurTargetNormalY=0
+																Path Finding Params=CWayPointPath
+																{
+																	Start Point=0,0
+																	End Point=0,0
+																	Length=0
+																	Max Dist To Travel=0
+																	Num Failed Paths=0
+																	Max Failed Paths=0
+																	Pos To Move Index=0
+																	Dist So Far=0
+																	Path=
+																}
+																Pos Moving From=0.000000,0.000000
+																Final Dest=0.000000,0.000000
+																Dest Radius=0
+																Cur Dest Move To=0.000000,0.000000
+																Last Neg Dist=0
+																NumTimesLostGound=0
+																Sequence=Walk
+																Planed Path For=
+															}
+															Done action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=$Trigger
+																	}
+																	Action=CIfAction
+																	{
+																		If=CNotAction
+																		{
+																			Action=CCheckExistenceAction
+																			{
+																				Name To Check For=Fixt sahar spoke
+																				Desired Minimum Count=1
+																			}
+																		}
+																		Then=CMultipleActionsAction
+																		{
+																			Action=Array
+																			{
+																				Item Count=2
+																				Action=CActivateAction
+																				{
+																					Target Name=Fixt sahar spoke
+																					Play Activate Sound=0
+																					Delay Between Activations=0
+																					Warp Behavior=
+																				}
+																				Action=CIfAction
+																				{
+																					If=CCheckExistenceAction
+																					{
+																						Name To Check For=delivered
+																						Desired Minimum Count=1
+																					}
+																					Then=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 delivered
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Else=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 too late met
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Return failure if the If failes=0
+																				}
+																			}
+																		}
+																		Else=
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Run=0
+															Make New Home=0
+															Play Ratio=0
+															Time To Try To Move=0
+															Set Facing Angle=0
+															Turn Sequence Name=Idle
+															Facing Angle=CEntityBehaviorTurnToAngle
+															{
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+															}
+															Need to Call Start=1
+														}
+														Original AI Type=CSkeletonAI
+														Completion Message to wait for=AI Done
+														Suppress can't assign error=1
+													}
+													Action=CDelayAction
+													{
+														Next Action=CIfAction
+														{
+															If=CNotAction
+															{
+																Action=CCheckExistenceAction
+																{
+																	Name To Check For=Fixt sahar spoke
 																	Desired Minimum Count=1
 																}
-																Then=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 delivered
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Else=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 too late
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Return failure if the If failes=0
 															}
+															Then=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CActivateAction
+																	{
+																		Target Name=Fixt sahar spoke
+																		Play Activate Sound=0
+																		Delay Between Activations=0
+																		Warp Behavior=
+																	}
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=Sahar
+																	}
+																	Action=CIfAction
+																	{
+																		If=CCheckExistenceAction
+																		{
+																			Name To Check For=delivered
+																			Desired Minimum Count=1
+																		}
+																		Then=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 delivered
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Else=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 too late met
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Else=
+															Return failure if the If failes=0
 														}
+														Delay=5
+														Plus or Minus=0
+														Forget Trigger=0
 													}
-													Run=0
-													Make New Home=0
-													Play Ratio=0
-													Time To Try To Move=0
-													Set Facing Angle=0
-													Turn Sequence Name=Idle
-													Facing Angle=CEntityBehaviorTurnToAngle
-													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-													}
-													Need to Call Start=1
 												}
-												Original AI Type=CSkeletonAI
-												Completion Message to wait for=AI Done
-												Suppress can't assign error=1
 											}
 											Delay=0.8
 											Plus or Minus=0
@@ -883,8 +1195,8 @@ CLayerSaveData
 			Current Target=
 			Publisher=
 			Model=Editor/Position Marker
-			Position X=3645
-			Position Y=2510
+			Position X=3630
+			Position Y=2470
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
@@ -971,115 +1283,209 @@ CLayerSaveData
 										}
 										Action=CDelayAction
 										{
-											Next Action=CAssignTemporaryTaskAction
+											Next Action=CMultipleActionsAction
 											{
-												Target=Sahar
-												Temporary Task AI=CGoToAI
+												Action=Array
 												{
-													Marked For Deletion=0
-													Publisher=
-													Destination=Fixt sahar meets you SW
-													Offset=0.000000,0.000000
-													Starting Action=
-													Finished=0
-													Move Finished=0
-													Failed Path=0
-													Target Was Set By Goto AI=0
-													Move Behavior=CEntityBehaviorMoveToPos
+													Item Count=2
+													Action=CAssignTemporaryTaskAction
 													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-														Idle Behavior=CEntityBehaviorIdle
+														Target=Sahar
+														Temporary Task AI=CGoToAI
 														{
-															Num Seconds=1
-															Seconds Have Transitioned=0
-															Override Fidget Options=
-															Current Fidget Data=
-															Time Until Next Fidget=0
-															Fidgeting=0
-														}
-														Play Ratio=1
-														Smooth Turning=0
-														Do Path Finding=1
-														Finished=1
-														Failed Last Path=0
-														Idle Begin Called=0
-														Move To Rate=0
-														CurTargetNormalX=0
-														CurTargetNormalY=0
-														Path Finding Params=CWayPointPath
-														{
-															Start Point=0,0
-															End Point=0,0
-															Length=0
-															Max Dist To Travel=0
-															Num Failed Paths=0
-															Max Failed Paths=0
-															Pos To Move Index=0
-															Dist So Far=0
-															Path=
-														}
-														Pos Moving From=0.000000,0.000000
-														Final Dest=0.000000,0.000000
-														Dest Radius=0
-														Cur Dest Move To=0.000000,0.000000
-														Last Neg Dist=0
-														NumTimesLostGound=0
-														Sequence=Walk
-														Planed Path For=
-													}
-													Done action=CMultipleActionsAction
-													{
-														Action=Array
-														{
-															Item Count=2
-															Action=CSendAIDoneMessage
+															Marked For Deletion=0
+															Publisher=
+															Destination=Fixt sahar meets you SW
+															Offset=0.000000,0.000000
+															Starting Action=
+															Finished=0
+															Move Finished=0
+															Failed Path=0
+															Target Was Set By Goto AI=0
+															Move Behavior=CEntityBehaviorMoveToPos
 															{
-																Target=$Trigger
-															}
-															Action=CIfAction
-															{
-																If=CCheckExistenceAction
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+																Idle Behavior=CEntityBehaviorIdle
 																{
-																	Name To Check For=delivered
+																	Num Seconds=1
+																	Seconds Have Transitioned=0
+																	Override Fidget Options=
+																	Current Fidget Data=
+																	Time Until Next Fidget=0
+																	Fidgeting=0
+																}
+																Play Ratio=1
+																Smooth Turning=0
+																Do Path Finding=1
+																Finished=1
+																Failed Last Path=0
+																Idle Begin Called=0
+																Move To Rate=0
+																CurTargetNormalX=0
+																CurTargetNormalY=0
+																Path Finding Params=CWayPointPath
+																{
+																	Start Point=0,0
+																	End Point=0,0
+																	Length=0
+																	Max Dist To Travel=0
+																	Num Failed Paths=0
+																	Max Failed Paths=0
+																	Pos To Move Index=0
+																	Dist So Far=0
+																	Path=
+																}
+																Pos Moving From=0.000000,0.000000
+																Final Dest=0.000000,0.000000
+																Dest Radius=0
+																Cur Dest Move To=0.000000,0.000000
+																Last Neg Dist=0
+																NumTimesLostGound=0
+																Sequence=Walk
+																Planed Path For=
+															}
+															Done action=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=2
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=$Trigger
+																	}
+																	Action=CIfAction
+																	{
+																		If=CNotAction
+																		{
+																			Action=CCheckExistenceAction
+																			{
+																				Name To Check For=Fixt sahar spoke
+																				Desired Minimum Count=1
+																			}
+																		}
+																		Then=CMultipleActionsAction
+																		{
+																			Action=Array
+																			{
+																				Item Count=2
+																				Action=CActivateAction
+																				{
+																					Target Name=Fixt sahar spoke
+																					Play Activate Sound=0
+																					Delay Between Activations=0
+																					Warp Behavior=
+																				}
+																				Action=CIfAction
+																				{
+																					If=CCheckExistenceAction
+																					{
+																						Name To Check For=delivered
+																						Desired Minimum Count=1
+																					}
+																					Then=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 delivered
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Else=CDisplayDialogTreeAction
+																					{
+																						Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																						Node ID=1 too late met
+																						Speaker=Sahar
+																						Player Being Spoken To=Player1
+																					}
+																					Return failure if the If failes=0
+																				}
+																			}
+																		}
+																		Else=
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Run=0
+															Make New Home=0
+															Play Ratio=0
+															Time To Try To Move=0
+															Set Facing Angle=0
+															Turn Sequence Name=Idle
+															Facing Angle=CEntityBehaviorTurnToAngle
+															{
+																Old Stationary Flag=0
+																Angle To Turn To=0
+																Facing Backwards=0
+															}
+															Need to Call Start=1
+														}
+														Original AI Type=CSkeletonAI
+														Completion Message to wait for=AI Done
+														Suppress can't assign error=1
+													}
+													Action=CDelayAction
+													{
+														Next Action=CIfAction
+														{
+															If=CNotAction
+															{
+																Action=CCheckExistenceAction
+																{
+																	Name To Check For=Fixt sahar spoke
 																	Desired Minimum Count=1
 																}
-																Then=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 delivered
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Else=CDisplayDialogTreeAction
-																{
-																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-																	Node ID=1 too late
-																	Speaker=Sahar
-																	Player Being Spoken To=Player1
-																}
-																Return failure if the If failes=0
 															}
+															Then=CMultipleActionsAction
+															{
+																Action=Array
+																{
+																	Item Count=3
+																	Action=CActivateAction
+																	{
+																		Target Name=Fixt sahar spoke
+																		Play Activate Sound=0
+																		Delay Between Activations=0
+																		Warp Behavior=
+																	}
+																	Action=CSendAIDoneMessage
+																	{
+																		Target=Sahar
+																	}
+																	Action=CIfAction
+																	{
+																		If=CCheckExistenceAction
+																		{
+																			Name To Check For=delivered
+																			Desired Minimum Count=1
+																		}
+																		Then=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 delivered
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Else=CDisplayDialogTreeAction
+																		{
+																			Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																			Node ID=1 too late met
+																			Speaker=Sahar
+																			Player Being Spoken To=Player1
+																		}
+																		Return failure if the If failes=0
+																	}
+																}
+															}
+															Else=
+															Return failure if the If failes=0
 														}
+														Delay=5
+														Plus or Minus=0
+														Forget Trigger=0
 													}
-													Run=0
-													Make New Home=0
-													Play Ratio=0
-													Time To Try To Move=0
-													Set Facing Angle=0
-													Turn Sequence Name=Idle
-													Facing Angle=CEntityBehaviorTurnToAngle
-													{
-														Old Stationary Flag=0
-														Angle To Turn To=0
-														Facing Backwards=0
-													}
-													Need to Call Start=1
 												}
-												Original AI Type=CSkeletonAI
-												Completion Message to wait for=AI Done
-												Suppress can't assign error=1
 											}
 											Delay=0.8
 											Plus or Minus=0
