@@ -6,7 +6,7 @@ Should Have Voiceovers=0
 Default Canceled Node Action=
 ------------------------------------------------------------
 Node ID=1 too late
-Text=<She does not rise from the reliquary's step. Two of the creatures coil at her feet; a third, older, stands behind her with its hands folded.> You are late, Lionheart. The Master has what he came for, and I have what I was left to do. I had wagons for this once, and sisters I could spare. You have spent both on your way in.
+Text=<She comes down off the reliquary's step to meet you. Behind her two of the creatures coil on the stair; a third, older, stands with its hands folded.> You are late, Lionheart. The Master has what he came for, and I have what I was left to do. I had wagons for this once, and sisters I could spare. You have spent both on your way in.
 Should Have Voiceover=0
 
 Requirement=Outwit 7 greater or equal
@@ -240,7 +240,7 @@ Custom Action=CMultipleActionsAction
 {
 Action=Array
 {
-Item Count=10
+Item Count=14
 Action=CTriggerRelayAction
 {
 Relay Name=sahar word given
@@ -321,6 +321,121 @@ Action=COpenDoorAction
 Door Name=Exit Door2
 Delay Between Doors=0
 }
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=3M07PDZC
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=4SD5SKSO
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=J1VVBB3T
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=R8ZD5CU6
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=WB7EAGTQ
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=UODGMVBJ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
 }
 }
 Icon=Quest Icon
@@ -346,6 +461,133 @@ Should Have Voiceover=0
 Node ID=60 the ring is on your hand
 Text=<She does not look up from the reliquary step.> Still here. The ring says what you are and the road says where. I have nothing further to send.
 Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Which road north?
+Go to node ID=61 Fixt the road north
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=3M07PDZC
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+State=4SD5SKSO
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=J1VVBB3T
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+State=R8ZD5CU6
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and protect the Crown of Thorns
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CConditionalAction
+{
+Try Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=WB7EAGTQ
+}
+Succeed Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+State=UODGMVBJ
+}
+Action=CDelayAction
+{
+Next Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/Ensure safety of Monserrat Relics
+}
+Delay=0.1
+Plus or Minus=0
+Forget Trigger=0
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Montserrat XP
+Experience Points To Add=1
+}
+}
+}
+Fail Action=
+Return failure if the TryAction failes=0
+}
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+}
+}
+Icon=Quest Icon
 
 Requirement=!None
 Reply Text=<Draw.>
@@ -529,6 +771,16 @@ Custom Action=CTriggerRelayAction
 {
 Relay Name=sahar fights
 }
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=61 Fixt the road north
+Text=<She points with her chin, not her hand.> Down to the plains, then up through the pass. Montaillou is past it. Walk it. Nothing of ours will stop you.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
 Icon=Exit Icon
 Is Default Reply=1
 }

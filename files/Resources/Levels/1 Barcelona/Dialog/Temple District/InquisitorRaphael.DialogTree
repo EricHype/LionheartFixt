@@ -478,10 +478,21 @@ Constant Value=1
 }
 Reply Text=The Relic was stolen from Monserrat. One of the assassins gave me her word and sent me north to find the relic of a secret Crypt.
 Go to node ID=330 sahar sent you
-Custom Action=CActivateQuestStateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=V8439DKP
+}
+}
 }
 Icon=Quest Icon
 
@@ -572,10 +583,21 @@ Constant Value=1
 }
 Reply Text=The Relic was stolen from Monserrat. One of the assassins gave me her word and sent me north to find the relic of a secret Crypt.
 Go to node ID=330 sahar sent you
-Custom Action=CActivateQuestStateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=V8439DKP
+}
+}
 }
 Icon=Quest Icon
 
@@ -2020,10 +2042,21 @@ Icon=Quest Icon
 Requirement=!None
 Reply Text=Yes, I will go to Montaillou and find Brother Michel.
 Go to node ID=
-Custom Action=CActivateQuestStateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=V8439DKP
+}
+}
 }
 Icon=Quest Icon
 Is Default Reply=1
@@ -3235,10 +3268,21 @@ Icon=Quest Icon
 Requirement=!None
 Reply Text=Yes, I will go to Montaillou and find Brother Michel.
 Go to node ID=
-Custom Action=CActivateQuestStateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=V8439DKP
+}
+}
 }
 Icon=Quest Icon
 Is Default Reply=1

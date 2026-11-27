@@ -323,6 +323,122 @@ Experience Points To Add=1
 Icon=Quest Icon
 
 Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Montserrat Peaceful
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=1
+}
+}
+Operator=
+Operand2=CIsEqualTo
+{
+Operand1=CVariableDerivedCharacterAttribute
+{
+Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Relican Heard Montserrat
+}
+Operator=
+Operand2=CConstant
+{
+Constant Value=0
+}
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CWasQuestEverActivatedAction
+{
+Quest=Levels/1 Barcelona/Quests/Calle Perdida/Go to Montserrat and seek out the Crown of Thorns
+}
+}
+}
+Reply Text=Montserrat is lost. Sahar's people took the Crown north over the mountains, and she let me walk out wearing her ring.
+Go to node ID=95 Fixt Relican hears of Montserrat
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Fixt Relican Heard Montserrat
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=1
+}
+Modification amount is a percent=0
+Allow Accumulation=0
+Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Relican Heard Montserrat
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CActionCheckForInventoryItem
+{
+Who to give check=$instigator
+Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+}
+Reply Text=I took Sir Tomas de Vilanova's journal from his body. His last words were for Javier.
+Go to node ID=96 Fixt Relican reads Sir Tomas
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=4
+Action=CActivateQuestStateAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+State=TJ2DN8SX
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/2 Montserrat/Quests/Sir Tomas's Journal
+}
+Action=CActionRemoveInventoryItem
+{
+Who to remove from=$instigator
+Inventory Item To remove=Inventory/Specific Item Cans/Quest Items/Books/Sir Tomas Journal
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Sir Tomas journal XP
+Experience Points To Add=1
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
 Reply Text=Tell me more about the tasks.
 Go to node ID=40 tasks
 Custom Action=COtherMapAction
@@ -1457,4 +1573,20 @@ Return failure if the TryAction failes=0
 }
 Icon=Quest Icon
 Is Default Reply=1
+------------------------------------------------------------
+Node ID=95 Fixt Relican hears of Montserrat
+Text=Let you walk out. <He studies the ring without touching it.> Then she thinks you belong to her master, and you will let her go on thinking it. A thief who carries a relic north is only a porter, brother. What matters is the hand at the end of the road. That road runs over the plains and through the mountains. I have marked it on your map.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=5 Return Dialogue
+------------------------------------------------------------
+Node ID=96 Fixt Relican reads Sir Tomas
+Text=<He opens it, as none of the others would.> A dead knight writing to a living one. Javier will never read it. I would rather he wondered. <He stops at a page near the end, and smiles.> He names the order's brothers in the north, and where they keep what they keep. The Templars bury their secrets with their dead, brother, and forget that some of us dig. Leave it with me.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=5 Return Dialogue
 }

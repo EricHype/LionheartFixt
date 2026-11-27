@@ -87,6 +87,1028 @@ CLayerSaveData
 	{
 		Level Part=CEntityBase
 		{
+			Name=Fixt sahar met
+			Child List=
+			Visible=1
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=0
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Checker
+			Position X=3760
+			Position Y=2340
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt sahar meets you NW
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=3645
+			Position Y=2290
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=sahar approach poly
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CCheckExistenceAction
+							{
+								Name To Check For=Fixt sahar met
+								Desired Minimum Count=1
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CActivateAction
+								{
+									Target Name=Fixt sahar met
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CDeactivateAction
+										{
+											Target Name=Snakebreed Generator
+										}
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CActivateAction
+										{
+											Target Name=Sahar Generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CForceGenerateAction
+										{
+											Generator Name=Sahar Generator
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAssignTemporaryTaskAction
+											{
+												Target=Sahar
+												Temporary Task AI=CGoToAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													Destination=Fixt sahar meets you NW
+													Offset=0.000000,0.000000
+													Starting Action=
+													Finished=0
+													Move Finished=0
+													Failed Path=0
+													Target Was Set By Goto AI=0
+													Move Behavior=CEntityBehaviorMoveToPos
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+														Idle Behavior=CEntityBehaviorIdle
+														{
+															Num Seconds=1
+															Seconds Have Transitioned=0
+															Override Fidget Options=
+															Current Fidget Data=
+															Time Until Next Fidget=0
+															Fidgeting=0
+														}
+														Play Ratio=1
+														Smooth Turning=0
+														Do Path Finding=1
+														Finished=1
+														Failed Last Path=0
+														Idle Begin Called=0
+														Move To Rate=0
+														CurTargetNormalX=0
+														CurTargetNormalY=0
+														Path Finding Params=CWayPointPath
+														{
+															Start Point=0,0
+															End Point=0,0
+															Length=0
+															Max Dist To Travel=0
+															Num Failed Paths=0
+															Max Failed Paths=0
+															Pos To Move Index=0
+															Dist So Far=0
+															Path=
+														}
+														Pos Moving From=0.000000,0.000000
+														Final Dest=0.000000,0.000000
+														Dest Radius=0
+														Cur Dest Move To=0.000000,0.000000
+														Last Neg Dist=0
+														NumTimesLostGound=0
+														Sequence=Walk
+														Planed Path For=
+													}
+													Done action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CSendAIDoneMessage
+															{
+																Target=$Trigger
+															}
+															Action=CIfAction
+															{
+																If=CCheckExistenceAction
+																{
+																	Name To Check For=delivered
+																	Desired Minimum Count=1
+																}
+																Then=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 delivered
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Else=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 too late
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Return failure if the If failes=0
+															}
+														}
+													}
+													Run=0
+													Make New Home=0
+													Play Ratio=0
+													Time To Try To Move=0
+													Set Facing Angle=0
+													Turn Sequence Name=Idle
+													Facing Angle=CEntityBehaviorTurnToAngle
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+													}
+													Need to Call Start=1
+												}
+												Original AI Type=CSkeletonAI
+												Completion Message to wait for=AI Done
+												Suppress can't assign error=1
+											}
+											Delay=0.8
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=3530, 2180, 3760, 2180, 3760, 2400, 3530, 2400, 3530, 2180
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt sahar meets you NE
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=3875
+			Position Y=2290
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=sahar approach poly
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CCheckExistenceAction
+							{
+								Name To Check For=Fixt sahar met
+								Desired Minimum Count=1
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CActivateAction
+								{
+									Target Name=Fixt sahar met
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CDeactivateAction
+										{
+											Target Name=Snakebreed Generator
+										}
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CActivateAction
+										{
+											Target Name=Sahar Generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CForceGenerateAction
+										{
+											Generator Name=Sahar Generator
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAssignTemporaryTaskAction
+											{
+												Target=Sahar
+												Temporary Task AI=CGoToAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													Destination=Fixt sahar meets you NE
+													Offset=0.000000,0.000000
+													Starting Action=
+													Finished=0
+													Move Finished=0
+													Failed Path=0
+													Target Was Set By Goto AI=0
+													Move Behavior=CEntityBehaviorMoveToPos
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+														Idle Behavior=CEntityBehaviorIdle
+														{
+															Num Seconds=1
+															Seconds Have Transitioned=0
+															Override Fidget Options=
+															Current Fidget Data=
+															Time Until Next Fidget=0
+															Fidgeting=0
+														}
+														Play Ratio=1
+														Smooth Turning=0
+														Do Path Finding=1
+														Finished=1
+														Failed Last Path=0
+														Idle Begin Called=0
+														Move To Rate=0
+														CurTargetNormalX=0
+														CurTargetNormalY=0
+														Path Finding Params=CWayPointPath
+														{
+															Start Point=0,0
+															End Point=0,0
+															Length=0
+															Max Dist To Travel=0
+															Num Failed Paths=0
+															Max Failed Paths=0
+															Pos To Move Index=0
+															Dist So Far=0
+															Path=
+														}
+														Pos Moving From=0.000000,0.000000
+														Final Dest=0.000000,0.000000
+														Dest Radius=0
+														Cur Dest Move To=0.000000,0.000000
+														Last Neg Dist=0
+														NumTimesLostGound=0
+														Sequence=Walk
+														Planed Path For=
+													}
+													Done action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CSendAIDoneMessage
+															{
+																Target=$Trigger
+															}
+															Action=CIfAction
+															{
+																If=CCheckExistenceAction
+																{
+																	Name To Check For=delivered
+																	Desired Minimum Count=1
+																}
+																Then=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 delivered
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Else=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 too late
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Return failure if the If failes=0
+															}
+														}
+													}
+													Run=0
+													Make New Home=0
+													Play Ratio=0
+													Time To Try To Move=0
+													Set Facing Angle=0
+													Turn Sequence Name=Idle
+													Facing Angle=CEntityBehaviorTurnToAngle
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+													}
+													Need to Call Start=1
+												}
+												Original AI Type=CSkeletonAI
+												Completion Message to wait for=AI Done
+												Suppress can't assign error=1
+											}
+											Delay=0.8
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=3760, 2180, 3990, 2180, 3990, 2400, 3760, 2400, 3760, 2180
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt sahar meets you SE
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=3875
+			Position Y=2510
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=sahar approach poly
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CCheckExistenceAction
+							{
+								Name To Check For=Fixt sahar met
+								Desired Minimum Count=1
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CActivateAction
+								{
+									Target Name=Fixt sahar met
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CDeactivateAction
+										{
+											Target Name=Snakebreed Generator
+										}
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CActivateAction
+										{
+											Target Name=Sahar Generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CForceGenerateAction
+										{
+											Generator Name=Sahar Generator
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAssignTemporaryTaskAction
+											{
+												Target=Sahar
+												Temporary Task AI=CGoToAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													Destination=Fixt sahar meets you SE
+													Offset=0.000000,0.000000
+													Starting Action=
+													Finished=0
+													Move Finished=0
+													Failed Path=0
+													Target Was Set By Goto AI=0
+													Move Behavior=CEntityBehaviorMoveToPos
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+														Idle Behavior=CEntityBehaviorIdle
+														{
+															Num Seconds=1
+															Seconds Have Transitioned=0
+															Override Fidget Options=
+															Current Fidget Data=
+															Time Until Next Fidget=0
+															Fidgeting=0
+														}
+														Play Ratio=1
+														Smooth Turning=0
+														Do Path Finding=1
+														Finished=1
+														Failed Last Path=0
+														Idle Begin Called=0
+														Move To Rate=0
+														CurTargetNormalX=0
+														CurTargetNormalY=0
+														Path Finding Params=CWayPointPath
+														{
+															Start Point=0,0
+															End Point=0,0
+															Length=0
+															Max Dist To Travel=0
+															Num Failed Paths=0
+															Max Failed Paths=0
+															Pos To Move Index=0
+															Dist So Far=0
+															Path=
+														}
+														Pos Moving From=0.000000,0.000000
+														Final Dest=0.000000,0.000000
+														Dest Radius=0
+														Cur Dest Move To=0.000000,0.000000
+														Last Neg Dist=0
+														NumTimesLostGound=0
+														Sequence=Walk
+														Planed Path For=
+													}
+													Done action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CSendAIDoneMessage
+															{
+																Target=$Trigger
+															}
+															Action=CIfAction
+															{
+																If=CCheckExistenceAction
+																{
+																	Name To Check For=delivered
+																	Desired Minimum Count=1
+																}
+																Then=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 delivered
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Else=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 too late
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Return failure if the If failes=0
+															}
+														}
+													}
+													Run=0
+													Make New Home=0
+													Play Ratio=0
+													Time To Try To Move=0
+													Set Facing Angle=0
+													Turn Sequence Name=Idle
+													Facing Angle=CEntityBehaviorTurnToAngle
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+													}
+													Need to Call Start=1
+												}
+												Original AI Type=CSkeletonAI
+												Completion Message to wait for=AI Done
+												Suppress can't assign error=1
+											}
+											Delay=0.8
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=3760, 2400, 3990, 2400, 3990, 2620, 3760, 2620, 3760, 2400
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
+			Name=Fixt sahar meets you SW
+			Child List=
+			Visible=0
+			Collideable=1
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=0
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Model=Editor/Position Marker
+			Position X=3645
+			Position Y=2510
+			Rendering Height=0
+			Rendering Height Float=0
+			Cur Sequence=Idle
+		}
+		Level Part=CFreeRangePoly
+		{
+			Name=sahar approach poly
+			Child List=
+			Visible=1
+			Collideable=0
+			Half Height=0
+			Full Height=1
+			Tries To Collide=0
+			Has Hit Points=0
+			Stationary=1
+			Active=1
+			Is Temporarily Excluded=0
+			Is Marked For Deletion=0
+			Activity=Array
+			{
+				Item Count=1
+				Activity=CTouchingPolygonTriggerAI
+				{
+					Marked For Deletion=0
+					Publisher=
+					Trigger Only Once=1
+					Was Triggered=0
+					Auto-Flip Switch=1
+					Trigge Must Have HP=0
+					Triggered By Anything=0
+					Triggered By Players=1
+					Triggered By Player Friends=0
+					Triggered By Enemies=0
+					Triggered By Projectiles=0
+					Triggered By Companions=0
+					Triggered By Name=
+					Enter Action=CIfAction
+					{
+						If=CNotAction
+						{
+							Action=CCheckExistenceAction
+							{
+								Name To Check For=Fixt sahar met
+								Desired Minimum Count=1
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CActivateAction
+								{
+									Target Name=Fixt sahar met
+									Play Activate Sound=0
+									Delay Between Activations=0
+									Warp Behavior=
+								}
+								Action=CMultipleActionsAction
+								{
+									Action=Array
+									{
+										Item Count=5
+										Action=CDeactivateAction
+										{
+											Target Name=Snakebreed Generator
+										}
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CActivateAction
+										{
+											Target Name=Sahar Generator
+											Play Activate Sound=0
+											Delay Between Activations=0
+											Warp Behavior=
+										}
+										Action=CForceGenerateAction
+										{
+											Generator Name=Sahar Generator
+										}
+										Action=CDelayAction
+										{
+											Next Action=CAssignTemporaryTaskAction
+											{
+												Target=Sahar
+												Temporary Task AI=CGoToAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													Destination=Fixt sahar meets you SW
+													Offset=0.000000,0.000000
+													Starting Action=
+													Finished=0
+													Move Finished=0
+													Failed Path=0
+													Target Was Set By Goto AI=0
+													Move Behavior=CEntityBehaviorMoveToPos
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+														Idle Behavior=CEntityBehaviorIdle
+														{
+															Num Seconds=1
+															Seconds Have Transitioned=0
+															Override Fidget Options=
+															Current Fidget Data=
+															Time Until Next Fidget=0
+															Fidgeting=0
+														}
+														Play Ratio=1
+														Smooth Turning=0
+														Do Path Finding=1
+														Finished=1
+														Failed Last Path=0
+														Idle Begin Called=0
+														Move To Rate=0
+														CurTargetNormalX=0
+														CurTargetNormalY=0
+														Path Finding Params=CWayPointPath
+														{
+															Start Point=0,0
+															End Point=0,0
+															Length=0
+															Max Dist To Travel=0
+															Num Failed Paths=0
+															Max Failed Paths=0
+															Pos To Move Index=0
+															Dist So Far=0
+															Path=
+														}
+														Pos Moving From=0.000000,0.000000
+														Final Dest=0.000000,0.000000
+														Dest Radius=0
+														Cur Dest Move To=0.000000,0.000000
+														Last Neg Dist=0
+														NumTimesLostGound=0
+														Sequence=Walk
+														Planed Path For=
+													}
+													Done action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=2
+															Action=CSendAIDoneMessage
+															{
+																Target=$Trigger
+															}
+															Action=CIfAction
+															{
+																If=CCheckExistenceAction
+																{
+																	Name To Check For=delivered
+																	Desired Minimum Count=1
+																}
+																Then=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 delivered
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Else=CDisplayDialogTreeAction
+																{
+																	Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
+																	Node ID=1 too late
+																	Speaker=Sahar
+																	Player Being Spoken To=Player1
+																}
+																Return failure if the If failes=0
+															}
+														}
+													}
+													Run=0
+													Make New Home=0
+													Play Ratio=0
+													Time To Try To Move=0
+													Set Facing Angle=0
+													Turn Sequence Name=Idle
+													Facing Angle=CEntityBehaviorTurnToAngle
+													{
+														Old Stationary Flag=0
+														Angle To Turn To=0
+														Facing Backwards=0
+													}
+													Need to Call Start=1
+												}
+												Original AI Type=CSkeletonAI
+												Completion Message to wait for=AI Done
+												Suppress can't assign error=1
+											}
+											Delay=0.8
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+									}
+								}
+							}
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Exit Action=
+					Repeat Action=
+					Repeat Every=0
+					Touching LayerPart=
+					Next Repeat Time=0
+				}
+			}
+			Category=
+			Team Number=Nutral
+			Used In=QuestMode
+			Current Target=
+			Publisher=
+			Polygon=3530, 2400, 3760, 2400, 3760, 2620, 3530, 2620, 3530, 2400
+			Center Position Offset=0.000000,0.000000
+		}
+		Level Part=CEntityBase
+		{
 			Name=Fixt calmed snakebreed turn
 			Child List=
 			Visible=0
@@ -3190,110 +4212,6 @@ CLayerSaveData
 			Rendering Height=0
 			Rendering Height Float=0
 			Cur Sequence=Idle
-		}
-		Level Part=CFreeRangePoly
-		{
-			Name=sahar approach poly
-			Child List=
-			Visible=0
-			Collideable=0
-			Half Height=0
-			Full Height=1
-			Tries To Collide=0
-			Has Hit Points=0
-			Stationary=1
-			Active=1
-			Is Temporarily Excluded=0
-			Is Marked For Deletion=0
-			Activity=Array
-			{
-				Item Count=1
-				Activity=CTouchingPolygonTriggerAI
-				{
-					Marked For Deletion=0
-					Publisher=
-					Trigger Only Once=1
-					Was Triggered=0
-					Auto-Flip Switch=1
-					Trigge Must Have HP=0
-					Triggered By Anything=0
-					Triggered By Players=1
-					Triggered By Player Friends=0
-					Triggered By Enemies=0
-					Triggered By Projectiles=0
-					Triggered By Companions=0
-					Triggered By Name=
-					Enter Action=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=5
-							Action=CDeactivateAction
-							{
-								Target Name=Snakebreed Generator
-							}
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=Snakebreed, Snakebreed Viper, Snakebreed Crusher, Snakebreed Summoner
-								Name To Target=
-								Valid Targets=
-							}
-							Action=CActivateAction
-							{
-								Target Name=Sahar Generator
-								Play Activate Sound=0
-								Delay Between Activations=0
-								Warp Behavior=
-							}
-							Action=CForceGenerateAction
-							{
-								Generator Name=Sahar Generator
-							}
-							Action=CDelayAction
-							{
-								Next Action=CIfAction
-								{
-									If=CCheckExistenceAction
-									{
-										Name To Check For=delivered
-										Desired Minimum Count=1
-									}
-									Then=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-										Node ID=1 delivered
-										Speaker=Sahar
-										Player Being Spoken To=$Instigator
-									}
-									Else=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/2 Montserrat/Dialog/Sahar
-										Node ID=1 too late
-										Speaker=Sahar
-										Player Being Spoken To=$Instigator
-									}
-									Return failure if the If failes=0
-								}
-								Delay=0.8
-								Plus or Minus=0
-								Forget Trigger=0
-							}
-						}
-					}
-					Exit Action=
-					Repeat Action=
-					Repeat Every=0
-					Touching LayerPart=
-					Next Repeat Time=0
-				}
-			}
-			Category=
-			Team Number=Nutral
-			Used In=QuestMode
-			Current Target=
-			Publisher=
-			Polygon=3530, 2180, 3990, 2180, 3990, 2620, 3530, 2620, 3530, 2180
-			Center Position Offset=0.000000,0.000000
 		}
 		Level Part=CFreeRangePoly
 		{

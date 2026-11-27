@@ -6183,6 +6183,30 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | MT6 | Same, after MT5 | Hit any mine goblin | The whole mine turns |
 | MT7 | Any save, Nurg's challenge | *"Then your people can decide."* | The fight reply now fires the shared turn before its combat orders |
 
+`tools/build_sahar_road_north.py`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| NW1 | Montserrat Level 2, Sahar's offer, any patron | *"<Take the ring.>"* | The world map shows the **Plains**; the patron's Montserrat quest completes and 2,500 XP is paid once |
+| NW2 | A save past the ring (`buggednomontaillou`), back at Sahar with the ring | *"Which road north?"* | *"<She points with her chin...>"*; Plains enabled; the open Montserrat quest (here *seek out the Crown of Thorns*) completes with 2,500 XP. Ask again: no second payment |
+| NW3 | After NW1 or NW2 | Travel to the Plains, walk through the Mountain Pass | Montaillou appears on the world map |
+| NW4 | `buggednomontaillou`, Relican in Calle Perdida | *"Montserrat is lost..."* | His reply, then back to his greeting; the Plains is enabled. The reply does not show again |
+| NW5 | Same, the journal carried | *"I took Sir Tomas de Vilanova's journal..."* | *"<He opens it...>"*; *Sir Tomas's Journal* completes, the book is gone, 500 XP |
+| NW6 | Kill route, a Dark Wielder | Relican's greeting | No Montserrat report (Montgomerie gave it); the journal reply still shows while it is carried |
+| NW7 | Peaceful route, Cedric, Raphael, Amir or Javier | Take the Montaillou reply | The Plains is enabled if it was not already |
+
+`tools/build_montserrat_speakers_approach.py`. MW1-MW5: a Grove Exterior or Level 2 not yet entered. MW6: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| MW1 | Montserrat Grove, up the road to the abbey gate | Walk into the gate area | The sentry appears and **walks** toward you; *"Far enough..."* opens when he stops, with him on screen and near |
+| MW2 | Same, a fresh visit | Come at the gate from the other side (the abbey door) | He walks toward that side instead |
+| MW3 | Montserrat Level 2, the sanctum, from Level 1 | Walk in | Sahar spawns, walks toward you, and *"1 too late"* opens when she stops |
+| MW4 | Same, a fresh visit | Come in from the Grove's back door (east) | She walks toward the east side |
+| MW5 | Either scene | Walk along the line between two quarters | The scene runs once, not twice; if the speaker never arrives, clicking them still talks |
+| MW6 | Any save, Sahar's first words | Read the opening | *"<She comes down off the reliquary's step to meet you...>"* |
+| MW7 | Delivered as a prisoner (the escort route) | Arrive at Sahar | The escort's own arrival plays; the quarters stay off and nothing fires a second time |
+
 ## 0.99.40 - whose cave it is
 
 `tools/build_butu_heir_talks.py`. BH1-BH2: a `Ravine Cave East` not yet entered after Montserrat (the playtester's Autosave). BH3: every save.

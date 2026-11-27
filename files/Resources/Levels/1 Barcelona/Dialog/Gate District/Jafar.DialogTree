@@ -2325,7 +2325,16 @@ Icon=Quest Icon
 Requirement=!None
 Reply Text=I will go to Montaillou now.
 Go to node ID=238 Leave for Montserrat
-Custom Action=CConditionalAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CConditionalAction
 {
 Try Action=CExpressionAction
 {
@@ -2350,6 +2359,8 @@ Character To assign=Player#1-9#
 }
 Fail Action=
 Return failure if the TryAction failes=0
+}
+}
 }
 
 Requirement=!None

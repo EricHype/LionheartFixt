@@ -1171,10 +1171,21 @@ Requirement=!None
 Reply Text=Very well, I will go to Montaillou and find Brother Michel.
 Go to node ID=
 Action work in progress=(montserrat quest given)
-Custom Action=CActivateQuestStateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=XQX0TUT7
+}
+}
 }
 Icon=Quest Icon
 Is Default Reply=1
@@ -1200,10 +1211,21 @@ Requirement=!None
 Reply Text=Very well, I will go to Montaillou and find Brother Michel.
 Go to node ID=
 Action work in progress=(montserrat quest given)
-Custom Action=CActivateQuestStateAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CEnablePointOfInterestOnWorldMapAction
+{
+Point Of Interest to Enable=Interface/World Map/Plains
+}
+Action=CActivateQuestStateAction
 {
 Quest=Levels/2 Montserrat/Quests/Travel to Montaillou and find Brother Michel
 State=XQX0TUT7
+}
+}
 }
 Icon=Quest Icon
 Is Default Reply=1
