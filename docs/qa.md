@@ -6169,7 +6169,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
-## unreleased
+## 0.99.43 - a dead man's ledger
 
 `tools/build_shylocke_dead_debt.py`. SK1-SK2: every save. SK3-SK6: Shylocke killed after this, in a shop not yet entered.
 
