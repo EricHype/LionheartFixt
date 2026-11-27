@@ -1,6 +1,8 @@
 # Lionheart Fixt — design notes
 
-Status: **planning**. Nothing below is built yet.
+Status: **built through 0.99.44**. This was written as a plan before 0.1.0. The plan below is
+kept as written, with each phase's outcome recorded beside it, so the reasoning and what became
+of it can be read together.
 
 A large restoration-and-repair mod for Lionheart. Three goals, in priority order:
 
@@ -9,8 +11,45 @@ A large restoration-and-repair mod for Lionheart. Three goals, in priority order
 3. Address the game's central design failure — the collapse of RPG content after Barcelona
    — including by writing new content.
 
-This document records the diagnosis, which is measured rather than asserted, and the phase
-plan. The work itself is broken down section by section and map by map in
+Goal 3 changed shape in practice. The plan was more conversations plus fewer enemies. What was
+built is more conversations plus **fights and choices that differ from each other**: forks that
+change who is hostile, enemy roles, choices that carry into later acts. Thinning was dropped
+(see Phase 3).
+
+## Where it stands, measured at 0.99.44
+
+Measured the same way as the diagnosis below: `survey_maps.py` run against the vanilla archive
+and against vanilla with this repo's `files/` laid over it.
+
+| Goal | State | Evidence |
+|---|---|---|
+| 1. Fix what is broken | **Done for dead links; built, unplayed** | Of vanilla's 84 dead replies, every one a player can choose now goes somewhere; the 23 left are unreachable and the gate allows only those. See [`link-rot.md`](link-rot.md) |
+| 2. Restore cut content | **Done** | Every item Phase 2 names has shipped or been adjudicated; see Phase 2 |
+| 3. The back half | **Partly done** | Dialogue in acts 4-8 roughly doubled but is well short of Montaillou; gating has reached Barcelona's rate in three of five acts; the last route score was 2, 3, 2, 2, 2 of 5 at 0.99.9 |
+
+| Act | Reachable nodes/map | Gated replies | Quest states | Spawns/map |
+|---|---|---|---|---|
+| 1 Barcelona (reference) | 125 -> 127 | 33% -> 35% | 197 -> 214 | 21 -> 21 |
+| 3 Montaillou (the bar) | 148 -> 158 | 29% -> 30% | 46 -> 46 | 39 -> 40 |
+| 2 Montserrat | 34 -> 71 | 3 of 8 -> 27% | 4 -> 6 | 139 -> 121 |
+| 4 Crypt | 34 -> 59 | 27% -> 31% | 0 -> 3 | 296 -> 286 |
+| 5 Nostrodomus | 36 -> 60 | 10% -> 26% | 2 -> 2 | 135 -> 205 |
+| 6 Barcelona Attack | 27 -> 59 | 25% -> 36% | 1 -> 3 | 137 -> 137 |
+| 7 English Shrine | 7.6 -> 22.5 | 23% -> 36% | 1 -> 2 | 85 -> 92 |
+| 8 Alamut | 64 -> 98 | 15% -> 12% | 1 -> 1 | 118 -> 111 |
+
+Gated replies are counted once per reply, behind either `Requirement=` or `Custom
+Requirement=`. The diagnosis's "38%" for Barcelona counted the two fields separately, so a
+reply carrying both counted twice; per reply it is 33%. Spawns are declared maxima, which
+overcount: only one mojo group fires, and allied armies count as enemies. Nostrodomus's rise is
+mostly the Hujark war.
+
+What the numbers say: the English Shrine is still the emptiest act by every measure, and
+Alamut is the one act where gating fell. No act from 4 to 8 has been re-scored by route since
+0.99.9.
+
+The rest of this document records the diagnosis, which is measured rather than asserted, and
+the phase plan. The work itself is broken down section by section and map by map in
 [`plan.md`](plan.md). What actually gets packaged, under what
 version, in what order, is in [`releases.md`](releases.md).
 Content inventory lives in [`cut-content.md`](https://github.com/EricHype/LionheartModTools/blob/main/docs/cut-content.md); modding technique lives in
@@ -78,6 +117,15 @@ reworked system. Speech, Barter, faction and gender gates already work everywher
 
 ## Phase 1 — Repair the link rot
 
+> **Outcome: finished after 0.99.44, not yet played.** 13 of the 84 had gone with other work by
+> 0.99.44; the phase itself was never run, because `lhcheck` forgives vanilla's own dead links.
+> `tools/build_link_rot.py` repairs the other 48 a player can choose (13 retargeted, 35 ended),
+> and leaves 23 that nobody can reach. The `link-rot` check in `validate.py` now allows exactly
+> those 23. The table below was too optimistic: read against the trees, the single-candidate
+> rows were often wrong (a goodbye sent to a fight balloon, a friend's farewell sent to *"You
+> won't be leaving here alive!"*), so nothing here was automatic. Row by row:
+> [`link-rot.md`](link-rot.md).
+
 **84 replies point at node IDs that do not exist.** Choosing one advances to nothing: the
 conversation silently stops responding, with no error. This is link rot — nodes renamed or
 deleted late in development, links not updated.
@@ -101,6 +149,14 @@ plainly does the same. `dialogtree_format.goto` now trims, which moves those twe
 **Ships as:** `lionheart-fixt-dialogue-repair`, useful standalone.
 
 ## Phase 2 — Restore cut content
+
+> **Outcome: done.** The Goblin Girl is placed and her quest finishes (0.99.32). Guard Pablo
+> shipped in 0.5.0. The Titan quest was read and **left dead on purpose**: it is a superseded
+> draft of `Recover Lucius' Mneme`, which does the same job better. The English and Sewer
+> Thief tiers were fielded from 0.17.0, though six of the fourteen English units were still
+> placed nowhere when that was last checked. The wider survey of cut content went far past
+> this list and lives in [`unused-content.md`](unused-content.md) and
+> [`unused-content-resolved.md`](unused-content-resolved.md).
 
 Everything here already exists in the shipped archive. See [`cut-content.md`](https://github.com/EricHype/LionheartModTools/blob/main/docs/cut-content.md)
 for the full inventory and how it was established.
@@ -133,6 +189,16 @@ content.
 
 ## Phase 3 — Thin the grind
 
+> **Outcome: replaced, deliberately.** The targets below were never pursued. In the Crypt
+> (0.16.0) and again in act 5 (0.17.0) the choice was to make fights more interesting rather
+> than fewer: the shipped game is thin, not crowded, and cutting encounters makes it thinner.
+> Where an act needs a safety valve, the valve is something the player earns through an
+> earlier choice, like Sahar's ring silencing the serpents. The campaign now declares 15,124
+> spawns against vanilla's 13,945. What replaced this phase is the forks, enemy roles and
+> carryovers in the changelog from 0.97 on, and it is judged by route score (which creatures
+> stop being hostile on the path, and how many distinct kinds of fight there are) rather than by
+> spawn counts.
+
 Enemies are placed through `CGeneratorAIGroup`, of which the game has 7675, holding 15240
 `CSpawnableCannedEntity` entries. Each group carries `Quantity to generate min` / `max`, a
 weighted list of what to spawn, and `Max Party Mojo` — which appears to gate on party
@@ -156,6 +222,14 @@ This is the most subjective phase and the easiest to get wrong. It should land a
 phases 1 and 2 so that the acts already have more to do before they have less to fight.
 
 ## Phase 4 — New writing
+
+> **Outcome so far: about a third of the way.** Acts 4-8 gained about 380 nodes filed under
+> their own folders, against the roughly 2,500 estimated at the end of this section. Reachable
+> dialogue per map roughly doubled in every act except Alamut. Gating, which the plan called
+> free, mostly arrived: the Crypt, the siege and the Shrine are at or above Barcelona's rate.
+> The Crypt went from 0 quest states to 3. Ambient companion banter, the cheapest of the four
+> vehicles, does not appear in the changelog under that name; companion work went into growth
+> lines, status reports and end slides instead.
 
 The largest phase, and the only one that addresses the central complaint. The problem is
 structural: acts 4–8 are dungeons, and dungeons have no townsfolk to talk to. Four
@@ -305,7 +379,8 @@ The editors cover placement, entity scripts and dialogue *editing*, but not auth
    byte-identically already, so this is UI over a solved format.
 4. **Bulk generator editing.** Phase 3 means touching thousands of `CGeneratorAIGroup`
    nodes; that wants a headless script with a report, not hand-editing.
-5. **A cross-file reference checker.** Every `Race=`, `Dialog Tree File=`, `Node ID`,
+5. ~~**A cross-file reference checker.**~~ **Done**, as `lhcheck` in the tools repo, which
+   `tools/validate.py` runs on every release. Every `Race=`, `Dialog Tree File=`, `Node ID`,
    `Quest` and `Model` path resolved against what exists. Dangling references are the
    failure mode that has cost this project the most time, and a mod this size will
    generate them faster than anything so far.
@@ -318,9 +393,10 @@ races already preset, whether the Old Man of the Mountain gets a fight at all, a
 creature should be given skills it was never authored with.
 
 
-1. **What is `Max Party Mojo`?** It gates generator groups and looks like party-strength
-   scaling. Phase 3 cannot be done responsibly without knowing.
-2. **Andre or Marcus?** The cut Titan quest disagrees with itself.
+1. ~~**What is `Max Party Mojo`?**~~ **Answered:** a threshold per generator group. The
+   engine fires the group the party's mojo falls *under*, so tiers make strong groups less
+   common rather than gating them behind strength (see the correction to 0.30.0 in `releases.md`).
+2. ~~**Andre or Marcus?**~~ **Moot:** the quest is a superseded draft and stays dead (Phase 2).
 3. ~~**Where was the goblin village meant to be?**~~ **Answered, as well as it can be.**
    The Wilderness does have maps of its own — 43 of them — and `Goblin Warrens` is already
    a working village: 15 conversations, 9 quests, 304 reachable nodes, with nine

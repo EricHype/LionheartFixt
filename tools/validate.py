@@ -8,6 +8,7 @@ exactly what it always has.
 Fixt's own:
 
   probes            a `PROBE ` display name marks a deploy-only experiment (check_no_probes, below)
+  link-rot          no dead reply outside the 23 nobody can choose (check_link_rot, below)
   series-flow       the dead-step rule covers relays whose names start with "Fixt"
   nameless-spawns   leaves alone the maps tools/build_spawn_names.py deliberately skips, and does
                     not excuse a vanilla-inherited miss, because build_spawn_names repairs those
@@ -79,11 +80,40 @@ def check_title_version(ctx):
     return [f + " -- rerun tools/build_title_version.py" for f in build_title_version.stamped()]
 
 
+def check_link_rot(ctx):
+    """No shipped tree carries a dead reply except the 23 nobody can choose (docs/link-rot.md).
+
+    lhcheck forgives vanilla's own dead targets, which is right for a mod that copies a tree to change
+    one line, and is how 71 of vanilla's 84 outlived Phase 1 for 99 releases. Fixt repaired every one
+    a player can reach, so here the forgiveness is an explicit list: a builder that rebuilds a tree
+    from vanilla's copy, or a release that makes one of the 23 reachable, fails until it is dealt with."""
+    import dialogtree_format as dt
+    from build_link_rot import INERT
+    fails = []
+    for f in ctx.files:
+        if f.suffix.lower() != ".dialogtree":
+            continue
+        tree = dt.parse(f.read_bytes().decode("latin-1"))
+        ids = {dt.normalise_id(n.node_id) for n in tree.nodes}
+        seen = {}
+        for n in tree.nodes:
+            for r in n.replies:
+                g = dt.normalise_id(r.goto)
+                if g and g not in ids:
+                    seen[g] = seen.get(g, 0) + 1
+        for g, count in seen.items():
+            if count > INERT.get((f.stem.lower(), g), 0):
+                fails.append("%s: %d repl%s go to %r, which is no node in the tree -- see docs/link-rot.md"
+                             % (f.name, count, "y" if count == 1 else "ies", g))
+    return fails
+
+
 ctx = lhcheck.Context(F, args.vanilla, config=_modtools.fixt_config())
 try:
     findings, stats = lhcheck.run(ctx, only=lhcheck.split_ids(args.only), skip=lhcheck.split_ids(args.skip),
                                   extra=[("probes", check_no_probes, "self-reference"),
-                                         ("title-version", check_title_version, "probes")])
+                                         ("title-version", check_title_version, "probes"),
+                                         ("link-rot", check_link_rot, "title-version")])
 except ValueError as e:
     sys.exit(str(e))
 sys.exit(lhcheck.report(findings, stats, ctx.notes))

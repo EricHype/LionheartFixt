@@ -1,0 +1,620 @@
+CDialogTree
+{
+Name=Inquisitor Ramon de Alvarez
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start Human
+Text=Do you come with faith in your heart? Do you seek the path of the pious?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 who
+
+Requirement=!None
+Reply Text=Yes, I seek the path of the pious.
+Go to node ID=100 raphael
+
+Requirement=!None
+Reply Text=What is the path of the pious?
+Go to node ID=100 path
+
+Requirement=!None
+Reply Text=I seek nothing from the Inquisition, but to avoid its hypocrisy.
+Go to node ID=50 bad remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1 Conversation Start Tainted
+Text=Do you come seeking salvation, tainted one? The path of the pious?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is the path of the pious?
+Go to node ID=100 path
+
+Requirement=!None
+Reply Text=Yes, I seek the path of the pious.
+Go to node ID=50 pious tainted
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 who
+
+Requirement=!None
+Reply Text=I seek nothing from the Inquisition, but to avoid its hypocrisy.
+Go to node ID=50 bad remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Human
+Text=Have you come to speak more of faith and salvation?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I seek the path of the pious.
+Go to node ID=100 raphael
+
+Requirement=!None
+Reply Text=What is the path of the pious?
+Go to node ID=100 path
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 who
+
+Requirement=!None
+Reply Text=I seek nothing from the Inquisition but to avoid its hypocrisy.
+Go to node ID=50 bad remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue Tainted
+Text=Have you come to speak more of faith and salvation?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Yes, I seek the path of the pious.
+Go to node ID=50 pious tainted
+
+Requirement=!None
+Reply Text=What is the path of the pious?
+Go to node ID=100 path
+
+Requirement=!None
+Reply Text=I seek nothing from the Inquisition but to avoid its hypocrisy.
+Go to node ID=50 bad remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Start Sermon
+Text=...there is hope! You must turn your backs away from wickedness and embrace *truth*, accept salvation, and *believe* in the Inquisition.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Sermon Banter 1
+Text=Though your flesh is corrupt and the taint of magic burns in your blood, your *soul* can be saved!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Sermon Banter 1b
+Text=Listen to the words of the Lord, let the Inquisition show you the light!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Sermon Banter 2
+Text=<Ahem>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Sermon Banter 3
+Text=As I was saying, resist the call of magic, purge yourself of the taint of sorcery and allow the Inquisition to save your souls!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Sermon Banter 4
+Text=...Though I walk through the valley of the shadow of death, I will fear no evil, for Thou art with me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Random Crowd Banter 1
+Text=Bless *me*, Inquisitor!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Random Crowd Banter 2
+Text=Save us, your holiness!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Random Crowd Banter 3
+Text=If you wish to save us, why do you keep us penned in the port? 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Random Crowd Banter 3 cont
+Text=Let us walk among the streets of your noble district!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 Random Crowd Banter 4
+Text=Silence! You *will* learn respect, heathen *beast*!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=50 who
+Text=My name is Ramon de Alvarez, a humble servant of God and the Inquisition. It is my mission to preach the faith to the poor, the downtrodden, tainted ones, those who are most deserving of my attention.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 25
+Reply Text=Tainted folk are only downtrodden because the Inquisition despises them.
+Go to node ID=70 argument
+
+Requirement=Human IS
+Reply Text=I have other questions.
+Go to node ID=200 Other Questions Human
+
+Requirement=Human NOT
+Reply Text=I have other questions.
+Go to node ID=200 Other Questions Tainted
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 argument
+Text=Have a care, impetuous one. The Inquisition helps the tainted ones. Feralkins, sylvants, even demokins can find redemption in faith. In these dark times, tainted ones must atone for their heritage to wash the stain of sin from their souls.
+Should Have Voiceover=0
+
+Requirement=Speech moreequal 25
+Reply Text=You preach hatred and division - it is you who wallows in sin.
+Go to node ID=50 bad remark
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=There is wisdom in your words, Inquisitor. How can I follow the pious path?
+Go to node ID=100 raphael
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=repeating sermon banter relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=repeating sermon banter relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=100 raphael
+Text=It fills my heart with joy to hear you say that. Leave this place and go to the Chambers of the Inquisition in the Temple District. Find Inquisitor Raphael, and express your zeal to find your new path.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 pious tainted
+Text=If only more of your kind could embrace the path of faith as you have! Leave this place and go to the Chambers of the Inquisition in the Temple District. Find Inquisitor Raphael, and express your zeal to find your new path.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 path
+Text=The pious walk a path of truth, always seeking to selflessly serve a higher cause. It is a hard way, but ultimately the most rewarding.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=There is wisdom in your words, Inquisitor. How can I follow the pious path?
+Go to node ID=100 raphael
+
+Requirement=!None
+Reply Text=Tell me more about yourself.
+Go to node ID=50 who
+
+Requirement=!None
+Reply Text=Your lies are hollow - the Inquisition seeks dominance over everything.
+Go to node ID=70 argument
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 bad remark
+Text=I cannot save those that do not want to be saved. I understand your anger, but understand that the Inquisition does want to help. Vaya con dios. <Go with God>
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 sermon question
+Text=I cannot save those that do not wish to be saved.  I can only help those willing to help themselves.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Other Questions Human
+Text=What is it you seek, child?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I seek the path of the pious.
+Go to node ID=100 raphael
+
+Requirement=!None
+Reply Text=What is the path of the pious?
+Go to node ID=100 path
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=50 who
+
+Requirement=!None
+Reply Text=I seek nothing from the Inquisition but to avoid its hypocrisy.
+Go to node ID=50 bad remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Other Questions Tainted
+Text=How may I help you overcome the challenges life gave you at birth?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I seek the path of the pious.
+Go to node ID=50 pious tainted
+
+Requirement=!None
+Reply Text=What is the path of the pious?
+Go to node ID=100 path
+
+Requirement=!None
+Reply Text=I seek nothing from the Inquisition but to avoid its hypocrisy.
+Go to node ID=50 bad remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I'm leaving.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=inquisitor relay
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
+{
+Relay Name=inquisitor relay
+}
+Delay=7
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Icon=Exit Icon
+Is Default Reply=1
+}
