@@ -6169,6 +6169,43 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.45 - no dead ends
+
+`tools/build_link_rot.py`, `docs/link-rot.md`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| LR1 | Fish Monger, Port District: ask about fish, then *"Goodbye."*; and *"Goodbye."* from other questions | - | both say *"Farewell. Come again if I ever get some fish."* and end |
+| LR2 | Fabrisse, Montaillou: *"I should go now."* at the start and on return | - | *"Au revoir!"* and the conversation ends |
+| LR3 | Shakespeare, the love thread to 5: *"A poem? For me?"* | - | the sonnet begins (*"My mistress' eyes..."*) |
+| LR4 | Marco Polo, after Jameson: *"Sorry, I don't have the time."* | - | *"Then live your life to the fullest..."* plays and he leaves, and the bridge still reaches the enchanter |
+| LR5 | The Conspirator: *"Not right now, thanks."*, and *"No thank you, I don't drink."* on return | - | *"Until our paths cross again. Adios."*, no quest failure |
+| LR6 | Cortes, the arm unfinished: *"Not yet..."* | - | *"Until the next time."* |
+| LR7 | The Viola Organista, tuned: *"Examine the keys."*; *"What is your name?"* on return | - | the seven-key menu, and the melody works from it; his name |
+| LR8 | Raymundo, as a tainted character with Barter 35: *"This town is full of merchants..."* at the bigotry line | - | *"I suppose you are right..."*, and the shop opens. Without Barter 35 the reply is not offered |
+| LR9 | Inquisitor at the Port: *"I'm leaving."* from several nodes | - | the conversation ends |
+| LR10 | Iapetus at Toulouse: any goodbye | - | the conversation ends, and no quest is given |
+| LR11 | The Surrey vendor, siege: *"Nevermind. Goodbye."* | - | the conversation ends with no fight |
+| LR12 | The Rogue Inquisitor: *"moving along"* as a friend, then as a stranger | - | a friend is let go; a stranger is attacked; neither hangs |
+
+`tools/build_sibling_repairs.py`, `docs/sibling-replies.md`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TW1 | Shakespeare, on the second return line, with Shylocke persuaded: *"I convinced Shylocke to extend your debt."* | - | the quest completes and XP is paid the first time you say it |
+| TW2 | Rhea at Toulouse, from *"Might makes right"*: *"Your philosophy sickens me."* | - | karma rises, as it does from her morality line |
+| TW3 | The Demon, after *"a hell of a deal"*: *"You are a foul demon..."* | - | he answers the insult; the conversation does not just close |
+| TW4 | The Bounty Hunter, after asking about Linripper: *"How many goblins have you killed so far?"* | - | he gives the count |
+| TW5 | The Blacksmith, from *"what more"*: *"I've been told you can forge a Lion Shield."* | - | *Forge a Lion Shield* appears in the journal |
+| TW6 | Guard Tomas, from *Other Questions*: report the goblins killed, the murder, and the spies | - | karma rises for each, as from his opening menu |
+| TW7 | The Mayor of Montaillou, first time on Toulouse, ask only *"Is Montaillou in danger?"*; then talk to Esclarmonde | - | she offers the reply that marks Titan Village on the world map (it checks `Spoke to mayor about Toulouse`) |
+| TW8 | The Weird Woman, after the shell game: *"You have the look of a witch..."* | - | *Find the Witch for the Inquisitor* advances |
+| TW9 | The Conspirator, on return: take the ale; on another save take the bile; on a third refuse rudely | - | the ale or bile is given, and he remembers the drink or the insult |
+| TW10 | The Fish Monger, holding the vodyanoi skull, from his name line: *"I have a vodyanoi skull to sell you."* | - | his shop opens |
+| TW11 | The Spirit Council, at the wish's ending: *"I will see what I can do."* | - | the doomed knights' quest advances |
+| TW12 | Lord Javier, first meeting, 1000 gold or more: donate | - | his faction warning plays first; accepting takes **1000** gold, not 2000; *"I need more time"* takes nothing |
+| TW13 | The Viola Organista, tuned, on return: *"Goodbye."* | - | the organ hums and the conversation ends |
+
 ## 0.99.44 - aimed
 
 `tools/build_wand_projectiles.py`. Every save, wands already carried included.
