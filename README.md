@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.41](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.41).
+-- currently [0.99.42](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.42).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.42** | the master comes | Relican's undead summon him for saves past Montserrat, Bishop Diego fights like a veteran, and the Horde's goblins and shamans greet the Khan's Champion. |
 | **0.99.41** | the road north | The silver mine turns as one, Sahar's word opens the road to Montaillou, Relican takes Sir Tomas's journal, Javier sees the ring, and the Grove sentry and Sahar walk out to meet you. |
 | **0.99.40** | whose cave it is | Ravine Cave East decides its owner on arrival, Butu's warriors watch and Hrargrub talks, the Khan's goblins spare his friends, and taking off his mark costs what it says. |
 | **0.99.39** | the order remembers | Killing Guard Esteban or any Templar closes the Knights Templar to you: Javier refuses you, and Esteban's death now earns the Enemy of the Knights Templar title. |
@@ -122,7 +123,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.41 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.42 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).
