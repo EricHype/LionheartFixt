@@ -6169,7 +6169,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
-## unreleased
+## 0.99.41 - the road north
 
 `tools/build_ravine_mine_turns.py`. MT1-MT6: a `Ravine Cave West` not yet entered. MT7: every save.
 
