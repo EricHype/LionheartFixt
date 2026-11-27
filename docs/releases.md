@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.43 are published** -- 246 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.44 are published** -- 247 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,29 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.44 - aimed
+
+Two play reports. Two builders, each with its QA rows.
+
+- **The wands fly at what you aim at.** In a spell's launch action `$Trigger` is the caster, as vanilla's Lightning
+  Chain shows ("within a radius of ... the caster", centred on `$Trigger`). 0.88.0 dropped the wand spells' launchers,
+  so the charge check could hold the effect, and damaged `$Trigger` from the launch action instead, on an engine note
+  that read those same spells the other way. So Lightning Bolt and Spike struck their wielder with no bolt drawn,
+  Poison Touch poisoned the wielder, and the Fireball, Ice Storm, Insect Plague and Fire Circle wands burst round the
+  wielder instead of the targeted area. Each now flies its vanilla projectile again, as a Fixt copy that reads the
+  wand spell, and the charge check moves onto the projectile's hits: a hit lands while the wielder holds a charge or
+  for 2.4 seconds after a cast spent one, under the 2.5 second recast lock, so an empty wand still does nothing. Spike
+  and the poison spike deal their damage from the hit rather than a damage plugin, so the check covers it. Poison
+  Touch flies Poison Ring's single spike. Poison Ring, round the caster, was right and is unchanged. The engine note is
+  corrected. `tools/build_wand_projectiles.py`, `WJ1`-`WJ8`.
+- **The venom sac is green on the ground.** Its ground model was the Woodsman's Liver's, so only its icon was green.
+  The liver's ground sprite, with red and green exchanged as the icon's are, is now the sac's own.
+  `tools/build_venom_sac_ground.py`, `VS1`-`VS2`.
+- **Reach.** The wands reach every save, wands already carried included. The sac's colour applies to sacs dropped
+  from now on.
+
+---
 
 ## 0.99.43 - a dead man's ledger
 
