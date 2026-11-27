@@ -121,6 +121,31 @@ Should Have Voiceover=0
 Requirement=!None
 Reply Text=Yes, an ale would be nice.
 Go to node ID=10 take ale
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Ale
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
 
 Requirement=!None
 Custom Requirement=CActionExpression
@@ -133,6 +158,31 @@ Desired Minimum Count=1
 }
 Reply Text=The Serpent's Bile sounds good.
 Go to node ID=10 take ale
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActionGiveStandardInventoryItem
+{
+Who to give to=$instigator
+Delete Trigger=0
+Notify Player=1
+Inventory Item To Give=Inventory/Specific Item Cans/Misc Items/Serpent's Bile
+Additions to add=Array
+{
+Item Count=0
+}
+}
+}
+}
 
 Requirement=!None
 Reply Text=Who are you again?  I like to know who I'm drinking with.
@@ -145,6 +195,27 @@ Go to node ID=5 goodbye
 Requirement=!None
 Reply Text=I'm not interested in drinking with *you*.
 Go to node ID=5 rude goodbye
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CActivateAction
+{
+Target Name=took drink
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CActivateAction
+{
+Target Name=rude response
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+}
+}
 
 Requirement=!None
 Reply Text=I'll just be going.

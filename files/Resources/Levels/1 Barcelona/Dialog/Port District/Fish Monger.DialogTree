@@ -725,6 +725,10 @@ Inventory Item To Check For=Inventory/Specific Item Cans/Quest Items/Vodyanoi Sk
 }
 Reply Text=I have a vodyanoi skull to sell you.
 Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=determine vendor node
+}
 
 Requirement=!None
 Reply Text=Why is your trade not successful now?

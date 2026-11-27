@@ -1,0 +1,337 @@
+CDialogTree
+{
+Name=Daeva of Pain
+Portrait=!None
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=01 Conversation Start
+Text=And here comes the scent of a familiar soul, someone I have not sensed in a very long time. What moniker does your human shell sustain?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I am %<Player Name>%.
+Go to node ID=30 name
+
+Requirement=!None
+Reply Text=None of your business, monster.
+Go to node ID=20 wise
+
+Requirement=!None
+Reply Text=I am no one to be trifled with.
+Go to node ID=40 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=03 Return
+Text=You cannot resist the embrace of power. What thirst do you need slaked now?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me how you came to be here.
+Go to node ID=60 Why here
+
+Requirement=!None
+Reply Text=None of your business, monster.
+Go to node ID=40 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=04 Return
+Text=What does your soul need that your prison of flesh cannot provide?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me how you came to be here.
+Go to node ID=60 Why here
+
+Requirement=!None
+Reply Text=None of your business, monster.
+Go to node ID=40 threat
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye
+Text=We will speak again.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=20 wise
+Text=You are wise to guard your true name, for there is power in its utterance. As I am already bound, you may hear my known names. I am Boruta, the Horned Prince and the Duke of Lies. Names that are likely meaningless to you, but know that they caused great fear among your kind several of your lifetimes ago.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=How were you captured if you are so powerful?
+Go to node ID=60 Why here
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=30 name
+Text=You are unwise to relinquish your name so callously. A name just pried from the lips of a man can be used to compel one to do terrible things. Though, I sense you have a thirst for power, and might be willing to do a service for me willingly?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Accepted Quest to lure Wielder
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already freed faust
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What kind of service are you talking about?
+Go to node ID=200 a hell of a deal
+
+Requirement=!None
+Reply Text=How were you captured if you are so powerful?
+Go to node ID=60 Why here
+
+Requirement=!None
+Reply Text=You are a foul demon and worthy of a swift death, not freedom.
+Go to node ID=50 Insult
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=40 threat
+Text=There is fire in you. Good! I am sure you are a most formidable opponent. As you can see, I am bound to this cell, so I present no risk. However, I have things that you may want that I would be willing to...exchange for services rendered.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Accepted Quest to lure Wielder
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already freed faust
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=What kind of exchange are you talking about?
+Go to node ID=200 a hell of a deal
+
+Requirement=!None
+Reply Text=How were you captured if you are so powerful?
+Go to node ID=60 Why here
+
+Requirement=!None
+Reply Text=You are a foul demon and worthy of a swift death, not freedom.
+Go to node ID=50 Insult
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=50 Insult
+Text=Spare me your posturing of strength or piety. This existence is but a fleeting moment in the chaos of what is. You shall see that soon enough.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 Why here
+Text=The Grand Inquisitor captured me and bound me to this cell. I cannot break the divine wards that hypocritical man placed here. But you...If you intervene, you will be rewarded. Destroy the crosses that bind me to this place. Now.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=If there is a reward involved, I'll see what I can do.
+Go to node ID=
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=Accepted Quest to lure Wielder
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=already freed faust
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=Maybe later. Is there something else I can do for you?
+Go to node ID=200 a hell of a deal
+
+Requirement=!None
+Reply Text=You are a foul demon and worthy of a swift death, not freedom.
+Go to node ID=50 Insult
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 a hell of a deal
+Text=While you decide how to destroy the crosses outside and free me, perhaps you could perform a trifle of a task for me? There is another prisoner within these chambers that I need to conclude some business with.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Who is this prisoner?
+Go to node ID=210 prisoner
+
+Requirement=!None
+Reply Text=You are a foul demon and worthy of a swift death, not freedom.
+Go to node ID=50 Insult
+Action work in progress=50 Insult
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=210 prisoner
+Text=He is a prisoner in these chambers, a wizard who made a binding agreement with me, an agreement that must be fulfilled. The wizard's name is Faust. Lure him here with promises of greater knowledge and you will be rewarded.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'll find the wizard and lure him to you.
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/1 Barcelona/Quests/Temple District/A Hell of An Offer
+State=IENEUHZJ
+}
+Action=CActivateAction
+{
+Target Name=Poly check Freed Wielder for Demon
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CDeactivateAction
+{
+Target Name=Accepted Quest to lure Wielder
+}
+}
+}
+Icon=Quest Icon
+
+Requirement=!None
+Reply Text=You are a foul demon and worthy of a swift death, not freedom.
+Go to node ID=50 Insult
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I have a feeling I better take my leave of you.
+Go to node ID=10 Goodbye
+Icon=Exit Icon
+------------------------------------------------------------
+Node ID=290 Good Bubble
+Text=Good...good!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=300 Free Demon yourself
+Text=Ahhh...the shackles fall away and my power returns! My judgment will be swift and merciless, but to you, I have a debt to repay...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=301 Pan Free Demon
+Text=What a fool! Power corrupts even those you least expect it to.  And you, Scion of Lionheart,  were you a fool to help me escape? Time will tell.  We shall meet again, at a place of my choosing. But for now, I have a debt to repay...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 1
+Text=Have you come to tickle me?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 2
+Text=You'll have to strike me much harder than that to do permanent damage to me.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 3
+Text=I haven't had a good lashing like this since the Grand Inquisitor himself visited me last week - and he nearly gave me a scar!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 4
+Text=It is my torment to endure the endless scratches and scrapes caused by your pitiful mortal hands. You do realize that you can't truly kill the Daeva of Pain?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 5
+Text=These wounds you inflict are like nourishment, delicious sweet candy for my pain-wracked soul.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 6
+Text=Are you familiar with the myth of Prometheus the titan? Poor fool, like me, chained and bound and forced to taste the pain of torture each day. Endlessly. I've grown accustomed to it - I even cherish these moments.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 7
+Text=You are a most persistant mortal! By now, most Inquisitors that try to flog me fall down panting with exhaustion.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 attack taunt 8
+Text=Your tenacity impresses me, mortal. You have delivered considerable pain and delightful torment to my disfigured body. You are one of the few to earn the respect of the Daeva of Pain.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 taunt final
+Text=<Sigh> Mortal, you have exhausted my patience and my witicisms. I really have nothing more to say. Shall we consider this...a stalemate?
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=350 taunt 10
+Text=Oh Dark Master, why must I be a training dummy for these witless bags of flesh?
+Should Have Voiceover=0
+}

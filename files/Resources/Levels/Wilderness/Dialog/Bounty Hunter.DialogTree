@@ -1,0 +1,280 @@
+CDialogTree
+{
+Name=Bounty Hunter
+Portrait=!None
+Should Have Voiceovers=1
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=I wonder if maybe my good luck streak will continue. By chance, you wouldn't happen to be Cristobal Suarez?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No, I'm not.
+Go to node ID=10 fortunate
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=I've never heard of him.
+Go to node ID=10 fortunate
+
+Requirement=!None
+Reply Text=Yes, I am Cristobal Suarez. <Lie>
+Go to node ID=20 unfortunate
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Do speak quickly. I wouldn't want to miss a potential goblin bounty.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5 goodbye
+Text=Stay clear of the goblins please. They're all mine.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=10 fortunate
+Text=Fortunate for you, unfortunate for me. I have a large bounty out for 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=Who are you?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 unfortunate
+Text=Well that is unfortunate...for you. The city guard have posted a three thousand gold bounty on you, dead or alive. Just so you know, I usually choose the latter to avoid complications with delivery. Never fear, I'll use the clean satin bag to carry your head with.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(combat)
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Attack Player Relay
+}
+------------------------------------------------------------
+Node ID=30 bounties
+Text=I have a special contract with the Inquisition. They pay me on a per scalp basis and I rid them of the goblin infestation in this good forsaken forest. I have a perfect strategy to deal with the loathsome beasts. That and my *secret weapon*, of course.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is your strategy?
+Go to node ID=60 strategy
+
+Requirement=!None
+Reply Text=What is your secret weapon?
+Go to node ID=50 Linripper
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 Raylark
+Text=The name is Raylark, although my friends call me Ray. You can call me Raylark, however. Try to stay clear if you don't mind, I have many more goblin bounties to collect.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Linripper
+Text=Well, if I told you, it wouldn't be secr--Oh, what's the harm, eh? I happened upon a very old blade that fells even the hardiest goblin. It has a history, that's for sure, because the goblins fear it by sight. They call it Glinripper, among other things, but I like to call it my early retirement. A few hundred more goblin scalps and I'll be able to buy a nice villa and settle down in the country.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Would you be willing to sell Glinripper?
+Go to node ID=100 ridiculous
+
+Requirement=!None
+Reply Text=Could you forge me a blade like Glinripper?
+Go to node ID=
+
+Requirement=!None
+Reply Text=Perfect, I'll just relieve you of that sword then.
+Go to node ID=200 take sword
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=How many goblins have you killed so far?
+Go to node ID=70 goblin body count
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=60 strategy
+Text=This vale provides a perfect chokepoint from the goblin village. They can only send small groups of goblins at me at any given time. With my secret weapon and my well trained colleagues, we have few problems slaughtering them as they emerge from the eastern corridor.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is your secret weapon?
+Go to node ID=50 Linripper
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=How many goblins have you killed so far?
+Go to node ID=70 goblin body count
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 goblin body count
+Text=Oh dear, dozens, possibly hundreds. My associate Fenwhistle tried to keep count, but he is not very bright and can only count to a hundred and three. Suffice to say, at this rate, even with the goblin's prolific and disgusting reproductive practices, the goblin tribe should be wiped out by tommorow morn.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What is your name?
+Go to node ID=40 Raylark
+
+Requirement=!None
+Reply Text=You're collecting goblin bounties?
+Go to node ID=30 bounties
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 ridiculous
+Text=Sell this ever flowing fountain of gold? You would have to offer me a ridiculous sum of gold to compensate for the income I will make off the goblins. Make me an offer if you are inclined, but it had best be absurdly more than it looks like you can afford.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm ready to make a fair offer on the sword.
+Go to node ID=110 no thanks
+
+Requirement=!None
+Reply Text=I'm prepared to make an obsecenly generous offer for your sword.
+Go to node ID=120 vendor
+
+Requirement=!None
+Reply Text=Could you forge me a blade like Glinripper?
+Go to node ID=115 cant forge
+
+Requirement=!None
+Reply Text=How many goblins have you killed so far?
+Go to node ID=70 goblin body count
+
+Requirement=!None
+Reply Text=Here's an offer you can't refuse. I'm going to take the sword and pay you nothing.
+Go to node ID=200 take sword
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=110 no thanks
+Text=Fair offer? I'm not interested in fair. This is a powerful sword my friend, and I estimate that it's worth a small fortune. If you want it, be prepared to pay dearly.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm prepared to make an obsecenly generous offer for your sword.
+Go to node ID=120 vendor
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=115 cant forge
+Text=Me? Forge you a weapon? I wasn't aware that I looked like your personal lackey, a blacksmith-in-waiting to craft any weapon that tickles your fancy. Sorry, but I have better things to do. Even if I did possess skills, this sword is unique and I don't think its like will be created again. And in case you still want to buy it, its price just doubled, fool.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I'm prepared to make an obsecenly generous offer for your sword.
+Go to node ID=120 vendor
+
+Requirement=!None
+Reply Text=Here's an offer you can't refuse. I'm going to take the sword and pay you nothing.
+Go to node ID=200 take sword
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I should be going.
+Go to node ID=5 goodbye
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=120 vendor
+Text=Very well, I'll listen to your hopefully foolish and outrageously handsome bid for this fine weapon.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Action work in progress=(bring up vendor window with Glinripper)
+Custom Action=CDisplayMerchantWindowAction
+{
+LayerPart name of merchants inventory=Inventory for Bounty Hunter
+LayerPart name of merchants character=$Trigger
+Player=$instigator
+After Closed Action=
+}
+------------------------------------------------------------
+Node ID=200 take sword
+Text=I suppose I should have warned you. Not only does Glinripper have special properties against goblins, but it also seems to possess the ability to inflict extraordinary damage against blithering idiots. 
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 ignores
+Text=<He ignores you.>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 goblin
+Text=A pity you're not a goblin...
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Go Away
+Text=Go away.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 Growls
+Text=<Growls>
+Should Have Voiceover=0
+}

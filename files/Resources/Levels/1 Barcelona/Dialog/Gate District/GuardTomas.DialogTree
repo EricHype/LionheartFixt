@@ -1,0 +1,2760 @@
+CDialogTree
+{
+Name=Captain of the Gate Guard
+Portrait=Dialog/NPC Portraits/ConquistadorTomas
+Should Have Voiceovers=0
+Default Canceled Node Action=
+------------------------------------------------------------
+Node ID=1 Conversation Start
+Text=Bienvenidos <Welcome>. I am Captain Tomas, of the Barcelona Guard. We have many laws in this great city. Obey the law, and your stay in the city will be a pleasant one.
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=Someone has been murdered. The corpse is just to the east of the city gate.
+Go to node ID=40 report murder
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins killed by guards
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have killed some goblins just around the bend there, apparently they were spying on Barcelona.
+Go to node ID=100 tomas tells salvador to help verify
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the goblins
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins fled
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=There are goblins spying along the western wall of the city.
+Go to node ID=100 told about goblins
+Action work in progress=goblins are dead checker
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=Laws?
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=Can you tell me about Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=Save your lectures for someone else. I do as I please.
+Go to node ID=30 Flippant Remark
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Sylvant
+Text=Hmm...I see you have the mark of magic on you, traveler. I am Captain Tomas, of the Barcelona Guard. Tell me - how did you come to the city? Through the forest? By ship?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the goblins
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins fled
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=There are goblins spying along the western wall of the city.
+Go to node ID=100 told about goblins
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins killed by guards
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have killed some goblins just around the bend there, apparently they were spying on Barcelona.
+Go to node ID=100 tomas tells salvador to help verify
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=Someone has been murdered. The corpse is just to the east of the city gate.
+Go to node ID=40 report murder
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=Female IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 20
+}
+Reply Text=How does anyone come to this fair city? I am no different than anyone else, merely a simple traveler who goes where the wind carries her.
+Go to node ID=399 Good Speech Intro Female
+Action work in progress=(Speech >=20%, Female IS)
+Icon=Speach Skill Icon
+
+Requirement=Male IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 20
+}
+Reply Text=How does anyone come to this fair city? I am no different than anyone else, merely a simple traveler who goes where the wind carries him.
+Go to node ID=400 Good Speech Intro
+Action work in progress=(Speech >=20%, Male IS)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Through the forest.
+Go to node ID=401 By Gate or Ship Not Feralkin
+
+Requirement=!None
+Reply Text=By ship. <Lie>
+Go to node ID=401 By Gate or Ship Not Feralkin
+
+Requirement=!None
+Reply Text=What business is it of yours?
+Go to node ID=402 Business
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I have no time for your questions. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Feralkin
+Text=You're a long way from home, beast. I am Captain Tomas, of the Barcelona Guard. Tell me, beast - how did you come to the city? Through the forest? By ship?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the goblins
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins fled
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=There are goblins spying along the western wall of the city.
+Go to node ID=100 told about goblins
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins killed by guards
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have killed some goblins just around the bend there, apparently they were spying on Barcelona.
+Go to node ID=100 tomas tells salvador to help verify
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=Someone has been murdered. The corpse is just to the east of the city gate.
+Go to node ID=40 report murder
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=Male IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 20
+}
+Reply Text=How does anyone come to this fair city? I am no different than anyone else, merely a simple traveler who goes where the wind carries him.
+Go to node ID=400 Good Speech Intro
+Action work in progress=(Speech >=20%, Male IS)
+Icon=Speach Skill Icon
+
+Requirement=Female IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 20
+}
+Reply Text=How does anyone come to this fair city? I am no different than anyone else, merely a simple traveler who goes where the wind carries her.
+Go to node ID=399 Good Speech Intro Female
+Action work in progress=(Speech >=25%, Female IS)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Through the forest.
+Go to node ID=403 By Gate or Ship Feralkin
+
+Requirement=!None
+Reply Text=By ship. <Lie>
+Go to node ID=403 By Gate or Ship Feralkin
+
+Requirement=!None
+Reply Text=What business is it of yours?
+Go to node ID=402 Business
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I have no time for your questions. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=01 Conversation Start Demokin
+Text=So how is it devils walk the streets of Barcelona? I am Captain Tomas, of the Barcelona Guard. Tell me, devil - how did you come to the city? Through the forest? By ship?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the goblins
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins fled
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=There are goblins spying along the western wall of the city.
+Go to node ID=100 told about goblins
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins killed by guards
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have killed some goblins just around the bend there, apparently they were spying on Barcelona.
+Go to node ID=100 tomas tells salvador to help verify
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=Someone has been murdered. The corpse is just to the east of the city gate.
+Go to node ID=40 report murder
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=Male IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 20
+}
+Reply Text=How does anyone come to this fair city? I am no different than anyone else, merely a simple traveler who goes where the wind carries him.
+Go to node ID=400 Good Speech Intro
+Action work in progress=(Speech >=20%, Male IS)
+Icon=Speach Skill Icon
+
+Requirement=Female IS
+Custom Requirement=CUseCannedExpressionExpression
+{
+Canned Expression=Dialog/Requirements/Skills/Speech/Speech moreequal 20
+}
+Reply Text=How does anyone come to this fair city? I am no different than anyone else, merely a simple traveler who goes where the wind carries her.
+Go to node ID=399 Good Speech Intro Female
+Action work in progress=(Speech >=20%, Female IS)
+Icon=Speach Skill Icon
+
+Requirement=!None
+Reply Text=Through the forest.
+Go to node ID=401 By Gate or Ship Not Feralkin
+
+Requirement=!None
+Reply Text=By ship. <Lie>
+Go to node ID=401 By Gate or Ship Not Feralkin
+
+Requirement=!None
+Reply Text=What business is it of yours?
+Go to node ID=402 Business
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I have no time for your questions. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=3 Return Dialogue
+Text=Hola otra vez <Hello again>. Do you need me to remind you of the laws of this fair city, or was there something else you needed?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins killed by guards
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have killed some goblins just around the bend there, apparently they were spying on Barcelona.
+Go to node ID=100 tomas tells salvador to help verify
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=4
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the goblins
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins fled
+Desired Minimum Count=1
+}
+}
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+Early Exit=0
+}
+}
+Reply Text=There are goblins spying along the western wall of the city.
+Go to node ID=100 told about goblins
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=Someone has been murdered. The corpse is just to the east of the city gate.
+Go to node ID=40 report murder
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=Tell me about the laws of the city.
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=I had some questions about the city.
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=I have no need of your warnings. I do as I please.
+Go to node ID=30 Flippant Remark
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Nothing today. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+------------------------------------------------------------
+Node ID=03 Return Dialogue Tainted
+Text=You again. I had hoped perhaps you had wisely decided to leave Barcelona, but it seems you lack the sense. Perhaps you need a lesson about the laws of the city?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins killed by guards
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have killed some goblins just around the bend there, apparently they were spying on Barcelona.
+Go to node ID=100 tomas tells salvador to help verify
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the goblins
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins fled
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=There are goblins spying along the western wall of the city.
+Go to node ID=100 told about goblins
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=Someone has been murdered. The corpse is just to the east of the city gate.
+Go to node ID=40 report murder
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=What laws are those?
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=I had some questions about the city.
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=I have no need of your warnings. I do as I please.
+Go to node ID=30 Flippant Remark
+Icon=Fight Icon
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I need nothing today. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=10 Goodbye Bad
+Text=I warn you, the eyes of the Barcelona guards and the Inquisition will be watching you. Obey the laws of the city, or next time I see you, you'll be in chains.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=15 Other Questions
+Text=What other questions did you have?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CAND
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=guards verify goblin death
+Desired Minimum Count=1
+}
+}
+}
+Operator=
+Operand2=CExpressionNot
+{
+Operand1=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins killed by guards
+Desired Minimum Count=1
+}
+}
+}
+}
+Reply Text=I have killed some goblins just around the bend there, apparently they were spying on Barcelona.
+Go to node ID=100 tomas tells salvador to help verify
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=request payment for goblin slaying
+Desired Minimum Count=1
+}
+}
+Reply Text=Can I have some kind of reward for sparing the city from those goblins?
+Go to node ID=5000 hoping
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+Action=CDeleteAction
+{
+Target Name=request payment for goblin slaying
+}
+}
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CAndAction
+{
+Action=Array
+{
+Item Count=3
+Action=CCheckExistenceAction
+{
+Name To Check For=seen the goblins
+Desired Minimum Count=1
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins are dead checker
+Desired Minimum Count=1
+}
+}
+Action=CNotAction
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=goblins fled
+Desired Minimum Count=1
+}
+}
+}
+Early Exit=0
+}
+}
+Reply Text=There are goblins spying along the western wall of the city.
+Go to node ID=100 told about goblins
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=seen gate corpse
+Desired Minimum Count=1
+}
+}
+Reply Text=Someone has been murdered. The corpse is just to the east of the city gate.
+Go to node ID=40 report murder
+Custom Action=CAddCharacterModifierToCharacterAction
+{
+Modifier Description=Add Mid Small Karma 25
+Modification is permanent=1
+Character to modify=Player#1-9#
+Modifiers=Array
+{
+Item Count=1
+Modifier=CCharacterModifierDerivedAttribute
+{
+Modification Amount=CConstant
+{
+Constant Value=25
+}
+Modification amount is a percent=0
+Allow Accumulation=1
+Derived character attribute to modify=Derived Character Attributes/Karma
+}
+}
+OPTIONAL Duration=
+Expression Context=$Instigator
+}
+
+Requirement=!None
+Reply Text=Tell me about the laws of the city.
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=Tell me about Barcelona.
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I have no more questions. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=20 Three Rules
+Text=While there are many laws in Barcelona, there are three the Guard strictly enforces. No fighting within the city walls, no stealing, and most importantly, no magic use.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=No magic use? Why do you enforce that?
+Go to node ID=60 No magic use
+
+Requirement=!None
+Reply Text=No stealing? Is that a problem in the city?
+Go to node ID=70 Stealing Explanation
+
+Requirement=!None
+Reply Text=Tell me about Barcelona.
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=No fighting? Is that a problem in the city?
+Go to node ID=80 fighting
+
+Requirement=!None
+Reply Text=No fighting or stealing? Well I have a feeling I'll be breaking some laws...
+Go to node ID=30 Flippant Remark
+
+Requirement=!None
+Reply Text=Very well. I'll be going now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=30 Flippant Remark
+Text=I see. For your sake, friend, I would recommend that you comply with the city laws. Otherwise, your stay in Barcelona will be short - and unpleasant.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What laws?
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=What can you tell me of Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=And perhaps you'd best watch yourself, or you'll be sharing the gutter with the dogs.
+Go to node ID=50 Pushing the guard
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Very well. I'll be going now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=31 Flippant Remark 2
+Text=Have I touched a nerve? For your sake, friend, I would recommend that you be careful in this city and obey the laws. Otherwise, your stay in Barcelona will be short - and unpleasant.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Which laws are you talking about?
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=What can you tell me of Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=And perhaps you'd best watch yourself, or you'll be sharing the gutter with the dogs.
+Go to node ID=50 Pushing the guard
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Very well. I'll be going now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=50 Pushing the guard
+Text=Is that so? You will do well to remember my warnings - though, I admit, I would welcome the opportunity to drive some sense into that thick skull of yours. Now get out of my sight.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=60 No magic use
+Text=By the order of the Inquisition, the use of magic is strictly forbidden in Barcelona. Heretics that unlawfully practice magic are taken to the Chambers of the Inquisition - and dealt with. I would not even speak of magic during your stay in Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Chambers of the Inquisition?
+Go to node ID=100 Chambers of the Inquisition
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor NOT)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=Are there heretics in Barcelona?
+Go to node ID=95 Heretics
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=Thank you guardsman. I'll be leaving now.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=70 Stealing Explanation
+Text=Years ago, thieves and criminals operated openly in Barcelona's streets. When the Inquisition seized power, the Inquisitors dealt with criminals and magic-using heretics harshly. Now only a few thieves still hide in the shadows, and between the efforts of the Inquisition and the guard, Barcelona is one of the safest cities in Europe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=There are still thieves in the city, then?
+Go to node ID=115 Thieves Guild
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor Not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=What can you tell me about Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=80 fighting
+Text=No, no more so than any other major city. While the streets are well guarded, the growing number of soldiers and sailors within the city have created difficulties. Nevertheless, if a fight breaks out, rest assured the guards will respond quickly, and those that start a fight will have time to reflect on their conduct in the Inquisition prison, or in a galley ship sailing for England.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=There are still thieves in the city, then?
+Go to node ID=115 Thieves Guild
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(Inquisitor NOT)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=What can you tell me about Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=90 Inquisition
+Text=The Inquisition is a religious order sworn to protect us against the forces of darkness. The Inquisitors seek out heretics, those that practice black magic illegally, and exorcise their evil spirits. They have brought peace and stability to Europe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Except England, of course.
+Go to node ID=150 England Insult
+
+Requirement=!None
+Reply Text=Are there heretics in Barcelona?
+Go to node ID=95 Heretics
+
+Requirement=!None
+Reply Text=Forces of darkness? What do you mean?
+Go to node ID=97 Forces of Darkness
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=91 Inquisition Member
+Text=Are you testing me, Inquisitor? Very well, here is my answer - the Inquisition is a religious order sworn to protect us against the forces of darkness. You seek out heretics, those that practice black magic illegally, and exorcise their evil spirits. You have brought peace and stability to Europe.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Except England, of course.
+Go to node ID=150 England Insult
+
+Requirement=!None
+Reply Text=Are there heretics in Barcelona?
+Go to node ID=95 Heretics
+
+Requirement=!None
+Reply Text=Forces of darkness? What do you mean?
+Go to node ID=97 Forces of Darkness
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=95 Heretics
+Text=There are a few criminal heretics hiding in Barcelona. These dark wizards call themselves the Wielders. They are sinners, corrupted by sorcery, and they will be captured by the Inquisition soon enough.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor Not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=Tell me more about the Wielders.
+Go to node ID=105 wielders
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=97 Forces of Darkness
+Text=Those possessed by evil spirits, monsters that seek the blood of innocents. The presence of the Inquisition keeps these creatures far from civilization, but be wary if you travel from the safety of the city walls.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor Not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 Chambers of the Inquisition
+Text=Heretics are taken to the Chambers of the Inquisition for their salvation. The Inquisition works tirelessly to save the heretics and exorcise their evil spirits. It is a grim place for grim work, but it must be done.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are there heretics in Barcelona?
+Go to node ID=95 Heretics
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor Not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=105 Wielders
+Text=Speaking of those wizards brings a bitter taste to my lips. If you must know more about those heretics, speak with the Inquisitors.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=115 Thieves Guild
+Text=Of course, there will always be a criminal element in any large city. But the thieves' guild within Barcelona has lost much of its power, with pressure from the Inquisition and recent squabbles between rival guilds.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where can I find the thieves' guild?
+Go to node ID=130 Where are the Thieves
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=130 Where are the Thieves
+Text=If I could *tell* you the location of the thieves' guild, there would be no more thieves. I would advise you not to ask too many questions about them - if so, *you'll* be the one being questioned...by the Barcelona Guard.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor Not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=What are the laws of the city again?
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=Tell me more about Barcelona.
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=150 England Insult
+Text=I would advise you to think before opening your mouth next time, or I might consider such words to be treason. England and their heretic queen will soon fall under the control of the Inquisition. When the Armada sails for England, they will deal with the forces of darkness there as they have done with the heretics here in Barcelona.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Are there heretics in Barcelona?
+Go to node ID=95 Heretics
+
+Requirement=!None
+Reply Text=Forces of darkness? What do you mean?
+Go to node ID=97 Forces of Darkness
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I have heard enough. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=200 Barcelona
+Text=Barcelona is 'la ciudad grande', the greatest city of the world, the jewel of Europe. It is home to the bravest knights and warriors, the mightiest navy, and the brightest scholars.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Tell me about Barcelona's navy.
+Go to node ID=210 Goodbye Spanish Armada
+
+Requirement=!None
+Reply Text=What scholars are in Barcelona?
+Go to node ID=225 Scholars
+
+Requirement=Templar NOT
+Reply Text=Which knights do you mean?
+Go to node ID=250 Knights Templar
+
+Requirement=Templar IS
+Reply Text=Which knights do you mean?
+Go to node ID=251 Knights Templar Member
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=210 Goodbye Spanish Armada
+Text=Barcelona's proud navy is part of the Spanish Armada, the world's largest naval fleet. The Armada is gathering in the Port District, preparing for a major military engagement.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Where is the Port District?
+Go to node ID=230 Port District
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=225 Scholars
+Text=Many brilliant minds come to Barcelona to study and learn. Galileo - before he admitted to heresy - used to study the stars at the Royal Observatory, and there is the eccentric Signor Leo, of course. A confused man to be sure, but his masterpieces and wondrous machines are truly breath-taking.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What happened to Galileo?
+Go to node ID=310 Galileo
+
+Requirement=!None
+Reply Text=Tell me more about Signor Leo.
+Go to node ID=300 Signor Leo
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=230 Port District
+Text=Pass through these gates, and head east to reach the Port District. To the northwest, you'll find the gates to the Temple District.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=250 Knights Templar
+Text=The Knights Templar are the paragons of virtue and protect all of Europe from the evils of magic. They work tirelessly with the Inquisition to keep Barcelona safe from those that practice the black arts.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor Not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=251 Knights Templar Member
+Text=My friend, you should know what knights I speak of - the Knights Templar, of course. You and your brothers protect all of Europe from the evils of magic, and work tirelessly with the Inquisition to keep Barcelona safe from those that practice the black arts.
+Should Have Voiceover=0
+
+Requirement=Inquisitor NOT
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=90 Inquisition
+Action work in progress=(!Inquisitor Not)
+
+Requirement=Inquisitor IS
+Reply Text=Tell me more about the Inquisition.
+Go to node ID=91 Inquisition Member
+Action work in progress=(Inquisitor IS)
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=300 Signor Leo
+Text=Signor Leo? Loco como un zorro <crazy like a fox>. He has lived a long time and has become addled in his old age, but he's harmless. Over the years, he has contributed much to the culture of this city. He paints masterful works of art, creates wondrous inventions, and pushes the boundaries of many disciplines of science.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=What about Galileo?
+Go to node ID=310 Galileo
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=310 Galileo
+Text=Galileo is proof of the growing corruption of magic. He was once a brilliant man of science in charge of the Royal Observatory and one of the most respected citizens of Barcelona - only to cast it away by declaring that magic could benefit society and further scientific study!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=311 Galileo 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=311 Galileo 2
+Text=He refuses to repent and still does not believe that his words are blasphemy! Now, Galileo is a prisoner of the Inquisition, so ask no more of him.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Hmmm. Tell me more about Signor Leo.
+Go to node ID=300 Signor Leo
+
+Requirement=!None
+Reply Text=I have other questions.
+Go to node ID=15 Other Questions
+
+Requirement=!None
+Reply Text=I must be off. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=399 Good Speech Intro Female
+Text=Hmmm. Perhaps so, señorita. Well, whatever your true reasons for being in Barcelona, we have a number of laws in this great city. Obey them, and your stay in the city will be a very pleasant one.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Laws?
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=Can you tell me about Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=Save your warnings for someone else. I do as I please.
+Go to node ID=30 Flippant Remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=400 Good Speech Intro
+Text=Hmmm. Perhaps so. Well, whatever your true reasons for being in Barcelona, we have a number of laws in this great city. Obey them, and your stay in the city will be a pleasant one.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Laws?
+Go to node ID=20 Three Rules
+
+Requirement=!None
+Reply Text=Can you tell me about Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=Save your warnings for someone else. I do as I please.
+Go to node ID=30 Flippant Remark
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=401 By Gate or Ship Not Feralkin
+Text=And what is your business in Barcelona? Here on behalf of the English, perhaps?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 25
+Reply Text=No, I have heard there are many fine goods to be found in Barcelona, and I have come to do some trading.
+Go to node ID=400 Good Speech Intro
+Action work in progress=(Barter >=25%)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=The English? What are you talking about?
+Go to node ID=404 English
+
+Requirement=!None
+Reply Text=Are you implying that I'm a spy for the English?
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am no spy.
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am here on my own behalf, Captain.
+Go to node ID=400 Good Speech Intro
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=402 Business
+Text=Anything that takes place within the Barcelona walls is my concern. And since you have brought up the subject of business - what *is* your business in the city, stranger? Here on behalf of the English, perhaps?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 25
+Reply Text=No, I have heard there are many fine goods to be found in Barcelona, and I have come to do some trading.
+Go to node ID=400 Good Speech Intro
+Action work in progress=(Barter >=25%)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=The English? What are you talking about?
+Go to node ID=404 English
+
+Requirement=!None
+Reply Text=Are you implying that I'm a spy for the English?
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am no spy.
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am here on my own behalf, Captain.
+Go to node ID=400 Good Speech Intro
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=403 By Gate or Ship Feralkin
+Text=Ah, good, you understand me. I feared you might not be able to understand human speech - or speak at all, for that matter. Very well, amuse me - what is your business in Barcelona? Here on behalf of the English, perhaps?
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 25
+Reply Text=No, I have heard there are many fine goods to be found in Barcelona, and I have come to do some trading.
+Go to node ID=400 Good Speech Intro
+Action work in progress=(Barter >=25%)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=The English? What are you talking about?
+Go to node ID=404 English
+
+Requirement=!None
+Reply Text=Are you implying that I'm a spy for the English?
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am no spy.
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am here on my own behalf, Captain.
+Go to node ID=400 Good Speech Intro
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=404 English
+Text=Oh, do you pretend ignorance of our war with England? Such a sheltered life you must have had. Come now, do not test my patience.
+Should Have Voiceover=0
+
+Requirement=Barter moreequal 25
+Reply Text=I have heard there are many fine goods to be found in Barcelona, and I have come to do some trading.
+Go to node ID=400 Good Speech Intro
+Action work in progress=(Barter >=25%)
+Icon=Barter Skill Icon
+
+Requirement=!None
+Reply Text=Are you implying that I'm a spy for the English?
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am no spy.
+Go to node ID=405 Spy
+
+Requirement=!None
+Reply Text=I am here on my own behalf, Captain.
+Go to node ID=400 Good Speech Intro
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=405 Spy
+Text=Spy? Why, I never said you were - you were the one who mentioned "spy", my friend. But no matter, you do not need to be in the pay of England - I know of your kind's sympathies for the crown. Perhaps you felt that you could help them by coming here, seeing the Armada, and reporting back?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=406 Spy 2
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=406 Spy 2
+Text=If so - do so. In fact, I encourage you to do so. Nothing your heretic queen can do can stop the Armada. Our ships will sail on Britain, crush her armies, and put her and her court to the sword. Her heathen magic is no match against Spanish steel, and magic will be her undoing.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I tell you, I am no spy.
+Go to node ID=407 I Am No Spy
+
+Requirement=!None
+Reply Text=Believe what you will - what can you tell me of Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=I'd watch your tongue. I don't care for being threatened.
+Go to node ID=31 Flippant Remark 2
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=407 I Am No Spy
+Text=I never said you were, my friend. Deny it, admit it, it makes no difference. In the end, your kind will be driven from England and Spain.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Believe what you will - what can you tell me of Barcelona?
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Reply Text=I'd watch your tongue. I don't care for being threatened.
+Go to node ID=31 Flippant Remark 2
+Icon=Fight Icon
+
+Requirement=!None
+Reply Text=I've heard enough. Goodbye.
+Go to node ID=10 Goodbye Bad
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=500 Open the gate
+Text=Abra el porton! <Open the gate!>
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=40 report murder
+Text=Damn, another murder...I will send someone shortly to examine the body.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=40 report murder continued
+Custom Action=CDeleteAction
+{
+Target Name=seen gate corpse
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=40 report murder continued
+Text=Now tell me, what did you see? Just the corpse, the killer, did you happen to find any clues?
+Should Have Voiceover=0
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=examined with high perception
+Desired Minimum Count=1
+}
+}
+Reply Text=I noticed strange bite marks on the neck of the corpse. Also, the corpse seemed to be drained of all of its fluids.
+Go to node ID=100 saw bite marks in corpse
+Icon=Attribute Icon
+
+Requirement=!None
+Reply Text=Someone or something drained all the fluids from the victim.
+Go to node ID=100 murder saw fluids
+
+Requirement=!None
+Reply Text=Sorry, I only found a corpse. I could not discern anything unusual.
+Go to node ID=100 murder blow off
+
+Requirement=!None
+Reply Text=Nevermind. I'm leaving.
+Go to node ID=
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 told about goblins
+Text=Those filthy creatures have grown too brazen lately...Speak quickly, do you know what they are planning?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=There are only two, likely just scouts. They killed a town guard.
+Go to node ID=100 guards go after goblins
+
+Requirement=!None
+Reply Text=I only saw two, but there *could* be more. They killed a town guard.
+Go to node ID=100 guards go after goblins
+
+Requirement=!None
+Reply Text=Do I have to do everything for you? Go take care of it.
+Go to node ID=100 guards go after goblins
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=I don't know any more beyond what I told you. Goodbye.
+Go to node ID=100 guards go after goblins
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 guards go after goblins
+Text=You have done a great service for Barcelona!
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateAction
+{
+Target Name=guards go home
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Action=CTriggerRelayAction
+{
+Relay Name=guards go after goblins
+}
+Action=CGiveExperiencePointsToAllPlayersAction
+{
+Get XP Frome=Tell Guards about Goblins
+Experience Points To Add=1
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 tomas tells salvador to come
+Text=Come Salvador, time to clean the city of some filth.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CTriggerRelayAction
+{
+Relay Name=guards verify goblin death
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 murder blow off
+Text=My thanks for your help. I will look into this. Here, take this gold for your assistance. Muchas gracias.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 other questions
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=25
+}
+Action=CDeactivateAction
+{
+Target Name=seen gate corpse
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 murder saw fluids
+Text=As I suspected...and feared. This monster has killed in Barcelona before, but we have never been able to catch it. If you see anything suspicious, make sure to tell me. Your help is appreciated - take this reward for your efforts. Muchas gracias.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 other questions
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Action=CDeactivateAction
+{
+Target Name=seen gate corpse
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 saw bite marks in corpse
+Text=Well stranger, you are most perceptive. That piece of information might help with our investigation. If you find anything else that is suspicious, please speak with me. Your cooperation is much appreciated - muchas gracias. Oh, and take this as a reward for your keen eyes. 
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=15 other questions
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=75
+}
+Action=CDeactivateAction
+{
+Target Name=seen gate corpse
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=100 not fear
+Text=Do not fear - we will deal with the goblin creatures.
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=2000 help
+Text=Help us!
+Should Have Voiceover=0
+------------------------------------------------------------
+Node ID=100 tomas tells salvador to help verify
+Text=Come Salvador, we must verify this report.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CBeginNonInteractiveSequenceAction
+{
+Options=CNonInteractiveSequence
+{
+Pause Characters=1
+Disable Player Controls=1
+Can Fast Forward=1
+}
+}
+Action=CFadeScreenDownAction
+{
+Time Until Auto Fade Up=2
+}
+Action=CTriggerRelayAction
+{
+Relay Name=guards verify goblin death
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=5000 hoping
+Text=Ahh. I was hoping you wouldn't ask that. Here, take this, and thanks.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I had some questions about the city.
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=6000 checked out goblins
+Text=We have checked out the wall and the goblins are dead. I've arranged for Guard Rodrigo to be laid to rest by the Inquisition. I'm sure his family would want you to have this small reward for dispatching his goblin killers.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=
+Go to node ID=6000 checked out goblins 2
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CGiveMoneyToAllPlayersAction
+{
+Value to give=50
+}
+Action=CDeleteAction
+{
+Target Name=request payment for goblin slaying
+}
+}
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=6000 checked out goblins 2
+Text=Is there anything else then before I return to my duty?
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=I had some questions about the city.
+Go to node ID=200 Barcelona
+
+Requirement=!None
+Custom Requirement=CActionExpression
+{
+Action=CCheckExistenceAction
+{
+Name To Check For=open gate relay
+Desired Minimum Count=1
+}
+}
+Reply Text=Could you open the city gate?
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+
+Requirement=!None
+Reply Text=Very well. Goodbye.
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=open gate relay
+}
+Icon=Exit Icon
+Is Default Reply=1
+}

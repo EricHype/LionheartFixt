@@ -1069,6 +1069,21 @@ Requirement=!None
 Reply Text=You have the look of a witch. I think the Inquisition would want to have a word with you.
 Go to node ID=10 Bad Goodbye
 Action work in progress=(Templar and Inquisitor faction bonus, penalty for Wielder, once only for entire dialogue for each similar response)
+Custom Action=CIfAction
+{
+If=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=DPAC3709
+}
+Then=CActivateQuestStateAction
+{
+Quest=Levels/3 Montaillou/Quests/Find the Witch for the Inquisitor
+State=F3RZMV0O
+}
+Else=
+Return failure if the If failes=0
+}
 
 Requirement=!None
 Reply Text=Nevermind. Goodbye.

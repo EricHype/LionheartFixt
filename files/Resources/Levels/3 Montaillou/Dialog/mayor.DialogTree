@@ -1707,6 +1707,17 @@ Go to node ID=920 counterattack
 Requirement=!None
 Reply Text=Is Montaillou in danger?
 Go to node ID=930 lucius defends
+Custom Action=COtherMapAction
+{
+Action=CActivateAction
+{
+Target Name=Spoke to mayor about Toulouse
+Play Activate Sound=0
+Delay Between Activations=0
+Warp Behavior=
+}
+Other Map Name=3 Montaillou/01 Hamlet Exterior
+}
 
 Requirement=!None
 Reply Text=Where is Toulouse?
