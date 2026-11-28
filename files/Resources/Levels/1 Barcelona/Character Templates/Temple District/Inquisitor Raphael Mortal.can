@@ -113,7 +113,7 @@ CCannedObject
 					{
 						Operand1=CVariableDerivedCharacterAttribute
 						{
-							Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+							Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
 						}
 						Operator=
 						Operand2=CConstant
@@ -122,25 +122,101 @@ CCannedObject
 						}
 					}
 					Character to get attributes from=Player1
-					Then=CMultipleActionsAction
+					Then=CIfExpressionAction
 					{
-						Action=Array
+						If Expression=CIsGreaterThan
 						{
-							Item Count=3
-							Action=CAddCategoryAction
+							Operand1=CVariableDerivedCharacterAttribute
 							{
-								Target Name=Inquisitor Raphael
-								Categories to add=Enemy
+								Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
 							}
-							Action=CSetTargetTypeAction
+							Operator=
+							Operand2=CConstant
 							{
-								Entity Name=Inquisitor Raphael
-								Name To Target=
-								Valid Targets=Player,Player Friend
+								Constant Value=0
 							}
-							Action=CGoToCombatAction
+						}
+						Character to get attributes from=Player1
+						Then=CMultipleActionsAction
+						{
+							Action=Array
 							{
-								Enemy Name=Inquisitor Raphael
+								Item Count=3
+								Action=CAddCategoryAction
+								{
+									Target Name=Inquisitor Raphael
+									Categories to add=Enemy
+								}
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=Inquisitor Raphael
+									Name To Target=
+									Valid Targets=Player,Player Friend
+								}
+								Action=CGoToCombatAction
+								{
+									Enemy Name=Inquisitor Raphael
+								}
+							}
+						}
+						Else=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=3
+								Action=CForEachPlayerAction
+								{
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=$Instigator
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+								}
+								Action=CSetTargetTypeAction
+								{
+									Entity Name=Inquisitor Raphael
+									Name To Target=
+									Valid Targets=
+								}
+								Action=CIfExpressionAction
+								{
+									If Expression=CUseCannedExpressionExpression
+									{
+										Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
+										Node ID=1300 Fixt the fever member
+										Speaker=Inquisitor Raphael
+										Player Being Spoken To=Player1
+									}
+									Else=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
+										Node ID=1300 Fixt the fever
+										Speaker=Inquisitor Raphael
+										Player Being Spoken To=Player1
+									}
+								}
 							}
 						}
 					}
@@ -178,7 +254,7 @@ CCannedObject
 							{
 								Entity Name=Inquisitor Raphael
 								Name To Target=
-								Valid Targets=Player
+								Valid Targets=
 							}
 							Action=CIfExpressionAction
 							{
@@ -216,7 +292,7 @@ CCannedObject
 					Name To Target=
 					Must Be Collideable=1
 					Must Have HPs=1
-					Valid Targets=
+					Valid Targets=Player
 				}
 				Has Seen Target=0
 				Max dist from home=1200

@@ -141,7 +141,9 @@ def confront():
     talk = multi([everyone(flag(WITNESSED)),
                   ("CSetTargetTypeAction", [("Entity Name", "Inquisitor Raphael"), ("Name To Target", ""), ("Valid Targets", "")]),
                   greet])
-    return var_if(HOSTILE, to_combat("Inquisitor Raphael"), talk)
+    # Only a Raphael who has already confronted you comes to fight: a save that started Torquemada's fight under
+    # 0.96.0 carries the old flag from the chambers alone, and he still talks to it, so the deal can clear it.
+    return var_if(WITNESSED, var_if(HOSTILE, to_combat("Inquisitor Raphael"), talk), talk)
 
 
 def build_raphael():
@@ -153,8 +155,12 @@ def build_raphael():
     end = balanced(f, k)
     sk = f[k:end]
     assert sk.count("Patrol End Action=" + CR) == 1 and sk.count("Valid Targets=" + CR) == 1, "skeleton fields"
+    # targets first: the confrontation inserted below has an empty Valid Targets of its own (its stand-down), and the
+    # first build set that one instead, so he never looked for anyone and could be walked past
+    t = sk.index("Target Type=CEntityBehaviorStateSetClosestTarget" + CR)
+    v = sk.index("Valid Targets=" + CR, t)
+    sk = sk[:v] + "Valid Targets=Player" + CR + sk[v + len("Valid Targets=" + CR):]
     sk = sk.replace("Patrol End Action=" + CR, "Patrol End Action=" + B(*confront()), 1)
-    sk = sk.replace("Valid Targets=" + CR, "Valid Targets=Player" + CR, 1)
     lhbuild.write_map(MORTAL_CAN, f[:k] + sk + f[end:])
     return [MORTAL_CAN]
 

@@ -6211,6 +6211,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | UQ8 | After UQ1, low Sneak | Walk into the foyer | Raphael spots you and confronts you; leaving afterwards does not count as a getaway |
 | UQ9 | Click Raphael instead of letting him spot you | - | The same conversation opens |
 | UQ10 | Before Montserrat | Visit the chambers and foyer | Nothing changed: Raphael is the ordinary one and nobody confronts you |
+| UQ11 | A save that started Torquemada's fight before this (`aftertorquemada`) | Walk into the foyer | Raphael spots you and **talks**, rather than fighting; the deal clears the hostility everywhere. The guards stay hostile until then |
 
 ## 0.99.45 - no dead ends
 
