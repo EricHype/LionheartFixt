@@ -6183,6 +6183,14 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | UV6 | A save whose town maps were entered before this, Raphael killed after installing it | Walk the streets | Calm, the old maps included |
 | UV7 | Refuse Raphael and get away alive, then Montaillou's inn and church, and Bishop Diego on the Plains | Visit them | Fournier, the inn's agent and Diego are not hostile: Barcelona's quarrel stays in Barcelona |
 
+`tools/build_troll_enrique_dead.py`. Every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| TE1 | Take *Speak for the Trolls*, then kill Enrique (thieves' route, or the Beggar Master quest) | Back to the troll chief | *"Enrique Garcia is dead..."* is offered; his answer, and the quest completes with its XP |
+| TE2 | Kill Enrique first, then meet the chief | Ask about the bodies (`130 the man above`) | *"I can go up..."* is gone; the Enrique claim is offered and resolves it on the spot |
+| TE3 | Cure Enrique instead | The chief | The errand as before: *"I can go up. Let me say it for you."*, and Enrique can lift the price |
+
 ## 0.99.47 - the play's the thing
 
 `tools/build_epilogue_stage.py`, rebuilt. Every save that has not reached the ending.

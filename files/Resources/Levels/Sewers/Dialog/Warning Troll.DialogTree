@@ -451,6 +451,75 @@ Reply Text=I am looking for a human child. Small, and not from down here. He cam
 Go to node ID=96 the boy
 Icon=Quest Icon
 
+Requirement=!None
+Custom Requirement=CAND
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestStateTheCurrentStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK2H7VL
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+State=VVRLBE0M
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/Sewers/Quests/Help the Beggars against the Thieves Guild
+}
+}
+}
+}
+}
+}
+}
+Reply Text=Enrique Garcia is dead. Nobody is left up there to pay anyone to come down.
+Go to node ID=138 Fixt the price died
+Icon=Quest Icon
+
 Requirement=ST 8+
 Reply Text=<Meet his eye, and do not be the first to look away.>
 Go to node ID=150 he sizes you up
@@ -1142,6 +1211,118 @@ Text=Enrique Garcia. The beggars' man. He pays men to come down, and we put them
 Should Have Voiceover=0
 
 Requirement=!None
+Custom Requirement=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+State=VVRLBE0M
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/Sewers/Quests/Help the Beggars against the Thieves Guild
+}
+}
+}
+}
+}
+}
+Reply Text=Enrique Garcia is dead. Nobody is left up there to pay anyone to come down.
+Go to node ID=138 Fixt the price died
+Icon=Quest Icon
+
+Requirement=!None
+Custom Requirement=CExpressionNot
+{
+Operand1=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CWasQuestStateActivatedAction
+{
+Quest=Levels/Sewers/Quests/Kill The Beggar Master
+State=VVRLBE0M
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestCompletedAction
+{
+Quest=Levels/Sewers/Quests/Help the Thieves Destroy the Beggars Guild
+}
+}
+Operator=
+Operand2=COR
+{
+Operand1=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/Sewers/Quests/Find Enrique
+}
+}
+Operator=
+Operand2=CActionExpression
+{
+Action=CIsQuestFailedAction
+{
+Quest=Levels/Sewers/Quests/Help the Beggars against the Thieves Guild
+}
+}
+}
+}
+}
+}
+}
 Reply Text=I can go up. Let me say it for you.
 Go to node ID=131 say it then
 Icon=Quest Icon
@@ -1584,4 +1765,34 @@ Requirement=!None
 Reply Text=I will come back to this.
 Go to node ID=
 Icon=Exit Icon
+------------------------------------------------------------
+Node ID=138 Fixt the price died
+Text=<He is quiet a long while.> Dead. Then nobody pays, and nobody comes. That is not how I wanted it said. But it is said. Now we count quiet days instead of dead ones.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=<Leave him to it.>
+Go to node ID=
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CActivateQuestStateAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+State=SPK9C6XZ
+}
+Action=CUseCannedActionAction
+{
+Canned Object=Levels/Sewers/Quests/Speak for Us XP
+}
+Action=CSetQuestSatusToCompletedAction
+{
+Quest=Levels/Sewers/Quests/Speak for the Trolls
+}
+}
+}
+Icon=Quest Icon
+Is Default Reply=1
 }
