@@ -6169,6 +6169,33 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## 0.99.47 - the play's the thing
+
+`tools/build_epilogue_stage.py`, rebuilt. Every save that has not reached the ending.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| UQ15 | UQ6 again, on 0.99.47: UQ5's character, who killed Torquemada and got out unseen | Finish the game | `900 order inquisition unwitnessed` plays **on the epilogue stage**. On 0.99.46 UQ6 fails: the slide was in the end-game series but the stage, which is what plays, was never rebuilt |
+
+`tools/build_shakespeare_slide.py`, `docs/companion-endings.md`. His replies reach every save, but only from the next Crossroads conversation with him; a save that already answered him gets no slide.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| PL1 | The Crossroads, after the Muse quest, Shakespeare not crossed | Hear his Richard II pitch, answer *"I'm pleased and flattered, William..."*, then finish the game | `900 friend shakespeare` plays (*"...went home to London with his muse..."*), with his figure on the stage |
+| PL2 | Same | Answer *"This place is too dangerous for you. Return to Barcelona."*, then finish the game | He still fades out of the Crossroads as before, and `900 friend shakespeare home` plays (*"You sent William Shakespeare back to Barcelona..."*) |
+| PL3 | A character who extorted him for Shylocke first | Meet him at the Crossroads, try to encourage him, finish the game | He refuses to talk, as in 0.83.5, and only `900 friend shakespeare resents` plays |
+| PL4 | A character who never met him at the Crossroads and never crossed him | Finish the game | No Shakespeare slide, and the epilogue moves straight on to the next |
+
+`tools/quest_reach.py`, `tools/build_quest_repairs.py`, `docs/quest-reach.md`. QR1-QR4: every save, with the quest still open. QR5: a Darkwood Cave not entered since installing, because the Darkwood lying there is frozen into the save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| QR1 | A Wielder initiate sent to Galileo by Cedric, in the Inquisition | Talk to the Prisoner Wielder | *"I'm looking for Galileo."* is offered. It never appeared in vanilla |
+| QR2 | Same, at Galileo | Let him explain how a spirit is got, then carry on talking | *"Cedric told me to seek you out to obtain a spirit for my wand."* is still offered mid-conversation |
+| QR3 | A Knight of Saladin with *Travel to Montserrat* from Jafar | Reach Brother Montgomerie at Montserrat (or take Sahar's ring) | The quest shows **completed**, and the Temple District siege does not later fail it |
+| QR4 | Any other faction | Do the same | No *Travel to Montserrat* entry appears |
+| QR5 | Darkwood Cave | Enter, then pick up the Darkwood | *Obtain Darkwood from the Wilderness* completes, and the rod quest still advances |
+
 ## 0.99.46 - a fever
 
 `tools/build_necromancer_dead.py`. Every save holding the Necromancer title.

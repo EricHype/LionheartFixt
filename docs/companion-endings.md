@@ -715,11 +715,11 @@ already answered him gets no slide for it, since nothing recorded the answer.
 
 | # | Do | Passes when |
 |---|---|---|
-| WS1 | Meet him at the Crossroads and say you are pleased and flattered; finish the game | `900 friend shakespeare` plays, with his figure on the stage |
-| WS2 | Meet him and send him home; finish the game | `900 friend shakespeare home` plays, and he still fades out of the Crossroads as before |
-| WS3 | Extort him for Shylocke first, then meet him and encourage him; finish the game | only `900 friend shakespeare resents` plays |
-| WS4 | Never meet him at the Crossroads, and do not cross him; finish the game | no Shakespeare slide, and the epilogue moves straight on |
-| WS5 | Meet the conditions for `900 order inquisition unwitnessed` (0.99.46, `tools/build_inquisition_quiet.py`) and finish the game | `900 order inquisition unwitnessed` plays on the stage. It is in the end-game series but was missing from the stage 0.99.46 shipped, because the stage was not rebuilt; rebuilding it here picked it up |
+| PL1 | Meet him at the Crossroads and say you are pleased and flattered; finish the game | `900 friend shakespeare` plays, with his figure on the stage |
+| PL2 | Meet him and send him home; finish the game | `900 friend shakespeare home` plays, and he still fades out of the Crossroads as before |
+| PL3 | Extort him for Shylocke first, then meet him and encourage him; finish the game | only `900 friend shakespeare resents` plays |
+| PL4 | Never meet him at the Crossroads, and do not cross him; finish the game | no Shakespeare slide, and the epilogue moves straight on |
+| UQ15 | Meet the conditions for `900 order inquisition unwitnessed` (0.99.46, `tools/build_inquisition_quiet.py`) and finish the game | `900 order inquisition unwitnessed` plays on the stage. It is in the end-game series but was missing from the stage 0.99.46 shipped, because the stage was not rebuilt; rebuilding it here picked it up |
 
 ---
 
