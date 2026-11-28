@@ -20,7 +20,7 @@ documents that explain every decision in it. Releases are on the
 ## Installing
 
 **[Download the latest release](https://github.com/EricHype/LionheartFixt/releases/latest)**
--- currently [0.99.45](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.45).
+-- currently [0.99.46](https://github.com/EricHype/LionheartFixt/releases/tag/v0.99.46).
 
 Unzip it, then double-click **`Mod Manager.bat`**. The button names the mod; click it and
 wait a few seconds.
@@ -56,6 +56,7 @@ The most recent releases:
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.46** | a fever | The Necromancer title raises one of each kind of undead at full strength, there is one Torquemada, and the Inquisition learns of his death from Raphael or not at all. |
 | **0.99.45** | no dead ends | Every dialogue reply a player can choose now goes somewhere, fifteen replies do what their identical twins do, and Lord Javier's first-meeting donation charges once. |
 | **0.99.44** | aimed | The attack wands fly their spells at what you aim at instead of striking their wielder, and the Snakebreed Venom Sac is green on the ground. |
 | **0.99.43** | a dead man's ledger | Killing Shylocke now clears his debt, his collectors on the Plains can be told he is dead, and the robbers speak of him as dead. |
@@ -126,7 +127,7 @@ arcs (they return with Act 8).
 
 ## Status
 
-**0.1.0 through 0.99.45 are published**, and every act of the game has been surveyed, built and
+**0.1.0 through 0.99.46 are published**, and every act of the game has been surveyed, built and
 released. The 0.21-0.25 line is the first work aimed at how the game *plays* rather than at what was
 cut from it, with 0.25.0 the first to change how enemies fight; every release before and since is one
 line in [`docs/changelog.md`](docs/changelog.md).

@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.46** | a fever | The Necromancer title raises one of each kind of undead at full strength, there is one Torquemada, and the Inquisition learns of his death from Raphael or not at all. |
 | **0.99.45** | no dead ends | Every dialogue reply a player can choose now goes somewhere, fifteen replies do what their identical twins do, and Lord Javier's first-meeting donation charges once. |
 | **0.99.44** | aimed | The attack wands fly their spells at what you aim at instead of striking their wielder, and the Snakebreed Venom Sac is green on the ground. |
 | **0.99.43** | a dead man's ledger | Killing Shylocke now clears his debt, his collectors on the Plains can be told he is dead, and the robbers speak of him as dead. |
