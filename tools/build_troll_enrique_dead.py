@@ -7,8 +7,8 @@ Enrique` and `Help the Beggars against the Thieves Guild` and advances `Kill The
 trolls' quest, so a dead Enrique left it open for good, and the chief still offered the errand when he was already dead.
 
 "Enrique is dead" is read from what his death leaves behind: `Kill The Beggar Master` completed or at its killed state,
-`Help the Thieves Destroy the Beggars Guild` completed, or `Find Enrique` or `Help the Beggars against the Thieves Guild`
-failed, which only his death does. A cured Enrique is alive and keeps the errand.
+`Help the Thieves Destroy the Beggars Guild` completed, or `Find Enrique` failed, which only his death does (and the act 6
+siege's tidying, long after). A cured Enrique is alive and keeps the errand.
 
   * The chief's greeting, with the quest taken and Enrique dead, offers *"Enrique Garcia is dead. Nobody is left up there
     to pay anyone to come down."*, to `138 Fixt the price died`, which completes the quest with its XP as `132` does.
@@ -54,8 +54,9 @@ def enrique_dead():
     return any_of([act("CIsQuestCompletedAction", Quest=Q + "Kill The Beggar Master"),
                    B("CActionExpression", [("Action", ("CWasQuestStateActivatedAction", [("Quest", Q + "Kill The Beggar Master"), ("State", "VVRLBE0M")]))]),
                    act("CIsQuestCompletedAction", Quest=Q + "Help the Thieves Destroy the Beggars Guild"),
-                   act("CIsQuestFailedAction", Quest=Q + "Find Enrique"),
-                   act("CIsQuestFailedAction", Quest=Q + "Help the Beggars against the Thieves Guild")])
+                   act("CIsQuestFailedAction", Quest=Q + "Find Enrique")])
+    # not `Help the Beggars against the Thieves Guild` failing: the beggars turning hostile and the Herbalist's scene fail
+    # it too, with Enrique alive (review, 2026-11-28)
 
 
 def both(a, b):

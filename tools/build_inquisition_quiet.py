@@ -569,6 +569,26 @@ def build_sede_stands_down():
     return [MORTAL_CAN]
 
 
+def build_deal_is_not_death():
+    """The deal removes Raphael with `CDeleteAction` a second after it sets `Fixt Inquisition Absolved`. Whether a delete
+    runs a creature's `Destroyed Script Action` is not on record; if it does, a deal would record him dead, give Sede
+    Vacante and the killer title, and leave his house hostile (absolved and dead). So his death script does nothing
+    once you are absolved; a real kill, which comes before any deal, is unchanged (review, 2026-11-28)."""
+    z = lhbuild.read(MORTAL_CAN)
+    f = re.sub(r"(?m)^Object ID=[^\r\n]*\r\n", "", re.sub(r"(?m)^\t+", "", z))
+    key = "Destroyed Script Action="
+    s = f.index(key)
+    v = s + len(key)
+    e = balanced(f, v)
+    death = f[v:e] + CR
+    if death.startswith("CIfExpressionAction" + CR) and "Fixt Inquisition Absolved" in death[:400]:
+        return []
+    assert "Fixt Raphael Dead" in death
+    wrapped = B(*var_if(ABSOLVED, "", "@DEATH@")).replace("@DEATH@" + CR, death).rstrip(CR)
+    lhbuild.write_map(MORTAL_CAN, f[:v] + wrapped + f[e:])
+    return [MORTAL_CAN]
+
+
 def main():
     for path, short, what in ((CH_HOSTILE, "Fixt Chambers Hostile", "1 means the player started the fight with Torquemada in his chambers."),
                               (WITNESSED, "Fixt Raphael Saw You", "1 means Raphael confronted the player after Torquemada died."),
@@ -579,7 +599,7 @@ def main():
             register([rel])
     done = (build_chambers() + build_foyer() + build_raphael() + build_getaway() + build_gi_tree() + build_slides() +
             build_endgame() + build_raphael_tree() + build_foyer_fight() + build_guards() + build_no_ernesto() +
-            build_turns_v2() + build_sede_stands_down())
+            build_turns_v2() + build_sede_stands_down() + build_deal_is_not_death())
     if done:
         register(done)
     print("inquisition quiet:", done)
