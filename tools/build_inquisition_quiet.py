@@ -143,7 +143,9 @@ def confront():
                   greet])
     # Only a Raphael who has already confronted you comes to fight: a save that started Torquemada's fight under
     # 0.96.0 carries the old flag from the chambers alone, and he still talks to it, so the deal can clear it.
-    body = var_if(WITNESSED, var_if(HOSTILE, to_combat("Inquisitor Raphael"), talk), talk)
+    come = multi([("CRemoveAIAction", [("Target Name", "Inquisitor Raphael"), ("AI", "CAIInteractionSpecifier"), ("Delay Between Removes", "0")]),
+                  fight_click("Inquisitor Raphael"), to_combat("Inquisitor Raphael")])
+    body = var_if(WITNESSED, var_if(HOSTILE, come, talk), talk)
     # The hook fires as he acquires a target, and both arms change his targets, which re-fires it inside itself: the
     # first build overflowed the stack on entering the foyer (Lionheart.exe.5216.dmp, 0xC00000FD). So once per Raphael
     # (COnlyOnceAction, as vanilla guards Shylocke's goons), and a tenth of a second later, outside the AI's own call.
@@ -259,6 +261,53 @@ def build_endgame():
     return [ENDGAME]
 
 
+RAPHAEL_TREE = "Resources/" + TREE_PATH + ".DialogTree"
+OPENER = ("<He does not rise.> I can guess from the noise below what has happened, child. No, do not tell me. What I "
+          "have not heard, I need not write down.")
+assert "—" not in OPENER and "--" not in OPENER
+RAPHAEL_FIGHT = "CTriggerRelayAction" + CR + "{" + CR + "Relay Name=Fixt Raphael fight" + CR + "}" + CR
+
+
+def build_raphael_tree():
+    """Asked: "his opening line is an odd way to open the conversation. Perhaps something more akin to 'I can guess from
+    the noise below what has happened.' Which then goes into a second node where he offers the deal", with a Continue.
+    The opener takes the two node IDs the foyer and his can open (`1300 Fixt the fever member`, `1300 Fixt the fever`),
+    so a saved foyer reaches it too, and the deal moves behind it to `1301 ...`. The refusals also give him a fight
+    click once the fight relay has taken his talk one away, as Torquemada's do."""
+    t = lhbuild.read(RAPHAEL_TREE)
+    if "Node ID=1301 Fixt the fever" + CR in t:
+        return []
+    for nid in ("1300 Fixt the fever member", "1300 Fixt the fever"):
+        key = "Node ID=" + nid + CR
+        assert t.count(key) == 1, nid
+        new_id = nid.replace("1300", "1301")
+        opener = ("Node ID=" + nid + CR + "Text=" + OPENER + CR + "Should Have Voiceover=0" + CR + CR +
+                  "Requirement=!None" + CR + "Reply Text=Continue" + CR + "Go to node ID=" + new_id + CR +
+                  "Is Default Reply=1" + CR + "-" * 60 + CR)
+        t = t.replace(key, opener + "Node ID=" + new_id + CR)
+    n = t.count(RAPHAEL_FIGHT)
+    assert n == 2, n
+    t = t.replace(RAPHAEL_FIGHT, B(*multi([relay("Fixt Raphael fight"), delay(0.5, fight_click("Inquisitor Raphael"))])))
+    assert t.count(CR) == t.count("\n")
+    (FX / RAPHAEL_TREE).write_bytes(t.encode("latin-1"))
+    return [RAPHAEL_TREE]
+
+
+def build_foyer_fight():
+    z = lhbuild.read(FOYER)
+    s, e = part_span(z, "Fixt Raphael fight")
+    p = z[s:e]
+    if FIGHT_KIND in p:
+        return []
+    r = p.index("Action=CRemoveAIAction")
+    assert "Target Name=Inquisitor Raphael" in p[r:r + 200]
+    end = balanced(p, r) + len(CR)
+    p = p[:end] + "Action=" + B(*fight_click("Inquisitor Raphael")) + p[end:]
+    p = bump_array(p, p.index("Action=CMultipleActionsAction"), 1)
+    lhbuild.write_map(FOYER, z[:s] + p + z[e:])
+    return [FOYER]
+
+
 def main():
     for path, short, what in ((CH_HOSTILE, "Fixt Chambers Hostile", "1 means the player started the fight with Torquemada in his chambers."),
                               (WITNESSED, "Fixt Raphael Saw You", "1 means Raphael confronted the player after Torquemada died."),
@@ -267,7 +316,8 @@ def main():
         if not (FX / rel).exists():
             write_var(path, short, what)
             register([rel])
-    done = build_chambers() + build_foyer() + build_raphael() + build_getaway() + build_gi_tree() + build_slides() + build_endgame()
+    done = (build_chambers() + build_foyer() + build_raphael() + build_getaway() + build_gi_tree() + build_slides() +
+            build_endgame() + build_raphael_tree() + build_foyer_fight())
     if done:
         register(done)
     print("inquisition quiet:", done)

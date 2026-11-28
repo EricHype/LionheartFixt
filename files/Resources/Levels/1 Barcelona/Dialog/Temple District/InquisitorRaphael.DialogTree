@@ -2612,6 +2612,15 @@ Icon=Exit Icon
 Is Default Reply=1
 ------------------------------------------------------------
 Node ID=1300 Fixt the fever member
+Text=<He does not rise.> I can guess from the noise below what has happened, child. No, do not tell me. What I have not heard, I need not write down.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=1301 Fixt the fever member
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1301 Fixt the fever member
 Text=The Grand Inquisitor has died of a fever. It will be recorded so by nightfall, and I will sign it. <He does not look up.> You were his instrument, child. Now you are mine, whether you wish it or not. Leave Barcelona. The men at the door do not read what I sign.
 Should Have Voiceover=0
 
@@ -2657,13 +2666,68 @@ Is Default Reply=1
 Requirement=!None
 Reply Text=You are next, Raphael.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=Fixt Raphael fight
+}
+Action=CDelayAction
+{
+Next Action=CAddAIAction
+{
+Target Name=Inquisitor Raphael
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+Action=
+X Radius=50
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
 }
 Icon=Fight Icon
 ------------------------------------------------------------
 Node ID=1300 Fixt the fever
+Text=<He does not rise.> I can guess from the noise below what has happened, child. No, do not tell me. What I have not heard, I need not write down.
+Should Have Voiceover=0
+
+Requirement=!None
+Reply Text=Continue
+Go to node ID=1301 Fixt the fever
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=1301 Fixt the fever
 Text=A fever took the Grand Inquisitor. That is what the Holy Office will write, because the alternative is that one heathen walked into these chambers and out again. <He looks at you at last.> I suppose I expected too much of him. You will make a donation to the Holy Office. All of it. It is a small price for the absolution of your sin.
 Should Have Voiceover=0
 
@@ -3009,9 +3073,55 @@ Is Default Reply=1
 Requirement=!None
 Reply Text=I did not kill one Inquisitor to pay another.
 Go to node ID=
-Custom Action=CTriggerRelayAction
+Custom Action=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=2
+Action=CTriggerRelayAction
 {
 Relay Name=Fixt Raphael fight
+}
+Action=CDelayAction
+{
+Next Action=CAddAIAction
+{
+Target Name=Inquisitor Raphael
+AI=CAIInteractionSpecifier
+{
+Marked For Deletion=0
+Publisher=
+Trigger Only Once=0
+Was Triggered=0
+Auto-Flip Switch=1
+Trigge Must Have HP=0
+Triggered By Anything=0
+Triggered By Players=1
+Triggered By Player Friends=0
+Triggered By Enemies=0
+Triggered By Projectiles=0
+Triggered By Name=
+Interaction Description=
+Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+Action=
+X Radius=50
+Attacker Range Modifier=0
+YX Ratio=0.712766
+Highlight Self Time=0
+Highlight Until Clicked=0
+Is Locked=0
+Allow Interact If Has Target=1
+Lock Pick Adjustment=0
+Inventory item to use as key=Inventory Items/!None
+Is Bussy Talking=0
+}
+Delay Between Adds=0
+}
+Delay=0.5
+Plus or Minus=0
+Forget Trigger=0
+}
+}
 }
 Icon=Fight Icon
 ------------------------------------------------------------
