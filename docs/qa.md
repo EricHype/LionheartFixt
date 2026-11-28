@@ -6202,7 +6202,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | UQ1 | A new game, past Montserrat, in Torquemada's chambers | Challenge him | He has an **attack cursor** and you can hit him; his guards, the guards outside and the jailor and Tithe Inquisitor all fight |
-| UQ2 | During or after UQ1 | Go up to the foyer | The foyer guards are **neutral**. Raphael comes to you and speaks first: *"<He does not rise.> I can guess from the noise below what has happened, child..."*, then on Continue the deal (*"A fever took the Grand Inquisitor..."*, or the member line) |
+| UQ2 | During or after UQ1 | Go up to the foyer | The foyer guards are **neutral**. Raphael comes to you and speaks first: *"I can guess from the noise below what has happened, child..."*, then on Continue the deal (*"A fever took the Grand Inquisitor..."*, or the member line) |
 | UQ3 | UQ2 | Take the deal | Everyone neutral, the chambers included on a later visit |
 | UQ4 | UQ2, a fresh try | Refuse | Raphael and the guards fight; from then on every Inquisitor is hostile |
 | UQ5 | After UQ1, sneaking, high Sneak | Slip past Raphael into the Temple District, then come back | Raphael does not confront you; he is the ordinary Raphael; the chambers are neutral again |
@@ -6214,6 +6214,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | UQ11 | A save that started Torquemada's fight before this (`aftertorquemada`) | Walk into the foyer | Raphael spots you and **talks**, rather than fighting; the deal clears the hostility everywhere. The guards stay hostile until then |
 | UQ12 | Refuse Raphael's deal (any save) | Click him | An **attack cursor**: you can hit him, and his guards fight |
 | UQ13 | Refuse Raphael (any save), then later re-enter the foyer | Watch his four guards | They come at you **and attack**, with an attack cursor; they do not stop short and stand there |
+| UQ14 | Any Inquisition guard turning on you: the foyer's armed four, Torquemada's chamber guards | Listen as they charge | Their own battle cries (*"For the Holy Office!"*, *"Confess, or die!"* and the like), about two charges in three; never Ernesto's (*"For Spain!"*, *"For my fair maiden Dulcena"*) |
 
 ## 0.99.45 - no dead ends
 

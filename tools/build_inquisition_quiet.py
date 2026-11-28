@@ -262,8 +262,9 @@ def build_endgame():
 
 
 RAPHAEL_TREE = "Resources/" + TREE_PATH + ".DialogTree"
-OPENER = ("<He does not rise.> I can guess from the noise below what has happened, child. No, do not tell me. What I "
-          "have not heard, I need not write down.")
+OPENER = ("I can guess from the noise below what has happened, child. No, do not tell me. What I have not heard, I need "
+          "not write down.")
+OLD_OPENER = "<He does not rise.> " + OPENER  # the first build's; he is standing (reported)
 assert "—" not in OPENER and "--" not in OPENER
 RAPHAEL_FIGHT = "CTriggerRelayAction" + CR + "{" + CR + "Relay Name=Fixt Raphael fight" + CR + "}" + CR
 
@@ -383,6 +384,88 @@ def build_guards():
     return done
 
 
+ERNESTO = "Dialog Tree File=Levels/Wilderness/Dialog/Crazy Goblin Trapped Conquistador"
+
+
+GUARD_TREE_PATH = "Levels/1 Barcelona/Dialog/Temple District/Inquisitor Generic Guard"
+GUARD_TREE = "Resources/" + GUARD_TREE_PATH + ".DialogTree"
+CRIES = [("300 Fixt cry holy office", "For the Holy Office!"),
+         ("301 Fixt cry judged", "Heretic! Stand and be judged!"),
+         ("302 Fixt cry burn", "You will burn for this!"),
+         ("303 Fixt cry in the name", "In the name of the Inquisition!"),
+         ("304 Fixt cry confess", "Confess, or die!"),
+         ("305 Fixt cry seize", "Seize the heretic!"),
+         ("306 Fixt cry no mercy", "No mercy for the wicked!"),
+         ("307 Fixt cry flames", "The flames are waiting for you!")]
+for _, c in CRIES:
+    assert "—" not in c and "--" not in c
+
+
+def strip_ernesto(text):
+    """`Inquisition Guard Generic.can` is a vanilla clone of Ernesto's can, and its skeleton kept his attack barks: the
+    transition into Attack shows a random one of "For Spain!" ... "For my fair maiden Dulcena". Reported from the armed
+    foyer guards; the chambers' guards from the same can always had it. The guards' own tree had no battle cries
+    ("Move along" and the like), so it gains eight (`CRIES`), approved: "the guards can have battle cries, they should
+    just be different than ernesto". Each of Ernesto's eight balloons is pointed at one of them, in order; the four
+    `CSucceedAction` pads stay, so the guards shout as often as before, two charges in three."""
+    out, n, pos = text, 0, 0
+    pat = re.compile(re.escape(ERNESTO) + r"\r\nNode ID=[^\r\n]*\r\n")
+    while True:
+        i = out.find(ERNESTO, pos)
+        if i < 0:
+            return out, n
+        a = out.rindex("Action=CRandomAction" + CR, 0, i)
+        e = balanced(out, a)
+        seg = out[a:e]
+        hits = pat.findall(seg)
+        assert len(hits) == len(CRIES) and seg.count("Action=CSucceedAction") == 4, (len(hits), seg[:200])
+        k = iter(CRIES)
+        seg = pat.sub(lambda m: "Dialog Tree File=" + GUARD_TREE_PATH + CR + "Node ID=" + next(k)[0] + CR, seg)
+        out = out[:a] + seg + out[e:]
+        pos = a + len(seg)
+        n += 1
+
+
+def build_guard_tree():
+    t = lhbuild.read(GUARD_TREE)
+    if "Node ID=" + CRIES[0][0] + CR in t:
+        return []
+    assert t.endswith("}" + CR) and t.count(CR) == t.count("\n")
+    add = "".join("-" * 60 + CR + lhbuild.node(nid, text, []) for nid, text in CRIES)
+    t = t[:-len("}" + CR)].rstrip(CR) + CR + add + "}" + CR
+    (FX / GUARD_TREE).parent.mkdir(parents=True, exist_ok=True)
+    (FX / GUARD_TREE).write_bytes(t.encode("latin-1"))
+    return [GUARD_TREE]
+
+
+def build_no_ernesto():
+    done = build_guard_tree()
+    for rel in (GUARD_CAN, MORTAL_CAN, FOYER):
+        z = lhbuild.read(rel)
+        if ERNESTO not in z:
+            continue
+        f = re.sub(r"(?m)^Object ID=[^\r\n]*\r\n", "", re.sub(r"(?m)^\t+", "", z))
+        f, n = strip_ernesto(f)
+        assert n >= 1 and ERNESTO not in f, (rel, n)
+        lhbuild.write_map(rel, f)
+        done.append(rel)
+    t = lhbuild.read(RAPHAEL_TREE)
+    changed = False
+    if ERNESTO in t:
+        t, n = strip_ernesto(t)
+        assert ERNESTO not in t
+        changed = True
+    if OLD_OPENER in t:
+        assert t.count(OLD_OPENER) == 2
+        t = t.replace(OLD_OPENER, OPENER)
+        changed = True
+    if changed:
+        assert t.count(CR) == t.count("\n")
+        (FX / RAPHAEL_TREE).write_bytes(t.encode("latin-1"))
+        done.append(RAPHAEL_TREE)
+    return done
+
+
 def main():
     for path, short, what in ((CH_HOSTILE, "Fixt Chambers Hostile", "1 means the player started the fight with Torquemada in his chambers."),
                               (WITNESSED, "Fixt Raphael Saw You", "1 means Raphael confronted the player after Torquemada died."),
@@ -392,7 +475,7 @@ def main():
             write_var(path, short, what)
             register([rel])
     done = (build_chambers() + build_foyer() + build_raphael() + build_getaway() + build_gi_tree() + build_slides() +
-            build_endgame() + build_raphael_tree() + build_foyer_fight() + build_guards())
+            build_endgame() + build_raphael_tree() + build_foyer_fight() + build_guards() + build_no_ernesto())
     if done:
         register(done)
     print("inquisition quiet:", done)
