@@ -1,0 +1,1703 @@
+CSkillDescription
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=5
+		PlugIn Behavior=CPlugInBehaviorSpell
+		{
+			ManaUse=CMultiply
+			{
+				Operand1=CVariableDerivedCharacterAttribute
+				{
+					Character Attribute=Derived Character Attributes/Perk and Trait Support/Tribal Spell Cast Multiplier
+				}
+				Operator=
+				Operand2=CConstant
+				{
+					Constant Value=40
+				}
+			}
+			Duration=CConstant
+			{
+				Constant Value=180
+			}
+			Automatically disable recasting of spell for duration=1
+			Maximum Range=CConstant
+			{
+				Constant Value=700
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorPlaySequence
+		{
+			Granny Animations=Array
+			{
+				Item Count=0
+			}
+			Sequence Name=SpellCast
+			Random Sequence Selection=0
+			Sequence Index=-1
+		}
+		PlugIn Behavior=CPlugInBehaviorAttack
+		{
+			Max Attack Range=800
+			Is Location Based=1
+			Can Use Slayer Mode=0
+			Can Use Sniper Mode=0
+			Action On Hit=
+			Action On Miss=
+		}
+		PlugIn Behavior=CXRPGPlugInBehaviorLauncher
+		{
+			After Launch Action=
+			Num To Launch=1
+			Dispersion Angle=180
+			Aim At Parents Target=1
+			Launch Offset=0.000000,0.000000
+			Parents Bone Launch Location=Bip01 R Hand
+			Direction From Bone X=0
+			Direction From Bone Y=0
+			Direction From Bone Z=0
+			Requires Line Of Sight=1
+			Primary Launchable Slot=Character Slot Types/!None
+			Secondary Launchable Types=Array
+			{
+				Item Count=1
+				Secondary Launchable Type=Spell Projectiles/Raise Undead Instant Hit Projectile
+			}
+			Damages=Array
+			{
+				Item Count=0
+			}
+		}
+		PlugIn Behavior=CPlugInBehaviorLaunchAction
+		{
+			Launch Action=CMultipleActionsAction
+			{
+				Action=Array
+				{
+					Item Count=5
+					Action=CAddCharacterModifierToCharacterAction
+					{
+						Modifier Description=
+						Modification is permanent=0
+						Character to modify=$Instigator
+						Modifiers=Array
+						{
+							Item Count=1
+							Modifier=CCharacterModifierDerivedAttribute
+							{
+								Modification Amount=CIfExpression
+								{
+									Condition=CIsEqualTo
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Player has cast a spell
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									OperatorPart1=
+									Value if True =CConstant
+									{
+										Constant Value=1
+									}
+									OperatorPart2=
+									Value if False=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Modification amount is a percent=0
+								Allow Accumulation=0
+								Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Player has cast a spell
+							}
+						}
+						OPTIONAL Duration=CConstant
+						{
+							Constant Value=0.1
+						}
+						Expression Context=$Instigator
+					}
+					Action=CIfAction
+					{
+						If=CCheckCategoryAction
+						{
+							Target Name=$Instigator
+							Category to check for=Player
+						}
+						Then=CTriggerRelayAction
+						{
+							Relay Name=Spellcast
+						}
+						Else=
+						Return failure if the If failes=0
+					}
+					Action=CDisableRecastingOfSpellForSpellsDuration
+					{
+						Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+						Character To Disable=$Caster
+						OPTIONAL Duration=CVariableSpellDuration
+						{
+							Spell=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+					}
+					Action=CDisableRecastingOfSpellForSpellsDuration
+					{
+						Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+						Character To Disable=$Caster
+						OPTIONAL Duration=CVariableSpellDuration
+						{
+							Spell=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+					}
+					Action=CDisableRecastingOfSpellForSpellsDuration
+					{
+						Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+						Character To Disable=$Caster
+						OPTIONAL Duration=CVariableSpellDuration
+						{
+							Spell=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+					}
+				}
+			}
+		}
+	}
+	Display Name=Raise Undead
+	Description=%?[zombie]Summons a Zombie with %i[ShowZombieHPPercent]% of it's normal Hit Points and %i[ShowZombieDamagePercent]% of it's normal damage to fight for the caster.%?[HideZombieBonus]%?[ShowNoPerkBonus] At higher levels, the Zombie gains a damage bonus. At still higher levels, other types of undead are summoned.%?[ShowNoPerkBonus]%?[ShowNecrosageBonus] The Zombie also gains a +%i[ZombiePerkBonus] damage bonus (includes the Necrosage Perk bonus). At higher levels, other types of undead are summoned.%?[ShowNecrosageBonus]%?[HideZombieBonus]%?[ShowZombieBonus] The Zombie also gains a +%i[ZombiePerkBonus] damage bonus%?[ShowNecrosageBonus] (includes the Necrosage Perk bonus)%?[ShowNecrosageBonus]. At higher levels, other types of undead are summoned.%?[ShowZombieBonus]%?[zombie]%?[skeleton]Summons a Greater Skeleton with %i[ShowSkeletonHPPercent]% of it's normal Hit Points%?[PerkHPBonus] (including the Undead Glory Perk bonus)%?[PerkHPBonus] and %i[ShowSkeletonDamagePercent]% of it's normal damage to fight for the caster.%?[HideSkeletonBonus]%?[ShowNoPerkBonus] At higher levels, the Skeleton gains a damage bonus. At still higher levels, a Soul Reaver will be summoned.%?[ShowNoPerkBonus]%?[ShowNecrosageBonus] The Skeleton also gains a +%i[SkeletonPerkBonus] damage bonus (includes the Necrosage Perk bonus). At higher levels, a Soul Reaver will be summoned.%?[ShowNecrosageBonus]%?[ShowUndeadGloryBonus] The Skeleton also gains a +%i[SkeletonPerkBonus] damage bonus (includes the Undead Glory Perk bonus). At higher levels, a Soul Reaver will be summoned.%?[ShowUndeadGloryBonus]%?[ShowBothPerkBonus] The Skeleton also gains a +%i[SkeletonPerkBonus] damage bonus (includes the Necrosage and Undead Glory Perk bonuses). At higher levels, a Soul Reaver will be summoned.%?[ShowBothPerkBonus]%?[HideSkeletonBonus]%?[ShowSkeletonBonus] The Skeleton also gains a +%i[SkeletonPerkBonus] damage bonus%?[ShowNecrosageBonus] (includes the Necrosage Perk bonus)%?[ShowNecrosageBonus]%?[ShowUndeadGloryBonus] (includes the Undead Glory Perk bonus)%?[ShowUndeadGloryBonus]%?[ShowBothPerkBonus] (includes the Necrosage and Undead Glory Perk bonuses)%?[ShowBothPerkBonus]. At higher levels, a Soul Reaver will be summoned.%?[ShowSkeletonBonus]%?[skeleton]%?[soulreaver]Summons a Soul Reaver with %i[ShowSoulReaverHPPercent]% of it's normal Hit Points%?[PerkHPBonus] (including the Undead Glory Perk bonus)%?[PerkHPBonus] and %i[ShowSoulReaverDamagePercent]% of it's normal damage to fight for the caster.%?[HideSoulReaverBonus]%?[ShowNoPerkBonus] At higher levels, the Soul Reaver gains a damage bonus.%?[ShowNoPerkBonus]%?[ShowNecrosageBonus] The Soul Reaver also gains a +%i[SoulReaverPerkBonus] damage bonus (includes the Necrosage Perk bonus).%?[ShowNecrosageBonus]%?[ShowUndeadGloryBonus] The Soul Reaver also gains a +%i[SoulReaverPerkBonus] damage bonus (includes the Undead Glory Perk bonus).%?[ShowUndeadGloryBonus]%?[ShowBothPerkBonus] The Soul Reaver also gains a +%i[SoulReaverPerkBonus] damage bonus (includes the Necrosage and Undead Glory Perk bonuses).%?[ShowBothPerkBonus]%?[HideSoulReaverBonus]%?[ShowSoulReaverBonus] The Soul Reaver also gains a +%i[SoulReaverPerkBonus] damage bonus%?[ShowNecrosageBonus] (includes the Necrosage Perk bonus)%?[ShowNecrosageBonus]%?[ShowUndeadGloryBonus] (includes the Undead Glory Perk bonus)%?[ShowUndeadGloryBonus]%?[ShowBothPerkBonus] (includes the Necrosage and Undead Glory Perk bonuses)%?[ShowBothPerkBonus].%?[ShowSoulReaverBonus]%?[soulreaver] Maintaining a summoned undead warrior slowly drains the caster's mana. You may not maintain two summoning spells simultaneously. One who holds the Necromancer title raises the dead as though this spell were at their full Summoning skill, and keeps one of each kind it can command: a Zombie, a Greater Skeleton from 50, and a Soul Reaver from 100. Each cast raises the strongest one missing.
+	Character Creation Screen Description=
+	Expressions=CNamedExpressionsArray
+	{
+		Expressions=Array
+		{
+			Array Count=31
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=zombie
+				Expression=CIsLessThan
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=50
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=skeleton
+				Expression=CAND
+				{
+					Operand1=CIsGreaterThanOrEqual
+					{
+						Operand1=CAdd
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							}
+							Operator=
+							Operand2=CIfExpression
+							{
+								Condition=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Necromancer
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=49
+								}
+								OperatorPart2=
+								Value if False=CConstant
+								{
+									Constant Value=0
+								}
+							}
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=50
+						}
+					}
+					Operator=
+					Operand2=CIsLessThan
+					{
+						Operand1=CAdd
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							}
+							Operator=
+							Operand2=CIfExpression
+							{
+								Condition=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Necromancer
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=49
+								}
+								OperatorPart2=
+								Value if False=CConstant
+								{
+									Constant Value=0
+								}
+							}
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=100
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=soulreaver
+				Expression=CIsGreaterThanOrEqual
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=100
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ZombiePercent
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=-50
+					}
+					Output Step=CConstant
+					{
+						Constant Value=50
+					}
+					Input Value=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Input Base=CConstant
+					{
+						Constant Value=1
+					}
+					Input Step=CConstant
+					{
+						Constant Value=28
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=0
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowZombieHPPercent
+				Expression=CAdd
+				{
+					Operand1=CConstant
+					{
+						Constant Value=100
+					}
+					Operator=
+					Operand2=CAdd
+					{
+						Operand1=CSkillsNamedExpressionExpression
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							Expression Name=ZombiePercent
+						}
+						Operator=
+						Operand2=CSkillsNamedExpressionExpression
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							Expression Name=PerkHPBonus
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowZombieDamagePercent
+				Expression=CAdd
+				{
+					Operand1=CConstant
+					{
+						Constant Value=100
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=ZombiePercent
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=SkeletonPercent
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=-50
+					}
+					Output Step=CConstant
+					{
+						Constant Value=50
+					}
+					Input Value=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Input Base=CConstant
+					{
+						Constant Value=30
+					}
+					Input Step=CConstant
+					{
+						Constant Value=38
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=0
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowSkeletonHPPercent
+				Expression=CAdd
+				{
+					Operand1=CConstant
+					{
+						Constant Value=100
+					}
+					Operator=
+					Operand2=CAdd
+					{
+						Operand1=CSkillsNamedExpressionExpression
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							Expression Name=SkeletonPercent
+						}
+						Operator=
+						Operand2=CSkillsNamedExpressionExpression
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							Expression Name=PerkHPBonus
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowSkeletonDamagePercent
+				Expression=CAdd
+				{
+					Operand1=CConstant
+					{
+						Constant Value=100
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=SkeletonPercent
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=SoulReaverPercent
+				Expression=CExpressionIncreaseBy
+				{
+					Output Base=CConstant
+					{
+						Constant Value=-25
+					}
+					Output Step=CConstant
+					{
+						Constant Value=75
+					}
+					Input Value=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Input Base=CConstant
+					{
+						Constant Value=70
+					}
+					Input Step=CConstant
+					{
+						Constant Value=130
+					}
+					Output Min=
+					Output Max=CConstant
+					{
+						Constant Value=50
+					}
+					Output 0 if input is below input base=1
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowSoulReaverHPPercent
+				Expression=CAdd
+				{
+					Operand1=CConstant
+					{
+						Constant Value=100
+					}
+					Operator=
+					Operand2=CAdd
+					{
+						Operand1=CSkillsNamedExpressionExpression
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							Expression Name=SoulReaverPercent
+						}
+						Operator=
+						Operand2=CSkillsNamedExpressionExpression
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							Expression Name=PerkHPBonus
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowSoulReaverDamagePercent
+				Expression=CAdd
+				{
+					Operand1=CConstant
+					{
+						Constant Value=100
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=SoulReaverPercent
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ZombieBonus
+				Expression=CIfExpression
+				{
+					Condition=CIsLessThan
+					{
+						Operand1=CAdd
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							}
+							Operator=
+							Operand2=CIfExpression
+							{
+								Condition=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Necromancer
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=49
+								}
+								OperatorPart2=
+								Value if False=CConstant
+								{
+									Constant Value=0
+								}
+							}
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=10
+						}
+					}
+					OperatorPart1=
+					Value if True =CConstant
+					{
+						Constant Value=0
+					}
+					OperatorPart2=
+					Value if False=CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CAdd
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Tribal/Offensive/Raise Undead
+								}
+								Operator=
+								Operand2=CIfExpression
+								{
+									Condition=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Necromancer
+										}
+									}
+									OperatorPart1=
+									Value if True =CConstant
+									{
+										Constant Value=49
+									}
+									OperatorPart2=
+									Value if False=CConstant
+									{
+										Constant Value=0
+									}
+								}
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=20
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=1
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=2
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ZombiePerkBonus
+				Expression=CAdd
+				{
+					Operand1=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=ZombieBonus
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=PerkBonus
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=HideZombieBonus
+				Expression=CIsLessThan
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=10
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowZombieBonus
+				Expression=CIsGreaterThanOrEqual
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=10
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=SkeletonBonus
+				Expression=CIfExpression
+				{
+					Condition=CIsLessThan
+					{
+						Operand1=CAdd
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							}
+							Operator=
+							Operand2=CIfExpression
+							{
+								Condition=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Necromancer
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=49
+								}
+								OperatorPart2=
+								Value if False=CConstant
+								{
+									Constant Value=0
+								}
+							}
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=50
+						}
+					}
+					OperatorPart1=
+					Value if True =CConstant
+					{
+						Constant Value=0
+					}
+					OperatorPart2=
+					Value if False=CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CAdd
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Tribal/Offensive/Raise Undead
+								}
+								Operator=
+								Operand2=CIfExpression
+								{
+									Condition=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Necromancer
+										}
+									}
+									OperatorPart1=
+									Value if True =CConstant
+									{
+										Constant Value=49
+									}
+									OperatorPart2=
+									Value if False=CConstant
+									{
+										Constant Value=0
+									}
+								}
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=50
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=1
+						}
+						OperatorPart2=
+						Value if False=CIfExpression
+						{
+							Condition=CIsLessThan
+							{
+								Operand1=CAdd
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Tribal/Offensive/Raise Undead
+									}
+									Operator=
+									Operand2=CIfExpression
+									{
+										Condition=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Necromancer
+											}
+										}
+										OperatorPart1=
+										Value if True =CConstant
+										{
+											Constant Value=49
+										}
+										OperatorPart2=
+										Value if False=CConstant
+										{
+											Constant Value=0
+										}
+									}
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=60
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=2
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=3
+							}
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=SkeletonPerkBonus
+				Expression=CAdd
+				{
+					Operand1=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=SkeletonBonus
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=PerkBonus
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=HideSkeletonBonus
+				Expression=CIsLessThan
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=50
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowSkeletonBonus
+				Expression=CIsGreaterThanOrEqual
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=50
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=SoulReaverBonus
+				Expression=CIfExpression
+				{
+					Condition=CIsLessThan
+					{
+						Operand1=CAdd
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							}
+							Operator=
+							Operand2=CIfExpression
+							{
+								Condition=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Necromancer
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=49
+								}
+								OperatorPart2=
+								Value if False=CConstant
+								{
+									Constant Value=0
+								}
+							}
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=100
+						}
+					}
+					OperatorPart1=
+					Value if True =CConstant
+					{
+						Constant Value=0
+					}
+					OperatorPart2=
+					Value if False=CIfExpression
+					{
+						Condition=CIsLessThan
+						{
+							Operand1=CAdd
+							{
+								Operand1=CVariableSkill
+								{
+									Skill=Skills/Magic Tribal/Offensive/Raise Undead
+								}
+								Operator=
+								Operand2=CIfExpression
+								{
+									Condition=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Necromancer
+										}
+									}
+									OperatorPart1=
+									Value if True =CConstant
+									{
+										Constant Value=49
+									}
+									OperatorPart2=
+									Value if False=CConstant
+									{
+										Constant Value=0
+									}
+								}
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=90
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=1
+						}
+						OperatorPart2=
+						Value if False=CIfExpression
+						{
+							Condition=CIsLessThan
+							{
+								Operand1=CAdd
+								{
+									Operand1=CVariableSkill
+									{
+										Skill=Skills/Magic Tribal/Offensive/Raise Undead
+									}
+									Operator=
+									Operand2=CIfExpression
+									{
+										Condition=CHasPerkExpression
+										{
+											Perks To Check For=Array
+											{
+												Item Count=1
+												Perk To Check For=Perks/!Event Title Perks/Necromancer
+											}
+										}
+										OperatorPart1=
+										Value if True =CConstant
+										{
+											Constant Value=49
+										}
+										OperatorPart2=
+										Value if False=CConstant
+										{
+											Constant Value=0
+										}
+									}
+								}
+								Operator=
+								Operand2=CConstant
+								{
+									Constant Value=100
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=2
+							}
+							OperatorPart2=
+							Value if False=CIfExpression
+							{
+								Condition=CIsLessThan
+								{
+									Operand1=CAdd
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+										}
+										Operator=
+										Operand2=CIfExpression
+										{
+											Condition=CHasPerkExpression
+											{
+												Perks To Check For=Array
+												{
+													Item Count=1
+													Perk To Check For=Perks/!Event Title Perks/Necromancer
+												}
+											}
+											OperatorPart1=
+											Value if True =CConstant
+											{
+												Constant Value=49
+											}
+											OperatorPart2=
+											Value if False=CConstant
+											{
+												Constant Value=0
+											}
+										}
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=110
+									}
+								}
+								OperatorPart1=
+								Value if True =CConstant
+								{
+									Constant Value=3
+								}
+								OperatorPart2=
+								Value if False=CIfExpression
+								{
+									Condition=CIsLessThan
+									{
+										Operand1=CAdd
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											}
+											Operator=
+											Operand2=CIfExpression
+											{
+												Condition=CHasPerkExpression
+												{
+													Perks To Check For=Array
+													{
+														Item Count=1
+														Perk To Check For=Perks/!Event Title Perks/Necromancer
+													}
+												}
+												OperatorPart1=
+												Value if True =CConstant
+												{
+													Constant Value=49
+												}
+												OperatorPart2=
+												Value if False=CConstant
+												{
+													Constant Value=0
+												}
+											}
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=120
+										}
+									}
+									OperatorPart1=
+									Value if True =CConstant
+									{
+										Constant Value=4
+									}
+									OperatorPart2=
+									Value if False=CIfExpression
+									{
+										Condition=CIsLessThan
+										{
+											Operand1=CAdd
+											{
+												Operand1=CVariableSkill
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												}
+												Operator=
+												Operand2=CIfExpression
+												{
+													Condition=CHasPerkExpression
+													{
+														Perks To Check For=Array
+														{
+															Item Count=1
+															Perk To Check For=Perks/!Event Title Perks/Necromancer
+														}
+													}
+													OperatorPart1=
+													Value if True =CConstant
+													{
+														Constant Value=49
+													}
+													OperatorPart2=
+													Value if False=CConstant
+													{
+														Constant Value=0
+													}
+												}
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=130
+											}
+										}
+										OperatorPart1=
+										Value if True =CConstant
+										{
+											Constant Value=5
+										}
+										OperatorPart2=
+										Value if False=CConstant
+										{
+											Constant Value=6
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=SoulReaverPerkBonus
+				Expression=CAdd
+				{
+					Operand1=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=SoulReaverBonus
+					}
+					Operator=
+					Operand2=CSkillsNamedExpressionExpression
+					{
+						Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						Expression Name=PerkBonus
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=HideSoulReaverBonus
+				Expression=CIsLessThan
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=100
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowSoulReaverBonus
+				Expression=CIsGreaterThanOrEqual
+				{
+					Operand1=CAdd
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CIfExpression
+						{
+							Condition=CHasPerkExpression
+							{
+								Perks To Check For=Array
+								{
+									Item Count=1
+									Perk To Check For=Perks/!Event Title Perks/Necromancer
+								}
+							}
+							OperatorPart1=
+							Value if True =CConstant
+							{
+								Constant Value=49
+							}
+							OperatorPart2=
+							Value if False=CConstant
+							{
+								Constant Value=0
+							}
+						}
+					}
+					Operator=
+					Operand2=CConstant
+					{
+						Constant Value=100
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=PerkBonus
+				Expression=CIfExpression
+				{
+					Condition=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/Necrosage
+						}
+					}
+					OperatorPart1=
+					Value if True =CIfExpression
+					{
+						Condition=CHasPerkExpression
+						{
+							Perks To Check For=Array
+							{
+								Item Count=1
+								Perk To Check For=Perks/Undead Glory
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=2
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=1
+						}
+					}
+					OperatorPart2=
+					Value if False=CIfExpression
+					{
+						Condition=CHasPerkExpression
+						{
+							Perks To Check For=Array
+							{
+								Item Count=1
+								Perk To Check For=Perks/Undead Glory
+							}
+						}
+						OperatorPart1=
+						Value if True =CConstant
+						{
+							Constant Value=1
+						}
+						OperatorPart2=
+						Value if False=CConstant
+						{
+							Constant Value=0
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=PerkHPBonus
+				Expression=CIfExpression
+				{
+					Condition=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/Undead Glory
+						}
+					}
+					OperatorPart1=
+					Value if True =CConstant
+					{
+						Constant Value=15
+					}
+					OperatorPart2=
+					Value if False=CConstant
+					{
+						Constant Value=0
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowUndeadGloryHP
+				Expression=CHasPerkExpression
+				{
+					Perks To Check For=Array
+					{
+						Item Count=1
+						Perk To Check For=Perks/Undead Glory
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowNecrosageBonus
+				Expression=CAND
+				{
+					Operand1=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/Necrosage
+						}
+					}
+					Operator=
+					Operand2=CExpressionNot
+					{
+						Operand1=CHasPerkExpression
+						{
+							Perks To Check For=Array
+							{
+								Item Count=1
+								Perk To Check For=Perks/Undead Glory
+							}
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowUndeadGloryBonus
+				Expression=CAND
+				{
+					Operand1=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/Undead Glory
+						}
+					}
+					Operator=
+					Operand2=CExpressionNot
+					{
+						Operand1=CHasPerkExpression
+						{
+							Perks To Check For=Array
+							{
+								Item Count=1
+								Perk To Check For=Perks/Necrosage
+							}
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowBothPerkBonus
+				Expression=CAND
+				{
+					Operand1=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/Necrosage
+						}
+					}
+					Operator=
+					Operand2=CHasPerkExpression
+					{
+						Perks To Check For=Array
+						{
+							Item Count=1
+							Perk To Check For=Perks/Undead Glory
+						}
+					}
+				}
+			}
+			Array Item=CNamedExpressionsArrayItem
+			{
+				Name=ShowNoPerkBonus
+				Expression=CAND
+				{
+					Operand1=CExpressionNot
+					{
+						Operand1=CHasPerkExpression
+						{
+							Perks To Check For=Array
+							{
+								Item Count=1
+								Perk To Check For=Perks/Undead Glory
+							}
+						}
+					}
+					Operator=
+					Operand2=CExpressionNot
+					{
+						Operand1=CHasPerkExpression
+						{
+							Perks To Check For=Array
+							{
+								Item Count=1
+								Perk To Check For=Perks/Necrosage
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	Parent Skill=Skills/Magic Tribal/Summoning
+	Value Type=Parents value minus differential
+	Value Differential=49
+	Can be selected as Tag Skill=0
+	Image=Skills/Magic Tribal/Offensive/Raise Undead
+	Amount To Increase Value By With Each Upgrade=1
+	Minimum Value=-100
+	Maximum Value=300
+	Sort Priority=0
+	Initial Value=CConstant
+	{
+		Constant Value=0
+	}
+	Initial Minimum & Maximum=0.000000,33.000000
+	Display and Cast Requirements=Array
+	{
+		Item Count=0
+	}
+	Cast Requirements=Array
+	{
+		Item Count=0
+	}
+}

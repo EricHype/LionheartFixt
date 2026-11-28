@@ -1,0 +1,4311 @@
+CInventoryItem
+{
+	PlugIn Behaviors=Array
+	{
+		Item Count=2
+		PlugIn Behavior=CPlugInBehaviorProjectile
+		{
+			Projectile Model=Spell Effects/Shots/Tribal Shot
+			Stop At Target Position=1
+			Num Seconds Allowed To Live=-1
+			Hit Action=
+			Does Damage Directly=1
+		}
+		PlugIn Behavior=CPlugInBehaviorProjectileInstantHit
+		{
+			Hit Action=CIfExpressionAction
+			{
+				If Expression=CHasPerkExpression
+				{
+					Perks To Check For=Array
+					{
+						Item Count=1
+						Perk To Check For=Perks/!Event Title Perks/Necromancer
+					}
+				}
+				Character to get attributes from=$Caster
+				Then=CIfAction
+				{
+					If=CAndAction
+					{
+						Action=Array
+						{
+							Item Count=2
+							Action=CExpressionAction
+							{
+								Expression=CIsGreaterThanOrEqual
+								{
+									Operand1=CAdd
+									{
+										Operand1=CVariableSkill
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=49
+										}
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=100
+									}
+								}
+								Character to get attributes from=$Caster
+							}
+							Action=CNotAction
+							{
+								Action=CIsAliveAction
+								{
+									Name To Check For=Raised Reaver
+									Desired Minimum Count=1
+								}
+							}
+						}
+					}
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=12
+							Action=CCreateEntityFromCanAction
+							{
+								New Location=$Trigger
+								Copy Height=0
+								Random Location Delta=0
+								Warp Behavior=
+								Canned Entity to Create=Monster Cans/Summoned Cans/Soul Reaver 01
+								New Name=Raised Reaver
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Raised Reaver
+								Categories To Remove=Enemy
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=
+								Modification is permanent=0
+								Character to modify=Raised Reaver
+								Modifiers=Array
+								{
+									Item Count=11
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=SoulReaverPercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CAdd
+										{
+											Operand1=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Operator=
+											Operand2=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=PerkHPBonus
+											}
+										}
+										Modification amount is a percent=1
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CAdd
+										{
+											Operand1=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverBonus
+											}
+											Operator=
+											Operand2=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=PerkBonus
+											}
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/MeleeDamage
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$caster
+							}
+							Action=CSetCompanionAction
+							{
+								Player=$Caster
+								Companion=Raised Reaver
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Raised Reaver
+								Categories to add=Summoned Creature
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+								Location Entity=Raised Reaver
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Raised Reaver
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=Released Companion
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=4
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+														Character To Reset=$Caster
+													}
+												}
+											}
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=$Trigger
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Raised Reaver
+								AI=CTemporaryAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CGenericParticleSystemAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Outer Cone Angle=CConeAngleEnvelope
+										{
+											Start Value=25
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=25
+											Using Start=1
+											Direction=-1
+										}
+										Inner Cone Angle=CConeAngleEnvelope
+										{
+											Start Value=24
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=24
+											Using Start=1
+											Direction=-1
+										}
+										Face Angle=CFacingAngleEnvelope
+										{
+											Start Value=108.5
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=108.5
+											Using Start=1
+											Direction=-1
+										}
+										Cone Trajectory=CTrajectoryEnvelope
+										{
+											Start Value=90
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=90
+											Using Start=1
+											Direction=-1
+										}
+										Burst Frequency=5
+										Burst Frequency Variance=0
+										Num Bursts To Stop After=Don't Stop
+										Start Point Type=CDiskParticleStartPositionType
+										{
+											Radius=CConstant
+											{
+												Constant Value=16
+											}
+											Expression Context=$caster
+											Outside Radius=CLengthEnvelope
+											{
+												Start Value=5
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=5
+												Using Start=1
+												Direction=-1
+											}
+											YX Ratio=0.9
+											Use Cone Angle For Start Pos=1
+										}
+										Orient To Parent's Rotation=1
+										X Offset=0
+										Y Offset=0
+										Height=0
+										Speed=CSpeedEnvelope
+										{
+											Start Value=90
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=150
+											Using Start=1
+											Direction=-1
+										}
+										Speed Variance=15
+										Age=CTimeEnvelope
+										{
+											Start Value=0.9
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=0.9
+											Using Start=1
+											Direction=-1
+										}
+										Age Variance=0.1
+										Max Travel Distance=999999
+										Min Travel Distance=0
+										Use Particle As Shot=0
+										Make Child of Generator=1
+										Limit Duration To First Collision=0
+										Particles=Array
+										{
+											Item Count=2
+											Particles=CParticleInfo
+											{
+												Model=Particles/Tribal Tracer
+												AI=CSwirlParticleAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													X Center Pos=0
+													Y Center Pos=0
+													Z Center Pos=0
+													Animated=0
+													Obey Sequence FPS=0
+													Y To X Ratio=0
+													Angular Velocity=6.28319
+													Angular Velocity Variance=0.523599
+													Rotate Velocity=1
+													Current Angular Velocity=0
+												}
+												Animated=1
+												Obey Sequence FPS=0
+												Tries To Collide=0
+												Collidable=0
+												Num Particles=1
+												Num Particles Variance=0
+											}
+											Particles=CParticleInfo
+											{
+												Model=Particles/Tribal Tracer Smll
+												AI=CSwirlParticleAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													X Center Pos=0
+													Y Center Pos=0
+													Z Center Pos=0
+													Animated=0
+													Obey Sequence FPS=0
+													Y To X Ratio=0
+													Angular Velocity=6.28319
+													Angular Velocity Variance=0.523599
+													Rotate Velocity=1
+													Current Angular Velocity=0
+												}
+												Animated=1
+												Obey Sequence FPS=0
+												Tries To Collide=0
+												Collidable=0
+												Num Particles=3
+												Num Particles Variance=0
+											}
+										}
+										NumBursts=0.497222
+										CurFrequency=5
+										Enabled=1
+										Choose Sound Based On Burst=0
+										Sounds=Array
+										{
+											Item Count=0
+										}
+									}
+									Duration=CVariableSpellDuration
+									{
+										Spell=Skills/Magic Tribal/Offensive/Raise Undead
+									}
+									Time Left=0
+									Done Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=3
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=Raised Reaver
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Expression Context=$caster
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Raised Reaver
+								AI=CRepeatTimerTriggerAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Action=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionManaRemaining
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=5
+											}
+										}
+										Character to get attributes from=$Caster
+										Then=CTakeManaFromCharacterAction
+										{
+											Character to take mana from=$Caster
+											Amount of mana to take=CConstant
+											{
+												Constant Value=5
+											}
+											Expression Context=$Caster
+										}
+										Else=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTakeManaFromCharacterAction
+												{
+													Character to take mana from=$Caster
+													Amount of mana to take=CConstant
+													{
+														Constant Value=5
+													}
+													Expression Context=$Caster
+												}
+												Action=CSendMessageAction
+												{
+													Message=Released Companion
+													Target=$Trigger
+												}
+											}
+										}
+									}
+									Delay Between Actions=2
+									Plus or Minus=0
+									Seconds Till Next Execute=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Raised Reaver
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=GoToCombat
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=5
+											Action=CRemoveCategoryAction
+											{
+												Target Name=$Trigger
+												Categories To Remove=Player Friend
+											}
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+														Character To Reset=$Caster
+													}
+												}
+											}
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=$Trigger
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CDelayAction
+								{
+									Next Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=4
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+														Character To Reset=$triggercaster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+														Character To Reset=$TriggerCaster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+														Character To Reset=$TriggerCaster
+													}
+												}
+											}
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=$Trigger
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Delay=1
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+								Target Name=Raised Reaver
+							}
+							Action=CDelayAction
+							{
+								Next Action=CResetSpellCastTimerAction
+								{
+									Spell=Skills/Magic Tribal/Offensive/Raise Undead
+									Character To Reset=$Caster
+								}
+								Delay=30
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+						}
+					}
+					Else=CIfAction
+					{
+						If=CAndAction
+						{
+							Action=Array
+							{
+								Item Count=2
+								Action=CExpressionAction
+								{
+									Expression=CIsGreaterThanOrEqual
+									{
+										Operand1=CAdd
+										{
+											Operand1=CVariableSkill
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=49
+											}
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=50
+										}
+									}
+									Character to get attributes from=$Caster
+								}
+								Action=CNotAction
+								{
+									Action=CIsAliveAction
+									{
+										Name To Check For=Raised Skeleton
+										Desired Minimum Count=1
+									}
+								}
+							}
+						}
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=12
+								Action=CCreateEntityFromCanAction
+								{
+									New Location=$Trigger
+									Copy Height=0
+									Random Location Delta=0
+									Warp Behavior=
+									Canned Entity to Create=Monster Cans/Summoned Cans/Greater Skeleton 01
+									New Name=Raised Skeleton
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=Raised Skeleton
+									Categories To Remove=Enemy
+								}
+								Action=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=0
+									Character to modify=Raised Skeleton
+									Modifiers=Array
+									{
+										Item Count=11
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CAdd
+											{
+												Operand1=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=SkeletonPercent
+												}
+												Operator=
+												Operand2=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=PerkHPBonus
+												}
+											}
+											Modification amount is a percent=1
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CAdd
+											{
+												Operand1=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=SkeletonBonus
+												}
+												Operator=
+												Operand2=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=PerkBonus
+												}
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/MeleeDamage
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=$caster
+								}
+								Action=CSetCompanionAction
+								{
+									Player=$Caster
+									Companion=Raised Skeleton
+								}
+								Action=CAddCategoryAction
+								{
+									Target Name=Raised Skeleton
+									Categories to add=Summoned Creature
+								}
+								Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+									Location Entity=Raised Skeleton
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Raised Skeleton
+									AI=CHandleMessageAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Message To Handle=Released Companion
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$Caster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Raised Skeleton
+									AI=CTemporaryAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										AI=CGenericParticleSystemAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Outer Cone Angle=CConeAngleEnvelope
+											{
+												Start Value=25
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=25
+												Using Start=1
+												Direction=-1
+											}
+											Inner Cone Angle=CConeAngleEnvelope
+											{
+												Start Value=24
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=24
+												Using Start=1
+												Direction=-1
+											}
+											Face Angle=CFacingAngleEnvelope
+											{
+												Start Value=108.5
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=108.5
+												Using Start=1
+												Direction=-1
+											}
+											Cone Trajectory=CTrajectoryEnvelope
+											{
+												Start Value=90
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=90
+												Using Start=1
+												Direction=-1
+											}
+											Burst Frequency=5
+											Burst Frequency Variance=0
+											Num Bursts To Stop After=Don't Stop
+											Start Point Type=CDiskParticleStartPositionType
+											{
+												Radius=CConstant
+												{
+													Constant Value=16
+												}
+												Expression Context=$caster
+												Outside Radius=CLengthEnvelope
+												{
+													Start Value=5
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=5
+													Using Start=1
+													Direction=-1
+												}
+												YX Ratio=0.9
+												Use Cone Angle For Start Pos=1
+											}
+											Orient To Parent's Rotation=1
+											X Offset=0
+											Y Offset=0
+											Height=0
+											Speed=CSpeedEnvelope
+											{
+												Start Value=90
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=150
+												Using Start=1
+												Direction=-1
+											}
+											Speed Variance=15
+											Age=CTimeEnvelope
+											{
+												Start Value=0.9
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=0.9
+												Using Start=1
+												Direction=-1
+											}
+											Age Variance=0.1
+											Max Travel Distance=999999
+											Min Travel Distance=0
+											Use Particle As Shot=0
+											Make Child of Generator=1
+											Limit Duration To First Collision=0
+											Particles=Array
+											{
+												Item Count=2
+												Particles=CParticleInfo
+												{
+													Model=Particles/Tribal Tracer
+													AI=CSwirlParticleAI
+													{
+														Marked For Deletion=0
+														Publisher=
+														X Center Pos=0
+														Y Center Pos=0
+														Z Center Pos=0
+														Animated=0
+														Obey Sequence FPS=0
+														Y To X Ratio=0
+														Angular Velocity=6.28319
+														Angular Velocity Variance=0.523599
+														Rotate Velocity=1
+														Current Angular Velocity=0
+													}
+													Animated=1
+													Obey Sequence FPS=0
+													Tries To Collide=0
+													Collidable=0
+													Num Particles=1
+													Num Particles Variance=0
+												}
+												Particles=CParticleInfo
+												{
+													Model=Particles/Tribal Tracer Smll
+													AI=CSwirlParticleAI
+													{
+														Marked For Deletion=0
+														Publisher=
+														X Center Pos=0
+														Y Center Pos=0
+														Z Center Pos=0
+														Animated=0
+														Obey Sequence FPS=0
+														Y To X Ratio=0
+														Angular Velocity=6.28319
+														Angular Velocity Variance=0.523599
+														Rotate Velocity=1
+														Current Angular Velocity=0
+													}
+													Animated=1
+													Obey Sequence FPS=0
+													Tries To Collide=0
+													Collidable=0
+													Num Particles=3
+													Num Particles Variance=0
+												}
+											}
+											NumBursts=0.497222
+											CurFrequency=5
+											Enabled=1
+											Choose Sound Based On Burst=0
+											Sounds=Array
+											{
+												Item Count=0
+											}
+										}
+										Duration=CVariableSpellDuration
+										{
+											Spell=Skills/Magic Tribal/Offensive/Raise Undead
+										}
+										Time Left=0
+										Done Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=Raised Skeleton
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Expression Context=$Caster
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Raised Skeleton
+									AI=CRepeatTimerTriggerAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Action=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CExpressionManaRemaining
+												{
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=4
+												}
+											}
+											Character to get attributes from=$Caster
+											Then=CTakeManaFromCharacterAction
+											{
+												Character to take mana from=$Caster
+												Amount of mana to take=CConstant
+												{
+													Constant Value=4
+												}
+												Expression Context=$Caster
+											}
+											Else=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CTakeManaFromCharacterAction
+													{
+														Character to take mana from=$Caster
+														Amount of mana to take=CConstant
+														{
+															Constant Value=4
+														}
+														Expression Context=$Caster
+													}
+													Action=CSendMessageAction
+													{
+														Message=Released Companion
+														Target=$Trigger
+													}
+												}
+											}
+										}
+										Delay Between Actions=2
+										Plus or Minus=0
+										Seconds Till Next Execute=0
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Raised Skeleton
+									AI=CHandleMessageAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Message To Handle=GoToCombat
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=5
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Trigger
+													Categories To Remove=Player Friend
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$Caster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+									Delay Between Adds=0
+								}
+								Action=CSetDestroyedScriptActionAction
+								{
+									New Destroyed Action=CDelayAction
+									{
+										Next Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$triggercaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$TriggerCaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$TriggerCaster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Delay=1
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Target Name=Raised Skeleton
+								}
+								Action=CDelayAction
+								{
+									Next Action=CResetSpellCastTimerAction
+									{
+										Spell=Skills/Magic Tribal/Offensive/Raise Undead
+										Character To Reset=$Caster
+									}
+									Delay=30
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+							}
+						}
+						Else=CIfAction
+						{
+							If=CNotAction
+							{
+								Action=CIsAliveAction
+								{
+									Name To Check For=Raised Zombie
+									Desired Minimum Count=1
+								}
+							}
+							Then=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=12
+									Action=CCreateEntityFromCanAction
+									{
+										New Location=$Trigger
+										Copy Height=0
+										Random Location Delta=0
+										Warp Behavior=
+										Canned Entity to Create=Monster Cans/Summoned Cans/Zombie 01
+										New Name=Raised Zombie
+									}
+									Action=CRemoveCategoryAction
+									{
+										Target Name=Raised Zombie
+										Categories To Remove=Enemy
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=Raised Zombie
+										Modifiers=Array
+										{
+											Item Count=11
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=ZombiePercent
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CAdd
+												{
+													Operand1=CSkillsNamedExpressionExpression
+													{
+														Skill=Skills/Magic Tribal/Offensive/Raise Undead
+														Expression Name=ZombiePercent
+													}
+													Operator=
+													Operand2=CSkillsNamedExpressionExpression
+													{
+														Skill=Skills/Magic Tribal/Offensive/Raise Undead
+														Expression Name=PerkHPBonus
+													}
+												}
+												Modification amount is a percent=1
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+											}
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CAdd
+												{
+													Operand1=CSkillsNamedExpressionExpression
+													{
+														Skill=Skills/Magic Tribal/Offensive/Raise Undead
+														Expression Name=ZombieBonus
+													}
+													Operator=
+													Operand2=CSkillsNamedExpressionExpression
+													{
+														Skill=Skills/Magic Tribal/Offensive/Raise Undead
+														Expression Name=PerkBonus
+													}
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/RangedDamage
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$caster
+									}
+									Action=CSetCompanionAction
+									{
+										Player=$Caster
+										Companion=Raised Zombie
+									}
+									Action=CAddCategoryAction
+									{
+										Target Name=Raised Zombie
+										Categories to add=Summoned Creature
+									}
+									Action=CSpawnEffectAction
+									{
+										Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+										Location Entity=Raised Zombie
+										Make effect a child of the location entity=1
+										X Offset=0
+										Y Offset=0
+										Height Offset=0
+										Play Default Sound=1
+										Action to execute After Effect=
+									}
+									Action=CSetDestroyedScriptActionAction
+									{
+										New Destroyed Action=CDelayAction
+										{
+											Next Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=4
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=3
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+																Character To Reset=$triggercaster
+															}
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+																Character To Reset=$TriggerCaster
+															}
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+																Character To Reset=$TriggerCaster
+															}
+														}
+													}
+													Action=CSpawnEffectAction
+													{
+														Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+														Location Entity=$Trigger
+														Make effect a child of the location entity=1
+														X Offset=0
+														Y Offset=0
+														Height Offset=0
+														Play Default Sound=1
+														Action to execute After Effect=
+													}
+													Action=CFadeToOpacityAction
+													{
+														Opacity To Fade To=0
+														Seconds To Fade=1
+														Part To Fade=$Trigger
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=$Trigger
+														}
+														Delay=1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+											Delay=1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
+										Target Name=Raised Zombie
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Raised Zombie
+										AI=CHandleMessageAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Message To Handle=Released Companion
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=4
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=3
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+																Character To Reset=$Caster
+															}
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+																Character To Reset=$Caster
+															}
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+																Character To Reset=$Caster
+															}
+														}
+													}
+													Action=CSpawnEffectAction
+													{
+														Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+														Location Entity=$Trigger
+														Make effect a child of the location entity=1
+														X Offset=0
+														Y Offset=0
+														Height Offset=0
+														Play Default Sound=1
+														Action to execute After Effect=
+													}
+													Action=CFadeToOpacityAction
+													{
+														Opacity To Fade To=0
+														Seconds To Fade=1
+														Part To Fade=$Trigger
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=$Trigger
+														}
+														Delay=1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Raised Zombie
+										AI=CTemporaryAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											AI=CGenericParticleSystemAI
+											{
+												Marked For Deletion=0
+												Publisher=
+												Outer Cone Angle=CConeAngleEnvelope
+												{
+													Start Value=25
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=25
+													Using Start=1
+													Direction=-1
+												}
+												Inner Cone Angle=CConeAngleEnvelope
+												{
+													Start Value=24
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=24
+													Using Start=1
+													Direction=-1
+												}
+												Face Angle=CFacingAngleEnvelope
+												{
+													Start Value=108.5
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=108.5
+													Using Start=1
+													Direction=-1
+												}
+												Cone Trajectory=CTrajectoryEnvelope
+												{
+													Start Value=90
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=90
+													Using Start=1
+													Direction=-1
+												}
+												Burst Frequency=5
+												Burst Frequency Variance=0
+												Num Bursts To Stop After=Don't Stop
+												Start Point Type=CDiskParticleStartPositionType
+												{
+													Radius=CConstant
+													{
+														Constant Value=16
+													}
+													Expression Context=$caster
+													Outside Radius=CLengthEnvelope
+													{
+														Start Value=5
+														End Value=0
+														Speed=0
+														Ending Behavior=Stop at end
+														Current Value=5
+														Using Start=1
+														Direction=-1
+													}
+													YX Ratio=0.9
+													Use Cone Angle For Start Pos=1
+												}
+												Orient To Parent's Rotation=1
+												X Offset=0
+												Y Offset=0
+												Height=0
+												Speed=CSpeedEnvelope
+												{
+													Start Value=90
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=150
+													Using Start=1
+													Direction=-1
+												}
+												Speed Variance=15
+												Age=CTimeEnvelope
+												{
+													Start Value=0.9
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=0.9
+													Using Start=1
+													Direction=-1
+												}
+												Age Variance=0.1
+												Max Travel Distance=999999
+												Min Travel Distance=0
+												Use Particle As Shot=0
+												Make Child of Generator=1
+												Limit Duration To First Collision=0
+												Particles=Array
+												{
+													Item Count=2
+													Particles=CParticleInfo
+													{
+														Model=Particles/Tribal Tracer
+														AI=CSwirlParticleAI
+														{
+															Marked For Deletion=0
+															Publisher=
+															X Center Pos=0
+															Y Center Pos=0
+															Z Center Pos=0
+															Animated=0
+															Obey Sequence FPS=0
+															Y To X Ratio=0
+															Angular Velocity=6.28319
+															Angular Velocity Variance=0.523599
+															Rotate Velocity=1
+															Current Angular Velocity=0
+														}
+														Animated=1
+														Obey Sequence FPS=0
+														Tries To Collide=0
+														Collidable=0
+														Num Particles=1
+														Num Particles Variance=0
+													}
+													Particles=CParticleInfo
+													{
+														Model=Particles/Tribal Tracer Smll
+														AI=CSwirlParticleAI
+														{
+															Marked For Deletion=0
+															Publisher=
+															X Center Pos=0
+															Y Center Pos=0
+															Z Center Pos=0
+															Animated=0
+															Obey Sequence FPS=0
+															Y To X Ratio=0
+															Angular Velocity=6.28319
+															Angular Velocity Variance=0.523599
+															Rotate Velocity=1
+															Current Angular Velocity=0
+														}
+														Animated=1
+														Obey Sequence FPS=0
+														Tries To Collide=0
+														Collidable=0
+														Num Particles=3
+														Num Particles Variance=0
+													}
+												}
+												NumBursts=0.497222
+												CurFrequency=5
+												Enabled=1
+												Choose Sound Based On Burst=0
+												Sounds=Array
+												{
+													Item Count=0
+												}
+											}
+											Duration=CVariableSpellDuration
+											{
+												Spell=Skills/Magic Tribal/Offensive/Raise Undead
+											}
+											Time Left=0
+											Done Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=3
+													Action=CSpawnEffectAction
+													{
+														Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+														Location Entity=Raised Zombie
+														Make effect a child of the location entity=1
+														X Offset=0
+														Y Offset=0
+														Height Offset=0
+														Play Default Sound=1
+														Action to execute After Effect=
+													}
+													Action=CFadeToOpacityAction
+													{
+														Opacity To Fade To=0
+														Seconds To Fade=1
+														Part To Fade=$Trigger
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=$Trigger
+														}
+														Delay=1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+											Expression Context=$Caster
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Raised Zombie
+										AI=CRepeatTimerTriggerAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Action=CIfExpressionAction
+											{
+												If Expression=CIsGreaterThan
+												{
+													Operand1=CExpressionManaRemaining
+													{
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=3
+													}
+												}
+												Character to get attributes from=$Caster
+												Then=CTakeManaFromCharacterAction
+												{
+													Character to take mana from=$Caster
+													Amount of mana to take=CConstant
+													{
+														Constant Value=3
+													}
+													Expression Context=$Caster
+												}
+												Else=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CTakeManaFromCharacterAction
+														{
+															Character to take mana from=$Caster
+															Amount of mana to take=CConstant
+															{
+																Constant Value=3
+															}
+															Expression Context=$Caster
+														}
+														Action=CSendMessageAction
+														{
+															Message=Released Companion
+															Target=$Trigger
+														}
+													}
+												}
+											}
+											Delay Between Actions=2
+											Plus or Minus=0
+											Seconds Till Next Execute=0
+										}
+										Delay Between Adds=0
+									}
+									Action=CAddAIAction
+									{
+										Target Name=Raised Zombie
+										AI=CHandleMessageAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Message To Handle=GoToCombat
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=5
+													Action=CRemoveCategoryAction
+													{
+														Target Name=$Trigger
+														Categories To Remove=Player Friend
+													}
+													Action=CMultipleActionsAction
+													{
+														Action=Array
+														{
+															Item Count=3
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+																Character To Reset=$Caster
+															}
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+																Character To Reset=$Caster
+															}
+															Action=CResetSpellCastTimerAction
+															{
+																Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+																Character To Reset=$Caster
+															}
+														}
+													}
+													Action=CSpawnEffectAction
+													{
+														Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+														Location Entity=$Trigger
+														Make effect a child of the location entity=1
+														X Offset=0
+														Y Offset=0
+														Height Offset=0
+														Play Default Sound=1
+														Action to execute After Effect=
+													}
+													Action=CFadeToOpacityAction
+													{
+														Opacity To Fade To=0
+														Seconds To Fade=1
+														Part To Fade=$Trigger
+													}
+													Action=CDelayAction
+													{
+														Next Action=CDeleteAction
+														{
+															Target Name=$Trigger
+														}
+														Delay=1
+														Plus or Minus=0
+														Forget Trigger=0
+													}
+												}
+											}
+										}
+										Delay Between Adds=0
+									}
+									Action=CDelayAction
+									{
+										Next Action=CResetSpellCastTimerAction
+										{
+											Spell=Skills/Magic Tribal/Offensive/Raise Undead
+											Character To Reset=$Caster
+										}
+										Delay=30
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Else=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=2
+									Action=CPrintCombatTextAction
+									{
+										Text to print=Your dead already stand with you.
+										Character to show text to=$Caster
+										Emphasize=0
+										Suppress Duplicates=1
+									}
+									Action=CDelayAction
+									{
+										Next Action=CResetSpellCastTimerAction
+										{
+											Spell=Skills/Magic Tribal/Offensive/Raise Undead
+											Character To Reset=$Caster
+										}
+										Delay=30
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+								}
+							}
+							Return failure if the If failes=0
+						}
+						Return failure if the If failes=0
+					}
+					Return failure if the If failes=0
+				}
+				Else=CIfExpressionAction
+				{
+					If Expression=CIsLessThan
+					{
+						Operand1=CVariableSkill
+						{
+							Skill=Skills/Magic Tribal/Offensive/Raise Undead
+						}
+						Operator=
+						Operand2=CConstant
+						{
+							Constant Value=50
+						}
+					}
+					Character to get attributes from=$Caster
+					Then=CMultipleActionsAction
+					{
+						Action=Array
+						{
+							Item Count=12
+							Action=CCreateEntityFromCanAction
+							{
+								New Location=$Trigger
+								Copy Height=0
+								Random Location Delta=0
+								Warp Behavior=
+								Canned Entity to Create=Monster Cans/Summoned Cans/Zombie 01
+								New Name=Summoned Undead
+							}
+							Action=CRemoveCategoryAction
+							{
+								Target Name=Summoned Undead
+								Categories To Remove=Enemy
+							}
+							Action=CAddCharacterModifierToCharacterAction
+							{
+								Modifier Description=
+								Modification is permanent=0
+								Character to modify=Summoned Undead
+								Modifiers=Array
+								{
+									Item Count=11
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CSkillsNamedExpressionExpression
+										{
+											Skill=Skills/Magic Tribal/Offensive/Raise Undead
+											Expression Name=ZombiePercent
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CAdd
+										{
+											Operand1=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=ZombiePercent
+											}
+											Operator=
+											Operand2=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=PerkHPBonus
+											}
+										}
+										Modification amount is a percent=1
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+									}
+									Modifier=CCharacterModifierDerivedAttribute
+									{
+										Modification Amount=CAdd
+										{
+											Operand1=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=ZombieBonus
+											}
+											Operator=
+											Operand2=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=PerkBonus
+											}
+										}
+										Modification amount is a percent=0
+										Allow Accumulation=0
+										Derived character attribute to modify=Derived Character Attributes/RangedDamage
+									}
+								}
+								OPTIONAL Duration=
+								Expression Context=$caster
+							}
+							Action=CSetCompanionAction
+							{
+								Player=$Caster
+								Companion=Summoned Undead
+							}
+							Action=CAddCategoryAction
+							{
+								Target Name=Summoned Undead
+								Categories to add=Summoned Creature
+							}
+							Action=CSpawnEffectAction
+							{
+								Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+								Location Entity=Summoned Undead
+								Make effect a child of the location entity=1
+								X Offset=0
+								Y Offset=0
+								Height Offset=0
+								Play Default Sound=1
+								Action to execute After Effect=
+							}
+							Action=CSetDestroyedScriptActionAction
+							{
+								New Destroyed Action=CDelayAction
+								{
+									Next Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=4
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=4
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+														Character To Reset=$triggercaster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+														Character To Reset=$TriggerCaster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Undead
+														Character To Reset=$TriggerCaster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+														Character To Reset=$TriggerCaster
+													}
+												}
+											}
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=$Trigger
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Delay=1
+									Plus or Minus=0
+									Forget Trigger=0
+								}
+								Target Name=Summoned Undead
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Summoned Undead
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=Released Companion
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=4
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=4
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Undead
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+														Character To Reset=$Caster
+													}
+												}
+											}
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=$Trigger
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Summoned Undead
+								AI=CTemporaryAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									AI=CGenericParticleSystemAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Outer Cone Angle=CConeAngleEnvelope
+										{
+											Start Value=25
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=25
+											Using Start=1
+											Direction=-1
+										}
+										Inner Cone Angle=CConeAngleEnvelope
+										{
+											Start Value=24
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=24
+											Using Start=1
+											Direction=-1
+										}
+										Face Angle=CFacingAngleEnvelope
+										{
+											Start Value=108.5
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=108.5
+											Using Start=1
+											Direction=-1
+										}
+										Cone Trajectory=CTrajectoryEnvelope
+										{
+											Start Value=90
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=90
+											Using Start=1
+											Direction=-1
+										}
+										Burst Frequency=5
+										Burst Frequency Variance=0
+										Num Bursts To Stop After=Don't Stop
+										Start Point Type=CDiskParticleStartPositionType
+										{
+											Radius=CConstant
+											{
+												Constant Value=16
+											}
+											Expression Context=$caster
+											Outside Radius=CLengthEnvelope
+											{
+												Start Value=5
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=5
+												Using Start=1
+												Direction=-1
+											}
+											YX Ratio=0.9
+											Use Cone Angle For Start Pos=1
+										}
+										Orient To Parent's Rotation=1
+										X Offset=0
+										Y Offset=0
+										Height=0
+										Speed=CSpeedEnvelope
+										{
+											Start Value=90
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=150
+											Using Start=1
+											Direction=-1
+										}
+										Speed Variance=15
+										Age=CTimeEnvelope
+										{
+											Start Value=0.9
+											End Value=0
+											Speed=0
+											Ending Behavior=Stop at end
+											Current Value=0.9
+											Using Start=1
+											Direction=-1
+										}
+										Age Variance=0.1
+										Max Travel Distance=999999
+										Min Travel Distance=0
+										Use Particle As Shot=0
+										Make Child of Generator=1
+										Limit Duration To First Collision=0
+										Particles=Array
+										{
+											Item Count=2
+											Particles=CParticleInfo
+											{
+												Model=Particles/Tribal Tracer
+												AI=CSwirlParticleAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													X Center Pos=0
+													Y Center Pos=0
+													Z Center Pos=0
+													Animated=0
+													Obey Sequence FPS=0
+													Y To X Ratio=0
+													Angular Velocity=6.28319
+													Angular Velocity Variance=0.523599
+													Rotate Velocity=1
+													Current Angular Velocity=0
+												}
+												Animated=1
+												Obey Sequence FPS=0
+												Tries To Collide=0
+												Collidable=0
+												Num Particles=1
+												Num Particles Variance=0
+											}
+											Particles=CParticleInfo
+											{
+												Model=Particles/Tribal Tracer Smll
+												AI=CSwirlParticleAI
+												{
+													Marked For Deletion=0
+													Publisher=
+													X Center Pos=0
+													Y Center Pos=0
+													Z Center Pos=0
+													Animated=0
+													Obey Sequence FPS=0
+													Y To X Ratio=0
+													Angular Velocity=6.28319
+													Angular Velocity Variance=0.523599
+													Rotate Velocity=1
+													Current Angular Velocity=0
+												}
+												Animated=1
+												Obey Sequence FPS=0
+												Tries To Collide=0
+												Collidable=0
+												Num Particles=3
+												Num Particles Variance=0
+											}
+										}
+										NumBursts=0.497222
+										CurFrequency=5
+										Enabled=1
+										Choose Sound Based On Burst=0
+										Sounds=Array
+										{
+											Item Count=0
+										}
+									}
+									Duration=CVariableSpellDuration
+									{
+										Spell=Skills/Magic Tribal/Offensive/Raise Undead
+									}
+									Time Left=0
+									Done Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=3
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=Summoned Undead
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+									Expression Context=$Caster
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Summoned Undead
+								AI=CRepeatTimerTriggerAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Action=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CExpressionManaRemaining
+											{
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=3
+											}
+										}
+										Character to get attributes from=$Caster
+										Then=CTakeManaFromCharacterAction
+										{
+											Character to take mana from=$Caster
+											Amount of mana to take=CConstant
+											{
+												Constant Value=3
+											}
+											Expression Context=$Caster
+										}
+										Else=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CTakeManaFromCharacterAction
+												{
+													Character to take mana from=$Caster
+													Amount of mana to take=CConstant
+													{
+														Constant Value=3
+													}
+													Expression Context=$Caster
+												}
+												Action=CSendMessageAction
+												{
+													Message=Released Companion
+													Target=$Trigger
+												}
+											}
+										}
+									}
+									Delay Between Actions=2
+									Plus or Minus=0
+									Seconds Till Next Execute=0
+								}
+								Delay Between Adds=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Summoned Undead
+								AI=CHandleMessageAI
+								{
+									Marked For Deletion=0
+									Publisher=
+									Message To Handle=GoToCombat
+									Action=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=5
+											Action=CRemoveCategoryAction
+											{
+												Target Name=$Trigger
+												Categories To Remove=Player Friend
+											}
+											Action=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=4
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Raise Undead
+														Character To Reset=$Caster
+													}
+													Action=CResetSpellCastTimerAction
+													{
+														Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+														Character To Reset=$Caster
+													}
+												}
+											}
+											Action=CSpawnEffectAction
+											{
+												Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+												Location Entity=$Trigger
+												Make effect a child of the location entity=1
+												X Offset=0
+												Y Offset=0
+												Height Offset=0
+												Play Default Sound=1
+												Action to execute After Effect=
+											}
+											Action=CFadeToOpacityAction
+											{
+												Opacity To Fade To=0
+												Seconds To Fade=1
+												Part To Fade=$Trigger
+											}
+											Action=CDelayAction
+											{
+												Next Action=CDeleteAction
+												{
+													Target Name=$Trigger
+												}
+												Delay=1
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+										}
+									}
+								}
+								Delay Between Adds=0
+							}
+							Action=CSetName
+							{
+								Old Name=Summoned Undead
+								New Name=Undead Energy target
+							}
+						}
+					}
+					Else=CIfExpressionAction
+					{
+						If Expression=CIsLessThan
+						{
+							Operand1=CVariableSkill
+							{
+								Skill=Skills/Magic Tribal/Offensive/Raise Undead
+							}
+							Operator=
+							Operand2=CConstant
+							{
+								Constant Value=100
+							}
+						}
+						Character to get attributes from=$Caster
+						Then=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=12
+								Action=CCreateEntityFromCanAction
+								{
+									New Location=$Trigger
+									Copy Height=0
+									Random Location Delta=0
+									Warp Behavior=
+									Canned Entity to Create=Monster Cans/Summoned Cans/Greater Skeleton 01
+									New Name=Summoned Undead
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=Summoned Undead
+									Categories To Remove=Enemy
+								}
+								Action=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=0
+									Character to modify=Summoned Undead
+									Modifiers=Array
+									{
+										Item Count=11
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SkeletonPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CAdd
+											{
+												Operand1=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=SkeletonPercent
+												}
+												Operator=
+												Operand2=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=PerkHPBonus
+												}
+											}
+											Modification amount is a percent=1
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CAdd
+											{
+												Operand1=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=SkeletonBonus
+												}
+												Operator=
+												Operand2=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=PerkBonus
+												}
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/MeleeDamage
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=$caster
+								}
+								Action=CSetCompanionAction
+								{
+									Player=$Caster
+									Companion=Summoned Undead
+								}
+								Action=CAddCategoryAction
+								{
+									Target Name=Summoned Undead
+									Categories to add=Summoned Creature
+								}
+								Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+									Location Entity=Summoned Undead
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CHandleMessageAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Message To Handle=Released Companion
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=4
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Undead
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$Caster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CTemporaryAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										AI=CGenericParticleSystemAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Outer Cone Angle=CConeAngleEnvelope
+											{
+												Start Value=25
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=25
+												Using Start=1
+												Direction=-1
+											}
+											Inner Cone Angle=CConeAngleEnvelope
+											{
+												Start Value=24
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=24
+												Using Start=1
+												Direction=-1
+											}
+											Face Angle=CFacingAngleEnvelope
+											{
+												Start Value=108.5
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=108.5
+												Using Start=1
+												Direction=-1
+											}
+											Cone Trajectory=CTrajectoryEnvelope
+											{
+												Start Value=90
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=90
+												Using Start=1
+												Direction=-1
+											}
+											Burst Frequency=5
+											Burst Frequency Variance=0
+											Num Bursts To Stop After=Don't Stop
+											Start Point Type=CDiskParticleStartPositionType
+											{
+												Radius=CConstant
+												{
+													Constant Value=16
+												}
+												Expression Context=$caster
+												Outside Radius=CLengthEnvelope
+												{
+													Start Value=5
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=5
+													Using Start=1
+													Direction=-1
+												}
+												YX Ratio=0.9
+												Use Cone Angle For Start Pos=1
+											}
+											Orient To Parent's Rotation=1
+											X Offset=0
+											Y Offset=0
+											Height=0
+											Speed=CSpeedEnvelope
+											{
+												Start Value=90
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=150
+												Using Start=1
+												Direction=-1
+											}
+											Speed Variance=15
+											Age=CTimeEnvelope
+											{
+												Start Value=0.9
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=0.9
+												Using Start=1
+												Direction=-1
+											}
+											Age Variance=0.1
+											Max Travel Distance=999999
+											Min Travel Distance=0
+											Use Particle As Shot=0
+											Make Child of Generator=1
+											Limit Duration To First Collision=0
+											Particles=Array
+											{
+												Item Count=2
+												Particles=CParticleInfo
+												{
+													Model=Particles/Tribal Tracer
+													AI=CSwirlParticleAI
+													{
+														Marked For Deletion=0
+														Publisher=
+														X Center Pos=0
+														Y Center Pos=0
+														Z Center Pos=0
+														Animated=0
+														Obey Sequence FPS=0
+														Y To X Ratio=0
+														Angular Velocity=6.28319
+														Angular Velocity Variance=0.523599
+														Rotate Velocity=1
+														Current Angular Velocity=0
+													}
+													Animated=1
+													Obey Sequence FPS=0
+													Tries To Collide=0
+													Collidable=0
+													Num Particles=1
+													Num Particles Variance=0
+												}
+												Particles=CParticleInfo
+												{
+													Model=Particles/Tribal Tracer Smll
+													AI=CSwirlParticleAI
+													{
+														Marked For Deletion=0
+														Publisher=
+														X Center Pos=0
+														Y Center Pos=0
+														Z Center Pos=0
+														Animated=0
+														Obey Sequence FPS=0
+														Y To X Ratio=0
+														Angular Velocity=6.28319
+														Angular Velocity Variance=0.523599
+														Rotate Velocity=1
+														Current Angular Velocity=0
+													}
+													Animated=1
+													Obey Sequence FPS=0
+													Tries To Collide=0
+													Collidable=0
+													Num Particles=3
+													Num Particles Variance=0
+												}
+											}
+											NumBursts=0.497222
+											CurFrequency=5
+											Enabled=1
+											Choose Sound Based On Burst=0
+											Sounds=Array
+											{
+												Item Count=0
+											}
+										}
+										Duration=CVariableSpellDuration
+										{
+											Spell=Skills/Magic Tribal/Offensive/Raise Undead
+										}
+										Time Left=0
+										Done Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=Summoned Undead
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Expression Context=$Caster
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CRepeatTimerTriggerAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Action=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CExpressionManaRemaining
+												{
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=4
+												}
+											}
+											Character to get attributes from=$Caster
+											Then=CTakeManaFromCharacterAction
+											{
+												Character to take mana from=$Caster
+												Amount of mana to take=CConstant
+												{
+													Constant Value=4
+												}
+												Expression Context=$Caster
+											}
+											Else=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CTakeManaFromCharacterAction
+													{
+														Character to take mana from=$Caster
+														Amount of mana to take=CConstant
+														{
+															Constant Value=4
+														}
+														Expression Context=$Caster
+													}
+													Action=CSendMessageAction
+													{
+														Message=Released Companion
+														Target=$Trigger
+													}
+												}
+											}
+										}
+										Delay Between Actions=2
+										Plus or Minus=0
+										Seconds Till Next Execute=0
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CHandleMessageAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Message To Handle=GoToCombat
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=5
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Trigger
+													Categories To Remove=Player Friend
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=4
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Undead
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$Caster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+									Delay Between Adds=0
+								}
+								Action=CSetDestroyedScriptActionAction
+								{
+									New Destroyed Action=CDelayAction
+									{
+										Next Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=4
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$triggercaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$TriggerCaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Undead
+															Character To Reset=$TriggerCaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$TriggerCaster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Delay=1
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Target Name=Summoned Undead
+								}
+								Action=CSetName
+								{
+									Old Name=Summoned Undead
+									New Name=Undead Energy target
+								}
+							}
+						}
+						Else=CMultipleActionsAction
+						{
+							Action=Array
+							{
+								Item Count=12
+								Action=CCreateEntityFromCanAction
+								{
+									New Location=$Trigger
+									Copy Height=0
+									Random Location Delta=0
+									Warp Behavior=
+									Canned Entity to Create=Monster Cans/Summoned Cans/Soul Reaver 01
+									New Name=Summoned Undead
+								}
+								Action=CRemoveCategoryAction
+								{
+									Target Name=Summoned Undead
+									Categories To Remove=Enemy
+								}
+								Action=CAddCharacterModifierToCharacterAction
+								{
+									Modifier Description=
+									Modification is permanent=0
+									Character to modify=Summoned Undead
+									Modifiers=Array
+									{
+										Item Count=11
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Acid Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Cold Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Crushing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Disease Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Electrical Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Fire Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Piercing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Poison Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CSkillsNamedExpressionExpression
+											{
+												Skill=Skills/Magic Tribal/Offensive/Raise Undead
+												Expression Name=SoulReaverPercent
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/Damage Related/Offensive/Slashing Damage Percent
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CAdd
+											{
+												Operand1=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=SoulReaverPercent
+												}
+												Operator=
+												Operand2=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=PerkHPBonus
+												}
+											}
+											Modification amount is a percent=1
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/(HP) Hit Points
+										}
+										Modifier=CCharacterModifierDerivedAttribute
+										{
+											Modification Amount=CAdd
+											{
+												Operand1=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=SoulReaverBonus
+												}
+												Operator=
+												Operand2=CSkillsNamedExpressionExpression
+												{
+													Skill=Skills/Magic Tribal/Offensive/Raise Undead
+													Expression Name=PerkBonus
+												}
+											}
+											Modification amount is a percent=0
+											Allow Accumulation=0
+											Derived character attribute to modify=Derived Character Attributes/MeleeDamage
+										}
+									}
+									OPTIONAL Duration=
+									Expression Context=$caster
+								}
+								Action=CSetCompanionAction
+								{
+									Player=$Caster
+									Companion=Summoned Undead
+								}
+								Action=CAddCategoryAction
+								{
+									Target Name=Summoned Undead
+									Categories to add=Summoned Creature
+								}
+								Action=CSpawnEffectAction
+								{
+									Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+									Location Entity=Summoned Undead
+									Make effect a child of the location entity=1
+									X Offset=0
+									Y Offset=0
+									Height Offset=0
+									Play Default Sound=1
+									Action to execute After Effect=
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CHandleMessageAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Message To Handle=Released Companion
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=4
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Undead
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$Caster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CTemporaryAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										AI=CGenericParticleSystemAI
+										{
+											Marked For Deletion=0
+											Publisher=
+											Outer Cone Angle=CConeAngleEnvelope
+											{
+												Start Value=25
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=25
+												Using Start=1
+												Direction=-1
+											}
+											Inner Cone Angle=CConeAngleEnvelope
+											{
+												Start Value=24
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=24
+												Using Start=1
+												Direction=-1
+											}
+											Face Angle=CFacingAngleEnvelope
+											{
+												Start Value=108.5
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=108.5
+												Using Start=1
+												Direction=-1
+											}
+											Cone Trajectory=CTrajectoryEnvelope
+											{
+												Start Value=90
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=90
+												Using Start=1
+												Direction=-1
+											}
+											Burst Frequency=5
+											Burst Frequency Variance=0
+											Num Bursts To Stop After=Don't Stop
+											Start Point Type=CDiskParticleStartPositionType
+											{
+												Radius=CConstant
+												{
+													Constant Value=16
+												}
+												Expression Context=$caster
+												Outside Radius=CLengthEnvelope
+												{
+													Start Value=5
+													End Value=0
+													Speed=0
+													Ending Behavior=Stop at end
+													Current Value=5
+													Using Start=1
+													Direction=-1
+												}
+												YX Ratio=0.9
+												Use Cone Angle For Start Pos=1
+											}
+											Orient To Parent's Rotation=1
+											X Offset=0
+											Y Offset=0
+											Height=0
+											Speed=CSpeedEnvelope
+											{
+												Start Value=90
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=150
+												Using Start=1
+												Direction=-1
+											}
+											Speed Variance=15
+											Age=CTimeEnvelope
+											{
+												Start Value=0.9
+												End Value=0
+												Speed=0
+												Ending Behavior=Stop at end
+												Current Value=0.9
+												Using Start=1
+												Direction=-1
+											}
+											Age Variance=0.1
+											Max Travel Distance=999999
+											Min Travel Distance=0
+											Use Particle As Shot=0
+											Make Child of Generator=1
+											Limit Duration To First Collision=0
+											Particles=Array
+											{
+												Item Count=2
+												Particles=CParticleInfo
+												{
+													Model=Particles/Tribal Tracer
+													AI=CSwirlParticleAI
+													{
+														Marked For Deletion=0
+														Publisher=
+														X Center Pos=0
+														Y Center Pos=0
+														Z Center Pos=0
+														Animated=0
+														Obey Sequence FPS=0
+														Y To X Ratio=0
+														Angular Velocity=6.28319
+														Angular Velocity Variance=0.523599
+														Rotate Velocity=1
+														Current Angular Velocity=0
+													}
+													Animated=1
+													Obey Sequence FPS=0
+													Tries To Collide=0
+													Collidable=0
+													Num Particles=1
+													Num Particles Variance=0
+												}
+												Particles=CParticleInfo
+												{
+													Model=Particles/Tribal Tracer Smll
+													AI=CSwirlParticleAI
+													{
+														Marked For Deletion=0
+														Publisher=
+														X Center Pos=0
+														Y Center Pos=0
+														Z Center Pos=0
+														Animated=0
+														Obey Sequence FPS=0
+														Y To X Ratio=0
+														Angular Velocity=6.28319
+														Angular Velocity Variance=0.523599
+														Rotate Velocity=1
+														Current Angular Velocity=0
+													}
+													Animated=1
+													Obey Sequence FPS=0
+													Tries To Collide=0
+													Collidable=0
+													Num Particles=3
+													Num Particles Variance=0
+												}
+											}
+											NumBursts=0.497222
+											CurFrequency=5
+											Enabled=1
+											Choose Sound Based On Burst=0
+											Sounds=Array
+											{
+												Item Count=0
+											}
+										}
+										Duration=CVariableSpellDuration
+										{
+											Spell=Skills/Magic Tribal/Offensive/Raise Undead
+										}
+										Time Left=0
+										Done Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=3
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=Summoned Undead
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Expression Context=$caster
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CRepeatTimerTriggerAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Action=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CExpressionManaRemaining
+												{
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=5
+												}
+											}
+											Character to get attributes from=$Caster
+											Then=CTakeManaFromCharacterAction
+											{
+												Character to take mana from=$Caster
+												Amount of mana to take=CConstant
+												{
+													Constant Value=5
+												}
+												Expression Context=$Caster
+											}
+											Else=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=2
+													Action=CTakeManaFromCharacterAction
+													{
+														Character to take mana from=$Caster
+														Amount of mana to take=CConstant
+														{
+															Constant Value=5
+														}
+														Expression Context=$Caster
+													}
+													Action=CSendMessageAction
+													{
+														Message=Released Companion
+														Target=$Trigger
+													}
+												}
+											}
+										}
+										Delay Between Actions=2
+										Plus or Minus=0
+										Seconds Till Next Execute=0
+									}
+									Delay Between Adds=0
+								}
+								Action=CAddAIAction
+								{
+									Target Name=Summoned Undead
+									AI=CHandleMessageAI
+									{
+										Marked For Deletion=0
+										Publisher=
+										Message To Handle=GoToCombat
+										Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=5
+												Action=CRemoveCategoryAction
+												{
+													Target Name=$Trigger
+													Categories To Remove=Player Friend
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=4
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Undead
+															Character To Reset=$Caster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$Caster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+									}
+									Delay Between Adds=0
+								}
+								Action=CSetDestroyedScriptActionAction
+								{
+									New Destroyed Action=CDelayAction
+									{
+										Next Action=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=4
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=4
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Divine/Offensive/Spiritual Knight
+															Character To Reset=$triggercaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Enemy
+															Character To Reset=$TriggerCaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Raise Undead
+															Character To Reset=$TriggerCaster
+														}
+														Action=CResetSpellCastTimerAction
+														{
+															Spell=Skills/Magic Tribal/Offensive/Monster Summoning
+															Character To Reset=$TriggerCaster
+														}
+													}
+												}
+												Action=CSpawnEffectAction
+												{
+													Explosion Model=Spell Effects/Hits and Effects/Summoning/Raise Undead
+													Location Entity=$Trigger
+													Make effect a child of the location entity=1
+													X Offset=0
+													Y Offset=0
+													Height Offset=0
+													Play Default Sound=1
+													Action to execute After Effect=
+												}
+												Action=CFadeToOpacityAction
+												{
+													Opacity To Fade To=0
+													Seconds To Fade=1
+													Part To Fade=$Trigger
+												}
+												Action=CDelayAction
+												{
+													Next Action=CDeleteAction
+													{
+														Target Name=$Trigger
+													}
+													Delay=1
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+											}
+										}
+										Delay=1
+										Plus or Minus=0
+										Forget Trigger=0
+									}
+									Target Name=Summoned Undead
+								}
+								Action=CSetName
+								{
+									Old Name=Summoned Undead
+									New Name=Undead Energy target
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	Value=CConstant
+	{
+		Constant Value=0
+	}
+	Is Magic=0
+	Encumbrance=0
+	On the ground=!Unknown Model
+	Requirements=Array
+	{
+		Item Count=0
+	}
+	Display Name=unnamed
+	Description=undefined
+	Inventory Window Images=Array
+	{
+		Basic=!Unknown Model
+		Better=!Unknown Model
+		Special=!Unknown Model
+	}
+	Whole Item Display Name=
+	Whole Item Description=
+	Number Of Additions Added=0
+	Slot Used In=Character Slot Types/!None
+	Sub Slot Used In=0
+	Number Hands Needed=None
+	Unique Select ID=0
+	IsCurrentlyUsedByPlayer=0
+	Catagory for display Grouping=Inventory/Grouping Catagories/!none
+	Inventory Addition Group=Inventory/!None
+	Item Grade=Basic
+	Origonal Item=Spell Projectiles/Raise Undead Instant Hit Projectile
+}

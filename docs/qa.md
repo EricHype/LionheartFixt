@@ -6169,6 +6169,24 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_necromancer_dead.py`. Every save holding the Necromancer title.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| ND1 | `QuickSave` (Summoning 80, the Necromancer title), any fight | Cast Raise Undead | A **Greater Skeleton** rises, not a zombie |
+| ND2 | Same, the skeleton standing | Try to cast again at once, then after 30 s | Greyed out at first; after **30 s** it casts and a **Zombie** rises beside the skeleton. Both fight for you |
+| ND3 | Same, both standing, 30 s after the last raise | Cast again | *"Your dead already stand with you."*, nothing rises, and the spell is locked for another 30 s |
+| ND4 | Same | Let the skeleton die within 30 s of a raise, then cast | Still locked until 30 s after that raise (a death does not skip the wait); then a skeleton again, not a second zombie |
+| ND5 | Same, both standing | Watch mana | It drains twice as fast as with one; when it runs out, they are released |
+| ND6 | Summoning 100 or more | Cast three times, 30 s apart | A Soul Reaver, then a skeleton, then a zombie |
+| ND7 | Two or three raised, with Fang and Fernand | Walk across a map edge, fight, order the party | Everyone follows and fights; note anything odd about several summons at once |
+| ND8 | Cast Undead Energy with your dead standing | - | Each of them takes the buff |
+| ND9 | Mountain Pass, a Rock Titan pack | Raise the skeleton and fight | The skeleton lands hits on a titan, some of the time |
+| ND10 | A character **without** the title | Cast Raise Undead twice | Vanilla: one undead at Summoning minus 49, and the spell locks until it dies |
+| ND11 | Raise Undead's description, with and without the title | Read it | The new last sentence about the Necromancer title |
+
 ## 0.99.45 - no dead ends
 
 `tools/build_link_rot.py`, `docs/link-rot.md`. Every save.
