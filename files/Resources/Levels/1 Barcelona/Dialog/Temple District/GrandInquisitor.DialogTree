@@ -1667,9 +1667,43 @@ If=CCheckExistenceAction
 Name To Check For=Fixt Torquemada is mortal
 Desired Minimum Count=1
 }
-Then=CTriggerRelayAction
+Then=CIfAction
+{
+If=CIsAliveAction
+{
+Name To Check For=Grand Inquisitor
+Desired Minimum Count=2
+}
+Then=CMultipleActionsAction
+{
+Action=Array
+{
+Item Count=3
+Action=CDeleteAction
+{
+Target Name=Used Grand Inquisitor Generator
+}
+Action=CTriggerRelayAction
+{
+Relay Name=RESET MAP for Invulnerable Grand Inquisitor
+}
+Action=CDelayAction
+{
+Next Action=CTriggerRelayAction
 {
 Relay Name=Fixt Torquemada fight
+}
+Delay=2
+Plus or Minus=0
+Forget Trigger=0
+}
+}
+}
+Else=CTriggerRelayAction
+{
+Relay Name=Fixt Torquemada fight
+}
+Return failure if the If failes=0
 }
 Else=CIfAction
 {

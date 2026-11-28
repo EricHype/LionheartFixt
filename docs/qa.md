@@ -6187,14 +6187,15 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | ND10 | A character **without** the title | Cast Raise Undead twice | Vanilla: one undead at Summoning minus 49, and the spell locks until it dies |
 | ND11 | Raise Undead's description, with and without the title | Read it | The new last sentence about the Necromancer title |
 
-`tools/build_torquemada_one.py`. TZ1-TZ3: an Inquisition Chambers not entered since installing. TZ4: the user's save.
+`tools/build_torquemada_one.py`. TZ1-TZ3: an Inquisition Chambers not entered since installing. TZ4-TZ5: every save.
 
 | # | Where | Steps | Pass |
 |---|---|---|---|
 | TZ1 | Visit Torquemada before Montserrat, leave without going near him, finish Montserrat, come back | Walk to his chambers | **One** Torquemada |
 | TZ2 | Same | *"I have come to end you, Torquemada..."* | He and his guards fight; no jail |
 | TZ3 | Before Montserrat, enter and leave several times | Walk to his chambers each time | One Torquemada every time, the invulnerable one |
-| TZ4 | `QuickSave`, two Torquemadas in the chambers | Leave the chambers and come back | One Torquemada, the mortal one; the challenge starts the fight |
+| TZ4 | `QuickSave`, two Torquemadas in the chambers | Talk to either, *"I have come to end you, Torquemada..."* | Both vanish, **one** returns within a few seconds, and he and his guards fight. No jail |
+| TZ5 | After TZ4, leave the chambers and come back | Walk to his chambers | Still one Torquemada |
 
 ## 0.99.45 - no dead ends
 

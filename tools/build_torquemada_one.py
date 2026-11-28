@@ -15,9 +15,9 @@ shows it: two `Used Grand Inquisitor Generator` in `Inquisition Chambers2`, one 
 
 The relay now deletes both leftovers before it picks, whichever arm runs, as vanilla's one arm always did.
 
-Reach: the chambers map, so a save that has not entered it since installing. A save that has already spawned the
-leftover recovers by leaving and coming back: the leftover generator has placed its Torquemada and does not again, and
-the relay deletes every `Grand Inquisitor` on entry. A rerun is a no-op.
+Reach: the chambers map, so a save that has not entered it since installing. A save whose chambers already hold the
+leftover is reached through his fight reply instead (`build_tree`): leaving and coming back does not help, because the
+leftover stays in the saved map and re-places him (reported: "there are still two"). A rerun is a no-op.
 
     python tools/build_torquemada_one.py
 """
@@ -36,7 +36,38 @@ LEFTOVERS = ["Used Grand Inquisitor Generator", "Used Fixt Mortal Inquisitor Gen
 AFTER = "Target Name=Fixt Torquemada guard"
 
 
+TREE = "Resources/Levels/1 Barcelona/Dialog/Temple District/GrandInquisitor.DialogTree"
+FIGHT_THEN = ("Then=CTriggerRelayAction" + CR + "{" + CR + "Relay Name=Fixt Torquemada fight" + CR + "}" + CR)
+SETTLE = 2  # seconds for the mortal generator, recloned by the reset, to place him before the fight is called
+
+
+def build_tree():
+    """For a save whose chambers already hold the leftover, the map cannot help: the leftover sits in the saved map, and
+    re-entry does not delete it. The fight reply reaches every save. With two `Grand Inquisitor` alive it deletes the
+    leftover generator, runs the chambers' own reset (which deletes both and reclones only the mortal one, the
+    leftover being gone), and calls the fight once he stands again. With one, the fight as before."""
+    t = lhbuild.read(TREE)
+    if "Target Name=" + LEFTOVERS[0] + CR in t:
+        return []
+    s = t.index("Node ID=120 combat" + CR)
+    e = t.index("-" * 60, s)
+    assert t[s:e].count(FIGHT_THEN) == 1
+    two = ("CIsAliveAction", [("Name To Check For", "Grand Inquisitor"), ("Desired Minimum Count", "2")])
+    settle = lhbuild.multi([("CDeleteAction", [("Target Name", LEFTOVERS[0])]),
+                            ("CTriggerRelayAction", [("Relay Name", RELAY)]),
+                            lhbuild.delay(SETTLE, ("CTriggerRelayAction", [("Relay Name", "Fixt Torquemada fight")]))])
+    new = "Then=" + B(*lhbuild.if_action(two, settle, ("CTriggerRelayAction", [("Relay Name", "Fixt Torquemada fight")])))
+    k = t.index(FIGHT_THEN, s)
+    t = t[:k] + new + t[k + len(FIGHT_THEN):]
+    (lhbuild.FX / TREE).write_bytes(t.encode("latin-1"))
+    return [TREE]
+
+
 def main():
+    done = build_tree()
+    if done:
+        register(done)
+        print("torquemada tree:", done)
     z = lhbuild.read(MAP)
     i = z.index("\t\t\tName=" + RELAY + CR)
     s = z.rindex("\t\tLevel Part=", 0, i)
