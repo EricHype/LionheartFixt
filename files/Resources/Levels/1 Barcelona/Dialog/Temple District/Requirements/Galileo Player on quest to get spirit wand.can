@@ -1,0 +1,25 @@
+CCannedObject
+{
+	Object=CActionExpression
+	{
+		Action=CAndAction
+		{
+			Action=Array
+			{
+				Item Count=2
+				Action=CIsQuestStateTheCurrentStateAction
+				{
+					Quest=Levels/1 Barcelona/Quests/Calle Perdida/Wielder Initiation Quests/Bind Spirit to Rod
+					State=J5WOL4C2
+				}
+				Action=CCheckExistenceAction
+				{
+					Name To Check For=Galileo Talked about how get Spirit already
+					Desired Minimum Count=1
+				}
+			}
+			Early Exit=0
+		}
+	}
+	Use=Shared Global Instance
+}
