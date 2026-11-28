@@ -107,178 +107,187 @@ CCannedObject
 					}
 				}
 				Patrol Start Action=
-				Patrol End Action=CIfExpressionAction
+				Patrol End Action=COnlyOnceAction
 				{
-					If Expression=CIsGreaterThan
+					Action=CDelayAction
 					{
-						Operand1=CVariableDerivedCharacterAttribute
+						Next Action=CIfExpressionAction
 						{
-							Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
-						}
-						Operator=
-						Operand2=CConstant
-						{
-							Constant Value=0
-						}
-					}
-					Character to get attributes from=Player1
-					Then=CIfExpressionAction
-					{
-						If Expression=CIsGreaterThan
-						{
-							Operand1=CVariableDerivedCharacterAttribute
+							If Expression=CIsGreaterThan
 							{
-								Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
-							}
-							Operator=
-							Operand2=CConstant
-							{
-								Constant Value=0
-							}
-						}
-						Character to get attributes from=Player1
-						Then=CMultipleActionsAction
-						{
-							Action=Array
-							{
-								Item Count=3
-								Action=CAddCategoryAction
+								Operand1=CVariableDerivedCharacterAttribute
 								{
-									Target Name=Inquisitor Raphael
-									Categories to add=Enemy
+									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
 								}
-								Action=CSetTargetTypeAction
+								Operator=
+								Operand2=CConstant
 								{
-									Entity Name=Inquisitor Raphael
-									Name To Target=
-									Valid Targets=Player,Player Friend
-								}
-								Action=CGoToCombatAction
-								{
-									Enemy Name=Inquisitor Raphael
+									Constant Value=0
 								}
 							}
-						}
-						Else=CMultipleActionsAction
-						{
-							Action=Array
+							Character to get attributes from=Player1
+							Then=CIfExpressionAction
 							{
-								Item Count=3
-								Action=CForEachPlayerAction
+								If Expression=CIsGreaterThan
 								{
-									Action=CAddCharacterModifierToCharacterAction
+									Operand1=CVariableDerivedCharacterAttribute
 									{
-										Modifier Description=
-										Modification is permanent=0
-										Character to modify=$Instigator
-										Modifiers=Array
-										{
-											Item Count=1
-											Modifier=CCharacterModifierDerivedAttribute
-											{
-												Modification Amount=CConstant
-												{
-													Constant Value=1
-												}
-												Modification amount is a percent=0
-												Allow Accumulation=0
-												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
-											}
-										}
-										OPTIONAL Duration=
-										Expression Context=$Instigator
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
 									}
-								}
-								Action=CSetTargetTypeAction
-								{
-									Entity Name=Inquisitor Raphael
-									Name To Target=
-									Valid Targets=
-								}
-								Action=CIfExpressionAction
-								{
-									If Expression=CUseCannedExpressionExpression
+									Operator=
+									Operand2=CConstant
 									{
-										Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+										Constant Value=0
 									}
-									Character to get attributes from=Player1
-									Then=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
-										Node ID=1300 Fixt the fever member
-										Speaker=Inquisitor Raphael
-										Player Being Spoken To=Player1
-									}
-									Else=CDisplayDialogTreeAction
-									{
-										Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
-										Node ID=1300 Fixt the fever
-										Speaker=Inquisitor Raphael
-										Player Being Spoken To=Player1
-									}
-								}
-							}
-						}
-					}
-					Else=CMultipleActionsAction
-					{
-						Action=Array
-						{
-							Item Count=3
-							Action=CForEachPlayerAction
-							{
-								Action=CAddCharacterModifierToCharacterAction
-								{
-									Modifier Description=
-									Modification is permanent=0
-									Character to modify=$Instigator
-									Modifiers=Array
-									{
-										Item Count=1
-										Modifier=CCharacterModifierDerivedAttribute
-										{
-											Modification Amount=CConstant
-											{
-												Constant Value=1
-											}
-											Modification amount is a percent=0
-											Allow Accumulation=0
-											Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
-										}
-									}
-									OPTIONAL Duration=
-									Expression Context=$Instigator
-								}
-							}
-							Action=CSetTargetTypeAction
-							{
-								Entity Name=Inquisitor Raphael
-								Name To Target=
-								Valid Targets=
-							}
-							Action=CIfExpressionAction
-							{
-								If Expression=CUseCannedExpressionExpression
-								{
-									Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
 								}
 								Character to get attributes from=Player1
-								Then=CDisplayDialogTreeAction
+								Then=CMultipleActionsAction
 								{
-									Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
-									Node ID=1300 Fixt the fever member
-									Speaker=Inquisitor Raphael
-									Player Being Spoken To=Player1
+									Action=Array
+									{
+										Item Count=3
+										Action=CAddCategoryAction
+										{
+											Target Name=Inquisitor Raphael
+											Categories to add=Enemy
+										}
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Inquisitor Raphael
+											Name To Target=
+											Valid Targets=Player,Player Friend
+										}
+										Action=CGoToCombatAction
+										{
+											Enemy Name=Inquisitor Raphael
+										}
+									}
 								}
-								Else=CDisplayDialogTreeAction
+								Else=CMultipleActionsAction
 								{
-									Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
-									Node ID=1300 Fixt the fever
-									Speaker=Inquisitor Raphael
-									Player Being Spoken To=Player1
+									Action=Array
+									{
+										Item Count=3
+										Action=CForEachPlayerAction
+										{
+											Action=CAddCharacterModifierToCharacterAction
+											{
+												Modifier Description=
+												Modification is permanent=0
+												Character to modify=$Instigator
+												Modifiers=Array
+												{
+													Item Count=1
+													Modifier=CCharacterModifierDerivedAttribute
+													{
+														Modification Amount=CConstant
+														{
+															Constant Value=1
+														}
+														Modification amount is a percent=0
+														Allow Accumulation=0
+														Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
+													}
+												}
+												OPTIONAL Duration=
+												Expression Context=$Instigator
+											}
+										}
+										Action=CSetTargetTypeAction
+										{
+											Entity Name=Inquisitor Raphael
+											Name To Target=
+											Valid Targets=
+										}
+										Action=CIfExpressionAction
+										{
+											If Expression=CUseCannedExpressionExpression
+											{
+												Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
+												Node ID=1300 Fixt the fever member
+												Speaker=Inquisitor Raphael
+												Player Being Spoken To=Player1
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
+												Node ID=1300 Fixt the fever
+												Speaker=Inquisitor Raphael
+												Player Being Spoken To=Player1
+											}
+										}
+									}
+								}
+							}
+							Else=CMultipleActionsAction
+							{
+								Action=Array
+								{
+									Item Count=3
+									Action=CForEachPlayerAction
+									{
+										Action=CAddCharacterModifierToCharacterAction
+										{
+											Modifier Description=
+											Modification is permanent=0
+											Character to modify=$Instigator
+											Modifiers=Array
+											{
+												Item Count=1
+												Modifier=CCharacterModifierDerivedAttribute
+												{
+													Modification Amount=CConstant
+													{
+														Constant Value=1
+													}
+													Modification amount is a percent=0
+													Allow Accumulation=0
+													Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
+												}
+											}
+											OPTIONAL Duration=
+											Expression Context=$Instigator
+										}
+									}
+									Action=CSetTargetTypeAction
+									{
+										Entity Name=Inquisitor Raphael
+										Name To Target=
+										Valid Targets=
+									}
+									Action=CIfExpressionAction
+									{
+										If Expression=CUseCannedExpressionExpression
+										{
+											Canned Expression=Dialog/Requirements/Faction/Inquisitor IS
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
+											Node ID=1300 Fixt the fever member
+											Speaker=Inquisitor Raphael
+											Player Being Spoken To=Player1
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/1 Barcelona/Dialog/Temple District/InquisitorRaphael
+											Node ID=1300 Fixt the fever
+											Speaker=Inquisitor Raphael
+											Player Being Spoken To=Player1
+										}
+									}
 								}
 							}
 						}
+						Delay=0.1
+						Plus or Minus=0
+						Forget Trigger=0
 					}
 				}
 				Respond to calls for reinforcements=0

@@ -143,7 +143,11 @@ def confront():
                   greet])
     # Only a Raphael who has already confronted you comes to fight: a save that started Torquemada's fight under
     # 0.96.0 carries the old flag from the chambers alone, and he still talks to it, so the deal can clear it.
-    return var_if(WITNESSED, var_if(HOSTILE, to_combat("Inquisitor Raphael"), talk), talk)
+    body = var_if(WITNESSED, var_if(HOSTILE, to_combat("Inquisitor Raphael"), talk), talk)
+    # The hook fires as he acquires a target, and both arms change his targets, which re-fires it inside itself: the
+    # first build overflowed the stack on entering the foyer (Lionheart.exe.5216.dmp, 0xC00000FD). So once per Raphael
+    # (COnlyOnceAction, as vanilla guards Shylocke's goons), and a tenth of a second later, outside the AI's own call.
+    return ("COnlyOnceAction", [("Action", delay(0.1, body))])
 
 
 def build_raphael():
