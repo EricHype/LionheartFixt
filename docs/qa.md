@@ -6213,6 +6213,7 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | UQ10 | Before Montserrat | Visit the chambers and foyer | Nothing changed: Raphael is the ordinary one and nobody confronts you |
 | UQ11 | A save that started Torquemada's fight before this (`aftertorquemada`) | Walk into the foyer | Raphael spots you and **talks**, rather than fighting; the deal clears the hostility everywhere. The guards stay hostile until then |
 | UQ12 | Refuse Raphael's deal (any save) | Click him | An **attack cursor**: you can hit him, and his guards fight |
+| UQ13 | Refuse Raphael (any save), then later re-enter the foyer | Watch his four guards | They come at you **and attack**, with an attack cursor; they do not stop short and stand there |
 
 ## 0.99.45 - no dead ends
 

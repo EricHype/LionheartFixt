@@ -144,7 +144,7 @@ def confront():
     # Only a Raphael who has already confronted you comes to fight: a save that started Torquemada's fight under
     # 0.96.0 carries the old flag from the chambers alone, and he still talks to it, so the deal can clear it.
     come = multi([("CRemoveAIAction", [("Target Name", "Inquisitor Raphael"), ("AI", "CAIInteractionSpecifier"), ("Delay Between Removes", "0")]),
-                  fight_click("Inquisitor Raphael"), to_combat("Inquisitor Raphael")])
+                  fight_click("Inquisitor Raphael"), to_combat("Inquisitor Raphael"), "@ARM@"])  # his guards, armed (build_raphael)
     body = var_if(WITNESSED, var_if(HOSTILE, come, talk), talk)
     # The hook fires as he acquires a target, and both arms change his targets, which re-fires it inside itself: the
     # first build overflowed the stack on entering the foyer (Lionheart.exe.5216.dmp, 0xC00000FD). So once per Raphael
@@ -166,7 +166,7 @@ def build_raphael():
     t = sk.index("Target Type=CEntityBehaviorStateSetClosestTarget" + CR)
     v = sk.index("Valid Targets=" + CR, t)
     sk = sk[:v] + "Valid Targets=Player" + CR + sk[v + len("Valid Targets=" + CR):]
-    sk = sk.replace("Patrol End Action=" + CR, "Patrol End Action=" + B(*confront()), 1)
+    sk = sk.replace("Patrol End Action=" + CR, "Patrol End Action=" + B(*confront()).replace("@ARM@" + CR, arm(GUARD)), 1)
     lhbuild.write_map(MORTAL_CAN, f[:k] + sk + f[end:])
     return [MORTAL_CAN]
 
@@ -308,6 +308,81 @@ def build_foyer_fight():
     return [FOYER]
 
 
+GUARD = "Inquisitor Guard"
+GUARD_CAN = "Resources/" + TEMPLATES + "Inquisition Guard Generic.can"
+
+
+def fighting_skeleton():
+    """The guard can's own CSkeletonAI, which attacks (CNormalAttackAI), aimed at the player. The foyer's four guard
+    generators add a second skeleton with an empty Attack AI, vanilla's arrest-only guard, who walks up and hands you
+    to the jail relay; with the jail stood down he walks up and stands there. Reported: "the guards near raphael run
+    to us and then freeze, they don't attack". No other map Inquisitors patrol spawns them."""
+    t = re.sub(r"(?m)^Object ID=[^\r\n]*\r\n", "", re.sub(r"(?m)^\t+", "", lhbuild.read(GUARD_CAN)))
+    k = t.index("Activity=CSkeletonAI" + CR)
+    sk = t[k + len("Activity="):balanced(t, k)]
+    assert "Attack AI=CNormalAttackAI" in sk
+    tt = sk.index("Target Type=CEntityBehaviorStateSetClosestTarget" + CR)
+    v = sk.index("Valid Targets=", tt)
+    nl = sk.index(CR, v)
+    return sk[:v] + "Valid Targets=Player,Player Friend" + sk[nl:]
+
+
+def arm(name):
+    """An arrest-only guard made to fight: his skeletons swapped for the fighting one, his talk click for a fight one."""
+    add_ai = ("CAddAIAction" + CR + "{" + CR + "Target Name=" + name + CR + "AI=" + fighting_skeleton() + CR +
+              "Delay Between Adds=0" + CR + "}" + CR)
+    items = ["Action=" + B("CRemoveAIAction", [("Target Name", name), ("AI", "CSkeletonAI"), ("Delay Between Removes", "0")]),
+             "Action=" + add_ai,
+             "Action=" + B("CRemoveAIAction", [("Target Name", name), ("AI", "CAIInteractionSpecifier"), ("Delay Between Removes", "0")]),
+             "Action=" + B(*fight_click(name)),
+             "Action=" + B(*to_combat(name))]
+    return "CMultipleActionsAction" + CR + "{" + CR + "Action=Array" + CR + "{" + CR + "Item Count=%d" % len(items) + CR + "".join(items) + "}" + CR + "}" + CR
+
+
+def build_guards():
+    done = []
+    # the foyer's fight relay, and its turn relay on a later visit
+    z = lhbuild.read(FOYER)
+    if "Attack AI=CNormalAttackAI" not in z[slice(*part_span(z, "Fixt Raphael fight"))]:
+        s, e = part_span(z, "Fixt Raphael fight")
+        p = z[s:e]
+        top = p.index("Action=CMultipleActionsAction")
+        a = p.index("Item Count=", top)
+        m = re.compile(r"Item Count=(\d+)\r\n").match(p, a)
+        p = p[:m.end()] + "Action=" + arm(GUARD) + p[m.end():]
+        p = bump_array(p, top, 1)
+        z = z[:s] + p + z[e:]
+        s, e = part_span(z, TURN)
+        from build_inquisition_turns import deactivate
+        names = [n for n in spawn_names(z) if n != GUARD]
+        body_items = [B(*deactivate(n)) for n in MAPS[FOYER]] + [B(*to_combat(n)) for n in names]
+        body = ("CMultipleActionsAction" + CR + "{" + CR + "Action=Array" + CR + "{" + CR + "Item Count=%d" % (len(body_items) + 1) + CR +
+                "".join("Action=" + b for b in body_items) + "Action=" + arm(GUARD) + "}" + CR + "}" + CR)
+        cond = B(*delay(1.5, var_if(HOSTILE, var_if(ABSOLVED, "", "@BODY@"), ""))).replace("@BODY@" + CR, body)
+        part = lhbuild.relay_part(TURN, ("CMultipleActionsAction", [("Action", ("Array", [("Item Count", "1")]))]), 40, 40, once="0")
+        # relay_part takes a tuple; build it with a placeholder action and drop the raw one in
+        k = part.index("Action=CMultipleActionsAction")
+        part = part[:k] + "Action=" + cond.rstrip(CR) + part[balanced(part, k):]
+        z = z[:s] + part + z[e + len(CR):]
+        lhbuild.write_map(FOYER, z)
+        done.append(FOYER)
+    # Raphael's refusals, for every save
+    t = lhbuild.read(RAPHAEL_TREE)
+    if "Attack AI=CNormalAttackAI" not in t:
+        old = B(*multi([relay("Fixt Raphael fight"), delay(0.5, fight_click("Inquisitor Raphael"))]))
+        n = t.count(old)
+        assert n == 2, n
+        new = ("CMultipleActionsAction" + CR + "{" + CR + "Action=Array" + CR + "{" + CR + "Item Count=3" + CR +
+               "Action=" + B(*relay("Fixt Raphael fight")) + "Action=" + B(*delay(0.5, fight_click("Inquisitor Raphael"))) +
+               "Action=CDelayAction" + CR + "{" + CR + "Next Action=" + arm(GUARD) + "Delay=0.5" + CR + "Plus or Minus=0" + CR +
+               "Forget Trigger=0" + CR + "}" + CR + "}" + CR + "}" + CR)
+        t = t.replace(old, new)
+        assert t.count(CR) == t.count("\n")
+        (FX / RAPHAEL_TREE).write_bytes(t.encode("latin-1"))
+        done.append(RAPHAEL_TREE)
+    return done
+
+
 def main():
     for path, short, what in ((CH_HOSTILE, "Fixt Chambers Hostile", "1 means the player started the fight with Torquemada in his chambers."),
                               (WITNESSED, "Fixt Raphael Saw You", "1 means Raphael confronted the player after Torquemada died."),
@@ -317,7 +392,7 @@ def main():
             write_var(path, short, what)
             register([rel])
     done = (build_chambers() + build_foyer() + build_raphael() + build_getaway() + build_gi_tree() + build_slides() +
-            build_endgame() + build_raphael_tree() + build_foyer_fight())
+            build_endgame() + build_raphael_tree() + build_foyer_fight() + build_guards())
     if done:
         register(done)
     print("inquisition quiet:", done)
