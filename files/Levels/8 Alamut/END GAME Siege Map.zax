@@ -499,12 +499,58 @@ CLayerSaveData
 										Speaker=Fake Talker for NIS
 										Player Being Spoken To=Player1
 									}
-									Else=CDisplayDialogTreeAction
+									Else=CIfExpressionAction
 									{
-										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-										Node ID=900 order inquisition dark
-										Speaker=Fake Talker for NIS
-										Player Being Spoken To=Player1
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order inquisition dark
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+											Else=CDisplayDialogTreeAction
+											{
+												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+												Node ID=900 order inquisition unwitnessed
+												Speaker=Fake Talker for NIS
+												Player Being Spoken To=Player1
+											}
+										}
+										Else=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 order inquisition dark
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
 									}
 								}
 								Else=CIfExpressionAction
@@ -558,12 +604,58 @@ CLayerSaveData
 												Speaker=Fake Talker for NIS
 												Player Being Spoken To=Player1
 											}
-											Else=CDisplayDialogTreeAction
+											Else=CIfExpressionAction
 											{
-												Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
-												Node ID=900 order inquisition broken
-												Speaker=Fake Talker for NIS
-												Player Being Spoken To=Player1
+												If Expression=CIsGreaterThan
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0
+													}
+												}
+												Character to get attributes from=Player1
+												Then=CIfExpressionAction
+												{
+													If Expression=CIsGreaterThan
+													{
+														Operand1=CVariableDerivedCharacterAttribute
+														{
+															Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+														}
+														Operator=
+														Operand2=CConstant
+														{
+															Constant Value=0
+														}
+													}
+													Character to get attributes from=Player1
+													Then=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order inquisition broken
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+													Else=CDisplayDialogTreeAction
+													{
+														Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+														Node ID=900 order inquisition unwitnessed
+														Speaker=Fake Talker for NIS
+														Player Being Spoken To=Player1
+													}
+												}
+												Else=CDisplayDialogTreeAction
+												{
+													Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+													Node ID=900 order inquisition broken
+													Speaker=Fake Talker for NIS
+													Player Being Spoken To=Player1
+												}
 											}
 										}
 									}

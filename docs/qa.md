@@ -6197,6 +6197,21 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | TZ4 | `QuickSave`, two Torquemadas in the chambers | Talk to either, *"I have come to end you, Torquemada..."* | Both vanish, **one** returns within a few seconds, and he and his guards fight. No jail |
 | TZ5 | After TZ4, leave the chambers and come back | Walk to his chambers | Still one Torquemada |
 
+`tools/build_inquisition_quiet.py`. UQ1-UQ8, UQ10: a Chambers, Foyer and town maps not entered since installing. UQ9: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| UQ1 | A new game, past Montserrat, in Torquemada's chambers | Challenge him | He has an **attack cursor** and you can hit him; his guards, the guards outside and the jailor and Tithe Inquisitor all fight |
+| UQ2 | During or after UQ1 | Go up to the foyer | The foyer guards are **neutral**. Raphael comes to you and speaks first (*"A fever took the Grand Inquisitor..."*, or the member line) |
+| UQ3 | UQ2 | Take the deal | Everyone neutral, the chambers included on a later visit |
+| UQ4 | UQ2, a fresh try | Refuse | Raphael and the guards fight; from then on every Inquisitor is hostile |
+| UQ5 | After UQ1, sneaking, high Sneak | Slip past Raphael into the Temple District, then come back | Raphael does not confront you; he is the ordinary Raphael; the chambers are neutral again |
+| UQ6 | UQ5, finish the game | The ending | *"...For once the record was all anyone had..."* (`unwitnessed`) |
+| UQ7 | Leave the chambers by the Forest Exterior after killing him, never entering the foyer | Come back later | As UQ5 |
+| UQ8 | After UQ1, low Sneak | Walk into the foyer | Raphael spots you and confronts you; leaving afterwards does not count as a getaway |
+| UQ9 | Click Raphael instead of letting him spot you | - | The same conversation opens |
+| UQ10 | Before Montserrat | Visit the chambers and foyer | Nothing changed: Raphael is the ordinary one and nobody confronts you |
+
 ## 0.99.45 - no dead ends
 
 `tools/build_link_rot.py`, `docs/link-rot.md`. Every save.

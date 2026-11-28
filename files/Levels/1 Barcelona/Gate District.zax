@@ -106,162 +106,346 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Action=CDelayAction
+					Action=CMultipleActionsAction
 					{
-						Next Action=CIfExpressionAction
+						Action=Array
 						{
-							If Expression=CIsGreaterThan
+							Item Count=2
+							Action=CDelayAction
 							{
-								Operand1=CVariableDerivedCharacterAttribute
+								Next Action=CIfExpressionAction
 								{
-									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
-								}
-								Operator=
-								Operand2=CConstant
-								{
-									Constant Value=0
-								}
-							}
-							Character to get attributes from=Player1
-							Then=CIfExpressionAction
-							{
-								If Expression=CIsGreaterThan
-								{
-									Operand1=CVariableDerivedCharacterAttribute
+									If Expression=CIsGreaterThan
 									{
-										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
 									}
-									Operator=
-									Operand2=CConstant
+									Character to get attributes from=Player1
+									Then=CIfExpressionAction
 									{
-										Constant Value=0
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=
+										Else=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=5
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Traveler going to Temple District
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Traveler going to Temple District
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Traveler going to Temple District
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Acolyte Garcia
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Acolyte Garcia
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Acolyte Garcia
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Traveller from Gate to Crossroads
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Traveller from Gate to Crossroads
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Traveller from Gate to Crossroads
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Inquisitor by Herbalist
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Inquisitor by Herbalist
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Inquisitor by Herbalist
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Traveler to Port District
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Traveler to Port District
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Traveler to Port District
+														}
+													}
+												}
+											}
+										}
+									}
+									Else=
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Dark Inquisitor
 									}
 								}
 								Character to get attributes from=Player1
-								Then=
-								Else=CMultipleActionsAction
+								Then=CIfExpressionAction
 								{
-									Action=Array
+									If Expression=CIsGreaterThan
 									{
-										Item Count=5
-										Action=CMultipleActionsAction
+										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Action=Array
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
 											{
-												Item Count=3
-												Action=CAddCategoryAction
-												{
-													Target Name=Traveler going to Temple District
-													Categories to add=Enemy
-												}
-												Action=CSetTargetTypeAction
-												{
-													Entity Name=Traveler going to Temple District
-													Name To Target=
-													Valid Targets=Player,Player Friend
-												}
-												Action=CGoToCombatAction
-												{
-													Enemy Name=Traveler going to Temple District
-												}
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
 											}
 										}
-										Action=CMultipleActionsAction
+										Character to get attributes from=Player1
+										Then=
+										Else=CIfExpressionAction
 										{
-											Action=Array
+											If Expression=CIsGreaterThan
 											{
-												Item Count=3
-												Action=CAddCategoryAction
+												Operand1=CVariableDerivedCharacterAttribute
 												{
-													Target Name=Acolyte Garcia
-													Categories to add=Enemy
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
 												}
-												Action=CSetTargetTypeAction
+												Operator=
+												Operand2=CConstant
 												{
-													Entity Name=Acolyte Garcia
-													Name To Target=
-													Valid Targets=Player,Player Friend
-												}
-												Action=CGoToCombatAction
-												{
-													Enemy Name=Acolyte Garcia
+													Constant Value=0
 												}
 											}
-										}
-										Action=CMultipleActionsAction
-										{
-											Action=Array
+											Character to get attributes from=Player1
+											Then=
+											Else=CForEachPlayerAction
 											{
-												Item Count=3
-												Action=CAddCategoryAction
+												Action=CAddCharacterModifierToCharacterAction
 												{
-													Target Name=Traveller from Gate to Crossroads
-													Categories to add=Enemy
-												}
-												Action=CSetTargetTypeAction
-												{
-													Entity Name=Traveller from Gate to Crossroads
-													Name To Target=
-													Valid Targets=Player,Player Friend
-												}
-												Action=CGoToCombatAction
-												{
-													Enemy Name=Traveller from Gate to Crossroads
-												}
-											}
-										}
-										Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=3
-												Action=CAddCategoryAction
-												{
-													Target Name=Inquisitor by Herbalist
-													Categories to add=Enemy
-												}
-												Action=CSetTargetTypeAction
-												{
-													Entity Name=Inquisitor by Herbalist
-													Name To Target=
-													Valid Targets=Player,Player Friend
-												}
-												Action=CGoToCombatAction
-												{
-													Enemy Name=Inquisitor by Herbalist
-												}
-											}
-										}
-										Action=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=3
-												Action=CAddCategoryAction
-												{
-													Target Name=Traveler to Port District
-													Categories to add=Enemy
-												}
-												Action=CSetTargetTypeAction
-												{
-													Entity Name=Traveler to Port District
-													Name To Target=
-													Valid Targets=Player,Player Friend
-												}
-												Action=CGoToCombatAction
-												{
-													Enemy Name=Traveler to Port District
+													Modifier Description=
+													Modification is permanent=0
+													Character to modify=$Instigator
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=0
+															Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
 												}
 											}
 										}
 									}
 								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=
+											Else=CIfExpressionAction
+											{
+												If Expression=CIsGreaterThan
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0
+													}
+												}
+												Character to get attributes from=Player1
+												Then=
+												Else=CForEachPlayerAction
+												{
+													Action=CAddCharacterModifierToCharacterAction
+													{
+														Modifier Description=
+														Modification is permanent=0
+														Character to modify=$Instigator
+														Modifiers=Array
+														{
+															Item Count=1
+															Modifier=CCharacterModifierDerivedAttribute
+															{
+																Modification Amount=CConstant
+																{
+																	Constant Value=1
+																}
+																Modification amount is a percent=0
+																Allow Accumulation=0
+																Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+															}
+														}
+														OPTIONAL Duration=
+														Expression Context=$Instigator
+													}
+												}
+											}
+										}
+									}
+									Else=
+								}
 							}
-							Else=
 						}
-						Delay=1.5
-						Plus or Minus=0
-						Forget Trigger=0
 					}
 					Trigger Only Once=0
 					Was Triggered=0

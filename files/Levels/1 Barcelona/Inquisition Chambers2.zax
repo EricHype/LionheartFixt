@@ -359,7 +359,262 @@ CLayerSaveData
 									}
 								}
 							}
-							Else=
+							Else=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThan
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Chambers Hostile
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=0
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=
+										Else=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=11
+												Action=CDeactivateAction
+												{
+													Target Name=Grand Inquisitor Sends you to jail
+												}
+												Action=CDeactivateAction
+												{
+													Target Name=Guard chasing player
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Sanchez
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Sanchez
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Sanchez
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Inquisitor Guard Pit
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Inquisitor Guard Pit
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Inquisitor Guard Pit
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Inquisitor Guard chalice
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Inquisitor Guard chalice
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Inquisitor Guard chalice
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Inquisitor Guard Door Left
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Inquisitor Guard Door Left
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Inquisitor Guard Door Left
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Inquisitor Torture Guard
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Inquisitor Torture Guard
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Inquisitor Torture Guard
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Inquisitor Guard
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Inquisitor Guard
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Inquisitor Guard
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Jailor Inquisitor
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Jailor Inquisitor
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Jailor Inquisitor
+														}
+													}
+												}
+												Action=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Tithe Inquisitor
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Tithe Inquisitor
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Tithe Inquisitor
+														}
+													}
+												}
+												Action=CIfAction
+												{
+													If=CCheckExistenceAction
+													{
+														Name To Check For=Fixt Torquemada is dead
+														Desired Minimum Count=1
+													}
+													Then=
+													Else=CTriggerRelayAction
+													{
+														Relay Name=Fixt Torquemada fight
+													}
+													Return failure if the If failes=0
+												}
+											}
+										}
+									}
+								}
+								Else=
+							}
 						}
 						Delay=1.5
 						Plus or Minus=0
@@ -466,7 +721,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=9
+							Item Count=10
 							Action=CForEachPlayerAction
 							{
 								Action=CAddCharacterModifierToCharacterAction
@@ -485,7 +740,7 @@ CLayerSaveData
 											}
 											Modification amount is a percent=0
 											Allow Accumulation=0
-											Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+											Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Chambers Hostile
 										}
 									}
 									OPTIONAL Duration=
@@ -513,6 +768,39 @@ CLayerSaveData
 								Target Name=Grand Inquisitor
 								AI=CAIInteractionSpecifier
 								Delay Between Removes=0
+							}
+							Action=CAddAIAction
+							{
+								Target Name=Grand Inquisitor
+								AI=CAIInteractionSpecifier
+								{
+									Marked For Deletion=0
+									Publisher=
+									Trigger Only Once=0
+									Was Triggered=0
+									Auto-Flip Switch=1
+									Trigge Must Have HP=0
+									Triggered By Anything=0
+									Triggered By Players=1
+									Triggered By Player Friends=0
+									Triggered By Enemies=0
+									Triggered By Projectiles=0
+									Triggered By Name=
+									Interaction Description=
+									Interaction Type=Interaction Specifiers/GetCloseThenTriggerAndFight
+									Action=
+									X Radius=50
+									Attacker Range Modifier=0
+									YX Ratio=0.712766
+									Highlight Self Time=0
+									Highlight Until Clicked=0
+									Is Locked=0
+									Allow Interact If Has Target=1
+									Lock Pick Adjustment=0
+									Inventory item to use as key=Inventory Items/!None
+									Is Bussy Talking=0
+								}
+								Delay Between Adds=0
 							}
 							Action=CMultipleActionsAction
 							{

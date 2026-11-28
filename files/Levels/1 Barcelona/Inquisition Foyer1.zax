@@ -6740,7 +6740,7 @@ CLayerSaveData
 									{
 										Operand1=CVariableDerivedCharacterAttribute
 										{
-											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
 										}
 										Operator=
 										Operand2=CConstant
@@ -6749,65 +6749,35 @@ CLayerSaveData
 										}
 									}
 									Character to get attributes from=Player1
-									Then=
+									Then=CMultipleActionsAction
+									{
+										Action=Array
+										{
+											Item Count=2
+											Action=CDelayAction
+											{
+												Next Action=CCloneAction
+												{
+													New Location=Inquisitor Raphael generator
+													Copy Height=0
+													Random Location Delta=0
+													Warp Behavior=
+													Source Name=Inquisitor Raphael generator
+													New Name=Used Raphael Generator
+													Set Facing Angle=0
+													New Facing Angle=0.785398
+												}
+												Delay=0
+												Plus or Minus=0
+												Forget Trigger=0
+											}
+											Action=CDeleteAction
+											{
+												Target Name=Used Raphael Generator
+											}
+										}
+									}
 									Else=CIfExpressionAction
-									{
-										If Expression=CIsGreaterThan
-										{
-											Operand1=CVariableDerivedCharacterAttribute
-											{
-												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Dead
-											}
-											Operator=
-											Operand2=CConstant
-											{
-												Constant Value=0
-											}
-										}
-										Character to get attributes from=Player1
-										Then=
-										Else=CMultipleActionsAction
-										{
-											Action=Array
-											{
-												Item Count=2
-												Action=CDelayAction
-												{
-													Next Action=CCloneAction
-													{
-														New Location=Fixt Mortal Raphael generator
-														Copy Height=0
-														Random Location Delta=0
-														Warp Behavior=
-														Source Name=Fixt Mortal Raphael generator
-														New Name=Used Raphael Generator
-														Set Facing Angle=0
-														New Facing Angle=0.785398
-													}
-													Delay=0
-													Plus or Minus=0
-													Forget Trigger=0
-												}
-												Action=CDeleteAction
-												{
-													Target Name=Used Raphael Generator
-												}
-											}
-										}
-									}
-								}
-								Else=CIfExpressionAction
-								{
-									If Expression=CHasPerkExpression
-									{
-										Perks To Check For=Array
-										{
-											Item Count=1
-											Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
-										}
-									}
-									Character to get attributes from=Player1
-									Then=CIfExpressionAction
 									{
 										If Expression=CIsGreaterThan
 										{
@@ -6864,6 +6834,124 @@ CLayerSaveData
 													Action=CDeleteAction
 													{
 														Target Name=Used Raphael Generator
+													}
+												}
+											}
+										}
+									}
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CMultipleActionsAction
+										{
+											Action=Array
+											{
+												Item Count=2
+												Action=CDelayAction
+												{
+													Next Action=CCloneAction
+													{
+														New Location=Inquisitor Raphael generator
+														Copy Height=0
+														Random Location Delta=0
+														Warp Behavior=
+														Source Name=Inquisitor Raphael generator
+														New Name=Used Raphael Generator
+														Set Facing Angle=0
+														New Facing Angle=0.785398
+													}
+													Delay=0
+													Plus or Minus=0
+													Forget Trigger=0
+												}
+												Action=CDeleteAction
+												{
+													Target Name=Used Raphael Generator
+												}
+											}
+										}
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=
+											Else=CIfExpressionAction
+											{
+												If Expression=CIsGreaterThan
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Dead
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0
+													}
+												}
+												Character to get attributes from=Player1
+												Then=
+												Else=CMultipleActionsAction
+												{
+													Action=Array
+													{
+														Item Count=2
+														Action=CDelayAction
+														{
+															Next Action=CCloneAction
+															{
+																New Location=Fixt Mortal Raphael generator
+																Copy Height=0
+																Random Location Delta=0
+																Warp Behavior=
+																Source Name=Fixt Mortal Raphael generator
+																New Name=Used Raphael Generator
+																Set Facing Angle=0
+																New Facing Angle=0.785398
+															}
+															Delay=0
+															Plus or Minus=0
+															Forget Trigger=0
+														}
+														Action=CDeleteAction
+														{
+															Target Name=Used Raphael Generator
+														}
 													}
 												}
 											}

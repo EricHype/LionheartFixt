@@ -424,6 +424,19 @@ Relay Name=Fixt order epilogue relay
 }
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=900 order inquisition unwitnessed
+Text=The Inquisition entered the siege with a new head. Torquemada died in his own chambers, and the Holy Office recorded it as a fever. For once the record was all anyone had. Raphael took the chair within the year and spent the first of it looking for the hand, because a man who has found one door into those chambers looks for the others. He never found it. He burned more than Torquemada ever had, with better records, and the cities paid for the wood. The archive holds every name he suspected. Yours is not among them.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=900 order wielder ring
 Text=La Calle Perdida was never found, because by the end of that year there was nothing left of it to find. You put on Relican's ring and turned it on the hidden city yourself. The few who walked out gave you the only title that fit: Dark Lord of a place that no longer existed. What the Church had spent a century failing to drown, you buried in an afternoon. Whatever books it still held went down with it. Nobody tapped the Ways crystals for it again. Nobody taught any of it in the open, then or afterward.
 Should Have Voiceover=1

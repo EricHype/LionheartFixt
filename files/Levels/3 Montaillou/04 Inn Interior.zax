@@ -106,74 +106,258 @@ CLayerSaveData
 				{
 					Marked For Deletion=0
 					Publisher=
-					Action=CDelayAction
+					Action=CMultipleActionsAction
 					{
-						Next Action=CIfExpressionAction
+						Action=Array
 						{
-							If Expression=CIsGreaterThan
+							Item Count=2
+							Action=CDelayAction
 							{
-								Operand1=CVariableDerivedCharacterAttribute
+								Next Action=CIfExpressionAction
 								{
-									Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
-								}
-								Operator=
-								Operand2=CConstant
-								{
-									Constant Value=0
-								}
-							}
-							Character to get attributes from=Player1
-							Then=CIfExpressionAction
-							{
-								If Expression=CIsGreaterThan
-								{
-									Operand1=CVariableDerivedCharacterAttribute
+									If Expression=CIsGreaterThan
 									{
-										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
 									}
-									Operator=
-									Operand2=CConstant
+									Character to get attributes from=Player1
+									Then=CIfExpressionAction
 									{
-										Constant Value=0
-									}
-								}
-								Character to get attributes from=Player1
-								Then=
-								Else=CMultipleActionsAction
-								{
-									Action=Array
-									{
-										Item Count=1
-										Action=CMultipleActionsAction
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=
+										Else=CMultipleActionsAction
 										{
 											Action=Array
 											{
-												Item Count=3
-												Action=CAddCategoryAction
+												Item Count=1
+												Action=CMultipleActionsAction
 												{
-													Target Name=Inquisitor Agent
-													Categories to add=Enemy
+													Action=Array
+													{
+														Item Count=3
+														Action=CAddCategoryAction
+														{
+															Target Name=Inquisitor Agent
+															Categories to add=Enemy
+														}
+														Action=CSetTargetTypeAction
+														{
+															Entity Name=Inquisitor Agent
+															Name To Target=
+															Valid Targets=Player,Player Friend
+														}
+														Action=CGoToCombatAction
+														{
+															Enemy Name=Inquisitor Agent
+														}
+													}
 												}
-												Action=CSetTargetTypeAction
+											}
+										}
+									}
+									Else=
+								}
+								Delay=1.5
+								Plus or Minus=0
+								Forget Trigger=0
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CHasPerkExpression
+								{
+									Perks To Check For=Array
+									{
+										Item Count=1
+										Perk To Check For=Perks/!Event Title Perks/Dark Inquisitor
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CIfExpressionAction
+								{
+									If Expression=CIsGreaterThan
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=0
+										}
+									}
+									Character to get attributes from=Player1
+									Then=
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
 												{
-													Entity Name=Inquisitor Agent
-													Name To Target=
-													Valid Targets=Player,Player Friend
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
 												}
-												Action=CGoToCombatAction
+												Operator=
+												Operand2=CConstant
 												{
-													Enemy Name=Inquisitor Agent
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=
+											Else=CForEachPlayerAction
+											{
+												Action=CAddCharacterModifierToCharacterAction
+												{
+													Modifier Description=
+													Modification is permanent=0
+													Character to modify=$Instigator
+													Modifiers=Array
+													{
+														Item Count=1
+														Modifier=CCharacterModifierDerivedAttribute
+														{
+															Modification Amount=CConstant
+															{
+																Constant Value=1
+															}
+															Modification amount is a percent=0
+															Allow Accumulation=0
+															Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+														}
+													}
+													OPTIONAL Duration=
+													Expression Context=$Instigator
 												}
 											}
 										}
 									}
 								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CHasPerkExpression
+									{
+										Perks To Check For=Array
+										{
+											Item Count=1
+											Perk To Check For=Perks/!Event Title Perks/Breaker of the Hammer
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CIfExpressionAction
+									{
+										If Expression=CIsGreaterThan
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Saw You
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=0
+											}
+										}
+										Character to get attributes from=Player1
+										Then=
+										Else=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Hostile
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=
+											Else=CIfExpressionAction
+											{
+												If Expression=CIsGreaterThan
+												{
+													Operand1=CVariableDerivedCharacterAttribute
+													{
+														Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+													}
+													Operator=
+													Operand2=CConstant
+													{
+														Constant Value=0
+													}
+												}
+												Character to get attributes from=Player1
+												Then=
+												Else=CForEachPlayerAction
+												{
+													Action=CAddCharacterModifierToCharacterAction
+													{
+														Modifier Description=
+														Modification is permanent=0
+														Character to modify=$Instigator
+														Modifiers=Array
+														{
+															Item Count=1
+															Modifier=CCharacterModifierDerivedAttribute
+															{
+																Modification Amount=CConstant
+																{
+																	Constant Value=1
+																}
+																Modification amount is a percent=0
+																Allow Accumulation=0
+																Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Torquemada Unwitnessed
+															}
+														}
+														OPTIONAL Duration=
+														Expression Context=$Instigator
+													}
+												}
+											}
+										}
+									}
+									Else=
+								}
 							}
-							Else=
 						}
-						Delay=1.5
-						Plus or Minus=0
-						Forget Trigger=0
 					}
 					Trigger Only Once=0
 					Was Triggered=0
