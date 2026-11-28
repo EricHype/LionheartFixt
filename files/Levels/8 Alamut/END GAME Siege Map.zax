@@ -276,7 +276,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=35
+							Item Count=36
 							Action=CIfAction
 							{
 								If=CCheckExistenceAction
@@ -3773,6 +3773,85 @@ CLayerSaveData
 										Delay=0.1
 										Plus or Minus=0
 										Forget Trigger=0
+									}
+								}
+							}
+							Action=CIfExpressionAction
+							{
+								If Expression=CIsGreaterThanOrEqual
+								{
+									Operand1=CVariableDerivedCharacterAttribute
+									{
+										Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Resents You
+									}
+									Operator=
+									Operand2=CConstant
+									{
+										Constant Value=1
+									}
+								}
+								Character to get attributes from=Player1
+								Then=CDisplayDialogTreeAction
+								{
+									Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+									Node ID=900 friend shakespeare resents
+									Speaker=Fake Talker for NIS
+									Player Being Spoken To=Player1
+								}
+								Else=CIfExpressionAction
+								{
+									If Expression=CIsEqualTo
+									{
+										Operand1=CVariableDerivedCharacterAttribute
+										{
+											Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Encouraged
+										}
+										Operator=
+										Operand2=CConstant
+										{
+											Constant Value=1
+										}
+									}
+									Character to get attributes from=Player1
+									Then=CDisplayDialogTreeAction
+									{
+										Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+										Node ID=900 friend shakespeare
+										Speaker=Fake Talker for NIS
+										Player Being Spoken To=Player1
+									}
+									Else=CIfExpressionAction
+									{
+										If Expression=CIsEqualTo
+										{
+											Operand1=CVariableDerivedCharacterAttribute
+											{
+												Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Shakespeare Sent Home
+											}
+											Operator=
+											Operand2=CConstant
+											{
+												Constant Value=1
+											}
+										}
+										Character to get attributes from=Player1
+										Then=CDisplayDialogTreeAction
+										{
+											Dialog Tree File=Levels/8 Alamut/Dialog/Fixt Ending Slides
+											Node ID=900 friend shakespeare home
+											Speaker=Fake Talker for NIS
+											Player Being Spoken To=Player1
+										}
+										Else=CDelayAction
+										{
+											Next Action=CTriggerRelayAction
+											{
+												Relay Name=Fixt order epilogue relay
+											}
+											Delay=0.1
+											Plus or Minus=0
+											Forget Trigger=0
+										}
 									}
 								}
 							}

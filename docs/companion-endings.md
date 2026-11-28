@@ -655,6 +655,74 @@ he came to be lying in a vault with his head open.
 
 ---
 
+## William Shakespeare
+
+Not a companion. He is here because 0.60.0 restored his Crossroads scene and left a promise unkept:
+*"You must return later and I will reveal to you the opening scene of your play!"* The game recorded
+no scene, and his pitch says where the payoff belongs: *"a tale whose ending you will complete."* So
+the slide is the scene. Built by `tools/build_shakespeare_slide.py`; tested in this order.
+
+### when: he resents you
+
+    node id: 900 friend shakespeare resents
+
+`Fixt Shakespeare Resents You` >= 1 (0.83.5; every way to raise it is the Shylocke debt).
+
+William Shakespeare never forgave you the moneylender's errand. He wrote you a part all the same.
+His Venice play has a moneylender in it, and the moneylender keeps a servant. The servant is a clown
+who sells his loyalty to whoever pays better. That part is yours, and it got the laughs. He did
+write a Richard II. It is about a different Richard, and there is nobody like you in it. He left his
+wife his second-best bed, and you nothing.
+
+### when: you told him you looked forward to it
+
+    node id: 900 friend shakespeare
+
+`Fixt Shakespeare Encouraged` = 1, set by *"I'm pleased and flattered, William. I look forward to
+your work."*
+
+William Shakespeare went home to London with his muse and an unfinished play. He had promised you
+its opening scene, and he wrote it the week he arrived. Then he waited for the ending you were to
+supply. News of you travelled slowly, and wrongly. The ballads that reached London were about another
+Richard entirely. He finished the play from those. Richard II is about a king who talks his crown away
+and sits on the ground to tell sad stories. It still opens with the scene he wrote for you. Two men
+quarrel, and both swear they are loyal.
+
+### when: you sent him home
+
+    node id: 900 friend shakespeare home
+
+`Fixt Shakespeare Sent Home` = 1, set by *"This place is too dangerous for you. Return to Barcelona."*
+
+You sent William Shakespeare back to Barcelona, and he went. He finished the play in his hovel in the
+Port District. Without the battle sites he wrote what he knew, which was a man arguing for his life
+with words. He called it Richard II. The king in it speaks beautifully and loses everything. He sent
+you a copy, care of the Templars, with a dedication. It never reached you. The printers later cut the
+scene where the king gives up his crown, and nobody could say why.
+
+Anyone who never met him at the Crossroads, and does not resent him, gets no slide.
+
+**What is from his tree, and what is from history.** From his dialogue: the muse (the Crossroads
+needs it), the debt, his hovel in the Port District, the Richard II pitch and the promised scene. From
+the real play and the real man: *Richard II* opens on two men accusing each other of treason, each
+swearing loyalty; it has "sit upon the ground and tell sad stories of the death of kings"; its
+abdication scene was cut from the early printings; Shylock's servant in *The Merchant of Venice* is a
+clown who leaves him for a better master; and Shakespeare left his wife his second-best bed. Invented,
+which a slide may be: London, the ballads, the copy sent care of the Templars, and your part.
+
+**The variables reach a save in progress only from his next Crossroads conversation.** A save that
+already answered him gets no slide for it, since nothing recorded the answer.
+
+| # | Do | Passes when |
+|---|---|---|
+| WS1 | Meet him at the Crossroads and say you are pleased and flattered; finish the game | `900 friend shakespeare` plays, with his figure on the stage |
+| WS2 | Meet him and send him home; finish the game | `900 friend shakespeare home` plays, and he still fades out of the Crossroads as before |
+| WS3 | Extort him for Shylocke first, then meet him and encourage him; finish the game | only `900 friend shakespeare resents` plays |
+| WS4 | Never meet him at the Crossroads, and do not cross him; finish the game | no Shakespeare slide, and the epilogue moves straight on |
+| WS5 | Meet the conditions for `900 order inquisition unwitnessed` (0.99.46, `tools/build_inquisition_quiet.py`) and finish the game | `900 order inquisition unwitnessed` plays on the stage. It is in the end-game series but was missing from the stage 0.99.46 shipped, because the stage was not rebuilt; rebuilding it here picked it up |
+
+---
+
 ## Open
 
 **Grace O'Malley already had one, and it was not enough.** `900 order omalley` fires on a perk

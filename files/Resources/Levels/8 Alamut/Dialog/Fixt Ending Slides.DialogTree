@@ -1620,6 +1620,45 @@ Relay Name=Fixt order epilogue relay
 }
 Is Default Reply=1
 ------------------------------------------------------------
+Node ID=900 friend shakespeare resents
+Text=William Shakespeare never forgave you the moneylender's errand. He wrote you a part all the same. His Venice play has a moneylender in it, and the moneylender keeps a servant. The servant is a clown who sells his loyalty to whoever pays better. That part is yours, and it got the laughs. He did write a Richard II. It is about a different Richard, and there is nobody like you in it. He left his wife his second-best bed, and you nothing.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 friend shakespeare
+Text=William Shakespeare went home to London with his muse and an unfinished play. He had promised you its opening scene, and he wrote it the week he arrived. Then he waited for the ending you were to supply. News of you travelled slowly, and wrongly. The ballads that reached London were about another Richard entirely. He finished the play from those. Richard II is about a king who talks his crown away and sits on the ground to tell sad stories. It still opens with the scene he wrote for you. Two men quarrel, and both swear they are loyal.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
+Node ID=900 friend shakespeare home
+Text=You sent William Shakespeare back to Barcelona, and he went. He finished the play in his hovel in the Port District. Without the battle sites he wrote what he knew, which was a man arguing for his life with words. He called it Richard II. The king in it speaks beautifully and loses everything. He sent you a copy, care of the Templars, with a dedication. It never reached you. The printers later cut the scene where the king gives up his crown, and nobody could say why.
+Should Have Voiceover=1
+
+Requirement=!None
+Reply Text=
+Go to node ID=
+Custom Action=CTriggerRelayAction
+{
+Relay Name=Fixt order epilogue relay
+}
+Is Default Reply=1
+------------------------------------------------------------
 Node ID=900 friend golem
 Text=The golem stopped. It had been built in England to break a line. Its last campaign was spent walking behind you. You said follow or stay, and it answered in the same few noises. It stopped in a cave in the giants' country, upright, facing the way you had gone. Two centuries later a shepherd found it and took the arm for scrap. His family kept a shoulder plate as a doorstep for sixty years.
 Should Have Voiceover=1

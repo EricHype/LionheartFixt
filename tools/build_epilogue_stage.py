@@ -70,6 +70,7 @@ FIGURES = [
     ("900 friend fang", "Monster Cans/Animals/Cub Companion"),
     ("900 friend ernesto", C % "Wilderness" + "Crazy Goblin-Trapped Conquistador"),("900 friend golem", "Monster Cans/English Enemies/Wargolem Deactivated"),
     ("900 friend lost knight", KNIGHT),
+    ("900 friend shakespeare", C % "1 Barcelona" + "Port District/Shakespeare"),
 ]
 CAST = {}
 
