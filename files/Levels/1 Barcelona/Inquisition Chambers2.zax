@@ -47913,7 +47913,7 @@ CLayerSaveData
 					{
 						Action=Array
 						{
-							Item Count=5
+							Item Count=7
 							Action=CActivateAction
 							{
 								Target Name=Grand Inquisitor Sends you to jail
@@ -47935,6 +47935,14 @@ CLayerSaveData
 							Action=CDeleteAction
 							{
 								Target Name=Fixt Torquemada guard
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Used Grand Inquisitor Generator
+							}
+							Action=CDeleteAction
+							{
+								Target Name=Used Fixt Mortal Inquisitor Generator
 							}
 							Action=CIfAction
 							{
