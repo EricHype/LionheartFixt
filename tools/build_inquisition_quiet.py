@@ -466,6 +466,109 @@ def build_no_ernesto():
     return done
 
 
+# ---- after Raphael's fight: only the Inquisition, and only its own house once he is dead ------------
+
+FOREST = "Levels/1 Barcelona/Inquisition Forest Exterior.zax"
+GROUND = (CHAMBERS, FOYER, FOREST)
+TURN_MARK = "Fixt Inquisition turns: Inquisitors only"  # carried in the relay's own Comment-free form: see has_v2
+
+
+def shared_names(z):
+    """Names a turn relay must not use: New Names that Inquisitor spawns share with anything else. A name broadcast
+    hits every carrier, and the travellers' names are shared with Cathedral knights, citizens and a vendor. Reported:
+    "after fighting raphael, every guard, inquisitor and knight templar in barcelona is hostile"."""
+    from build_inquisition_turns import CAN_RE
+    owners = {}
+    for p in re.findall(r"(?ms)^\t\tLevel Part=\w+\r\n\t\t\{\r\n.*?^\t\t\}", z):
+        nn = re.findall(r"New Name=([^\r\n]*)", p)
+        if not nn:
+            continue
+        # what it spawns, not the Entity= fields of its own actions (effects, $Trigger)
+        # (a spawn list's `Weight=` then `Entity=`, or a simple generator's `Already Generated=` then `Entity=`)
+        for e in re.findall(r"\r\n\t*(?:Weight|Already Generated)=[^\r\n]*\r\n\t*Entity=([^\r\n]*)", p):
+            owners.setdefault(nn[0].strip(), set()).add(bool(CAN_RE.search("Entity=" + e + CR)))
+    return {n for n, kinds in owners.items() if False in kinds}
+
+
+HOUSE = (CHAMBERS, FOYER)  # where the Inquisition's guards stand with it
+MONTAILLOU = ("Levels/3 Montaillou/04 Inn Interior.zax", "Levels/3 Montaillou/05 Church Interior.zax")
+
+
+def turn_names(z, rel):
+    """Asked: "the guards should not join the inquisitors out of their chambers though". Outside its house only the
+    Inquisitors turn; the Inquisition's guards posted outside (the Forest Exterior's two) stay out of it."""
+    bad = shared_names(z)
+    names = [n for n in spawn_names(z) if n not in bad]
+    if rel not in HOUSE:
+        names = [n for n in names if "Guard" not in n]
+    return names
+
+
+def on_ground(body):
+    """The Inquisition's own house: calm after a deal, still hostile once Raphael is dead (absolved by his death)."""
+    return var_if(ABSOLVED, var_if(RAPHAEL_DEAD, body, ""), body)
+
+
+def turn_action(rel, z):
+    from build_inquisition_turns import deactivate, exists, if_action
+    names = turn_names(z, rel)
+    stand = [deactivate(n) for n in MAPS[rel]]
+    if rel == FOYER:
+        items = [B(*a) for a in stand] + [B(*to_combat(n)) for n in names if n != GUARD]
+        body = ("CMultipleActionsAction" + CR + "{" + CR + "Action=Array" + CR + "{" + CR + "Item Count=%d" % (len(items) + 1) + CR +
+                "".join("Action=" + i for i in items) + "Action=" + arm(GUARD) + "}" + CR + "}" + CR)
+        cond = B(*delay(1.5, var_if(HOSTILE, on_ground("@BODY@"), "")))
+        return cond.replace("@BODY@" + CR, body).rstrip(CR)
+    extra = [if_action(exists("Fixt Torquemada is dead"), "", relay("Fixt Torquemada fight"))] if rel == CHAMBERS else []
+    body = multi(stand + [to_combat(n) for n in names] + extra)
+    if rel == CHAMBERS:
+        act = delay(1.5, var_if(HOSTILE, on_ground(body), var_if(CH_HOSTILE, var_if(UNWITNESSED, "", on_ground(body)), "")))
+        return B(*act).rstrip(CR)
+    if rel in MONTAILLOU:
+        # Asked: "the inquisitors in montaillou shouldn't be hostile from this, should they?" Barcelona's quarrel
+        # stays in Barcelona; the inn and church keep only the getaway check.
+        return B(*getaway()).rstrip(CR)
+    calm = on_ground(body) if rel in GROUND else var_if(ABSOLVED, "", body)
+    act = multi([delay(1.5, var_if(HOSTILE, calm, "")), getaway()])
+    return B(*act).rstrip(CR)
+
+
+def build_turns_v2():
+    done = []
+    for rel in MAPS:
+        z = lhbuild.read(rel)
+        s, e = part_span(z, TURN)
+        p = z[s:e]
+        k = p.index("Action=C", p.index("Activity=CRelayAI"))
+        end = balanced(p, k)
+        new = "Action=" + turn_action(rel, z)
+        flat = lambda x: re.sub(r"\s+", "", re.sub(r"(?m)^\s*Object ID=[^\r\n]*\r\n", "", x))
+        if flat(p[k:end]) == flat(new):
+            continue
+        z = z[:s] + p[:k] + new + p[end:] + z[e:]
+        lhbuild.write_map(rel, z)
+        done.append(rel)
+    return done
+
+
+def build_sede_stands_down():
+    """Raphael's death stands the Inquisition down: no one is left to give orders. His death script sets
+    `Fixt Inquisition Absolved` beside `Fixt Raphael Dead`, which calms every town relay, the ones frozen in older saves
+    included; the rebuilt relays of the Inquisition's own ground read the pair and stay hostile."""
+    z = lhbuild.read(MORTAL_CAN)
+    f = re.sub(r"(?m)^Object ID=[^\r\n]*\r\n", "", re.sub(r"(?m)^\t+", "", z))
+    s = f.index("Destroyed Script Action=")
+    e = balanced(f, s)
+    death = f[s:e]
+    if "Fixt Inquisition Absolved" in death:
+        return []
+    one = B(*flag(RAPHAEL_DEAD))
+    assert death.count(one) == 1, death.count(one)
+    death = death.replace(one, B(*multi([flag(RAPHAEL_DEAD), flag(ABSOLVED)])))
+    lhbuild.write_map(MORTAL_CAN, f[:s] + death + f[e:])
+    return [MORTAL_CAN]
+
+
 def main():
     for path, short, what in ((CH_HOSTILE, "Fixt Chambers Hostile", "1 means the player started the fight with Torquemada in his chambers."),
                               (WITNESSED, "Fixt Raphael Saw You", "1 means Raphael confronted the player after Torquemada died."),
@@ -475,7 +578,8 @@ def main():
             write_var(path, short, what)
             register([rel])
     done = (build_chambers() + build_foyer() + build_raphael() + build_getaway() + build_gi_tree() + build_slides() +
-            build_endgame() + build_raphael_tree() + build_foyer_fight() + build_guards() + build_no_ernesto())
+            build_endgame() + build_raphael_tree() + build_foyer_fight() + build_guards() + build_no_ernesto() +
+            build_turns_v2() + build_sede_stands_down())
     if done:
         register(done)
     print("inquisition quiet:", done)

@@ -148,7 +148,7 @@ CLayerSaveData
 										{
 											Action=Array
 											{
-												Item Count=6
+												Item Count=5
 												Action=CDeactivateAction
 												{
 													Target Name=Yard sends you to jail
@@ -194,28 +194,6 @@ CLayerSaveData
 														Action=CGoToCombatAction
 														{
 															Enemy Name=Mateo
-														}
-													}
-												}
-												Action=CMultipleActionsAction
-												{
-													Action=Array
-													{
-														Item Count=3
-														Action=CAddCategoryAction
-														{
-															Target Name=Traveler going to Temple District
-															Categories to add=Enemy
-														}
-														Action=CSetTargetTypeAction
-														{
-															Entity Name=Traveler going to Temple District
-															Name To Target=
-															Valid Targets=Player,Player Friend
-														}
-														Action=CGoToCombatAction
-														{
-															Enemy Name=Traveler going to Temple District
 														}
 													}
 												}

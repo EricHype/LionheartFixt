@@ -6169,6 +6169,20 @@ list is frozen on first visit. The speech itself is a dialogue edit and works on
 | HH58 | Finish the game, HH55's, member and outsider. Then one who served the cult | - | `dark sede` and `broken sede`. The cult slide is `inherited` only here, and `contested` when Raphael lives |
 | HH59 | Finish the slavers, by force and by talk, and be knighted by Javier | - | The Templar theme starts under *"I am proud to bestow upon you the title of Knight"* on every route, and the game's music returns normally afterwards |
 
+## unreleased
+
+`tools/build_inquisition_quiet.py`, after Raphael's fight. UV1-UV5: town maps and the Inquisition's house not entered since installing. UV6: every save.
+
+| # | Where | Steps | Pass |
+|---|---|---|---|
+| UV1 | Refuse Raphael and get away alive, then the Temple and Gate Districts | Walk the streets | Inquisitors attack on sight. **Cathedral knights, city guards, citizens and vendors do not** |
+| UV2 | Same | The Inquisition Forest Exterior | Its two Inquisition guards stay out of it |
+| UV3 | Kill Raphael, then the streets | Walk them | Inquisitors stand down: nobody attacks |
+| UV4 | UV3, then the Chambers and the Foyer | Go in | Their guards and Inquisitors are still hostile |
+| UV5 | Take Raphael's deal instead | Anywhere, the Chambers included | Everyone neutral |
+| UV6 | A save whose town maps were entered before this, Raphael killed after installing it | Walk the streets | Calm, the old maps included |
+| UV7 | Refuse Raphael and get away alive, then Montaillou's inn and church, and Bishop Diego on the Plains | Visit them | Fournier, the inn's agent and Diego are not hostile: Barcelona's quarrel stays in Barcelona |
+
 ## 0.99.47 - the play's the thing
 
 `tools/build_epilogue_stage.py`, rebuilt. Every save that has not reached the ending.

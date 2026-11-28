@@ -143,56 +143,35 @@ CLayerSaveData
 											}
 										}
 										Character to get attributes from=Player1
-										Then=
+										Then=CIfExpressionAction
+										{
+											If Expression=CIsGreaterThan
+											{
+												Operand1=CVariableDerivedCharacterAttribute
+												{
+													Character Attribute=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Dead
+												}
+												Operator=
+												Operand2=CConstant
+												{
+													Constant Value=0
+												}
+											}
+											Character to get attributes from=Player1
+											Then=CMultipleActionsAction
+											{
+												Action=Array
+												{
+													Item Count=0
+												}
+											}
+											Else=
+										}
 										Else=CMultipleActionsAction
 										{
 											Action=Array
 											{
-												Item Count=2
-												Action=CMultipleActionsAction
-												{
-													Action=Array
-													{
-														Item Count=3
-														Action=CAddCategoryAction
-														{
-															Target Name=Inquisitor Guard
-															Categories to add=Enemy
-														}
-														Action=CSetTargetTypeAction
-														{
-															Entity Name=Inquisitor Guard
-															Name To Target=
-															Valid Targets=Player,Player Friend
-														}
-														Action=CGoToCombatAction
-														{
-															Enemy Name=Inquisitor Guard
-														}
-													}
-												}
-												Action=CMultipleActionsAction
-												{
-													Action=Array
-													{
-														Item Count=3
-														Action=CAddCategoryAction
-														{
-															Target Name=Inquisitor Guard2
-															Categories to add=Enemy
-														}
-														Action=CSetTargetTypeAction
-														{
-															Entity Name=Inquisitor Guard2
-															Name To Target=
-															Valid Targets=Player,Player Friend
-														}
-														Action=CGoToCombatAction
-														{
-															Enemy Name=Inquisitor Guard2
-														}
-													}
-												}
+												Item Count=0
 											}
 										}
 									}

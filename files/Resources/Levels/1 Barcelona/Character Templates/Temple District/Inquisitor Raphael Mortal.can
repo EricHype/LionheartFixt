@@ -1927,27 +1927,56 @@ CCannedObject
 								}
 								Return failure if the TryAction failes=0
 							}
-							Action=CAddCharacterModifierToCharacterAction
+							Action=CMultipleActionsAction
 							{
-								Modifier Description=
-								Modification is permanent=0
-								Character to modify=$Instigator
-								Modifiers=Array
+								Action=Array
 								{
-									Item Count=1
-									Modifier=CCharacterModifierDerivedAttribute
+									Item Count=2
+									Action=CAddCharacterModifierToCharacterAction
 									{
-										Modification Amount=CConstant
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=$Instigator
+										Modifiers=Array
 										{
-											Constant Value=1
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Dead
+											}
 										}
-										Modification amount is a percent=0
-										Allow Accumulation=0
-										Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Raphael Dead
+										OPTIONAL Duration=
+										Expression Context=$Instigator
+									}
+									Action=CAddCharacterModifierToCharacterAction
+									{
+										Modifier Description=
+										Modification is permanent=0
+										Character to modify=$Instigator
+										Modifiers=Array
+										{
+											Item Count=1
+											Modifier=CCharacterModifierDerivedAttribute
+											{
+												Modification Amount=CConstant
+												{
+													Constant Value=1
+												}
+												Modification amount is a percent=0
+												Allow Accumulation=0
+												Derived character attribute to modify=Derived Character Attributes/Game Scripting Variables/Fixt Inquisition Absolved
+											}
+										}
+										OPTIONAL Duration=
+										Expression Context=$Instigator
 									}
 								}
-								OPTIONAL Duration=
-								Expression Context=$Instigator
 							}
 							Action=CGiveCharacterPerkAction
 							{

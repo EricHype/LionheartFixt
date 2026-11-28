@@ -148,29 +148,7 @@ CLayerSaveData
 										{
 											Action=Array
 											{
-												Item Count=5
-												Action=CMultipleActionsAction
-												{
-													Action=Array
-													{
-														Item Count=3
-														Action=CAddCategoryAction
-														{
-															Target Name=Traveler going to Temple District
-															Categories to add=Enemy
-														}
-														Action=CSetTargetTypeAction
-														{
-															Entity Name=Traveler going to Temple District
-															Name To Target=
-															Valid Targets=Player,Player Friend
-														}
-														Action=CGoToCombatAction
-														{
-															Enemy Name=Traveler going to Temple District
-														}
-													}
-												}
+												Item Count=2
 												Action=CMultipleActionsAction
 												{
 													Action=Array
@@ -200,28 +178,6 @@ CLayerSaveData
 														Item Count=3
 														Action=CAddCategoryAction
 														{
-															Target Name=Traveller from Gate to Crossroads
-															Categories to add=Enemy
-														}
-														Action=CSetTargetTypeAction
-														{
-															Entity Name=Traveller from Gate to Crossroads
-															Name To Target=
-															Valid Targets=Player,Player Friend
-														}
-														Action=CGoToCombatAction
-														{
-															Enemy Name=Traveller from Gate to Crossroads
-														}
-													}
-												}
-												Action=CMultipleActionsAction
-												{
-													Action=Array
-													{
-														Item Count=3
-														Action=CAddCategoryAction
-														{
 															Target Name=Inquisitor by Herbalist
 															Categories to add=Enemy
 														}
@@ -234,28 +190,6 @@ CLayerSaveData
 														Action=CGoToCombatAction
 														{
 															Enemy Name=Inquisitor by Herbalist
-														}
-													}
-												}
-												Action=CMultipleActionsAction
-												{
-													Action=Array
-													{
-														Item Count=3
-														Action=CAddCategoryAction
-														{
-															Target Name=Traveler to Port District
-															Categories to add=Enemy
-														}
-														Action=CSetTargetTypeAction
-														{
-															Entity Name=Traveler to Port District
-															Name To Target=
-															Valid Targets=Player,Player Friend
-														}
-														Action=CGoToCombatAction
-														{
-															Enemy Name=Traveler to Port District
 														}
 													}
 												}
