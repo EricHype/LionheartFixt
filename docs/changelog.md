@@ -17,6 +17,7 @@ history.
 
 | Release | Where | What |
 |---|---|---|
+| **0.99.48** | only the Holy Office | After Raphael's fight only Inquisitors turn, only in Barcelona, and his death stands the streets down; the troll chief can be told Enrique is dead. |
 | **0.99.47** | the play's the thing | The Inquisition's unwitnessed ending slide plays, Shakespeare's play gets an ending, and Travel to Montserrat, Obtain Darkwood and the road to Galileo can finish. |
 | **0.99.46** | a fever | The Necromancer title raises one of each kind of undead at full strength, there is one Torquemada, and the Inquisition learns of his death from Raphael or not at all. |
 | **0.99.45** | no dead ends | Every dialogue reply a player can choose now goes somewhere, fifteen replies do what their identical twins do, and Lord Javier's first-meeting donation charges once. |
