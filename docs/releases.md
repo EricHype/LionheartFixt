@@ -1,6 +1,6 @@
 # Lionheart Fixt - the mod, and its releases
 
-Status: **0.1.0 through 0.99.46 are published** -- 249 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
+Status: **0.1.0 through 0.99.47 are published** -- 250 releases, every one tagged and carrying a zip. Every act is surveyed, built and released, and the 0.21-0.24 line is the first work aimed at how the game plays rather than at what was cut from it. Two exceptions to "published": **0.70.0 is WITHDRAWN** and superseded by 0.71.0 -- its ending prophecies were not in Nostradamus's voice and each faction's future was fixed; do not install it. **0.88.0 was tagged and never published**, superseded by 0.88.1 before any artifact existed. And **0.5.0 was built and never published**; its artifact crashes on entering the vault and is superseded by 0.5.1. Keep this line current when you ship: it stood at 0.74.0 for **29 releases**, which is how a status line stops being read. The sections below are in reverse release order, newest first.
 
 **The newest release is a candidate until someone plays it.** [`qa.md`](qa.md) is the authority on what each one had to pass, and a green Gate 0 only proves the files are well-formed. 0.83.0's thirteen `TK` rows, 0.83.1's nine `WS` rows and 0.83.2's two `QS` rows and 0.83.3's six `ID` rows and 0.83.4's five `WV` rows and 0.83.5's six `WR` rows are unplayed at the time of writing, as are 0.85.1's four `AQ` rows, 0.85.2's nine `VJ` rows, 0.86.0's sixteen `SD` rows, 0.87.1's nine `WP` rows and 0.88.1's fifteen `WE` rows and 0.88.2's five `WI` rows, and 0.89.0's ten `WM` rows -- of which **`WM1` and `WM5` are passed in play**, from five per-base copies rolled into `magicweapons.sav` across five base weapons; `WM2` through `WM8` cover meshes walked in the hand through the Playtest Kit; **`WM1`, `WM2`, `WM3`, `WM5` and `WM8` are passed in play** across three sessions, which between them reached eleven of the twenty-one meshes through real rolls and seven of the per-base pools; `WM4` rests on `BattleAxeBetter`, its rotated sibling, having rolled and rendered; and `WM6`, `WM7`, `WM9` and `WM10` are open -- `WM7` because nothing has rolled a Composite Long Bow, `WM6` and `WM9` because nobody has looked. 0.86.1's `SG4` is the one row in this document that has been walked in play, because it is the defect that drove the release. The same is true of 0.87.0's `WN1`.
 
@@ -141,6 +141,32 @@ Saladin member rather than an initiated one. The path is now corrected to
 `Dialog/Requirements/Faction/Saladin Favored`, which is both resolvable and the gate 0.9.0
 intended. **Third instance of the same lesson**: search the mod's own files, not only vanilla,
 before concluding a resource does not exist.
+
+## 0.99.47 - the play's the thing
+
+A patch for an ending slide 0.99.46 shipped dead, and three pieces of work from a review of the design goals.
+Three builders, each with its QA rows.
+
+- **0.99.46's unwitnessed slide plays.** `900 order inquisition unwitnessed` went into the end-game series and the
+  slide tree, but the epilogue stage, which is what plays, was not rebuilt: it held 145 slide references against the
+  series' 149, so the slide could never show. The stage is rebuilt and now mirrors the series. No gate compares the
+  two. `tools/build_epilogue_stage.py`, `UQ15`.
+- **Shakespeare's play ends the game.** At the Crossroads (0.60.0) he promises to reveal the opening scene of the play
+  he is writing about you, and the game recorded no scene. Three end slides pay it off, by how you left him:
+  resentful (0.83.5's variable), encouraged, or sent home. His two replies to the Richard II pitch set two new
+  variables, and he stands on the epilogue stage. `tools/build_shakespeare_slide.py`, `PL1`-`PL4`; the text and where
+  each claim comes from are in `docs/companion-endings.md`.
+- **Three quests can finish.** A new sweep, `tools/quest_reach.py`, reads every quest action and check against the
+  quest files and what a player can reach. Three of its findings were defects. Two requirement cans checked Galileo's
+  state on the wrong quest, so seven Wielder replies never appeared. *Travel to Montserrat* became startable through
+  Fixt's own Jafar work and nothing completed it, so the siege failed it. *Obtain Darkwood* had no completion at all.
+  Each now finishes where the game's own siblings finish. `tools/build_quest_repairs.py`, `QR1`-`QR5`; the triage, and
+  four unfinished quests left for a design decision, are in `docs/quest-reach.md`.
+- **Reach.** The slides, the requirement cans and Montgomerie's and Sahar's lines reach every save. Shakespeare's
+  variables are set from the next Crossroads conversation with him, *Travel to Montserrat* needs Montserrat still
+  ahead, and the Darkwood needs a Darkwood Cave not yet entered.
+
+---
 
 ## 0.99.46 - a fever
 
